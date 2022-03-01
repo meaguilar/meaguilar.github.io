@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-01T02:05:27Z",
+  "id": "preparación-entorno-c#",
+  "duration": 0,
+  "title": "Preparación de entorno para C#",
+  "authors": "Marlene Aguilar, Natalia Solórzano",
+  "summary": "Esta guía detalla el paso a paso para la instalación de las herramientas necesarias para iniciar el C#.",
+  "source": "1nvClkmioiTLWjTye3P2dGoQTXO9tRwg7rQAyj3nSNoI",
+  "theme": "web",
+  "status": [
+    "draft"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "preparación-entorno-c#"
+}
