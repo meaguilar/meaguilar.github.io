@@ -27,14 +27,19 @@
                   environment="web"
                   feedback-link="">
     
-      <google-codelab-step label="Introducción a C#" duration="15">
+      <google-codelab-step label="Bienvenida Practica 1 - P1" duration="5">
         <h2 is-upgraded>¿Qué aprenderás?</h2>
 <ul>
 <li>Sentencias de control de flujo</li>
 <li>Funciones</li>
 <li>Introducción a listas</li>
 </ul>
-<h2 is-upgraded>Sentencias de control de flujo</h2>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sentencias de control de flujo" duration="20">
+        <h2 is-upgraded>Sentencias de control de flujo</h2>
 <p>se refiere al orden en que se ejecutan las instrucciones o sentencias del programa (Joyanes, 2008). Existen dos tipos de estructura:</p>
 <ul>
 <li>Las estructuras condicionales</li>
@@ -54,7 +59,7 @@ while (n &lt; 5)
   n++;
 }
 </code></pre>
-<h2 is-upgraded>Sintaxis del do-While</h2>
+<h2 is-upgraded>Sintaxis del Do-While</h2>
 <pre><code language="language-csharp" class="language-csharp">int i = 0;
 do
 {
@@ -70,7 +75,13 @@ do
         <p><strong>Ejemplo: Calculo de CUM de ciclo</strong></p>
 <p>Las unidades de mérito de una asignatura cursada se obtienen al multiplicar la calificación final de la asignatura por sus unidades valorativas. El CUM se obtiene al dividir el total de unidades de mérito obtenidas entre el total de las unidades valorativas de las asignaturas cursadas.</p>
 <p class="image-container"><img alt="Tabla notas" src="img\\448c7c95e2bbdcd8.png"></p>
-<aside class="special"><p><strong>La sintaxis varía un poco en C# respecto a C++</strong></p>
+<p>Enlace a código sugerido: https://github.com/armandocodigos/0122POO-UCA/tree/main/P1/CalculoCUM</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sintaxis de arreglos" duration="5">
+        <p><strong>La sintaxis varía un poco en C# respecto a C++</strong></p>
 <ul>
 <li>La sintaxis para la creación de arreglos:</li>
 </ul>
@@ -79,7 +90,6 @@ string[ ] vocales2 = new string[5]{&#34;a&#34;,&#34;e&#34;,&#34;i&#34;,&#34;o&#3
 string[ ] vocales3 = new string[ ]{&#34;a&#34;,&#34;e&#34;,&#34;i&#34;,&#34;o&#34;,&#34;u&#34;};
 </code></pre>
 <p><strong>foreach:</strong> recorrer un arreglo o una lista.</p>
-</aside>
 <p><strong>Ejemplo</strong></p>
 <p>Solicitar al usuario una lista de nombres separados por coma, almacenar cada uno de ellos individualmente en una casilla de un arreglo. Finalmente mostrar cada nombre por separado.</p>
 
