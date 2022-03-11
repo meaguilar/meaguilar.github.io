@@ -1,0 +1,196 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Introducción Git, GitHub</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp1"
+                  title="Introducción Git, GitHub"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Bienvenido" duration="0">
+        <p>En esta guía aprenderás sobre qué es Git y Github, sus diferencias y cómo utilizarlo.</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\b04129f2c74e1ae3.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="SISTEMA CONTROL DE VERSIONES" duration="0">
+        <p>En cada uno de los proyectos u otros archivos que realizas has tenido que generar diferentes versiones de forma manual, y lo que haces es cambiar nombres, colocar número de versión u otro identificador que se comprenda cuál es el documento o carpeta final. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\6b54e2666183ad36.jpeg"></p>
+<p>Las aplicaciones de control de versiones nos permite administrar las diferentes versiones de uno o varios archivos y en cualquier momento se puede acceder a cualquier versión del pasado y verificar cuales fueron los cambios, quien la realizó, a que horas y fecha se realiza esa modificación. </p>
+<p>Existen muchos Sistemas de Control de Versiones siendo algunos de los más conocidos CVS, Git, Subversion, Mercurial y Bazaar.</p>
+<p class="image-container"><img style="width: 272.85px" src="img\\73b04cec7c5b5510.png"><img style="width: 389.58px" src="img\\2ca95ff476e9acd7.png"></p>
+<p class="image-container"><img style="width: 337.78px" src="img\\54abc11467cd222d.png"><img style="width: 184.15px" src="img\\d899381ed3c20fc7.png"></p>
+<p>Leer más: <a href="https://medium.com/@jointdeveloper/sistemas-de-control-de-versiones-qu%C3%A9-son-y-por-qu%C3%A9-amarlos-24b6957e716e" target="_blank">Sistemas de Control de Versiones, qué son y por qué amarlos. | by jointDeveloper | Medium</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="GIT" duration="0">
+        <p>Es un sistema de control de versiones distribuido (VCS), que permite almacenar diferentes versiones de uno o varios archivos para que cualquier versión sea recuperable cuando lo desee.</p>
+<p><strong>Nota:</strong> Git en realidad es un sistema de control de versiones <em>distribuido</em>, lo cual significa que se realiza una copia completa del repositorio que contiene la base de código en tu computadora (y en la de todos los demás). Realizas cambios en tu propia copia, y luego empujas esos cambios nuevamente al servidor, donde un administrador decidirá si fusiona tus cambios con la copia maestra. - MDN Mozilla</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\5a9477a991d33168.png"></p>
+<p>Leer más: <a href="https://docs.github.com/es/get-started/using-git/about-git" target="_blank">https://docs.github.com/es/get-started/using-git/about-git</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="GitHub" duration="0">
+        <p>Es una plataforma web que permite alojar proyectos, utilizando el sistema de control de versiones distribuidos de GIT, su interfaz gráfica lo ha convertido en uno de los clientes Git más utilizados por los desarrolladores.</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\6b597b8c8a86240e.png"></p>
+<p>Enlace a sitio oficial: <a href="https://github.com/" target="_blank">www.github.com</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Iniciado en GitHub" duration="0">
+        <p>Acceder al sitio oficial:  <a href="https://github.com/" target="_blank">www.github.com</a> , crear una cuenta de usuario, de preferencia utiliza tu correo electrónico institucional. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\e14893651500d959.png"></p>
+<p>Una vez creada la cuenta, completa tu perfil coloca tu nombre y foto. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\70c7f1371afe1fbc.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Instalando Git" duration="0">
+        <p>Antes de empezar a utilizar Git, debemos instalarlo en nuestra computadora. Si ya está instalado, puedes actualizarlo a su última versión.</p>
+<p>Enlace a sitio oficial Git: <a href="https://git-scm.com/" target="_blank">Git</a> </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\9e8e2a3334f77ef9.png"></p>
+<p><strong>Verificar instalación</strong></p>
+<p>Para verificar si la instalación se realizó de manera exitosa. Ejecutar el siguiente comando: </p>
+<p>git --version </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\98035d70139159b0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Iniciando en Git" duration="0">
+        <h2 is-upgraded><strong>Estados en Git</strong></h2>
+<ul>
+<li>Confirmado (committed): la información está almacenada en la base de datos local.</li>
+<li>Modificado (modified): un archivo ha sido modificado, pero se  han confirmado a la base de datos.</li>
+<li>Preparado (staged): se ha marcado un archivo modificado en su versión actual para enviarlo a la próxima confirmación.</li>
+</ul>
+<p class="image-container"><img style="width: 336.00px" src="img\\a6967ff6faabe8d2.png"></p>
+<h2 is-upgraded><strong>El flujo de trabajo básico de Git</strong></h2>
+<p class="image-container"><img style="width: 601.70px" src="img\\a41bb599d39344d5.png"></p>
+<p>Leer más:  <a href="https://moisesdelacruz.medium.com/tutorial-b%C3%A1sico-de-git-y-github-42e46ff41194" target="_blank">Estados Git</a>  </p>
+<p>Ver video<strong>: </strong><a href="https://www.youtube.com/watch?v=SxmveNrZb5k" target="_blank">Git &amp; GitHub: Git Status</a></p>
+<h2 is-upgraded><strong>Comandos </strong></h2>
+<p class="image-container"><img style="width: 601.70px" src="img\\bea6a7bfcaa3dbaa.png"></p>
+<p>Leer más: <a href="https://drive.google.com/file/d/1sAYpx-N9RcNDpeurbF8m7gggJsdgt_pX/view?usp=sharing" target="_blank">comandos-git.pdf</a> </p>
+<h2 is-upgraded><strong>Commit </strong></h2>
+<p>Se usa para confirmar los cambios en el área de preparación y guardarlos en el repositorio local en Git. </p>
+<p>Algunas buenas prácticas:</p>
+<ol type="1" start="1">
+<li>Especifica el tipo de commit:<br>feat: La nueva característica que agregas a una aplicación en particular<br>fix: Un parche para un error<br>style: Características o actualizaciones relacionadas con estilos<br>refactor: Refactorizar una sección específica de la base de código<br>test: Todo lo relacionado con pruebas<br>docs: Todo lo relacionado con documentación<br>chore: Mantenimiento de código regular.</li>
+<li>Quita signos de puntuación innecesarios.</li>
+<li>Usa mayúsculas al inicio del título y por cada párrafo del cuerpo del mensaje.</li>
+<li>Usa el cuerpo del mensaje para explicar los cambios.</li>
+<li>Sigue la convención del mensaje de commit definida por tu equipo.</li>
+</ol>
+<p>Agrega emojis a tus commit, debes buscar el emoji que describa lo que has realizado. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\df4172aabedcd927.png"></p>
+<p>Enlace: <a href="https://gitmoji.dev/" target="_blank">www.gitmoji.dev</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejemplo práctico" duration="0">
+        <p><strong>Clona un repositorio y sube los cambios</strong></p>
+<p>Crear un directorio en alguna ubicación de tu computadora, en este caso se creó una en el escritorio llamada MiPrimerClonacion</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\3c26a6d4cfe1296c.png"></p>
+<p>Abre una consola en la ubicación de la carpeta llamada MiPrimerClonacion</p>
+<p><strong>Clonando</strong></p>
+<p>Copia la url del repositorio</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\bd68813acadcb5df.png"></p>
+<ul>
+<li>git clone [url]</li>
+</ul>
+<p>En este paso se copia la dirección utilizando el comando y clonara el proyecto del repositorio a tu carpeta. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\5852987dbf21549d.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\15ae60cb9a664f55.png"></p>
+<p><strong>Crea un archivo txt con tu nombre.</strong></p>
+<p>En el contenido del archivo también coloca tu nombre.</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\5c5cbe3e0cbf8450.png"></p>
+<p><strong>Iniciando a subir los tus archivos</strong></p>
+<p><strong>Configuración</strong></p>
+<p>Al ser primera que se realizará un cambio en el repositorio, solicitara los siguientes datos:</p>
+<ul>
+<li>git config --global user.name &#34;[nombre apellido]&#34;</li>
+<li>git config --global user.email &#34;[email]&#34; </li>
+</ul>
+<p class="image-container"><img style="width: 601.70px" src="img\\4fb863279533240.png"></p>
+<p><strong>Agregando archivos </strong></p>
+<p>Agregamos el nombre de la carpeta del proyecto es a la cual le realizamos las modificaciones</p>
+<ul>
+<li>git add </li>
+</ul>
+<p class="image-container"><img style="width: 601.70px" src="img\\9b7631d122fee3f3.png"></p>
+<p><strong>Commit</strong></p>
+<p>Agregamos el commit con un mensaje descriptivo de lo que se ha realizado, toma en cuenta las buenas prácticas, puedes usar <a href="https://gitmoji.dev/" target="_blank">https://gitmoji.dev/</a> pero revisa cual es el más descriptivo para lo que has realizado a tu proyecto. </p>
+<p><strong>IMPORTANTE: Puedes hacer varios commit, por cada modificación considerable puede realizar un commit, esto permitirá tener un registro de todo lo que vas realizando en el proyecto. </strong></p>
+<ul>
+<li>git commit  </li>
+</ul>
+<p class="image-container"><img style="width: 601.70px" src="img\\9cae5734d6488157.png"></p>
+<p><strong>Push</strong></p>
+<p>Envía tus cambios al repositorio.</p>
+<ul>
+<li>git push </li>
+</ul>
+<p>En este paso si solicitara autenticación, realizarla con el navegador.</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\ed2f487952a6fbe4.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\9a9f9480a5c86ae1.png"></p>
+<p>Verificar su repositorio en GitHub, mostrará los nuevos archivos que se han agregado. <strong>FELICIDADES!!! 😁😁</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\37efe36e4364f8a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio evaluado - Se realizará en el laboratorio" duration="0">
+        <ul>
+<li>Crea una cuenta en github con tu cuenta institucional</li>
+<li>Accede a la tarea que está en Moodle llamada cp1</li>
+<li>Busca tu nombre y acepta la tarea </li>
+<li>Clona el repositorio</li>
+<li>Abre el proyecto con Rider</li>
+<li>Leer las instrucciones en el proyecto Rider</li>
+<li>Una vez listo tu código </li>
+<li>Sube los cambios al repositorio  utiliza los comandos en el orden correcto (git add, git commit, git push)</li>
+<li>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

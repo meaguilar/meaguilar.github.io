@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-11T01:23:48Z",
+  "id": "cp1",
+  "duration": 0,
+  "title": "Introducción Git, GitHub",
+  "authors": "Marlene Aguilar",
+  "summary": "Primer corto práctico, aprenderás sobre los conceptos de git, Github, como utilizarlos y sus diferencias, finalmente pondrás a prueba tus conocimientos con el ejercicio práctico.",
+  "source": "1rHE5IfAnUQyGATFb_A2QRAIlD2-HPyvQX4-AInh3LlY",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp1"
+}
