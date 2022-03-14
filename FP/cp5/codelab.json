@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-14T14:28:17Z",
+  "id": "cp5",
+  "duration": 0,
+  "title": "Preparación del entorno en C++",
+  "authors": "Mauricio Zaldaña",
+  "summary": "Esta guía detalla las herramientas y su instalación que permite poder configurar el entorno para iniciar a programar en C++",
+  "source": "1ugXVEV971KUVIxLqH5hQgiDZFq5yhBa9Jv579cgQDLA",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp5"
+}
