@@ -1,0 +1,187 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Introducción a C#</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp1"
+                  title="Introducción a C#"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Bienvenida Practica 1 - P1" duration="5">
+        <p class="image-container"><img alt="Diagrama" src="img\\871626748d8daf7b.png"></p>
+<h2 is-upgraded>¿Qué aprenderás?</h2>
+<ul>
+<li>Sentencias de control de flujo</li>
+<li>Funciones</li>
+<li>Introducción a listas</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sentencias de control de flujo" duration="20">
+        <h2 is-upgraded>Sentencias de control de flujo</h2>
+<p>se refiere al orden en que se ejecutan las instrucciones o sentencias del programa (Joyanes, 2008). Existen dos tipos de estructura:</p>
+<ul>
+<li>Las estructuras condicionales</li>
+<li>Las estructuras de bucles</li>
+</ul>
+<h2 is-upgraded>Sintaxis del FOR</h2>
+<pre><code language="language-csharp" class="language-csharp">for (int i = 0; i &lt; 3; i++)
+{
+  Console.Write(i);
+}
+</code></pre>
+<h2 is-upgraded>Sintaxis del WHILE</h2>
+<pre><code language="language-csharp" class="language-csharp">int n = 0;
+while (n &lt; 5)
+{
+  Console.Write(n);
+  n++;
+}
+</code></pre>
+<h2 is-upgraded>Sintaxis del Do-While</h2>
+<pre><code language="language-csharp" class="language-csharp">int i = 0;
+do
+{
+  Console.WriteLine(&#34;i = {0}&#34;, i);
+  i++;
+} while (i &lt; 5);
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Practiquemos" duration="15">
+        <p><strong>Ejemplo: Calculo de CUM de ciclo</strong></p>
+<p>Las unidades de mérito de una asignatura cursada se obtienen al multiplicar la calificación final de la asignatura por sus unidades valorativas. El CUM se obtiene al dividir el total de unidades de mérito obtenidas entre el total de las unidades valorativas de las asignaturas cursadas.</p>
+<p class="image-container"><img alt="Tabla notas" src="img\\af363d740f4a9dec.png"></p>
+<p>Enlace a código: <a href="https://github.com/armandocodigos/0122POO-UCA/tree/main/P1/CalculoCUM" target="_blank">Link</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Sintaxis de arreglos" duration="5">
+        <p><strong>La sintaxis varía un poco en C# respecto a C++</strong></p>
+<ul>
+<li>La sintaxis para la creación de arreglos:</li>
+</ul>
+<pre><code language="language-csharp" class="language-csharp">char[ ] vocales1 = new char[5];
+string[ ] vocales2 = new string[5]{&#34;a&#34;,&#34;e&#34;,&#34;i&#34;,&#34;o&#34;,&#34;u&#34;};
+string[ ] vocales3 = new string[ ]{&#34;a&#34;,&#34;e&#34;,&#34;i&#34;,&#34;o&#34;,&#34;u&#34;};
+</code></pre>
+<p><strong>foreach:</strong> recorrer un arreglo o una lista.</p>
+<p>Enlace a código: <a href="https://github.com/armandocodigos/0122POO-UCA/tree/main/P1/ArregloNombres" target="_blank">Link</a></p>
+<p><strong>Ejemplo</strong></p>
+<p>Solicitar al usuario una lista de nombres separados por coma, almacenar cada uno de ellos individualmente en una casilla de un arreglo. Finalmente mostrar cada nombre por separado.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Funciones" duration="20">
+        <aside class="special"><p> En lenguajes de programación orientados a objetos, como C#, no se acostumbra utilizar el paradigma estructurado, aunque si es posible hacerlo. </p>
+</aside>
+<pre><code language="language-csharp" class="language-csharp">public static void saludar() {
+ Console.write(&#34;Hola!!!&#34;)
+}
+</code></pre>
+<aside class="warning"><p>Es posible ejecutar funciones desde el main sólo si se les antecede la palabra reservada <strong>static</strong></p>
+</aside>
+<p>A diferencia de C++, en C# no se utilizan los prototipos de funciones. Las funciones pueden declararse en cualquier orden, antes o después del main.</p>
+<pre><code language="language-csharp" class="language-csharp">public static void Main(string[] args)
+{
+  saludar(&#34;POO&#34;);
+  Console.ReadLine();
+}
+public static void saludar(string nombre) {
+  Console.WriteLine(&#34;Hola &#34;+ nombre);
+}
+</code></pre>
+<p><strong>Ejemplo: Habitaciones de un hotel</strong></p>
+<p>Implemente un programa que almacene la cantidad de habitaciones ocupadas actualmente y las despachadas de manera histórica para un pequeño hotel que tiene diez cuartos, cada uno vale $15.</p>
+<p>Se deberá mostrar el siguiente menú:</p>
+<ol type="1">
+<li>Reservar habitaciones</li>
+<li>Despachar habitaciones</li>
+<li>Habitaciones ocupadas</li>
+<li>Calcular ganancias</li>
+<li>Salir</li>
+</ol>
+<p>Finalmente genere un EXE para poder ejecutar su programa.</p>
+<aside class="special"><p><strong>Sobrecarga</strong> Se refiere a la posibilidad de tener dos o m ́as funciones con el mismo nombre pero funcionalidad diferente. El compilador usará una u otra dependiendo de los parámetros usados. Las funciones deben contar con diferentes argumentos, caso contrario se generará un error.</p>
+</aside>
+<pre><code language="language-csharp" class="language-csharp">public static int suma(int x, int y) {
+  return x + y;
+}
+public static double suma(double a, double b) {
+  return a + b;
+}
+public static double suma(double a, double b, double c) {
+  return a + b + c;
+}
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Introducción a listas" duration="15">
+        <p>En c# se utiliza la libreria Linq, para poder tener acceso las listas y utilizar los métodos requeridos.</p>
+<pre><code language="language-csharp" class="language-csharp">List&lt;int&gt; lista = new List&lt;int&gt;();
+lista.Add(1);
+lista.Add(2);
+lista.Insert(1, 5);
+
+foreach (int numero in lista)
+  Console.Write(numero + &#34; &#34;);
+
+Console.WriteLine(lista.Max());
+Console.WriteLine(lista.Sum());
+lista.RemoveAt(1);
+</code></pre>
+<p>Enlace a código: <a href="https://github.com/armandocodigos/0122POO-UCA/tree/main/P1/IntroListas" target="_blank">Link</a></p>
+<p><strong>Ejemplo: Conversor de temperatura</strong></p>
+<p>Implemente un programa que almacene una cantidad din ́amica de temperaturas, originalmente en grados Celsius. El usuario podrá agregar o eliminar datos en cualquier momento. Se deberá mostrar el siguiente menú:</p>
+<ol type="1">
+<li>Agregar temperatura(Celcius)</li>
+<li>Quitar temperatura (Celcius)</li>
+<li>Mostrar temperatura máxima (Celcius)</li>
+<li>Mostrar temperaturas en Celcius</li>
+<li>Mostrar temperaturas en Fahrenheit</li>
+<li>Mostrar temperaturas en Kelvin</li>
+<li>Salir</li>
+</ol>
+<p class="image-container"><img alt="Fórmulas" src="img\\6a9600f07f388989.png"></p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
