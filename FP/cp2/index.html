@@ -1,0 +1,136 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Representación de los datos en la computadora</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp2"
+                  title="Representación de los datos en la computadora"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Conceptos" duration="0">
+        <ul>
+<li>Bit: Es un dígito binario es decir 0 o 1. Es la unidad mínima de información.</li>
+<li>Byte: Es el conjunto de 8 bit,  es la representación de un carácter o número. </li>
+<li>Sistema Binario: Tiene 2 dígitos 0 y 1. </li>
+<li>Patrones de bits: Cadena de bits.</li>
+</ul>
+<p>Observa el siguiente ejemplo se representa un patrón de bits (lenguaje máquina), en lenguaje humano es la letra A ó 65 base 10. </p>
+<p class="image-container"><img style="width: 463.50px" src="img\\136bcc4eacc112ad.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Codigo ASCII" duration="0">
+        <p>El acrónimo ASCII significa American Standard Code for Information Interchange o Código estándar americano para el intercambio de información. Este es el nombre elegido para indicar el sistema de codificación de caracteres de siete bits.  </p>
+<p><strong>Puedes utilizarlo presionando la tecla alt + combinación de números según la tabla. </strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\d4bd40333429c88d.png"></p>
+<p>Leer más: <a href="https://elcodigoascii.com.ar" target="_blank">El código ASCII</a> </p>
+<p><strong>Ejemplo</strong></p>
+<p>Convertir la cadena de texto: FP</p>
+<ol type="1" start="1">
+<li>Buscar en la tabla ASCII el valor decimal correspondientes a cada carácter. </li>
+</ol>
+<p class="image-container"><img style="width: 231.65px" src="img\\878d9bcace646f83.png"></p>
+<ol type="1" start="2">
+<li>Realizar las conversiones de decimal a binario</li>
+</ol>
+<p class="image-container"><img style="width: 601.70px" src="img\\dae382faf113a62d.png"></p>
+<ol type="1" start="3">
+<li>Unir los resultados anteriores</li>
+</ol>
+<p class="image-container"><img style="width: 557.00px" src="img\\5e7f1fbacfeea0b0.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Unicode" duration="0">
+        <p>Unicode es un estándar de codificación de caracteres. En pocas palabras, esta tabla corresponde a los caracteres de texto (números, letras, elementos de puntuación) su representación es hexadecimal. </p>
+<p class="image-container"><img style="width: 490.00px" src="img\\6b968cefbab70e93.png"> </p>
+<p><strong>Ejemplo de caracteres y su representación Unicode</strong></p>
+<p class="image-container"><img style="width: 521.50px" src="img\\473a4f75c6677254.png"></p>
+<p>Enlace a tabla Unicode: <a href="https://unicode-table.com/es/#0021" target="_blank">Unicode</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="UTF-8" duration="0">
+        <p>UTF-8 es una codificación de caracteres para Unicode. La abreviatura &#34;UTF-8&#34; procede de &#34;8-bit Unicode Transformation Format&#34;. </p>
+<aside class="special"><p><strong>Ejemplo:</strong> La codificación UTF-8 almacenará &#34;hola&#34; así (binario):  </p>
+<p><strong>01101000 01100101 01101100 01101100  01101111</strong></p>
+</aside>
+<p>Su aplicación en  la Web. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\40189d8162ad3ad3.png"></p>
+<p>Enlace: <a href="https://onlineunicodetools.com/convert-unicode-to-utf8" target="_blank">Convertidor Unicode a UTF-8</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Imágenes" duration="0">
+        <p>Se representan en una computadora mediante uno de dos métodos: Gráficos de mapas de bits o gráficos de vectores.</p>
+<p class="image-container"><img style="width: 319.00px" src="img\\6b7cdddfe844e274.png"></p>
+<ul>
+<li><strong>Gráficos de mapas de bits: </strong>Es una imagen ráster, pixelada. Cada punto contiene la información de color, A las imágenes en mapa de bits se las suele definir por su altura y anchura (en píxeles).</li>
+<li><strong>Gráfico vectorial:</strong> Este método no guarda los patrones de bits. Es la combinación de curvas y líneas, las cuales se representan por medio de una fórmula matemática.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Representación de un binario en una imagen de Mapa de Bits" duration="0">
+        <p class="image-container"><img style="width: 601.70px" src="img\\572a4808f3dbe74e.png"></p>
+<p><strong>Ejemplo práctico </strong></p>
+<ul>
+<li>Crear una imagen en paint de 8 x 8 pixeles, guardar en formato .bmp </li>
+</ul>
+<p class="image-container"><img style="width: 601.70px" src="img\\8da9a271f225994.png"></p>
+<ul>
+<li>Ingresa al enlace  y convierte tu imagen a código binario. Enlace: <a href="https://www.dcode.fr/imagen-binario" target="_blank">Convertir Imagen a Binario - Píxeles - Online</a> </li>
+</ul>
+<p class="image-container"><img style="width: 601.70px" src="img\\7769a3d226d3640b.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicios" duration="0">
+        <ol type="1" start="1">
+<li>Prueba algunas combinaciones de teclado para generar caracteres, emoticones, número, letras tildadas entre otros símbolos. </li>
+<li>Convierte algunos caracteres o cadenas de texto a binario.</li>
+<li>Crea una imagen de Mapa de Bits desde un binario; primero en papel  después utilizando una herramienta digital.</li>
+<li>Crea una imagen de Mapa de Bits en una herramienta digital y luego convierte a binario. </li>
+</ol>
+<p>Referencias</p>
+<p>Leer más: <a href="https://www.mclibre.org/consultar/htmlcss/html/html-utf8.html#bits" target="_blank">https://www.mclibre.org/consultar/htmlcss/html/html-utf8.html#bits</a> </p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

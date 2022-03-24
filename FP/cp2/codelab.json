@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-24T22:31:36Z",
+  "id": "cp2",
+  "duration": 0,
+  "title": "Representación de los datos en la computadora",
+  "authors": "Marlene Aguilar",
+  "summary": "Esta guía detalla ejemplos  sobre la representación interna de los datos en una computadora.",
+  "source": "1voX6hIB9-85m_y3xJoZ6DJIVA-JH0LjSZhUHqKdGYQQ",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp2"
+}
