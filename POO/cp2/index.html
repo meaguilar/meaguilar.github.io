@@ -1,0 +1,164 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Diagramas UML</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp2"
+                  title="Diagramas UML"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Diagramas UML" duration="0">
+        <p>El <strong>Lenguaje Unificado de Modelado</strong> o UML (&#34;Unified Modeling Language&#34;) es un lenguaje estandarizado de modelado. Está especialmente desarrollado para ayudar a todos los intervinientes en el desarrollo y modelado de un sistema o un producto software a describir, diseñar, especificar, visualizar, construir y documentar todos los artefactos que lo componen, sirviéndose de varios tipos de diagramas.</p>
+<p class="image-container"><img style="width: 300.00px" src="img\\5b6789141809d59.png"></p>
+<p>Enlace OMG: <a href="https://www.omg.org/spec/UML/2.5.1/About-UML/" target="_blank">Acerca de UML 2.5</a> </p>
+<p>Enlace oficial: <a href="https://diagramasuml.com" target="_blank">www.diagramasuml.com</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Historia" duration="0">
+        <p>Octubre de 1994, cuando Rumbaugh se unió a la compañía Rational fundada por Booch (dos reputados investigadores en el área de metodología del software). El objetivo de ambos era unificar dos métodos que habían desarrollado: el método Booch y el OMT (Object Modelling Tool ). El primer borrador apareció en octubre de 1995. En esa misma época otro reputado investigador, Jacobson, se unió a Rational y se incluyeron ideas suyas. Estas tres personas son conocidas como los &#34;tres amigos&#34;. Además, este lenguaje se abrió a la colaboración de otras empresas para que aportaran sus ideas. Todas estas colaboraciones condujeron a la definición de la primera versión de UML.</p>
+<p class="image-container"><img style="width: 516.00px" src="img\\d0dd7b0c8d7f8f75.png"></p>
+<p><strong>Versiones </strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\d54cbea65311c395.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Clasificación de diagramas UML" duration="0">
+        <p>A día de hoy, en la versión 2.5.1 de UML, existen dos clasificaciones de diagramas: Los <strong>diagramas estructurales</strong> y los <strong>diagramas de comportamiento</strong>. Todos los diagramas UML están contenidos en esta clasificación.</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\88b9c52272c8f636.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Diagramas de Clases" duration="0">
+        <p>Son un tipo de diagrama de estructura porque describen lo que debe estar presente en el sistema que se está modelando. Las clases pueden representar las clases que se programarán en realidad, los objetos principales o la interacción entre clases y objetos.</p>
+<p><strong>Ejemplo: </strong></p>
+<p class="image-container"><img style="width: 499.00px" src="img\\afba0b0566287541.png"></p>
+<aside class="special"><p><strong>Elementos de una clase</strong></p>
+<p><strong>Método: </strong></p>
+<ul>
+<li>Un especificador de acceso (usualmente public).</li>
+<li>El tipo de retorno de dicho método (por ejemplo: void, int, String).</li>
+<li>El nombre del método (usualmente un verbo).</li>
+<li>Una serie de parámetros encerrados en paréntesis (opcional).</li>
+<li>Cuerpo del método: secuencia de instrucciones encerradas entre llaves.</li>
+</ul>
+<p><strong>Constructores:</strong></p>
+<ul>
+<li>Siempre deben tener el mismo nombre de la clase cuyos objetos está</li>
+<li>construyendo.</li>
+<li>Se declaran como públicos para permitir poder construir objetos desde</li>
+<li>cualquier método de nuestra aplicación.</li>
+<li>No tienen un tipo de retorno, pues no son métodos.</li>
+<li>El operador new invoca al constructor de una clase.</li>
+<li>No es posible invocar un constructor en un objeto que ya existe</li>
+</ul>
+<p><strong>Atributos:</strong></p>
+<ul>
+<li>Un especificador de acceso (usualmente private).</li>
+<li>El tipo de variable (por ejemplo: int, String o double).</li>
+<li>El nombre de la variable (usualmente un sustantivo).</li>
+</ul>
+</aside>
+<p>Ver video: <a href="https://www.youtube.com/watch?v=Z0yLerU0g-Q&t=162s" target="_blank">Diagrama de clases</a> </p>
+<p>Leer más: <a href="https://www.lucidchart.com/pages/es/tutorial-de-diagrama-de-clases-uml" target="_blank">Diagrama de clases</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Diagramas de casos de uso" duration="0">
+        <p>Muestra la relación entre las funcionalidades del sistema y sus controladores (actores) internos/externos.</p>
+<p><strong>Notación</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\6ff829cbc47ed669.png"></p>
+<p><strong>Ejemplo</strong></p>
+<p class="image-container"><img style="width: 380.00px" src="img\\604fb08a35a21d98.png"></p>
+<p>Ver video: <a href="https://www.youtube.com/watch?v=zid-MVo7M-E" target="_blank">Diagrama casos de usos</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Diagramas de secuencia" duration="0">
+        <p>Los diagramas de secuencia, también conocidos como diagramas de eventos o escenarios de eventos, ilustran cómo los procesos interactúan entre sí mostrando llamadas entre diferentes objetos en una secuencia.</p>
+<p><strong>Notación</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\7fe51ec91747ef69.png"></p>
+<p><strong>Ejemplo </strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\edd5e813a2d38c2d.png"></p>
+<p>Ver video: <a href="https://www.youtube.com/watch?v=pCK6prSq8aw" target="_blank">Diagrama de secuencia</a> </p>
+<p>Leer más: <a href="https://www.lucidchart.com/pages/es/diagrama-de-secuencia/#section_0" target="_blank">Diagrama de secuencia</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Integrando los diferentes tipos de diagramas" duration="0">
+        <aside class="special"><p><strong>Final de Unidad I:</strong> Compra de videojuegos </p>
+<p>Debe realizar una simulación de una &#34;Consola de juegos&#34;, en la cual pueda jugar y comprar juegos. Deberían haber dos tipos de juegos: pagados y gratuitos. La compra se hará mediante una tarjeta de una entidad bancaria, ya sea un Banco o una Cooperativa. Los datos (juegos adquiridos, tarjetas, etc.) deben almacenarse en archivos de texto o en una Biblioteca general.</p>
+<p><strong>Elementos que conforman el sistema</strong></p>
+<ul>
+<li><strong>Tarjeta: </strong>almacena su número y monto (clase común y corriente)</li>
+<li><strong>EntidadBancaria: </strong>administra Tarjetas y compra Juegos (interface)</li>
+<li><strong>Banco y Cooperativa</strong> (clases que implementan Entidad Bancaria)</li>
+<li><strong>Resultado: </strong>no existe, sin fondos y con fondos (enum)</li>
+<li><strong>ConsolaJuegos:</strong> juega y compra juegos (clase estática)</li>
+<li><strong>GestorArchivos: </strong>leer, anexar, buscar y pagar (clase estática)</li>
+<li><strong>Juego: </strong>almacena su nombre y permite Jugar (clase padre abstracta)</li>
+<li><strong>Juego Gratuito y Juego Pagado </strong>(clases que heredan de Juego)</li>
+<li><strong>Biblioteca Juegos: </strong>registro juegos que existen (clases estática)</li>
+<li><strong>Juegos, Tarjetas Banco y Tarjetas Coop </strong>(archivos .txt)</li>
+</ul>
+</aside>
+<p><strong>Diagrama de clases </strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\1bc7ab8d29acfffa.png"></p>
+<p><strong>Diagrama de casos de uso</strong></p>
+<p class="image-container"><img style="width: 491.58px" src="img\\51c0c6da93afa0d8.png"></p>
+<p><strong>Diagrama de secuencia</strong></p>
+<p><strong>Casos de uso:</strong> registrar tarjeta y consultar tarjetas.</p>
+<p class="image-container"><img style="width: 509.00px" src="img\\92d53db055fe7e6f.png"></p>
+<p><strong>Caso de uso: </strong>jugar</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\796c56eec9624ae5.png"></p>
+<p><strong>Caso de uso: </strong>comprar juego</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\d8ce89efa39eb889.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Herramientas para creación de diagramas" duration="0">
+        <p class="image-container"><img style="width: 151.50px" src="img\\a456aa5b1087a77b.png"></p>
+<p>Enlace oficial: <a href="https://drawio-app.com" target="_blank">Drawio</a> </p>
+<p class="image-container"><img style="width: 397.25px" src="img\\a578461b34e0ff55.png"></p>
+<p>Enlace oficial: <a href="https://www.lucidchart.com/" target="_blank">Lucidchart</a> </p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>

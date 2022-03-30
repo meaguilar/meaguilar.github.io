@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-30T13:46:51Z",
+  "id": "cp2",
+  "duration": 0,
+  "title": "Diagramas UML",
+  "authors": "Marlene Aguilar",
+  "summary": "Esta guía detalla la definición sobre diagramas UML, y se profundiza en los diagramas de clase, secuencias y casos de uso.",
+  "source": "1-XcFJOFB9szo7KGn17DYKh7kZvNs2xA1w0WGvV9fjBo",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp2"
+}
