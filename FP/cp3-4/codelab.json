@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-04-01T00:05:14Z",
+  "id": "cp3",
+  "duration": 90,
+  "title": "Algoritmos",
+  "authors": "Marlene Navarro",
+  "summary": "Esta guía detalla conceptos sobre algoritmos, sus formas de representación y la aplicabilidad de los mismos en el mundo real.",
+  "source": "1J3x7iDOikpEWxFvyIvscQYpnPpe562fkVjt-5vtYS90",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp3"
+}
