@@ -1,0 +1,310 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Algoritmos</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp3-4"
+                  title="Algoritmos"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="90">
+        <p>En su libro Fundamentos de programación, Luis Joyanes Aguilar, define al algoritmo como un método para resolver un problema. Aunque la popularización del término ha llegado con el advenimiento de la era informática, algoritmo proviene de Mohammed al-KhoWârizmi, matemático persa que vivió durante el siglo IX y alcanzó gran reputación por el enunciado de las reglas paso a paso para sumar, restar, multiplicar y dividir números decimales; la traducción al latín del apellido en la palabra algorismus derivó posteriormente en algoritmo. </p>
+<p>Un algoritmo es una explicación no ambigua,  un conjunto de reglas definidas de cómo resolver un problema. Por ejemplo una receta de cocina, en ella se indican los pasos a seguir para resolver la tarea de producir cierto plato, un manual de instrucciones para armar o configurar un dispositivo, entre otros. </p>
+<p><strong>ENTONCES, ¿QUÉ ES UN ALGORITMO?</strong></p>
+<aside class="special"><p><strong>Algoritmo:</strong> Es una secuencia de pasos ordenados que permiten la resolución de un problema de forma sistemática. </p>
+<p><strong>Características: </strong>Es preciso, finito, ordenado, generan un resultado final. </p>
+<p><strong>Partes:</strong> Entrada, Proceso y Salida</p>
+</aside>
+<p><strong>Proceso de resolución de problemas</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\1cd813ae90cb6b66.png"></p>
+<p><strong>Ejemplo </strong></p>
+<p><strong>Receta para preparar una pizza</strong></p>
+<ol type="1" start="1">
+<li>Muele los tomates en un procesador de alimentos ó en una licuadora. También puedes aplastarlos con un tenedor para que queden trozos sueltos. Agrégale una pizca de sal y de orégano a esta salsa.</li>
+<li>Ralla el queso mozzarella.</li>
+<li>Corta todos los demás ingredientes: el jamón, la cebolla, chile, entre otros, y si usas pepperoni ó salchichas, en rodajas muy finas. </li>
+<li>Toma la masa de la pizza </li>
+<li>Agrega la salsa de tomate sobre tu masa de pizza previamente preparada y lista en su respectivo molde. Esparce bien la salsa con ayuda de una cuchara para que quede uniforme en todos lados.</li>
+<li>Agrega el queso mozzarella rallado y luego los demás ingredientes.</li>
+<li>Lleva al horno, previamente precalentado a 200 grados centígrados.</li>
+<li>Deja cocinar por 10-15 minutos. </li>
+<li>Sirvela</li>
+</ol>
+<p><strong>Cálculo del área de un cuadrado</strong></p>
+<ol type="1" start="1">
+<li>Solicitar la medida de los lados del cuadrado</li>
+<li>Aplicar la fórmula para encontrar el área de un cuadrado</li>
+<li>Mostrar el área de un cuadrado</li>
+</ol>
+<p>Ver video: <a href="https://www.youtube.com/watch?v=U3CGMyjzlvM&t=1s" target="_blank">¿Qué es un algoritmo?</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="¿Para qué sirve un algoritmo?" duration="0">
+        <p class="image-container"><img style="width: 324.50px" src="img\\93ae04ac111cccc1.png"></p>
+<p>Los algoritmos también son la base de los chatbots que emplean cada vez más comercios electrónicos para dar un servicio al cliente más inmediato; sirven para realizar análisis predictivos gracias a la inteligencia artificial —- Edix digital Workers. </p>
+<p><strong>Ejemplos de algoritmos</strong></p>
+<ul>
+<li><strong>PageRank:</strong> determina el orden de los enlaces que aparecen cuando se ingresa una palabra o conjunto de palabras en el buscador de google. Ver video: <a href="https://www.youtube.com/watch?v=b3fwA3EWCd8" target="_blank">PageRank</a>, <a href="https://www.humanlevel.com/diccionario-marketing-online/pagerank-google" target="_blank">Historia PageRank</a>  </li>
+<li><strong>EdgeRank:</strong> es el algoritmo de Facebook que decide qué historias aparecen en el suministro de noticias de cada usuario. El algoritmo oculta historias aburridas, por lo que si tu historia no obtiene una buena puntuación, nadie la verá. Leer más: <a href="http://edgerank.net/#Check-EdgeRank" target="_blank">EdgeRank</a> </li>
+<li><strong>Netflix:</strong> es el algoritmo utilizado para la recomendación de películas. Ver vídeo: <a href="https://www.youtube.com/watch?v=nq2QtatuF7U" target="_blank">Algoritmo Netflix</a> </li>
+</ul>
+<p><strong>Ver vídeo: </strong><a href="https://www.ted.com/talks/kevin_slavin_how_algorithms_shape_our_world?language=es" target="_blank"><strong>¿Cómo los algoritmos configuran el mundo?</strong></a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Formas de representar un algoritmo" duration="0">
+        <ul>
+<li><strong>Lenguaje natural: </strong>Comunicar los pasos de un algoritmo en la forma que se habla a diario. </li>
+<li><strong>Diagrama de flujo:</strong> Un diagrama de flujo u organigrama es una representación gráfica de las distintas operaciones que deben ser realizadas por un operador (humano o mecánico) para la resolución de un problema, indicando el orden lógico. </li>
+<li><strong>Pseudocódigo: </strong>Representación del algoritmo en una forma más sistemática, pero no se hace de ningún lenguaje de programación.</li>
+</ul>
+<p class="image-container"><img style="width: 261.85px" src="img\\1942d1e934444bd3.png"><img style="width: 266.65px" src="img\\e621656fec8a8e5a.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Lenguaje natural" duration="0">
+        <p>Permite comunicar los pasos de un algoritmo en la forma que se habla a diario. La forma de describir los pasos es común y lógico, describiendolos textualmente, los diferentes detalles y procesos necesarios para resolver un problema.</p>
+<p><strong>Características: </strong></p>
+<ul>
+<li>Es ambiguo</li>
+<li>No es universal</li>
+<li>No tiene una estructura preciso</li>
+</ul>
+<p><strong>Ejemplos</strong></p>
+<aside class="special"><p><strong>Preparando una taza de café</strong></p>
+<ol type="1" start="1">
+<li>Hervir agua</li>
+<li>Colocar el café en la taza</li>
+<li>Verter el agua en la taza</li>
+<li>Mezclar para disolver el café</li>
+<li>Servir </li>
+</ol>
+</aside>
+<aside class="warning"><p><strong>Solicitar el nombre</strong></p>
+<p>Registrar el nombre</p>
+<p>Mostrar el nombre</p>
+</aside>
+<aside class="special"><p><strong>Promedio de un estudiante</strong></p>
+<ol type="1" start="1">
+<li>Se registran las  notas</li>
+<li>Obtener el promedio de las notas a través del cálculo correspondiente</li>
+<li>Verificar si el promedio es mayor o igual a 6  &#34;Aprobado&#34; si no &#34;Reprobado&#34;</li>
+</ol>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Diagrama de flujo de datos" duration="0">
+        <p>Los diagramas de flujo son un formato estructurado, una herramienta que permite representar  de forma gráfica qué operaciones se requieren y en qué secuencia se deben realizar para solucionar un problema. También se conoce un diagrama de flujo como la representación mediante símbolos especiales, de los pasos o procedimientos de manera secuencial y lógica que se deben realizar para solucionar un problema.</p>
+<p><strong>Símbolos utilizados para la creación de flujogramas.</strong></p>
+<p class="image-container"><img style="width: 400.00px" src="img\\ef36af1f59d4ae92.png"></p>
+<p class="image-container"><img style="width: 380.00px" src="img\\46424b374ebce86b.png"></p>
+<p><strong>Símbolos utilizados para indicar las operaciones que se realizan para producir un resultado.</strong></p>
+<p class="image-container"><img style="width: 283.00px" src="img\\a15769d59025f818.png"></p>
+<p>Ver video: <a href="https://www.lucidchart.com/pages/es/ejemplos/diagrama-de-flujo-online/#video" target="_blank">LucidChart - Flujogramas</a> </p>
+<p>Leer más: <a href="https://www.lucidchart.com/pages/es/ejemplos/diagrama-de-flujo-online" target="_blank">Diagramas de flujo</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejemplos" duration="0">
+        <p>Diseñar un diagrama de flujo del algoritmo de la suma de dos números</p>
+<p class="image-container"><img style="width: 502.00px" src="img\\423c995e6764759a.png"></p>
+<p>Diseñar un diagrama de flujo del algoritmo comparar el número mayor</p>
+<p class="image-container"><img style="width: 488.00px" src="img\\a852d21e77d12ee1.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Pseudocódigo" duration="0">
+        <p>El pseudocódigo también conocido como falso lenguaje (pseudo = falso),el cual utiliza un lenguaje cercano al de programación, es escrito para ser entendido por el humano y no por la computadora.</p>
+<p><strong>Características: </strong></p>
+<ul>
+<li>Facilita la comprensión de la solución del algoritmo</li>
+<li>Representación, fácil de utilizar y de manipular</li>
+<li>Es independiente del lenguaje de programación</li>
+</ul>
+<p><strong>Estructura propuesta:</strong></p>
+<aside class="warning"><ul>
+<li>Cabecera</li>
+<li>Programa</li>
+<li>Tipos de datos</li>
+<li>Constantes</li>
+<li>Variables</li>
+<li>Cuerpo</li>
+<li>Inicio</li>
+<li>Instrucciones</li>
+<li>Fin</li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Las palabras reservadas del lenguaje de pseudocódigo (AEGOLI)" duration="0">
+        <p><strong>Palabras reservadas para la estructura global de un algoritmo</strong></p>
+<ul>
+<li>algoritmo</li>
+<li>inicio</li>
+<li>fin</li>
+</ul>
+<p><strong>Palabras reservadas para la estructura de un subalgoritmo</strong></p>
+<ul>
+<li>principal</li>
+<li>procedimiento</li>
+<li>funcion</li>
+<li>ref</li>
+<li>comienza</li>
+<li>termina</li>
+</ul>
+<aside class="warning"><p><strong>Nota:</strong> principal( ) usa estas palabras también dado que es tratado como un subalgoritmo más, específicamente como un procedimiento.</p>
+</aside>
+<p><strong>Palabras reservadas para declarar variables</strong></p>
+<ul>
+<li>entero</li>
+<li>real</li>
+<li>caracter</li>
+<li>cadena</li>
+</ul>
+<p><strong>Palabras reservadas para el manejo de instrucciones de selección e iteración</strong></p>
+<ul>
+<li>para</li>
+<li>paso</li>
+<li>finpara</li>
+<li>hacer</li>
+<li>mientrasque</li>
+<li>repetir</li>
+<li>hasta</li>
+<li>si</li>
+<li>entonces</li>
+<li>sino</li>
+<li>finsi</li>
+<li>mientras</li>
+<li>finmientras</li>
+<li>retornar</li>
+<li>terminaPrograma</li>
+</ul>
+<p><strong>Palabras reservadas para el manejo de instrucciones de lectura y escritura de datos</strong></p>
+<ul>
+<li>escribir</li>
+<li>escribirln</li>
+<li>leer</li>
+<li>abrirArchivo</li>
+<li>cerrarArchivo</li>
+<li>leerArchivo</li>
+<li>finalArchivo</li>
+</ul>
+<p><strong>Palabras reservadas para especificar el tipo en la declaración de variables</strong></p>
+<ul>
+<li>enteroescribirln</li>
+<li>realabrirArchivo</li>
+<li>caracter</li>
+<li>cadena</li>
+</ul>
+<p><strong>Sintaxis de una instrucción de selección</strong></p>
+<p class="image-container"><img style="width: 583.00px" src="img\\a18c7a17b673bfa.png"></p>
+<p><strong>Sintaxis de una instrucción de iteración por conteo</strong></p>
+<p class="image-container"><img style="width: 594.00px" src="img\\8a30f4b9654d77ca.png"></p>
+<p><strong>Sintaxis de una instrucción de iteración por condición (mientras)</strong></p>
+<p class="image-container"><img style="width: 552.00px" src="img\\258734952ab58cb0.png"></p>
+<p><strong>Sintaxis de una instrucción de iteración por condición (hacer)</strong></p>
+<p class="image-container"><img style="width: 464.00px" src="img\\e187e6c138bbef13.png"></p>
+<p><strong>Sintaxis de una instrucción de iteración por condición (repetir)</strong></p>
+<p class="image-container"><img style="width: 397.00px" src="img\\91b831f441e897e3.png"></p>
+<aside class="warning"><p><strong>Un ejemplo sencillo</strong></p>
+<p class="image-container"><img style="width: 478.00px" src="img\\2594c1c9a708f8a6.png"></p>
+<p><strong>Notar que:</strong></p>
+<ul>
+<li>Todo el programa va entre las palabras de inicio y fin. </li>
+<li>El procedimiento principal tiene un nombre predeterminado: principal( ).</li>
+</ul>
+</aside>
+<p><strong>La instrucción de lectura desde teclado</strong></p>
+<p>leer(&lt;var1&gt;,&lt;var2&gt;,...,&lt;varN&gt;)</p>
+<aside class="warning"><p><strong>Ejemplo de un programa en el que procedimiento principal invoca a otro procedimiento</strong></p>
+<p class="image-container"><img style="width: 478.00px" src="img\\6afd18b93002b32c.png"></p>
+<p><strong>Notar que</strong></p>
+<ul>
+<li>Todo el programa va entre las palabras de inicio y fin. </li>
+<li>Los procedimientos y funciones se escriben antes del procedimiento principal.</li>
+</ul>
+</aside>
+<p><strong>Ejemplo1</strong></p>
+<p class="image-container"><img style="width: 454.00px" src="img\\75f347c3d3c907ea.png"></p>
+<p><strong>Ejemplo2</strong></p>
+<p class="image-container"><img style="width: 471.00px" src="img\\4e1454e91dbcaa68.png"></p>
+<p>Leer más: <a href="https://www.ecured.cu/Pseudoc%C3%B3digo" target="_blank">Pseudocódigo</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Pseudocódigo &#43; Flujograma" duration="0">
+        <p class="image-container"><img style="width: 500.00px" src="img\\c45177a1f2a78664.png"></p>
+<p class="image-container"><img style="width: 600.00px" src="img\\885eaf80edc05317.png"></p>
+<p class="image-container"><img style="width: 700.78px" src="img\\4e618473b76bccf6.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Herramientas sugeridas para la creación de flujogramas" duration="0">
+        <p class="image-container"><img style="width: 336.25px" src="img\\a578461b34e0ff55.png"></p>
+<p>Enlace oficial a Lucidchart: <a href="https://www.lucidchart.com/pages/es" target="_blank">www.lucidchart.com</a> </p>
+<p class="image-container"><img style="width: 136.75px" src="img\\a456aa5b1087a77b.png"></p>
+<p>Enlace oficial: <a href="https://drawio-app.com/" target="_blank">www.drawio-app.com</a> </p>
+<p class="image-container"><img style="width: 333.00px" src="img\\e1ff98e44612e818.png"></p>
+<p>Enlace oficial:<a href="http://pseint.sourceforge.net/index.php?page=descargas.php" target="_blank">Pseint</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicios prácticos" duration="0">
+        <p class="image-container"><img style="width: 219.09px" src="img\\249ae9ae5eb9fdc1.png"></p>
+<p><strong>Dibujar el diagrama de flujos y pseudocódigo, para los siguientes ejercicios. </strong></p>
+<ol type="1" start="1">
+<li>Saludar a una persona</li>
+<li>Conversor de metros a cm</li>
+<li>Leer los valores, realizar el cálculo del área de un triángulo y mostrar el resultado.</li>
+<li>Leer año de nacimiento, calcular la edad, mostrar los resultados si es mayor o menor de edad. </li>
+<li>Realizar un algoritmo para determinar el sueldo de un empleado, teniendo en cuenta que si trabajó menos de 5 años la antigüedad será del 30% y si trabajo igual o más de 5 años del 50%. </li>
+<li>Escribir un algoritmo que informe por pantalla el apellido y nombre junto a la nota de examen de cada alumno y si la nota es mayor o igual a 6 entonces aprobó el curso si no reprobó el curso. </li>
+<li>Ingresar 10 valores por teclado y obtener la sumatoria de los mismos. Imprimir el total.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
