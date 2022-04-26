@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-03-14T23:27:55Z",
+  "id": "cp1",
+  "duration": 0,
+  "title": "Introducción Git, GitHub, programando C#",
+  "authors": "Marlene Aguilar",
+  "summary": "Primer corto práctico, aprenderás sobre los conceptos de git, Github, como utilizarlos y sus diferencias, finalmente pondrás a prueba tus conocimientos con el ejercicio práctico.",
+  "source": "1Ha-IXOiFDC2rCl6L1R0WOvf_uB-b558zMhSMWdU2lRM",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp1"
+}
