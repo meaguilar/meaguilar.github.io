@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-04-28T19:55:22Z",
+  "id": "cp6",
+  "duration": 0,
+  "title": "Preparación del entorno en C++",
+  "authors": "Marlene Aguilar",
+  "summary": "Esta guía detalla las herramientas y su instalación que permite poder configurar el entorno para iniciar a programar en C++",
+  "source": "1WujhcJxAqPna9JOOqCcAGzqCik7a_ExnnAz1I7bBD9Y",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp6"
+}
