@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-05-13T17:17:28Z",
+  "id": "cp4",
+  "duration": 90,
+  "title": "Interfaces Gráficas de Usuario",
+  "authors": "Marlene Aguilar",
+  "summary": "Esta guía detalla el paso a paso para lograr una GUI funcional, utilizando Rider y lenguaje de programación C#.",
+  "source": "1f738fZDVKCK_7tlsP5fct4bx_AGrYrtXS5Kisp4QwvU",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp4"
+}
