@@ -1,0 +1,104 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Estructuras de control de flujo C&#43;&#43;</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp7"
+                  title="Estructuras de control de flujo C&#43;&#43;"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Sentencias de control de flujo" duration="0">
+        <p>Se refiere al orden en que se ejecutan las instrucciones o sentencias del programa (Joyanes, 2008). Existen dos tipos de estructura:</p>
+<ul>
+<li>Las estructuras de bucles o iteración:</li>
+<li><strong>for</strong></li>
+<li><strong>while</strong></li>
+<li><strong>do...while</strong></li>
+</ul>
+<h2 is-upgraded>Sintaxis for</h2>
+<p>Se evalúa la condición, si cumple se realiza el bucle de instrucciones hasta finalizar con las iteraciones y  si no se cumple con la condición entonces se  termina el código. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\d5189b4a88a81a5b.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\8bc1b0430ee32b69.png"></p>
+<h2 is-upgraded>Sintaxis while</h2>
+<p>El ciclo while, no evalúa una condición numérica, sino de valores booleanos, la ejecución depende del valor de verdad de una condición. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\1a77b982370758f0.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\4bc4dc6a2d3c0eea.png"></p>
+<h2 is-upgraded>Sintaxis do....while</h2>
+<p>En el ciclo do .... While, se ejecuta primero el bloque de instrucciones antes de evaluar la condición y al finalizar la primera iteración se evalúa la condición. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\9160e84e90000919.png"></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\5fb78dfd45181ffd.png"></p>
+<aside class="special"><p><strong>IMPORTANTE</strong></p>
+<p>La comprobación de la condición en en ciclo <strong>while</strong> se realiza al inicio pero en el <strong>do..while,</strong> se realiza al final. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Librerías" duration="0">
+        <p><strong>¿Qué es una biblioteca o librería?</strong></p>
+<p>Archivos que se pueden incluir a los programas, los cuales contienen diferentes funciones que se pueden implementar en el código sin necesidad de crearlas desde cero. Ejemplo librería que permita la entrada y salida de datos. -iostream</p>
+<p class="image-container"><img style="width: 503.00px" src="img\\76ed05e66d70068e.png"></p>
+<p><strong>Declarando una librería</strong></p>
+<p class="image-container"><img style="width: 277.00px" src="img\\228cc0794bd90693.png"></p>
+<p><strong>Uso de la librería cmath</strong></p>
+<p>Permite el uso de funciones matemáticas como <strong>sqrt</strong>(raíz cuadrada), <strong>round</strong> (redondear un número). </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\34754180ea93a9cd.png"></p>
+<p><strong>Leer más: </strong><a href="https://www.include-poetry.com/Code/C++/Introduccion/Librerias/" target="_blank">https://www.include-poetry.com/Code/C++/Introduccion/Librerias/</a> </p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bibliografía" duration="0">
+        <ul>
+<li><a href="https://drive.google.com/file/d/1dsl44Fr88ocPXYm42KQBCuB4njjfxlcV/view?usp=sharing" target="_blank">Curso C++</a></li>
+<li><a href="https://drive.google.com/file/d/18anH-YRnrXD6jWfrCO9FGOL2qI9IwQGj/view?usp=sharing" target="_blank">Curso Programacion C++</a></li>
+<li><a href="https://www.programarya.com/Cursos/C++/Sistema-de-Tipos/Tipos-Primitivos" target="_blank">Guia C++</a> </li>
+<li><a href="https://www.w3schools.com/cpp/default.asp" target="_blank">Curso W3Schools</a> </li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicios" duration="0">
+        <ol type="1" start="1">
+<li>Ingresar un saludo y repetirlo la cantidad de veces que el usuario desee.  Imprimir los saludos.</li>
+<li>Solicite el nombre y calcule el promedio de 3 notas para 5 estudiantes. Imprimir los promedios y nombres de estudiantes.</li>
+<li>Calcula el total a pagar de  la cantidad de productos indicada por el usuario, para ello debe solicitar el precio por cada producto y la cantidad de productos que ha comprado.. Imprimir los los precios y el total a pagar.</li>
+<li>Utilizar un contador iniciando en 2 hasta menor o igual a 10, obtener la sumatoria de los mismos. Imprimir el total.</li>
+<li>Ingresar 10 valores por teclado y obtener la sumatoria de los mismos. Imprimir el total.</li>
+<li>Ingresar 5 valores por teclado y obtener la sumatoria de los números pares. Imprimir el total.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
