@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-05-31T00:26:26Z",
+  "id": "cp4",
+  "duration": 0,
+  "title": "Programando C#",
+  "authors": "Marlene Aguilar",
+  "summary": "........",
+  "source": "1hufrX7vUBKlG-I2CQYiVqJQXI1ezARWfyMA8Gnn5AZw",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp4"
+}
