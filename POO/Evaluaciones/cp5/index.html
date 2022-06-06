@@ -1,0 +1,121 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Conectando a base de Datos &#43; GUI</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp5"
+                  title="Conectando a base de Datos &#43; GUI"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Conectando con BD" duration="90">
+        <p class="image-container"><img style="width: 601.70px" src="img\\61460192aa5944c5.png"></p>
+<p><strong>Cadena de conexión</strong></p>
+<p><strong>Utilizando Localhost</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\9863f480c4cb6db6.png"></p>
+<p><strong>Utilizando Direccion IP + Puerto + Usuario + Contraseña</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\7d0c35845f30ac64.png"></p>
+<aside class="special"><p><strong>IMPORTANTE: </strong>Configurar una cadena de conexión como recurso al proyecto, recuerda cambiar el nombre de la Base de Datos, dirección IP del servidor, usuario y contraseña. </p>
+</aside>
+<p><strong>Conexión a la BDD</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\156dc6426fff2704.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Consultas" duration="0">
+        <p><strong>Agregar la consulta sin parámetros</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\342e1ad869ba6430.png"></p>
+<p><strong>Agregar la consulta con parámetros</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\dc87d7f266e19001.png"></p>
+<aside class="warning"><p><strong>IMPORTANTE: </strong>En el ejemplo anterior se ha enviado un valor por defecto para la búsqueda, recuerda hacer el cambio para que sea un valor ingresado por el usuario. </p>
+<p><strong>La parametrización de consultas evita el SQL injection</strong></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Configuración de la conexión" duration="0">
+        <p><strong>Abrir conexión, ejecutar consulta y cerrar conexión</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\3c0951782cb050ba.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Manejo de resultados" duration="0">
+        <p><strong>Manejo de resultados con índices </strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\726c2364807bec29.png"></p>
+<p><strong>Manejo de resultados con nombre de columna</strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\1b6a1e8f019e6662.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejemplo" duration="0">
+        <p>Visualización de la consulta en Azure Data Studio </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\f718a2664f649f5f.png"></p>
+<p>Configuración de la conexión a la BD y consulta con parámetros. </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\f4540d212f39c55b.png"></p>
+<p>Visualización de la información a través de la GUI</p>
+<p class="image-container"><img style="width: 418.00px" src="img\\177d3707f52c8d4c.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Actividad individual para realizar en el laboratorio" duration="0">
+        <ol type="1" start="1">
+<li>Ingresa a evaluaciones en Moodle y clic en cp5</li>
+<li>Clona el repositorio<strong> [git clone &lt;url&gt;]</strong></li>
+<li>Utiliza Azure Data Studio o SQL Management Studio, para conectarte a la BD. </li>
+<li>Conéctate a la base de datos que se utilizó en el parcial de Bases de Datos, es decir al servidor 192.168.233.120,1433 POO2022 e ingresa tu usuario y contraseña.</li>
+<li>Crea una consulta sin parámetros y una consulta con parámetros.</li>
+<li>Crea un proyecto para escritorio </li>
+<li>Configurar la cadena de conexión en los recursos de tu proyecto.</li>
+<li>Crea una  GUI  con los controles que consideres necesarios que permita mostrar la información de las consultas que realices a la BD. </li>
+<li>Leer buenas prácticas <a href="https://meaguilar.github.io/POO/Evaluaciones/cp1/#6" target="_blank">https://meaguilar.github.io/POO/Evaluaciones/cp1/#6</a> </li>
+<li>Utiliza buenas prácticas para realizar el commit <strong>[git commit -m &#34;&#34;]</strong></li>
+<li>Envía tus cambios al repositorio<strong> [git push]</strong></li>
+</ol>
+<aside class="warning"><p><strong>IMPORTANTE</strong></p>
+<p>Cadena de conexión a configurar </p>
+<p class="image-container"><img style="width: 617.00px" src="img\\34701f4b25dcea9f.png"></p>
+<p>Recuerda tu usuario y contraseña para conectarse al servidor es: </p>
+<ul>
+<li><strong> u_numeroCarne </strong></li>
+<li><strong>DosPrimerasLetrasPrimerApellido&lt;numeroCarne&gt;! </strong></li>
+</ul>
+<p><strong>El nombre de la Base de Datos, la dirección del servidor y puerto  es igual para todos/as. </strong></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
