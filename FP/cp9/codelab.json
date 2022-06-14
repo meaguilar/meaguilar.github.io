@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-06-14T23:32:54Z",
+  "id": "cp9",
+  "duration": 0,
+  "title": "Punteros C++",
+  "authors": "Marlene Aguilar",
+  "summary": "Esta guía detalla la sintaxis y uso de  punteros en C++",
+  "source": "11u6VVAqlqvnl57xiSCqW3lRDLw1Dx71MeVR53Z_DDwg",
+  "theme": "web",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "web"
+  ],
+  "tags": [
+    "web"
+  ],
+  "url": "cp9"
+}

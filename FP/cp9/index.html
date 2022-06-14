@@ -1,0 +1,138 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Punteros C&#43;&#43;</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp9"
+                  title="Punteros C&#43;&#43;"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Punteros" duration="0">
+        <p>Algunos tipos fundamentales de tipos de datos son los siguientes:</p>
+<ul>
+<li>Entero: int, utiliza 4 byte.</li>
+<li>Real, en punto flotante: float, utiliza 4 bytes.</li>
+<li>Real doble, double, utiliza 8 bytes.</li>
+<li>Carácter: char, utiliza un byte.</li>
+</ul>
+<p>Las variables declaradas bajo este tipo de datos, pueden almacenar valores que son manipulables en los programas, por ejemplo:</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\f738ae3ac0588d7b.png"></p>
+<p>En memoria se puede visualizar de la siguiente manera: </p>
+<p class="image-container"><img style="width: 130.00px" src="img\\49545bcf26ac9607.png"></p>
+<p>Asignación de valor a la variable: </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\65118eea5934281c.png"></p>
+<p>En memoria se puede visualizar de la siguiente manera: </p>
+<p class="image-container"><img style="width: 130.00px" src="img\\c3f8d226fb3c8b78.png"></p>
+<p>El lenguaje C/C++ cuenta con un tipo especial de variables, a las que se les denomina <strong>punteros</strong>, las cuales no almacenan valores discretos, sino que almacenan direcciones de memoria.</p>
+<p>De acuerdo a esto, dado que son variables también se deben declarar, pero para especificar que dicha variable podrá almacenar direcciones de memoria, y no valores discretos, en la declaración se incluye el operador de indirección: <strong>*,</strong>según la siguiente sintaxis:</p>
+<p class="image-container"><img style="width: 397.00px" src="img\\ad152201faf5d597.png"></p>
+<p>Por ejemplo, la siguiente es una declaración de puntero:</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\ef2532a43107abf0.png"></p>
+<p>Al ver esta declaración, podemos afirmar lo siguiente:</p>
+<ul>
+<li>Los punteros son variables que deben ser declaradas.</li>
+<li>Los punteros, como cualquier otra variable, tienen un tipo de dato.</li>
+<li>Al puntero no se le asignan valores discretos, sino direcciones de memoria.</li>
+<li>El tipo del puntero indica que este puede apuntar a direcciones de memoria donde se almacenan datos de ese tipo y no de otro tipo.</li>
+</ul>
+<p>A un puntero se le asigna una dirección de memoria, pero,<strong> ¿cómo obtenemos la dirección de una celda de memoria?</strong> Esto se obtiene utilizando el operador dirección de: <strong>&amp;</strong>, según la siguiente sintaxis:</p>
+<p class="image-container"><img style="width: 316.00px" src="img\\f010d8a5dd6f8f2e.png"></p>
+<p>Esta instrucción se interpreta de la siguiente manera:</p>
+<ul>
+<li>La variable a le entrega su dirección al puntero p.</li>
+</ul>
+<aside class="special"><p><strong>IMPORTANTE</strong></p>
+<p>La instrucción NO indica que la variable<strong> a</strong> le entrega su valor a la variable <strong>p</strong>, sino que le entrega su dirección. Esto es fácil deducirlo porque la variable <strong>a</strong> está precedida del operador <strong>&amp;</strong></p>
+</aside>
+<p><strong>¿Cuáles son las consecuencias de que una variable está siendo apuntada por un puntero?</strong></p>
+<p>Esto implica que la variable puede ser manipulada, de forma indirecta, es decir, a través del puntero. En otras palabras, para realizar cualquier operación en la que la variable a está involucrada, se sustituye el nombre de la variable por el puntero.</p>
+<p>Ejemplo:<strong> Visualizar la dirección de memoria. </strong></p>
+<p class="image-container"><img style="width: 601.70px" src="img\\2c3f86166e40ef47.png"></p>
+<p class="image-container"><img style="width: 261.50px" src="img\\552ef7e06edeb687.png"></p>
+<aside class="special"><p>En el ejemplo anterior en la consola de salida se despliega un número hexadecimal. Esto es, una dirección de memoria RAM, la dirección donde inicia el almacenamiento de la variable <strong>a</strong>.</p>
+</aside>
+<p class="image-container"><img style="width: 590.00px" src="img\\1da600f6021b51e9.png"></p>
+<aside class="warning"><p><strong>IMPORTANTE</strong></p>
+<p>El manejo de punteros en estos ejemplos, se puede decir que <strong>*p </strong>es un sinónimo de <strong>a.</strong></p>
+<p><strong>cout&lt;&lt; *p; </strong>no es lo mismo que <strong>cout&lt;&lt;p; </strong></p>
+<ul>
+<li>En el primer caso se está desplegando el valor de <strong>a</strong>, ya que hemos afirmado que <strong>*p</strong> es un sinónimo de<strong> a</strong>. </li>
+<li>En el segundo caso estamos desplegando el valor que <strong>p</strong> tiene almacenado, que es la dirección de memoria donde se encuentra la variable<strong> a.</strong></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Paso de argumentos por referencia" duration="0">
+        <p>Las funciones reciben argumentos y a la vez retornan resultados. El valor que retornan las funciones se adquiere por medio de la instrucción <strong>return</strong> que se encuentra dentro de la función que es invocada.</p>
+<p>En la llamada a una función, los valores que van dentro de los paréntesis se conocen como <strong>parámetros actuales</strong> o <strong>argumentos.</strong> En la cabecera de la función, los parámetros corresponden, uno a uno, con los de la llamada y se conocen como<strong> parámetros formales</strong>, o simplemente <strong>parámetros</strong>. Estos son variables locales de la función, al igual que las variables que se declararon dentro del cuerpo de la misma. Toda variable local de una función se destruye cuando la función finaliza y el control de ejecución regresa al punto de la llamada. La memoria RAM que esa variable utilizaba vuelve a estar disponible para el sistema operativo.</p>
+<p>Los parámetros actuales le entregan una copia de su valor a los parámetros formales, y estos lo adquieren como valor inicial. En el transcurso de la ejecución de la función, los parámetros formales son utilizados como cualquier otra variable local, incluso su valor puede ser reasignado. Pero al finalizar la función, el último valor adquirido por los parámetros formales se pierde, dado que el parámetro es destruido, y al retornar al cuerpo de la función que hizo la llamada. De esta forma, los parámetros actuales conservan sus valores iniciales, aunque los parámetros formales hayan cambiado de valor. A esto se le conoce como paso de<strong> parámetros por valor</strong>. </p>
+<p>Ejemplo:</p>
+<p class="image-container"><img style="width: 601.70px" src="img\\eb0f2dfa7d09994b.png"></p>
+<aside class="warning"><p><strong>IMPORTANTE</strong></p>
+<p>Notar que el valor de la variable<strong> a</strong>, al regresar de la llamada a la función, sigue siendo el mismo que antes de la llamada, aunque su parámetro formal cambió de valor en la función.</p>
+</aside>
+<p>En ocasiones es necesario que los valores reasignados a los parámetros formales se conozcan al retornar de la función invocada. Para ello C++ utiliza como parámetros formales lo que se conoce como <strong>punteros</strong>. Esto es, variables que almacenan valores específicos, direcciones de memoria de las variables que contienen esos valores.</p>
+<p>Para que un parámetro actual adquiera el valor de un parámetro formal, se debe enviar a la función la dirección del parámetro actual. De esa manera el parámetro formal correspondiente será un puntero. De esta forma, la localidad de memoria del parámetro actual es accedida desde la función y su valor cambiado cuando sea requerido. Al finalizar la función invocada, el parámetro actual contiene el último valor que les fue asignado a través del parámetro formal.</p>
+<aside class="special"><p><strong>IMPORTANTE</strong></p>
+<p>* a la izquierda del nombre de la variable. Esto indica que esa variable es un puntero. Es conocido como operador de indirección, y almacena direcciones de memoria de su mismo tipo. </p>
+<p><strong>&amp; </strong> es el &#34;operador dirección de&#34;.</p>
+</aside>
+<p>Ejemplo: </p>
+<p class="image-container"><img style="width: 601.70px" src="img\\885ea447374f4181.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Bibliografía" duration="0">
+        <ul>
+<li><a href="https://drive.google.com/file/d/1dsl44Fr88ocPXYm42KQBCuB4njjfxlcV/view?usp=sharing" target="_blank">Curso C++</a>: Capitulo 13</li>
+<li><a href="https://www.programarya.com/Cursos/C++/Estructuras-de-Datos/Punteros" target="_blank">https://www.programarya.com/Cursos/C++/Estructuras-de-Datos/Punteros</a> </li>
+<li><a href="https://www.w3schools.com/cpp/cpp_pointers.asp" target="_blank">https://www.w3schools.com/cpp/cpp_pointers.asp</a> </li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicios" duration="0">
+        <ol type="1" start="1">
+<li>Crear una variable y un puntero</li>
+<li>Verificar la dirección de memoria de una variable</li>
+<li>Elabore una función que intercambie los valores de dos variables.</li>
+<li>Dados dos números enteros determine, por medio de una función, el cociente y el residuo de la división entera entre ambos.</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
