@@ -1,0 +1,337 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Algoritmos de ordenamiento</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="cp1"
+                  title="Algoritmos de ordenamiento"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <p class="image-container"><img style="width: 313.00px" src="img\\5883777786d84312.png"></p>
+<h2 is-upgraded><strong>¿Qué son los algoritmos de ordenamiento?</strong></h2>
+<p>Los algoritmos de ordenamiento nos permiten ordenar información de una manera especial basándonos en un criterio de ordenamiento, en la computación el ordenamiento de datos cumple un rol muy importante, se han desarrollado muchas técnicas en este ámbito, cada una con características específicas, y con ventajas y desventajas sobre las demás.</p>
+<p>Para programar uno de estos algoritmos es necesario aplicar conceptos de arreglos, operaciones de comparación y operaciones aritméticas.</p>
+<h2 is-upgraded><strong>Consideraciones</strong></h2>
+<ul>
+<li>Comparar el rendimiento de los diferentes algoritmos dependerá siempre de la complejidad computacional es decir se evalúa el mejor, promedio y peor comportamiento que tiene un determinado algoritmo dependiendo del tamaño de la lista.</li>
+<li>La cantidad de pasos a realizar dependerá del nivel de desorden inicial de la lista.</li>
+<li>Todos los algoritmos de ordenamiento poseen ventajas y desventajas comparados con otros algoritmos.</li>
+<li>Los algoritmos de ordenamiento son aplicables en cualquier lenguaje de programación.</li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\\a367cbce529cdf5a.png"></p>
+<aside class="warning"><p><strong>Nota:</strong> En esta práctica aprenderemos los ordenamientos de burbuja, inserción y selección.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Algoritmo de Ordenamiento de Inserción" duration="10">
+        <h3 is-upgraded><em>Ordenamiento de Inserción, es totalmente natural, para enumerar. Sirve para organizar en un orden específico los elementos de una lista o vector con O(n^2).</em></h3>
+<h3 is-upgraded>Pasos:</h3>
+<p>1.       Obtener una lista de elementos sin orden previo</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\b90ec3d0ceb3ac2b.png"></p>
+<p>2.       Ir verificando con los primeros dos números cuál es el mayor y el menor y ordenarlos ascendentemente</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\6a0968e63c9a2b09.png"></p>
+<p>3.       Se selecciona el tercer número y se compara con el segundo y con el primer número si es mayor o menor y se ordena ascendentemente</p>
+<p class="image-container"><img style="width: 573.50px" src="img\\f423d5bad34624b8.png"></p>
+<p>4.           Se sigue con los demás números y se van comparando entre sí, y finalmente se muestra la lista ordenada</p>
+<p class="image-container"><img style="width: 564.46px" src="img\\e19b96fc4a96ea57.png"></p>
+<h3 is-upgraded><strong>Ejemplo 1 (imagen)</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img\\1c36fa2903441db5.png"></p>
+<h3 is-upgraded><strong>Ejemplo 1 (texto)</strong></h3>
+<pre>#include&lt;iostream&gt;
+#include&lt;conio.h&gt;
+
+using namespace std;
+
+int main(){
+    int elementos[] = { 7, 5, 9, 1, 0, 3};
+    int i, pos, temp;
+
+    //Algoritmo de Ordenamientos de Inserción
+    for(i = 0; i &lt; 5; i++){
+        pos = i;
+        temp = elementos[i];
+
+        while((pos &gt; 0) &amp;&amp; (elementos[pos-1] &gt; temp)){
+            elementos[pos] = elementos[pos - 1];
+            pos--;
+        }
+        elementos[pos] = temp;
+    }
+
+    cout &lt;&lt; &#34;Ordenamiento de Insercion Ascendente: &#34;;
+    for(i = 0; i &lt; 6; i++){
+        cout &lt;&lt; elementos[i] &lt;&lt; &#34; &#34;;
+    }
+
+    cout &lt;&lt; endl;
+
+    cout &lt;&lt; &#34;Ordenamiento de Insercion Descendente: &#34;;
+    for(i = 6; i &gt;= 0; i--){
+        cout &lt;&lt; elementos[i] &lt;&lt; &#34; &#34;;
+    }
+
+    //Lee cadenas de varios caracteres
+    getch();
+
+    return 0;
+}</pre>
+<h3 is-upgraded>Resultados: </h3>
+<p><code>Ordenamiento de Insercion Ascendente: 0 1 5 7 9 3</code></p>
+<p><code>Ordenamiento de Insercion Descendente: 0 3 9 7 5 1 0</code></p>
+<h3 is-upgraded><strong>Ejemplo 2 (imagen)</strong></h3>
+<p class="image-container"><img style="width: 400.23px" src="img\\c58574d248b9372c.png"></p>
+<h3 is-upgraded><strong>Ejemplo 2 (texto)</strong></h3>
+<pre>#include&lt;iostream&gt;
+#include&lt;vector&gt;
+
+using namespace std;
+
+// Recibe un vector de enteros
+void insertionSort(vector&lt;int&gt;&amp;arreglo){
+
+    /*Itera en la primera posicion del arreglo y
+    termina hasta que alcance el tamaño del arreglo*/
+    for(int i = 1; i &lt; arreglo.size(); i++){
+
+        //Igualado al indice i del for
+        int j = i;
+
+        // Variable auxiliar que guarde el valor de i
+        int temp = arreglo[i];
+
+        // Se repite si j es mayor a 0
+        // Si la variable auxiliar es menor que j
+        while(j &gt; 0 &amp;&amp; temp &lt; arreglo[j - 1]){
+
+           //Se iguala el valor de j al anterior
+            arreglo[j] = arreglo[j - 1];
+
+            // Disminuir
+            j--;
+        }
+
+        // Valor actual de j al auxiliar
+        arreglo[j] = temp;
+    }
+}
+
+// Funcion void, recibe un vector de enteros
+void printArray(vector&lt;int&gt;arreglo){
+
+    //For inicia en 0 hasta el tamaño del arreglo
+    for ( int i = 0; i &lt; arreglo.size(); i++){
+
+        //Se imprime
+        cout &lt;&lt; arreglo[i] &lt;&lt; &#34; &#34;;
+    }
+
+    // Salto de linea
+    cout &lt;&lt; endl;
+}
+
+int main(){
+    vector &lt;int&gt; prueba = { 3, 6, 8, 9, 4};
+   
+    //Se llaman las funciones
+    cout &lt;&lt; &#34;Arreglo Inicial: &#34;;
+    printArray(prueba);
+    cout &lt;&lt; endl;
+    insertionSort(prueba);
+    cout &lt;&lt; &#34;Arreglo Ordenado: &#34;;
+    printArray(prueba);
+}</pre>
+<h3 is-upgraded>Resultados: </h3>
+<p><code>Arreglo Inicial: 3 6 8 9 4 </code></p>
+<p><code>Arreglo Ordenado: 3 4 6 8 9</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Algoritmo de ordenamiento de burbuja" duration="3">
+        <h2 is-upgraded>¿En qué consiste el algoritmo de ordenamiento de burbuja<strong>?</strong></h2>
+<p>Este algoritmo es uno de los más sencillos aunque no es el más eficiente. Su simplicidad lo convierte en un algoritmo ideal para practicar programación.</p>
+<p>Funciona revisando cada elemento de la lista que va a ser ordenada con el siguiente, intercambiandolos de posición si están en el orden equivocado, es necesario revisar varias veces toda la lista hasta que no se necesiten más intercambios, lo cual significa que la lista está ordenada. Este algoritmo obtiene su nombre de la forma con la que suben por la lista los elementos durante los intercambios, como si fueran pequeñas &#34;burbujas&#34;, también es conocido como el <strong>método del intercambio directo</strong>.</p>
+<p> Dado que solo usa comparaciones para operar elementos, se lo considera un algoritmo de comparación.</p>
+<h2 is-upgraded><strong>Veamos un ejemplo gráfico...</strong></h2>
+<ol type="1" start="1">
+<li>Comenzamos con una lista de elementos no ordenados.</li>
+</ol>
+<p class="image-container"><img style="width: 330.67px" src="img\\1d5045a87b6c05db.png"></p>
+<ol type="1" start="2">
+<li>Tomamos los primeros dos elementos y si no están ordenados los intercambiamos de lugar.</li>
+</ol>
+<p class="image-container"><img style="width: 408.00px" src="img\\5168a6713cff6179.png"></p>
+<ol type="1" start="3">
+<li>Se repite el proceso con los dos siguientes elementos.</li>
+</ol>
+<p class="image-container"><img style="width: 376.00px" src="img\\11b47f4d5f0718fa.png"></p>
+<ol type="1" start="4">
+<li>El proceso se repite hasta llegar al final.</li>
+</ol>
+<p class="image-container"><img style="width: 403.00px" src="img\\4c3d136e19fbb26d.png"></p>
+<ol type="1" start="5">
+<li>El último número ya queda ordenado por lo que en la siguiente iteración ya no se evalúa acotando el proceso.</li>
+</ol>
+<p class="image-container"><img style="width: 359.00px" src="img\\578eda1fd85b75f7.png"></p>
+<ol type="1" start="6">
+<li>En la tercera iteración no se evalúan los últimos dos valores.</li>
+</ol>
+<p class="image-container"><img style="width: 365.00px" src="img\\4289678df212f4e9.png"></p>
+<ol type="1" start="7">
+<li>La cuarta iteración se finaliza sin que se haya realizado un intercambio por lo que el algoritmo termina.</li>
+</ol>
+<p class="image-container"><img style="width: 373.00px" src="img\\b7c9bb3684c3c2de.png"></p>
+<ol type="1" start="8">
+<li>Al finalizar el algoritmo obtenemos el listado ordenado.</li>
+</ol>
+<p class="image-container"><img style="width: 446.00px" src="img\\5307257d2cee7ba1.png"></p>
+<h2 is-upgraded>Pseudocódigo</h2>
+<p>En la siguiente imagen se muestra el pseudocódigo del algoritmo de ordenamiento de burbuja.</p>
+<p class="image-container"><img style="width: 454.00px" src="img\\8725baa7a7f1fb57.png"></p>
+<aside class="special"><p><strong>Tip: Este algoritmo no está optimizado, si suponemos que recibimos una lista de elementos que ya está ordenada, este algoritmo realizaría todas las iteraciones solo para devolver la misma colección sin alterarla.</strong></p>
+</aside>
+<p>Dicho lo anterior, para solventar esto y tener una versión más optimizada del algoritmo es necesario al menos hacer una iteración sobre los elementos, y en caso de no realizarse ningún intercambio de posiciones se debe suponer que la colección ya está ordenada. Con esta modificación el pseudocódigo quedaría así:</p>
+<p class="image-container"><img style="width: 509.00px" src="img\\c1c61a71a6223750.png"></p>
+<h2 is-upgraded><strong>Ejemplo del algoritmo aplicado en c++</strong></h2>
+<p class="image-container"><img style="width: 752.00px" src="img\\d78f2dfb3198d24a.png"></p>
+<p>Resultado:</p>
+<p class="image-container"><img style="width: 296.00px" src="img\\a0804e785258f9cd.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Algoritmo de Ordenamiento por Selección." duration="3">
+        <p>El ordenamiento por selección es una forma bastante natural para el ser humano para poder ordenar los elementos en un conjunto de datos, si queremos ordenar de forma creciente, el algoritmo se basa en separar el arreglo original en dos sub-arreglos, una parte ordenada y una parte sin ordenar, los pasos que se aplican son los siguientes:</p>
+<p>1) Se busca el elemento mas pequeño en el arreglo de datos.</p>
+<p>2) Se intercambia ese elemento con el que se encuentra en la primera posición.</p>
+<p>3) Se avanza a la siguiente posición tomando esa posición en adelante como un subarreglo.</p>
+<p>4) Repetimos hasta que el arreglo haya sido ordenado.</p>
+<p><code>Ejemplo:</code></p>
+<p class="image-container"><img style="width: 469.50px" src="img\\746dbfb6ec805bd7.png"></p>
+<p><strong>1) Se busca el elemento más pequeño en el arreglo de datos.         </strong></p>
+<p>        Iniciando desde la posición 0 en este caso el elemento más pequeño es el 1.</p>
+<p class="image-container"><img style="width: 500.00px" src="img\\7d9436f708b2b7a.png"></p>
+<p><strong>2) Se intercambia ese elemento con el que se encuentra en la primera posición.</strong></p>
+<p class="image-container"><img style="width: 447.00px" src="img\\423b3c9cbfd7e43c.png"></p>
+<p><strong>3) Se avanza a la siguiente posición tomando esa posición en adelante como un subarreglo.</strong></p>
+<p>Tomamos de la posición 1 (que contiene el número 6) en adelante como un subarreglo</p>
+<p class="image-container"><img style="width: 513.00px" src="img\\7bffd69eefeb31ad.png"></p>
+<p><strong>4) Repetimos hasta que el arreglo haya sido ordenado.</strong></p>
+<p>Aplicaremos de nuevo paso<strong> 1) Se busca el elemento más pequeño en el arreglo de datos. </strong>Pero solo con los datos de la posición 1 en adelante, encontrando que el menor de estos es el 3.</p>
+<p class="image-container"><img style="width: 500.50px" src="img\\c9046819cdd29451.png"></p>
+<p>Aplicaremos de nuevo paso<strong> 2) Se intercambia ese elemento con el que se encuentra en la primera posición. </strong>En este caso el elemento en la primera posición de nuestro sub-arreglo es el 6, por lo que lo intercambiamos.</p>
+<p class="image-container"><img style="width: 472.00px" src="img\\e49f834f533b2c39.png"></p>
+<p>Aplicaremos de nuevo paso <strong>3) Se avanza a la siguiente posición tomando esa posición en adelante como un subarreglo.</strong></p>
+<p class="image-container"><img style="width: 485.00px" src="img\\499f1d6a11741975.png"></p>
+<p><strong>4) Repetimos hasta que el arreglo haya sido ordenado.</strong></p>
+<p>Aplicaremos de nuevo paso<strong> 1) Se busca el elemento más pequeño en el arreglo de datos. </strong>Pero solo con los datos de la posición 2 en adelante, encontrando que el menor de estos es el 4.</p>
+<p class="image-container"><img style="width: 493.00px" src="img\\ba1589063cf2396e.png"></p>
+<p>Aplicaremos de nuevo paso<strong> 2) Se intercambia ese elemento con el que se encuentra en la primera posición. </strong>En este caso el elemento en la primera posición de nuestro sub-arreglo es el 6, por lo que lo intercambiamos.</p>
+<p class="image-container"><img style="width: 505.00px" src="img\\916fff7d2b40b71d.png"></p>
+<p>Aplicaremos de nuevo paso <strong>3) Se avanza a la siguiente posición tomando esa posición en adelante como un subarreglo.</strong></p>
+<p class="image-container"><img style="width: 468.00px" src="img\\127f507210bd12e5.png"></p>
+<p><strong>4) Repetimos hasta que el arreglo haya sido ordenado.</strong></p>
+<p>Aplicaremos de nuevo paso<strong> 1) Se busca el elemento más pequeño en el arreglo de datos. </strong>Pero solo con los datos de la posición 3 en adelante, encontrando que el menor de estos es el 5.</p>
+<p class="image-container"><img style="width: 481.00px" src="img\\a0d4c09c699fbe64.png"></p>
+<p>Aplicaremos de nuevo paso<strong> 2) Se intercambia ese elemento con el que se encuentra en la primera posición. </strong>En este caso el elemento en la primera posición de nuestro sub-arreglo es el 6, por lo que lo intercambiamos.</p>
+<p class="image-container"><img style="width: 503.00px" src="img\\c33cbd0540e0a9ef.png"></p>
+<p>Aplicaremos de nuevo paso <strong>3) Se avanza a la siguiente posición tomando esa posición en adelante como un subarreglo.</strong></p>
+<p class="image-container"><img style="width: 510.00px" src="img\\2adb07cdfad2cc7e.png"></p>
+<p>Vemos que solo nos queda un elemento, lo que significa que el arreglo ha sido ordenado y ya no hay que hacer ninguna repetición</p>
+<p><img style="width: 451.00px" src="img\\15abaab2c4c8d53f.png">. </p>
+<p>El código base en c++ del algoritmo es el siguiente:</p>
+<p class="image-container"><img style="width: 450.98px" src="img\\4560d9eaf65b9151.png"></p>
+<p>Texto:</p>
+<p><code>#include<iostream></code></p>
+<p><code>using</code> <code>namespace</code> <code>std;</code></p>
+<p><code>int</code> <code>main(){</code></p>
+<p><code>int</code> <code>numeros[] = {4,6,3,1,5};</code></p>
+<p><code>int</code> <code>i,j,aux,min;</code></p>
+<p><code>for(i=0;i<5;i++){</code></p>
+<p><code>min</code> <code>=</code> <code>i;</code></p>
+<p><code>for(j=i+1;j<5;j++){</code></p>
+<p><code>if(numeros[j] <</code> <code>numeros[min]){</code></p>
+<p><code>min</code> <code>=</code> <code>j;</code></p>
+<p><code>            }</code></p>
+<p><code>        }</code></p>
+<p><code>aux</code> <code>=</code> <code>numeros[i];</code></p>
+<p><code>numeros[i] =</code> <code>numeros[min];</code></p>
+<p><code>numeros[min] =</code> <code>aux;</code></p>
+<p><code>    }</code></p>
+<p><code>cout<<"Recorremos el arreglo: ";</code></p>
+<p><code>for(i=0;i<5;i++){</code></p>
+<p><code>cout<<numeros[i]<<" ";</code></p>
+<p><code>    }</code></p>
+<p><code>return</code> <code>0;</code></p>
+<p><code>}</code></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio Práctico" duration="3">
+        <ul>
+<li>Accede a la tarea que está en Moodle llamada cp1.</li>
+<li>Busca tu nombre y acepta la tarea</li>
+<li>Clona el repositorio evaluado y crea una rama desde la consola de git</li>
+<li>El ejercicio consistirá en crear un archivo cpp, elegir cualquiera de los algoritmos estudiados y modificarlo para que en lugar de ordenar de forma ascendente, ordene de manera descendente, y muestre el resultado<code>.</code></li>
+<li>Sube los cambios al repositorio y utiliza los comandos en el orden correcto (git add, git commit, git push)</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="GIT" duration="0">
+        <ul>
+<li><strong>git clone [url]</strong></li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\\e71301682a5228f9.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\a9dcc4a3321f60f2.png"></p>
+<p><strong>Elegir Sign in with a code</strong></p>
+<ul>
+<li><strong>git config --global user.name &#34;[nombre apellido]&#34;</strong></li>
+<li><strong>git config --global user.email &#34;[email]&#34;</strong></li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\\cbaa835f8dc1c014.png"></p>
+<ul>
+<li><strong>git add .</strong></li>
+<li><strong>git commit -m &#34;Add: tu mensaje&#34;</strong></li>
+<li><strong>git push</strong></li>
+<li><strong>Verificar el repositorio remoto</strong></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/codelab-elements/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/prettify.js"></script>
+  <script src="https://storage.googleapis.com/codelab-elements/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
