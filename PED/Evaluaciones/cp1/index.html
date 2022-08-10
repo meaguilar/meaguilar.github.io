@@ -57,115 +57,21 @@
 <p class="image-container"><img style="width: 573.50px" src="img\\f423d5bad34624b8.png"></p>
 <p>4.           Se sigue con los demás números y se van comparando entre sí, y finalmente se muestra la lista ordenada</p>
 <p class="image-container"><img style="width: 564.46px" src="img\\e19b96fc4a96ea57.png"></p>
-<h3 is-upgraded><strong>Ejemplo 1 (imagen)</strong></h3>
-<p class="image-container"><img style="width: 624.00px" src="img\\1c36fa2903441db5.png"></p>
-<h3 is-upgraded><strong>Ejemplo 1 (texto)</strong></h3>
-<pre>#include&lt;iostream&gt;
-#include&lt;conio.h&gt;
-
-using namespace std;
-
-int main(){
-    int elementos[] = { 7, 5, 9, 1, 0, 3};
-    int i, pos, temp;
-
-    //Algoritmo de Ordenamientos de Inserción
-    for(i = 0; i &lt; 5; i++){
-        pos = i;
-        temp = elementos[i];
-
-        while((pos &gt; 0) &amp;&amp; (elementos[pos-1] &gt; temp)){
-            elementos[pos] = elementos[pos - 1];
-            pos--;
-        }
-        elementos[pos] = temp;
-    }
-
-    cout &lt;&lt; &#34;Ordenamiento de Insercion Ascendente: &#34;;
-    for(i = 0; i &lt; 6; i++){
-        cout &lt;&lt; elementos[i] &lt;&lt; &#34; &#34;;
-    }
-
-    cout &lt;&lt; endl;
-
-    cout &lt;&lt; &#34;Ordenamiento de Insercion Descendente: &#34;;
-    for(i = 6; i &gt;= 0; i--){
-        cout &lt;&lt; elementos[i] &lt;&lt; &#34; &#34;;
-    }
-
-    //Lee cadenas de varios caracteres
-    getch();
-
-    return 0;
-}</pre>
-<h3 is-upgraded>Resultados: </h3>
-<p><code>Ordenamiento de Insercion Ascendente: 0 1 5 7 9 3</code></p>
-<p><code>Ordenamiento de Insercion Descendente: 0 3 9 7 5 1 0</code></p>
-<h3 is-upgraded><strong>Ejemplo 2 (imagen)</strong></h3>
-<p class="image-container"><img style="width: 400.23px" src="img\\c58574d248b9372c.png"></p>
-<h3 is-upgraded><strong>Ejemplo 2 (texto)</strong></h3>
-<pre>#include&lt;iostream&gt;
-#include&lt;vector&gt;
-
-using namespace std;
-
-// Recibe un vector de enteros
-void insertionSort(vector&lt;int&gt;&amp;arreglo){
-
-    /*Itera en la primera posicion del arreglo y
-    termina hasta que alcance el tamaño del arreglo*/
-    for(int i = 1; i &lt; arreglo.size(); i++){
-
-        //Igualado al indice i del for
-        int j = i;
-
-        // Variable auxiliar que guarde el valor de i
-        int temp = arreglo[i];
-
-        // Se repite si j es mayor a 0
-        // Si la variable auxiliar es menor que j
-        while(j &gt; 0 &amp;&amp; temp &lt; arreglo[j - 1]){
-
-           //Se iguala el valor de j al anterior
-            arreglo[j] = arreglo[j - 1];
-
-            // Disminuir
-            j--;
-        }
-
-        // Valor actual de j al auxiliar
-        arreglo[j] = temp;
-    }
-}
-
-// Funcion void, recibe un vector de enteros
-void printArray(vector&lt;int&gt;arreglo){
-
-    //For inicia en 0 hasta el tamaño del arreglo
-    for ( int i = 0; i &lt; arreglo.size(); i++){
-
-        //Se imprime
-        cout &lt;&lt; arreglo[i] &lt;&lt; &#34; &#34;;
-    }
-
-    // Salto de linea
-    cout &lt;&lt; endl;
-}
-
-int main(){
-    vector &lt;int&gt; prueba = { 3, 6, 8, 9, 4};
-   
-    //Se llaman las funciones
-    cout &lt;&lt; &#34;Arreglo Inicial: &#34;;
-    printArray(prueba);
-    cout &lt;&lt; endl;
-    insertionSort(prueba);
-    cout &lt;&lt; &#34;Arreglo Ordenado: &#34;;
-    printArray(prueba);
-}</pre>
-<h3 is-upgraded>Resultados: </h3>
-<p><code>Arreglo Inicial: 3 6 8 9 4 </code></p>
-<p><code>Arreglo Ordenado: 3 4 6 8 9</code></p>
+<h3 is-upgraded><strong>Ejemplo 1 </strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img\\594baae32909f5c7.png"></p>
+<aside class="special"><p><strong>Resultado:</strong></p>
+<ul>
+<li>Ordenamiento de Insercion Ascendente: 0 1 5 7 9 3</li>
+</ul>
+</aside>
+<h3 is-upgraded><strong>Ejemplo 2 </strong></h3>
+<p class="image-container"><img style="width: 362.46px" src="img\\bd9585617d22f1cb.png"></p>
+<aside class="special"><p><strong>Resultado:</strong></p>
+<ul>
+<li>Arreglo Inicial: 3 6 8 9 4 </li>
+<li>Arreglo Ordenado: 3 4 6 8 9</li>
+</ul>
+</aside>
 
 
       </google-codelab-step>
@@ -211,12 +117,12 @@ int main(){
 <h2 is-upgraded>Pseudocódigo</h2>
 <p>En la siguiente imagen se muestra el pseudocódigo del algoritmo de ordenamiento de burbuja.</p>
 <p class="image-container"><img style="width: 454.00px" src="img\\8725baa7a7f1fb57.png"></p>
-<aside class="special"><p><strong>Tip: Este algoritmo no está optimizado, si suponemos que recibimos una lista de elementos que ya está ordenada, este algoritmo realizaría todas las iteraciones solo para devolver la misma colección sin alterarla.</strong></p>
+<aside class="special"><p><strong>Tip: </strong>Este algoritmo no está optimizado, si suponemos que recibimos una lista de elementos que ya está ordenada, este algoritmo realizaría todas las iteraciones solo para devolver la misma colección sin alterarla.</p>
 </aside>
 <p>Dicho lo anterior, para solventar esto y tener una versión más optimizada del algoritmo es necesario al menos hacer una iteración sobre los elementos, y en caso de no realizarse ningún intercambio de posiciones se debe suponer que la colección ya está ordenada. Con esta modificación el pseudocódigo quedaría así:</p>
 <p class="image-container"><img style="width: 509.00px" src="img\\c1c61a71a6223750.png"></p>
 <h2 is-upgraded><strong>Ejemplo del algoritmo aplicado en c++</strong></h2>
-<p class="image-container"><img style="width: 752.00px" src="img\\d78f2dfb3198d24a.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\e2c9e30da73200cc.png"></p>
 <p>Resultado:</p>
 <p class="image-container"><img style="width: 296.00px" src="img\\a0804e785258f9cd.png"></p>
 
@@ -263,30 +169,7 @@ int main(){
 <p>Vemos que solo nos queda un elemento, lo que significa que el arreglo ha sido ordenado y ya no hay que hacer ninguna repetición</p>
 <p><img style="width: 451.00px" src="img\\15abaab2c4c8d53f.png">. </p>
 <p>El código base en c++ del algoritmo es el siguiente:</p>
-<p class="image-container"><img style="width: 450.98px" src="img\\4560d9eaf65b9151.png"></p>
-<p>Texto:</p>
-<p><code>#include<iostream></code></p>
-<p><code>using</code> <code>namespace</code> <code>std;</code></p>
-<p><code>int</code> <code>main(){</code></p>
-<p><code>int</code> <code>numeros[] = {4,6,3,1,5};</code></p>
-<p><code>int</code> <code>i,j,aux,min;</code></p>
-<p><code>for(i=0;i<5;i++){</code></p>
-<p><code>min</code> <code>=</code> <code>i;</code></p>
-<p><code>for(j=i+1;j<5;j++){</code></p>
-<p><code>if(numeros[j] <</code> <code>numeros[min]){</code></p>
-<p><code>min</code> <code>=</code> <code>j;</code></p>
-<p><code>            }</code></p>
-<p><code>        }</code></p>
-<p><code>aux</code> <code>=</code> <code>numeros[i];</code></p>
-<p><code>numeros[i] =</code> <code>numeros[min];</code></p>
-<p><code>numeros[min] =</code> <code>aux;</code></p>
-<p><code>    }</code></p>
-<p><code>cout<<"Recorremos el arreglo: ";</code></p>
-<p><code>for(i=0;i<5;i++){</code></p>
-<p><code>cout<<numeros[i]<<" ";</code></p>
-<p><code>    }</code></p>
-<p><code>return</code> <code>0;</code></p>
-<p><code>}</code></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\71ceeda56e26b07d.png"></p>
 
 
       </google-codelab-step>
