@@ -3,15 +3,20 @@
   "format": "html",
   "prefix": "https://storage.googleapis.com",
   "mainga": "UA-49880327-14",
-  "updated": "0001-01-01T00:00:00Z",
-  "id": "",
-  "duration": 0,
-  "title": "",
-  "summary": "",
-  "source": "1GS-ukz7ne5QLeITIfaIS17y5xMfK4SbRMuma-LXesnk#4",
-  "theme": "",
-  "status": null,
-  "category": null,
+  "updated": "2022-09-06T16:49:23Z",
+  "id": "cp3",
+  "duration": 60,
+  "title": "Estructuras Dinamicas Pilas",
+  "authors": "Natalia, Felix, y Mauricio",
+  "summary": "En este codelab. Se explicará qué son los algoritmos de ordenamiento y se detallarán algunos de los más conocidos.",
+  "source": "1GS-ukz7ne5QLeITIfaIS17y5xMfK4SbRMuma-LXesnk",
+  "theme": "ped",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "ped"
+  ],
   "tags": [],
-  "url": ""
+  "url": "cp3"
 }

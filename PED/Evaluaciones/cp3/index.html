@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title></title>
+  <title>Estructuras Dinamicas Pilas</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -22,10 +22,182 @@
 <body>
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
-                  id=""
-                  title=""
+                  id="cp3"
+                  title="Estructuras Dinamicas Pilas"
                   environment="web"
                   feedback-link="">
+    
+      <google-codelab-step label="Introducción" duration="0">
+        <h2 is-upgraded><strong>¿Qué son las pilas?</strong></h2>
+<p>Una pila (también conocida como stack) es una estructura de datos, que consta de una serie de datos, en la cual las inserciones y eliminaciones se hacen por un extremo, llamado <strong>cima</strong> (top), de la pila. La estructura pila se conoce como <strong>LIFO</strong> (last-in, first-out), que básicamente sigue el principio en el que el último elemento en entrar es el primero en salir.</p>
+<p>Las operaciones fundamentales introducir y eliminar se hacen por <strong>un</strong> extremo de la pila llamado cima (<em>top</em>).</p>
+<h2 is-upgraded><strong>Operaciones básicas de una pila</strong></h2>
+<ul>
+<li>Crear o inicializar una pila (p) vacía.</li>
+<li>Pila vacía (empty),   determinar si una pila está vacía.</li>
+<li>Pila llena,                 determina si la pila se ha llenado.</li>
+<li>Insertar (push),          inserta un elemento en la cima de la pila.</li>
+<li>Quitar (pop)            recupera y elimina el último elemento en la cima de la pila.</li>
+</ul>
+<h2 is-upgraded><strong>¿Qué son los structs?</strong></h2>
+<p>Un registro es una agrupación de datos, los cuales no necesariamente son del mismo tipo. Se definen con la palabra &#34;struct&#34;.</p>
+<p>Para acceder a cada uno de los datos que forman el registro, tanto si queremos leer su valor como si queremos cambiarlo, se debe indicar el nombre de la variable y el del dato (o campo) separados por un punto:</p>
+<p class="image-container"><img style="width: 308.00px" src="img\\7b40063ea9803418.png"></p>
+<aside class="warning"><p><strong>Nota:</strong> Las pilas son importantes estructuras dinámicas y una de las principales diferencias con las estructuras estáticas( arreglos o matrices) es que estas pueden manejar diferentes tipos de datos en una sola estructura, y es ahí donde cobra importancia el uso de los structs.</p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio 1" duration="10">
+        <h3 is-upgraded><em>Crear un struct de un libro, usando una </em>pila<em>, que permita </em>mostrar<em>, </em>insertar<em>, obtener </em>título<em>, </em>número de páginas<em>, usar una función </em>pop <em>y verificar si está </em>vacío<em>.</em></h3>
+<h3 is-upgraded><strong>Pasos:</strong></h3>
+<ol type="1" start="1">
+<li>Nuevos conocimientos: En este código, se observa que hay divisiones entre private y public, en el constructor de la pila.</li>
+</ol>
+<p>Una clase tiene dos secciones: una <strong>pública </strong>y otra <strong>privada</strong>. Por principios de la programación orientada a objetos los atributos (variables) deben definirse en la parte privada y los métodos dependiendo si queremos que se los pueda llamar desde la main los definiremos de tipo público y si queremos que queden ocultos y solo puedan ser llamados dentro de la clase los definimos en la parte privada.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\7e4b337637998861.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\e1e4b62089d8801.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\3dbaf4ce24a860ce.png"></p>
+<aside class="special"><p><strong>Resultado:</strong></p>
+<ul>
+<li><code>Digite titulo y numero de paginas o Ctrl-D para terminar: PED 340</code></li>
+<li><code>Digite titulo y numero de paginas o Ctrl-D para terminar: WEB 563</code></li>
+<li><code>Digite titulo y numero de paginas o Ctrl-D para terminar: ^D</code></li>
+<li><code>^D</code></li>
+<li><code>Los elementos de la pila son:</code></li>
+</ul>
+<p><code>WEB | 563</code></p>
+<p><code>PED | 340</code></p>
+<ul>
+<li><code>Fin de mostrar pila</code></li>
+</ul>
+<p><code>Ingresar título del libro: WEB     </code></p>
+<p><code>Numero de paginas de WEB: 563</code></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio 2" duration="10">
+        <h3 is-upgraded><strong><em>Se le pide crear un algoritmo en el cual debe apilar y desapilar n cantidad de libros con la siguiente información:</em></strong></h3>
+<ul>
+<li><h3 is-upgraded><strong><em>Nombre del Libro</em></strong></h3>
+</li>
+<li><h3 is-upgraded><em>Tipo de libro: Aventura, ciencia ficción, terror, etc...</em></h3>
+</li>
+</ul>
+<h3 is-upgraded><strong>Pasos:</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img\\5d095f4c6c159523.png"></p>
+<aside class="special"><p><strong>Resultado:</strong></p>
+<ul>
+<li><code>Ingrese la cantidad de libros a apilar: 2</code></li>
+<li><code>Ingrese los datos de 2 libros</code></li>
+</ul>
+<p><code>nombre: La vida</code></p>
+<p><code>Tipo: Ficción</code></p>
+<p><code>nombre: El Rey León</code></p>
+<p><code>Tipo: Aventura</code></p>
+<ul>
+<li><code>Desapilado de libros</code></li>
+</ul>
+<p><code>Nombre del libro: El Rey León</code></p>
+<p><code>Tipo: Aventura</code></p>
+<p><code>Nombre del libro: La vida</code></p>
+<p><code>Tipo: Ficción</code></p>
+<ul>
+<li><code>Pila de libros vacía.</code></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio 3" duration="10">
+        <h3 is-upgraded><em>En una guardería se compran poco a poco bolitas numeradas, se desea llevar un registro al entregarlas a los niños de modo que las últimas que se compran sean las primeras en ser entregadas.</em></h3>
+<h3 is-upgraded><strong>Pasos:</strong></h3>
+<p class="image-container"><img style="width: 624.00px" src="img\\e5330928131cef7b.png"></p>
+<aside class="special"><p><strong>Resultado:</strong></p>
+<ul>
+<li><code>Ingrese el número de la bolita: 3</code></li>
+</ul>
+<p><code>        La bolita con el número 3 Se ha agregado a la pila</code></p>
+<ul>
+<li><code>┬┐Entrará una bolita nueva?(s/n): s</code></li>
+<li><code>Ingrese el número de la bolita: 4</code></li>
+</ul>
+<p><code>        La bolita con el número 4 Se ha agregado a la pila</code></p>
+<ul>
+<li><code>┬┐Entrará una bolita nueva?(s/n): s</code></li>
+<li><code>Ingrese el número de la bolita: 2</code></li>
+</ul>
+<p><code>        La bolita con el número 2 Se ha agregado a la pila</code></p>
+<ul>
+<li><code>┬┐Entrará una bolita nueva?(s/n): s</code></li>
+<li><code>Ingrese el número de la bolita: 1</code></li>
+</ul>
+<p><code>        La bolita con el número 1 Se ha agregado a la pila</code></p>
+<ul>
+<li><code>┬┐Entrará una bolita nueva?(s/n): n</code></li>
+</ul>
+<p><code>Las bolitas se entregaron a los ni├▒os en el siguiente orden: 1 , 2 , 4 , </code></p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Ejercicio Práctico" duration="30">
+        <ol type="1" start="1">
+<li>Accede a la tarea que está en Moodle llamada cp3.</li>
+<li>Busca tu nombre y acepta la tarea</li>
+<li>Clona el repositorio evaluado</li>
+<li>Las opciones de los ejercicios son:</li>
+</ol>
+<aside class="special"><p><strong>Ejercicio 1:</strong></p>
+<ul>
+<li>Realice un programa en el que se puedan almacenar (utilizando pilas) los registros de las cajas de pizza que son ordenadas en un restaurante, cada registro debe de incluir: nombre de la pizza y precio.</li>
+</ul>
+<p>Debe agregar dos o más pizzas a la pila (pueden agregarlas desde el código)</p>
+<p>El programa deberá mostrar la información de las pizzas almacenadas</p>
+<p>Ejemplo:</p>
+<p>Pizza: </p>
+<p>Nombre: Pizza de jamón </p>
+<p>Precio: 19.99</p>
+</aside>
+<aside class="special"><p><strong>Ejercicio 2:</strong></p>
+<ul>
+<li>Elabore un código en C++ que al manipular una pila ingrese la cantidad de datos por consola que desee el usuario, y finalmente muestre todo el contenido de la pila, tome en cuenta que la pila debe manejar un struct con la siguiente estructura:</li>
+</ul>
+</aside>
+<p class="image-container"><img style="width: 624.00px" src="img\\df445c10723d33ed.png"></p>
+<ol type="1" start="5">
+<li>Sube los cambios al repositorio y utiliza los comandos en el orden correcto (git add, git commit, git push)</li>
+</ol>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="GIT" duration="0">
+        <ul>
+<li><strong>git clone [url]</strong></li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\\e71301682a5228f9.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\a9dcc4a3321f60f2.png"></p>
+<p><strong>Elegir Sign in with a code</strong></p>
+<ul>
+<li><strong>git config --global user.name &#34;[nombre apellido]&#34;</strong></li>
+<li><strong>git config --global user.email &#34;[email]&#34;</strong></li>
+</ul>
+<p class="image-container"><img style="width: 624.00px" src="img\\cbaa835f8dc1c014.png"></p>
+<ul>
+<li><strong>git add .</strong></li>
+<li><strong>git commit -m &#34;Add: tu mensaje&#34;</strong></li>
+<li><strong>git push</strong></li>
+<li><strong>Verificar el repositorio remoto</strong></li>
+</ul>
+
+
+      </google-codelab-step>
     
   </google-codelab>
 
