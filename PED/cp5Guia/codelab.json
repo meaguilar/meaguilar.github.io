@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-10-06T14:38:15Z",
+  "id": "cp5Guia",
+  "duration": 33,
+  "title": "Estructuras Dinámicas Listas",
+  "authors": "Natalia, Mauricio, Felix, Fernando, Diego, Daniel",
+  "summary": "En este codelab. Se explicará qué son los algoritmos de ordenamiento y se detallarán algunos de los más conocidos.",
+  "source": "1vHET1LsYzQImJfq675wAoqBhg6-4Qwf8HWL8Ek18TGI",
+  "theme": "ped",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "ped"
+  ],
+  "tags": [],
+  "url": "cp5Guia"
+}
