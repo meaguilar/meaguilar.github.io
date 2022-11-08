@@ -1,0 +1,22 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2022-11-08T22:55:30Z",
+  "id": "cp7",
+  "duration": 33,
+  "title": "Construcción de Clases, Objetos y Métodos",
+  "authors": "Natalia Solórzano, Felix, Daniel, Mercado, Diego, Miguel",
+  "summary": "En este codelab. ......",
+  "source": "1Rzh-2n5Mh8wZUepFnjFPFDkNJeEFBjIPLe8Y_qqqIB4",
+  "theme": "ped",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "ped"
+  ],
+  "tags": [],
+  "url": "cp7"
+}
