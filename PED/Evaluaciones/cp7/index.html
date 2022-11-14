@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
-  <title>Construcción de Clases, Objetos y Métodos</title>
+  <title>Construcción de Clases, Objetos y Métodos - Programación Orientada a Objetos</title>
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://storage.googleapis.com/codelab-elements/codelab-elements.css">
@@ -23,7 +23,7 @@
   <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
   <google-codelab codelab-gaid=""
                   id="cp7"
-                  title="Construcción de Clases, Objetos y Métodos"
+                  title="Construcción de Clases, Objetos y Métodos - Programación Orientada a Objetos"
                   environment="web"
                   feedback-link="">
     
@@ -49,7 +49,7 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Ejemplo 1 Programación Orientada a Objetos" duration="10">
+      <google-codelab-step label="Ejemplo 1 (Programación Orientada a Objetos)" duration="10">
         <p><strong>Programación Orientada a Objetos</strong></p>
 <p>Realizar un ejercicio que por medio de una clase guarde los siguientes datos en el objeto empleado:</p>
 <ul>
@@ -160,61 +160,69 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="Ejemplo 2 Objetos" duration="10">
-        
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Objetos" duration="0">
-        <aside class="special"><p><strong>Resultado:</strong></p>
-</aside>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Ejemplo 3 Métodos" duration="10">
+      <google-codelab-step label="Ejemplo 2 (Métodos)" duration="10">
         <p><strong>Métodos</strong></p>
-<p>Definir un programa en C + + (Utilizando POO) que tenga perros, gatos, peces, loros y humanos. Cada uno puede saludar, comer, y moverse.</p>
-<h2 is-upgraded><strong>Clase &#34;dog&#34;</strong></h2>
-<h2 is-upgraded><img style="width: 470.50px" src="img\\21bd9bf8912e07d2.png"></h2>
-<h2 is-upgraded><strong>Clase &#34;cat&#34;</strong><img style="width: 624.00px" src="img\\4179175e38658ffc.png"></h2>
-<h2 is-upgraded><strong>Clase &#34;fish&#34;</strong></h2>
-<h2 is-upgraded><img style="width: 624.00px" src="img\\869c5c3198150ff3.png"></h2>
-<h2 is-upgraded>Clase &#34;parrot&#34;<img style="width: 624.00px" src="img\\47b9bae69c6a4cc2.png"></h2>
-<h2 is-upgraded><strong>Clase &#34;human&#34;</strong></h2>
-<p class="image-container"><img style="width: 624.00px" src="img\\3239569fc698e669.png"></p>
-<h2 is-upgraded><strong>Programa</strong></h2>
-<p class="image-container"><img style="width: 543.69px" src="img\\4607d22903e35e62.png"></p>
+<p>Definir un programa en C + + (Utilizando Programación Orientada a Objetos) que tenga perros, gatos, peces, loros y humanos. Cada uno puede saludar, comer, y moverse.</p>
+<p><code>./classes.hpp</code></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\21bd9bf8912e07d2.png"><img style="width: 624.00px" src="img\\4179175e38658ffc.png"><img style="width: 624.00px" src="img\\869c5c3198150ff3.png"><img style="width: 624.00px" src="img\\47b9bae69c6a4cc2.png"><img style="width: 624.00px" src="img\\3239569fc698e669.png"></p>
+<p><code>./main.cpp</code></p>
+<pre><code>#include &lt;iostream&gt;
+#include &#34;classes.hpp&#34;
+
+using namespace std;
+
+int main (){
+    dog a_dog = dog(&#34;Chuchi&#34;);
+    cat a_cat = cat(&#34;Misifus&#34;);
+    fish a_fish = fish(&#34;Megalodon&#34;);
+    parrot a_parrot = parrot(&#34;Chayanne&#34;);
+    human a_human = human(&#34;Wilber&#34;);
+
+    cout &lt;&lt; &#34;Saludo de un perro: &#34;; a_dog.greet();
+    cout &lt;&lt; &#34;Saludo de un gato: &#34;; a_cat.greet();
+    cout &lt;&lt; &#34;Saludo de un pez: &#34;; a_fish.greet();
+    cout &lt;&lt; &#34;Saludo de un loro: &#34;; a_parrot.greet();
+    cout &lt;&lt; &#34;Saludo de un humano: &#34;; a_human.greet();
+
+    cout &lt;&lt; &#34;\nComidas:\n&#34;;
+    a_dog.eat(&#34;Pedigree&#34;);
+    a_cat.eat(&#34;Whiskas&#34;);
+    a_fish.eat(&#34;Goldfish Flakes&#34;);
+    a_parrot.eat(&#34;una galleta&#34;);
+    a_human.eat(&#34;un BigMac&#34;);
+
+    cout &lt;&lt; &#34;\nMovimiento:\n&#34;;
+    a_dog.move(300);
+    a_cat.move(40);
+    a_fish.move(1);
+    a_parrot.move(5);
+    a_human.move(5000);
+
+}</code></pre>
 <aside class="special"><p><strong>Resultado:</strong></p>
-<ul>
-<li>Saludo de un perro: *guau-guau*</li>
-<li>Saludo de un gato: *miau*</li>
-<li>Saludo de un pez: *glu-glu*</li>
-<li>Saludo de un loro: *crru-crru*</li>
-<li>Saludo de un humano: ¡Hola! Mi nombre es Wilber</li>
-</ul>
-<p><strong>Comidas:</strong></p>
-<ul>
-<li>Chuchi comió Pedigree</li>
-<li>Misifus comió Whiskas</li>
-<li>Megalodon comió Goldfish Flakes</li>
-<li>Chayanne comió una galleta</li>
-<li>Wilber comió un BigMac</li>
-</ul>
-<p><strong>Movimiento:</strong></p>
-<ul>
-<li>Chuchi camino 300m</li>
-<li>Misifus camino por los techos 40m</li>
-<li>Megalodon nado 1m</li>
-<li>Chayanne volo 5m</li>
-<li>Wilber se subió a su carro y manejo 5000m</li>
-</ul>
+<p>Saludo de un perro: *guau-guau*</p>
+<p>Saludo de un gato: *miau*</p>
+<p>Saludo de un pez: *glu-glu*</p>
+<p>Saludo de un loro: *crru-crru*</p>
+<p>Saludo de un humano: ¡Hola! Mi nombre es Wilber</p>
+<p>Comidas:</p>
+<p>Chuchi comió Pedigree</p>
+<p>Misifus comió Whiskas</p>
+<p>Megalodon comió Goldfish Flakes</p>
+<p>Chayanne comió una galleta</p>
+<p>Wilber comió un BigMac</p>
+<p>Movimiento:</p>
+<p>Chuchi camino 300m</p>
+<p>Misifus camino por los techos 40m</p>
+<p>Megalodon nado 1m</p>
+<p>Chayanne volo 5m</p>
+<p>Wilber se subió a su carro y manejo 5000m</p>
 </aside>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Ejercicio Práctico" duration="3">
+      <google-codelab-step label="Ejercicios Prácticos" duration="3">
         <ul>
 <li>Hacer grupos de 2 o 3 personas</li>
 <li>Accede a la tarea que está en Moodle llamada cp7.</li>
@@ -222,14 +230,9 @@
 <li>Clona el repositorio evaluado y crea una rama desde la consola de git</li>
 </ul>
 <p>EJERCICIOS PROPUESTOS:</p>
-<ul>
-<li><strong>Ejercicio 1:</strong></li>
-</ul>
-<p>Realizar en c++, un programa que indique si una persona puede optar a un retiro voluntario apoyándose del uso de una clase, métodos, y variables públicas y privadas, en el main debe enviar los datos de edad y género de la forma que estime conveniente, además debe declarar un método llamado aplicaRetiro() en el que debe realizar los cálculos o condiciones que considere convenientes para mostrar en el main si la persona puede o no aplicar a un retiro.</p>
-<ul>
-<li><strong>Ejercicio 2</strong></li>
-<li><strong>Ejercicio 3</strong></li>
-</ul>
+<h2 is-upgraded><strong>Ejercicio 1</strong></h2>
+<p>Realizar en c++, un programa que indique si una persona puede optar a un retiro voluntario apoyándose del uso de una <strong>clase, métodos, y variables públicas y privadas</strong>, en el main debe enviar los datos de edad y género de la forma que estime conveniente, además debe declarar un método llamado<strong> aplicaRetiro()</strong> en el que debe realizar los cálculos o condiciones que considere convenientes para mostrar en el main si la persona puede o no aplicar a un retiro.</p>
+<h2 is-upgraded>Ejercicio 2</h2>
 <p>Un cibercafé planea llevar un control de los juegos que más disfrutan sus clientes, por lo que te contratan a ti para hacer un programa que lleve control de las horas jugadas de cada juego que se ingrese al sistema.</p>
 <p>Para realizar esto deberás hacer un programa que implemente <strong>programación orientada a objetos</strong>, además deberás almacenar todos los juegos que se ingresen al sistema en la <strong>estructura dinámica</strong> de tu preferencia y que consideres se acopla mejor a las necesidades del sistema.</p>
 <p>Diagrama UML a seguir:</p>
@@ -241,59 +244,50 @@
 <li>Seleccionar un juego de los almacenados y agregarle <em>x</em> horas de juego</li>
 <li> Recorrer todos los juegos almacenados y deberá agregarle una cantidad <strong>aleatoria</strong> de horas de juego a cada juego.</li>
 </ol>
-<p>Notas:</p>
+<aside class="warning"><p>Notas:</p>
 <ul>
 <li>Al agregar los juegos deben tener 0 horas jugadas</li>
 <li>Es importante que no se sobre escriban las horas de juego, sino que agreguen a las que el juego ya tenga en ese momento.</li>
 <li> Respetar los especificadores de acceso que tiene el diagrama UML, además utilizar sus métodos para llevar a cabo las funciones solicitadas.</li>
-<li>Sube los cambios al repositorio y utiliza los comandos en el orden correcto (git add, git commit, git push)</li>
 </ul>
+</aside>
+<p><strong>Sube los cambios al repositorio y utiliza los comandos en el orden correcto (git add, git commit, git push)</strong></p>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="GIT" duration="0">
-        <ul>
-<li><strong>git clone [url]</strong></li>
-</ul>
-<p class="image-container"><img style="width: 624.00px" src="img\\e71301682a5228f9.png"></p>
-<p class="image-container"><img style="width: 624.00px" src="img\\a9dcc4a3321f60f2.png"></p>
-<p><strong>Elegir Sign in with a code</strong></p>
-<ul>
-<li><strong>git config --global user.name &#34;[nombre apellido]&#34;</strong></li>
-<li><strong>git config --global user.email &#34;[email]&#34;</strong></li>
-</ul>
-<p class="image-container"><img style="width: 624.00px" src="img\\cbaa835f8dc1c014.png"></p>
-<ul>
-<li><strong>Antes de iniciar, crear 1 Rama por Integrante, y al terminar hacer los cambios en sus ramas</strong></li>
-</ul>
-<p class="image-container"><img style="width: 445.50px" src="img\\aeb36bbdf7a981cb.png"></p>
-<ul>
-<li><strong>Ponerle nombre diferente por cada integrante, de sus archivos ejercicio.cpp </strong></li>
-<li><strong>Luego al finalizar tu actividad en tu rama:</strong></li>
-<li><strong>git add .</strong></li>
-<li><strong>git commit -m &#34;Add: tu mensaje&#34;</strong></li>
-<li><strong>git push</strong></li>
-<li><strong>Verificar el repositorio remoto</strong></li>
-<li><strong>Después tienen que darle Pull Request a la rama principal MAIN</strong></li>
-<li><strong>Compare &amp; Pull Request</strong></li>
-</ul>
-<p class="image-container"><img style="width: 624.00px" src="img\\3853916c5356dbf.png"></p>
-<ul>
-<li><strong>Create pull request</strong></li>
-</ul>
-<p class="image-container"><img style="width: 624.00px" src="img\\5af6b9dcdce8df1e.png"></p>
-<ul>
-<li><strong>Merge Pull Request </strong></li>
-</ul>
-<p class="image-container"><img style="width: 624.00px" src="img\\8daeb727b6bc1374.png"></p>
-<ul>
-<li><strong>Una vez finalizado el Pull Request, tendrán esta verificación</strong></li>
-</ul>
-<p class="image-container"><img style="width: 624.00px" src="img\\6ba20725ed48b89d.png"></p>
-<ul>
-<li><strong>Y ahora todos los cambios de los integrantes estarán unidos en la rama principal del repositorio </strong></li>
-</ul>
+        <p>Clona el repositorio con el comando <code>git clone [url]</code></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\b68d0067098e937.png"></p>
+<p class="image-container"><img style="width: 624.00px" src="img\\a9c42047af4f6e5c.png"></p>
+<aside class="special"><p><strong>Nota: </strong>Si en dado caso este pop-up se te presenta, elige la opción &#34;Sign in with a code&#34; y sigue los pasos que te indiquen.</p>
+</aside>
+<aside class="warning"><p><strong>Antes de continuar:</strong> Asegurate de que no hay credenciales de otros usuarios guardadas en el sistema (Accede al administrador de credenciales de Windows y elimina las que no sean tuyas), que no hay ninguna sesión abierta en el navegador de Chrome y que no hay ninguna cuenta de GitHub con la sesión iniciada(Accede a www.github.com y cierra la sesión si es que hay alguna abierta). </p>
+</aside>
+<p>Después de asegurarte que no hay otra sesión, ingresa tus credenciales desde la consola con los siguientes comandos:</p>
+<p><code>git config --global user.name "nombre de usuario en github"</code></p>
+<p><code>git config --global user.email "email"</code></p>
+<p class="image-container"><img style="width: 666.50px" src="img\\8274c5f42a6f078e.png"></p>
+<p>Antes de iniciar, crear 1 Rama por Integrante con el formato APELLIDO-NOMBRE-CARNET</p>
+<p class="image-container"><img style="width: 511.95px" src="img\\4b19f42e224c5b3b.png"></p>
+<p>Luego al finalizar tu actividad en tu rama:</p>
+<p><code>git add .</code></p>
+<p><code>git commit -m "Mensaje descriptivo del cambio"</code></p>
+<p><code>git push</code></p>
+<aside class="special"><p><strong>Recuerda:</strong> Siempre verifica en el repositorio remoto si los cambios han sido sincronizados.</p>
+</aside>
+<h2 is-upgraded><strong>Haciendo Merge en la rama principal</strong></h2>
+<p>Cuando realices un push, notarás un cuadro de diálogo de color amarillo, que tiene un botón indicando &#34;Compare &amp; Pull Request&#34;. Deberás hacer click en él para comenzar el proceso.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\bf7bb243664c2f05.png"></p>
+<h2 is-upgraded><strong>Open a pull request</strong></h2>
+<p>Básicamente un pull request es una petición para integrar nuestras propuestas o cambios de código a un proyecto. En esta sección, podrás ver un apartado en un cuadro gris, donde nos indica si se puede hacer merge automáticamente, o si existe algún conflicto que tengamos que resolver antes para poder realizar el merge. Aquí, podrás añadir un nombre junto con un comentario de los cambios que has realizado.</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\a1214be0882f1fa1.png"></p>
+<h2 is-upgraded>Merge<strong> pull request</strong></h2>
+<p>Cuando no existan conflictos, o los conflictos en los archivos ya están resueltos, el botón de &#34;Merge pull request&#34; estará disponible. De no ser así, GitHub nos indicara en qué archivos existen dichos conflictos y nos proporcionará una herramienta de edición de texto en línea para poder arreglarlos. </p>
+<p class="image-container"><img style="width: 624.00px" src="img\\caece2ba74288c59.png"></p>
+<p>Una vez finalizado el Pull Request, tendrán esta verificación</p>
+<p class="image-container"><img style="width: 624.00px" src="img\\47a4451f1102e690.png"></p>
+<p>Y ahora todos los cambios de los integrantes estarán unidos en la rama principal del repositorio </p>
 
 
       </google-codelab-step>
