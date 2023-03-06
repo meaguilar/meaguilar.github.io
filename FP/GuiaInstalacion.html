@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preparacion del entorno en C++</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#preparacion-del-etorno-en-c">PREPARACION DEL ETORNO EN C++</a>
+<ul>
+<li></li>
+<li><a href="#adquisición-y-preparación-del-compilador-de-c.">Adquisición y preparación del compilador de C++.</a></li>
+<li><a href="#configurando-una-variable-de-entorno-del-sistema-operativo-en-windows.">Configurando una variable de entorno del sistema operativo en Windows.</a></li>
+<li><a href="#adquisición-y-preparación-de-visual-studio-code.">Adquisición y preparación de Visual Studio Code.</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="preparacion-del-etorno-en-c">PREPARACION DEL ETORNO EN C++</h1>
+<h3 id="introducción.">Introducción.</h3>
+<p>En la guía se describen los pasos para instalar el software que será utilizado en la materia, para editar, compilar y ejecutar los programas de computadora que serán elaborados en clase, en las sesiones de Laboratorio, durante los exámenes y en las tareas. El lenguaje a utilizar es C++ y el entorno de desarrollo de programas es el Visual Studio Code. Para tenerlos listos en sus computadoras se realizarán los siguientes pasos:</p>
+<ol>
+<li>
+<p>Descarga compilador de C++, instalación de dicho compilador y configuración de una variable de entorno del sistema operativo.</p>
+</li>
+<li>
+<p>Descarga de Visual Studio Code, instalación de dicho entorno de desarrollo y configuración de algunas facilidades.</p>
+</li>
+</ol>
+<h2 id="adquisición-y-preparación-del-compilador-de-c.">Adquisición y preparación del compilador de C++.</h2>
+<h3 id="descargando-el-compilador.">Descargando el compilador.</h3>
+<p>Desde su navegador de Internet acceda al sitio <a href="https://sourceforge.net/projects/mingw/files">MinGW</a>. Aparecer una pagina similar a la siguiente:</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334950725_1183797525671791_8913891861723159615_n.png?stp=dst-png_p206x206&amp;_nc_cat=107&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=FxvmHMJ08X4AX-yJSvO&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTci2OgGqAVYFZyFCe3Lsb_B9Ur5R4Yt7aCfBsKCS7jlQ&amp;oe=642D74E4" alt="Compilador"></p>
+<p>Pulse el botón en el que se lee <em><strong>Downolad Latest Version</strong></em>. Esto iniciará el proceso de descarga del archivo ejecutable.</p>
+<p>Diríjase a la carpeta donde se ha descargado.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334958010_659731152581453_6049788140734638580_n.png?stp=dst-png_s552x414&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=9fjNmVFXe-kAX97dn8N&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSMvHDkREG7IU0RL37Am4119P8YV_Z3sjmsdS4kB7ElYA&amp;oe=642D8060" alt="Descarga"></p>
+<h3 id="instalación-del-compilador-de-c-en-su-pc.">Instalación del compilador de C++ en su PC.</h3>
+<p>Doble clic sobre el archivo descargado para iniciar su ejecución. Espere unos momentos mientras se realiza la descarga y se abre la ventana del proceso de instalación. Se verá similar a la siguiente.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334908701_3354569824796590_4841914790488251614_n.png?stp=dst-png_p206x206&amp;_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=dqF2eG_s9OQAX-Rwcbf&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTE0XKxiAGuBfzGGFUgz64-bsmfNhGpn6Nj82glG_z8xA&amp;oe=642D99EC" alt="Instalacion"></p>
+<p>Cuando se abra el instalador tal vez tenga que pulsar algún par de botones para llegar a esta ventana en el proceso de instalación (cuando se le solicita la carpeta destino, elija la que se le sugiere). Pero, una vez ha llegado a esta ventana elija instalar los paquetes _<strong>mingw32-gcc-g++</strong> y <strong>msys-base</strong>. Luego pulse la opción de menú <em><strong>Installation</strong></em>  que se encuentra arriba y a la izquierda de esta ventana y luego seleccione la opción <em><strong>Apply Changes</strong></em>. El proceso de instalación del compilador de C++ dará inicio, verá en una nueva ventana la lista de herramientas que se van instalando. Espere hasta que este proceso termine.</p>
+<p>Cuando termine el proceso de instalación verá un mensaje indicando que este ha sido exitoso <em><strong>All changes were applied successfully; you may now close this dialogue</strong></em>.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334883807_509989687879132_4614053937177528015_n.png?stp=dst-png_p206x206&amp;_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=7qlSK3uIJ1gAX_Mx9Mj&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQCP-wTzecvtM9L_rEeXid5BTPtu4yj3ZLdliRedBvuhA&amp;oe=642D9400" alt="Instalando"></p>
+<p>Pulse el botón <em>Close</em>  y luego cierre la ventana de instalación.</p>
+<p>El proceso de instalación de C++ habrá finalizado. Puede verificarlo revisando el contenido del disco duro con ayuda del explorador de archivos. Verá la carpeta <em><strong>MinGW</strong></em> en su disco y las sub carpetas que están detrás de ella.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334924365_773693863917267_955957530098676238_n.png?stp=dst-png_p206x206&amp;_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=IlBp4NTmzkUAX8NQwjy&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdR7pWUum2y9Z6bpbIbgUoAytRP2TD0imCnmhA2zSYTHsQ&amp;oe=642D97E7" alt="Carpetas"></p>
+<p>En este momento habrá terminado el proceso de instalación del compilador de C++.</p>
+<h2 id="configurando-una-variable-de-entorno-del-sistema-operativo-en-windows.">Configurando una variable de entorno del sistema operativo en Windows.</h2>
+<p>En su Explorador de Archivos pulse la carpeta <em><strong>bin</strong></em> que se encuentra dentro de la carpeta <em><strong>MinGW</strong></em>. En la parte superior del Explorador de Archivos verá una barra donde aparece el texto <em><strong>MinGW &gt; bin</strong></em>. Con el puntero del ratón señale esta barra y dé clic derecho. Aparecerá un menú contextual. Pulse la opción <em><strong>Copiar dirección como texto</strong></em> de este menú, tal y como se ve en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334905650_1361157378008117_866100078096058260_n.png?stp=dst-png_p296x100&amp;_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=c2C0mcdvh6gAX9qlvxU&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSS6-TW0QZ8wI9TXM92-cJ98meHFziy6TrSYQEt0yOAZg&amp;oe=642D6E4C" alt="Variable"></p>
+<p>Ahora va a dirigirse a la ventana que le permite la configuración de la variable de entorno <em><strong>Path</strong></em>, del sistema operativo Windows. Para ello debe abrir la ventana de <strong>Propiedades del sistema</strong>. Si tiene Windows 10 escriba en la parte inferior <em><strong>variables de entorno</strong></em>, tal y como se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334969752_238082821988236_2213877259138963513_n.png?stp=dst-png_p206x206&amp;_nc_cat=103&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=gGBktskkgooAX_q_xUr&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSRHcjwTWAhsRcVy46_gxUYf-gZ9brKyCdnQbYPhriUxg&amp;oe=642D9D01" alt="sistema"></p>
+<p>Se abrirá la ventana de edición de variables de entorno del sistema operativo:</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334922160_153842057519549_4532917587584251976_n.png?stp=dst-png_p173x172&amp;_nc_cat=103&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=_g4nQKf1qfkAX_uYAIT&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQk6Cf05SOYq30RSP4v1_WenuSSwH8AvXXozp54NUIJxg&amp;oe=642DA2E9" alt="Propiedades del sistema"></p>
+<p>En la pestaña de <strong>Opciones avanzadas</strong> pulse el botón <em><strong>Variable de entorno</strong></em> que se encuentra hasta abajo. Aparecerá una ventana como la siguiente.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334993751_1588601364951479_2192675000897413293_n.png?stp=dst-png_p206x206&amp;_nc_cat=100&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=MY9zglgOSOoAX89PDRS&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQdWkjSxVXiirqgkr9m_k6HIRk5wHq5YtE-_sQlaSVepg&amp;oe=642D8B6E" alt="Variable de entorno"></p>
+<p>Clic sobre la variable <em><strong>Path</strong></em>  que está en la sección de <em><strong>Variables del sistema</strong></em> (parte baja de la ventana) y pulse el botón <em><strong>Editar</strong></em>. Aparecerá una ventana que le permitirá editar la variable de entorno, como se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334922755_219381593973334_456976278267489649_n.png?stp=dst-png_p206x206&amp;_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=hGyuIkkxSYsAX_tXVfP&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSus4wyoLWDn08m_SXc9YkKDe0Pb499hPHDM2Okbo47wA&amp;oe=642D9AE0" alt="editar variable"></p>
+<p>En esta ventana pulse el botón <em><strong>Nuevo</strong></em>. Se abrirá un espacio abajo y luego colóquese en ese espacio y pegue la ruta que copió como texto, tal y como se ve en la figura.</p>
+<p>Pulse <em><strong>Aceptar</strong></em> para cerrar esta ventana y luego pulse <em><strong>Aceptar</strong></em>  para cerrar la ventana de <em><strong>Variables de entorno</strong></em>.</p>
+<p>En este momento habrá terminado la configuración de la variable de entorno <em><strong>Path</strong></em>.</p>
+<h2 id="adquisición-y-preparación-de-visual-studio-code.">Adquisición y preparación de Visual Studio Code.</h2>
+<h3 id="descargando-instalador.">Descargando instalador.</h3>
+<p>En su navegador de Internet escriba <em><strong>visual studio code</strong></em> para realizar la búsqueda de este entorno de programación. Aparecerá algo similar a lo que se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334869406_231498272736856_4517621370899904355_n.png?stp=dst-png_p206x206&amp;_nc_cat=107&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=yhIs2z6S6FAAX_9BhH8&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTc2xFagdI8NEiD3MRiotNIZzYbTRwvLGRp3Svkp14DSw&amp;oe=642D9544" alt="visual"></p>
+<p>Elija el enlace que dice <em><strong>Download</strong></em>. Aparecerá una página con diferentes opciones de descarga, como se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334966016_587790803226345_5439341155627067774_n.png?stp=dst-png_p206x206&amp;_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=mu4ZhCTZNw8AX_7X5P7&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQf9lX9pXF4kVbw1UHUUdcn-wtmmUQfMPufMhuA0S-Gtg&amp;oe=642D8D3C" alt="descarga"></p>
+<p>Elija descargar para  <strong>Windows</strong>. Se iniciará el proceso de descarga del archivo ejecutable.</p>
+<p>Cuando haya terminado el proceso de descarga del instalador abra, desde el Explorador de Archivos, la carpeta de descargas de su computadora, verá algo similar a la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334882970_231021296040590_6145805860898114926_n.png?stp=dst-png_p206x206&amp;_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=NOm5fEKpCOcAX_ek42E&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQV9rb7RXbldqcr60yjskW7z21-xHMBAdl_pthO2T8f1w&amp;oe=642D7F5B" alt="instalacion vscode"></p>
+<p>En este momento habrá terminado el proceso de descarga del instalador de Visual Studio Code.</p>
+<h3 id="instalación-de-visual-studio-code.">Instalación de Visual Studio Code.</h3>
+<p>Doble clic en el archivo que acaba de descargar para iniciar el proceso de instalación. En la ventana que aparece elija la opción <em><strong>Acepto el acuerdo</strong></em>  y luego pulse el botón <em><strong>Siguiente</strong></em>.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334904422_895174085143660_2037683768471278974_n.png?stp=dst-png_s261x260&amp;_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=2EIhPM-sOWgAX_dAdNX&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSLiqBTvPt4UGFNNC3kqWR045gDc7nGoi4r23YvCQ65QA&amp;oe=642D9437" alt="enter image description here"></p>
+<p>Se le pedirá la ruta de instalación en su máquina. A partir de aquí solo pulse la opción <em><strong>Siguiente</strong></em> cuando aparezca.</p>
+<p>Pulse el botón <em><strong>Siguiente</strong></em> para aceptar la ruta de instalación sugerida.</p>
+<p>Se le pedirá el nombre de la carpeta del Menú Inicio. Pulse el botón <em><strong>Siguiente</strong></em> para aceptar la opción sugerida.</p>
+<p>Se le pedirá si quiere que aparezca un botón de acceso directo al Visual Studio Code en el Escritorio de su computadora. Elija esta opción y pulse de nuevo el botón <em><strong>Siguiente</strong></em>.</p>
+<p>Finalmente pulse el botón <em><strong>Instalar</strong></em>. El proceso de instalación iniciará y cuando termine pulse el botón <em><strong>Finalizar</strong></em>.</p>
+<p>Se abrirá la ventana de Visual Studio Code. Si no aparece, entonces dé doble clic en el botón de acceso directo que está en el escritorio o búsquelo en el menú Inicio de su sistema operativo.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334433539_223797410018667_5093518152505042717_n.png?_nc_cat=100&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=Du6pfEBZN9kAX9Gtzlq&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSN_-GKc49roneNBZZdv0-G6jzt2aCQ5X42yBLmE2mXHA&amp;oe=642D8780" alt="acceso directo"></p>
+<p>Se abrirá la ventana del Visual Studio Code, como se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/333964259_231556129236249_1295657144273839558_n.png?stp=dst-png_p206x206&amp;_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=q_ZvhjmLCjYAX_oDVr9&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTPyYnlE3I7hSNxbrsf6uI35xIMtTICyhREkayl_cj_7g&amp;oe=642DA42B" alt="ejecucion"></p>
+<p>En este momento habrá terminado el proceso de instalación de Visual Studio Code.</p>
+<h3 id="configuración-de-algunas-facilidades-del-entorno-de-visual-studio-code">Configuración de algunas facilidades del entorno de Visual Studio Code</h3>
+<p>Realizaremos cuatro configuraciones dentro del entorno de Visual Studio Code. Las primeras tres de ellas tienen el mismo proceso de configuración.</p>
+<p>Cierre la pestaña <em><strong>Welcome</strong></em>  pulsando la <em><strong>X</strong></em>. Luego pulse el botón:</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334915285_502965495383688_3834840429255607697_n.png?stp=cp0_dst-png&amp;_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=_MsuWGK6h4UAX8UI5An&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSO0pWXPEb431mHqasXSZ3_tUcYV5z5fD6AnspR6Jd6PQ&amp;oe=642D7E58" alt="boton"></p>
+<p>Este botón se encuentra en una barra lateral ubicada a la izquierda de la ventana de Visual Studio Code. Nos ayuda a instalar Extensiones que facilitan el trabajo en el entorno.</p>
+<p>Aparecerá la siguiente ventana.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334939857_1858991484472982_765700958186228347_n.png?stp=dst-png_p206x206&amp;_nc_cat=107&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=57fPe-nK61MAX9fi1bY&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTvyL2XaJ9lhCWYo0GHZ-yJMkkndJU9Q7IEZ6R40tfViw&amp;oe=642D7AC6" alt="extensiones"></p>
+<p>Puede ver arriba la etiqueta EXTENSIONS y una caja de búsqueda de extensiones inmediatamente abajo de esta etiqueta.</p>
+<p>En esta caja de búsqueda digite <em><strong>Code Runner</strong></em>  y aparecerá lo siguiente.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334944423_163505769454797_6806579164346336777_n.png?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=qId9zmWahd8AX-XfxEw&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTmqf7gcLnCiAne1EWXp3ujF4ymqDm385iIcjRf_bYhCg&amp;oe=642D8DFC" alt="code runner"></p>
+<p>Pulse el botón <em><strong>Install</strong></em>  de esta extensión para hacer que inicie su proceso de instalación. Cuando finalice, este botón se habrá cambiado por un pequeño engranaje, como puede ver en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334903563_695808075675126_2616000784035741058_n.png?_nc_cat=104&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=LqxA8da4OHEAX-JWb9Y&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQigRffFUmz0jCwoEFQzP4vyGJEy8GubrVCaYoYdCR7Gw&amp;oe=642DA4DD" alt="instalacion"></p>
+<p>Esta extensión coloca el botón de ejecución de programas arriba a la derecha de la ventana del Visual Studio Code. Es similar a un botón de <em>play</em>. Cuando escriba su primer programa podrá pulsar este botón para que su programa se ejecute. Tiene el siguiente aspecto.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334917768_170086712054004_5717960045825129601_n.png?stp=cp0_dst-png&amp;_nc_cat=108&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=jc5H_06ZyYAAX-CL4cm&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQ-b1u8V70EGfhUifPPUjvmmYvbR7fVRj7djZah1VKzOQ&amp;oe=642D9DD5" alt="boton"></p>
+<p>En la caja de búsqueda digite ahora <em><strong>C++ Compile Run</strong></em>. Aparecerá debajo, como se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334955528_749157349943841_1424175455016558989_n.png?_nc_cat=101&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=FRfV0B9Oiy8AX-BT0jt&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdS8Kd3zbB1vu-AkOcKUo8Vyv6q07rII9njA8NDYU4DlOw&amp;oe=642D8848" alt="compile Run"></p>
+<p>Pulse el botón <em><strong>Install</strong></em>  de esta extensión para hacer que inicie su proceso de instalación. Cuando finalice aparecerá el engranaje.</p>
+<p>En la caja de búsqueda digite ahora <em><strong>C++ IntelliSense</strong></em>. Aparecerá debajo, como se muestra en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334919155_150600841214767_3867328023788573325_n.png?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=Dtw1h3QBFUcAX81c_ZX&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdS3Y1JnOixBqjQFCTWxDdGT3K0UXGOnrMNPd6ubFVpgFw&amp;oe=642D7895" alt="enter image description here"></p>
+<p>Pulse el botón <em><strong>Install</strong></em>  de esta extensión para hacer que inicie su proceso de instalación. Cuando finalice aparecerá el engranaje.</p>
+<p>Esta es una facilidad de auto completado de los comandos de C++ que usted escribe cuando está editando programas.</p>
+<p>La cuarta configuración dentro de Visual Studio Code es distinta a las anteriores. En la barra del menú principal, ubicada en la parte superior, pulse la opción <em><strong>File</strong></em>. Luego, en el menú que se despliega pulse la opción <em><strong>Preferences</strong></em> y en el siguiente menú pulse la opción <em><strong>Settings</strong></em>.</p>
+<p>Aparecerá la pestaña de configuración con la etiqueta <em><strong>Settings</strong></em> e inmediatamente abajo una caja para realizar la búsqueda de la opción a configurar. En esta caja escribe <em><strong>Code-Runner: Run in Terminal</strong></em>, como se ve en la siguiente figura.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/334892751_613849523916445_6628100510192817724_n.png?stp=dst-png_p206x206&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=6q4aj7KCBq8AX8P6ewP&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdSXrw35l2x4h8hq5MRsXiG1jN6wwQtfBUT3-Fa3jmngpA&amp;oe=642D8E65" alt="enter image description here"></p>
+<p>Cuando aparezca esa opción abajo, pulse dentro de la caja de selección para chequearla. Luego cierre esta pestaña de configuración pulsando en la X que aparece a la par de la etiqueta <em><strong>Settings</strong></em>.</p>
+<p>En este momento habrá terminado el proceso de configuración de Visual Studio Code.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
