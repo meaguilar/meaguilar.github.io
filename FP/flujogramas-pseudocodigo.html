@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flujogramas y Pseudocódigo</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#flujogramas-y-pseudocódigo.">Flujogramas y Pseudocódigo.</a>
+<ul>
+<li><a href="#introducción.">Introducción.</a></li>
+<li><a href="#flujograma.">Flujograma.</a></li>
+<li><a href="#pseudocodigo.">Pseudocodigo.</a></li>
+<li><a href="#ejemplos.">Ejemplos.</a></li>
+<li><a href="#ejercicio-evaluado.">Ejercicio Evaluado.</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="flujogramas-y-pseudocódigo.">Flujogramas y Pseudocódigo.</h1>
+<h2 id="introducción.">Introducción.</h2>
+<p>Un Diagrama de Flujo representa la esquematización gráfica de un algoritmo, el cual muestra gráficamente los pasos o procesos a seguir para alcanzar la solución de un problema. Su correcta construcción es sumamente importante porque, a partir del mismo se escribe un programa en algún Lenguaje de Programación. Si el Diagrama de Flujo está completo y correcto, el paso del mismo a un Lenguaje de Programación es relativamente simple y directo. Es importante resaltar que el Diagrama de Flujo muestra el sistema como una red de procesos funcionales conectados entre sí por “Tuberías” y “Depósitos” de datos que permite describir el movimiento de los datos a través del Sistema. Este describe: Lugares de Origen y Destino de los datos, Transformaciones a las que son sometidos los datos, Lugares en los que se almacenan los datos dentro del sistema, Los canales por donde circulan los datos. Además de esto podemos decir que este es una representación particular de un Sistema, el cual lo contempla en términos de sus componentes indicando el enlace entre los mismos.</p>
+<h2 id="flujograma.">Flujograma.</h2>
+<h3 id="definición">Definición:</h3>
+<p>Un flujograma o diagrama de flujo consiste en una figura o gráfico que representa una serie de procesos o un grupo de actividades por medio de símbolos.<br>
+Por tanto, la principal utilidad de un flujograma es que muestra de un solo vistazo un proceso que puede ser complejo.<br>
+De esta forma, cada persona implicada en él sabe cuál es su labor. Con esto se consigue incrementar la eficiencia y reducir las posibles incidencias.</p>
+<h3 id="símbolos-utilizados-en-los-diagramas-de-flujo"><strong>Símbolos utilizados en los diagramas de flujo:</strong></h3>
+<ul>
+<li>
+<p><strong>Línea de flujo:</strong> muestra la dirección del proceso. Cada línea de flujo conecta dos bloques.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfaf2b89af639ad6f81_flowline.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Terminal</strong>: Indica el comienzo o el final de un diagrama de flujo.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7df87eb50eb587761d10_terminal.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Proceso</strong>: Representa un paso en un proceso. Este es el componente más común de un diagrama de flujo.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7df944917a4497b17aab_process.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Decisión</strong>: Muestra un paso que decide el próximo paso en un proceso. Esta es comúnmente una pregunta de sí/no o verdadero/falso.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7df92183ef07ea02ad8d_decision.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Input / Output (Entrada/Salida):</strong> Indica el proceso de entrada o salida de datos externos. Esto se indica por la forma de un paralelogramo.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7df9c64e4c7688a3db77_input-output.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Comentario</strong>: Indica información adicional sobre un paso en un proceso.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7df944917af38eb17aac_annotation.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Proceso predefinido:</strong> muestra el proceso con nombre que se define en otro lugar.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfa36c9b66e7a0cd717_predefined-process.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Conector en la página:</strong> se utilizan pares de conectores en la página para reemplazar líneas largas en una página de diagrama de flujo.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfac64e4c423ba3db79_on-page-connector.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Conector fuera de página:</strong> se utiliza un conector fuera de página cuando el objetivo está en otra página. Lea nuestra guía de conectores de diagrama de flujo para obtener más información sobre cómo funcionan los conectores dentro y fuera de la página.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfa6eedb7bb3780d738_off-page-connector.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Demora</strong>: Cualquier período de demora que sea parte de un proceso<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfb9bf8a80bf95dddfe_delay.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Proceso alternativo:</strong> un paso alternativo al proceso normal. Las líneas de flujo a un bloque de proceso alternativo generalmente están discontinuas.<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfbb051731a033d02c1_alternate-process.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Datos:</strong> entrada o salida de datos<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfb9e0b7435efda82a8_data.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Documento</strong>: Un documento<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfb8976874cd69796cc_document.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Multi-documento:</strong> Múltiples documentos<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfcc64e4c0724a3db7b_documents.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Preparación</strong>: un paso de preparación<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfb44917a6c93b17aad_preparation.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Pantalla</strong>: una pantalla de máquina<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfc80fb34486552a359_display.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Entrada manual:</strong> datos o información en un sistema<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfcd2a026e5971409ea_manual-input.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Operación manual</strong>: un paso del proceso que no está automatizado<br>
+<img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618b7dfc6f9d88dacc8d4b12_manual-operation.png" alt="enter image description here"></p>
+</li>
+</ul>
+<h3 id="los-símbolos-más-comunes-utilizados-en-un-diagrama-de-flujo">Los símbolos más comunes utilizados en un diagrama de flujo:</h3>
+<p><img src="https://uploads-ssl.webflow.com/6184b461a39ff13bfb8c0556/618c7f7af1a294cd78ef2073_Untitled-Document-1024x385.png" alt="enter image description here"></p>
+<h2 id="pseudocodigo.">Pseudocodigo.</h2>
+<h3 id="definicion">Definicion:</h3>
+<p>Un pseudocódigo es una forma de expresar los distintos pasos que se deben realizar en un programa, esto de manera parecida a como se puede observar en un lenguaje de programación. Básicamente, se busca representar por pasos la solución a un problema o un algoritmo. En este caso se utilizará PSeInt para realizar pseudocódigo y al mismo tiempo flujogramas.</p>
+<h3 id="pseint">PSeInt</h3>
+<p>En PSeInt para indicar el inicio de un pseudocódigo se utiliza la palabra reservada <strong>Algoritmo</strong>  seguido del nombre que se le desea dar al pseudocódigo, tal como se muestra en la imagen.<br>
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/333242220_490921633239466_7234155657320632672_n.png?_nc_cat=106&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=5RurTTRy6-YAX8BPK9i&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdT4DTXAS91t7DyebZIoQaOoHG8MVPHZofHXuojk6uufuw&amp;oe=6435BDD3" alt="enter image description here"></p>
+<p>Para mostrar un mensaje en pantalla se utiliza la instrucción <strong>Escribir</strong> seguido del texto que se desea mostrar, dicho texto debe ser escrito entre comillas.<br>
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335572020_1620528258410442_6359206172324245898_n.png?_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=rhMeWAcktk4AX-V1Lpb&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdT9DXfYASKDeCspETWIAsjL06-BuzgLlq8cutSLdpxzDA&amp;oe=6435C124" alt="enter image description here"></p>
+<p>También se pueden capturar datos del usuario a través de la instrucción <strong>Leer</strong> junto al nombre con el cual se desea guardar la información solicitada. Dicho nombre donde se guarda, se le conoce como variable y esta puede tomar diferentes valores.</p>
+<p><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/331135941_218330080740037_2277217596460324279_n.png?_nc_cat=103&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=k2glX1mYljMAX-gHiNb&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdR0Ns0trOrlY1heyEr1xzMKRfFm06DJdd-tN1mp4mUoog&amp;oe=6435BF9C" alt="enter image description here"></p>
+<p>Al momento de ejecutar el pseudocódigo se muestra un apartado con el símbolo “&gt;”, el cual indica que se está solicitando algún dato al usuario.<br>
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335757535_865271677872937_3842725342485789149_n.png?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=BZ9HQk1PjrgAX-ZHqhR&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdRPxsGPEzt2rNH5AwXBsOoLULAOGzGA1aDHfj0ZRUz2ZA&amp;oe=6435D62B" alt="enter image description here"></p>
+<p>Luego de tener almacenado un dato en una variable se puede mostrar en pantalla de dos maneras, ya sea únicamente el valor de la variable, o concatenado de algún texto que se desee.</p>
+
+<table>
+<thead>
+<tr>
+<th>Opcion1</th>
+<th>Opcion 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Para mostrar únicamente el valor de la variable se debe utilizar <strong>Escribir</strong> seguido del nombre de esta.</td>
+<td>Para concatenar una variable con un texto, se debe utilizar la <strong>coma</strong> (,) como separador, tal como se muestra en el ejemplo.</td>
+</tr>
+<tr>
+<td><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335536884_3344255365824258_1456382201420978750_n.png?_nc_cat=107&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=nIWr377I-zwAX9VN7ZY&amp;_nc_oc=AQnB3B-ORfvh3vbrsKw37HfTVUR4lskiekdhBDpTnzns0NwaxS3Da3YsncFvTuW-N4TlwipOX4XUpoGLauJW77-E&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQbB2e08MVsyCtp7JG1pML-d7g91zpjDXGRcH9B28qHfg&amp;oe=6435BD70" alt="enter image description here"></td>
+<td><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335435876_1310845236141307_6204630237064892484_n.png?stp=dst-png_s417x417&amp;_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=SuGhRcdsOi4AX_ILO9W&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdShbY4AVX6BzEhQsgRSmJoYWjuNbgT49crekt6-RT9LDA&amp;oe=6435BBC3" alt="enter image description here"></td>
+</tr>
+</tbody>
+</table><p>Los resultados esperado son:</p>
+
+<table>
+<thead>
+<tr>
+<th>Opcion 1</th>
+<th>Opcion 2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335474797_1273092706606517_8384464483468195811_n.png?_nc_cat=110&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=x9eHpYCCD-EAX9ck52n&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdTkLEdg2z8w89sQ2t5iPYKcLe1-ENuIIrRFFnv6GhUyWg&amp;oe=6435C94D" alt="enter image description here"></td>
+<td><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335429598_596463568746463_5556158119992805403_n.png?_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=mcIsMJS4qu0AX-58B7f&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdR-dUBa3DRKDS1lqyT6WS6OPDJ5xSpaZ8HuQc6xN7Nu3A&amp;oe=6435D497" alt="enter image description here"></td>
+</tr>
+</tbody>
+</table><p>También, para asignar un valor a una variable o para guardar una expresión matemática se utiliza la asignación, la cual tiene la siguiente estructura.<br>
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335264527_226103013244198_7377505208799213622_n.png?stp=dst-png_p206x206&amp;_nc_cat=109&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=30MlOm-mbngAX9_ITsV&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdQtuiUTsy4b57jomLudCFWED1TE2ldwJqFAh18wDarQCg&amp;oe=6435DD7B" alt="enter image description here"></p>
+<p>Dentro de PSeInt se pueden utilizar estructuras de control condicionales como un Si-entonces y un Según. Dichas estructuras se utilizan de la siguiente manera:</p>
+
+<table>
+<thead>
+<tr>
+<th>Segun</th>
+<th>Si-entonces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/335437427_1433604184113804_7411248552537231036_n.png?stp=dst-png_p206x206&amp;_nc_cat=111&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=WkAC_ut9hmQAX_KGT9p&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdShFrleSSNM79WYufzGeAtBy_c9XvCF9GvJRfr00LmJfw&amp;oe=6435D7DD" alt="enter image description here"></td>
+<td><img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/333624944_971019360516083_1266668828597069406_n.png?stp=dst-png_p206x206&amp;_nc_cat=105&amp;ccb=1-7&amp;_nc_sid=aee45a&amp;_nc_ohc=78fkcJApijMAX8P5dax&amp;_nc_ad=z-m&amp;_nc_cid=0&amp;_nc_ht=scontent.xx&amp;oh=03_AdT6dtDzzDOssIBawOkWYB5xwXhAw7qgATMG7cgml6kPew&amp;oe=6435D195" alt="enter image description here"></td>
+</tr>
+</tbody>
+</table><h2 id="ejemplos.">Ejemplos.</h2>
+<h3 id="ejemplo-de-pseudocodigo.">Ejemplo de Pseudocodigo.</h3>
+<p>Leer por pantalla dos números. Luego mostrar al usuario el siguiente menú de opciones:</p>
+<ol>
+<li>
+<p>Suma</p>
+</li>
+<li>
+<p>Resta</p>
+</li>
+<li>
+<p>Multiplicación</p>
+</li>
+<li>
+<p>División<br>
+<img src="https://user-images.githubusercontent.com/54318914/224464592-60314dd2-5bb8-4159-bf6f-7fb72a46a321.png" alt="enter image description here"></p>
+</li>
+</ol>
+<h3 id="ejemplo-de-flujograma.">Ejemplo de Flujograma.</h3>
+<p>Realizar un diagrama de flujo que le permita al usuario ingresar 4 valores para la variable de sumar el primer número con el cuarto, multiplicar el segundo número con el tercero, presentar ambos resultados y finalizar</p>
+<p><img src="https://user-images.githubusercontent.com/54318914/224466180-26affc87-30e0-4171-afb4-3f7487d26972.png" alt="enter image description here"></p>
+<h2 id="ejercicio-evaluado.">Ejercicio Evaluado.</h2>
+<ol>
+<li>
+<p>Accede a la tarea que está en Moodle llamada cp2</p>
+</li>
+<li>
+<p>Busca tu nombre y acepta la tarea</p>
+</li>
+<li>
+<p>Clona el repositorio</p>
+</li>
+<li>
+<p>Utiliza las herramientas sugeridas y realiza el ejercicio propuesto</p>
+</li>
+</ol>
+<h3 id="herramientas-a-utilizar.">Herramientas a utilizar.</h3>
+<ul>
+<li>
+<p><strong><a href="http://Draw.io">Draw.io</a></strong><br>
+<img src="https://www.communardo.com/wp-content/uploads/2017/05/Logo_drawio.png" alt="enter image description here"></p>
+</li>
+<li>
+<p><strong>Visual Studio Code</strong><br>
+<img src="https://code.visualstudio.com/assets/branding/app-icon.png" alt="enter image description here"></p>
+</li>
+<li>
+<p>PSeInt.<br>
+<img src="https://victomanolo.files.wordpress.com/2018/07/logo4.jpg?w=130" alt="enter image description here"></p>
+</li>
+</ul>
+<h3 id="ejercicio-de-pseudocodigo.">Ejercicio de Pseudocodigo.</h3>
+<p>Hacer el pseudocódigo para: Ingresar el precio de un producto, luego, imprimir el precio final considerando que se aplique un 15% de descuento</p>
+<h3 id="ejercicio-de-flujograma.">Ejercicio de Flujograma.</h3>
+<p>Realizar un diagrama de flujo que permita ingresar por teclado 2 valores, multiplicarlos, presentar el resultado y finalizar.</p>
+<ol start="5">
+<li>
+<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
+</li>
+<li>
+<p>Borrar las credenciales de windows</p>
+</li>
+<li>
+<p>Borrar de la computadora el o los programas creados durante la práctica</p>
+</li>
+</ol>
+<p><strong>IMPORTANTE:</strong> borrar las credenciales de Windows.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
