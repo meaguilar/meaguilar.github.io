@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cp4.html</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#instrucciones-de-control-de-flujo-sentencias-para-la-realización-de-iteraciones-bucles-while-for-y-do-while">Instrucciones de control de flujo: sentencias para la realización de iteraciones bucles while, for y do-while</a>
+<ul>
+<li><a href="#introducción">Introducción</a></li>
+<li><a href="#while">While</a></li>
+<li><a href="#for">For</a></li>
+<li><a href="#do-while">Do While</a></li>
+<li><a href="#ejercicio-evaluado">Ejercicio evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="instrucciones-de-control-de-flujo-sentencias-para-la-realización-de-iteraciones-bucles-while-for-y-do-while">Instrucciones de control de flujo: sentencias para la realización de iteraciones bucles while, for y do-while</h1>
+<h2 id="introducción">Introducción</h2>
+<p>Los bucles son una herramienta fundamental en programación que te permiten repetir una serie de instrucciones varias veces sin tener que escribir el mismo código una y otra vez. En lugar de escribir el mismo código repetidamente, puedes utilizar un bucle para que el programa lo ejecute automáticamente. Esto ahorra tiempo y hace que tu código sea más eficiente y fácil de leer y mantener.</p>
+<p>En la mayoría de los lenguajes de programación, hay varios tipos de bucles, cada uno con su propia sintaxis y uso. Algunos de los más comunes son el bucle while, el bucle for y el bucle do-while. Cada tipo de bucle tiene sus propias características y ventajas, y es importante conocerlos para poder utilizarlos de manera efectiva en diferentes situaciones.</p>
+<p>Los bucles son una herramienta poderosa en programación, y su uso adecuado puede hacer una gran diferencia en la eficiencia y calidad de tu código.</p>
+<h2 id="while">While</h2>
+<p>El bucle while es una estructura de control de flujo en programación que se utiliza para repetir una acción o un conjunto de acciones mientras se cumple una determinada condición. El bucle se ejecuta siempre que la condición especificada sea verdadera y se detiene cuando la condición se vuelve falsa.<br>
+<strong><img src="https://lh4.googleusercontent.com/Da6HgaIJUIG0gdbl-n48NKvun_Gu7-G2MX4iekNohq9-fpxWvClg4io2hwgCFdaxwN7vZTBd_yj62SVpNVLWnBIDe9nTKX8tHREAAZPQPiQjsEHhsSxi_EPxznEvslKlDXKLCwacMcWOAvGtxsrbutQ" alt=""></strong></p>
+<p><strong>La sintaxis básica en C++ es la siguiente:</strong><br>
+<strong><img src="https://lh6.googleusercontent.com/xK8ScyXYpGnmnCTgfqqvjVd_khlT7qfx15wsFYwfkt5SN_0NfNFX6HidIxqtRgnbTr0qMlYSemhlDbZVys_sv-q-mcoNt709ViD2ckyrvtaGOTTm-IuVCh_8BodDvw7tGGG6idA_wUFEf6CTVThejV4" alt=""></strong></p>
+<p>La condición es una expresión booleana que se evalúa en cada iteración del bucle. Si la condición es verdadera, el código dentro del bucle se ejecuta. Si la condición es falsa, el programa sale del bucle y continúa con la siguiente instrucción.</p>
+<p>Es importante tener en cuenta que la condición debe cambiar de valor en algún momento dentro del bucle, de lo contrario, el bucle se convertirá en un ciclo infinito y el programa se quedará atascado.<br>
+<strong>Un ejemplo sencillo de uso del While en C++ es el siguiente:</strong><br>
+<strong><img src="https://lh4.googleusercontent.com/j06jrbq9nK6x4EK_4QbF7NBs82T1fWwNJyawT3S6huUu4u_Y4JZx2irBNVKs5dg-5Jmyz-AlzD3mEYmdgb1QdF9EPKK9V1b1VghFWFBBKP-YhD-OqSRx3kM0D83-KbGrGleRG4vKNGSlA0chxYkTn_g" alt=""></strong><br>
+En este ejemplo, se inicializa la variable i con el valor de 1. Luego, se especifica la condición i &lt;= 5, lo que significa que el bucle se ejecutará mientras el valor de i sea menor o igual a 5. Dentro del bucle, se muestra el valor de i en la consola y se incrementa su valor en 1. El bucle se ejecutará cinco veces, mostrando los números del 1 al 5 en la consola. Al final, el programa retorna 0 para indicar que finalizó correctamente.</p>
+<h2 id="for">For</h2>
+<p>El ciclo for es una estructura de control de flujo en programación que se utiliza para repetir una acción o un conjunto de acciones un número determinado de veces. Su funcionamiento es similar al ciclo While pero el for es muy útil para iterar sobre una secuencia de elementos o para realizar tareas repetitivas con una cantidad conocida de iteraciones.</p>
+<p><strong><img src="https://lh6.googleusercontent.com/wZd5xB7OsKgCVoBQFqZfF_Ax2AcbyTX6ng4xtGZrjyE64g8k7k4E3fG2mJZGFnyMhSoE3BKj44OosJuezZzRDaX4J_aPt6486Mhx41IyATUfApkd2YR7jnsDbK4SBfGxt4DOZhiKVPjI4Scdq1oA02s" alt=""></strong></p>
+<p><strong>La sintaxis básica del for es la siguiente:</strong><br>
+<strong><img src="https://lh4.googleusercontent.com/iB5J-yW7sGynXhIO2wtaPu4ovx1TzYzHfuiG7nzhfLi_jaVfaS0YY1IJspFkhH4xBnvUyJT0OHrsF2xtHK2Wxc4Pbko2071KmbkGlnKdYJs4fsf8_TkXFPwQ97OZdlQG3aPUuonNwxz5uop9tfZUzRg" alt=""></strong></p>
+<p>La inicialización se ejecuta una sola vez al principio del ciclo y se utiliza para establecer el valor inicial de la variable de control del bucle. La condición se evalúa en cada iteración del bucle y determina si el bucle debe seguir ejecutándose. La actualización se ejecuta al final de cada iteración del bucle y se utiliza para cambiar el valor de la variable de control.</p>
+<p>Dentro del bloque de código, es necesario asegurarse de que en algún momento se cambie el valor de la variable que se utiliza en la condición del bucle, para evitar que el bucle se convierta en un ciclo infinito.</p>
+<p><strong>Un ejemplo sencillo de uso del For en C++ es el siguiente:</strong><br>
+<strong><img src="https://lh4.googleusercontent.com/gm17UN2LzWUejK-VeLJYyvzuXowrmvc5NgDF3rxAtZUrTiZcQ4NK64y1gZQAI8jwjvoi8uofNImMjtmVNgeTdEcdnrRIlnYrO4TtOWzMxAwPi7mdqrUaEFNL0Bp42SSX2kTysOUY-Z8vorUOQ6lOs2M" alt=""></strong></p>
+<h2 id="do-while">Do While</h2>
+<p>El ciclo do-while es una estructura de control de flujo en programación que se utiliza para repetir una acción o un conjunto de acciones al menos una vez, y luego repetirla mientras se cumpla una condición específica. Esta estructura es muy útil cuando se quiere asegurarse de que una acción se ejecute al menos una vez, independientemente de la condición.<br>
+<strong><img src="https://lh4.googleusercontent.com/Yo78bk07s1Jp00vCCBJRvK1Kj-kMmsaWIhGwGkIitcQ8fjjZHu-QRHdzpR8BnIu9pyGvP06m5BZPRXmmzIwwWVGGAJInZeANx8jsV7tWRa7kV_V7KZCxUYsU6XrjRNedHS6xDbp2JRqs2vFEKSwZuXQ" alt=""></strong></p>
+<p><strong>La sintaxis básica del ciclo do-while es la siguiente:</strong><br>
+<img src="https://lh6.googleusercontent.com/9wBLliQncg8jSO-Hj9GMKJC_fYF5M1P4Zbg1Q3mFg-32So90d3juPXNRyt_QYFKv69EqAJnPYu9GUZGg4xQyBVYyDJh-B6FXlqC4nyZ16rdwFAS9YmfhVGbjd3vI_pFbs31W8V1C22zXPFZb9qyPhuE" alt=""></p>
+<p>En este caso, el bloque de código dentro del <strong>do</strong> se ejecuta al menos una vez, sin importar si se cumple o no la condición especificada en el <strong>while</strong>. Después de la primera ejecución, la condición se evalúa y si es verdadera, el bloque de código se ejecuta nuevamente. Si la condición es falsa, el ciclo do-while termina y la ejecución continúa con la siguiente instrucción después del bloque de código.</p>
+<p><strong>Un ejemplo sencillo de uso del Do-While en C++ es el siguiente:</strong><br>
+<strong><img src="https://lh5.googleusercontent.com/BqS5FOCEXco1XzvUW6PDRRsvVWlaMt7TeTFZBgyxGOMugz0-1impnmAvX8FHxq5U1ruv2YoR2yxhJPt9-FeaD69xyKlkfVt_cLOUI1GXzin17ckNHM8gOI_Pkxj0d-ea-Oxnv3knzvOmwjG1L0ZD2IY" alt=""></strong></p>
+<p>En este ejemplo, se utiliza el ciclo do-while para pedir al usuario que ingrese un número y mostrarlo en la consola, y se repite hasta que el usuario ingrese el número 0. El bloque de código dentro del do se ejecuta al menos una vez, sin importar el valor inicial de num. Después de la primera ejecución, la condición num != 0 se evalúa y si es verdadera, el bloque de código se ejecuta nuevamente. Si la condición es falsa (es decir, si el usuario ingresa el número 0), el ciclo do-while termina y la ejecución continúa con la siguiente instrucción después del bloque de código.</p>
+<h2 id="ejercicio-evaluado">Ejercicio evaluado</h2>
+<ol>
+<li>
+<p>Accede a la tarea que está en Moodle llamada cp4</p>
+</li>
+<li>
+<p>Busca tu nombre y acepta la tarea</p>
+</li>
+<li>
+<p>Clona el repositorio</p>
+</li>
+<li>
+<p>Realiza el ejercicio que asigne el instructor/a</p>
+</li>
+<li>
+<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
+</li>
+<li>
+<p>Borrar las credenciales de windows</p>
+</li>
+<li>
+<p>Borrar de la computadora el o los programas creados durante la práctica</p>
+</li>
+</ol>
+
+    </div>
+  </div>
+</body>
+
+</html>

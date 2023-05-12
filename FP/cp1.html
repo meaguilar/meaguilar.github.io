@@ -1,0 +1,199 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cp1.html</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#introducción-a-git">Introducción a GIT</a>
+<ul>
+<li></li>
+<li><a href="#sistema-de-control-de-versiones">Sistema de control de versiones</a></li>
+<li><a href="#git">GIT</a></li>
+<li><a href="#github">GitHub</a></li>
+<li><a href="#iniciando-en-github">Iniciando en GitHub</a></li>
+<li><a href="#commit">Commit</a></li>
+<li><a href="#ejemplo-practico">Ejemplo Practico</a></li>
+<li><a href="#ejercicio-evaluado">Ejercicio Evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="introducción-a-git">Introducción a GIT</h1>
+<p>En este codelab aprenderás sobre los conceptos de git, Github, como utilizarlos y sus diferencias a través de ejercicios prácticos.</p>
+<h3 id="bienvenido">Bienvenido</h3>
+<p>En esta guía aprenderás sobre que es Git y Github, sus diferencias y como utilizarlo.<img src="https://editor.analyticsvidhya.com/uploads/18288git.jpg" alt="Git + Github"></p>
+<h2 id="sistema-de-control-de-versiones">Sistema de control de versiones</h2>
+<p><img src="https://www.espai.es/blog/wp-content/uploads/2018/09/desastre.png" alt="Versiones de proyecto"></p>
+<p>Las aplicaciones de control de versiones nos permiten administrar las diferentes versiones de uno o varios archivos y en cualquier momento se puede acceder a cualquier versión del pasado y verificar cuales fueron los cambios, quien los realizo, a que horas y fecha se realizo esa modificacion.Existen muchos Sistemas de Control de Versiones siendo algunos de los mas conocidos CVS, Git, Subversion, Mercurial y Bazaar.</p>
+<p><img src="https://umangsoftware.com/wp-content/uploads/2021/04/Blog-05-1024x510.png" alt="Sistema de control de versiones"><br>
+<strong>Leer mas: <a href="https://medium.com/@jointdeveloper/sistemas-de-control-de-versiones-qu%C3%A9-son-y-por-qu%C3%A9-amarlos-24b6957e716e">Sistema de control de versiones que son y por que amarlos</a></strong></p>
+<h2 id="git">GIT</h2>
+<p>Es un sistema de control de versiones distribuido (VCS), que permite almacenar diferentes versiones de uno o varios archivos para que cualquier versión sea recuperable cuando lo desee.</p>
+<p><strong>Nota:</strong> Git en realidad es un sistema de control de versiones distribuido, lo cual significa que se realiza una copia completa del repositorio que contiene la base de código en tu computadora (y en la de todos los demás). Realizas cambios en tu propia copia, y luego empujas esos cambios nuevamente al servidor, donde un administrador decidirá si fusiona tus cambios con la copia maestra. - MDN Mozilla<br>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK6NS8w4EqFsvor_JM-sK29ztzjVd9QE2VAg&amp;usqp=CAU" alt="Como funciona Git"><br>
+<strong><strong><strong>Leer más:</strong></strong> <a href="https://docs.github.com/es/get-started/using-git/about-git">documentacion de Git</a></strong></p>
+<h2 id="github">GitHub</h2>
+<p>Es una plataforma web que permite alojar proyectos, utilizando el sistema de control de versiones distribuidos de GIT, su interfaz gráfica lo ha convertido en uno de los clientes Git más utilizados por los desarrolladores.<br>
+<img src="https://global-uploads.webflow.com/5f5a53e153805db840dae2db/6073fbf151fa4565d48572dc_GitHub_aprender-programaci%25C3%25B3n.jpeg" alt="GitHub"><strong>Enlace del sitio oficial: <a href="https://github.com/">GitHub</a></strong></p>
+<h2 id="iniciando-en-github">Iniciando en GitHub</h2>
+<h3 id="creacion-de-cuenta">Creacion de cuenta</h3>
+<p>Acceder al sitio oficial de <strong><a href="https://github.com/">GitHub</a></strong>, crear una cuenta de usuario, de preferencia utiliza tu correo electrónico institucional.</p>
+<p><img src="https://www.softzone.es/app/uploads-softzone.es/2022/08/web-github.jpg" alt="Pagina Oficial de GitHub"><br>
+Una vez creada la cuenta, completa tu perfil coloca tu nombre y foto.<br>
+<img src="https://static.platzi.com/media/user_upload/Screenshot_2020-07-11%20iKenshu%20-%20Overview-d0af7b93-4f8f-4077-87dd-dbb7812f65b8.jpg" alt="Perfil de Git"></p>
+<h3 id="instalando-git">Instalando Git</h3>
+<p>Antes de empezar a utilizar Git, debemos instalarlo en nuestra computadora. Si ya está instalado, puedes actualizarlo a su última versión.</p>
+<p>Enlace a sitio oficial: <strong><a href="https://git-scm.com/">Git</a></strong><br>
+<img src="https://www.testingdocs.com/wp-content/uploads/Git-Download-Windows-11-OS.png" alt="Descarga de Git"></p>
+<p><strong>Verificar Instalación</strong><br>
+Para verificar si la instalación se realizó de manera exitosa.<br>
+Ejecutar el siguiente comando: <em><strong>git --version</strong></em></p>
+<p><img src="https://linuxhint.com/wp-content/uploads/2022/09/image12.png" alt="Version de Git"></p>
+<h3 id="estados-en-git">Estados en Git</h3>
+<ul>
+<li>Confirmado (committed): la información está almacenada en la base de datos local.</li>
+<li>Modificado (modified): un archivo ha sido modificado, pero se han confirmado a la base de datos.</li>
+<li>Preparado (staged): se ha marcado un archivo modificado en su versión actual para enviarlo a la próxima confirmación.</li>
+</ul>
+<p><img src="https://miro.medium.com/max/686/1*diRLm1S5hkVoh5qeArND0Q@2x.png" alt="Estados en Git"></p>
+<h3 id="el-flujo-de-trabajo-básico-de-git">El flujo de trabajo básico de Git</h3>
+<p><img src="https://support.nesi.org.nz/hc/article_attachments/360004194235/Git_Diagram.svg" alt="Flujo de trabajo"><br>
+<strong>Leer mas: <a href="https://moisesdelacruz.medium.com/tutorial-b%C3%A1sico-de-git-y-github-42e46ff41194">estados de Git</a></strong><br>
+<strong>Ver video: <a href="https://www.youtube.com/watch?v=SxmveNrZb5k">Git status</a></strong></p>
+<h3 id="comandos">Comandos</h3>
+<p>Comando SVN</p>
+<p>Comando Git</p>
+<p>Comportamiento en Git</p>
+<p><strong>status</strong></p>
+<p>status</p>
+<p><em>Informar el estado del arbol de trabajo</em></p>
+<p><strong>add</strong></p>
+<p>add</p>
+<p><em>Requerido para agregar cada ruta antes de realizar un commit</em></p>
+<p><strong>commit</strong></p>
+<p>commit</p>
+<p><em>Almacenar los cambios deseados en el historial de revision local</em></p>
+<p><strong>rm, delete</strong></p>
+<p>rm</p>
+<p><em>Preparar rutas para su eliminacion en el proximo commit</em></p>
+<p><strong>move</strong></p>
+<p>mv</p>
+<p><em>Prepara el contenido reubicado para el proximo commit</em></p>
+<p><strong>checkout</strong></p>
+<p>clone</p>
+<p><em>Adquirir la historia completa de un proyecto localmente por primera vez</em></p>
+<p>branch</p>
+<p><em>Crear contexto local para commits</em></p>
+<p>merge</p>
+<p><em>Unir historiales de ramas y cambios al arbol de trabajo</em></p>
+<p>log</p>
+<p><em>Enumera el historial de versiones para la rama actual</em></p>
+<p>push</p>
+<p>Sube todos los commits de la rama local a GitHub</p>
+<p>pull</p>
+<p><em>Descarga e integra el historial del repositorio de GitHub</em></p>
+<p>fetch</p>
+<p>Descaga el historial del repositorio de GitHub sin realizar ninguna otra accion</p>
+<p>**Leer mas: <a href="https://drive.google.com/file/d/1sAYpx-N9RcNDpeurbF8m7gggJsdgt_pX/view?usp=sharing">comandos git</a> **</p>
+<h2 id="commit">Commit</h2>
+<p>Se usa para confirmar los cambios en el área de preparación y guardarlos en el repositorio local en Git.</p>
+<p>Algunas buenas prácticas:</p>
+<ol>
+<li>Especifica el tipo de commit:<br>
+<strong>feat:</strong> La nueva característica que agregas a una aplicación en particular<br>
+<strong>fix:</strong> Un parche para un error<br>
+<strong>style:</strong> Características o actualizaciones relacionadas con estilos<br>
+<strong>refactor:</strong> Refactorizar una sección específica de la base de código<br>
+<strong>test:</strong> Todo lo relacionado con pruebas<br>
+<strong>docs:</strong> Todo lo relacionado con documentación<br>
+<strong>chore:</strong> Mantenimiento de código regular.</li>
+<li>Quita signos de puntuación innecesarios.</li>
+<li>Usa mayúsculas al inicio del título y por cada párrafo del cuerpo del mensaje.</li>
+<li>Usa el cuerpo del mensaje para explicar los cambios.</li>
+<li>Sigue la convención del mensaje de commit definida por tu equipo.</li>
+<li>Agrega emojis a tus commit, debes buscar el emoji que describa lo realizado.</li>
+</ol>
+<p><img src="https://apero-tech.fr/wp-content/uploads/2021/03/gituoji-1024x522.jpg" alt="enter image description here"></p>
+<p><strong>Enlace: <a href="https://gitmoji.dev/">Gitmoji</a></strong></p>
+<h2 id="ejemplo-practico">Ejemplo Practico</h2>
+<h3 id="clona-un-repositorio-y-sube-los-cambios">Clona un repositorio y sube los cambios</h3>
+<p>Crear un directorio en alguna ubicación de tu computadora, en este caso se creó una en el escritorio llamada MiPrimerClonacion.</p>
+<p><img src="https://user-images.githubusercontent.com/62765904/225068714-be887ac9-4343-470e-bc90-b6f248691a1d.png" alt="enter image description here"></p>
+<p>Abre una consola en la ubicación de la carpeta llamada MiPrimerClonacion.</p>
+<h3 id="clonando">Clonando</h3>
+<p>Copia la url del repositorio<br>
+<img src="https://user-images.githubusercontent.com/62765904/225068943-0c9a2d60-b62d-4312-9ad7-48daf7836985.png" alt="enter image description here"></p>
+<p>Una vez copiada la url del repositorio nos dirigimos a la consola y escribimos el siguiente comando:<br>
+<strong>git clone [url del repositorio]</strong></p>
+<p>En este paso se copia la dirección utilizando el comando y clonara el proyecto del repositorio a tu carpeta.</p>
+<p><img src="https://user-images.githubusercontent.com/62765904/225069195-32dddb50-7818-4db3-851f-73bd91e6efa4.png" alt="enter image description here"><br>
+<img src="https://user-images.githubusercontent.com/62765904/225069238-2e8932ae-2c90-42bf-a7e9-78febdef4f68.png" alt="enter image description here"></p>
+<p><strong>Crea un archivo txt con tu nombre.</strong><br>
+En el contenido del archivo también coloca tu nombre.<br>
+<img src="https://user-images.githubusercontent.com/62765904/225069570-2d83e7fe-e9a6-4c6b-971e-fd695d54a2c6.png" alt="enter image description here"></p>
+<h3 id="iniciando-a-subir-los-archivos">Iniciando a subir los archivos</h3>
+<p><strong>Configuración:</strong> al ser primera que se realizará un cambio en el repositorio, solicitara los siguientes datos en la terminal que abrió al principio</p>
+<ul>
+<li><strong>git config --global <a href="http://user.name">user.name</a> “[nombre apellido]”</strong></li>
+<li><strong>git config --global user.email “[email]”</strong></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/62765904/225069885-f90a7c38-87c1-4715-ac21-7c710d8cdc08.png" alt="enter image description here"></p>
+<h3 id="agregando-archivos">Agregando archivos</h3>
+<p>Agregamos el nombre del archivo del proyecto al cual le realizamos las modificaciones.</p>
+<ul>
+<li><strong>git add [nombre del archivo]</strong></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/62765904/225069943-5fcb3886-3198-4d32-8f6a-d47539274cac.png" alt="enter image description here"></p>
+<h3 id="commit-1">Commit</h3>
+<p>Agregamos el commit con un mensaje descriptivo de lo que se ha realizado, toma en cuenta las buenas prácticas, puedes usar <a href="https://gitmoji.dev/">Gitmoji</a> pero revisa cual es el más descriptivo para lo que has realizado a tu proyecto.</p>
+<p><strong>IMPORTANTE: Puedes hacer varios commit, por cada modificación considerable puede realizar un commit, esto permitirá tener un registro de todo lo que vas realizando en el proyecto.</strong></p>
+<ul>
+<li><strong>git commit -m "comentario"</strong></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/62765904/225069989-ce2721f5-2d63-45a1-b534-847d0d53ce3e.png" alt="enter image description here"></p>
+<h3 id="push">Push</h3>
+<p>Envía tus cambios al repositorio.</p>
+<ul>
+<li><strong>git push</strong></li>
+</ul>
+<p>En este paso si solicitara autenticación, realizarla con el navegador.<br>
+<img src="https://user-images.githubusercontent.com/62765904/225070737-27d7cc6c-1f1f-45d7-bd84-23db11aa43c8.png" alt="enter image description here"></p>
+<p><img src="https://user-images.githubusercontent.com/62765904/225071889-6a665906-0f9a-4016-a475-e9836c55de35.png" alt="enter image description here"><br>
+Verificar su repositorio en GitHub, mostrará los nuevos archivos que se han agregado.</p>
+<p><strong>FELICIDADES!!!</strong><br>
+<img src="https://user-images.githubusercontent.com/62765904/225071941-595d4ee2-58a3-4388-bb74-98e2390d0ed3.png" alt="enter image description here"></p>
+<h2 id="ejercicio-evaluado">Ejercicio Evaluado</h2>
+<ol>
+<li>Crea una cuenta en github con tu cuenta institucional</li>
+<li>Accede a la tarea que está en Moodle llamada cp1</li>
+<li>Busca tu nombre y acepta la tarea</li>
+<li>Clona el repositorio</li>
+<li>Agrega un archivo de texto</li>
+<li>Crea una rama en el repositorio clonado y sube los cambios a esa rama</li>
+<li>Sube los cambios al repositorio utiliza los comandos en el orden correcto (git add, git commit, git push), mínimo de commit 3</li>
+<li>Realiza la fusión de la rama con el main</li>
+<li>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</li>
+<li>Borrar las credenciales de windows</li>
+</ol>
+<p>Borrar de la computadora el o los programas creados durante la práctica.</p>
+<p><strong>IMPORTANTE:</strong> borrar las credenciales de Windows.</p>
+<p><img src="https://ajaxhispano.com/images/content/15381198/ec678c8b0e69b04c3865918954e7a7a4.png" alt="enter image description here"></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
