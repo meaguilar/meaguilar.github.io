@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CP8.html</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#manejo-de-archivos">Manejo de archivos</a>
+<ul>
+<li><a href="#método-buscar">Método Buscar</a></li>
+<li><a href="#método-leer">Método Leer</a></li>
+<li><a href="#método-agregar">Método Agregar</a></li>
+<li><a href="#ejercicio-evaluado">Ejercicio Evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="manejo-de-archivos">Manejo de archivos</h1>
+<p>Los archivos o ficheros son la forma en la que C + + permite el acceso al disco.</p>
+<p>Para manejar archivos, debemos declarar una variable de tipo ofstream, que apuntará al fichero, después invocamos al método open, pasándole el nombre del archivo y el modo de apertura, tenemos los siguientes métodos:</p>
+<ul>
+<li>
+<p>output: Escribe sobre el archivo, reemplazando el contenido que exista en el mismo, se accede a este método utilizando fstream::out.</p>
+</li>
+<li>
+<p>append: agrega el contenido al final del archivo, por lo que no reemplaza al existente. se accede a este método utilizando fstream::app.</p>
+</li>
+</ul>
+<p>A Continuación se muestra un ejemplo de un código de escritura de un archivo txt<br>
+<strong><img src="https://lh4.googleusercontent.com/Q_8h9nrQ8w_8kbSFGMby1KkPgiKyFrGYybZwxL9T3f_HparNuzJt86xbVALdTT6YqchKla-aVRy90p3j2JQSHEA_l7Jktu79tS6PogiOKCFE0E20946GQv2bT3E2WVNMQmG_Lw-0hlzm8614gU4mG4Q" alt=""></strong></p>
+<p>Para leer el contenido de un archivo se necesita una variable de tipo <strong>ifstream</strong>. En este caso se necesita una cadena constante, por eso se invoca a <strong>c_str</strong>.</p>
+<p><strong><img src="https://lh5.googleusercontent.com/J23SzeQLjFTLFg8KU1115ykJabm7ozFSU6IyJGpXQh5AeeajsNU-yS0hUMoNahB7N7m69ys6gXpciVsZnW6bbCixcC8mJD4QXOwGehEXLMsxftXdAaRRWZajP985Mdh8pCNzqCmWJTRiDkEJCu9Hr6Q" alt=""></strong></p>
+<p>A continuación se muestra un ejemplo detallado en el que se hará uso de un struct de tipo película, que tendrá las variables ISBM, nombre y director de tipo string, y duración de tipo entero la cual se expresa en minutos.</p>
+<p><strong><img src="https://lh3.googleusercontent.com/gQVR9nQZsTQknx7n3L96yy9VwaFxpoOT1xencYZQvtPgrleEvBbT9ViqtrPQDqJjWK8Sb47BZYsSrxKOfYHH--OQVo4w3SdwW33A6sbJuiC-TIqZbOCY5iayhLjeNf2g8oWmVFYhYjKEw0xDfxqJ8dw" alt=""></strong></p>
+<h2 id="método-buscar">Método Buscar</h2>
+<p>En este método se define el nombre del archivo, se solicita a través de consola el código ISBM, y debido a que cada registro de película guarda sus propiedades separado por saltos de línea, se usa un switch case para en caso de encontrar la pelicula mostrarla en un formato adecuado<br>
+<strong><img src="https://lh6.googleusercontent.com/uAQUB24pNlibMrF7-rTmMXYKSD3VmcCWLM3wx8G1YGI9GtPLkkhS_cLDYtkq8xBkWkOq8iGAhKYcAWV1SM2avVZaXICLknmYsxpIJAGIjsqwaD_0uZgGdLSGggFo9dJ3-91KV3a7DF9tx1MfAzn2CJ8" alt=""></strong></p>
+<h2 id="método-leer">Método Leer</h2>
+<p>Este método se encarga de cargar el archivo txt completo, recordando el formato designado el cual separa por saltos de línea las propiedades de cada película ingresada, para así mostrarlas de forma amena.</p>
+<p><strong><img src="https://lh6.googleusercontent.com/dqIziGvnfux7IBHRQsrKYPd7A412lgJeO0XFkO1F12OjFkC-JwIISPATCNTnhItCAklErW0cAYeP3aB6ci33iHss2MXJVr1r9xCJ4RIMn_a9kPgGLmvDavu92PJGd1y_3w-YT5GexkDGs_l2idYgN7c" alt=""></strong></p>
+<h2 id="método-agregar"><strong>Método Agregar</strong></h2>
+<p>Este método se encarga de comprobar si existe el archivo txt, en dado caso no exista se encarga de crearlo, posteriormente se solicitan las propiedades que el struct necesita, y se le envían al archivo con el formato designado que es el orden de las propiedades separado por un salto de línea.</p>
+<p><strong><img src="https://lh4.googleusercontent.com/8Y0tU3ucGp4X7L96w6ZPpnesA7L6Pc60Q-MIKjj5vmBYb0sRJSROKu-4dsESpeSgBK2TB2rdUaU0pga4kOaEYA-oLcL2P03moSzGVQVm8gNNFQKtjbY-nwo9tW6Rf9Pz8boDleGqou5qjHM3P0X72RU" alt=""></strong></p>
+<p><strong>El método eliminar y un método adicional útil para el proyecto se explican en el siguiente enlace debido a su longitud y complejidad</strong></p>
+<p><strong><a href="https://onlinegdb.com/_4PS2A4L2H">Codigo con los metodos extra</a></strong></p>
+<h2 id="ejercicio-evaluado">Ejercicio Evaluado</h2>
+<ol>
+<li>
+<p>Formar grupos de 3 personas</p>
+</li>
+<li>
+<p>Un integrante debe acceder a la tarea que está en Moodle llamada cp8 y deberá crear un grupo en github classroom. Los demás integrantes deberán unirse al grupo creado</p>
+</li>
+<li>
+<p>Todos los integrantes deberán clonar el repositorio</p>
+</li>
+<li>
+<p>Crea una rama(Por estudiante) en el repositorio clonado y sube los cambios a esa rama</p>
+</li>
+<li>
+<p>Realizar el ejercicio que asigne el instructor/a</p>
+</li>
+<li>
+<p>Sube los cambios al repositorio utiliza los comandos en el orden correcto (git add, git commit, git push)</p>
+</li>
+<li>
+<p>Realiza la fusión de la rama con el main</p>
+</li>
+<li>
+<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
+</li>
+<li>
+<p>Borrar las credenciales de windows</p>
+</li>
+<li>
+<p>Borrar de la computadora el o los programas creados durante la práctica</p>
+</li>
+</ol>
+
+    </div>
+  </div>
+</body>
+
+</html>
