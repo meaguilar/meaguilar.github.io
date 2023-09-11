@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Punteros C++</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#punteros-c">Punteros C++</a>
+<ul>
+<li><a href="#introducción">Introducción</a></li>
+<li><a href="#concepto">Concepto</a></li>
+<li><a href="#primer-ejemplo.">Primer Ejemplo.</a></li>
+<li><a href="#segundo-ejemplo">Segundo Ejemplo</a></li>
+<li><a href="#ejercicio-evaluado">Ejercicio evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="punteros-c">Punteros C++</h1>
+<p>En este codelab, aprenderás el uso, aplicación de punteros simples, dobles y triples, a través de ejercicios prácticos.</p>
+<h2 id="introducción">Introducción</h2>
+<p>El uso de los punteros en la programación es importante, ya que permite la utilización o paso de variables por referencia a una función en lugar de pasar su valor únicamente. El objetivo de esto es trabajar con el valor de la variable directamente, en lugar de basarse en su información para crear nuevos valores.</p>
+<p><strong><img src="https://lh6.googleusercontent.com/oCFZMCK-gDEyHAKYCt253S7qze4JHLqgMSiskMeY6aYqr7xFLE-67gYzX6dFG1SmMda1zzPU2MEbe8_k-HocJOYpiHpSf6xYvBfRlNlgH70DCdY1FGBh47kLg0wCuaDwdf3HyYItUtWCnyLrWy8JyF17oxf9oy-OCQK5Ib8ITpeGcWNPsTfAsRn0kZEdGxI" alt=""></strong></p>
+<h2 id="concepto">Concepto</h2>
+<p>Cuando se habla de variables, se sabe que cada una de ellas tiene 3 partes fundamentales: su valor, su nombre y su dirección de memoria en la que están almacenadas. Un puntero es un tipo de variable más, así como un int, por lo que cumple con la condición anterior.</p>
+<p>La diferencia es que los valores de los punteros son direcciónes de memorias de otros objetos (Por ejemplo, a otro tipo de dato primitivo o a un tipo de dato más complejo definido por el usuario como una estructura), dando lugar a la posibilidad de usar este valor para acceder (Haciendo referencia) a ese objeto. Un puntero al que no se le ha asignado un valor contiene datos aleatorios.</p>
+<p><strong><img src="https://lh6.googleusercontent.com/of6-3dIiSOLg1pJv_NUeiPHD1YBTQvED0g8Ne7r-4YFLKuHY3zNCjz2U0k8aVPAtds7832ad5_u7NqdGLszKvDZFFItHivxY7mXQjanWtiHlsuSV3Tqbc_WvS93pYucQqgebN5H5jEuZL--w5iFhlbr-hc-sQ1QcZYseaVqMmY-pGN5HM8RdmlNt4utN0lE" alt=""></strong></p>
+<p>Cuando un programa asigna un objeto en el montón en memoria (Memoria Heap), recibe la dirección de ese objeto en forma de puntero. Estos punteros se denominan punteros propietarios.</p>
+<p>Cuando se hace uso de este tipo de punteros, es necesario hacer una limpieza explícita de la memoria que ocupaba el puntero. Si no se libera la memoria, se produce una fuga de memoria y se representa esa ubicación de memoria como no disponible para cualquier otro programa de la máquina. En este tipo de asignación de memoria y liberación de la misma, deben ser implementados los operadores new y delete.</p>
+<p><strong><img src="https://lh3.googleusercontent.com/xxSTWc4oPUfeSBoSFVrLChrcdB_x910zp7jQ4_IdAWCGOhn20fWBfX4Y9rRkrC3RkmfBZhgAlMBrFxqRa8P6dzi7E6aj4xkpPs4c6f8TaoyE6Hu722EvwpW9UbNcMXsoC_mbDnMfbO9kWB6GnTg6HhL33TjFL4liic-gjrNDxr26k-u5CXHL_ZmwJWhl1Zs" alt=""></strong></p>
+<p>Para acceder a la dirección de memoria de alguna variable dentro del código, se necesita hacer uso del operador unario address-of( &amp; ). Este operador, devuelve la dirección de su operando.</p>
+<p>Mientras que por otro lado, el operador unario de direccionamiento indirecto del puntero ( * ) obtiene la variable a la que apunta su operando. También se conoce como operador de desreferencia.</p>
+<p>Es importante recalcar que el operador * se ocupa en la declaración inicial de un puntero, y en el momento en el que se quiere acceder a la información que este tiene almacenada. A este último caso se le conoce como desreferencia, que es esencialmente hacer referencia indirecta a los datos, usando las direcciones de memoria que los contienen.</p>
+<h2 id="primer-ejemplo.">Primer Ejemplo.</h2>
+<p><strong><img src="https://lh4.googleusercontent.com/sBugm4GY6jFhRXkOHDJkYWYED3k-Ygb3ammRbGC7NdvzoI-QSMzQid2OCbUx-n8UgABSK-UrsijbYrnWHcYdS8b9UuZlm6Q1O3A21tLLO6E5ODaSVrJB0hkfNLVzdP5OZbohSgSm1KKYDWnzpP5oWFksS2LA11NqRVWl-65qc5hIeCPqvPTqpPvGjiTe0Cc" alt=""></strong></p>
+<p>Codigo para demostración: <a href="https://onlinegdb.com/lvtZnkSpr">Click Aqui.</a></p>
+<h2 id="segundo-ejemplo">Segundo Ejemplo</h2>
+<p>Dadas dos variables <strong>a</strong> y <strong>b</strong>, pasarlas a funciones tanto por valor como por referencia, realizando cambios a la misma dentro de la función.</p>
+<p><strong><img src="https://lh5.googleusercontent.com/YGrpkCu4RMgUALqDpGRUQbty4zJ15VkY-R5qbsDlPSMOoQIouDLOj_4WT0BvMBeaAOfuYC1MU1ZNTsBYMWjuZCBiL8Xy_DnNMe28EltoxBI7_tuL_5EKPq9o1rJcSWthH3kUS4Cm-Y2FRSv-2i1AzHIcMtqkxSPU6aRd58waH_Zeg0rg-5pEAwhcz3S0D-k" alt=""></strong></p>
+<h2 id="ejercicio-evaluado">Ejercicio evaluado</h2>
+<ol>
+<li>
+<p>Accede a la tarea que está en Moodle llamada CP2</p>
+</li>
+<li>
+<p>Busca tu nombre y acepta la tarea</p>
+</li>
+<li>
+<p>Clona el repositorio</p>
+</li>
+<li>
+<p>Desarrollar el ejercicio propuesto por el instructor</p>
+</li>
+<li>
+<p>Sube los cambios al repositorio utiliza los comandos en el orden correcto</p>
+</li>
+<li>
+<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
+</li>
+<li>
+<p>Borrar las credenciales de windows</p>
+</li>
+<li>
+<p>Borrar de la computadora el o los programas creados durante la práctica</p>
+</li>
+</ol>
+
+    </div>
+  </div>
+</body>
+
+</html>

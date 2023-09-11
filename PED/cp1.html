@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CP1</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#comandos-avanzados-de-git">Comandos Avanzados de Git</a>
+<ul>
+<li><a href="#recordando-git">Recordando Git</a></li>
+<li><a href="#gitflow">GitFlow</a></li>
+<li><a href="#comandos-git">Comandos Git</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="comandos-avanzados-de-git"><strong>Comandos Avanzados de Git</strong></h1>
+<p>En este codelab, aprenderás diferentes comandos de git, metodología de trabajo con git, para la eficiencia de la gestión de versiones de aplicaciones.</p>
+<h2 id="recordando-git">Recordando Git</h2>
+<h3 id="flujo-de-trabajo-básico-en-git">Flujo de trabajo básico en git</h3>
+<p><strong><img src="https://lh3.googleusercontent.com/B6Eh70hYRjE1BfJg7u7_1Wo-5QcrPDOq4-yavD0fipmiwPiICqpyr9x7EqW9eQx0Yboj1eI3gPpVOH05Qw39FInS8rPtNjaKn-y1ur01dvN6M2D2scKlzRtU_5NqaVdE9PvfwU91IvrzinHj1Li58c7LaGxy2yFcDemasiSIpYwY8fSLqreOTKDfTwJ1QQo" alt=""></strong></p>
+<h3 id="commits-y-buenas-prácticas.">Commits y buenas prácticas.</h3>
+<p>Se usa para confirmar los cambios en el área de preparación y guardarlos en el repositorio local en Git.</p>
+<p>Algunas buenas prácticas:</p>
+<ol>
+<li>
+<p>Especifica el tipo de commit:<br>
+<strong>feat</strong>: La nueva característica que agregas a una aplicación en particular<br>
+<strong>fix</strong>: Un parche para un error<br>
+<strong>style</strong>: Características o actualizaciones relacionadas con estilos<br>
+<strong>refactor</strong>: Refactorizar una sección específica de la base de código<br>
+<strong>test</strong>: Todo lo relacionado con pruebas<br>
+<strong>docs</strong>: Todo lo relacionado con documentación<br>
+<strong>chore</strong>: Mantenimiento de código regular.</p>
+</li>
+<li>
+<p>Quita signos de puntuación innecesarios.</p>
+</li>
+<li>
+<p>Usa mayúsculas al inicio del título y por cada párrafo del cuerpo del mensaje.</p>
+</li>
+<li>
+<p>Usa el cuerpo del mensaje para explicar los cambios.</p>
+</li>
+<li>
+<p>Sigue la convención del mensaje de commit definida por tu equipo.</p>
+</li>
+<li>
+<p>Agrega emojis a tus commit, debes buscar el emoji que describa lo realizado.</p>
+</li>
+</ol>
+<p><strong><img src="https://lh3.googleusercontent.com/ewvOZ9ATIGHlnYfqgTPSwsvffl8ICZz0kjz1XPw7V6N0sORgq5fzQUKpktN3VdYwv8y0hfOMVtzGUHILZO-zC0lR8tb5--kjKfelubejZ-ETHzHjSJKEZavqcUaojNeJ6VAnK-pLiQkZgBjUZ9zVkRPL9YOtbDf5IQJfPgNS6E4p9WbXSIBGXOx6OMhgN4c" alt=""></strong></p>
+<h2 id="gitflow">GitFlow</h2>
+<p>GitFlow es una metodología de ramificación (branching) para trabajar con Git que proporciona una estructura clara y bien definida para el desarrollo de software en equipo. Esta metodología fue creada por Vincent Driessen en 2010 y es ampliamente utilizada en proyectos de software empresariales.</p>
+<p>GitFlow utiliza dos ramas principales en el repositorio: una rama “main” que representa la versión estable del software y una rama “develop” que representa la versión en desarrollo. Además, utiliza ramas secundarias para el desarrollo de nuevas funciones y correcciones de errores. Estas ramas secundarias pueden ser temporales o permanentes, dependiendo del alcance y duración de la tarea.</p>
+<p>El flujo de trabajo de GitFlow se divide en varias fases, que se detallan a continuación:</p>
+<p><strong><img src="https://lh5.googleusercontent.com/UCxqWo5EVT-u9oJ4JbkvZ7lX6CiGzCNb-RRPsQBpoZKZQK29toaMFiUrvRRhy9y8ZEZiwhm93MH68uI--VN3vasYhJuDxcQ8vgXQe_sjbExLNPvg8KWgFqvR7kH71i9Dep7cqcIPkDpdDByXyyBJGmr6wjP-zCdH7KxdK1PLo6FYRwUUsVymTLW2Xt0pgMU" alt=""></strong></p>
+<ul>
+<li>
+<p>Rama “Main o Master”: La rama main o principal almacena el historial de publicación oficial, asimismo en esta rama conviene etiquetar todas las confirmaciones de la rama main con un número de versión.</p>
+</li>
+<li>
+<p>Rama “develop”: Esta rama es la base de desarrollo para el proyecto. Todas las nuevas funciones y correcciones de errores se desarrollan en esta rama.</p>
+</li>
+<li>
+<p>Rama “feature”: Cuando se trabaja en una nueva función, se crea una rama “feature” a partir de la rama “develop”. Esta rama se utiliza para desarrollar la nueva función y se integra de nuevo en la rama “develop” cuando se completa.</p>
+</li>
+<li>
+<p>Rama “release”: Cuando se ha completado una serie de funciones y se está preparando una nueva versión del software, se crea una rama “release” a partir de la rama “develop”. Esta rama se utiliza para realizar pruebas finales y corregir errores antes de integrar la versión en la rama “main”.</p>
+</li>
+<li>
+<p>Rama “hotfix”: Cuando se descubre un error en la versión estable del software (rama “master”), se crea una rama “hotfix” a partir de la rama “master”. Esta rama se utiliza para corregir el error y se integra en ambas ramas " main " y “develop” una vez completada.</p>
+</li>
+</ul>
+<p>El flujo de trabajo de GitFlow se puede visualizar en un diagrama de flujo, que muestra cómo se integran y se ramifican las distintas ramas. Esta metodología es muy útil para proyectos grandes y complejos, ya que ayuda a mantener un flujo de trabajo estructurado y a minimizar los errores y conflictos en el desarrollo del software en equipo.</p>
+<p>Por ejemplo, si se está creando la aplicación de un miniExcel, una aplicación correcta de Git Flow puede ser:</p>
+<ol>
+<li>
+<p>Creación del repositorio: Se crea un nuevo repositorio en Git y se inicializa con una rama “main” y una rama “develop”.</p>
+</li>
+<li>
+<p>Desarrollo de una nueva función: Se decide añadir una nueva función que permita a los usuarios ver la cuadrícula del excel. Para ello, se crea una rama “feature/matriz-excel” a partir de la rama “develop”. En esta rama, se desarrolla la nueva función y se realizan las pruebas necesarias.</p>
+</li>
+<li>
+<p>Integración de la nueva función: Una vez que se han completado las pruebas y la nueva función funciona correctamente, se integra en la rama “develop”. Se verifica que todo el código de la rama “feature/matriz-excel” esté integrado en la rama “develop”.</p>
+</li>
+<li>
+<p>Preparación de una nueva versión: Se decide que se ha desarrollado suficiente funcionalidad como para lanzar una nueva versión del software. Se crea una rama “release/v1.0” a partir de la rama “develop”. En esta rama se realizan las pruebas finales y se corrigen los errores que se encuentren.</p>
+</li>
+<li>
+<p>Lanzamiento de la nueva versión: Una vez que se ha completado la rama “release/v1.0” y se ha verificado que todo funciona correctamente, se integra en la rama “main”. La nueva versión del software está lista para su lanzamiento.</p>
+</li>
+<li>
+<p>Corrección de errores: Después del lanzamiento de la nueva versión, se descubre un error crítico que afecta a la funcionalidad de la aplicación. Se crea una rama “hotfix/error-matriz-excel” a partir de la rama “main” para corregir este error. Se realiza la corrección y se integra en ambas ramas "main” y “develop”.</p>
+</li>
+<li>
+<p>Fin del ciclo: Se ha completado el ciclo de desarrollo y se vuelve a la rama “develop” para iniciar el siguiente ciclo. Normalmente en el desarrollo se repite del paso 1 al 3 para cada característica que se desee incluir en la versión a publicar de la aplicación.</p>
+</li>
+</ol>
+<h2 id="comandos-git"><strong>Comandos Git</strong></h2>
+<ul>
+<li>
+<p><strong>Git log</strong>: El comando git log es una herramienta básica de Git para explorar el historial del repositorio. Este comando se usa cuando necesitas buscar una versión concreta de un proyecto o saber los cambios que se introducirán mediante la fusión en una rama de función.</p>
+</li>
+<li>
+<p><strong>Git checkout (Commit)</strong>: En este caso también podemos usar este comando para movernos a commits anteriores dentro del historial de commits, para poder hacerlo debemos indicar el id del commit al cual nos queremos mover.</p>
+<p>Forma correcta de colocar el comando: git checkout commit_id</p>
+</li>
+</ul>
+<p><strong><img src="https://lh6.googleusercontent.com/ewiFyYmxeneZAk6nsBy2rZ3ne8YesyFw4bpJATIbl8W8aNndafSeT4J_oVzniFO8ADIB97WLMOl-qPSjYpcYV6gaFLb_VRboYFeVzPLMhfaA5SgCrZ-XuUuCAGOvOp2VhwtF4OZ4XsaMjhyRfxLmuW6186zmrOrhKEB8Rn2C2hDwdfnFxpEAVp1aF6PgtSs" alt=""></strong></p>
+<ul>
+<li>
+<p><strong>Git diff</strong>: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades</p>
+<p>La mejor manera de explicar cómo funciona git diff es con un ejemplo. Supongamos que se crea un nuevo proyecto con el nombre de “proyecto_nuevo” y que se añade dos documentos de texto. Estos documentos se denominan color_primero.txt y color_segundo.txt. El contenido de color_primero.txt es la frase “El primer color es azul”. El documento color_segundo.txt solo contiene la frase “El segundo color es el rojo”. Si ahora entras en git diff, al principio no pasará nada, porque el repositorio todavía no contiene ningún cambio que pueda ser comparado, se tendrían que mover los dos documentos al área de staging con el comando git add.</p>
+<p>Primero se debe comprobar con el comando git status qué cambios se han realizado y, por tanto, están teóricamente listos para un commit. En este caso se visualizan los dos documentos de texto color_primero.txt y color_segundo.txt.</p>
+<p>Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:</p>
+</li>
+</ul>
+<p><strong><img src="https://lh6.googleusercontent.com/cMDyPcFdgK0nI43bc6EtD9jU0Rd_Qb88BXojCjlBx0V_zTgRiCDaONOhyXwDlYI4UPGLtgBCZ-s9tykJ0_d_FnRbw-EjpUxR_W07_4dRtCMLA0WeAeRvNR5Rw5eplTLAlkIuP7WLWmuLlRgxKEvETozXryGVj4-8WnSnd5HqX5WqF_Z0i8GW7yn3B7VYC-c" alt=""></strong></p>
+<ul>
+<li>
+<p><strong>Git tag</strong>: En Git, los tags son referencias estáticas a puntos específicos en la historia del repositorio, generalmente se utilizan para marcar versiones importantes o hitos en el desarrollo del proyecto.<br>
+<strong><img src="https://lh3.googleusercontent.com/LyGOdEC0oz2FKF85qycw-6sFhVnMS8Si7bJhksT7TDnZ2_3Qg6akP3FSa2TZnn8BPp3ojY1_-Ku87RFh4qtzJaWXNelS7frIV0VgiNVbZtJWCB6SAwS-fxr48X4hmnAW09uZ55mqFV0dqBI7HLzSoPI8T0ewRrPIT4rqWtdHLAZS0c5AasNiC_MhS5u3mXg" alt=""></strong></p>
+<p><strong>Crear un tag:</strong> git tag nombre_tag</p>
+<p><strong>Ver los tags:</strong> git tag</p>
+<p><strong>Crear un tag con mensaje:</strong> git tag -a nombre_del_tag -m “Mensaje del tag”</p>
+<p><strong>Ver detalles de un tag:</strong> git show nombre_del_tag</p>
+</li>
+</ul>
+<h2 id="indicaciones-para-el-ejercicio-evaluado"><strong>Indicaciones para el ejercicio evaluado</strong></h2>
+<ol>
+<li>
+<p>Accede a la tarea que está en Moodle llamada cp1</p>
+</li>
+<li>
+<p>Busca tu nombre y acepta la tarea</p>
+</li>
+<li>
+<p>Clona el repositorio</p>
+</li>
+<li>
+<p>Desarrollar el ejercicio propuesto por el instructor</p>
+</li>
+<li>
+<p>Sube los cambios al repositorio utiliza los comandos en el orden correcto</p>
+</li>
+<li>
+<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
+</li>
+<li>
+<p>Borrar las credenciales de windows</p>
+</li>
+<li>
+<p>Borrar de la computadora el o los programas creados durante la práctica</p>
+</li>
+</ol>
+
+    </div>
+  </div>
+</body>
+
+</html>
