@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cp3.html</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#estructuras-dinámicas-pilas-y-colas">Estructuras Dinámicas Pilas y Colas</a>
+<ul>
+<li><a href="#pilas">Pilas</a></li>
+<li><a href="#ejemplo-1-librería-stack">Ejemplo 1 (Librería Stack)</a></li>
+<li><a href="#ejemplo-2-desde-cero">Ejemplo 2 (Desde Cero)</a></li>
+<li><a href="#colas">Colas</a></li>
+<li><a href="#ejemplo-1-librería-queue">Ejemplo 1 (Librería queue)</a></li>
+<li><a href="#ejemplo-2-desde-cero-1">Ejemplo 2 (Desde Cero)</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="estructuras-dinámicas-pilas-y-colas">Estructuras Dinámicas Pilas y Colas</h1>
+<p>En este codelab aprenderás sobre la estructura dinámica lineales: pilas y colas, operaciones e implementación, a través de ejercicios prácticos.</p>
+<h2 id="pilas">Pilas</h2>
+<h3 id="¿qué-son-las-pilas">¿Qué son las pilas?</h3>
+<p>Una pila (también conocida como stack) es una estructura de datos, que consta de una serie de datos, en la cual las inserciones y eliminaciones se hacen por un extremo, llamado <strong>cima</strong> (top), de la pila. La estructura pila se conoce como <strong>LIFO</strong> (last-in, first-out), que básicamente sigue el principio en el que el último elemento en entrar es el primero en salir.Las operaciones fundamentales introducir y eliminar se hacen por un extremo de la pila llamado cima (top).</p>
+<h3 id="operaciones-básicas-de-una-pila">Operaciones básicas de una pila</h3>
+<ul>
+<li>
+<p>Crear o inicializar una pila vacía.</p>
+</li>
+<li>
+<p>Determinar si una pila está vacía.</p>
+</li>
+<li>
+<p>Determinar si una pila no está vacía.</p>
+</li>
+<li>
+<p>Insertar elementos en la pila.</p>
+</li>
+<li>
+<p>Quitar elementos de la pila.</p>
+</li>
+</ul>
+<h3 id="estructura-de-una-pila">Estructura de una Pila</h3>
+<p><img src="https://user-images.githubusercontent.com/62765904/266742400-d77add37-8104-4df0-87a1-86f606e127ff.png" alt="enter image description here"></p>
+<h2 id="ejemplo-1-librería-stack">Ejemplo 1 (Librería Stack)</h2>
+<p>Se le pide crear un algoritmo en el cual debe apilar y desapilar n cantidad de libros con la siguiente información:</p>
+<ul>
+<li>
+<p>Nombre del Libro</p>
+</li>
+<li>
+<p>Tipo de libro: Aventura, ciencia ficción, terror, etc…<br>
+**<br>
+<strong><img src="https://lh4.googleusercontent.com/ODRyNQ_qTQ2xJEakA2ZnulLXGYyuzG8zxSP0GwRAFr6hFepuJaWFborwwLfCUMri0g3a5_c0TKnTsWoZtKtVR2oK05ba56IC8D9QHcI3u79qHaDeSFnidHSdcS7IG_rxuA3vo50AQ4zX2_MM-4CejT8" alt=""></strong><br>
+**</p>
+</li>
+</ul>
+<p><strong>Solucion</strong>: <a href="https://onlinegdb.com/JvZEw0OQZ">Click Aca</a></p>
+<h2 id="ejemplo-2-desde-cero">Ejemplo 2 (Desde Cero)</h2>
+<p>La tienda de donas local te contrata para crear un programa que lleve el control de una pila de donas, esta será utilizada en un estudio nutricional para determinar cómo influyen en la vida de los estudiantes de ingeniería informática. Para ello se crea un programa que permite agregar donas a una pila, revisar el estado de la pila (llena o vacía) y sacar donas de la pila.</p>
+<p><strong><img src="https://lh4.googleusercontent.com/Z1zQkf114LmTDv1cv_7pND_gBCYjNwDHMqd_h3tDtk_RqsT9uzW-X-cbj0a_IU4z9-vjvilwjV582e2k4fUIKrVCBK2Z5Kt6D-MWyOgnsU47iqMD8Bnid5VdyXD6YiUb13yOAwqO-esLsXVunQa5AZ8" alt=""></strong><br>
+<strong><img src="https://lh3.googleusercontent.com/eShfqjC1n_jo3NB_uvlyce7zvPrgLzqaR2fmXBig0UAMEjZ5FvdeCkKQi7U5_On5H5XmtV8NCWVV4qR53HGNJi5TvoDd7fXWboYMbVxLwofqHLcFmUUIcqlrbtWaXsEVgY97gC-lkPTAZjkCbooc88k" alt=""></strong><br>
+**</p>
+<p><strong>Solución</strong>: <a href="https://onlinegdb.com/9ue3ue13qU">Click Aca</a></p>
+<p><strong>Solución usando typedef:</strong> <a href="https://onlinegdb.com/MGuZ-G1Lo">Click Aca</a></p>
+<h2 id="colas">Colas</h2>
+<h3 id="¿qué-son-las-colas">¿Qué son las colas?</h3>
+<p>Una cola es una estructura de datos que almacena elementos en una lista y permite acceder a los datos por uno de los dos extremos de la lista. Un elemento se inserta en la cola (parte final) de la lista y se suprime o elimina por la frente (parte inicial, cabeza) de la lista.</p>
+<h3 id="operaciones-básicas">Operaciones básicas</h3>
+<ul>
+<li>
+<p>Inicializar la cola.</p>
+</li>
+<li>
+<p>Añadir un elemento al final de la cola.</p>
+</li>
+<li>
+<p>Eliminar el primer elemento de la cola.</p>
+</li>
+<li>
+<p>Vaciar la cola.</p>
+</li>
+<li>
+<p>Verificar el estado de la cola: Vacía / Llena.</p>
+</li>
+</ul>
+<h3 id="estructura-de-una-cola">Estructura de una cola</h3>
+<p><img src="https://user-images.githubusercontent.com/62765904/266742575-fe3a0e7b-0366-49f2-90bf-d4ced931dbc5.png" alt="enter image description here"></p>
+<h2 id="ejemplo-1-librería-queue">Ejemplo 1 (Librería queue)</h2>
+<p>Realice las funciones básicas de una cola (Encolar y desencolar) haciendo uso de punteros.<br>
+<strong><img src="https://lh5.googleusercontent.com/8gDguXDng-oZxrcchdXYYmweuHJb_xaDAxbIQJ5Sd26OwpoCDrfO62J_ZyF6ZvLOYjUg9vz8WxDGv5wQ1Gj7qWwE3IUYUFCYBItDcJOUI83kBQgD9di3u4OCWS8gTikeRvAZdU-wlwGdzW15565zVqM" alt=""></strong><br>
+**</p>
+<p><strong>Solucion:</strong> <a href="https://onlinegdb.com/q-kTvgNPC">Click Aca</a></p>
+<h2 id="ejemplo-2-desde-cero-1">Ejemplo 2 (Desde Cero)</h2>
+<p>Realice las funciones básicas de una cola (Encolar y desencolar) haciendo uso de punteros.</p>
+<p><strong><img src="https://lh4.googleusercontent.com/kaFSmVW6XXp618k-ibUO2DYGk4MF6fb_YcQUTzi-PDPWDdPAdOT4YRsqYVrcF4Y7Dofu2i-1TjZe1KZ9s7T65J5oSMcLj_r8lHLskUmBYbK-YYtN89WRylejPC1E8HCM1gIcusvPo7un1clvEslTrjI" alt=""></strong><br>
+**</p>
+<p><strong>Solución:</strong> <a href="https://onlinegdb.com/zG_bRkzdi">Click Aca</a></p>
+<h2 id="indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</h2>
+<p><img src="https://user-images.githubusercontent.com/62765904/266743976-b8c46c27-f924-4599-bd8e-17e16eaaa5f8.png" alt="enter image description here"></p>
+<ol>
+<li>
+<p>Accede a la tarea que está en Moodle llamada cp3 y crea un grupo(Solo 1 integrante).</p>
+</li>
+<li>
+<p>Los demás integrantes deberán unirse al grupo creado anteriormente.</p>
+</li>
+<li>
+<p>Clonar el repositorio.</p>
+</li>
+<li>
+<p>Desarrollar el ejercicio propuesto por el instructor</p>
+</li>
+<li>
+<p>Sube los cambios al repositorio utiliza los comandos en el orden correcto</p>
+</li>
+<li>
+<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
+</li>
+<li>
+<p>Borrar las credenciales de windows</p>
+</li>
+<li>
+<p>Borrar de la computadora el o los programas creados durante la práctica</p>
+</li>
+</ol>
+
+    </div>
+  </div>
+</body>
+
+</html>
