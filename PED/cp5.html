@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cp5</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#estructuras-dinámicas-árboles">Estructuras Dinámicas Árboles</a>
+<ul>
+<li></li>
+<li><a href="#ejemplo-1-árboles---inserción-y-eliminación-en-un-árbol-binario">Ejemplo 1 Árboles - Inserción y Eliminación en un árbol binario</a></li>
+<li><a href="#ejemplo-2-árboles---nivel-del-árbol-cantidad-de-nodos-y-raíz">Ejemplo 2 Árboles - Nivel del Árbol, Cantidad de Nodos y Raíz</a></li>
+<li><a href="#ejemplo-3-árboles---tipos-de-recorridos">Ejemplo 3 Árboles - Tipos de recorridos</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="estructuras-dinámicas-árboles">Estructuras Dinámicas Árboles</h1>
+<h3 id="introducción">Introducción</h3>
+<p>Un árbol es una estructura de datos no lineal puesto que cada elemento apunta a uno o varios elementos del mismo tipo; esto es dado un elemento, no hay un único camino a seguir. El elemento que apunta a otro es llamado padre, mientras que el elemento apuntado se conoce como hijo. Todos los elementos tienen un padre a excepción de la raíz. Puede decirse que un árbol está formado por subárboles resaltando así su naturaleza recursiva.</p>
+<h3 id="¿qué-es-un-árbol-binario">¿Qué es un árbol binario?</h3>
+<p>Un árbol binario es aquel en el que cada elemento apunta como máximo a otros 2 elementos, comúnmente llamados hijo izquierdo y hijo derecho, además se puede decir que un árbol binario perfecto es aquel donde todos los hijos se encuentran al mismo nivel y los árboles binarios NO perfectos son aquellos que los hijos no están al mismo nivel.</p>
+<p><img src="https://lh6.googleusercontent.com/X0N4a0caleRxcIxk5cBRDIiQFsSu-oY9lT_G3_aSoes-f-fSK6jMnXjGwP-f-ckjO4SDTkv3CffNVFW8CA9bjPnk5LzbJoFPYIVy2BV7VSTe3g3LAV_hqUQClC9kN6rfFTvdY3ZkIPg7IABELL31EIuy7lHkW_Ce4hGlntnbxPiY4RgFmzucUbqWcg7DxJM" alt=""></p>
+<p>Para poder implementarlos en lenguaje C++ tenemos que tener conocimientos previos sobre listas enlazadas y su implementación<br>
+<strong><img src="https://lh3.googleusercontent.com/-WyLdtfG8BYj14yzEcKcw9zexwEg00AC02fFKOf10JwOMRDB4bP1kjiOoh8QyXMgOb3zivHov1tLhU7qFmWBJ1tsczjBFit9xLHxCugvvQStFKTPMn9VHr94s-Q5famrTFnvk2zJGTTIaxFWT49576Izapw9P84OA_6sk6iNz1CVX60ilMvF_a1oxCbI_OQ" alt=""></strong><br>
+Los punteros tienen que ser del tipo árbol, ya que apuntaran a un nodo del mismo tipo, como se muestra en el siguiente ejemplo:<br>
+<img src="https://lh3.googleusercontent.com/d5pulYrxXFKMXBucRwess9Ntc9do5v6cTp5lmr9bBBNz9HPDWff7CKIKmciI62P7_-wNRNr76YeE5nyEc2Fr4bhuXRx8wiPbfmXB0jOO29APEZpN12kznZx-OoxkhJT_KgmrQephboO5muwW6pxrz4B3uLNFwp3B8KdAb6KzzF4MCyeLKleqtIlROz09YFQ" alt=""></p>
+<h3 id="algunas-operaciones-básicas-son">Algunas operaciones básicas son</h3>
+<ul>
+<li>
+<p>Añadir o insertar elementos.</p>
+</li>
+<li>
+<p>Buscar o localizar elementos.</p>
+</li>
+<li>
+<p>Borrar elementos.</p>
+</li>
+<li>
+<p>Moverse a través del árbol.</p>
+</li>
+<li>
+<p>Recorrer el árbol completo.</p>
+</li>
+</ul>
+<h2 id="ejemplo-1-árboles---inserción-y-eliminación-en-un-árbol-binario">Ejemplo 1 Árboles - Inserción y Eliminación en un árbol binario</h2>
+<p><strong><img src="https://lh3.googleusercontent.com/j_8QTv4Nn85cbB2p-vFlZcehbttXcepF1ga38OLSusiDwTkKrwFqNmzseHaiWZcYRj2avw5QxyvBLKb1SLQlLnlg_D5xDKaV46tf1oRaUTHB5jTwWkh2m6wyEOSmx5WrJnt7d5C7XYL8he_J6GioULYDek8QNkN4AXYVgPI2CMnWtDKvO18K3rIaFc7kfS4" alt=""><strong><strong><img src="https://lh6.googleusercontent.com/U3J3k5Ajko3KjDDj-_Q47L6gFIein4dn5xQKfXz-vE-6QJW7RATk0WtLg4R1GXRdjpc_55jVNnxQfZN7-pLYl0MGLipGwUhnYl3nfpitBda5riGuy8rsSd0ICL4l5x4V1h2f8wkrnK_jAap2JUbdRBBY_36xRHCM_ETPAjgn2HUO4fW8N7TUaDzQx4wHxWE" alt=""></strong></strong><img src="https://lh3.googleusercontent.com/w0wmFgYuv6QUObT5xLO3WbSyh4aYzzfA_FqiqlfYzc7y5FfeBCBJ4fXiZ_SOr8Nc1YcMhTcKBt4Fun8M921GFjzIiYBUB_7KVKMwvDv-DlO4cihaB_ZILip1LwLjiAjo-C7EzhDk74PockkFg7JYGpPjFkOWp4hqqV5BZUeDpYlClLLbr6Swcpd2naJk44Y" alt=""></strong><br>
+<strong><img src="https://lh6.googleusercontent.com/EYr-mg_4ETENCd8m0XAerHWgozivbjhroEBAF5OpTt_kNck9fUG6qs2Wv0xqYjKQ0KKHtJ4J8X35kHKoGJfLAUJz_Xiq3MWnpi38GO4gEiEl9_N8leXzzV3zH0nHRHqjT4dXtXqWLZq6gEaV6rKP3jXEUDxoFFwXiylyUzfWpH_NKxKfafvXrX2qDJSWPOY" alt=""></strong><br>
+<strong><img src="https://lh5.googleusercontent.com/OylEuD2CusIZLXOT0n7pYtKBHFoci5wRcil_SAFdRlNcALSmtBPF7VzqM0prA-b4YtNxQb3V9b9eQPYrCUrsYeIACWyQjC8gmShoKd_k-HUSe60kO4Ll-B6dWbBcgjQUGQQ6h6Kxf-33wjBOr9TPPxrBctdDka_MVZgJFb8FFl6-Ing9dZKHVSR7V9HnYws" alt=""></strong><br>
+<strong><img src="https://lh4.googleusercontent.com/YbtbNtxv2AtJbJQUMC4SV0armlPaNxKURohmAtM-SJgLP28AqqBZZ5AukfzOlXzNQkntD1ImIm7-UJUuD50VcyLiggumMSSnJsPxNUSihtfu-1_Zfwx4-R-csu0tKCW87mGqFjSxviEBmpS10mukwkoQn2bT9dSRZ-5NtSNGEra6I4MWA1W6KH4cJE6KKWY" alt=""></strong></p>
+<p>Solución:  <a href="https://onlinegdb.com/UVRSAcuvY">https://onlinegdb.com/UVRSAcuvY</a></p>
+<h2 id="ejemplo-2-árboles---nivel-del-árbol-cantidad-de-nodos-y-raíz">Ejemplo 2 Árboles - Nivel del Árbol, Cantidad de Nodos y Raíz</h2>
+<p>A continuación realizaremos un ejercicio de Árbol donde el usuario podrá manipular la estructura del árbol. En este ejercicio se realizó un menú donde tendrá diferentes opciones que se podrán solicitar desde consola, estos son, insertar nodo al árbol, mostrar árbol, solicitar la cantidad de nodos en el árbol, obtener el nivel del árbol y obtener la raíz del árbol.</p>
+<p><strong><img src="https://lh4.googleusercontent.com/A5JKNxrl4xcqn1bYUvR5IRGWnLQpxCaRondEGhJHRbS9eyU8jCtPcCzR1cD5fvI4_xzpo9FNOksG6M1u62J4mrysUc4VY55SENVCET76RP_e4Dzopfpcs6CSuxxV8wQ7i0iZ2i-qGQQTsQuGtzB4aM449jtMlUzzuvWlDzWTFPCCmpVkM6e_fT_eN3Zuk0g" alt="">****<img src="https://lh4.googleusercontent.com/H79TSqFHU1ep4EldwaLWn5fqKkms-BTwCwwi7KyBegAbevb5b5sA5uKLri25hbJs0Jr1bNJXzILes3VbRA6Iqa_IA8271rm0X4sMHGWZeIfhMgMNkGYb-YZdYdghxaTL1myhc62rA5b-6f_ijr5NFSJxiFspKrp0sThJTQC-dBOHtV35CvkSebGeRQRRikw" alt=""></strong><br>
+<strong><img src="https://lh3.googleusercontent.com/F6QSPX9dO_M9uJc_1FiH9fC9LOsWyaKsmU8b4ecwEvHXW52uHtbwz_3FDmKHVGdKSNS-yhiTCWsIAxYB9ccunVTp5xlXOFefK1kgkWROaPy4Od3uR1M2ni35XJlcHUzwBU4FZ-syGDp9TwXtI6YxjCKQM8RoirNZhPRIf0NG70ZE6w20lUz_E7KWZWTr-sw" alt=""></strong><br>
+<strong><img src="https://lh5.googleusercontent.com/ecGWpzov01mwkd8PY7ZKxfDD71j4eiGxTRhvQHxFdky_3Fwyy_bAYpFzaj57sme0SqWtN7NxnFgrBLUcXjWcTNaXKoABHjBo7F2vCsoWpge6qB6wYK1u0ItKzo5_xELlXs1yxozKWqgkVBPdauKbbOxmJlOK6-63kzbdtmHxw3WapzcXwhmvAHCZ53i19hg" alt=""></strong><br>
+<strong><img src="https://lh6.googleusercontent.com/S7qNvyr5dc3T8-hl2blxHBRlu3sry7DG1si4LkX58WGYLFZCc1pWAkKAFS0_HaM2I1ELWsxiIVd-3kUWUCAyGE7j6xVu1CdPO6i_u2RZln3LvdOln3e-28WdJIhLDGIbH6mDIeXzS7FaENHSXY-LAfTBa1Wyj2ZqH7kw3mZ15f3bC913xUHniwas4-KLaPY" alt=""><strong><strong><img src="https://lh3.googleusercontent.com/xqFx--l9y-mTZk_DA1GQuewprnUoviXnUHjIOg4YY-JPfBa-2-kbEXU0DKQZqfbVUbgQJbaZwEVd2DLMwAaGExmey200krnutPalDV3g4rLY_5ORtnJrUAfXfwVQRiDmGtYHJsT6UVleWWjzABrEJKIJDCvKGegcTUkmpXu26ooRa_7fqzusZ_WljONVC9U" alt=""></strong></strong><img src="https://lh5.googleusercontent.com/BhPZjfRDt_Ijjn7w_boRwb0ZgEM84GvxUCO48Lg4Keey3Irm-i84IJ2mQrtzhEHocx9EY3O-ZYkyji3qP-MqrCoQZFgvwFi_hlyPpDxk1gryQ6zHuZWNO-qX_BSVJKzKagzObAQMlyV-W_VPnPz2cIeYCkI4ea0r-mp_yedKGeyWyj0casedlbx7kspEqFY" alt="">****<img src="https://lh6.googleusercontent.com/UxIs8vhUnjE4OT5tU36TvMso3D4oymdLIP7nrunUl4pQq4-lRgwtBg6EXdbf1U53k8zqtC1pN-jB7mk9K2YW0T_rP6-zJNnebrQToT8ZOW-5-t-HFkDFWxDsoewJyM3xsofoVoUpqhDWY2cbSvxDaSIX0Kc1BdrAlX8vflAROeSYl5z8A4TZTVLtjK6DI_Y" alt=""></strong><br>
+Solución:  <a href="https://onlinegdb.com/LIcMHQGkH">https://onlinegdb.com/LIcMHQGkH</a></p>
+<h2 id="ejemplo-3-árboles---tipos-de-recorridos">Ejemplo 3 Árboles - Tipos de recorridos</h2>
+<p>Realizar un Árbol Binario de Búsqueda que permita guardar datos, y que los muestre en los siguientes recorridos: Preorden, Inorden y Postorden.</p>
+<p><strong><img src="https://lh6.googleusercontent.com/wmgXkv6uyq09UUJAAk8nxN0HKMDEAbJW_AAkjWAbE3XHkztdnCOkOWUeq1lj5JruGkCN-fUzw5w-rsw_gCwcWyhkRcU8tiwSIcUHqlOM-CffffBGTYkgNmtxZExondoqVDgK7RX4AgB1mbfzyPYLYTf9YtKE-q_uFt8Fa5tw7t6kLFkpFETGnWoDipha84k" alt=""></strong><br>
+<strong><img src="https://lh6.googleusercontent.com/7evnupVG02y8Q2g_-LM6w3WXybk9nbGQA1dQyUfawnO6LZ-aRgL8BdYB2mzqRy-xTiL22cYS6-fh7LbKHapGxW4tyl_AhLuAUwL1iixbNtZBnhVijFHKJMgM20SrjYbsFdgFWvHsg5_hvq94ZBfwhzFI57dv7wFn6Y-amnP7yOJn5OZDuaQFl91dYPE3r5I" alt=""></strong><br>
+<strong><img src="https://lh3.googleusercontent.com/tU5Fdxwi0OImI3Cb9ikO21e1sW8gzux5GKpuvvqI70lRDeGC0s_5ihvvFNM7xKvBXNn6Kl-l-mAI9GElCqRKZxUtMDLwJ4gw59z0sE_sCAXTNEBYTlGLTGzIeX5MWrNRvKCDudE1qjmUD0-B17TP8LLtGs-bUOdJrygbe8gvCkWkENVpR6v2WA2OuXuL-zM" alt=""></strong><br>
+<strong><img src="https://lh4.googleusercontent.com/Ft6nN6dxCjA1q80vK8f7z7qbJ7pDsQNTxzZc54NGw0o088ROX6pVzBpT2bjM3uD5toeZNgayOzfqFNCO43y2dwR980um7tAxcsyIi4WNFnvyzeRLxkIoTCYeTh0uQTu2H7EM2OWIqcOZhKeulXr1uSHxwsxm4YIihQmPEcCPrfanYZKfzuzicQH7J2a4EmA" alt=""></strong><br>
+<strong><img src="https://lh6.googleusercontent.com/RtipDcBu3cWMk6B-rM7Zd8UkwnLt1jdphs9LiIHt3_rEaN9HTyVK_kvdcx5ezQ-XsxsfZPLiPlaGDLYXX8lS9aXfjjwlIw3PsybGXPOeD4KKjj4CCu4W8r-QPsAc8wIYoJYRA57Yo-cr6ziz1md6XG2ej4CEYaxM78JZKv9bc_ywucZ-KNsLSIyftu0tXmU" alt=""></strong><br>
+Solucion:  <a href="https://onlinegdb.com/w0DSSx18e">https://onlinegdb.com/w0DSSx18e</a></p>
+<h2 id="indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</h2>
+<p><strong><img src="https://lh4.googleusercontent.com/IWBcyy_2OXvWGcdJjSuNx_lByrt96s6I1XlhFzoXIN5M7iO5p2BoGjyFJ_2HB_gvlt2l97VgA2l-D-Xn0I8xATEmHCF1_dceVPKMdbUVYsCCCGt19z4yD5wnXm1s4EWJheJipIdxs7LVYwa3FwwSsBn5IaQEZIh35pxXhXs0aBVJU5bMH7hO1rlSzbzOP-s" alt=""></strong></p>
+<ol>
+<li>Accede a la tarea que está en Moodle llamada cp3 y crea un grupo(Solo 1 integrante de 2 miembros).</li>
+<li>Los demás integrantes deberán unirse al grupo creado anteriormente.</li>
+<li>Clonar el repositorio.</li>
+<li>Desarrollar el ejercicio propuesto por el instructor</li>
+<li>Sube los cambios al repositorio utiliza los comandos en el orden correcto</li>
+<li>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</li>
+<li>Borrar las credenciales de windows</li>
+<li>Borrar de la computadora el o los programas creados durante la práctica</li>
+</ol>
+
+    </div>
+  </div>
+</body>
+
+</html>
