@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RecursoApoyoParcial3</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#funciones-de-agregación">Funciones de agregación</a></li>
+<li><a href="#funciones-de-fecha">Funciones de fecha</a></li>
+<li><a href="#funciones-de-agrupación">Funciones de agrupación</a></li>
+<li><a href="#t-sql">T-SQL</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#funciones-definidas-por-el-usuario">Funciones definidas por el usuario</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#procedimientos-almacenados">Procedimientos almacenados</a></li>
+<li><a href="#triggers">Triggers</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#vistas">Vistas</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="funciones-de-agregación">Funciones de agregación</h1>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXd50Cy5x5Akt6cvI2veb3dMw2II9lIck82OVBkKUcrozZuEMfTa5hcpcViGT6NjfAUYV0gzfVAwm18PnjD8Kz_Zj4bQOn9TYDYDMoSCscSUlquxklqlkuHZt_o0Z_v2Pwz16Uubm3N3STbvEhRRbrgzHdtB?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="funciones-de-fecha">Funciones de fecha</h1>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXe7q0M38zsRzFQSn8qx-tr4e3i-7oOQDAnMCtIEwuCjlw2Ai02TGTMwFfa7XrDOM0HOHDmPZ_ZzXNl2IAz6x7GRcgOLpn4lTUvTaawKM2th79M0uO0rjWO6ramJofhjL0JL2ZcgkY5AiMuTHfrxu6UunMc?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="funciones-de-agrupación">Funciones de agrupación</h1>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXeHvy_umfAdSR-w5KzVS9bfDU1uRcTi1GUddTM1gu-MDD9C7CLsXfFpg3frBDCPbcgdGgqeCH6Z8ZOYv2k7D_PIA_9BWJVhJKB9zln5Hb_ZM77ndJE7ipLUNCjq7Ql630ldlOB3H6mVctH1I_GvsmZx6aM?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="t-sql">T-SQL</h1>
+<h3 id="bloque-inicial">Bloque inicial</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXerfnUQsq3ihQeoDMoIuLz4m9kyvy4_nwy9dF7QgA2JbR4RfeYj1x2TLnv3MhZJ44Z3-oVPRnW4eqyBWG7740LXoR5CNVia-gE6dLv6kUfMeEPlqGtiHICxoiWHnjmRFJs8WXh7whKmZrPvqC9fHKtFzw72?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h3 id="uso-de-if">Uso de IF</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXctEF_qQtWk3Jio8Xpt6hporzO9FrYX8z4IgKiIlyCtOn5XZ39VdS6u8Zx3JAOu9qaOmPMxqSECQ5ckoMrXpJ3-Xs7FFajmhHM47iNn3YPdvUb3R_pytE5IRC-McHZ-1bIp0u-tXPcVrD8IEiNn3Hvd3Lg4?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h3 id="uso-de-if-exists">Uso de IF EXISTS</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXeeUfD5zc8OM16rm-rfv-LklEaWXStcOh5ezGR2CQ_k5Uuk5ShTgATr-OC8oHXe-A6HEBIf7bKSuS0N5Y7uoXAvx3dXrtSadex27B1dkn7v9JpvuD2gImEu6Xg_0-achbfJcUjX9MCjZyExwvLgEh9fy_sF?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h3 id="uso-de-case">Uso de CASE</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdBqD5n7aV4gg7XG1IhMm553mMJBp-RaYs5L3uL1Tk-dzj81cndxLf5ZxrtdM3HGXQvfrQBNjeVdNVPhY2XFHhncZq05pxZiEQczVokG8t6wN9jgokD80ZkUBmR40M9blPvdE86jzmWPPJTFqsmunBwtjUp?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h3 id="uso-de-while">Uso de WHILE</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXcQKoM73wcP1QvPAYnn_mP3l6RjrUBbLAUilW-bEnCNPP1hVxQtUHk2PnvlWQ7d__FuJXTSvwzKAJiRHiCJruBctZdpA-wLB3URr9AQYTvite9VuFkdqBhVYGxpXIcXYxvSosn2hlvVx7BUzUJyNgWG1mYe?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="funciones-definidas-por-el-usuario">Funciones definidas por el usuario</h1>
+<h3 id="función-escalar">Función Escalar</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXc3-Qpk0Rsx4ezReFqR4L4tnsR8sf56fDyLQyi7Y7V3OpkvXiNaKN82nV0ztQlYzcr4VBX6YknVYwdU7NmExiVZIbwYtK6twvN2n2RaZQxIDNzTF99Sibok_AFT6RZdA5iRlPlFYg81WmFx16Zj8hFPmhU?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h3 id="función-de-tabla">Función de tabla</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXe1xrywMkhyP_1649P52kFIVS1O3u5Jmq-UxAk66YLM-a060bqFQHcrFSX_duHBbTV6TKaHnosYOtBlPFsIzAb8IC-N6IopWAknsk3mIjPxZNrmcDFtEES1Z7eYJvXSj9Art9zUaREU52PPk37PtvMugT-m?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="procedimientos-almacenados">Procedimientos almacenados</h1>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXdeZcQfrf8tHijn9ENhvv1z648NE9Sii8Oc_ZKeiI54OF1lZgGdDyZY-sGWoYSfJqW60Q3ItvqGkH6GFTAnAMnR0DSdDThwLFwVat2yzYSJoioJPNPR0uz1DJuSIP_oYuzSZUp2LOyNtWg5riKykMLzbyTB?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="triggers">Triggers</h1>
+<h3 id="lenguaje-definición-de-datos">Lenguaje Definición de Datos</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXcWuo579VBEhPkbCwNW-A285ZR2BHr6l6xGO67z99nBu7BYhHHEnDHlosdFdhnpnuKPuD5LriT-2V7JiYwEm13FncQcpWO5NlkmCdOfV2lfbqCtRh9FKBNhIi9dITnHNJWuu-6-HPMTEKlvsPeX1GW7M-7F?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h3 id="lenguaje-de-manipulación-de-datos">Lenguaje de Manipulación de Datos</h3>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXcMIkWdZK7WUw5d_XHPcnJZhDIFIE9wUUoZ3YxUNv6NEAiOcqasDCR0oQ9KWNjxFGw9YgOJt-ktz4oRp2gGlaspHB8bccJeGw19DJbcRrQMcCepowOeKhlwT7-Ard4PYL7mHnXsH04bHnCjcnnl0oyogMs?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+<h1 id="vistas">Vistas</h1>
+<p><strong><img src="https://lh7-us.googleusercontent.com/docsz/AD_4nXcuYOvU09EXWgKb8Fc1n5wRTGPCPpMzJGY9cO_ASjFpEN1Sc1U2gWNJf_1KqXvOG-oBYNHO3E5ZI65DVxRIZCAW9n3KEGB8P_7Nli8dNmUCDEB9w92j0lyCby4nL2Fgxv5CBEV8DRz0RPKaweUq0EhtseTu?key=gGpMoOmBKPG_cc4wjvneHg" alt=""></strong></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
