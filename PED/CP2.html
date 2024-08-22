@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>cp2.md</title>
+  <title>CP2</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -46,20 +46,23 @@
 <li><strong>Cuerpo de la función:</strong> El bloque de código entre llaves <code>{}</code> que define lo que hace la función.</li>
 </ol>
 <h3 id="ejemplo-de-función">Ejemplo de función</h3>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
-	
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
 <span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
-<span class="token punctuation">{</span> 
-	<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> 
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+
+	<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
 	<span class="token keyword">int</span> resultado <span class="token operator">=</span> <span class="token function">sumar</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
-	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La suma de "</span> <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> resultado <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
-	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La suma de "</span> <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> resultado <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+
+	<span class="token keyword">return</span>  <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-	
-<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-	<span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span> 
+
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+	<span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <h3 id="declaración-y-definición-de-funciones">Declaración y Definición de Funciones</h3>
@@ -103,7 +106,7 @@ Cuando los parámetros se pasan por valor, se envía una copia del valor al inte
 	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
 <span class="token punctuation">}</span>
 <span class="token keyword">void</span> <span class="token function">duplicar</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
-		n <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> 
+	n <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> 
 <span class="token punctuation">}</span> 
 </code></pre>
 <ul>
