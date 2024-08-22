@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Punteros C++</title>
+  <title>cp2.md</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -13,13 +13,11 @@
     <div class="stackedit__toc">
       
 <ul>
-<li><a href="#punteros-c">Punteros C++</a>
+<li><a href="#funciones-y-estructuras-de-datos-estáticas.">Funciones y estructuras de datos estáticas.</a>
 <ul>
-<li><a href="#introducción">Introducción</a></li>
-<li><a href="#concepto">Concepto</a></li>
-<li><a href="#primer-ejemplo.">Primer Ejemplo.</a></li>
-<li><a href="#segundo-ejemplo">Segundo Ejemplo</a></li>
-<li><a href="#ejercicio-evaluado">Ejercicio evaluado</a></li>
+<li><a href="#funciones">Funciones</a></li>
+<li><a href="#estructuras-de-datos-estáticas">Estructuras de datos estáticas</a></li>
+<li><a href="#indicaciones-para-el-ejercicio-evaluado">Indicaciones para el Ejercicio Evaluado</a></li>
 </ul>
 </li>
 </ul>
@@ -28,53 +26,403 @@
   </div>
   <div class="stackedit__right">
     <div class="stackedit__html">
-      <h1 id="punteros-c">Punteros C++</h1>
-<p>En este codelab, aprenderás el uso, aplicación de punteros simples, dobles y triples, a través de ejercicios prácticos.</p>
-<h2 id="introducción">Introducción</h2>
-<p>El uso de los punteros en la programación es importante, ya que permite la utilización o paso de variables por referencia a una función en lugar de pasar su valor únicamente. El objetivo de esto es trabajar con el valor de la variable directamente, en lugar de basarse en su información para crear nuevos valores.</p>
-<p><strong><img src="https://lh6.googleusercontent.com/oCFZMCK-gDEyHAKYCt253S7qze4JHLqgMSiskMeY6aYqr7xFLE-67gYzX6dFG1SmMda1zzPU2MEbe8_k-HocJOYpiHpSf6xYvBfRlNlgH70DCdY1FGBh47kLg0wCuaDwdf3HyYItUtWCnyLrWy8JyF17oxf9oy-OCQK5Ib8ITpeGcWNPsTfAsRn0kZEdGxI" alt=""></strong></p>
-<h2 id="concepto">Concepto</h2>
-<p>Cuando se habla de variables, se sabe que cada una de ellas tiene 3 partes fundamentales: su valor, su nombre y su dirección de memoria en la que están almacenadas. Un puntero es un tipo de variable más, así como un int, por lo que cumple con la condición anterior.</p>
-<p>La diferencia es que los valores de los punteros son direcciónes de memorias de otros objetos (Por ejemplo, a otro tipo de dato primitivo o a un tipo de dato más complejo definido por el usuario como una estructura), dando lugar a la posibilidad de usar este valor para acceder (Haciendo referencia) a ese objeto. Un puntero al que no se le ha asignado un valor contiene datos aleatorios.</p>
-<p><strong><img src="https://lh6.googleusercontent.com/of6-3dIiSOLg1pJv_NUeiPHD1YBTQvED0g8Ne7r-4YFLKuHY3zNCjz2U0k8aVPAtds7832ad5_u7NqdGLszKvDZFFItHivxY7mXQjanWtiHlsuSV3Tqbc_WvS93pYucQqgebN5H5jEuZL--w5iFhlbr-hc-sQ1QcZYseaVqMmY-pGN5HM8RdmlNt4utN0lE" alt=""></strong></p>
-<p>Cuando un programa asigna un objeto en el montón en memoria (Memoria Heap), recibe la dirección de ese objeto en forma de puntero. Estos punteros se denominan punteros propietarios.</p>
-<p>Cuando se hace uso de este tipo de punteros, es necesario hacer una limpieza explícita de la memoria que ocupaba el puntero. Si no se libera la memoria, se produce una fuga de memoria y se representa esa ubicación de memoria como no disponible para cualquier otro programa de la máquina. En este tipo de asignación de memoria y liberación de la misma, deben ser implementados los operadores new y delete.</p>
-<p><strong><img src="https://lh3.googleusercontent.com/xxSTWc4oPUfeSBoSFVrLChrcdB_x910zp7jQ4_IdAWCGOhn20fWBfX4Y9rRkrC3RkmfBZhgAlMBrFxqRa8P6dzi7E6aj4xkpPs4c6f8TaoyE6Hu722EvwpW9UbNcMXsoC_mbDnMfbO9kWB6GnTg6HhL33TjFL4liic-gjrNDxr26k-u5CXHL_ZmwJWhl1Zs" alt=""></strong></p>
-<p>Para acceder a la dirección de memoria de alguna variable dentro del código, se necesita hacer uso del operador unario address-of( &amp; ). Este operador, devuelve la dirección de su operando.</p>
-<p>Mientras que por otro lado, el operador unario de direccionamiento indirecto del puntero ( * ) obtiene la variable a la que apunta su operando. También se conoce como operador de desreferencia.</p>
-<p>Es importante recalcar que el operador * se ocupa en la declaración inicial de un puntero, y en el momento en el que se quiere acceder a la información que este tiene almacenada. A este último caso se le conoce como desreferencia, que es esencialmente hacer referencia indirecta a los datos, usando las direcciones de memoria que los contienen.</p>
-<h2 id="primer-ejemplo.">Primer Ejemplo.</h2>
-<p><strong><img src="https://lh4.googleusercontent.com/sBugm4GY6jFhRXkOHDJkYWYED3k-Ygb3ammRbGC7NdvzoI-QSMzQid2OCbUx-n8UgABSK-UrsijbYrnWHcYdS8b9UuZlm6Q1O3A21tLLO6E5ODaSVrJB0hkfNLVzdP5OZbohSgSm1KKYDWnzpP5oWFksS2LA11NqRVWl-65qc5hIeCPqvPTqpPvGjiTe0Cc" alt=""></strong></p>
-<p>Codigo para demostración: <a href="https://onlinegdb.com/lvtZnkSpr">Click Aqui.</a></p>
-<h2 id="segundo-ejemplo">Segundo Ejemplo</h2>
-<p>Dadas dos variables <strong>a</strong> y <strong>b</strong>, pasarlas a funciones tanto por valor como por referencia, realizando cambios a la misma dentro de la función.</p>
-<p><strong><img src="https://lh5.googleusercontent.com/YGrpkCu4RMgUALqDpGRUQbty4zJ15VkY-R5qbsDlPSMOoQIouDLOj_4WT0BvMBeaAOfuYC1MU1ZNTsBYMWjuZCBiL8Xy_DnNMe28EltoxBI7_tuL_5EKPq9o1rJcSWthH3kUS4Cm-Y2FRSv-2i1AzHIcMtqkxSPU6aRd58waH_Zeg0rg-5pEAwhcz3S0D-k" alt=""></strong></p>
-<h2 id="ejercicio-evaluado">Ejercicio evaluado</h2>
+      <h1 id="funciones-y-estructuras-de-datos-estáticas.">Funciones y estructuras de datos estáticas.</h1>
+<p>El objetivo de este laboratorio aprenderás sobre el uso de funciones y variables estáticas, así como la implementación de estructuras de datos estáticas en C++. Además, de que el aprendas a aplicar estos conceptos en la resolución de problemas de programación.</p>
+<h2 id="funciones">Funciones</h2>
+<p>En C++, una <strong>función</strong> es un bloque de código que realiza una tarea específica. Una función es una forma de organizar y reutilizar el código, lo que facilita la programación al dividir un problema grande en subproblemas más pequeños y manejables.</p>
+<h3 id="¿porqué-usar-funciones">¿Porqué usar funciones?</h3>
+<ul>
+<li><strong>Modularidad:</strong> Las funciones permiten dividir un programa en partes más pequeñas, lo que facilita el desarrollo y mantenimiento.</li>
+<li><strong>Reutilización:</strong> Puedes escribir una función una vez y luego reutilizarla en diferentes partes del programa.</li>
+<li><strong>Legibilidad:</strong> Los programas que usan funciones suelen ser más fáciles de leer y entender.</li>
+<li><strong>Mantenimiento:</strong> Al modificar el comportamiento de una tarea específica, solo necesitas cambiar el código en una función, sin afectar el resto del programa.</li>
+</ul>
+<h3 id="sintaxis-de-una-función">Sintaxis de una función</h3>
+<p>Una función en C++ se compone de varias partes clave:</p>
 <ol>
+<li><strong>Tipo de retorno:</strong> El tipo de dato que la función devuelve (por ejemplo, <code>int</code>, <code>float</code>, <code>void</code>, etc.). Si la función no devuelve ningún valor, se utiliza <code>void</code>.</li>
+<li><strong>Nombre de la función:</strong> El identificador que se usa para llamar a la función.</li>
+<li><strong>Parámetros (opcional):</strong> Los valores que se pasan a la función para que realice su tarea. Estos se declaran dentro de paréntesis.</li>
+<li><strong>Cuerpo de la función:</strong> El bloque de código entre llaves <code>{}</code> que define lo que hace la función.</li>
+</ol>
+<h3 id="ejemplo-de-función">Ejemplo de función</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+	
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> 
+	<span class="token keyword">int</span> resultado <span class="token operator">=</span> <span class="token function">sumar</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La suma de "</span> <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> resultado <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+	
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+	<span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="declaración-y-definición-de-funciones">Declaración y Definición de Funciones</h3>
+<p>En C++, las funciones pueden declararse antes de <code>main()</code> y definirse después. Esto se conoce como <strong>prototipo de función</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token comment">// Declaración de la función</span>
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword">int</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> 
+	y <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> 
+	<span class="token keyword">int</span> resultado <span class="token operator">=</span> <span class="token function">sumar</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La suma de "</span> <span class="token operator">&lt;&lt;</span> x <span class="token operator">&lt;&lt;</span> <span class="token string">" y "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> <span class="token string">" es: "</span> <span class="token operator">&lt;&lt;</span> resultado <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+	<span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="parámetros-de-una-función">Parámetros de una Función</h3>
+<p>Los parámetros de una función en C++ se pueden pasar de varias formas:</p>
+<ul>
 <li>
-<p>Accede a la tarea que está en Moodle llamada CP2</p>
+<p><strong>Parámetros por valor</strong><br>
+Cuando los parámetros se pasan por valor, se envía una copia del valor al interior de la función. Los cambios dentro de la función no afectan las variables originales.</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfTHvn_szuVOC6MM2TtzUfzcmidjr0YVMmUVJAflk0Ffl8tF_RQE9Pzfu4DmiU9mYR7ixANUB2LxuQ5mwV1j7hBGCRfLVkX1dBL5uZeRrDFafHBX5DwK8SWrfymZ6C6LMkhLnplvCiNgIV2ujHqoO7dc_ynj6Qnii4N-Bjst8LgAAw_OsSinw?key=K9mfK9RbIhO_z31INKZxXg" alt=""></strong></p>
 </li>
-<li>
-<p>Busca tu nombre y acepta la tarea</p>
-</li>
-<li>
-<p>Clona el repositorio</p>
-</li>
-<li>
-<p>Desarrollar el ejercicio propuesto por el instructor</p>
-</li>
-<li>
-<p>Sube los cambios al repositorio utiliza los comandos en el orden correcto</p>
-</li>
-<li>
-<p>Puedes verificar en tu repositorio de GitHub los cambios que realizaste al código.</p>
-</li>
-<li>
-<p>Borrar las credenciales de windows</p>
-</li>
-<li>
-<p>Borrar de la computadora el o los programas creados durante la práctica</p>
-</li>
+</ul>
+<pre class=" language-c"><code class="prism ++ language-c">	
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+
+<span class="token keyword">void</span> <span class="token function">duplicar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword">int</span> numero <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> 
+	<span class="token function">duplicar</span><span class="token punctuation">(</span>numero<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El valor de numero es: "</span> <span class="token operator">&lt;&lt;</span> numero <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// 5 </span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">duplicar</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+		n <span class="token operator">=</span> n <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+</code></pre>
+<ul>
+<li><strong>Parámetros por defecto</strong><br>
+C++ permite definir valores por defecto para los parámetros de una función. Si no se proporcionan argumentos durante la llamada a la función, se utilizan estos valores.</li>
+</ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">)</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// 7 </span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// 15 </span>
+	
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">//	Valor por defecto para b es 2</span>
+<span class="token keyword">int</span> <span class="token function">sumar</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+	<span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="estructuras-de-datos-estáticas">Estructuras de datos estáticas</h2>
+<p>Las estructuras de datos estáticas son aquellas que se declaran con un tamaño fijo en tiempo de compilación. Las estructuras estáticas ocupan un bloque de memoria continuo que se mantiene constante mientras el programa está en ejecución.</p>
+<p>Existen 3 tipos de estructuras de datos estáticas:</p>
+<ul>
+<li><strong>Arreglo unidimensional o Vector</strong></li>
+<li><strong>Arreglo multidimensional o Matriz</strong></li>
+<li><strong>Structs</strong></li>
+</ul>
+<h3 id="arreglos-estáticos--array">Arreglos estáticos / Array</h3>
+<p>Un <strong>arreglo estático</strong> es una colección de elementos del mismo tipo, almacenados en ubicaciones contiguas de memoria. Su tamaño se especifica en tiempo de compilación, lo que significa que <strong>no se puede cambiar durante la ejecución</strong> del programa. Existen arreglos unidimensional (vector) y arreglo multidimensional (matriz).</p>
+<p><strong>Ejemplo: Declaración e inicialización de un arreglo (vector)</strong></p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> numeros<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+string frutas<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"Manzana"</span><span class="token punctuation">,</span> <span class="token string">"Pera"</span><span class="token punctuation">,</span> <span class="token string">"Mandarina"</span><span class="token punctuation">,</span> <span class="token string">"Naranja"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h4 id="asignación-de-valores-a-un-arreglo-vector">Asignación de valores a un arreglo (vector)</h4>
+<p>Para asignar valores desde teclado a un arreglo unidimensional (vector), se hace uso de la estructura  <code>for</code>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword">int</span> numeros<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa un valor "</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="imprimiendo-valores-de-un-arreglo-vector">Imprimiendo valores de un arreglo (vector)</h4>
+<p>Para imprimir los valores que contiene un arreglo, se hace uso de la estructura <code>for</code>, la cual nos ayuda a recorrer todos los valores que contiene el arreglo.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	<span class="token keyword">int</span> numeros<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  
+	
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento en la posición "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">": "</span> <span class="token operator">&lt;&lt;</span> numeros<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+	<span class="token punctuation">}</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Una <strong>matriz</strong> es una extensión de un arreglo estático, pero en lugar de ser unidimensional, es multidimensional. La más común es la <strong>matriz bidimensional</strong>, que puede pensarse como una tabla de filas y columnas. Al igual que los arreglos, el tamaño de la matriz se define en tiempo de compilación y no puede cambiarse durante la ejecución del programa.</p>
+<p>Las matrices se utilizan cuando necesitamos representar datos en forma de tabla, como una cuadrícula, un tablero de juego, o cualquier estructura donde se manejen dos dimensiones (como filas y columnas).</p>
+<p><strong>Ejemplo: Declaración e inicialización de un arreglo (matriz)</strong></p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> matriz<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> 
+	<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+	<span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+	<span class="token punctuation">{</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">char</span> tablero<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> 
+	<span class="token punctuation">{</span><span class="token string">'X'</span><span class="token punctuation">,</span> <span class="token string">'O'</span><span class="token punctuation">,</span> <span class="token string">'X'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+	<span class="token punctuation">{</span><span class="token string">'O'</span><span class="token punctuation">,</span> <span class="token string">'X'</span><span class="token punctuation">,</span> <span class="token string">'O'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+	<span class="token punctuation">{</span><span class="token string">'X'</span><span class="token punctuation">,</span> <span class="token string">'O'</span><span class="token punctuation">,</span> <span class="token string">'X'</span><span class="token punctuation">}</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="asignación-de-valores-a-un-arreglo-matriz">Asignación de valores a un arreglo (matriz)</h4>
+<p>Para asignar valores desde teclado a un arreglo multidimensional (matriz), se hace uso de la estructura  <code>for</code>.<br>
+Pendiente…</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+
+	<span class="token keyword">int</span> matriz<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+	
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+			std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el valor en la posicion de fila "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">" posicion columna "</span> <span class="token operator">&lt;&lt;</span> j<span class="token punctuation">;</span> 
+			std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> matriz<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span> 
+	<span class="token punctuation">}</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="¿cómo-se-imprime-una-matriz">¿Cómo se imprime una matriz?</h4>
+<p>Para acceder a los elementos de una matriz, se utiliza un par de índices: uno para las filas y otro para las columnas. Para recorrer e imprimir todos los elementos de una matriz, se puede usar un bucle <code>for</code> anidado.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span> </span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+
+	<span class="token keyword">int</span> matriz<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> 
+		<span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+		<span class="token punctuation">{</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+		<span class="token punctuation">{</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">}</span> 
+	<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+	
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+		<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+			std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento en la posición ["</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">"]["</span> <span class="token operator">&lt;&lt;</span> j <span class="token operator">&lt;&lt;</span> <span class="token string">"]: "</span> <span class="token operator">&lt;&lt;</span> matriz<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+		<span class="token punctuation">}</span> 
+	<span class="token punctuation">}</span> 
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="structs">Structs</h3>
+<p>Un <strong>struct</strong> es una estructura de datos compuesta que permite agrupar diferentes <strong>tipos de datos bajo un mismo nombre</strong>.  A diferencia de los arreglos (vector y matriz), que solo pueden almacenar datos del mismo tipo, los structs permiten almacenar datos de distintos tipos. Cada elemento dentro de un struct se llama <em>miembro</em>.</p>
+<p>Los structs son útiles para representar entidades más complejas que requieren varios atributos. Por ejemplo, una entidad de tipo <code>Libro</code> puede tener varios atributos como titulo, autor, páginas y precio, uno de diferente tipo.</p>
+<h4 id="definición-de-un-struct">Definición de un struct</h4>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Libro <span class="token punctuation">{</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string titulo<span class="token punctuation">;</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string autor<span class="token punctuation">;</span> 
+	<span class="token keyword">int</span> paginas<span class="token punctuation">;</span> 
+	<span class="token keyword">float</span> precio<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>En este ejemplo cuando tú declaras el struct <code>Libro</code>,  este crea un nuevo tipo de dato que contiene múltiples miembros En este caso, <code>Libro</code> se convierte en un tipo de dato personalizado que puedes usar en tu programa, al igual que usar cualquier otro tipo de dato.</p>
+<p>Ahora que ya definimos a ese tipo de dato <code>Libro</code>podemos declarar nuevas variables de tipo <code>Libro</code>y definir sus miembros, accediendo a través del operador punto. Por ejemplo:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">//Primer libro</span>
+Libro libro1<span class="token punctuation">;</span>
+libro1<span class="token punctuation">.</span>titulo <span class="token operator">=</span> <span class="token string">"Cien Años de Soledad"</span><span class="token punctuation">;</span> 
+libro1<span class="token punctuation">.</span>autor <span class="token operator">=</span> <span class="token string">"Gabriel García Márquez"</span><span class="token punctuation">;</span> 
+libro1<span class="token punctuation">.</span>paginas <span class="token operator">=</span> <span class="token number">417</span><span class="token punctuation">;</span> 
+libro1<span class="token punctuation">.</span>precio <span class="token operator">=</span> <span class="token number">29.99</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Segundo libro</span>
+Libro libro2<span class="token punctuation">;</span> 
+libro2<span class="token punctuation">.</span>titulo <span class="token operator">=</span> <span class="token string">"Harry Potter y la Piedra Filosofal"</span><span class="token punctuation">;</span>
+libro2<span class="token punctuation">.</span>autor <span class="token operator">=</span> <span class="token string">"J.K. Rowling"</span><span class="token punctuation">;</span> 
+libro3<span class="token punctuation">.</span>paginas <span class="token operator">=</span> <span class="token number">309</span><span class="token punctuation">;</span> 
+libro2<span class="token punctuation">.</span>precio <span class="token operator">=</span> <span class="token number">19.99</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="structs-anidados">Structs anidados</h4>
+<p>Una característica poderosa de los structs es que pueden contener otros structs como miembros. Esto permite crear estructuras de datos más complejas y jerárquicas. Por ejemplo:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Autor<span class="token punctuation">{</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string apellido<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Libro <span class="token punctuation">{</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string titulo<span class="token punctuation">;</span> 
+	<span class="token keyword">int</span> paginas<span class="token punctuation">;</span> 
+	<span class="token keyword">float</span> precio<span class="token punctuation">;</span>
+<span class="token comment">// 	Anidando la estructura Autor</span>
+	<span class="token keyword">struct</span> Autor autor<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>En este ejemplo, hemos creado un struct para Autor, que solo contiene el nombre y su apellido, luego en Libro, hemos creado un miembro, que es del tipo <code>Autor</code>.</p>
+<h4 id="imprimir-structs">Imprimir structs</h4>
+<p>Para imprimir los structs, los podemos imprimir manualmente uno a uno, de la misma forma de como les asignamos valores, por ejemplo, el <code>libro1</code>que declaramos anteriormente.</p>
+<pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Libro 1:"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Titulo: "</span> <span class="token operator">&lt;&lt;</span> libro1<span class="token punctuation">.</span>titulo <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Autor: "</span> <span class="token operator">&lt;&lt;</span> libro1<span class="token punctuation">.</span>autor <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Páginas: "</span> <span class="token operator">&lt;&lt;</span> libro1<span class="token punctuation">.</span>paginas <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Precio: $"</span> <span class="token operator">&lt;&lt;</span> libro1<span class="token punctuation">.</span>precio <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+</code></pre>
+<p>Ese fragmento de código imprime uno a uno los diferentes miembros que asignamos al libro 1.</p>
+<h4 id="imprimiendo-varios-structs">Imprimiendo varios structs</h4>
+<p>Como bien se menciono anteriormente, un struct <strong>es como que creemos un nuevo tipo de dato</strong>. Por lo tanto, tenemos a disposición la bondad de combinarlo con la estructura de datos que vimos anteriormente, los <strong>arreglos</strong>.</p>
+<p>Para eso, podemos crear un arreglo con varios libros:</p>
+<pre class=" language-c"><code class="prism ++ language-c">Libro libros<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span> 
+	<span class="token punctuation">{</span><span class="token string">"Cien Años de Soledad"</span><span class="token punctuation">,</span> <span class="token string">"Gabriel García Márquez"</span><span class="token punctuation">,</span> <span class="token number">417</span><span class="token punctuation">,</span> <span class="token number">29.99</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+	<span class="token punctuation">{</span><span class="token string">"Don Quijote de la Mancha"</span><span class="token punctuation">,</span> <span class="token string">"Miguel de Cervantes"</span><span class="token punctuation">,</span> <span class="token number">1023</span><span class="token punctuation">,</span> <span class="token number">35.50</span><span class="token punctuation">}</span><span class="token punctuation">,</span> 
+	<span class="token punctuation">{</span><span class="token string">"Harry Potter y la Piedra Filosofal"</span><span class="token punctuation">,</span> <span class="token string">"J.K. Rowling"</span><span class="token punctuation">,</span> <span class="token number">309</span><span class="token punctuation">,</span> <span class="token number">19.99</span><span class="token punctuation">}</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h4 id="asignación-de-valores-a-los-miembros-de-la-estructura">Asignación de valores a los miembros de la estructura</h4>
+<p>Para asignar los valores a un miembro de un struct, se debe utilizar el operador punto para poder ingresar a los miembros de la estructura.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Autor<span class="token punctuation">{</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string apellido<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Libro <span class="token punctuation">{</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string titulo<span class="token punctuation">;</span> 
+	<span class="token keyword">int</span> paginas<span class="token punctuation">;</span> 
+	<span class="token keyword">float</span> precio<span class="token punctuation">;</span> 
+	<span class="token keyword">struct</span> Autor autor<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">// 	Declaración de variable tipo Libro</span>
+	<span class="token keyword">struct</span> Libro libro<span class="token punctuation">;</span>
+	
+<span class="token comment">// 	Asignando valores</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el titulo del libro: "</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">.</span>titulo<span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el número de páginas del libro: "</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">.</span>paginas<span class="token punctuation">;</span>	
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el precio $ del libro: "</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">.</span>precio<span class="token punctuation">;</span>
+	
+<span class="token comment">//	Asignando valores arreglo como miembro de la estructura (se asume que cada libro contará con 2 autores)</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+	<span class="token punctuation">{</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el nombre del autor: "</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">.</span>autor<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nombre<span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el apellido del autor: "</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">.</span>autor<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>apellido<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h4 id="asignación-de-valores-a-un-arreglo--de-estructura">Asignación de valores a un arreglo  de estructura</h4>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Autor<span class="token punctuation">{</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string apellido<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Libro <span class="token punctuation">{</span> 
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>string titulo<span class="token punctuation">;</span> 
+	<span class="token keyword">int</span> paginas<span class="token punctuation">;</span> 
+	<span class="token keyword">float</span> precio<span class="token punctuation">;</span> 
+	<span class="token keyword">struct</span> Autor autor<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+<span class="token comment">// 	Declaración de un arreglo de estructuras</span>
+	<span class="token keyword">struct</span> Libro libro<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+	
+<span class="token comment">// 	Asignando valores</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el titulo del libro: "</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>titulo<span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el número de páginas del libro: "</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>paginas<span class="token punctuation">;</span>	
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el precio $ del libro: "</span><span class="token punctuation">;</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>precio<span class="token punctuation">;</span>
+		
+<span class="token comment">//	Asignando valores arreglo como miembro de la estructura</span>
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> 
+	<span class="token punctuation">{</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el nombre del autor: "</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>autor<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>nombre<span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingresa el apellido del autor: "</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>autor<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>apellido<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>De esta manera, podemos crear un arreglo con 3 libros definiendo adentro los valores que queremos que contenga. Ahora que ya tenemos varios libros agrupados <strong>en una sola variable</strong>, podemos imprimirlos</p>
+<ul>
+<li><strong>Nota:</strong> recuerda que para imprimir un arreglo y todos sus datos, puedes usar la estructura <code>for</code></li>
+</ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+	cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Libro "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token string">":"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+	cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Titulo: "</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>titulo <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+	cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Páginas: "</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>paginas <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> 
+	cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Precio: $"</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>precio <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+
+	<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> 
+	<span class="token punctuation">{</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Autor: "</span> <span class="token operator">&lt;&lt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>autor<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token operator">&lt;&lt;</span> libro<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>autor<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">.</span>apellido <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>De esta manera, en consola imprimirá todos los datos de nuestros libros, manteniendo en pocas variables, información mas centralizada.</p>
+<p>Para imprimir de la misma manera structs anidados como el que vimos al principio, se sigue la misma lógica, sin embargo, <strong>Se deben acceder a los miembros del autor</strong> dentro del bucle.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword">struct</span> Autor <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string apellido<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Libro <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string titulo<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> paginas<span class="token punctuation">;</span>
+    <span class="token keyword">float</span> precio<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> Autor autor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> 
+<span class="token punctuation">{</span>
+    Libro libros<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">{</span><span class="token string">"Cien Años de Soledad"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">"Gabriel"</span><span class="token punctuation">,</span> <span class="token string">"García Márquez"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">417</span><span class="token punctuation">,</span> <span class="token number">29.99</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span><span class="token string">"Don Quijote de la Mancha"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token string">"Miguel"</span><span class="token punctuation">,</span> <span class="token string">"de Cervantes"</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1023</span><span class="token punctuation">,</span> <span class="token number">35.50</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Libro "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token string">":"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Titulo: "</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>titulo <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Autor: "</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>autor<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>autor<span class="token punctuation">.</span>apellido <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Páginas: "</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>paginas <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Precio: $"</span> <span class="token operator">&lt;&lt;</span> libros<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>precio <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="indicaciones-para-el-ejercicio-evaluado"><strong>Indicaciones para el Ejercicio Evaluado</strong></h2>
+<ol>
+<li><strong>Crea un grupo</strong>: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen)</li>
+<li><strong>Clona el repositorio</strong>: Utiliza el enlace proporcionado para clonar el repositorio en tu entorno de trabajo.</li>
+<li><strong>Desarrolla el ejercicio</strong>: Sigue las instrucciones del instructor para completar el ejercicio propuesto. Además asegúrate de trabajar con <strong>metodología Git Flow</strong></li>
+<li><strong>Verifica los cambios en GitHub</strong>: Ingresa a tu repositorio en GitHub y asegúrate de que los cambios hayan sido correctamente reflejados.</li>
+<li><strong>Elimina credenciales de Windows (si aplicable)</strong>: Si utilizaste computadoras del laboratorio, recuerda borrar tus credenciales de Windows para proteger tu información.</li>
+<li><strong>Elimina programas y carpetas temporales</strong>: Asegúrate de borrar cualquier programa o carpeta que hayas creado durante la práctica, especialmente en computadoras compartidas.</li>
 </ol>
 
     </div>
