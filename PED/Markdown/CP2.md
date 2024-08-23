@@ -425,13 +425,3 @@ int main(int argc, char* argv[])
     return 0;
 }
 ```
-
-## **Indicaciones para el Ejercicio Evaluado**
-
-1. **Crea un grupo**: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen)
-2. **Clona el repositorio**: Utiliza el enlace proporcionado para clonar el repositorio en tu entorno de trabajo.
-3.  **Desarrolla el ejercicio**: Sigue las instrucciones del instructor para completar el ejercicio propuesto. Además asegúrate de trabajar con **metodología Git Flow**
-4. **Verifica los cambios en GitHub**: Ingresa a tu repositorio en GitHub y asegúrate de que los cambios hayan sido correctamente reflejados.
-5. **Elimina credenciales de Windows (si aplicable)**: Si utilizaste computadoras del laboratorio, recuerda borrar tus credenciales de Windows para proteger tu información.
-6. **Elimina programas y carpetas temporales**: Asegúrate de borrar cualquier programa o carpeta que hayas creado durante la práctica, especialmente en computadoras compartidas.
-
