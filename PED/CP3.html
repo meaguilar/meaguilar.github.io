@@ -18,8 +18,8 @@
       resolver un problema. En esencia, una función recursiva aborda un problema dividiéndolo en subproblemas más
       pequeños y más sencillos de resolver, hasta llegar a una condición base que <strong>detiene la recursión</strong>.
     </p>
-    <p>Es crucial establecer una <strong>condición base</strong> que detenga la recursión, para evitar que la función se
-      llame indefinidamente.</p>
+    <p>Es crucial establecer una <strong>condición base</strong> o <strong>condición de paro</strong> que detenga la
+      recursividad, para evitar que la función se llame indefinidamente.</p>
     <p><img src="https://i.ytimg.com/vi/_-5l_gKnnsM/maxresdefault.jpg" alt=""></p>
     <h4 id="características-clave-de-las-funciones-recursivas">1. <strong>Características Clave de las Funciones
         Recursivas</strong></h4>
@@ -229,6 +229,9 @@
     <p>Y así sucesivamente e indefinidamente, esto lo podemos aplicar a código, aunque la sucesión de Fibonacci sea
       infinita. Es decir, a la función brindarle una posición y en base a eso calcule cual es el número. Por ejemplo, en
       la posición 6 esta el numero 8.</p>
+    <p><img
+        src="https://camo.githubusercontent.com/9a6d55ad66f71602c9219b3afdc37a23c5f3fd0050ed0de57f0b3af0fc154d3a/68747470733a2f2f692e70696e696d672e636f6d2f6f726967696e616c732f39612f35662f62662f39613566626661313530666465616239306133666434633339616665646635342e676966"
+        alt=""></p>
     <p>Aplicando esto a código, nos queda lo siguiente:</p>
     <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
@@ -295,10 +298,120 @@
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+    <h3 id="tipos-de-recursividad">Tipos de recursividad</h3>
+    <p>Las funciones recursivas se pueden clasificar en diferentes tipos según cómo se estructuren las llamadas
+      recursivas</p>
+    <h4 id="recursividad-directa">1. Recursividad Directa</h4>
+    <p>En la recursividad directa, una función se llama a sí misma directamente. Este es el tipo más común de
+      recursividad y el que hemos visto en los ejemplos anteriores.</p>
+    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">CountCharacters</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'\0'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// Caso base: si alcanzamos el final de la cadena, retornamos 0.</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">1</span> <span class="token operator">+</span> <span class="token function">CountCharacters</span><span class="token punctuation">(</span>str <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Llamada recursiva con el siguiente carácter.</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> myString <span class="token operator">=</span> <span class="token string">"Hola, mundo!"</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">int</span> count <span class="token operator">=</span> <span class="token function">CountCharacters</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La cadena '"</span> <span class="token operator">&lt;&lt;</span> myString <span class="token operator">&lt;&lt;</span> <span class="token string">"' tiene "</span> <span class="token operator">&lt;&lt;</span> count <span class="token operator">&lt;&lt;</span> <span class="token string">" caracteres."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    <h4 id="recursividad-indirecta">2. Recursividad Indirecta</h4>
+    <p>En la recursividad indirecta, una función A llama a otra función B, y la función B a su vez llama a la función A.
+    </p>
+    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token comment">// Función A: Llama a FunctionB si n es mayor que 0.</span>
+<span class="token keyword">void</span> <span class="token function">FunctionA</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">FunctionB</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Función B: Llama a FunctionA si n es mayor que 1.</span>
+<span class="token keyword">void</span> <span class="token function">FunctionB</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">FunctionA</span><span class="token punctuation">(</span>n <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> number<span class="token punctuation">;</span>
+
+  <span class="token comment">// Solicita al usuario que ingrese un número.</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Ingrese un numero: "</span><span class="token punctuation">;</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cin <span class="token operator">&gt;&gt;</span> number<span class="token punctuation">;</span>
+
+  <span class="token comment">// Inicia la recursividad llamando a la FunctionA.</span>
+  <span class="token function">FunctionA</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+    <h1 id="section"></h1>
     <p>En conclusión, la recursividad es una técnica clave en programación que permite resolver problemas complejos al
       dividirlos en subproblemas más pequeños.</p>
     <p>Aunque puede simplificar el código y facilitar la resolución de ciertos problemas, es importante ser consciente
-      de sus limitaciones en términos de <strong>consumo de memoria y rendimiento</strong>.</p>
+      de sus limitaciones en términos de <strong>consumo de memoria y rendimiento.</strong></p>
+    <h2 id="anexos">Anexos</h2>
+    <h3 id="uso-de-ssh-para-clonar-repositorios">Uso de SSH para clonar repositorios</h3>
+    <p>Configurar SSH te permite establecer conexiones seguras a servidores y gestionar repositorios remotos en GitHub u
+      otros servicios. Aquí está una guía paso a paso para configurar SSH en Windows</p>
+    <ul>
+      <li>Asegúrate primero de tener Git instalado en tu computadora</li>
+      <li>Luego de eso, hay que generar una llave SSH, para esto podemos ejecutar el siguiente comando en nuestro
+        terminal:
+        <pre class=" language-bash"><code class="prism  language-bash">ssh-keygen -t rsa -b 4096 -C <span class="token string">"your_email@example.com"</span>
+</code></pre>
+      </li>
+      <li>Cuando se te pida, elige una ubicación para guardar la clave. La ubicación predeterminada
+        (<code>~/.ssh/id_rsa</code>) es generalmente adecuada,.</li>
+      <li>También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no
+        usar una frase de contraseña.<br>
+        <strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd7ItOfC65WG7PmOoRLciZzPqD-yxt0lRPPmCJBniuGTvWJ90-01y30PCiH6RAbD85at5DFkZLz_cPva6BFcDQ3Ydmrd_LiHmC3WrrjY3wwCDgYJIlMg4czgmScjrUkGgIw3Yzn9kQNlTj7EYjZxoDRigkt9wWbdhbaWgdsww?key=EhCsE0g7-bE307ibHBtdPA"
+            alt=""></strong>
+      </li>
+      <li>Luego en tu computador, dirígete a la ubicación donde se creo el SSH publico, que es el que esta marcado en
+        rojo en la fotografía anterior. Si copias y pegas la ruta en tu gestor de archivos, te abrirá un bloc de notas
+        con una serie de caracteres, la cual es nuestra llave publica.</li>
+      <li>Copia la llave publica generada</li>
+      <li>Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos
+        “configuración”<br>
+        <strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd369XKIVQGD58NDnCvGXW7tgcBIAFyp7rJJAwlzu6jWOA8RjNfU3Rp0ue_763RYrsi04SN8o2OXkUr8UcC3ldXZgNzee_FnFjLWx5WUXVnn6gIUm3_e5Eotrn6UTn909JNq3WrESuQaH9flVIRDLCF0grNkiEOCGjp_klRLA?key=EhCsE0g7-bE307ibHBtdPA"
+            alt=""></strong>
+      </li>
+      <li>En la configuración nos iremos al apartado “SSH keys and GPG keys” y agregaremos una nueva llave SSH<br>
+        <strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe12JVCGiS3FmyH-nHGD6_LKxv32tpI5IrmjIENJQV3oUyQ6y2XD0yhTxlYwuy4YpbU348RJNX7W-tTxfSM-Se1tnDcszEhJzI7am5CIYQmv1dYTg0i6SEooKSecEdrBP3Q-gk5fc3osgpcl3k7wC0w42g_7Zgo5-ToO24itg?key=EhCsE0g7-bE307ibHBtdPA"
+            alt=""></strong><br>
+        Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la “key”
+        pegamos la llave publica que estaba en nuestro bloc de notas.
+      </li>
+      <li>Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya
+        configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.<br>
+        <strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXes4-RvZ4dZNRhf1J6BChMmTiT_Tv03AYkcfMVNxgAxcxIFy-BcwetDRAXNWjMXwbjnVzIXBqSUmt1MrN2d_y90Jl6ixI12fcMqGgiO_3qf_e0arzhkVoa6H478T5mRjMDuZRGvjtwyaMb3SUj6_pnkvZ8JCeive_rJ7mlC3Q?key=EhCsE0g7-bE307ibHBtdPA"
+            alt=""></strong>
+      </li>
+      <li>Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a “yes” y si hicimos los pasos
+        correctamente, lo clonará.<br>
+        <strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdPeLtifLRnrKNJc6PovR-iJmNq6T31qO3Z5VxnrOuqvz4Ec-r3k-sbiwpSYaTVLrZkA4K9Wx4UqVJJPhySTT3Kaw_OPhR9Mm1BhMZ4GFYUqoziGmiVe-mmZZW7MWWHfcQI-UKur-x7QFnvt7_7opmDMK0nUaJPNQkmCsRR?key=EhCsE0g7-bE307ibHBtdPA"
+            alt=""></strong>
+      </li>
+      <li>Si tienes dudas o errores, no dudes en consultar con tu instructor.</li>
+    </ul>
   </div>
 </body>
 
