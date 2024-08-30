@@ -2,7 +2,7 @@
 
 En este laboratorio aprenderás sobre que son las funciones recursivas, su implementación y aplicaciones prácticas.
 
-### ¿Qué es recursividad?
+## ¿Qué es recursividad?
 La recursividad es una técnica de programación donde una función **se llama a sí misma** para resolver un problema. En esencia, una función recursiva aborda un problema dividiéndolo en subproblemas más pequeños y más sencillos de resolver, hasta llegar a una condición base que **detiene la recursión**.
 
 Es crucial establecer una **condición base** o **condición de paro**  que detenga la recursividad, para evitar que la función se llame indefinidamente.
@@ -10,25 +10,25 @@ Es crucial establecer una **condición base** o **condición de paro**  que dete
 ![](https://i.ytimg.com/vi/_-5l_gKnnsM/maxresdefault.jpg)
 
 
-#### 1. **Características Clave de las Funciones Recursivas**
+### 1. **Características Clave de las Funciones Recursivas**
 
 -   **Llamada Recursiva:** En el corazón de toda función recursiva hay una llamada a sí misma, es decir se invoca a si misma adentro.
 -   **Caso Base:** Este es el punto de parada. Sin un caso base, la función seguiría llamándose a sí misma indefinidamente, lo que llevaría a un error.
 -   **Descomposición del Problema:** Cada vez que la función se llama a sí misma, debe acercarse al caso base.
 
-#### **2. Ventajas de la Recursividad**
+### **2. Ventajas de la Recursividad**
 
 -   **Simplicidad Elegante:** En algunos casos, las soluciones recursivas pueden ser más claras y elegantes que las iterativas, facilitando la comprensión del código.
 -   **Resolución de Problemas Complejos:** La recursividad es especialmente útil cuando un problema puede dividirse naturalmente en subproblemas más pequeños.
 
-#### 3. **Desventajas de la Recursividad**
+### 3. **Desventajas de la Recursividad**
 
 -   **Consumo de Memoria:** Cada llamada recursiva se guarda en la pila de ejecución, lo que puede consumir mucha memoria si hay demasiadas llamadas anidadas. 
 
-### Ejemplos de recursividad
+## Ejemplos de recursividad
 A continuación, implementaremos algunos ejemplos clásicos de funciones recursivas para ilustrar cómo funcionan en la práctica.
 
-#### 1. Factorial de un número
+### 1. Factorial de un número
 El factorial de un número n (denotado como n!) es el producto de todos los enteros positivos menores o iguales a n. Por ejemplo:
 $$5! = 5 × 4 × 3 × 2 × 1 =120$$
 
@@ -63,7 +63,7 @@ En este ejemplo, como se vio en la teoría, la función `factorial` dentro de la
 
 Esta iteración la seguirá haciendo hasta que el numero que retorne sea igual a 0. Esa condición que hacemos al principio, es nuestra condición de paro, cuando eso se cumpla, la función ya no seguirá haciendo llamadas recursivas.
 
-#### 2. Sucesión de Fibonacci
+### 2. Sucesión de Fibonacci
 Otro ejemplo matemático donde podemos usar recursividad es la sucesión de Fibonacci. Esta es un serie de números donde el siguiente es la suma de los dos anteriores. 
 $$0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89$$
 
@@ -109,7 +109,7 @@ int main() {
 ```
 En este ejemplo, vimos que llamamos a la misma función en el cuerpo de la función, y esta el `n` que recibe es el que retornó en su llamada anterior, esto hasta que llegue a nuestra condición de paro, sea 0 o sea 1.
 
-#### 3. Cuenta regresiva
+### 3. Cuenta regresiva
 De momento los ejemplos que hemos visto, son de libros, muy matemáticos, sin embargo, las funciones recursivas las podemos usar para cosas mas sencillas. Por ejemplo para una cuenta regresiva.
 
 La idea es sencilla, queremos una función que en cada llamada, haga que el numero disminuya, haciendo que cada vez que se llama, retorne el numero restado 1. Pero... **¿Hasta donde?**
@@ -144,10 +144,10 @@ int main() {
 }
 ```
 
-### Tipos de recursividad 
+## Tipos de recursividad 
 Las funciones recursivas se pueden clasificar en diferentes tipos según cómo se estructuren las llamadas recursivas
 
-#### 1. Recursividad Directa
+### 1. Recursividad Directa
 En la recursividad directa, una función se llama a sí misma directamente. Este es el tipo más común de recursividad y el que hemos visto en los ejemplos anteriores.
 ```c++
 #include <iostream>
@@ -170,7 +170,7 @@ int main() {
   return 0;
 }
 ```
-#### 2. Recursividad Indirecta
+### 2. Recursividad Indirecta
 En la recursividad indirecta, una función A llama a otra función B, y la función B a su vez llama a la función A.
 ```c++
 #include <iostream>
