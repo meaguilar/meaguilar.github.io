@@ -9,142 +9,58 @@
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__html">
-    <h1 id="funciones-recursivas">Funciones recursivas</h1>
-    <p>En este laboratorio aprenderás sobre que son las funciones recursivas, su implementación y aplicaciones
-      prácticas.</p>
-    <h3 id="¿qué-es-recursividad">¿Qué es recursividad?</h3>
-    <p>La recursividad es una técnica de programación donde una función <strong>se llama a sí misma</strong> para
-      resolver un problema. En esencia, una función recursiva aborda un problema dividiéndolo en subproblemas más
-      pequeños y más sencillos de resolver, hasta llegar a una condición base que <strong>detiene la recursión</strong>.
-    </p>
-    <p>Es crucial establecer una <strong>condición base</strong> o <strong>condición de paro</strong> que detenga la
-      recursividad, para evitar que la función se llame indefinidamente.</p>
-    <p><img src="https://i.ytimg.com/vi/_-5l_gKnnsM/maxresdefault.jpg" alt=""></p>
-    <h4 id="características-clave-de-las-funciones-recursivas">1. <strong>Características Clave de las Funciones
-        Recursivas</strong></h4>
-    <ul>
-      <li><strong>Llamada Recursiva:</strong> En el corazón de toda función recursiva hay una llamada a sí misma, es
-        decir se invoca a si misma adentro.</li>
-      <li><strong>Caso Base:</strong> Este es el punto de parada. Sin un caso base, la función seguiría llamándose a sí
-        misma indefinidamente, lo que llevaría a un error.</li>
-      <li><strong>Descomposición del Problema:</strong> Cada vez que la función se llama a sí misma, debe acercarse al
-        caso base.</li>
-    </ul>
-    <h4 id="ventajas-de-la-recursividad"><strong>2. Ventajas de la Recursividad</strong></h4>
-    <ul>
-      <li><strong>Simplicidad Elegante:</strong> En algunos casos, las soluciones recursivas pueden ser más claras y
-        elegantes que las iterativas, facilitando la comprensión del código.</li>
-      <li><strong>Resolución de Problemas Complejos:</strong> La recursividad es especialmente útil cuando un problema
-        puede dividirse naturalmente en subproblemas más pequeños.</li>
-    </ul>
-    <h4 id="desventajas-de-la-recursividad">3. <strong>Desventajas de la Recursividad</strong></h4>
-    <ul>
-      <li><strong>Consumo de Memoria:</strong> Cada llamada recursiva se guarda en la pila de ejecución, lo que puede
-        consumir mucha memoria si hay demasiadas llamadas anidadas.</li>
-    </ul>
-    <h3 id="ejemplos-de-recursividad">Ejemplos de recursividad</h3>
-    <p>A continuación, implementaremos algunos ejemplos clásicos de funciones recursivas para ilustrar cómo funcionan en
-      la práctica.</p>
-    <h4 id="factorial-de-un-número">1. Factorial de un número</h4>
-    <p>El factorial de un número n (denotado como n!) es el producto de todos los enteros positivos menores o iguales a
-      n. Por ejemplo:<br>
-      <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math
-                xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                <semantics>
-                  <mrow>
-                    <mn>5</mn>
-                    <mo stretchy="false">!</mo>
-                    <mo>=</mo>
-                    <mn>5</mn>
-                    <mo>×</mo>
-                    <mn>4</mn>
-                    <mo>×</mo>
-                    <mn>3</mn>
-                    <mo>×</mo>
-                    <mn>2</mn>
-                    <mo>×</mo>
-                    <mn>1</mn>
-                    <mo>=</mo>
-                    <mn>120</mn>
-                  </mrow>
-                  <annotation encoding="application/x-tex">5! = 5 × 4 × 3 × 2 × 1 =120</annotation>
-                </semantics>
-              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                  style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord">5</span><span
-                  class="mclose">!</span><span class="mspace" style="margin-right: 0.277778em;"></span><span
-                  class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span
-                  class="mord">5</span><span class="mspace" style="margin-right: 0.222222em;"></span><span
-                  class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span
-                  class="mord">4</span><span class="mspace" style="margin-right: 0.222222em;"></span><span
-                  class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span
-                  class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;"></span><span
-                  class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span
-                  class="mord">2</span><span class="mspace" style="margin-right: 0.222222em;"></span><span
-                  class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span
-                  class="mord">1</span><span class="mspace" style="margin-right: 0.277778em;"></span><span
-                  class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span
-                  class="mord">120</span></span></span></span></span></span>
-    </p>
-    <p>Se define recursivamente como:</p>
-    <p><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math
-                xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                <semantics>
-                  <mrow>
-                    <mi>n</mi>
-                    <mo stretchy="false">!</mo>
-                    <mo>=</mo>
-                    <mi>n</mi>
-                    <mo>×</mo>
-                    <mo stretchy="false">(</mo>
-                    <mi>n</mi>
-                    <mo>−</mo>
-                    <mn>1</mn>
-                    <mo stretchy="false">)</mo>
-                    <mo stretchy="false">!</mo>
-                  </mrow>
-                  <annotation encoding="application/x-tex"> n! = n × (n - 1)! </annotation>
-                </semantics>
-              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                  style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal">n</span><span
-                  class="mclose">!</span><span class="mspace" style="margin-right: 0.277778em;"></span><span
-                  class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.66666em; vertical-align: -0.08333em;"></span><span
-                  class="mord mathnormal">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span
-                  class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span
-                class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span
-                  class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace"
-                  style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace"
-                  style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut"
-                  style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">1</span><span
-                  class="mclose">)!</span></span></span></span></span></span></p>
-    <p>Y la condición de paro o <strong>caso base</strong> es que:<br>
-      <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math
-                xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                <semantics>
-                  <mrow>
-                    <mn>0</mn>
-                    <mo stretchy="false">!</mo>
-                    <mo>=</mo>
-                    <mn>1</mn>
-                  </mrow>
-                  <annotation encoding="application/x-tex">0! = 1</annotation>
-                </semantics>
-              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                  style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord">0</span><span
-                  class="mclose">!</span><span class="mspace" style="margin-right: 0.277778em;"></span><span
-                  class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span
-                class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span
-                  class="mord">1</span></span></span></span></span></span>
-    </p>
-    <p>Implementando esto a código obtenemos lo siguiente:</p>
-    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#funciones-recursivas">Funciones recursivas</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li>
+<ul>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="funciones-recursivas">Funciones recursivas</h1>
+<p>En este laboratorio aprenderás sobre que son las funciones recursivas, su implementación y aplicaciones prácticas.</p>
+<h3 id="¿qué-es-recursividad">¿Qué es recursividad?</h3>
+<p>La recursividad es una técnica de programación donde una función <strong>se llama a sí misma</strong> para resolver un problema. En esencia, una función recursiva aborda un problema dividiéndolo en subproblemas más pequeños y más sencillos de resolver, hasta llegar a una condición base que <strong>detiene la recursión</strong>.</p>
+<p>Es crucial establecer una <strong>condición base</strong> o <strong>condición de paro</strong>  que detenga la recursividad, para evitar que la función se llame indefinidamente.</p>
+<p><img src="https://i.ytimg.com/vi/_-5l_gKnnsM/maxresdefault.jpg" alt=""></p>
+<h4 id="características-clave-de-las-funciones-recursivas">1. <strong>Características Clave de las Funciones Recursivas</strong></h4>
+<ul>
+<li><strong>Llamada Recursiva:</strong> En el corazón de toda función recursiva hay una llamada a sí misma, es decir se invoca a si misma adentro.</li>
+<li><strong>Caso Base:</strong> Este es el punto de parada. Sin un caso base, la función seguiría llamándose a sí misma indefinidamente, lo que llevaría a un error.</li>
+<li><strong>Descomposición del Problema:</strong> Cada vez que la función se llama a sí misma, debe acercarse al caso base.</li>
+</ul>
+<h4 id="ventajas-de-la-recursividad"><strong>2. Ventajas de la Recursividad</strong></h4>
+<ul>
+<li><strong>Simplicidad Elegante:</strong> En algunos casos, las soluciones recursivas pueden ser más claras y elegantes que las iterativas, facilitando la comprensión del código.</li>
+<li><strong>Resolución de Problemas Complejos:</strong> La recursividad es especialmente útil cuando un problema puede dividirse naturalmente en subproblemas más pequeños.</li>
+</ul>
+<h4 id="desventajas-de-la-recursividad">3. <strong>Desventajas de la Recursividad</strong></h4>
+<ul>
+<li><strong>Consumo de Memoria:</strong> Cada llamada recursiva se guarda en la pila de ejecución, lo que puede consumir mucha memoria si hay demasiadas llamadas anidadas.</li>
+</ul>
+<h3 id="ejemplos-de-recursividad">Ejemplos de recursividad</h3>
+<p>A continuación, implementaremos algunos ejemplos clásicos de funciones recursivas para ilustrar cómo funcionan en la práctica.</p>
+<h4 id="factorial-de-un-número">1. Factorial de un número</h4>
+<p>El factorial de un número n (denotado como n!) es el producto de todos los enteros positivos menores o iguales a n. Por ejemplo:<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>5</mn><mo stretchy="false">!</mo><mo>=</mo><mn>5</mn><mo>×</mo><mn>4</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>2</mn><mo>×</mo><mn>1</mn><mo>=</mo><mn>120</mn></mrow><annotation encoding="application/x-tex">5! = 5 × 4 × 3 × 2 × 1 =120</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord">5</span><span class="mclose">!</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">5</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">4</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">3</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.72777em; vertical-align: -0.08333em;"></span><span class="mord">2</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">120</span></span></span></span></span></span></p>
+<p>Se define recursivamente como:</p>
+<p><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>n</mi><mo stretchy="false">!</mo><mo>=</mo><mi>n</mi><mo>×</mo><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo><mo stretchy="false">!</mo></mrow><annotation encoding="application/x-tex"> n! = n × (n - 1)! </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord mathnormal">n</span><span class="mclose">!</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.66666em; vertical-align: -0.08333em;"></span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right: 0.222222em;"></span></span><span class="base"><span class="strut" style="height: 1em; vertical-align: -0.25em;"></span><span class="mord">1</span><span class="mclose">)!</span></span></span></span></span></span></p>
+<p>Y la condición de paro o <strong>caso base</strong> es que:<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>0</mn><mo stretchy="false">!</mo><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0! = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.69444em; vertical-align: 0em;"></span><span class="mord">0</span><span class="mclose">!</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 0.64444em; vertical-align: 0em;"></span><span class="mord">1</span></span></span></span></span></span></p>
+<p>Implementando esto a código obtenemos lo siguiente:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
 <span class="token keyword">int</span> <span class="token function">factorial</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -162,78 +78,22 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-    <p>En este ejemplo, como se vio en la teoría, la función <code>factorial</code> dentro de la misma función se esta
-      llamando a si misma, retornando la operación mencionada anteriormente en la teoría.</p>
-    <p>Esta iteración la seguirá haciendo hasta que el numero que retorne sea igual a 0. Esa condición que hacemos al
-      principio, es nuestra condición de paro, cuando eso se cumpla, la función ya no seguirá haciendo llamadas
-      recursivas.</p>
-    <h4 id="sucesión-de-fibonacci">2. Sucesión de Fibonacci</h4>
-    <p>Otro ejemplo matemático donde podemos usar recursividad es la sucesión de Fibonacci. Esta es un serie de números
-      donde el siguiente es la suma de los dos anteriores.<br>
-      <span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math
-                xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-                <semantics>
-                  <mrow>
-                    <mn>0</mn>
-                    <mo separator="true">,</mo>
-                    <mn>1</mn>
-                    <mo separator="true">,</mo>
-                    <mn>1</mn>
-                    <mo separator="true">,</mo>
-                    <mn>2</mn>
-                    <mo separator="true">,</mo>
-                    <mn>3</mn>
-                    <mo separator="true">,</mo>
-                    <mn>5</mn>
-                    <mo separator="true">,</mo>
-                    <mn>8</mn>
-                    <mo separator="true">,</mo>
-                    <mn>13</mn>
-                    <mo separator="true">,</mo>
-                    <mn>21</mn>
-                    <mo separator="true">,</mo>
-                    <mn>34</mn>
-                    <mo separator="true">,</mo>
-                    <mn>55</mn>
-                    <mo separator="true">,</mo>
-                    <mn>89</mn>
-                  </mrow>
-                  <annotation encoding="application/x-tex">0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</annotation>
-                </semantics>
-              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
-                  style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span
-                  class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span
-                  class="mord">1</span><span class="mpunct">,</span><span class="mspace"
-                  style="margin-right: 0.166667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span
-                  class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">2</span><span
-                  class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span
-                  class="mord">3</span><span class="mpunct">,</span><span class="mspace"
-                  style="margin-right: 0.166667em;"></span><span class="mord">5</span><span class="mpunct">,</span><span
-                  class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">8</span><span
-                  class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span
-                  class="mord">13</span><span class="mpunct">,</span><span class="mspace"
-                  style="margin-right: 0.166667em;"></span><span class="mord">21</span><span
-                  class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span
-                  class="mord">34</span><span class="mpunct">,</span><span class="mspace"
-                  style="margin-right: 0.166667em;"></span><span class="mord">55</span><span
-                  class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span
-                  class="mord">89</span></span></span></span></span></span>
-    </p>
-    <p>Es decir:</p>
-    <ul>
-      <li>0 + 1 da como resultado 1</li>
-      <li>1 + 1 da como resultado 2</li>
-      <li>1 + 2 da como resultado 3</li>
-      <li>2 + 3 da como resultado 5</li>
-    </ul>
-    <p>Y así sucesivamente e indefinidamente, esto lo podemos aplicar a código, aunque la sucesión de Fibonacci sea
-      infinita. Es decir, a la función brindarle una posición y en base a eso calcule cual es el número. Por ejemplo, en
-      la posición 6 esta el numero 8.</p>
-    <p><img
-        src="https://camo.githubusercontent.com/9a6d55ad66f71602c9219b3afdc37a23c5f3fd0050ed0de57f0b3af0fc154d3a/68747470733a2f2f692e70696e696d672e636f6d2f6f726967696e616c732f39612f35662f62662f39613566626661313530666465616239306133666434633339616665646635342e676966"
-        alt=""></p>
-    <p>Aplicando esto a código, nos queda lo siguiente:</p>
-    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<p>En este ejemplo, como se vio en la teoría, la función <code>factorial</code> dentro de la misma función se esta llamando a si misma, retornando la operación mencionada anteriormente en la teoría.</p>
+<p>Esta iteración la seguirá haciendo hasta que el numero que retorne sea igual a 0. Esa condición que hacemos al principio, es nuestra condición de paro, cuando eso se cumpla, la función ya no seguirá haciendo llamadas recursivas.</p>
+<h4 id="sucesión-de-fibonacci">2. Sucesión de Fibonacci</h4>
+<p>Otro ejemplo matemático donde podemos usar recursividad es la sucesión de Fibonacci. Esta es un serie de números donde el siguiente es la suma de los dos anteriores.<br>
+<span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>8</mn><mo separator="true">,</mo><mn>13</mn><mo separator="true">,</mo><mn>21</mn><mo separator="true">,</mo><mn>34</mn><mo separator="true">,</mo><mn>55</mn><mo separator="true">,</mo><mn>89</mn></mrow><annotation encoding="application/x-tex">0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.83888em; vertical-align: -0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">8</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">13</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">21</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">34</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">55</span><span class="mpunct">,</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord">89</span></span></span></span></span></span></p>
+<p>Es decir:</p>
+<ul>
+<li>0 + 1 da como resultado 1</li>
+<li>1 + 1 da como resultado 2</li>
+<li>1 + 2 da como resultado 3</li>
+<li>2 + 3 da como resultado 5</li>
+</ul>
+<p>Y así sucesivamente e indefinidamente, esto lo podemos aplicar a código, aunque la sucesión de Fibonacci sea infinita. Es decir, a la función brindarle una posición y en base a eso calcule cual es el número. Por ejemplo, en la posición 6 esta el numero 8.</p>
+<p><img src="https://camo.githubusercontent.com/9a6d55ad66f71602c9219b3afdc37a23c5f3fd0050ed0de57f0b3af0fc154d3a/68747470733a2f2f692e70696e696d672e636f6d2f6f726967696e616c732f39612f35662f62662f39613566626661313530666465616239306133666434633339616665646635342e676966" alt=""></p>
+<p>Aplicando esto a código, nos queda lo siguiente:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
 <span class="token keyword">int</span> <span class="token function">Fibonacci</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 
@@ -261,18 +121,13 @@
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-    <p>En este ejemplo, vimos que llamamos a la misma función en el cuerpo de la función, y esta el <code>n</code> que
-      recibe es el que retornó en su llamada anterior, esto hasta que llegue a nuestra condición de paro, sea 0 o sea 1.
-    </p>
-    <h4 id="cuenta-regresiva">3. Cuenta regresiva</h4>
-    <p>De momento los ejemplos que hemos visto, son de libros, muy matemáticos, sin embargo, las funciones recursivas
-      las podemos usar para cosas mas sencillas. Por ejemplo para una cuenta regresiva.</p>
-    <p>La idea es sencilla, queremos una función que en cada llamada, haga que el numero disminuya, haciendo que cada
-      vez que se llama, retorne el numero restado 1. Pero… <strong>¿Hasta donde?</strong><br>
-      En este caso si no ponemos un paro, seguirá restando uno al numero indefinidamente. Por lo tanto, nuestra función
-      se detendrá cuando lleguemos a 0.</p>
-    <p>Aplicando esto a código obtenemos:</p>
-    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<p>En este ejemplo, vimos que llamamos a la misma función en el cuerpo de la función, y esta el <code>n</code> que recibe es el que retornó en su llamada anterior, esto hasta que llegue a nuestra condición de paro, sea 0 o sea 1.</p>
+<h4 id="cuenta-regresiva">3. Cuenta regresiva</h4>
+<p>De momento los ejemplos que hemos visto, son de libros, muy matemáticos, sin embargo, las funciones recursivas las podemos usar para cosas mas sencillas. Por ejemplo para una cuenta regresiva.</p>
+<p>La idea es sencilla, queremos una función que en cada llamada, haga que el numero disminuya, haciendo que cada vez que se llama, retorne el numero restado 1. Pero… <strong>¿Hasta donde?</strong><br>
+En este caso si no ponemos un paro, seguirá restando uno al numero indefinidamente. Por lo tanto, nuestra función se detendrá cuando lleguemos a 0.</p>
+<p>Aplicando esto a código obtenemos:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
 <span class="token keyword">void</span> <span class="token function">Countdown</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token comment">// Caso base: nuestra cuenta llega a 0</span>
@@ -298,13 +153,11 @@
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-    <h3 id="tipos-de-recursividad">Tipos de recursividad</h3>
-    <p>Las funciones recursivas se pueden clasificar en diferentes tipos según cómo se estructuren las llamadas
-      recursivas</p>
-    <h4 id="recursividad-directa">1. Recursividad Directa</h4>
-    <p>En la recursividad directa, una función se llama a sí misma directamente. Este es el tipo más común de
-      recursividad y el que hemos visto en los ejemplos anteriores.</p>
-    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<h3 id="tipos-de-recursividad">Tipos de recursividad</h3>
+<p>Las funciones recursivas se pueden clasificar en diferentes tipos según cómo se estructuren las llamadas recursivas</p>
+<h4 id="recursividad-directa">1. Recursividad Directa</h4>
+<p>En la recursividad directa, una función se llama a sí misma directamente. Este es el tipo más común de recursividad y el que hemos visto en los ejemplos anteriores.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
 <span class="token keyword">int</span> <span class="token function">CountCharacters</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">if</span> <span class="token punctuation">(</span>str<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">'\0'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -324,10 +177,9 @@
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-    <h4 id="recursividad-indirecta">2. Recursividad Indirecta</h4>
-    <p>En la recursividad indirecta, una función A llama a otra función B, y la función B a su vez llama a la función A.
-    </p>
-    <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<h4 id="recursividad-indirecta">2. Recursividad Indirecta</h4>
+<p>En la recursividad indirecta, una función A llama a otra función B, y la función B a su vez llama a la función A.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
 <span class="token comment">// Función A: Llama a FunctionB si n es mayor que 0.</span>
 <span class="token keyword">void</span> <span class="token function">FunctionA</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -357,61 +209,35 @@
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-    <h1 id="section"></h1>
-    <p>En conclusión, la recursividad es una técnica clave en programación que permite resolver problemas complejos al
-      dividirlos en subproblemas más pequeños.</p>
-    <p>Aunque puede simplificar el código y facilitar la resolución de ciertos problemas, es importante ser consciente
-      de sus limitaciones en términos de <strong>consumo de memoria y rendimiento.</strong></p>
-    <h2 id="anexos">Anexos</h2>
-    <h3 id="uso-de-ssh-para-clonar-repositorios">Uso de SSH para clonar repositorios</h3>
-    <p>Configurar SSH te permite establecer conexiones seguras a servidores y gestionar repositorios remotos en GitHub u
-      otros servicios. Aquí está una guía paso a paso para configurar SSH en Windows</p>
-    <ul>
-      <li>Asegúrate primero de tener Git instalado en tu computadora</li>
-      <li>Luego de eso, hay que generar una llave SSH, para esto podemos ejecutar el siguiente comando en nuestro
-        terminal:
-        <pre class=" language-bash"><code class="prism  language-bash">ssh-keygen -t rsa -b 4096 -C <span class="token string">"your_email@example.com"</span>
+<h1 id="section"></h1>
+<p>En conclusión, la recursividad es una técnica clave en programación que permite resolver problemas complejos  al dividirlos en subproblemas más pequeños.</p>
+<p>Aunque puede simplificar el código y facilitar la resolución de ciertos problemas, es importante ser consciente de sus limitaciones en términos de <strong>consumo de memoria y rendimiento.</strong></p>
+<h2 id="anexos">Anexos</h2>
+<h3 id="uso-de-ssh-para-clonar-repositorios">Uso de SSH para clonar repositorios</h3>
+<p>Configurar SSH te permite establecer conexiones seguras a servidores y gestionar repositorios remotos en GitHub u otros servicios. Aquí está una guía paso a paso para configurar SSH en Windows</p>
+<ul>
+<li>Asegúrate primero de tener Git instalado en tu computadora</li>
+<li>Luego de eso, hay que generar una llave SSH, para esto podemos ejecutar el siguiente comando en nuestro terminal:<pre class=" language-bash"><code class="prism  language-bash">ssh-keygen -t rsa -b 4096 -C <span class="token string">"your_email@example.com"</span>
 </code></pre>
-      </li>
-      <li>Cuando se te pida, elige una ubicación para guardar la clave. La ubicación predeterminada
-        (<code>~/.ssh/id_rsa</code>) es generalmente adecuada,.</li>
-      <li>También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no
-        usar una frase de contraseña.<br>
-        <strong><img
-            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd7ItOfC65WG7PmOoRLciZzPqD-yxt0lRPPmCJBniuGTvWJ90-01y30PCiH6RAbD85at5DFkZLz_cPva6BFcDQ3Ydmrd_LiHmC3WrrjY3wwCDgYJIlMg4czgmScjrUkGgIw3Yzn9kQNlTj7EYjZxoDRigkt9wWbdhbaWgdsww?key=EhCsE0g7-bE307ibHBtdPA"
-            alt=""></strong>
-      </li>
-      <li>Luego en tu computador, dirígete a la ubicación donde se creo el SSH publico, que es el que esta marcado en
-        rojo en la fotografía anterior. Si copias y pegas la ruta en tu gestor de archivos, te abrirá un bloc de notas
-        con una serie de caracteres, la cual es nuestra llave publica.</li>
-      <li>Copia la llave publica generada</li>
-      <li>Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos
-        “configuración”<br>
-        <strong><img
-            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd369XKIVQGD58NDnCvGXW7tgcBIAFyp7rJJAwlzu6jWOA8RjNfU3Rp0ue_763RYrsi04SN8o2OXkUr8UcC3ldXZgNzee_FnFjLWx5WUXVnn6gIUm3_e5Eotrn6UTn909JNq3WrESuQaH9flVIRDLCF0grNkiEOCGjp_klRLA?key=EhCsE0g7-bE307ibHBtdPA"
-            alt=""></strong>
-      </li>
-      <li>En la configuración nos iremos al apartado “SSH keys and GPG keys” y agregaremos una nueva llave SSH<br>
-        <strong><img
-            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe12JVCGiS3FmyH-nHGD6_LKxv32tpI5IrmjIENJQV3oUyQ6y2XD0yhTxlYwuy4YpbU348RJNX7W-tTxfSM-Se1tnDcszEhJzI7am5CIYQmv1dYTg0i6SEooKSecEdrBP3Q-gk5fc3osgpcl3k7wC0w42g_7Zgo5-ToO24itg?key=EhCsE0g7-bE307ibHBtdPA"
-            alt=""></strong><br>
-        Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la “key”
-        pegamos la llave publica que estaba en nuestro bloc de notas.
-      </li>
-      <li>Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya
-        configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.<br>
-        <strong><img
-            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXes4-RvZ4dZNRhf1J6BChMmTiT_Tv03AYkcfMVNxgAxcxIFy-BcwetDRAXNWjMXwbjnVzIXBqSUmt1MrN2d_y90Jl6ixI12fcMqGgiO_3qf_e0arzhkVoa6H478T5mRjMDuZRGvjtwyaMb3SUj6_pnkvZ8JCeive_rJ7mlC3Q?key=EhCsE0g7-bE307ibHBtdPA"
-            alt=""></strong>
-      </li>
-      <li>Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a “yes” y si hicimos los pasos
-        correctamente, lo clonará.<br>
-        <strong><img
-            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdPeLtifLRnrKNJc6PovR-iJmNq6T31qO3Z5VxnrOuqvz4Ec-r3k-sbiwpSYaTVLrZkA4K9Wx4UqVJJPhySTT3Kaw_OPhR9Mm1BhMZ4GFYUqoziGmiVe-mmZZW7MWWHfcQI-UKur-x7QFnvt7_7opmDMK0nUaJPNQkmCsRR?key=EhCsE0g7-bE307ibHBtdPA"
-            alt=""></strong>
-      </li>
-      <li>Si tienes dudas o errores, no dudes en consultar con tu instructor.</li>
-    </ul>
+</li>
+<li>Cuando se te pida, elige una ubicación para guardar la clave. La ubicación predeterminada (<code>~/.ssh/id_rsa</code>) es generalmente adecuada,.</li>
+<li>También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no usar una frase de contraseña.<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd7ItOfC65WG7PmOoRLciZzPqD-yxt0lRPPmCJBniuGTvWJ90-01y30PCiH6RAbD85at5DFkZLz_cPva6BFcDQ3Ydmrd_LiHmC3WrrjY3wwCDgYJIlMg4czgmScjrUkGgIw3Yzn9kQNlTj7EYjZxoDRigkt9wWbdhbaWgdsww?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
+<li>Luego en tu computador, dirígete a la ubicación donde se creo el SSH publico, que es el que esta marcado en rojo en la fotografía anterior. Si copias y pegas la ruta en tu gestor de archivos, te abrirá un bloc de notas con una serie de caracteres, la cual es nuestra llave publica.</li>
+<li>Copia la llave publica generada</li>
+<li>Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos “configuración”<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd369XKIVQGD58NDnCvGXW7tgcBIAFyp7rJJAwlzu6jWOA8RjNfU3Rp0ue_763RYrsi04SN8o2OXkUr8UcC3ldXZgNzee_FnFjLWx5WUXVnn6gIUm3_e5Eotrn6UTn909JNq3WrESuQaH9flVIRDLCF0grNkiEOCGjp_klRLA?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
+<li>En la configuración nos iremos al apartado “SSH keys and GPG keys” y agregaremos una nueva llave SSH<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe12JVCGiS3FmyH-nHGD6_LKxv32tpI5IrmjIENJQV3oUyQ6y2XD0yhTxlYwuy4YpbU348RJNX7W-tTxfSM-Se1tnDcszEhJzI7am5CIYQmv1dYTg0i6SEooKSecEdrBP3Q-gk5fc3osgpcl3k7wC0w42g_7Zgo5-ToO24itg?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong><br>
+Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la “key” pegamos la llave publica que estaba en nuestro bloc de notas.</li>
+<li>Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXes4-RvZ4dZNRhf1J6BChMmTiT_Tv03AYkcfMVNxgAxcxIFy-BcwetDRAXNWjMXwbjnVzIXBqSUmt1MrN2d_y90Jl6ixI12fcMqGgiO_3qf_e0arzhkVoa6H478T5mRjMDuZRGvjtwyaMb3SUj6_pnkvZ8JCeive_rJ7mlC3Q?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
+<li>Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a “yes” y si hicimos los pasos correctamente, lo clonará.<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdPeLtifLRnrKNJc6PovR-iJmNq6T31qO3Z5VxnrOuqvz4Ec-r3k-sbiwpSYaTVLrZkA4K9Wx4UqVJJPhySTT3Kaw_OPhR9Mm1BhMZ4GFYUqoziGmiVe-mmZZW7MWWHfcQI-UKur-x7QFnvt7_7opmDMK0nUaJPNQkmCsRR?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
+<li>Si tienes dudas o errores, no dudes en consultar con tu instructor.</li>
+</ul>
+
+    </div>
   </div>
 </body>
 
