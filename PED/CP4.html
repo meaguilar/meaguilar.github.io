@@ -36,14 +36,13 @@
       <h1 id="punteros">Punteros</h1>
 <p>En este laboratorio aprenderás sobre el uso de punteros, cómo declararlos, cómo utilizarlos, y su importancia en la gestión de memoria y manipulación de datos en programación.</p>
 <h3 id="¿qué-son-los-punteros">¿Qué son los punteros?</h3>
-<p>En tu computadora, cada variable que tu guardas, en realidad el valor de esa variable se guarda en <strong>una dirección de memoria</strong>. Los punteros, van a permitirnos almacenar la dirección de memoria de cualquier variable y nos permitirán manipularla.</p>
+<p>En tu computadora, cada variable que tu guardas, en realidad el valor de esa variable se guarda en <strong>una dirección de memoria</strong>. La dirección de memoria es el <strong>lugar físico</strong> donde la memoria <strong>está</strong> siendo guardada. Los punteros, van a permitirnos almacenar la dirección de memoria de cualquier variable y nos permitirán manipularla.</p>
 <p>Como tal, una variable tiene 3 características fundamentales:</p>
 <ul>
 <li><strong>Su valor</strong></li>
 <li><strong>Su nombre</strong></li>
 <li><strong>Dirección de memoria</strong></li>
 </ul>
-<p>La dirección de memoria es el <strong>lugar fisico</strong> donde la memoria esta siendo guardada.</p>
 <p>Entonces, a simple modo podemos decir que un puntero es como un tipo especial de variable, que tiene las características que mencionamos anteriormente, como todas las variables, con la única <strong>diferencia</strong> que su valor no será un dato como tal, si no que era una dirección de memoria que esta <strong>apuntando</strong> a otro objeto (int, float, chat).</p>
 <p>Entonces los punteros nos servirán para acceder a esos objetos a los cuales apuntan, es decir, hacer referencia a ellos usando su dirección de memoria. Ahora, si tu un puntero no lo inicializas bien, va a apuntar a una direccion de memoria <strong>no valida</strong>.</p>
 <h3 id="ejemplo-de-definición-de-puntero">Ejemplo de definición de puntero</h3>
@@ -76,7 +75,7 @@
 </code></pre>
 <p>En este ejemplo, <code>*p</code> accede al <strong>valor</strong> almacenado en la dirección de memoria a la que <code>p</code> apunta, es decir, el valor de <code>a</code>. La expresión <code>*p</code> es equivalente a acceder directamente a <code>a</code>.</p>
 <h2 id="punteros-propietarios">Punteros propietarios</h2>
-<p>Cuando un programa necesita más espacio para guardar algo grande, usa una parte especial de la memoria llamada <strong><em>heap</em></strong>. Cuando hace esto, el programa recibe una “dirección” que le dice dónde se guarda ese algo, y esa dirección se guarda en forma de puntero. Este tipo de punteros se llaman <strong>punteros propietarios</strong></p>
+<p>Cuando un programa necesita más espacio para guardar algo grande, usa una parte especial de la memoria llamada <strong><em>heap</em></strong>. Cuando hace esto, el programa recibe una “dirección” que le dice dónde se guarda ese algo, y esa dirección se guarda en forma de puntero. Este tipo de punteros se llaman <strong>punteros propietarios</strong>.</p>
 <p>El problema es que, cuando terminas de usar ese espacio, el programa no lo libera automáticamente. Tú tienes que decirle al programa que lo haga, porque si no, el espacio sigue ocupado y el programa o incluso otros programas no podrán usarlo. Esto se llama <strong>“fuga de memoria”</strong>, porque el espacio queda atrapado sin poder ser reutilizado.</p>
 <p>Para manejar esto, se usan dos comandos importantes: <code>new</code> para <strong>pedir</strong> espacio en el heap y <code>delete</code> para <strong>liberar</strong> ese espacio cuando ya no lo necesitas.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
@@ -95,14 +94,15 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <p>En este ejemplo, hemos usado <code>new</code> para pedir espacio en el heap y almacenamos la dirección de esa memoria en el puntero <code>p</code>. Usamos <code>p</code> para almacenar el valor <code>42</code> en esa memoria.</p>
-<p>Si no liberamos la memoria con <code>delete</code>, esa memoria sigue ocupada aunque ya no la estemos usando, lo que genera una <strong>fuga de memoria</strong></p>
+<p>Si no liberamos la memoria con <code>delete</code>, esa memoria sigue ocupada aunque ya no la estemos usando, lo que genera una <strong>fuga de memoria</strong>.</p>
 <h3 id="¿que-es-nullptr">¿Que es nullptr?</h3>
 <p><code>nullptr</code> es un valor especial en C++ que representa un puntero que <strong>no apunta a ninguna dirección de memoria válida</strong>. En otras palabras, es una forma de inicializar o restablecer un puntero para indicar que <strong>no tiene un objeto o memoria a la cual apuntar</strong>.</p>
 <p>Después de liberar la memoria con <code>delete</code>, es buena práctica asignar <code>nullptr</code> al puntero. Esto ayuda a evitar que el puntero siga apuntando a una ubicación de memoria que ya no es válida (puntero colgante).</p>
 <h2 id="punteros-en-parámetros">Punteros en parámetros</h2>
 <h4 id="paso-por-valor-y-por-referencia">Paso por valor y por referencia</h4>
+<p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc7MKyKN-EU3Zl3Ow5J_iq_VmB7bKNq1HOjUhy6yTTnj6RmHP9H4OYZvZrE18oToHvF8SCrq_zT2Dl8I0dlw_1aGOW1ScUkAL-NadMddpMCF5bZ2TyTYY-Hr_EDfvBIoDxXi9nwUp_Tx1Z1uMyfDUhKGj2U4n7E3zqELe1wet_ZqCBctADggnI?key=Ebc5RBD3qg94hAq1Y-1isQ" alt=""></p>
 <p>Uno de los mejores usos de los punteros es que nos permite optimizar nuestro programa. Y un ejemplo muy claro, es en las funciones.</p>
-<p>En los laboratorios anteriores vimos que los parámetros los podemos pasar a una función por <strong>por valor</strong>, al hacerlo estamos dando a la función una <strong>copia del valor original</strong>. Esto significa que cualquier cambio que la función haga en ese valor <strong>no afectará</strong> al valor original fuera de la función.</p>
+<p>En los laboratorios anteriores estudiamos que los parámetros los podemos pasar a una función por <strong>por valor</strong>, al hacerlo estamos dando a la función una <strong>copia del valor original</strong>. Esto significa que cualquier cambio que la función haga en ese valor <strong>no afectará</strong> al valor original fuera de la función.</p>
 <h4 id="ejemplo-de-función-con-parametros-por-valor">Ejemplo de función con parametros por valor</h4>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
@@ -149,7 +149,6 @@
 <span class="token punctuation">}</span>
 
 </code></pre>
-<p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc7MKyKN-EU3Zl3Ow5J_iq_VmB7bKNq1HOjUhy6yTTnj6RmHP9H4OYZvZrE18oToHvF8SCrq_zT2Dl8I0dlw_1aGOW1ScUkAL-NadMddpMCF5bZ2TyTYY-Hr_EDfvBIoDxXi9nwUp_Tx1Z1uMyfDUhKGj2U4n7E3zqELe1wet_ZqCBctADggnI?key=Ebc5RBD3qg94hAq1Y-1isQ" alt="">**</p>
 <h2 id="punteros-en-arreglos">Punteros en arreglos</h2>
 <p>En C++, los <strong>arreglos</strong> y los <strong>punteros</strong> están estrechamente relacionados. Un arreglo es básicamente una secuencia contigua de elementos almacenados en la memoria, y el <strong>nombre del arreglo</strong> es en realidad un <strong>puntero</strong> que apunta a la dirección de memoria del primer elemento del arreglo.</p>
 <p>Por lo tanto, no es necesario usar el operador <code>&amp;</code> para obtener la dirección del primer elemento del arreglo, ya que el nombre del arreglo ya es un puntero.</p>
@@ -199,7 +198,7 @@
 <h2 id="importancia-de-los-punteros-en-la-gestión-de-memoria-y-manipulación-de-datos">Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos</h2>
 <p>Los punteros juegan un papel fundamental en la <strong>gestión eficiente de la memoria</strong> y en la <strong>manipulación de datos</strong> dentro de la programación.</p>
 <p>En muchas aplicaciones, no siempre sabemos cuánta memoria será necesaria durante la ejecución del programa. Los punteros nos permiten <strong>asignar y liberar memoria dinámica</strong> de manera manual, lo cual es crucial para gestionar correctamente los recursos en programas que requieren mucha memoria o cuya cantidad de datos no es fija.</p>
-<p>Al usar punteros, es posible <strong>optimizar el rendimiento</strong> del programa al reducir el uso de memoria y permitir un acceso más rápido a los datos</p>
+<p>Al usar punteros, es posible <strong>optimizar el rendimiento</strong> del programa al reducir el uso de memoria y permitir un acceso más rápido a los datos.</p>
 
     </div>
   </div>

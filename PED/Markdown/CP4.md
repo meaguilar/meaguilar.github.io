@@ -4,7 +4,7 @@ En este laboratorio aprenderás sobre el uso de punteros, cómo declararlos, có
 
 ### ¿Qué son los punteros?
 
-En tu computadora, cada variable que tu guardas, en realidad el valor de esa variable se guarda en **una dirección de memoria**. Los punteros, van a permitirnos almacenar la dirección de memoria de cualquier variable y nos permitirán manipularla.
+En tu computadora, cada variable que tu guardas, en realidad el valor de esa variable se guarda en **una dirección de memoria**. La dirección de memoria es el **lugar físico** donde la memoria **está** siendo guardada. Los punteros, van a permitirnos almacenar la dirección de memoria de cualquier variable y nos permitirán manipularla.
 
 
 Como tal, una variable tiene 3 características fundamentales:
@@ -12,8 +12,6 @@ Como tal, una variable tiene 3 características fundamentales:
 - **Su valor** 
 - **Su nombre** 
 - **Dirección de memoria**
-
-La dirección de memoria es el **lugar fisico** donde la memoria esta siendo guardada.
 
 Entonces, a simple modo podemos decir que un puntero es como un tipo especial de variable, que tiene las características que mencionamos anteriormente, como todas las variables, con la única **diferencia** que su valor no será un dato como tal, si no que era una dirección de memoria que esta **apuntando** a otro objeto (int, float, chat).
 
@@ -59,7 +57,7 @@ int  main(int  argc,  char*  argv[])  {
 En este ejemplo, `*p` accede al **valor** almacenado en la dirección de memoria a la que `p` apunta, es decir, el valor de `a`. La expresión `*p` es equivalente a acceder directamente a `a`.
 
 ## Punteros propietarios
-Cuando un programa necesita más espacio para guardar algo grande, usa una parte especial de la memoria llamada **_heap_**. Cuando hace esto, el programa recibe una "dirección" que le dice dónde se guarda ese algo, y esa dirección se guarda en forma de puntero. Este tipo de punteros se llaman **punteros propietarios**
+Cuando un programa necesita más espacio para guardar algo grande, usa una parte especial de la memoria llamada **_heap_**. Cuando hace esto, el programa recibe una "dirección" que le dice dónde se guarda ese algo, y esa dirección se guarda en forma de puntero. Este tipo de punteros se llaman **punteros propietarios**.
 
 El problema es que, cuando terminas de usar ese espacio, el programa no lo libera automáticamente. Tú tienes que decirle al programa que lo haga, porque si no, el espacio sigue ocupado y el programa o incluso otros programas no podrán usarlo. Esto se llama **"fuga de memoria"**, porque el espacio queda atrapado sin poder ser reutilizado.
 
@@ -83,7 +81,7 @@ int main(int argc, char* argv[]) {
 ```
 En este ejemplo, hemos usado `new` para pedir espacio en el heap y almacenamos la dirección de esa memoria en el puntero `p`. Usamos `p` para almacenar el valor `42` en esa memoria.
 
-Si no liberamos la memoria con `delete`, esa memoria sigue ocupada aunque ya no la estemos usando, lo que genera una **fuga de memoria**
+Si no liberamos la memoria con `delete`, esa memoria sigue ocupada aunque ya no la estemos usando, lo que genera una **fuga de memoria**.
 
 ### ¿Que es nullptr?
 `nullptr` es un valor especial en C++ que representa un puntero que **no apunta a ninguna dirección de memoria válida**. En otras palabras, es una forma de inicializar o restablecer un puntero para indicar que **no tiene un objeto o memoria a la cual apuntar**.
@@ -93,9 +91,13 @@ Después de liberar la memoria con `delete`, es buena práctica asignar `nullptr
 ## Punteros en parámetros
 
 #### Paso por valor y por referencia
+
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXc7MKyKN-EU3Zl3Ow5J_iq_VmB7bKNq1HOjUhy6yTTnj6RmHP9H4OYZvZrE18oToHvF8SCrq_zT2Dl8I0dlw_1aGOW1ScUkAL-NadMddpMCF5bZ2TyTYY-Hr_EDfvBIoDxXi9nwUp_Tx1Z1uMyfDUhKGj2U4n7E3zqELe1wet_ZqCBctADggnI?key=Ebc5RBD3qg94hAq1Y-1isQ)
+
+
 Uno de los mejores usos de los punteros es que nos permite optimizar nuestro programa. Y un ejemplo muy claro, es en las funciones.
 
-En los laboratorios anteriores vimos que los parámetros los podemos pasar a una función por **por valor**, al hacerlo estamos dando a la función una **copia del valor original**. Esto significa que cualquier cambio que la función haga en ese valor **no afectará** al valor original fuera de la función.
+En los laboratorios anteriores estudiamos que los parámetros los podemos pasar a una función por **por valor**, al hacerlo estamos dando a la función una **copia del valor original**. Esto significa que cualquier cambio que la función haga en ese valor **no afectará** al valor original fuera de la función.
 
 #### Ejemplo de función con parametros por valor
 ```c++
@@ -147,7 +149,6 @@ int main(int argc, char* argv[]) {
 
 ```
 
-![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXc7MKyKN-EU3Zl3Ow5J_iq_VmB7bKNq1HOjUhy6yTTnj6RmHP9H4OYZvZrE18oToHvF8SCrq_zT2Dl8I0dlw_1aGOW1ScUkAL-NadMddpMCF5bZ2TyTYY-Hr_EDfvBIoDxXi9nwUp_Tx1Z1uMyfDUhKGj2U4n7E3zqELe1wet_ZqCBctADggnI?key=Ebc5RBD3qg94hAq1Y-1isQ)**
 ## Punteros en arreglos
 En C++, los **arreglos** y los **punteros** están estrechamente relacionados. Un arreglo es básicamente una secuencia contigua de elementos almacenados en la memoria, y el **nombre del arreglo** es en realidad un **puntero** que apunta a la dirección de memoria del primer elemento del arreglo.
 
@@ -207,5 +208,5 @@ Los punteros juegan un papel fundamental en la **gestión eficiente de la memori
 
 En muchas aplicaciones, no siempre sabemos cuánta memoria será necesaria durante la ejecución del programa. Los punteros nos permiten **asignar y liberar memoria dinámica** de manera manual, lo cual es crucial para gestionar correctamente los recursos en programas que requieren mucha memoria o cuya cantidad de datos no es fija.
 
-Al usar punteros, es posible **optimizar el rendimiento** del programa al reducir el uso de memoria y permitir un acceso más rápido a los datos
+Al usar punteros, es posible **optimizar el rendimiento** del programa al reducir el uso de memoria y permitir un acceso más rápido a los datos.
 
