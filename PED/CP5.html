@@ -38,24 +38,22 @@
 <p>A diferencia de las <strong>listas estáticas</strong> o arreglos, las listas dinámicas <strong>no necesitan un tamaño fijo</strong> y permiten una mayor flexibilidad en la gestión de la memoria.</p>
 <h3 id="características-de-las-listas-dinámicas">Características de las listas dinámicas</h3>
 <ul>
-<li><strong>Tamaño dinámico:</strong> o a elemeene un único sucesor, excepto el último, que no tiene sucesores.</li>
-</ul>
-<p>Existen cuatro operaciones básicas asociadas con las lista puede cambiar durante la ejecución.</p>
-<ul>
 <li><strong>Uso de punteros</strong>: Los nodos de una lista dinámica almacens lineales que permiten man ipunteros que enlazan los nodos entre sí.</li>
 <li><strong>Memoria dinámica</strong>: Se gestiona mediante punteros, lo que permite un uso eficiente de la me la listaista dn un al sguta, a</li>
-<li><em>Inserción y eliminación eficientes</em>*: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.</li>
+<li><strong>Inserción y eliminación eficientes</strong>: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.</li>
 </ul>
 <h2 id="tipos-de-listas-dinámicas">Tipos de listas dinámicas</h2>
-<p>En general estudiaremos dos tipos de listas dinámicas, las cuales serán:</p>
+<p>En general estudiaremos cuatro tipos de listas dinámicas, las cuales serán:</p>
 <ul>
 <li><strong>Listas enlazadas simples</strong></li>
-<li><strong>La listas doblemente enlazadas</strong></li>
+<li><strong>Listas doblemente enlazadas</strong></li>
+<li><strong>Listas circulares simplemente enlazadas</strong></li>
+<li><strong>Listas circulares doblemente enlazadas</strong></li>
 </ul>
 <p>Pero antes de ver a profundidad como funcionan estas tipos de listas, veremos que todas están compuestas por <strong>nodos</strong>. Cada nodo está compuesto por dos partes principales:</p>
 <ul>
 <li><strong>Dato</strong>: El valor almacenado en el nodo.</li>
-<li><strong>Puntero</strong>: Ue estudiantes, se puede insertar un nuevo estudiante al principio, al final o en puntero que apunta ya sea al siguiente o al anterior nodo.</li>
+<li><strong>Puntero</strong>: Ue estudiantes, se puede insertar un nuevo estudiante al principio, al final o en puntero que apunta ya sea al siguiente o al anterior nodo. (Esto lo veremos mejor a medida profundicemos)</li>
 </ul>
 <p>En C++ cada nodo lo declararemos como una estructura:</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
