@@ -34,11 +34,11 @@
       <h1 id="estructuras-de-datos-dinámicas-lineales-listas"><strong>Estructuras de datos dinámicas lineales: listas</strong></h1>
 <p>En este laboratorio aprenderás sobre el uso de listas dinámicas, cómo declararlas, utilizarlas, y su importancia en la organización y manipulación de datos en la programación.</p>
 <h2 id="¿qué-es-una-lista-dinámica">¿Qué es una lista dinámica?</h2>
-<p>Una <strong>lista dinámica</strong> es una estructura de datos en la que los elementos se organizan secuencialmente, pero su tamañde modo pquede cambiar de manera dinámica, es decir, pueden crecer o reducirse según sea necesario.</p>
+<p>Una <strong>lista dinámica</strong> es una estructura de datos en la que los elementos se organizan secuencialmente, pero su tamaño puede cambiar de manera dinámica, es decir, puede crecer o reducirse según sea necesario.</p>
 <p>A diferencia de las <strong>listas estáticas</strong> o arreglos, las listas dinámicas <strong>no necesitan un tamaño fijo</strong> y permiten una mayor flexibilidad en la gestión de la memoria.</p>
 <h3 id="características-de-las-listas-dinámicas">Características de las listas dinámicas</h3>
 <ul>
-<li><strong>Uso de punteros</strong>: Los nodos de una lista dinámica almacens lineales que permiten man ipunteros que enlazan los nodos entre sí.</li>
+<li><strong>Uso de punteros</strong>: Los nodos de una lista dinámica almacenan punteros que enlazan los nodos entre sí.</li>
 <li><strong>Memoria dinámica</strong>: Se gestiona mediante punteros, lo que permite un uso eficiente de la me la listaista dn un al sguta, a</li>
 <li><strong>Inserción y eliminación eficientes</strong>: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.</li>
 </ul>
@@ -55,11 +55,25 @@
 <li><strong>Dato</strong>: El valor almacenado en el nodo.</li>
 <li><strong>Puntero</strong>: Cada nodo va a apuntar a otro nodo mediante punteros, ya sea para adelante o para atras <strong>(Veremos más adelante en que casos)</strong></li>
 </ul>
-<p>En C++ cada nodo lo declararemos como una estructura:</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> dato<span class="token punctuation">;</span>        <span class="token comment">// Valor almacenado en el nodo</span>
-    Nodo<span class="token operator">*</span> anterior<span class="token punctuation">;</span> <span class="token comment">// Puntero al anterior nodo</span>
-    Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo</span>
+<p>En C++, cada nodo puede declararse como una estructura que almacena un valor y punteros para enlazar con los nodos anterior y siguiente, como se muestra a continuación:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> dato<span class="token punctuation">;</span>            <span class="token comment">// Valor almacenado</span>
+    NodoDoble<span class="token operator">*</span> siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo</span>
+    NodoDoble<span class="token operator">*</span> anterior<span class="token punctuation">;</span>  <span class="token comment">// Puntero al nodo anterior</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Sin embargo, se sugiere una mejora organizativa: separar los datos en una estructura independiente. Esto proporciona dos ventajas clave: primero, <strong>mejora el orden</strong> y la <strong>modularidad del código</strong>; segundo, facilita la <strong>ampliación</strong> de los datos almacenados en el futuro, permitiendo agregar múltiples valores sin necesidad de modificar la estructura del nodo.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">// Estructura para almacenar los datos</span>
+<span class="token keyword">struct</span> Datos <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> valor<span class="token punctuation">;</span>       <span class="token comment">// Valor que se quiere almacenar en la lista</span>
+    <span class="token comment">// Puedes agregar más campos si es necesario</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Estructura del nodo</span>
+<span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+    Datos dato<span class="token punctuation">;</span>      <span class="token comment">// Campo de tipo Datos que contiene el valor</span>
+    Nodo<span class="token operator">*</span> anterior<span class="token punctuation">;</span>  <span class="token comment">// Puntero al nodo anterior</span>
+    Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al nodo siguiente</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="funciones-en-una-lista">Funciones en una lista</h3>
@@ -129,6 +143,8 @@
     delete actual<span class="token punctuation">;</span>  <span class="token comment">// Liberar la memoria del nodo eliminado</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h3 id="ejemplo-completo">Ejemplo completo</h3>
+<p>Puedes ver un ejemplo completo de la implementación de listas simples en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimples.cc">repositorio</a>.</p>
 <h2 id="listas-doblemente-enlazadas">Listas Doblemente Enlazadas</h2>
 <p>Después de haber estudiado que son las listas enlazadas simples, es el momento de introducir una variante más compleja: las <strong>listas doblemente enlazadas</strong>. Estas listas permiten una navegación bidireccional a través de los nodos, gracias a que cada nodo de la lista tiene dos punteros: uno hacia el siguiente nodo y otro hacia el anterior.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Lista_doblemente_enlazada.png" alt="Una lista doblemente enlazada cuyos nodos contienen tres campos: un valor entero, el enlace al nodo siguiente, y el enlace al nodo anterior."></p>
@@ -140,7 +156,7 @@
     NodoDoble<span class="token operator">*</span> anterior<span class="token punctuation">;</span>  <span class="token comment">// Puntero al nodo anterior</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Algo importante que aclarar es que en las listas doblemente enlazadas, el primer nodo, su nodo anterior apunta a <code>nullptr</code>. E igualmente, el nodo final, su nodo siguiente apunta a <code>nullptr</code>.  Estos punteros a <code>nullptr</code> son cruciales para identificar los <strong>extremos de la lista</strong></p>
+<p>Algo importante que aclarar es que en las listas doblemente enlazadas, el nodo anterior del primer nodo apunta a <code>nullptr</code>. De manera similar, el nodo siguiente del nodo final también apunta a <code>nullptr</code>. Estos punteros a <code>nullptr</code> son cruciales para identificar los <strong>extremos de la lista</strong>.</p>
 <h3 id="agregar-un-nodo-al-principio-1"><strong>Agregar un nodo al principio</strong></h3>
 <p>Para crear un nuevo nodo, se asigna el valor proporcionado y se conecta al actual primer nodo de la lista. Si ya hay nodos en la lista, actualiza el nodo que estaba al inicio para que reconozca al nuevo nodo como su anterior. Al final, establece este nuevo nodo como el nuevo inicio de la lista actualizando el puntero <code>cabeza</code>.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlInicio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -209,6 +225,8 @@
     std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"nullptr"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h3 id="ejemplo-completo-1">Ejemplo completo</h3>
+<p>Puedes ver un ejemplo completo de la implementación de listas dobles en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDobles.cc">repositorio</a>.</p>
 <h2 id="listas-circulares-simplemente-enlazadas">Listas circulares simplemente enlazadas</h2>
 <p>Una <strong>lista circular simple</strong> es una estructura de datos dinámica en la que cada nodo apunta al siguiente, formando un ciclo cerrado en el que el último nodo está conectado al primer nodo. A diferencia de una lista enlazada simple, no tiene un final definido (<code>nullptr</code>), lo que permite un recorrido continuo.</p>
 <h3 id="características-de-una-lista-circular-simple">Características de una lista circular simple</h3>
@@ -296,6 +314,8 @@
     <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> cabeza<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h3 id="ejemplo-completo-2">Ejemplo completo</h3>
+<p>Puedes ver un ejemplo completo de la implementación de listas simples circulares en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimplesCirculares.cc">repositorio</a>.</p>
 <h2 id="listas-circulares-doblemente-enlazadas">Listas circulares doblemente enlazadas</h2>
 <p>Una <strong>lista circular doblemente enlazada</strong> es una estructura de datos dinámica en la que cada nodo tiene dos punteros: uno que apunta al siguiente nodo y otro que apunta al anterior. La principal diferencia con las listas doblemente enlazadas tradicionales es que el último nodo está conectado al primero y viceversa, formando un ciclo cerrado.</p>
 <p><img src="https://lh3.googleusercontent.com/proxy/mqYQtJMXYjL2uoaFpdm8uP0kfw7LaQu-tdItufHnm2Fr0MKgJeKWpsSi_Zrk_5w-1fcTiiS7E06ePMZZZNd99qNUW3yI8Gl7UFvGaAQ01qe7msBxU0GSagGRrEjdQ_XvNf3nbi79zZAVTzwnDvpe28vBAA" alt="Lista Circular Doblemente Enlazada"></p>
@@ -399,6 +419,8 @@
 
 <span class="token punctuation">}</span>
 </code></pre>
+<h3 id="ejemplo-completo-3">Ejemplo completo</h3>
+<p>Puedes ver un ejemplo completo de la implementación de listas dobles circulares en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDoblesCirculares.cc">repositorio</a>.</p>
 <h2 id="ventajas-de-las-listas-enlazadas">Ventajas de las listas enlazadas</h2>
 <p>Cada tipo de lista ofrece diferentes ventajas: las <strong>listas enlazadas simples</strong> son fáciles de implementar y permiten una gestión básica de datos, mientras que las <strong>listas doblemente enlazadas</strong> facilitan el recorrido bidireccional. Por otro lado, las <strong>listas circulares</strong> son ideales para aplicaciones donde se requiere un recorrido continuo y cíclico de los datos.</p>
 <p>Las listas enlazadas, aunque ofrecen muchas ventajas, también presentan algunas desventajas importantes en comparación con otras estructuras de datos, como los arreglos, por ejemplo <strong>en el uso de la memoria</strong> y sobre todo sobre su complejidad y conocimiento sobre punteros, ya que si los punteros no se gestionan correctamente, puede haber errores como pérdida de memoria o acceso a punteros inválidos.</p>

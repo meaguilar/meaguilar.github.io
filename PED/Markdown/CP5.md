@@ -4,35 +4,54 @@ En este laboratorio aprenderás sobre el uso de listas dinámicas, cómo declara
 
 ## ¿Qué es una lista dinámica?
 
-Una **lista dinámica** es una estructura de datos en la que los elementos se organizan secuencialmente, pero su tamañde modo pquede cambiar de manera dinámica, es decir, pueden crecer o reducirse según sea necesario.
+Una **lista dinámica** es una estructura de datos en la que los elementos se organizan secuencialmente, pero su tamaño puede cambiar de manera dinámica, es decir, puede crecer o reducirse según sea necesario.
 
 A diferencia de las **listas estáticas** o arreglos, las listas dinámicas **no necesitan un tamaño fijo** y permiten una mayor flexibilidad en la gestión de la memoria.
 
 ### Características de las listas dinámicas
-- **Tamaño dinámico:** o a elemeene un único sucesor, excepto el último, que no tiene sucesores.
 
-Existen cuatro operaciones básicas asociadas con las lista puede cambiar durante la ejecución.
-- **Uso de punteros**: Los nodos de una lista dinámica almacens lineales que permiten man ipunteros que enlazan los nodos entre sí.
+- **Uso de punteros**: Los nodos de una lista dinámica almacenan punteros que enlazan los nodos entre sí.
 - **Memoria dinámica**: Se gestiona mediante punteros, lo que permite un uso eficiente de la me la listaista dn un al sguta, a
--  *Inserción y eliminación eficientes**: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.
+-  **Inserción y eliminación eficientes**: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.
 
 ## Tipos de listas dinámicas
 
-En general estudiaremos dos tipos de listas dinámicas, las cuales serán:
+En general estudiaremos cuatro tipos de listas dinámicas, las cuales serán:
 
 -   **Listas enlazadas simples**
--   **La listas doblemente enlazadas**
+-   **Listas doblemente enlazadas**
+- **Listas circulares simplemente enlazadas**
+-  **Listas circulares doblemente enlazadas**
+
 
 Pero antes de ver a profundidad como funcionan estas tipos de listas, veremos que todas están compuestas por **nodos**. Cada nodo está compuesto por dos partes principales:
 
 -   **Dato**: El valor almacenado en el nodo.
--   **Puntero**: Ue estudiantes, se puede insertar un nuevo estudiante al principio, al final o en puntero que apunta ya sea al siguiente o al anterior nodo.
+-   **Puntero**: Cada nodo va a apuntar a otro nodo mediante punteros, ya sea para adelante o para atras **(Veremos más adelante en que casos)**
 
-En C++ cada nodo lo declararemos como una estructura:
+En C++, cada nodo puede declararse como una estructura que almacena un valor y punteros para enlazar con los nodos anterior y siguiente, como se muestra a continuación:
+
 ```c++
+struct Nodo{
+    int dato;            // Valor almacenado
+    NodoDoble* siguiente; // Puntero al siguiente nodo
+    NodoDoble* anterior;  // Puntero al nodo anterior
+};
+```
+Sin embargo, se sugiere una mejora organizativa: separar los datos en una estructura independiente. Esto proporciona dos ventajas clave: primero, **mejora el orden** y la **modularidad del código**; segundo, facilita la **ampliación** de los datos almacenados en el futuro, permitiendo agregar múltiples valores sin necesidad de modificar la estructura del nodo.
+
+```c++
+// Estructura para almacenar los datos
+struct Datos {
+    int valor;       // Valor que se quiere almacenar en la lista
+    // Puedes agregar más campos si es necesario
+};
+
+// Estructura del nodo
 struct Nodo {
-    int dato;        // Valor almacenado en el nodo
-    Nodo* siguiente; // Puntero al siguiente nodo
+    Datos dato;      // Campo de tipo Datos que contiene el valor
+    Nodo* anterior;  // Puntero al nodo anterior
+    Nodo* siguiente; // Puntero al nodo siguiente
 };
 ```
 
@@ -64,7 +83,7 @@ void AgregarNodo(Nodo*& cabeza, int valor) {
 ```
 
 ### **Mostrar todos los nodos**
- Utiliza un bucle `while` para recorrer la lista mientras el nodo actual no sea `nullptr`, imprimiendo cada valor seguido de " -> ". Al llegar al final de la lista, imprime "nullptr" para indicar que no hay más nodos.
+ Utiliza un bucle `while` para recorrer la lista mientras el nodo actual no sea `nullptr`, imprimiendo cada valor. Al llegar al final de la lista, imprime "nullptr" para indicar que no hay más nodos.
 ```c++
 void MostrarLista(Nodo* cabeza) {
     Nodo* actual = cabeza;  // Iniciar desde la cabeza
@@ -114,6 +133,9 @@ void EliminarNnodo(Nodo*& cabeza, int valor) {
 }
 ```
 
+### Ejemplo completo
+Puedes ver un ejemplo completo de la implementación de listas simples en este [repositorio](https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimples.cc).
+
 ## Listas Doblemente Enlazadas
 
 Después de haber estudiado que son las listas enlazadas simples, es el momento de introducir una variante más compleja: las **listas doblemente enlazadas**. Estas listas permiten una navegación bidireccional a través de los nodos, gracias a que cada nodo de la lista tiene dos punteros: uno hacia el siguiente nodo y otro hacia el anterior.
@@ -132,7 +154,7 @@ struct Nodo{
 };
 ```
 
-Algo importante que aclarar es que en las listas doblemente enlazadas, el primer nodo, su nodo anterior apunta a `nullptr`. E igualmente, el nodo final, su nodo siguiente apunta a `nullptr`.  Estos punteros a `nullptr` son cruciales para identificar los **extremos de la lista** 
+Algo importante que aclarar es que en las listas doblemente enlazadas, el nodo anterior del primer nodo apunta a `nullptr`. De manera similar, el nodo siguiente del nodo final también apunta a `nullptr`. Estos punteros a `nullptr` son cruciales para identificar los **extremos de la lista**.
 
 ### **Agregar un nodo al principio**
 Para crear un nuevo nodo, se asigna el valor proporcionado y se conecta al actual primer nodo de la lista. Si ya hay nodos en la lista, actualiza el nodo que estaba al inicio para que reconozca al nuevo nodo como su anterior. Al final, establece este nuevo nodo como el nuevo inicio de la lista actualizando el puntero `cabeza`.
@@ -206,6 +228,10 @@ void MostrarLista(Nodo* cabeza) {
     std::cout << "nullptr" << std::endl;
 }
 ```
+
+
+### Ejemplo completo
+Puedes ver un ejemplo completo de la implementación de listas dobles en este [repositorio](https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDobles.cc).
 
 
 ## Listas circulares simplemente enlazadas
@@ -303,6 +329,8 @@ void EliminarNodo(Nodo*& cabeza, int valor) {
     } while (actual != cabeza);
 }
 ```
+### Ejemplo completo
+Puedes ver un ejemplo completo de la implementación de listas simples circulares en este [repositorio](https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimplesCirculares.cc).
 
 ## Listas circulares doblemente enlazadas
 Una **lista circular doblemente enlazada** es una estructura de datos dinámica en la que cada nodo tiene dos punteros: uno que apunta al siguiente nodo y otro que apunta al anterior. La principal diferencia con las listas doblemente enlazadas tradicionales es que el último nodo está conectado al primero y viceversa, formando un ciclo cerrado.
@@ -413,6 +441,10 @@ void MostrarLista(Nodo* cabeza) {
 
 }
 ```
+
+### Ejemplo completo
+Puedes ver un ejemplo completo de la implementación de listas dobles circulares en este [repositorio](https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDoblesCirculares.cc).
+
 ## Ventajas de las listas enlazadas
 Cada tipo de lista ofrece diferentes ventajas: las **listas enlazadas simples** son fáciles de implementar y permiten una gestión básica de datos, mientras que las **listas doblemente enlazadas** facilitan el recorrido bidireccional. Por otro lado, las **listas circulares** son ideales para aplicaciones donde se requiere un recorrido continuo y cíclico de los datos.
 
