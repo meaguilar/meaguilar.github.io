@@ -2,68 +2,85 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Labo 05 - Listas</title>
-  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labo 05 - Listas</title>
+    <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__left">
-    <div class="stackedit__toc">
-      
-<ul>
-<li><a href="#estructuras-de-datos-dinámicas-lineales-listas">Estructuras de datos dinámicas lineales: listas</a>
-<ul>
-<li><a href="#¿qué-es-una-lista-dinámica">¿Qué es una lista dinámica?</a></li>
-<li><a href="#tipos-de-listas-dinámicas">Tipos de listas dinámicas</a></li>
-<li><a href="#listas-enlazadas-simples">Listas Enlazadas Simples</a></li>
-<li><a href="#listas-doblemente-enlazadas">Listas Doblemente Enlazadas</a></li>
-<li><a href="#listas-circulares-simplemente-enlazadas">Listas circulares simplemente enlazadas</a></li>
-<li><a href="#listas-circulares-doblemente-enlazadas">Listas circulares doblemente enlazadas</a></li>
-<li><a href="#ventajas-de-las-listas-enlazadas">Ventajas de las listas enlazadas</a></li>
-<li><a href="#referencias">Referencias</a></li>
-</ul>
-</li>
-</ul>
+    <div class="stackedit__left">
+        <div class="stackedit__toc">
 
+            <ul>
+                <li><a href="#estructuras-de-datos-dinámicas-lineales-listas">Estructuras de datos dinámicas lineales:
+                        listas</a>
+                    <ul>
+                        <li><a href="#¿qué-es-una-lista-dinámica">¿Qué es una lista dinámica?</a></li>
+                        <li><a href="#tipos-de-listas-dinámicas">Tipos de listas dinámicas</a></li>
+                        <li><a href="#listas-enlazadas-simples">Listas Enlazadas Simples</a></li>
+                        <li><a href="#listas-doblemente-enlazadas">Listas Doblemente Enlazadas</a></li>
+                        <li><a href="#listas-circulares-simplemente-enlazadas">Listas circulares simplemente
+                                enlazadas</a></li>
+                        <li><a href="#listas-circulares-doblemente-enlazadas">Listas circulares doblemente enlazadas</a>
+                        </li>
+                        <li><a href="#ventajas-de-las-listas-enlazadas">Ventajas de las listas enlazadas</a></li>
+                        <li><a href="#referencias">Referencias</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
     </div>
-  </div>
-  <div class="stackedit__right">
-    <div class="stackedit__html">
-      <h1 id="estructuras-de-datos-dinámicas-lineales-listas"><strong>Estructuras de datos dinámicas lineales: listas</strong></h1>
-<p>En este laboratorio aprenderás sobre el uso de listas dinámicas, cómo declararlas, utilizarlas, y su importancia en la organización y manipulación de datos en la programación.</p>
-<h2 id="¿qué-es-una-lista-dinámica">¿Qué es una lista dinámica?</h2>
-<p>Una <strong>lista dinámica</strong> es una estructura de datos en la que los elementos se organizan secuencialmente, pero su tamaño puede cambiar de manera dinámica, es decir, puede crecer o reducirse según sea necesario.</p>
-<p>A diferencia de las <strong>listas estáticas</strong> o arreglos, las listas dinámicas <strong>no necesitan un tamaño fijo</strong> y permiten una mayor flexibilidad en la gestión de la memoria.</p>
-<h3 id="características-de-las-listas-dinámicas">Características de las listas dinámicas</h3>
-<ul>
-<li><strong>Uso de punteros</strong>: Los nodos de una lista dinámica almacenan punteros que enlazan los nodos entre sí.</li>
-<li><strong>Memoria dinámica</strong>: Se gestiona mediante punteros, lo que permite un uso eficiente de la me la listaista dn un al sguta, a</li>
-<li><strong>Inserción y eliminación eficientes</strong>: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.</li>
-</ul>
-<h2 id="tipos-de-listas-dinámicas">Tipos de listas dinámicas</h2>
-<p>En general estudiaremos cuatro tipos de listas dinámicas, las cuales serán:</p>
-<ul>
-<li><strong>Listas enlazadas simples</strong></li>
-<li><strong>Listas doblemente enlazadas</strong></li>
-<li><strong>Listas circulares simplemente enlazadas</strong></li>
-<li><strong>Listas circulares doblemente enlazadas</strong></li>
-</ul>
-<p>Pero antes de ver a profundidad como funcionan estas tipos de listas, veremos que todas están compuestas por <strong>nodos</strong>. Cada nodo está compuesto por dos partes principales:</p>
-<ul>
-<li><strong>Dato</strong>: El valor almacenado en el nodo.</li>
-<li><strong>Puntero</strong>: Cada nodo va a apuntar a otro nodo mediante punteros, ya sea para adelante o para atras <strong>(Veremos más adelante en que casos)</strong></li>
-</ul>
-<p>En C++, cada nodo puede declararse como una estructura que almacena un valor y punteros para enlazar con los nodos anterior y siguiente, como se muestra a continuación:</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo<span class="token punctuation">{</span>
+    <div class="stackedit__right">
+        <div class="stackedit__html">
+            <h1 id="estructuras-de-datos-dinámicas-lineales-listas"><strong>Estructuras de datos dinámicas lineales:
+                    listas</strong></h1>
+            <p>En este laboratorio aprenderás sobre el uso de listas dinámicas, cómo declararlas, utilizarlas, y su
+                importancia en la organización y manipulación de datos en la programación.</p>
+            <h2 id="¿qué-es-una-lista-dinámica">¿Qué es una lista dinámica?</h2>
+            <p>Una <strong>lista dinámica</strong> es una estructura de datos en la que los elementos se organizan
+                secuencialmente, pero su tamaño puede cambiar de manera dinámica, es decir, puede crecer o reducirse
+                según sea necesario.</p>
+            <p>A diferencia de las <strong>listas estáticas</strong> o arreglos, las listas dinámicas <strong>no
+                    necesitan un tamaño fijo</strong> y permiten una mayor flexibilidad en la gestión de la memoria.</p>
+            <h3 id="características-de-las-listas-dinámicas">Características de las listas dinámicas</h3>
+            <ul>
+                <li><strong>Uso de punteros</strong>: Los nodos de una lista dinámica almacenan punteros que enlazan los
+                    nodos entre sí.</li>
+                <li><strong>Memoria dinámica</strong>: Se gestiona mediante punteros, lo que permite un uso eficiente de
+                    la memoria</li>
+                <li><strong>Inserción y eliminación eficientes</strong>: Las operaciones de inserción y eliminación de
+                    elementos son más eficientes que en los arreglos estáticos.</li>
+            </ul>
+            <h2 id="tipos-de-listas-dinámicas">Tipos de listas dinámicas</h2>
+            <p>En general estudiaremos cuatro tipos de listas dinámicas, las cuales serán:</p>
+            <ul>
+                <li><strong>Listas enlazadas simples</strong></li>
+                <li><strong>Listas doblemente enlazadas</strong></li>
+                <li><strong>Listas circulares simplemente enlazadas</strong></li>
+                <li><strong>Listas circulares doblemente enlazadas</strong></li>
+            </ul>
+            <p>Pero antes de ver a profundidad como funcionan estas tipos de listas, veremos que todas están compuestas
+                por <strong>nodos</strong>. Cada nodo está compuesto por dos partes principales:</p>
+            <ul>
+                <li><strong>Dato</strong>: El valor almacenado en el nodo.</li>
+                <li><strong>Puntero</strong>: Cada nodo va a apuntar a otro nodo mediante punteros, ya sea para adelante
+                    o para atras <strong>(Veremos más adelante en que casos)</strong></li>
+            </ul>
+            <p>En C++, cada nodo puede declararse como una estructura que almacena un valor y punteros para enlazar con
+                los nodos anterior y siguiente, como se muestra a continuación:</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo<span class="token punctuation">{</span>
     <span class="token keyword">int</span> dato<span class="token punctuation">;</span>            <span class="token comment">// Valor almacenado</span>
     NodoDoble<span class="token operator">*</span> siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo</span>
     NodoDoble<span class="token operator">*</span> anterior<span class="token punctuation">;</span>  <span class="token comment">// Puntero al nodo anterior</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Sin embargo, se sugiere una mejora organizativa: separar los datos en una estructura independiente. Esto proporciona dos ventajas clave: primero, <strong>mejora el orden</strong> y la <strong>modularidad del código</strong>; segundo, facilita la <strong>ampliación</strong> de los datos almacenados en el futuro, permitiendo agregar múltiples valores sin necesidad de modificar la estructura del nodo.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">// Estructura para almacenar los datos</span>
+            <p>Sin embargo, se sugiere una mejora organizativa: separar los datos en una estructura independiente. Esto
+                proporciona dos ventajas clave: primero, <strong>mejora el orden</strong> y la <strong>modularidad del
+                    código</strong>; segundo, facilita la <strong>ampliación</strong> de los datos almacenados en el
+                futuro, permitiendo agregar múltiples valores sin necesidad de modificar la estructura del nodo.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">// Estructura para almacenar los datos</span>
 <span class="token keyword">struct</span> Datos <span class="token punctuation">{</span>
     <span class="token keyword">int</span> valor<span class="token punctuation">;</span>       <span class="token comment">// Valor que se quiere almacenar en la lista</span>
     <span class="token comment">// Puedes agregar más campos si es necesario</span>
@@ -76,30 +93,37 @@
     Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al nodo siguiente</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="funciones-en-una-lista">Funciones en una lista</h3>
-<p>Las operaciones más comunes que se pueden realizar en una lista enlazada incluyen:</p>
-<ul>
-<li><strong>Agregar un nodo al principio</strong>.</li>
-<li><strong>Mostrar todos los nodos</strong> (recorrer la lista).</li>
-<li><strong>Eliminar un nodo</strong>.</li>
-<li><strong>Buscar un valor en la lista</strong></li>
-</ul>
-<h2 id="listas-enlazadas-simples">Listas Enlazadas Simples</h2>
-<p>Una <strong>lista enlazada simple</strong> es una estructura de datos dinámica en la que cada nodo apunta al nodo siguiente. Esto va a ser verdadero hasta el ultimo nodo, ya que el ultimo nodo no apunta a otro nodo como tal, si no que el puntero apunta a <code>nullptr</code></p>
-<p><code>nullptr</code> es un valor especial en C++ que representa un <strong>puntero que no apunta a ninguna dirección de memoria válida</strong>. En otras palabras, indica que un puntero no está asociado con ningún objeto o variable en particular.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Lista_enlazada.png" alt="undefined"></p>
-<h3 id="agregar-un-nodo-al-principio"><strong>Agregar un nodo al principio</strong></h3>
-<p>Esta función agrega un nuevo nodo al principio de la lista, actualizando la referencia de la cabeza para que apunte a este nuevo nodo.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="funciones-en-una-lista">Funciones en una lista</h3>
+            <p>Las operaciones más comunes que se pueden realizar en una lista enlazada incluyen:</p>
+            <ul>
+                <li><strong>Agregar un nodo al principio</strong>.</li>
+                <li><strong>Mostrar todos los nodos</strong> (recorrer la lista).</li>
+                <li><strong>Eliminar un nodo</strong>.</li>
+                <li><strong>Buscar un valor en la lista</strong></li>
+            </ul>
+            <h2 id="listas-enlazadas-simples">Listas Enlazadas Simples</h2>
+            <p>Una <strong>lista enlazada simple</strong> es una estructura de datos dinámica en la que cada nodo apunta
+                al nodo siguiente. Esto va a ser verdadero hasta el ultimo nodo, ya que el ultimo nodo no apunta a otro
+                nodo como tal, si no que el puntero apunta a <code>nullptr</code></p>
+            <p><code>nullptr</code> es un valor especial en C++ que representa un <strong>puntero que no apunta a
+                    ninguna dirección de memoria válida</strong>. En otras palabras, indica que un puntero no está
+                asociado con ningún objeto o variable en particular.</p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/4/47/Lista_enlazada.png" alt="undefined"></p>
+            <h3 id="agregar-un-nodo-al-principio"><strong>Agregar un nodo al principio</strong></h3>
+            <p>Esta función agrega un nuevo nodo al principio de la lista, actualizando la referencia de la cabeza para
+                que apunte a este nuevo nodo.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Crear un nuevo nodo en memoria dinámica</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>       <span class="token comment">// Asignar el valor al nodo</span>
     nuevo_nodo<span class="token operator">-&gt;</span>siguiente <span class="token operator">=</span> cabeza<span class="token punctuation">;</span> <span class="token comment">// Apuntar al antiguo primer nodo</span>
     cabeza <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>            <span class="token comment">// Actualizar la cabeza para que apunte al nuevo nodo</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="mostrar-todos-los-nodos"><strong>Mostrar todos los nodos</strong></h3>
-<p>Utiliza un bucle <code>while</code> para recorrer la lista mientras el nodo actual no sea <code>nullptr</code>, imprimiendo cada valor. Al llegar al final de la lista, imprime “nullptr” para indicar que no hay más nodos.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="mostrar-todos-los-nodos"><strong>Mostrar todos los nodos</strong></h3>
+            <p>Utiliza un bucle <code>while</code> para recorrer la lista mientras el nodo actual no sea
+                <code>nullptr</code>, imprimiendo cada valor. Al llegar al final de la lista, imprime “nullptr” para
+                indicar que no hay más nodos.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>  <span class="token comment">// Iniciar desde la cabeza</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-&gt;</span>dato <span class="token operator">&lt;&lt;</span> <span class="token string">" -&gt; "</span><span class="token punctuation">;</span>  <span class="token comment">// Mostrar el valor del nodo actual</span>
@@ -108,9 +132,13 @@
     std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"nullptr"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>      <span class="token comment">// Final de la lista</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="buscar-un-valor-en-la-lista">Buscar un valor en la lista</h3>
-<p>Partiendo del nodo <code>cabeza</code>, recorre la lista utilizando un bucle <code>while</code> que continúa mientras el nodo actual no sea <code>nullptr</code>. En cada iteración, compara el valor del nodo actual con el valor buscado. Si encuentra una coincidencia, devuelve <code>true</code>, indicando que el valor está presente en la lista. Si el bucle termina sin encontrar el valor, devuelve <code>false</code></p>
-<pre class=" language-c"><code class="prism ++ language-c">bool <span class="token function">BuscarValor</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="buscar-un-valor-en-la-lista">Buscar un valor en la lista</h3>
+            <p>Partiendo del nodo <code>cabeza</code>, recorre la lista utilizando un bucle <code>while</code> que
+                continúa mientras el nodo actual no sea <code>nullptr</code>. En cada iteración, compara el valor del
+                nodo actual con el valor buscado. Si encuentra una coincidencia, devuelve <code>true</code>, indicando
+                que el valor está presente en la lista. Si el bucle termina sin encontrar el valor, devuelve
+                <code>false</code></p>
+            <pre class=" language-c"><code class="prism ++ language-c">bool <span class="token function">BuscarValor</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">if</span> <span class="token punctuation">(</span>actual<span class="token operator">-&gt;</span>dato <span class="token operator">==</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -121,9 +149,13 @@
     <span class="token keyword">return</span> false<span class="token punctuation">;</span>  <span class="token comment">// Valor no encontrado</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="eliminar-un-nodo-con-un-valor-específico">Eliminar un nodo con un valor específico</h3>
-<p>Para eliminar un nodo, se comienza con dos punteros, <code>actual</code> apuntando al primer nodo y <code>anterior</code> a <code>nullptr</code>. Recorre la lista hasta encontrar el valor deseado. Si encuentra el nodo, revisa si es el primer nodo (si <code>anterior</code> es <code>nullptr</code>) y ajusta el nodo <code>cabeza</code> al siguiente. Si no es el primero, enlaza el nodo <code>anterior</code> directamente al siguiente de <code>actual</code>, omitiéndolo de la lista.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNnodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="eliminar-un-nodo-con-un-valor-específico">Eliminar un nodo con un valor específico</h3>
+            <p>Para eliminar un nodo, se comienza con dos punteros, <code>actual</code> apuntando al primer nodo y
+                <code>anterior</code> a <code>nullptr</code>. Recorre la lista hasta encontrar el valor deseado. Si
+                encuentra el nodo, revisa si es el primer nodo (si <code>anterior</code> es <code>nullptr</code>) y
+                ajusta el nodo <code>cabeza</code> al siguiente. Si no es el primero, enlaza el nodo
+                <code>anterior</code> directamente al siguiente de <code>actual</code>, omitiéndolo de la lista.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
     Nodo<span class="token operator">*</span> anterior <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
 
@@ -143,23 +175,37 @@
     delete actual<span class="token punctuation">;</span>  <span class="token comment">// Liberar la memoria del nodo eliminado</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ejemplo-completo">Ejemplo completo</h3>
-<p>Puedes ver un ejemplo completo de la implementación de listas simples en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimples.cc">repositorio</a>.</p>
-<h2 id="listas-doblemente-enlazadas">Listas Doblemente Enlazadas</h2>
-<p>Después de haber estudiado que son las listas enlazadas simples, es el momento de introducir una variante más compleja: las <strong>listas doblemente enlazadas</strong>. Estas listas permiten una navegación bidireccional a través de los nodos, gracias a que cada nodo de la lista tiene dos punteros: uno hacia el siguiente nodo y otro hacia el anterior.</p>
-<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Lista_doblemente_enlazada.png" alt="Una lista doblemente enlazada cuyos nodos contienen tres campos: un valor entero, el enlace al nodo siguiente, y el enlace al nodo anterior."></p>
-<h3 id="definición-de-nodos-en-una-lista-doblemente-enlazada">Definición de nodos en una lista doblemente enlazada</h3>
-<p>En C++, un nodo en una lista doblemente enlazada se declara generalmente con la siguiente estructura:</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo<span class="token punctuation">{</span>
+            <h3 id="ejemplo-completo">Ejemplo completo</h3>
+            <p>Puedes ver un ejemplo completo de la implementación de listas simples en este <a
+                    href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimples.cc">repositorio</a>.
+            </p>
+            <h2 id="listas-doblemente-enlazadas">Listas Doblemente Enlazadas</h2>
+            <p>Después de haber estudiado que son las listas enlazadas simples, es el momento de introducir una variante
+                más compleja: las <strong>listas doblemente enlazadas</strong>. Estas listas permiten una navegación
+                bidireccional a través de los nodos, gracias a que cada nodo de la lista tiene dos punteros: uno hacia
+                el siguiente nodo y otro hacia el anterior.</p>
+            <p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Lista_doblemente_enlazada.png"
+                    alt="Una lista doblemente enlazada cuyos nodos contienen tres campos: un valor entero, el enlace al nodo siguiente, y el enlace al nodo anterior.">
+            </p>
+            <h3 id="definición-de-nodos-en-una-lista-doblemente-enlazada">Definición de nodos en una lista doblemente
+                enlazada</h3>
+            <p>En C++, un nodo en una lista doblemente enlazada se declara generalmente con la siguiente estructura:</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo<span class="token punctuation">{</span>
     <span class="token keyword">int</span> dato<span class="token punctuation">;</span>            <span class="token comment">// Valor almacenado</span>
     NodoDoble<span class="token operator">*</span> siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo</span>
     NodoDoble<span class="token operator">*</span> anterior<span class="token punctuation">;</span>  <span class="token comment">// Puntero al nodo anterior</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<p>Algo importante que aclarar es que en las listas doblemente enlazadas, el nodo anterior del primer nodo apunta a <code>nullptr</code>. De manera similar, el nodo siguiente del nodo final también apunta a <code>nullptr</code>. Estos punteros a <code>nullptr</code> son cruciales para identificar los <strong>extremos de la lista</strong>.</p>
-<h3 id="agregar-un-nodo-al-principio-1"><strong>Agregar un nodo al principio</strong></h3>
-<p>Para crear un nuevo nodo, se asigna el valor proporcionado y se conecta al actual primer nodo de la lista. Si ya hay nodos en la lista, actualiza el nodo que estaba al inicio para que reconozca al nuevo nodo como su anterior. Al final, establece este nuevo nodo como el nuevo inicio de la lista actualizando el puntero <code>cabeza</code>.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlInicio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <p>Algo importante que aclarar es que en las listas doblemente enlazadas, el nodo anterior del primer nodo
+                apunta a <code>nullptr</code>. De manera similar, el nodo siguiente del nodo final también apunta a
+                <code>nullptr</code>. Estos punteros a <code>nullptr</code> son cruciales para identificar los
+                <strong>extremos de la lista</strong>.</p>
+            <h3 id="agregar-un-nodo-al-principio-1"><strong>Agregar un nodo al principio</strong></h3>
+            <p>Para crear un nuevo nodo, se asigna el valor proporcionado y se conecta al actual primer nodo de la
+                lista. Si ya hay nodos en la lista, actualiza el nodo que estaba al inicio para que reconozca al nuevo
+                nodo como su anterior. Al final, establece este nuevo nodo como el nuevo inicio de la lista actualizando
+                el puntero <code>cabeza</code>.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlInicio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>siguiente <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
@@ -170,9 +216,13 @@
     cabeza <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="agregar-un-nodo-al-final"><strong>Agregar un nodo al final</strong></h3>
-<p>Inicialmente crea un nuevo nodo con el valor dado y lo prepara para ser el último estableciendo su puntero <code>siguiente</code> a <code>nullptr</code>. Si la lista está vacía, simplemente establece este nuevo nodo como el primer y último nodo de la lista. Si hay otros nodos, recorre la lista hasta el final y enlaza el nuevo nodo al último nodo existente, ajustando adecuadamente los punteros <code>siguiente</code> del último nodo y <code>anterior</code> del nuevo nodo.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlFinal</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="agregar-un-nodo-al-final"><strong>Agregar un nodo al final</strong></h3>
+            <p>Inicialmente crea un nuevo nodo con el valor dado y lo prepara para ser el último estableciendo su
+                puntero <code>siguiente</code> a <code>nullptr</code>. Si la lista está vacía, simplemente establece
+                este nuevo nodo como el primer y último nodo de la lista. Si hay otros nodos, recorre la lista hasta el
+                final y enlaza el nuevo nodo al último nodo existente, ajustando adecuadamente los punteros
+                <code>siguiente</code> del último nodo y <code>anterior</code> del nuevo nodo.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlFinal</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>siguiente <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
@@ -190,9 +240,13 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="eliminar-un-nodo"><strong>Eliminar un nodo</strong></h3>
-<p>Para eliminar un nodo primero, busca por toda la lista hasta encontrar el nodo con el valor que se quiere eliminar. Si lo encuentra, desconecta ese nodo de la lista ajustando los enlaces del nodo anterior y del siguiente, para que ya no se conecten con el nodo eliminado. Si el nodo a eliminar es el primero, simplemente cambia el inicio de la lista al siguiente nodo. Si no encuentra el nodo con el valor deseado, no hace nada. Al final, elimina el nodo para liberar el espacio que ocupaba.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="eliminar-un-nodo"><strong>Eliminar un nodo</strong></h3>
+            <p>Para eliminar un nodo primero, busca por toda la lista hasta encontrar el nodo con el valor que se quiere
+                eliminar. Si lo encuentra, desconecta ese nodo de la lista ajustando los enlaces del nodo anterior y del
+                siguiente, para que ya no se conecten con el nodo eliminado. Si el nodo a eliminar es el primero,
+                simplemente cambia el inicio de la lista al siguiente nodo. Si no encuentra el nodo con el valor
+                deseado, no hace nada. Al final, elimina el nodo para liberar el espacio que ocupaba.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
 
     <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> nullptr <span class="token operator">&amp;&amp;</span> actual<span class="token operator">-&gt;</span>dato <span class="token operator">!=</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -214,9 +268,11 @@
     delete actual<span class="token punctuation">;</span> <span class="token comment">// Liberar la memoria del nodo eliminado</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="recorrer-un-nodo"><strong>Recorrer un nodo</strong></h3>
-<p>Esta función recorre y muestra los valores de una lista doblemente enlazada, empezando desde el primer nodo de la lista. Comienza con el primer nodo y continúa avanzando de nodo en nodo hasta que no hay más nodos que mostrar, lo que se indica cuando el nodo actual es <code>nullptr</code></p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="recorrer-un-nodo"><strong>Recorrer un nodo</strong></h3>
+            <p>Esta función recorre y muestra los valores de una lista doblemente enlazada, empezando desde el primer
+                nodo de la lista. Comienza con el primer nodo y continúa avanzando de nodo en nodo hasta que no hay más
+                nodos que mostrar, lo que se indica cuando el nodo actual es <code>nullptr</code></p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
     <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-&gt;</span>dato <span class="token operator">&lt;&lt;</span> <span class="token string">" &lt;-&gt; "</span><span class="token punctuation">;</span>
@@ -225,28 +281,42 @@
     std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"nullptr"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ejemplo-completo-1">Ejemplo completo</h3>
-<p>Puedes ver un ejemplo completo de la implementación de listas dobles en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDobles.cc">repositorio</a>.</p>
-<h2 id="listas-circulares-simplemente-enlazadas">Listas circulares simplemente enlazadas</h2>
-<p>Una <strong>lista circular simple</strong> es una estructura de datos dinámica en la que cada nodo apunta al siguiente, formando un ciclo cerrado en el que el último nodo está conectado al primer nodo. A diferencia de una lista enlazada simple, no tiene un final definido (<code>nullptr</code>), lo que permite un recorrido continuo.</p>
-<h3 id="características-de-una-lista-circular-simple">Características de una lista circular simple</h3>
-<ul>
-<li><strong>Circularidad</strong>: El último nodo de la lista no apunta a <code>nullptr</code>, sino que enlaza de vuelta al primer nodo.</li>
-<li><strong>Uso de punteros</strong>: Los nodos se conectan mediante punteros que apuntan al siguiente nodo en la secuencia.</li>
-<li><strong>Recorrido continuo</strong>: Debido a su naturaleza circular, se puede recorrer la lista indefinidamente, útil en aplicaciones donde se necesita un acceso recurrente a los elementos.</li>
-<li><strong>Inserción y eliminación eficiente</strong>: Al igual que en otras listas dinámicas, estas operaciones son eficientes porque solo se requiere ajustar los punteros.</li>
-</ul>
-<p><img src="https://blogs.ead.unlp.edu.ar/programacion2/files/2013/06/listaCircular.gif" alt="Listas circulares | Cátedra de Programación 2"></p>
-<h3 id="nodos-en-una-lista-circular-simple">Nodos en una lista circular simple</h3>
-<p>Al igual que las listas enlazadas simples, las listas circulares simples están compuestas por <strong>nodos</strong>, y cada nodo tiene dos partes principales, <strong>valor</strong> y el puntero <strong>siguiente</strong></p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+            <h3 id="ejemplo-completo-1">Ejemplo completo</h3>
+            <p>Puedes ver un ejemplo completo de la implementación de listas dobles en este <a
+                    href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDobles.cc">repositorio</a>.
+            </p>
+            <h2 id="listas-circulares-simplemente-enlazadas">Listas circulares simplemente enlazadas</h2>
+            <p>Una <strong>lista circular simple</strong> es una estructura de datos dinámica en la que cada nodo apunta
+                al siguiente, formando un ciclo cerrado en el que el último nodo está conectado al primer nodo. A
+                diferencia de una lista enlazada simple, no tiene un final definido (<code>nullptr</code>), lo que
+                permite un recorrido continuo.</p>
+            <h3 id="características-de-una-lista-circular-simple">Características de una lista circular simple</h3>
+            <ul>
+                <li><strong>Circularidad</strong>: El último nodo de la lista no apunta a <code>nullptr</code>, sino que
+                    enlaza de vuelta al primer nodo.</li>
+                <li><strong>Uso de punteros</strong>: Los nodos se conectan mediante punteros que apuntan al siguiente
+                    nodo en la secuencia.</li>
+                <li><strong>Recorrido continuo</strong>: Debido a su naturaleza circular, se puede recorrer la lista
+                    indefinidamente, útil en aplicaciones donde se necesita un acceso recurrente a los elementos.</li>
+                <li><strong>Inserción y eliminación eficiente</strong>: Al igual que en otras listas dinámicas, estas
+                    operaciones son eficientes porque solo se requiere ajustar los punteros.</li>
+            </ul>
+            <p><img src="https://blogs.ead.unlp.edu.ar/programacion2/files/2013/06/listaCircular.gif"
+                    alt="Listas circulares | Cátedra de Programación 2"></p>
+            <h3 id="nodos-en-una-lista-circular-simple">Nodos en una lista circular simple</h3>
+            <p>Al igual que las listas enlazadas simples, las listas circulares simples están compuestas por
+                <strong>nodos</strong>, y cada nodo tiene dos partes principales, <strong>valor</strong> y el puntero
+                <strong>siguiente</strong></p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
     <span class="token keyword">int</span> dato<span class="token punctuation">;</span>         <span class="token comment">// Valor almacenado en el nodo</span>
     Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span>  <span class="token comment">// Puntero al siguiente nodo</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="agregar-un-nodo-al-principio-2"><strong>Agregar un nodo al principio</strong></h3>
-<p>Para agregar un nodo al principio de una lista circular simple, se debe crear el nuevo nodo, enlazarlo al antiguo primer nodo y hacer que el último nodo apunte al nuevo nodo. Si la lista está vacía, el nuevo nodo será el único nodo, y su puntero apuntará a sí mismo.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlPrincipio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="agregar-un-nodo-al-principio-2"><strong>Agregar un nodo al principio</strong></h3>
+            <p>Para agregar un nodo al principio de una lista circular simple, se debe crear el nuevo nodo, enlazarlo al
+                antiguo primer nodo y hacer que el último nodo apunte al nuevo nodo. Si la lista está vacía, el nuevo
+                nodo será el único nodo, y su puntero apuntará a sí mismo.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlPrincipio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Crear un nuevo nodo en memoria dinámica</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
 
@@ -264,9 +334,10 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="mostrar-todos-los-nodos-1">Mostrar todos los nodos</h3>
-<p>Esta función recorre la lista circular e imprime el valor de cada nodo. Dado que no hay un nodo con valor <code>nullptr</code>, se detiene cuando vuelve al primer nodo.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="mostrar-todos-los-nodos-1">Mostrar todos los nodos</h3>
+            <p>Esta función recorre la lista circular e imprime el valor de cada nodo. Dado que no hay un nodo con valor
+                <code>nullptr</code>, se detiene cuando vuelve al primer nodo.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>cabeza <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La lista está vacía"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -280,9 +351,11 @@
 
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="eliminar-un-nodo-con-un-valor-específico-1">Eliminar un nodo con un valor específico</h3>
-<p>Para eliminar un nodo de una lista circular simple, primero se debe localizar el nodo con el valor deseado. Una vez encontrado, se actualizan los punteros del nodo anterior y, si es necesario, se actualiza la referencia de la cabeza.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="eliminar-un-nodo-con-un-valor-específico-1">Eliminar un nodo con un valor específico</h3>
+            <p>Para eliminar un nodo de una lista circular simple, primero se debe localizar el nodo con el valor
+                deseado. Una vez encontrado, se actualizan los punteros del nodo anterior y, si es necesario, se
+                actualiza la referencia de la cabeza.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>cabeza <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>  <span class="token comment">// Si la lista está vacía, no hacer nada</span>
 
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
@@ -314,28 +387,44 @@
     <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> cabeza<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ejemplo-completo-2">Ejemplo completo</h3>
-<p>Puedes ver un ejemplo completo de la implementación de listas simples circulares en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimplesCirculares.cc">repositorio</a>.</p>
-<h2 id="listas-circulares-doblemente-enlazadas">Listas circulares doblemente enlazadas</h2>
-<p>Una <strong>lista circular doblemente enlazada</strong> es una estructura de datos dinámica en la que cada nodo tiene dos punteros: uno que apunta al siguiente nodo y otro que apunta al anterior. La principal diferencia con las listas doblemente enlazadas tradicionales es que el último nodo está conectado al primero y viceversa, formando un ciclo cerrado.</p>
-<p><img src="https://lh3.googleusercontent.com/proxy/mqYQtJMXYjL2uoaFpdm8uP0kfw7LaQu-tdItufHnm2Fr0MKgJeKWpsSi_Zrk_5w-1fcTiiS7E06ePMZZZNd99qNUW3yI8Gl7UFvGaAQ01qe7msBxU0GSagGRrEjdQ_XvNf3nbi79zZAVTzwnDvpe28vBAA" alt="Lista Circular Doblemente Enlazada"></p>
-<h3 id="características-de-una-lista-circular-doblemente-enlazada">Características de una lista circular doblemente enlazada</h3>
-<ul>
-<li><strong>Circularidad</strong>: El último nodo apunta al primero y el primero apunta al último, permitiendo un recorrido continuo en ambas direcciones.</li>
-<li><strong>Punteros dobles</strong>: Cada nodo tiene un puntero al siguiente y otro al anterior nodo.</li>
-<li><strong>Recorrido bidireccional</strong>: Se puede recorrer la lista tanto hacia adelante como hacia atrás.</li>
-</ul>
-<h3 id="nodos-en-una-lista-circular-doblemente-enlazada">Nodos en una lista circular doblemente enlazada</h3>
-<p>Así como las listas doblemente enlazadas, las listas circulares doblemente enlazadas se definen de la misma manera, un nodo tiene un nodo anterior y uno siguiente, lo podemos definir con la siguiente estructura:</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+            <h3 id="ejemplo-completo-2">Ejemplo completo</h3>
+            <p>Puedes ver un ejemplo completo de la implementación de listas simples circulares en este <a
+                    href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasSimplesCirculares.cc">repositorio</a>.
+            </p>
+            <h2 id="listas-circulares-doblemente-enlazadas">Listas circulares doblemente enlazadas</h2>
+            <p>Una <strong>lista circular doblemente enlazada</strong> es una estructura de datos dinámica en la que
+                cada nodo tiene dos punteros: uno que apunta al siguiente nodo y otro que apunta al anterior. La
+                principal diferencia con las listas doblemente enlazadas tradicionales es que el último nodo está
+                conectado al primero y viceversa, formando un ciclo cerrado.</p>
+            <p><img src="https://lh3.googleusercontent.com/proxy/mqYQtJMXYjL2uoaFpdm8uP0kfw7LaQu-tdItufHnm2Fr0MKgJeKWpsSi_Zrk_5w-1fcTiiS7E06ePMZZZNd99qNUW3yI8Gl7UFvGaAQ01qe7msBxU0GSagGRrEjdQ_XvNf3nbi79zZAVTzwnDvpe28vBAA"
+                    alt="Lista Circular Doblemente Enlazada"></p>
+            <h3 id="características-de-una-lista-circular-doblemente-enlazada">Características de una lista circular
+                doblemente enlazada</h3>
+            <ul>
+                <li><strong>Circularidad</strong>: El último nodo apunta al primero y el primero apunta al último,
+                    permitiendo un recorrido continuo en ambas direcciones.</li>
+                <li><strong>Punteros dobles</strong>: Cada nodo tiene un puntero al siguiente y otro al anterior nodo.
+                </li>
+                <li><strong>Recorrido bidireccional</strong>: Se puede recorrer la lista tanto hacia adelante como hacia
+                    atrás.</li>
+            </ul>
+            <h3 id="nodos-en-una-lista-circular-doblemente-enlazada">Nodos en una lista circular doblemente enlazada
+            </h3>
+            <p>Así como las listas doblemente enlazadas, las listas circulares doblemente enlazadas se definen de la
+                misma manera, un nodo tiene un nodo anterior y uno siguiente, lo podemos definir con la siguiente
+                estructura:</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
     <span class="token keyword">int</span> dato<span class="token punctuation">;</span>            <span class="token comment">// Valor almacenado en el nodo</span>
     Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span>     <span class="token comment">// Puntero al siguiente nodo</span>
     Nodo<span class="token operator">*</span> anterior<span class="token punctuation">;</span>      <span class="token comment">// Puntero al nodo anterior</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h3 id="agregar-un-nodo-al-principio-3">Agregar un nodo al principio</h3>
-<p>Para agregar un nuevo nodo al principio primero se verifica si la lista está vacía, de ser el caso, el nuevo nodo apunta a sí mismo tanto como siguiente como anterior. Si la lista ya contiene nodos, el nuevo nodo se conecta al nodo existente que era la cabeza y se ajustan los punteros del último nodo para mantener la circularidad.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlPrincipio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="agregar-un-nodo-al-principio-3">Agregar un nodo al principio</h3>
+            <p>Para agregar un nuevo nodo al principio primero se verifica si la lista está vacía, de ser el caso, el
+                nuevo nodo apunta a sí mismo tanto como siguiente como anterior. Si la lista ya contiene nodos, el nuevo
+                nodo se conecta al nodo existente que era la cabeza y se ajustan los punteros del último nodo para
+                mantener la circularidad.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlPrincipio</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
 
@@ -353,9 +442,10 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="agregar-un-nodo-al-final-1">Agregar un nodo al final</h3>
-<p>En este caso, cumple lo mismo si solo es un nodo, pero, si la lista ya tiene nodos, el nuevo nodo se conecta al último nodo existente y se ajustan los punteros para mantener la circularidad.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlFinal</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="agregar-un-nodo-al-final-1">Agregar un nodo al final</h3>
+            <p>En este caso, cumple lo mismo si solo es un nodo, pero, si la lista ya tiene nodos, el nuevo nodo se
+                conecta al último nodo existente y se ajustan los punteros para mantener la circularidad.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">AgregarNodoAlFinal</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
 
@@ -372,9 +462,11 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="eliminar-un-nodo-con-un-valor-específico-2">Eliminar un nodo con un valor específico</h3>
-<p>Para eliminar un nodo de la lista circular doble, se debe localizar el nodo con el valor deseado. Una vez encontrado, se ajustan los punteros del nodo anterior y del siguiente para que el nodo sea excluido de la lista. Si el nodo a eliminar es la cabeza, se actualiza la referencia de la cabeza.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="eliminar-un-nodo-con-un-valor-específico-2">Eliminar un nodo con un valor específico</h3>
+            <p>Para eliminar un nodo de la lista circular doble, se debe localizar el nodo con el valor deseado. Una vez
+                encontrado, se ajustan los punteros del nodo anterior y del siguiente para que el nodo sea excluido de
+                la lista. Si el nodo a eliminar es la cabeza, se actualiza la referencia de la cabeza.</p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">EliminarNodo</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cabeza<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>cabeza <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
 
     Nodo<span class="token operator">*</span> actual <span class="token operator">=</span> cabeza<span class="token punctuation">;</span>
@@ -403,9 +495,11 @@
     <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> cabeza<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="mostrar-todos-los-nodos-2">Mostrar todos los nodos</h3>
-<p>Para recorrer y mostrar todos los nodos, se comienza desde la cabeza y sigue recorriendo los nodos en dirección hacia adelante. Dado que es una lista circular, el bucle se detiene cuando vuelve a la cabeza.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <h3 id="mostrar-todos-los-nodos-2">Mostrar todos los nodos</h3>
+            <p>Para recorrer y mostrar todos los nodos, se comienza desde la cabeza y sigue recorriendo los nodos en
+                dirección hacia adelante. Dado que es una lista circular, el bucle se detiene cuando vuelve a la cabeza.
+            </p>
+            <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">MostrarLista</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cabeza<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span>cabeza <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"La lista está vacía"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -419,18 +513,31 @@
 
 <span class="token punctuation">}</span>
 </code></pre>
-<h3 id="ejemplo-completo-3">Ejemplo completo</h3>
-<p>Puedes ver un ejemplo completo de la implementación de listas dobles circulares en este <a href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDoblesCirculares.cc">repositorio</a>.</p>
-<h2 id="ventajas-de-las-listas-enlazadas">Ventajas de las listas enlazadas</h2>
-<p>Cada tipo de lista ofrece diferentes ventajas: las <strong>listas enlazadas simples</strong> son fáciles de implementar y permiten una gestión básica de datos, mientras que las <strong>listas doblemente enlazadas</strong> facilitan el recorrido bidireccional. Por otro lado, las <strong>listas circulares</strong> son ideales para aplicaciones donde se requiere un recorrido continuo y cíclico de los datos.</p>
-<p>Las listas enlazadas, aunque ofrecen muchas ventajas, también presentan algunas desventajas importantes en comparación con otras estructuras de datos, como los arreglos, por ejemplo <strong>en el uso de la memoria</strong> y sobre todo sobre su complejidad y conocimiento sobre punteros, ya que si los punteros no se gestionan correctamente, puede haber errores como pérdida de memoria o acceso a punteros inválidos.</p>
-<h2 id="referencias">Referencias</h2>
-<p>Puedes leer más sobre las listas enlazadas, te recomendamos los siguientes enlaces que puedes visitar para entender un poco más sobre como funcionan.</p>
-<p><a href="https://conclase.net/c/edd/cap4">https://conclase.net/c/edd/cap4</a><br>
-<a href="https://youtu.be/15urP2LmfqY?si=Xfad9_-OtewdvhqO">https://youtu.be/15urP2LmfqY?si=Xfad9_-OtewdvhqO</a></p>
+            <h3 id="ejemplo-completo-3">Ejemplo completo</h3>
+            <p>Puedes ver un ejemplo completo de la implementación de listas dobles circulares en este <a
+                    href="https://github.com/German234/LaboratoriosPED/blob/e7d2f6f478fa88ef7e8d4e127152f4288b798e70/Codigos%20Ejemplos/ListasDoblesCirculares.cc">repositorio</a>.
+            </p>
+            <h2 id="ventajas-de-las-listas-enlazadas">Ventajas de las listas enlazadas</h2>
+            <p>Cada tipo de lista ofrece diferentes ventajas: las <strong>listas enlazadas simples</strong> son fáciles
+                de implementar y permiten una gestión básica de datos, mientras que las <strong>listas doblemente
+                    enlazadas</strong> facilitan el recorrido bidireccional. Por otro lado, las <strong>listas
+                    circulares</strong> son ideales para aplicaciones donde se requiere un recorrido continuo y cíclico
+                de los datos.</p>
+            <p>Las listas enlazadas, aunque ofrecen muchas ventajas, también presentan algunas desventajas importantes
+                en comparación con otras estructuras de datos, como los arreglos, por ejemplo <strong>en el uso de la
+                    memoria</strong> y sobre todo sobre su complejidad y conocimiento sobre punteros, ya que si los
+                punteros no se gestionan correctamente, puede haber errores como pérdida de memoria o acceso a punteros
+                inválidos.</p>
+            <h2 id="referencias">Referencias</h2>
+            <p>Puedes leer más sobre las listas enlazadas, te recomendamos los siguientes enlaces que puedes visitar
+                para entender un poco más sobre como funcionan.</p>
+            <p><a href="https://conclase.net/c/edd/cap4">https://conclase.net/c/edd/cap4</a><br>
+                <a
+                    href="https://youtu.be/15urP2LmfqY?si=Xfad9_-OtewdvhqO">https://youtu.be/15urP2LmfqY?si=Xfad9_-OtewdvhqO</a>
+            </p>
 
+        </div>
     </div>
-  </div>
 </body>
 
 </html>
