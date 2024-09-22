@@ -8,7 +8,7 @@ Las **pilas** y **colas** son estructuras de datos lineales que permiten almacen
 ## Pilas
 Una **pila** es una estructura de datos que sigue el principio **LIFO (Last In, First Out)**, es decir, el último elemento en entrar es el primero en salir. Imagina una pila de platos: el último plato que colocas en la cima es el primero que quitarás.
 
-<p align="center"> <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdIATfVXY4Ni-804VGKv9LGcuVZPA4sxNh27aGg8q-9-D36OgD8e0ZdXh0eVBamU71Cc4h13vdEQ7QaBkkHz0Zmza09Z88Qvlf1Tv17_3MyPsl3h3vZTIEGfqOikQTdYLUOrE3HzAjRl7WalB86qhIbOc_EhDHuuCcSRwzXjg?key=nHEcAS-RB1f7GUpWs0_PNg" alt="Descripción de la imagen" width="0"/> </p>
+<p align="center"> <img src="https://firebasestorage.googleapis.com/v0/b/noamgemstone.appspot.com/o/pngwing.com.png?alt=media&token=c55df121-a369-4de0-80a9-30ba67f02808" alt="Descripción de la imagen" width="0"/> </p>
 
 ### Operaciones básicas en una pila
 
