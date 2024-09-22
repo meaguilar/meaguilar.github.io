@@ -55,7 +55,7 @@
 </code></pre>
 <h2 id="uso-de-pilas-de-manera-manual">Uso de pilas de manera manual</h2>
 <h3 id="apilar-push">Apilar (Push)</h3>
-<p>Cuando agregamos elementos a una pila, esta por defecto se va a agregar hasta encima, por el principio que mencionamos anteriormente, que cuando apilamos, el ultimo que agregamos es el primero.</p>
+<p>Al agregar elementos a una pila, estos se añaden automáticamente en la parte superior, siguiendo el principio LIFO (Last In, First Out), es decir, el último elemento en ser agregado será el primero en salir.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">Push</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cima<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
@@ -63,7 +63,7 @@
     cima <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p><strong>NOTA</strong>: En este caso, <code>cima</code> es el ultimo elemento que se agrego, por eso al final del codigo, decimos que</p>
+<p><strong>NOTA</strong>: En este contexto, <code>cima</code> representa el último elemento agregado a la pila. Por eso, al final de la función, actualizamos <code>cima</code> con <code>nuevo_nodo</code> ara que apunte al nuevo nodo agregado. Esto garantiza que la cima siempre se mantenga actualizada cada vez que se apila un nuevo elemento.</p>
 <pre class=" language-c"><code class="prism ++ language-c">cima <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
 </code></pre>
 <p>para ir actualizando la cima cada que se agrega un nuevo nodo.</p>
@@ -82,7 +82,7 @@
     <span class="token keyword">return</span> valor<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>En este caso, si la cima (que como dijimos anteriormente es el ultimo nodo que agregamos) esta vacia, significa que NO hay elementos, asi que ya no eliminamos. Pero de haber, lo interesante es que al final, decimos que:</p>
+<p>En este caso, si la cima esta vacia, significa que NO hay elementos, asi que ya no eliminamos. Lo interesante es que al final, decimos que:</p>
 <pre class=" language-c"><code class="prism ++ language-c">cima <span class="token operator">=</span> cima<span class="token operator">-&gt;</span>siguiente<span class="token punctuation">;</span>
 </code></pre>
 <p>Dando a entender que ahora, como eliminamos la cima, el que estaba debajo del que acabamos de eliminar, <strong>es la nueva cima</strong></p>
@@ -106,11 +106,11 @@
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack&gt;</span></span>
 </code></pre>
-<p>Luego, en ves de crear los nodos, ahora lo declararemos de la siguiente manera:</p>
+<h3 id="declaracion-nodo">Declaración del nodo</h3>
 <pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>stack<span class="token operator">&lt;</span>TipoDeDato<span class="token operator">&gt;</span> nombre_de_la_pila<span class="token punctuation">;</span>
 </code></pre>
 <p>Donde el <code>tipo de dato</code> puede ser int, float, char o incluso una estructura. Mientras que el nombre de la pila, sera el identificador de toda nuestra pila.</p>
-<p>Ahora que ya creamos nuestra pila, ya podemos hacer uso de las funciones que trae la libreria:</p>
+<p>Ahora que ya creamos nuestra pila, podemos hacer uso de las funciones que trae la libreria:</p>
 <ul>
 <li><strong><code>push(valor)</code></strong>: Agrega un elemento al tope de la pila.</li>
 <li><strong><code>pop()</code></strong>: Elimina el elemento del tope de la pila.</li>
