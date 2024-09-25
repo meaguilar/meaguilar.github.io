@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CP7 - Algoritmos Ordenamiento</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#algoritmos-de-ordenamiento-y-búsqueda">Algoritmos de Ordenamiento y Búsqueda</a></li>
+<li><a href="#algoritmos-de-ordenamiento">Algoritmos de ordenamiento</a>
+<ul>
+<li><a href="#ordenamiento-burbuja-bubble-sort">Ordenamiento Burbuja (Bubble Sort)</a></li>
+<li><a href="#ordenamiento-por-selección-selection-sort">Ordenamiento por Selección (Selection Sort)</a></li>
+<li><a href="#ordenamiento-por-inserción-insertion-sort">Ordenamiento por Inserción (Insertion Sort)</a></li>
+</ul>
+</li>
+<li><a href="#algoritmos-de-búsqueda">Algoritmos de búsqueda</a>
+<ul>
+<li><a href="#búsqueda-lineal-linear-search">Búsqueda Lineal (Linear Search)</a></li>
+<li><a href="#búsqueda-lineal-linear-search-1">Búsqueda Lineal (Linear Search)</a></li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="algoritmos-de-ordenamiento-y-búsqueda">Algoritmos de Ordenamiento y Búsqueda</h1>
+<p>En este laboratorio estudiaremos sobre el uso de algoritmos de ordenamiento y búsqueda, cómo declararlos, utilizarlos, y su importancia en la organización y manipulación de datos en la programación.</p>
+<h1 id="algoritmos-de-ordenamiento">Algoritmos de ordenamiento</h1>
+<p>os <strong>algoritmos de ordenamiento</strong> son técnicas utilizadas en programación para organizar los elementos de una lista o conjunto de datos según un criterio, como el orden ascendente o descendente. Estos algoritmos son esenciales cuando se necesita organizar datos de manera eficiente, ya sea números, palabras o cualquier tipo de información que deba seguir un orden.</p>
+<h2 id="ordenamiento-burbuja-bubble-sort">Ordenamiento Burbuja (Bubble Sort)</h2>
+<p>El <strong>algoritmo de ordenamiento burbuja</strong> es una forma básica de organizar una lista de elementos. Lo que hace es revisar cada par de elementos que están uno junto al otro y, si están en el orden incorrecto, los intercambia de lugar.</p>
+<h3 id="¿cómo-funciona">¿Cómo funciona?</h3>
+<ol>
+<li>Se comparan los dos primeros elementos de la lista. Si el primero debería ir después del segundo, los cambia de lugar.</li>
+<li>Luego pasa al siguiente par de elementos y hace lo mismo, repitiendo el proceso hasta llegar al final de la lista.</li>
+<li>Al final de cada recorrido, el número más grande “sube” o “flota” hasta el final de la lista, como una burbuja.</li>
+<li>Este proceso se repite varias veces hasta que ya no haya necesidad de hacer más cambios, lo que significa que la lista está ordenada.</li>
+</ol>
+<p><img src="https://www.swtestacademy.com/wp-content/uploads/2021/11/bubble-sort-animation-swtestacademy-bg.gif" alt="Bubble Sort Algorithm in Java | Visualization and Examples"></p>
+<h3 id="implementación-de-bubble-sort">Implementación de Bubble Sort</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">BubbleSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n <span class="token operator">-</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// Intercambiar arr[j] y arr[j + 1]</span>
+                <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+                arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="ordenamiento-por-selección-selection-sort">Ordenamiento por Selección (Selection Sort)</h2>
+<p>El <strong>Selection Sort</strong> (ordenamiento por selección) es un algoritmo de ordenamiento sencillo, pero no tan eficiente en términos de tiempo cuando se trabaja con conjuntos de datos grandes. La idea principal de este algoritmo es seleccionar repetidamente el <strong>mínimo</strong>  o <strong>maximo</strong> elemento de la parte no ordenada del arreglo y colocarlo en su posición correcta.</p>
+<p><img src="https://www.swtestacademy.com/wp-content/uploads/2021/11/selection-sort-amination.gif" alt="Selection Sort Algorithm in Java | Visualization and Examples"></p>
+<h3 id="implementación-del-selection-sort">Implementación del Selection Sort</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">SelectionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> min_idx <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;</span> arr<span class="token punctuation">[</span>min_idx<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                min_idx <span class="token operator">=</span> j<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// Intercambiar el elemento más pequeño con el primero</span>
+        <span class="token keyword">int</span> temp <span class="token operator">=</span> arr<span class="token punctuation">[</span>min_idx<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>min_idx<span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> temp<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="ordenamiento-por-inserción-insertion-sort">Ordenamiento por Inserción (Insertion Sort)</h2>
+<p>El <strong>Insertion Sort</strong> (ordenamiento por inserción) es un algoritmo de ordenamiento simple pero eficiente cuando se trabaja con arreglos pequeños o parcialmente ordenados. La idea detrás de este algoritmo es que los elementos del arreglo se dividen en dos partes: una parte ordenada y una parte no ordenada. Se van tomando elementos de la parte no ordenada uno por uno e insertándolos en la posición correcta dentro de la parte ordenada.</p>
+<h3 id="¿cómo-funciona-1">¿Cómo funciona?</h3>
+<ol>
+<li>
+<p><strong>Iniciar con el primer elemento</strong>: Se <strong>asume</strong> que el primer elemento del arreglo está en la parte ordenada, ya que un solo elemento ya está ordenado por definición.</p>
+</li>
+<li>
+<p><strong>Tomar el siguiente elemento</strong>: A partir del segundo elemento, el algoritmo selecciona el elemento actual de la parte no ordenada y busca la posición correcta en la parte ordenada.</p>
+</li>
+<li>
+<p><strong>Mover elementos mayores hacia la derecha</strong>: Para encontrar la posición correcta, los elementos mayores de la parte ordenada se desplazan hacia la derecha para hacer espacio para el nuevo elemento.</p>
+</li>
+<li>
+<p><strong>Insertar el nuevo elemento</strong>: Una vez que se encuentra la posición correcta, el elemento se inserta en esa posición.</p>
+</li>
+<li>
+<p><strong>Repetir el proceso</strong>: El proceso se repite para todos los elementos hasta que toda la lista esté ordenada.</p>
+</li>
+</ol>
+<p><img src="https://www.swtestacademy.com/wp-content/uploads/2021/11/insertion-sort.gif" alt="Insertion Sort Algorithm in Java | Visualization and Examples"></p>
+<h3 id="implementación-de-insertion-sort">Implementación de Insertion Sort</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">InsertionSort</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> key <span class="token operator">=</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">int</span> j <span class="token operator">=</span> i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>j <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&gt;</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> arr<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            j <span class="token operator">=</span> j <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        arr<span class="token punctuation">[</span>j <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> key<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="ejemplo-completo-de-algoritmos-de-ordenamiento">Ejemplo Completo de Algoritmos de Ordenamiento</h3>
+<p>Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este <a href="https://github.com/German234/LaboratoriosPED.github.io/blob/3acf90416ffa969de51863d879bc8ee1c1d9c5c6/Laboratorio-07/AlgoritmosOrdenamiento.cc">repositorio</a>.</p>
+<h1 id="algoritmos-de-búsqueda">Algoritmos de búsqueda</h1>
+<p>Los <strong>algoritmos de búsqueda</strong> son métodos usados en programación para encontrar un elemento específico dentro de un conjunto de datos, como una lista o un arreglo. Son esenciales cuando se necesita localizar rápidamente un dato en particular, especialmente en grandes volúmenes de información.</p>
+<h2 id="búsqueda-lineal-linear-search">Búsqueda Lineal (Linear Search)</h2>
+<p>La <strong>búsqueda lineal</strong> es el algoritmo más simple de todos. Consiste en recorrer una lista de datos desde el primer hasta el último elemento, comparando cada uno con el valor que estamos buscando. Si encuentra el valor, la búsqueda termina; si no lo encuentra después de recorrer todos los elementos, devuelve un valor que indica que no se encontró el elemento.</p>
+<h3 id="¿cómo-funciona-2">¿Cómo funciona?</h3>
+<ol>
+<li><strong>Inicio en el primer elemento</strong>: Comenzamos desde el primer elemento de la lista.</li>
+<li><strong>Comparación</strong>: Comparamos el valor del elemento actual con el valor que estamos buscando.</li>
+<li><strong>Encontrar o seguir buscando</strong>:
+<ul>
+<li>Si el valor es igual al buscado, se devuelve el índice de ese elemento.</li>
+<li>Si no es igual, se avanza al siguiente elemento y se repite el proceso.</li>
+</ul>
+</li>
+<li><strong>Finalizar la búsqueda</strong>: Si se recorren todos los elementos sin encontrar una coincidencia, el valor no está presente en la lista.</li>
+</ol>
+<p><img src="https://www.tutorialspoint.com/data_structures_algorithms/images/linear_search.gif" alt="Linear Search Algorithm"></p>
+<h3 id="implementación-de-linear-search">Implementación de Linear Search</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">LinearSearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> i<span class="token punctuation">;</span>  <span class="token comment">// Devuelve el índice donde se encuentra el valor</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// Si no se encuentra, devuelve -1</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="búsqueda-lineal-linear-search-1">Búsqueda Lineal (Linear Search)</h2>
+<p>La <strong>búsqueda binaria</strong> es un algoritmo mucho más eficiente que la búsqueda lineal, pero requiere que los datos estén <strong>ordenados</strong>. Funciona dividiendo repetidamente el espacio de búsqueda a la mitad, lo que reduce drásticamente el número de comparaciones necesarias.</p>
+<h3 id="¿cómo-funciona-3">¿Cómo funciona?</h3>
+<ol>
+<li><strong>Dividir la lista</strong>: Comienza comparando el valor buscado con el valor en el medio de la lista.</li>
+<li><strong>Reducir el espacio de búsqueda</strong>:
+<ul>
+<li>Si el valor buscado es menor que el valor en el medio, la búsqueda continúa en la mitad izquierda de la lista.</li>
+<li>Si el valor buscado es mayor, continúa en la mitad derecha.</li>
+</ul>
+</li>
+<li><strong>Repetir el proceso</strong>: El proceso de dividir a la mitad se repite hasta que se encuentra el valor o se reduce el espacio de búsqueda a cero (lo que indica que el valor no está presente).</li>
+</ol>
+<p><img src="https://d18l82el6cdm1i.cloudfront.net/uploads/bePceUMnSG-binary_search_gif.gif" alt="Binary Search | Brilliant Math &amp; Science Wiki"></p>
+<h3 id="implementación-de-binary-search">Implementación de Binary Search</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">BinarySearch</span><span class="token punctuation">(</span><span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> low<span class="token punctuation">,</span> <span class="token keyword">int</span> high<span class="token punctuation">,</span> <span class="token keyword">int</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>low <span class="token operator">&lt;=</span> high<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> mid <span class="token operator">=</span> low <span class="token operator">+</span> <span class="token punctuation">(</span>high <span class="token operator">-</span> low<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>  <span class="token comment">// Encuentra el punto medio</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">==</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> mid<span class="token punctuation">;</span>  <span class="token comment">// El valor ha sido encontrado</span>
+        <span class="token punctuation">}</span>
+        
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>arr<span class="token punctuation">[</span>mid<span class="token punctuation">]</span> <span class="token operator">&lt;</span> key<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            low <span class="token operator">=</span> mid <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// El valor está en la mitad derecha</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            high <span class="token operator">=</span> mid <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// El valor está en la mitad izquierda</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// El valor no está presente</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="ejemplo-completo-de-algoritmos-de-ordenamiento-1">Ejemplo Completo de Algoritmos de Ordenamiento</h3>
+<p>Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este <a href="https://github.com/German234/LaboratoriosPED.github.io/blob/3acf90416ffa969de51863d879bc8ee1c1d9c5c6/Laboratorio-07/AlgoritmosBusqueda.cc">repositorio</a>.</p>
+<h2 id="anexos">Anexos</h2>
+<h3 id="visualgo">Visualgo</h3>
+<p><a href="https://visualgo.net/en/sorting">Visualgo</a> es una herramienta interactiva y visual que ayuda a entender y simular diferentes algoritmos de búsqueda, ordenamiento, y estructuras de datos.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
