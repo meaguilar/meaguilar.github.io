@@ -3,11 +3,11 @@
 En este laboratorio estudiaremos sobre el uso de algoritmos de ordenamiento y búsqueda, cómo declararlos, utilizarlos, y su importancia en la organización y manipulación de datos en la programación.
 
 # Algoritmos de ordenamiento
-os **algoritmos de ordenamiento** son técnicas utilizadas en programación para organizar los elementos de una lista o conjunto de datos según un criterio, como el orden ascendente o descendente. Estos algoritmos son esenciales cuando se necesita organizar datos de manera eficiente, ya sea números, palabras o cualquier tipo de información que deba seguir un orden.
+Los **algoritmos de ordenamiento** son técnicas utilizadas en programación para organizar los elementos de una lista o conjunto de datos según un criterio, como el orden ascendente o descendente. Estos algoritmos son esenciales cuando se necesita organizar datos de manera eficiente, ya sea números, palabras o cualquier tipo de información que deba seguir un orden.
 
 ## Ordenamiento Burbuja (Bubble Sort)
 
-El **algoritmo de ordenamiento burbuja** es una forma básica de organizar una lista de elementos. Lo que hace es revisar cada par de elementos que están uno junto al otro y, si están en el orden incorrecto, los intercambia de lugar.
+El **algoritmo de ordenamiento burbuja** es una forma básica de organizar una lista de elementos. Lo que hace es revisar cada par de elementos adyacentes y, si están en el orden incorrecto, intercambiarlos.
 
 ### ¿Cómo funciona?
 1)   Se comparan los dos primeros elementos de la lista. Si el primero debería ir después del segundo, los cambia de lugar.
@@ -88,6 +88,34 @@ void InsertionSort(int arr[], int n) {
 
  ### Ejemplo Completo de Algoritmos de Ordenamiento
  Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este [repositorio](https://github.com/German234/LaboratoriosPED.github.io/blob/3acf90416ffa969de51863d879bc8ee1c1d9c5c6/Laboratorio-07/AlgoritmosOrdenamiento.cc).
+ 
+## Ordenamiento usando la librería de C++
+La librería estándar de C++ provee algoritmos eficientes para el ordenamiento de datos. El algoritmo más común para ordenar datos es `std::sort`, el cual se encuentra en la cabecera `<algorithm>`.
+
+### Uso de `std::sort`
+
+`std::sort` es una función que implementa algoritmos optimizados para ordenamiento, como **QuickSort** y **HeapSort** ofreciendo un rendimiento más optimo.
+
+```c++
+#include <algorithm>
+#include <iostream>
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    std::sort(arr, arr + n);
+
+    std::cout << "Arreglo ordenado: ";
+    for (int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+    return 0;
+}
+```
+En este ejemplo, `std::sort` ordena el arreglo de enteros en orden ascendente. Solo necesitas darle el rango de elementos que quieres ordenar. `arr` es el primer elemento del arreglo, y `arr + n` indica la posición justo después del último elemento. 
+
+En C++, los rangos son **[primero, último)**, lo que significa que el primer valor se incluye, pero el último no. Por eso, `arr + n` apunta justo después del último elemento, indicando el final del rango a ordenar.. Como resultado, `std::sort` ordena todos los elementos desde el principio hasta el final del arreglo.
 
 # Algoritmos de búsqueda
 
@@ -119,7 +147,7 @@ int LinearSearch(int arr[], int n, int key) {
     return -1;  // Si no se encuentra, devuelve -1
 }
 ```
-## Búsqueda Lineal (Linear Search)
+## Búsqueda Binaria (Binary Search)
 
 La **búsqueda binaria** es un algoritmo mucho más eficiente que la búsqueda lineal, pero requiere que los datos estén **ordenados**. Funciona dividiendo repetidamente el espacio de búsqueda a la mitad, lo que reduce drásticamente el número de comparaciones necesarias.
 
@@ -155,10 +183,41 @@ int BinarySearch(int arr[], int low, int high, int key) {
 
  ### Ejemplo Completo de Algoritmos de Ordenamiento
  Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este [repositorio](https://github.com/German234/LaboratoriosPED.github.io/blob/3acf90416ffa969de51863d879bc8ee1c1d9c5c6/Laboratorio-07/AlgoritmosBusqueda.cc).
+ 
+## Busqueda usando la librería de C++
+La librería estándar de C++ provee la función `std::binary_search` para realizar búsquedas de manera eficiente en arreglos **ordenados** haciendo uso del algoritmo del mismo nombre.
 
+### Uso de `std::binary_search`
+Así como se explicó anteriormente, el algoritmo `binary search` requiere que el arreglo esté previamente ordenado, por lo cual debemos proveerle un arreglo que cumpla esa caracteristica.
+
+```c++
+#include <algorithm>
+#include <iostream>
+
+int main() {
+    int arr[] = {11, 12, 22, 25, 34, 64, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    int key = 22;
+    bool found = std::binary_search(arr, arr + n, key);
+
+    if (found)
+        std::cout << "Elemento " << key << " encontrado en el arreglo.\n";
+    else
+        std::cout << "Elemento " << key << " no encontrado.\n";
+
+    return 0;
+}
+```
+En este ejemplo, `std::binary_search` se utiliza para verificar si el valor `22` está presente en el arreglo. Para que la función funcione correctamente, necesitamos pasarle tres parámetros: el inicio del arreglo, el final del arreglo y el valor que queremos buscar. l inicio del arreglo se indica con `arr`, y el final con `arr + n`, que apunta justo después del último elemento, asegurando que todos los valores sean considerados en la búsqueda. El tercer parámetro es el valor que estamos buscando, en este caso `22`.
+
+Es importante recordar que la búsqueda binaria **solo funciona en arreglos ordenados**, ya que el algoritmo divide el arreglo en mitades de forma eficiente para encontrar el valor. Si el valor se encuentra, la función devuelve `true`; si no, devuelve `false`
 
 ## Anexos
 
 ### Visualgo
 
 [Visualgo](https://visualgo.net/en/sorting) es una herramienta interactiva y visual que ayuda a entender y simular diferentes algoritmos de búsqueda, ordenamiento, y estructuras de datos. 
+
+###  Cplusplus
+[Cplusplus](https://cplusplus.com/reference/algorithm/) contiene la referencia de la libreria `algorithm`

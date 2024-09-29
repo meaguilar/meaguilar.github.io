@@ -19,12 +19,14 @@
 <li><a href="#ordenamiento-burbuja-bubble-sort">Ordenamiento Burbuja (Bubble Sort)</a></li>
 <li><a href="#ordenamiento-por-selección-selection-sort">Ordenamiento por Selección (Selection Sort)</a></li>
 <li><a href="#ordenamiento-por-inserción-insertion-sort">Ordenamiento por Inserción (Insertion Sort)</a></li>
+<li><a href="#ordenamiento-usando-la-librería-de-c">Ordenamiento usando la librería de C++</a></li>
 </ul>
 </li>
 <li><a href="#algoritmos-de-búsqueda">Algoritmos de búsqueda</a>
 <ul>
 <li><a href="#búsqueda-lineal-linear-search">Búsqueda Lineal (Linear Search)</a></li>
-<li><a href="#búsqueda-lineal-linear-search-1">Búsqueda Lineal (Linear Search)</a></li>
+<li><a href="#búsqueda-binaria-binary-search">Búsqueda Binaria (Binary Search)</a></li>
+<li><a href="#busqueda-usando-la-librería-de-c">Busqueda usando la librería de C++</a></li>
 <li><a href="#anexos">Anexos</a></li>
 </ul>
 </li>
@@ -39,7 +41,7 @@
 <h1 id="algoritmos-de-ordenamiento">Algoritmos de ordenamiento</h1>
 <p>Los <strong>algoritmos de ordenamiento</strong> son técnicas utilizadas en programación para organizar los elementos de una lista o conjunto de datos según un criterio, como el orden ascendente o descendente. Estos algoritmos son esenciales cuando se necesita organizar datos de manera eficiente, ya sea números, palabras o cualquier tipo de información que deba seguir un orden.</p>
 <h2 id="ordenamiento-burbuja-bubble-sort">Ordenamiento Burbuja (Bubble Sort)</h2>
-<p>El <strong>algoritmo de ordenamiento burbuja</strong> es una forma básica de organizar una lista de elementos. Lo que hace es revisar cada par de elementos que están uno junto al otro y, si están en el orden incorrecto, los intercambia de lugar.</p>
+<p>El <strong>algoritmo de ordenamiento burbuja</strong> es una forma básica de organizar una lista de elementos. Lo que hace es revisar cada par de elementos adyacentes y, si están en el orden incorrecto, intercambiarlos.</p>
 <h3 id="¿cómo-funciona">¿Cómo funciona?</h3>
 <ol>
 <li>Se comparan los dos primeros elementos de la lista. Si el primero debería ir después del segundo, los cambia de lugar.</li>
@@ -117,6 +119,28 @@
 </code></pre>
 <h3 id="ejemplo-completo-de-algoritmos-de-ordenamiento">Ejemplo Completo de Algoritmos de Ordenamiento</h3>
 <p>Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este <a href="https://github.com/German234/LaboratoriosPED.github.io/blob/3acf90416ffa969de51863d879bc8ee1c1d9c5c6/Laboratorio-07/AlgoritmosOrdenamiento.cc">repositorio</a>.</p>
+<h2 id="ordenamiento-usando-la-librería-de-c">Ordenamiento usando la librería de C++</h2>
+<p>La librería estándar de C++ provee algoritmos eficientes para el ordenamiento de datos. El algoritmo más común para ordenar datos es <code>std::sort</code>, el cual se encuentra en la cabecera <code>&lt;algorithm&gt;</code>.</p>
+<h3 id="uso-de-stdsort">Uso de <code>std::sort</code></h3>
+<p><code>std::sort</code> es una función que implementa algoritmos optimizados para ordenamiento, como <strong>QuickSort</strong> y <strong>HeapSort</strong> ofreciendo un rendimiento más optimo.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">sort</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> arr <span class="token operator">+</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Arreglo ordenado: "</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este ejemplo, <code>std::sort</code> ordena el arreglo de enteros en orden ascendente. Solo necesitas darle el rango de elementos que quieres ordenar. <code>arr</code> es el primer elemento del arreglo, y <code>arr + n</code> indica la posición justo después del último elemento.</p>
+<p>En C++, los rangos son <strong>[primero, último)</strong>, lo que significa que el primer valor se incluye, pero el último no. Por eso, <code>arr + n</code> apunta justo después del último elemento, indicando el final del rango a ordenar… Como resultado, <code>std::sort</code> ordena todos los elementos desde el principio hasta el final del arreglo.</p>
 <h1 id="algoritmos-de-búsqueda">Algoritmos de búsqueda</h1>
 <p>Los <strong>algoritmos de búsqueda</strong> son métodos usados en programación para encontrar un elemento específico dentro de un conjunto de datos, como una lista o un arreglo. Son esenciales cuando se necesita localizar rápidamente un dato en particular, especialmente en grandes volúmenes de información.</p>
 <h2 id="búsqueda-lineal-linear-search">Búsqueda Lineal (Linear Search)</h2>
@@ -144,7 +168,7 @@
     <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment">// Si no se encuentra, devuelve -1</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="búsqueda-lineal-linear-search-1">Búsqueda Binaria (Binary Search)</h2>
+<h2 id="búsqueda-binaria-binary-search">Búsqueda Binaria (Binary Search)</h2>
 <p>La <strong>búsqueda binaria</strong> es un algoritmo mucho más eficiente que la búsqueda lineal, pero requiere que los datos estén <strong>ordenados</strong>. Funciona dividiendo repetidamente el espacio de búsqueda a la mitad, lo que reduce drásticamente el número de comparaciones necesarias.</p>
 <h3 id="¿cómo-funciona-3">¿Cómo funciona?</h3>
 <ol>
@@ -178,9 +202,35 @@
 </code></pre>
 <h3 id="ejemplo-completo-de-algoritmos-de-ordenamiento-1">Ejemplo Completo de Algoritmos de Ordenamiento</h3>
 <p>Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este <a href="https://github.com/German234/LaboratoriosPED.github.io/blob/3acf90416ffa969de51863d879bc8ee1c1d9c5c6/Laboratorio-07/AlgoritmosBusqueda.cc">repositorio</a>.</p>
+<h2 id="busqueda-usando-la-librería-de-c">Busqueda usando la librería de C++</h2>
+<p>La librería estándar de C++ provee la función <code>std::binary_search</code> para realizar búsquedas de manera eficiente en arreglos <strong>ordenados</strong> haciendo uso del algoritmo del mismo nombre.</p>
+<h3 id="uso-de-stdbinary_search">Uso de <code>std::binary_search</code></h3>
+<p>Así como se explicó anteriormente, el algoritmo <code>binary search</code> requiere que el arreglo esté previamente ordenado, por lo cual debemos proveerle un arreglo que cumpla esa caracteristica.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> key <span class="token operator">=</span> <span class="token number">22</span><span class="token punctuation">;</span>
+    bool found <span class="token operator">=</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token function">binary_search</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> arr <span class="token operator">+</span> n<span class="token punctuation">,</span> key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>found<span class="token punctuation">)</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento "</span> <span class="token operator">&lt;&lt;</span> key <span class="token operator">&lt;&lt;</span> <span class="token string">" encontrado en el arreglo.\n"</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento "</span> <span class="token operator">&lt;&lt;</span> key <span class="token operator">&lt;&lt;</span> <span class="token string">" no encontrado.\n"</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este ejemplo, <code>std::binary_search</code> se utiliza para verificar si el valor <code>22</code> está presente en el arreglo. Para que la función funcione correctamente, necesitamos pasarle tres parámetros: el inicio del arreglo, el final del arreglo y el valor que queremos buscar. l inicio del arreglo se indica con <code>arr</code>, y el final con <code>arr + n</code>, que apunta justo después del último elemento, asegurando que todos los valores sean considerados en la búsqueda. El tercer parámetro es el valor que estamos buscando, en este caso <code>22</code>.</p>
+<p>Es importante recordar que la búsqueda binaria <strong>solo funciona en arreglos ordenados</strong>, ya que el algoritmo divide el arreglo en mitades de forma eficiente para encontrar el valor. Si el valor se encuentra, la función devuelve <code>true</code>; si no, devuelve <code>false</code></p>
 <h2 id="anexos">Anexos</h2>
 <h3 id="visualgo">Visualgo</h3>
 <p><a href="https://visualgo.net/en/sorting">Visualgo</a> es una herramienta interactiva y visual que ayuda a entender y simular diferentes algoritmos de búsqueda, ordenamiento, y estructuras de datos.</p>
+<h3 id="cplusplus">Cplusplus</h3>
+<p><a href="https://cplusplus.com/reference/algorithm/">Cplusplus</a> contiene la referencia de la libreria <code>algorithm</code></p>
 
     </div>
   </div>
