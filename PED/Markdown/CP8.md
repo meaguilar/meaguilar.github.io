@@ -1,10 +1,10 @@
 ﻿# Estructuras de Datos: Árboles
 
-En este laboratorio estudiaremos los **árboles**, una estructura de datos jerárquica que es fundamental en la organización y manipulación de datos en muchos campos de la informática
+En este laboratorio estudiaremos los **árboles**, una estructura de datos que permite organizar y manipular información de forma jerárquica que es fundamental en la organización y manipulación de datos en muchos campos de la informática
 
 ## ¿Qué es un Árbol?
 
-Un **árbol** es una estructura de datos jerárquica compuesta por nodos conectados entre sí mediante aristas. A diferencia de las estructuras lineales (como pilas y colas), un árbol organiza los datos de manera no lineal, permitiendo una estructura de ramificación.
+A diferencia de estructuras como pilas y colas, que organizan los datos de forma lineal, un **árbol** es una estructura de datos jerárquica compuesta por nodos conectados entre sí mediante aristas. A diferencia de las estructuras lineales (como pilas y colas), un árbol organiza los datos de manera no lineal, permitiendo una estructura de ramificación.
 
 El nodo principal del árbol es llamado **raíz**, y cada nodo puede tener múltiples **hijos**. Un nodo sin hijos es conocido como **hoja**.
 
@@ -13,7 +13,7 @@ El nodo principal del árbol es llamado **raíz**, y cada nodo puede tener múlt
 -   **Raíz**: El nodo en la parte superior del árbol.
 -   **Hojas**: Nodos sin hijos.
 -   **Padre**: Un nodo que tiene uno o más hijos.
--   **Hijos**: Nodos que descienden de otro nodo.
+-   **Hijos**: Nodos que descienden directamente de otro nodo.
 -   **Profundidad**: La distancia de un nodo a la raíz.
 -   **Altura**: La longitud del camino más largo desde un nodo hasta una hoja.
 
@@ -22,18 +22,19 @@ El nodo principal del árbol es llamado **raíz**, y cada nodo puede tener múlt
 ## Tipos de Árboles
 1.  **Árbol General**: No hay restricciones en el número de hijos de un nodo.
 2.  **Árbol Binario**: Cada nodo tiene como máximo dos hijos.
-3.  **Árbol Binario de Búsqueda (BST)**: Árbol binario en el que el hijo izquierdo de un nodo es menor que el nodo, y el hijo derecho es mayor.
+3.  **Árbol Binario de Búsqueda (BST)**: En un árbol binario de búsqueda, los valores del subárbol izquierdo son menores que los del nodo, y los del subárbol derecho son mayores.
 4.  **Árbol AVL**: Árbol binario de búsqueda balanceado donde la diferencia de altura entre subárboles de cualquier nodo no puede ser mayor que 1.
 
 En este laboratorio no centraremos más en estudiar los **Árboles binarios**
 
 ## ¿Qué es un Árbol Binario?
-Un **árbol binario** es una estructura de datos en la que cada nodo tiene como máximo dos hijos, llamados **hijo izquierdo** e **hijo derecho**. Esta estructura se utiliza ampliamente debido a su simplicidad y eficiencia en diversas operaciones como la búsqueda, inserción y eliminación de datos.
+Un **árbol binario** es una estructura de datos en la que cada nodo tiene como máximo dos hijos, llamados **hijo izquierdo** e **hijo derecho**. Los árboles binarios son muy eficientes para realizar operaciones como la búsqueda, inserción y eliminación de datos.
 
-Un **árbol binario perfecto** es aquel en el que todos los nodos internos tienen exactamente dos hijos y todas las hojas se encuentran al mismo nivel. Por el contrario, un **árbol binario no perfecto** es aquel en el que no todos los nodos tienen dos hijos o las hojas no están al mismo nivel, lo que genera una estructura más irregular y menos simétrica.
+Un **árbol binario perfecto** es aquel en el que todos los nodos internos tienen exactamente dos hijos y todas las hojas se encuentran al mismo nivel. Por el contrario, un **árbol binario no perfecto** es aquel en el que no todos los nodos tienen dos hijos o las hojas no están al mismo nivel, lo que genera una estructura menos simetrica.
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeZUo1iQW3CvLdxyj8NvGPbOjC1AxNNDJSAqxsdiM-S0o2ZZ06U4wruYz3XDubfGT7UEQgC6cZezMcRw-SPNPHBtrsk9qB-8Wo7yRQHYddagRPnOgK0X29lNQQl0mAEBI-K9wmOLwyPduq1MYR6FWKUW4mtJV6lAIrFWPRRn7CNJzOgccGNW6M?key=BwtYwK_Wq8XuxDmwAUlVQw)**
 ## Representación de un Árbol binario en C++
+
 
 ### Definición de un nodo
 En C++, cada nodo de un árbol binario se puede definir mediante una estructura que contiene los datos a guardar y dos punteros, uno hacia el hijo izquierdo y otro hacia el hijo derecho.
