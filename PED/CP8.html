@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labo 08 - Arboles.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#estructuras-de-datos-árboles">Estructuras de Datos: Árboles</a>
+<ul>
+<li><a href="#¿qué-es-un-árbol">¿Qué es un Árbol?</a></li>
+<li><a href="#tipos-de-árboles">Tipos de Árboles</a></li>
+<li><a href="#¿qué-es-un-árbol-binario">¿Qué es un Árbol Binario?</a></li>
+<li><a href="#representación-de-un-árbol-binario-en-c">Representación de un Árbol binario en C++</a></li>
+<li><a href="#operaciones-básicas-en-árboles-binarios">Operaciones Básicas en Árboles Binarios</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="estructuras-de-datos-árboles">Estructuras de Datos: Árboles</h1>
+<p>En este laboratorio estudiaremos los <strong>árboles</strong>, una estructura de datos jerárquica que es fundamental en la organización y manipulación de datos en muchos campos de la informática</p>
+<h2 id="¿qué-es-un-árbol">¿Qué es un Árbol?</h2>
+<p>Un <strong>árbol</strong> es una estructura de datos jerárquica compuesta por nodos conectados entre sí mediante aristas. A diferencia de las estructuras lineales (como pilas y colas), un árbol organiza los datos de manera no lineal, permitiendo una estructura de ramificación.</p>
+<p>El nodo principal del árbol es llamado <strong>raíz</strong>, y cada nodo puede tener múltiples <strong>hijos</strong>. Un nodo sin hijos es conocido como <strong>hoja</strong>.</p>
+<h3 id="características-importantes-de-los-árboles">Características importantes de los árboles:</h3>
+<ul>
+<li><strong>Raíz</strong>: El nodo en la parte superior del árbol.</li>
+<li><strong>Hojas</strong>: Nodos sin hijos.</li>
+<li><strong>Padre</strong>: Un nodo que tiene uno o más hijos.</li>
+<li><strong>Hijos</strong>: Nodos que descienden de otro nodo.</li>
+<li><strong>Profundidad</strong>: La distancia de un nodo a la raíz.</li>
+<li><strong>Altura</strong>: La longitud del camino más largo desde un nodo hasta una hoja.</li>
+</ul>
+<p><img src="https://www.oscarblancarteblog.com/wp-content/uploads/2014/08/tiposdenodos.png" alt=""></p>
+<h2 id="tipos-de-árboles">Tipos de Árboles</h2>
+<ol>
+<li><strong>Árbol General</strong>: No hay restricciones en el número de hijos de un nodo.</li>
+<li><strong>Árbol Binario</strong>: Cada nodo tiene como máximo dos hijos.</li>
+<li><strong>Árbol Binario de Búsqueda (BST)</strong>: Árbol binario en el que el hijo izquierdo de un nodo es menor que el nodo, y el hijo derecho es mayor.</li>
+<li><strong>Árbol AVL</strong>: Árbol binario de búsqueda balanceado donde la diferencia de altura entre subárboles de cualquier nodo no puede ser mayor que 1.</li>
+</ol>
+<p>En este laboratorio no centraremos más en estudiar los <strong>Árboles binarios</strong></p>
+<h2 id="¿qué-es-un-árbol-binario">¿Qué es un Árbol Binario?</h2>
+<p>Un <strong>árbol binario</strong> es una estructura de datos en la que cada nodo tiene como máximo dos hijos, llamados <strong>hijo izquierdo</strong> e <strong>hijo derecho</strong>. Esta estructura se utiliza ampliamente debido a su simplicidad y eficiencia en diversas operaciones como la búsqueda, inserción y eliminación de datos.</p>
+<p>Un <strong>árbol binario perfecto</strong> es aquel en el que todos los nodos internos tienen exactamente dos hijos y todas las hojas se encuentran al mismo nivel. Por el contrario, un <strong>árbol binario no perfecto</strong> es aquel en el que no todos los nodos tienen dos hijos o las hojas no están al mismo nivel, lo que genera una estructura más irregular y menos simétrica.</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeZUo1iQW3CvLdxyj8NvGPbOjC1AxNNDJSAqxsdiM-S0o2ZZ06U4wruYz3XDubfGT7UEQgC6cZezMcRw-SPNPHBtrsk9qB-8Wo7yRQHYddagRPnOgK0X29lNQQl0mAEBI-K9wmOLwyPduq1MYR6FWKUW4mtJV6lAIrFWPRRn7CNJzOgccGNW6M?key=BwtYwK_Wq8XuxDmwAUlVQw" alt=""></strong></p>
+<h2 id="representación-de-un-árbol-binario-en-c">Representación de un Árbol binario en C++</h2>
+<h3 id="definición-de-un-nodo">Definición de un nodo</h3>
+<p>En C++, cada nodo de un árbol binario se puede definir mediante una estructura que contiene los datos a guardar y dos punteros, uno hacia el hijo izquierdo y otro hacia el hijo derecho.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+<span class="token keyword">struct</span> Datos <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span>         
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+    Datos dato<span class="token punctuation">;</span>         <span class="token comment">// Valor almacenado</span>
+    Nodo<span class="token operator">*</span> izquierda<span class="token punctuation">;</span>    <span class="token comment">// Puntero al hijo izquierdo</span>
+    Nodo<span class="token operator">*</span> derecha<span class="token punctuation">;</span>      <span class="token comment">// Puntero al hijo derecho</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre>
+<h2 id="operaciones-básicas-en-árboles-binarios">Operaciones Básicas en Árboles Binarios</h2>
+<h3 id="insertar-un-nodo">1. Insertar un nodo</h3>
+<p>Vamos a insertar un nodo en el árbol binario comparando el <strong>id</strong> del campo <code>Datos</code>. Si el <strong>id</strong> del nuevo nodo es menor que el nodo actual, lo insertamos en el subárbol izquierdo; si es mayor, en el subárbol derecho.</p>
+<pre class=" language-c"><code class="prism ++ language-c">Nodo<span class="token operator">*</span> <span class="token function">Insertar</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">,</span> Datos nuevo_dato<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> nuevo_dato<span class="token punctuation">;</span>
+        nuevo_nodo<span class="token operator">-&gt;</span>izquierda <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+        nuevo_nodo<span class="token operator">-&gt;</span>derecha <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> nuevo_nodo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nuevo_dato<span class="token punctuation">.</span>id <span class="token operator">&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        raiz<span class="token operator">-&gt;</span>izquierda <span class="token operator">=</span> <span class="token function">Insertar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">,</span> nuevo_dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        raiz<span class="token operator">-&gt;</span>derecha <span class="token operator">=</span> <span class="token function">Insertar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">,</span> nuevo_dato<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> raiz<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="buscar-un-nodo">2. Buscar un nodo</h3>
+<p>Para buscar un nodo en el árbol, compararemos el <strong>id</strong> del campo <code>Datos</code> para determinar si el nodo se encuentra en el árbol.</p>
+<pre class=" language-c"><code class="prism ++ language-c">bool <span class="token function">Buscar</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">,</span> <span class="token keyword">int</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> false<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">==</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> true<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">Buscar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">Buscar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="recorrer-un-árbol-binario">3. Recorrer un árbol binario</h3>
+<p>Los <strong>recorridos de un árbol binario</strong> son formas de visitar todos los nodos del árbol siguiendo un orden específico. Existen tres tipos principales de recorridos: <strong>inorden</strong>, <strong>preorden</strong> y <strong>postorden</strong>. La principal diferencia entre estos recorridos es el momento en que se visita el nodo <strong>padre</strong> en relación con su hijo izquierdo e hijo derecho.</p>
+<ul>
+<li>
+<p><strong>Recorrido Inorden (IPD):</strong> En el recorrido <strong>inorden</strong>, primero se visita el <strong>hijo izquierdo</strong>, luego se <strong>visita el nodo</strong> padre, y finalmente se visita el <strong>hijo derecho</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">InOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">InOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        <span class="token function">InOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Recorrido Preorden (PID):</strong> En el recorrido <strong>preorden</strong>, primero se <strong>visita el nodo</strong> padre, luego se visita el <strong>hijo izquierdo</strong>, y finalmente se visita el <strong>hijo derecho</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">PreOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        <span class="token function">PreOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">PreOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>
+<p><strong>Recorrido Postorden (IDP):</strong> En el recorrido <strong>postorden</strong>, primero se visita el <strong>hijo izquierdo</strong>, luego se visita el <strong>hijo derecho</strong>, y finalmente se visita el <strong>nodo padre</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">PostOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">PostOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">PostOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+</ul>
+<h3 id="eliminar-un-nodo">4. <strong>Eliminar un Nodo</strong></h3>
+<p>La eliminación de un nodo sigue las mismas reglas, pero comparando siempre el <strong>id</strong> del campo <code>Datos</code> para encontrar el nodo a eliminar.</p>
+<pre class=" language-c"><code class="prism ++ language-c">Nodo<span class="token operator">*</span> <span class="token function">EncontrarMin</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> nodo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span>nodo<span class="token operator">-&gt;</span>izquierda <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        nodo <span class="token operator">=</span> nodo<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> nodo<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Nodo<span class="token operator">*</span> <span class="token function">Eliminar</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">,</span> <span class="token keyword">int</span> id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> raiz<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        raiz<span class="token operator">-&gt;</span>izquierda <span class="token operator">=</span> <span class="token function">Eliminar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">&gt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        raiz<span class="token operator">-&gt;</span>derecha <span class="token operator">=</span> <span class="token function">Eliminar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda <span class="token operator">==</span> nullptr <span class="token operator">&amp;&amp;</span> raiz<span class="token operator">-&gt;</span>derecha <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            delete raiz<span class="token punctuation">;</span>
+            raiz <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Nodo<span class="token operator">*</span> temp <span class="token operator">=</span> raiz<span class="token punctuation">;</span>
+            raiz <span class="token operator">=</span> raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">;</span>
+            delete temp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            Nodo<span class="token operator">*</span> temp <span class="token operator">=</span> raiz<span class="token punctuation">;</span>
+            raiz <span class="token operator">=</span> raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">;</span>
+            delete temp<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            Nodo<span class="token operator">*</span> temp <span class="token operator">=</span> <span class="token function">EncontrarMin</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            raiz<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> temp<span class="token operator">-&gt;</span>dato<span class="token punctuation">;</span>
+            raiz<span class="token operator">-&gt;</span>derecha <span class="token operator">=</span> <span class="token function">Eliminar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">,</span> temp<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> raiz<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+    </div>
+  </div>
+</body>
+
+</html>
