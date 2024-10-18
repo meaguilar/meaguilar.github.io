@@ -178,4 +178,105 @@ Nodo* Eliminar(Nodo* raiz, int id) {
     return raiz;
 }
 ```
+## Librería de Árboles C++
+
+En este laboratorio utilizaremos la librería `std::set`, que implementa un árbol de búsqueda balanceado, comúnmente un **Red-Black Tree**. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.
+
+### Propiedades de la libreria `std::set` 
+-   **Orden**: Los elementos siempre se almacenan en orden ascendente
+-   **No duplicados**: No se permiten elementos duplicados.
+-   **Autobalanceado**: Internamente, utiliza un árbol binario de búsqueda balanceado para optimizar las operaciones.
+
+### Definición del conjunto
+Para definir un conjunto, lo haremos primero creando una estructura, la cual  lo haremos mediante el siguiente codigo 
+
+```c++
+struct Persona {
+    int id;
+    std::string nombre;
+
+    // Sobrecargamos el operador < para ordenar por id
+    bool operator<(const Persona& otra) const {
+        return id < otra.id;
+    }
+};
+```
+En este caso, para el conjunto que vamos a crear, es necesario que la estructura personalizada defina el operador `<`, ya que C++ no sabe cómo comparar automáticamente dichos tipos, al no existir una regla predefinida para determinar cuál es **'menor'**. Aquí es donde entra en juego la **sobrecarga del operador `<`**: debemos especificar cómo comparar dos objetos de la estructura `Persona` para que el conjunto pueda ordenarlos correctamente, en este caso, definimos que lo ordenara por id. Si no lo hacemos, se generará un error de compilación.
+
+Luego para definir un conjunto, lo haremos de la siguiente manera
+```c++
+std::set<Persona> personas;
+```
+
+### Operaciones basicas de `std::set`
+
+### Insertar elementos
+Cada vez que agregas algo a un `std::set`, lo guarda en orden y no deja que haya duplicados. Si intentas agregar algo que ya existe, simplemente no lo inserta.
+```c++
+personas.insert({1, "Juan"}); 
+personas.insert({3, "Ana"}); 
+personas.insert({2, "Pedro"});
+```
+### Buscar un elemento en el conjunto
+Puedes buscar un elemento para ver si está en el conjunto. Como es de tipo booleano, te devolvera verdadero o falso, indicando si lo encontro o no.
+
+```c++
+    // Buscar una persona por id
+    Persona buscar = {2, ""};  // Solo necesitamos el 'id' para buscar
+    auto it = personas.find(buscar);
+
+    if (it != personas.end()) {
+        std::cout << "Persona encontrada: " << it->nombre << std::endl;
+    } else {
+        std::cout << "Persona no encontrada." << std::endl;
+    }
+```
+
+#### ¿Que es el tipo de dato auto?
+El tipo de dato `auto` es una palabra clave que permite al compilador deducir automáticamente el tipo de una variable a partir de su valor de inicialización. Es especialmente útil cuando el tipo de la variable es complejo o largo de escribir, como en el caso de los iteradores, funciones lambda, o punteros inteligentes.
+
+Como `personas.find(buscar)` devuelve un iterador que apunta al tipo de dato almacenado en el contenedor en este caso, una estructura `Persona`, `it` será del tipo adecuado, que normalmente sería algo como `std::set<Persona>::iterator`, en ves de escribir todo eso, lo simplificamos con `auto`.
+
+### Eliminar del conjunto
+Para eliminar una persona, usamos la función `erase`, pasando el identificador que queremos eliminar.
+
+```c++
+Persona eliminar = {1, ""};  // Solo necesitamos el 'id' para eliminar
+personas.erase(eliminar);
+```
+### Recorrer un conjunto
+Para recorrer el conjunto e imprimir los elementos, podemos usar un bucle `for`, donde el conjunto ya se encuentra ordenado automáticamente.
+
+```c++
+ for (auto it = personas.begin(); it != personas.end(); ++it) {
+    const auto& persona = *it;
+    std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
+}
+```
+`personas.begin()` indica el inicio y `personas.end()` el ultimo elemento del conjunto.
+
+Una forma mucho mas común de implementar un recorrido y simplificandolo, es aplicando un **bucle rango** . Este tipo de bucle simplifica la iteración sobre contenedores como `std::set`, `std::vector`, `std::array`, entre otros. Lo podemos definir de la siguiente manera
+
+```c++
+ for (const auto& persona : personas) {
+    std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
+ }
+```
+
+  `const`: Indica que la variable `persona` no se puede modificar durante la iteración. Esto asegura que el contenido de cada objeto no cambie accidentalmente.
+  
+`&` (Referencia): Permite evitar la copia de cada elemento en cada iteración. En lugar de copiar los elementos del contenedor `personas`, se accede a ellos por referencia, lo que mejora la eficiencia al no duplicar los objetos.
+
+`persona`: Es la variable que representa un elemento individual del contenedor `personas`. En cada iteración, `persona` toma el valor de un objeto diferente del tipo `Persona`.
+
+`personas`: Es el contenedor que estamos recorriendo. En este caso, es un `std::set<Persona>`
+
+
+# Anexos
+
+-   [Referencia oficial de la librería `std::set`](https://en.cppreference.com/w/cpp/container/set) - Documentación detallada sobre la implementación y uso del contenedor `set` en C++.
+    
+-   [Introducción a `set` en la STL de C++](https://www.geeksforgeeks.org/set-in-cpp-stl/) - Un recurso práctico que explica cómo utilizar `set` con ejemplos claros y concisos.
+    
+-   [Visualización interactiva de estructuras de datos - Binary Search Tree (BST)](https://visualgo.net/en/bst) - Herramienta visual para entender el funcionamiento de los árboles binarios de búsqueda, base de la implementación de `std::set`.
 

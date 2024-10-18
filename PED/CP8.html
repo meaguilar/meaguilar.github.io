@@ -20,8 +20,10 @@
 <li><a href="#¿qué-es-un-árbol-binario">¿Qué es un Árbol Binario?</a></li>
 <li><a href="#representación-de-un-árbol-binario-en-c">Representación de un Árbol binario en C++</a></li>
 <li><a href="#operaciones-básicas-en-árboles-binarios">Operaciones Básicas en Árboles Binarios</a></li>
+<li><a href="#librería-de-árboles-c">Librería de Árboles C++</a></li>
 </ul>
 </li>
+<li><a href="#anexos">Anexos</a></li>
 </ul>
 
     </div>
@@ -188,6 +190,86 @@ Nodo<span class="token operator">*</span> <span class="token function">Eliminar<
     <span class="token keyword">return</span> raiz<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h2 id="librería-de-árboles-c">Librería de Árboles C++</h2>
+<p>En este laboratorio utilizaremos la librería <code>std::set</code>, que implementa un árbol de búsqueda balanceado, comúnmente un <strong>Red-Black Tree</strong>. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.</p>
+<h3 id="propiedades-de-la-libreria-stdset">Propiedades de la libreria <code>std::set</code></h3>
+<ul>
+<li><strong>Orden</strong>: Los elementos siempre se almacenan en orden ascendente</li>
+<li><strong>No duplicados</strong>: No se permiten elementos duplicados.</li>
+<li><strong>Autobalanceado</strong>: Internamente, utiliza un árbol binario de búsqueda balanceado para optimizar las operaciones.</li>
+</ul>
+<h3 id="definición-del-conjunto">Definición del conjunto</h3>
+<p>Para definir un conjunto, lo haremos primero creando una estructura, la cual  lo haremos mediante el siguiente codigo</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Persona <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> id<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+
+    <span class="token comment">// Sobrecargamos el operador &lt; para ordenar por id</span>
+    bool operator<span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token keyword">const</span> Persona<span class="token operator">&amp;</span> otra<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> id <span class="token operator">&lt;</span> otra<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>En este caso, para el conjunto que vamos a crear, es necesario que la estructura personalizada defina el operador <code>&lt;</code>, ya que C++ no sabe cómo comparar automáticamente dichos tipos, al no existir una regla predefinida para determinar cuál es <strong>‘menor’</strong>. Aquí es donde entra en juego la <strong>sobrecarga del operador <code>&lt;</code></strong>: debemos especificar cómo comparar dos objetos de la estructura <code>Persona</code> para que el conjunto pueda ordenarlos correctamente, en este caso, definimos que lo ordenara por id. Si no lo hacemos, se generará un error de compilación.</p>
+<p>Luego para definir un conjunto, lo haremos de la siguiente manera</p>
+<pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>set<span class="token operator">&lt;</span>Persona<span class="token operator">&gt;</span> personas<span class="token punctuation">;</span>
+</code></pre>
+<h3 id="operaciones-basicas-de-stdset">Operaciones basicas de <code>std::set</code></h3>
+<h3 id="insertar-elementos">Insertar elementos</h3>
+<p>Cada vez que agregas algo a un <code>std::set</code>, lo guarda en orden y no deja que haya duplicados. Si intentas agregar algo que ya existe, simplemente no lo inserta.</p>
+<pre class=" language-c"><code class="prism ++ language-c">personas<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"Juan"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+personas<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"Ana"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+personas<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"Pedro"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="buscar-un-elemento-en-el-conjunto">Buscar un elemento en el conjunto</h3>
+<p>Puedes buscar un elemento para ver si está en el conjunto. Como es de tipo booleano, te devolvera verdadero o falso, indicando si lo encontro o no.</p>
+<pre class=" language-c"><code class="prism ++ language-c">    <span class="token comment">// Buscar una persona por id</span>
+    Persona buscar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Solo necesitamos el 'id' para buscar</span>
+    <span class="token keyword">auto</span> it <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>buscar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> personas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona encontrada: "</span> <span class="token operator">&lt;&lt;</span> it<span class="token operator">-&gt;</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona no encontrada."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<h4 id="¿que-es-el-tipo-de-dato-auto">¿Que es el tipo de dato auto?</h4>
+<p>El tipo de dato <code>auto</code> es una palabra clave que permite al compilador deducir automáticamente el tipo de una variable a partir de su valor de inicialización. Es especialmente útil cuando el tipo de la variable es complejo o largo de escribir, como en el caso de los iteradores, funciones lambda, o punteros inteligentes.</p>
+<p>Como <code>personas.find(buscar)</code> devuelve un iterador que apunta al tipo de dato almacenado en el contenedor en este caso, una estructura <code>Persona</code>, <code>it</code> será del tipo adecuado, que normalmente sería algo como <code>std::set&lt;Persona&gt;::iterator</code>, en ves de escribir todo eso, lo simplificamos con <code>auto</code>.</p>
+<h3 id="eliminar-del-conjunto">Eliminar del conjunto</h3>
+<p>Para eliminar una persona, usamos la función <code>erase</code>, pasando el identificador que queremos eliminar.</p>
+<pre class=" language-c"><code class="prism ++ language-c">Persona eliminar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Solo necesitamos el 'id' para eliminar</span>
+personas<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>eliminar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="recorrer-un-conjunto">Recorrer un conjunto</h3>
+<p>Para recorrer el conjunto e imprimir los elementos, podemos usar un bucle <code>for</code>, donde el conjunto ya se encuentra ordenado automáticamente.</p>
+<pre class=" language-c"><code class="prism ++ language-c"> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> it <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> personas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> persona <span class="token operator">=</span> <span class="token operator">*</span>it<span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><code>personas.begin()</code> indica el inicio y <code>personas.end()</code> el ultimo elemento del conjunto.</p>
+<p>Una forma mucho mas común de implementar un recorrido y simplificandolo, es aplicando un <strong>bucle rango</strong> . Este tipo de bucle simplifica la iteración sobre contenedores como <code>std::set</code>, <code>std::vector</code>, <code>std::array</code>, entre otros. Lo podemos definir de la siguiente manera</p>
+<pre class=" language-c"><code class="prism ++ language-c"> <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> persona <span class="token punctuation">:</span> personas<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+</code></pre>
+<p><code>const</code>: Indica que la variable <code>persona</code> no se puede modificar durante la iteración. Esto asegura que el contenido de cada objeto no cambie accidentalmente.</p>
+<p><code>&amp;</code> (Referencia): Permite evitar la copia de cada elemento en cada iteración. En lugar de copiar los elementos del contenedor <code>personas</code>, se accede a ellos por referencia, lo que mejora la eficiencia al no duplicar los objetos.</p>
+<p><code>persona</code>: Es la variable que representa un elemento individual del contenedor <code>personas</code>. En cada iteración, <code>persona</code> toma el valor de un objeto diferente del tipo <code>Persona</code>.</p>
+<p><code>personas</code>: Es el contenedor que estamos recorriendo. En este caso, es un <code>std::set&lt;Persona&gt;</code></p>
+<h1 id="anexos">Anexos</h1>
+<ul>
+<li>
+<p><a href="https://en.cppreference.com/w/cpp/container/set">Referencia oficial de la librería <code>std::set</code></a> - Documentación detallada sobre la implementación y uso del contenedor <code>set</code> en C++.</p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/set-in-cpp-stl/">Introducción a <code>set</code> en la STL de C++</a> - Un recurso práctico que explica cómo utilizar <code>set</code> con ejemplos claros y concisos.</p>
+</li>
+<li>
+<p><a href="https://visualgo.net/en/bst">Visualización interactiva de estructuras de datos - Binary Search Tree (BST)</a> - Herramienta visual para entender el funcionamiento de los árboles binarios de búsqueda, base de la implementación de <code>std::set</code>.</p>
+</li>
+</ul>
 
     </div>
   </div>
