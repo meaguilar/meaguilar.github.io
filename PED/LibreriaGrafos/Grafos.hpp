@@ -2,25 +2,18 @@
 #define GRAPHLIB_HPP
 
 #include <algorithm>
+#include <functional>
 #include <iostream>
 #include <list>
 #include <map>
 #include <stack>
 
-/* Plantilla */
 template <typename NodeType>
-
 class Graph {
  public:
   Graph(bool isDirected = false) : isDirected(isDirected) {}
 
   bool add(const NodeType& src, const NodeType& dest) {
-    if (src == dest) {
-      std::cerr
-          << "[Error]: No se puede agregar una arista de un nodo a sí mismo."
-          << std::endl;
-      return false;
-    }
     if (!isDirected &&
         adjList[dest].end() !=
             std::find(adjList[dest].begin(), adjList[dest].end(), src)) {
@@ -51,28 +44,28 @@ class Graph {
     return adjList.find(node) != adjList.end();
   }
 
-  bool DFS(const NodeType& start) const {
+  void DFS(const NodeType& start,
+           std::function<void(const NodeType&)> visit) const {
     if (!find(start)) {
       std::cerr << "[Error]: El nodo de inicio no existe en el grafo."
                 << std::endl;
-      return false;
+      return;
     }
     std::map<NodeType, bool> visited;
-    DFSUtil(start, visited);
-    std::cout << std::endl;
-    return true;
+    DFSUtil(start, visited, visit);
   }
 
  private:
   std::map<NodeType, std::list<NodeType>> adjList;
   bool isDirected;
 
-  void DFSUtil(const NodeType& node, std::map<NodeType, bool>& visited) const {
+  void DFSUtil(const NodeType& node, std::map<NodeType, bool>& visited,
+               std::function<void(const NodeType&)> visit) const {
     visited[node] = true;
-    std::cout << node << " ";
+    visit(node);
     for (const NodeType& neighbor : adjList.at(node)) {
       if (!visited[neighbor]) {
-        DFSUtil(neighbor, visited);
+        DFSUtil(neighbor, visited, visit);
       }
     }
   }

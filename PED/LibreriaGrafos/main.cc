@@ -10,9 +10,13 @@ struct Person {
   bool operator<(const Person& other) const {
     return name < other.name || (name == other.name && age < other.age);
   }
+
+  bool operator==(const Person& other) const {
+    return name == other.name && age == other.age;
+  }
 };
 
-int main(int argc, char const* argv[]) {
+int main() {
   Graph<Person> graph;
 
   Person alice{"Alice", 30};
@@ -27,7 +31,9 @@ int main(int argc, char const* argv[]) {
   }
 
   std::cout << "Recorrido DFS desde Alice:" << std::endl;
-  graph.DFS(alice);
+  graph.DFS(alice, [](const Person& person) {
+    std::cout << person.name << " (" << person.age << ")" << std::endl;
+  });
 
   return 0;
 }
