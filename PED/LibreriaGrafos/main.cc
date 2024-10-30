@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 
-#include "GrafosSinClase.hpp"
+#include "Grafos.hpp"
 
 struct Person {
   std::string name;
