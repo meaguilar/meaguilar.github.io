@@ -16,6 +16,10 @@ struct Person {
   }
 };
 
+void imprimirPersona(const Person& person) {
+  std::cout << person.name << " (" << person.age << ")" << std::endl;
+}
+
 int main() {
   Graph<Person> graph;
 
@@ -24,16 +28,15 @@ int main() {
   Person charlie{"Charlie", 35};
 
   graph.add(alice, bob);
-  graph.add(bob, charlie);
+  graph.add(alice, charlie);
 
   if (graph.find(bob)) {
     std::cout << "Bob está en el grafo." << std::endl;
   }
 
   std::cout << "Recorrido DFS desde Alice:" << std::endl;
-  graph.DFS(alice, [](const Person& person) {
-    std::cout << person.name << " (" << person.age << ")" << std::endl;
-  });
+  
 
+  graph.DFS(alice, imprimirPersona);
   return 0;
 }
