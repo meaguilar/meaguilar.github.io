@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labo10 - POO</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#programación-orientada-a-objetos-poo-en-c">Programación Orientada a Objetos (POO) en C++</a>
+<ul>
+<li><a href="#¿qué-es-la-programación-orientada-a-objetos-poo">¿Qué es la Programación Orientada a Objetos (POO)?</a></li>
+<li><a href="#¿que-es-una-clase">¿Que es una clase?</a></li>
+<li><a href="#principios-de-la-poo">Principios de la POO</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="programación-orientada-a-objetos-poo-en-c">Programación Orientada a Objetos (POO) en C++</h1>
+<p>En este laboratorio, exploraremos los conceptos fundamentales de la <strong>Programación Orientada a Objetos (POO)</strong>, que nos permitirá organizar y manipular la información de forma modular y reutilizable en el desarrollo de software.</p>
+<h2 id="¿qué-es-la-programación-orientada-a-objetos-poo">¿Qué es la Programación Orientada a Objetos (POO)?</h2>
+<p>La <strong>POO</strong> es un paradigma de programación que organiza el código en <strong>clases y objetos</strong> en lugar de funciones y procedimientos. Este enfoque ayuda a estructurar programas grandes en pequeñas unidades de código, cada una con responsabilidades específicas. En C++, la POO permite modelar entidades del mundo real mediante la creación de <strong>objetos</strong> y <strong>clases</strong>.</p>
+<h3 id="características-principales-de-la-poo">Características principales de la POO:</h3>
+<ol>
+<li><strong>Encapsulamiento</strong>: Agrupación de datos y métodos en una misma clase.</li>
+<li><strong>Abstracción</strong>: Representación simplificada de la realidad.</li>
+<li><strong>Herencia</strong>: Reutilización de clases mediante la creación de nuevas clases basadas en las ya existentes.</li>
+<li><strong>Polimorfismo</strong>: Capacidad de un objeto de ser tratado de múltiples formas.</li>
+</ol>
+<h2 id="¿que-es-una-clase">¿Que es una clase?</h2>
+<p>Una <strong>clase</strong> es un modelo que define los <strong>atributos</strong>  y <strong>métodos</strong> de los objetos que representa. A continuación, definiremos una clase básica llamada <code>Gato</code>.</p>
+<p align="center">
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcHO-u8Q5L6xk1Sz8ImQef79l82TO1fXxREjmk9i7Za4eGQHiYI-JDNF9r_GhT52lRw9nLMz8JHdimtfS2tUm0FQ3Wy2iqWwIrjuGg4vKB7nF_5WI8xbVUvDPNoBpCu9-Q13KpcXGpex-P2RIWRpUYbvEYk?key=kbjRPG571AkLo8oSKLIbhEOe" width="400">
+</p>
+<p>Un <strong>atributo</strong> es una característica o propiedad de la clase; es como un dato que describe el objeto. Por ejemplo, un atributo en la clase <code>Gato</code> podría ser su <strong>nombre</strong> o <strong>edad</strong>, ya que estos valores representan características específicas de cada gato.</p>
+<p>Un <strong>método</strong>, en cambio, es una acción o comportamiento que puede realizar un objeto de esa clase. Los métodos permiten que el objeto interactúe o realice tareas. En la clase <code>Gato</code>, un método podría ser <strong>maullar()</strong>, el cual describe la acción de maullar que todos los gatos pueden realizar.</p>
+<p>Una clase en C++ la definiremos de la siguiente manera:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+class Gato <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+	<span class="token comment">//Atributos</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> edad<span class="token punctuation">;</span>
+
+    <span class="token comment">// Constructor</span>
+    <span class="token function">Gato</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token function">nombre</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">edad</span><span class="token punctuation">(</span>edad<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token comment">// Métodos</span>
+    <span class="token keyword">void</span> <span class="token function">mostrarInformacion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">", Edad: "</span> <span class="token operator">&lt;&lt;</span> edad <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Método para hacer que el gato maulle</span>
+    <span class="token keyword">void</span> <span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">"¡Miau!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="constructor">Constructor</h3>
+<p>Un <strong>constructor</strong> es un método especial de una clase que se llama automáticamente cuando se crea un objeto de esa clase. Su función principal es <strong>inicializar los atributos del objeto</strong> y prepararlo para su uso. Los constructores suelen tener el mismo nombre que la clase y no devuelven ningún valor, ni siquiera <code>void</code>.</p>
+<p>Por ejemplo, en la clase <code>Gato</code>, el constructor inicializa los atributos <code>nombre</code> y <code>edad</code> al momento de crear un nuevo objeto de tipo <code>Gato</code>:</p>
+<pre class=" language-c"><code class="prism ++ language-c">Gato <span class="token function">gato1</span><span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Llama al constructor, inicializando nombre y edad</span>
+</code></pre>
+<h3 id="público-y-privado">Público y Privado</h3>
+<p>En C++, los <strong>modificadores de acceso</strong> como <code>public</code> y <code>private</code> especifican quién puede acceder a los atributos y métodos de una clase.</p>
+<ul>
+<li>
+<p>Público (<code>public</code>): Los atributos y métodos declarados como públicos son accesibles desde cualquier parte del programa, fuera de la clase. Por ejemplo, si declaramos el atributo <code>nombre</code> como público, podemos acceder directamente a él:</p>
+<pre class=" language-c"><code class="prism ++ language-c">Gato <span class="token function">gato1</span><span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> gato1<span class="token punctuation">.</span>nombre<span class="token punctuation">;</span>  <span class="token comment">// Acceso permitido porque 'nombre' es público</span>
+</code></pre>
+</li>
+<li>
+<p>Privado (<code>private</code>): Los atributos y métodos declarados como privados solo son accesibles desde dentro de la propia clase. Usamos esta restricción para proteger los datos y evitar que puedan ser modificados directamente desde fuera de la clase. Esto es parte del principio de <strong>encapsulamiento</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c">class Gato <span class="token punctuation">{</span>
+private<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> edad<span class="token punctuation">;</span>
+
+public<span class="token punctuation">:</span>
+    <span class="token function">Gato</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token function">nombre</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">edad</span><span class="token punctuation">(</span>edad<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> <span class="token function">obtenerEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> edad<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>En este caso, el atributo <code>edad</code> es privado, por lo que solo podemos acceder a él a través de métodos públicos (como <code>obtenerEdad()</code>).</p>
+</li>
+</ul>
+<h3 id="la-palabra-clave-this">La palabra clave <code>this</code></h3>
+<p>En C++, <code>this</code> es un <strong>puntero que apunta al objeto actual</strong>. Se utiliza dentro de los métodos de una clase para referirse a los atributos o métodos del mismo objeto. Aunque no es obligatorio en todos los casos, <code>this</code> puede ser útil para hacer referencia a los atributos del objeto cuando hay ambigüedad.</p>
+<p>Por ejemplo, en el constructor de la clase <code>Gato</code>, podríamos usar <code>this</code> para aclarar que <code>this-&gt;nombre</code> y <code>this-&gt;edad</code> se refieren a los atributos del objeto, mientras que <code>nombre</code> y <code>edad</code> son los parámetros recibidos en el constructor:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token function">Gato</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    this<span class="token operator">-&gt;</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+    this<span class="token operator">-&gt;</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Al escribir <code>this-&gt;nombre</code>, le decimos al programa que nos referimos al atributo <code>nombre</code> de la clase y no al parámetro <code>nombre</code> que fue pasado al constructor. Esto es especialmente útil cuando los nombres de los atributos y los parámetros son iguales.</p>
+<h3 id="crear-objetos">Crear Objetos</h3>
+<p>Los objetos se crean instanciando la clase:</p>
+<pre class=" language-c"><code class="prism ++ language-c">Gato <span class="token function">gato1</span><span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gato1<span class="token punctuation">.</span><span class="token function">mostrarInformacion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gato1<span class="token punctuation">.</span><span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="principios-de-la-poo">Principios de la POO</h2>
+<h3 id="encapsulamiento">1. Encapsulamiento</h3>
+<p>El <strong>encapsulamiento</strong> agrupa los datos y métodos de un objeto dentro de una clase, permitiendo que los datos estén protegidos y solo se acceda a ellos mediante métodos específicos. Los atributos y métodos que no deberían ser accesibles desde fuera de la clase se declaran como <strong>privados</strong> (<code>private</code>), y los que sí deberían ser accesibles, como <strong>públicos</strong> (<code>public</code>). Esto asegura que los datos no se alteren de manera inadecuada.</p>
+<pre class=" language-c"><code class="prism ++ language-c">class Gato <span class="token punctuation">{</span>
+private<span class="token punctuation">:</span>
+    <span class="token keyword">int</span> edad<span class="token punctuation">;</span>  <span class="token comment">// Edad es privada para proteger su valor</span>
+
+public<span class="token punctuation">:</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+
+    <span class="token function">Gato</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> edadInicial<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token function">nombre</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">edad</span><span class="token punctuation">(</span>edadInicial<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">" ¡Miau!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">int</span> <span class="token function">obtenerEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> edad<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Aquí, edad está protegida y solo puede ser modificada mediante el método establecerEdad, asegurando así que la edad del gato no pueda establecerse en un valor incorrecto desde fuera de la clase.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Gato <span class="token function">gato</span><span class="token punctuation">(</span><span class="token string">"Whiskers"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    gato<span class="token punctuation">.</span>edad <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>  <span class="token comment">// Intento de modificar 'edad' directamente desde fuera de la clase</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Si intentamos acceder o modificar el atributo <code>edad</code> directamente desde fuera de la clase, el compilador generará un <strong>error de acceso</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c">error<span class="token punctuation">:</span> ‘<span class="token keyword">int</span> Gato<span class="token punctuation">:</span><span class="token punctuation">:</span>edad’ is private within this context
+</code></pre>
+<p>Para modificar <code>edad</code> correctamente, debemos usar el método <code>establecerEdad</code> que proporciona la clase:</p>
+<pre class=" language-c"><code class="prism ++ language-c">gato<span class="token punctuation">.</span><span class="token function">establecerEdad</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="abstracción">2. Abstracción</h3>
+<p>La <strong>abstracción</strong> y se refiere a la idea de simplificar la representación de una entidad al <strong>mostrar solo los detalles esenciales</strong> y <strong>ocultar los detalles innecesarios</strong> o complejos.</p>
+<p>Imagina que queremos crear un sistema que registre y gestione gatos en una clínica veterinaria. Al modelar la clase <code>Gato</code>, usamos abstracción para definir los atributos y métodos que necesitamos para representar a un gato en este contexto, sin entrar en detalles complejos que no son importantes para nuestro propósito.</p>
+<pre class=" language-c"><code class="prism ++ language-c">class Gato <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> edad<span class="token punctuation">;</span>
+
+    <span class="token function">Gato</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token function">nombre</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">edad</span><span class="token punctuation">(</span>edad<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">" dice: ¡Miau!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">comer</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> comida<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">" está comiendo "</span> <span class="token operator">&lt;&lt;</span> comida <span class="token operator">&lt;&lt;</span> <span class="token string">"."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="herencia">3. Herencia</h3>
+<p>La <strong>herencia</strong> permite que una clase herede atributos y métodos de otra clase. Esto facilita la <strong>reutilización</strong> y la <strong>extensión</strong> de las clases. Por ejemplo, una clase <code>GatoSalvaje</code> puede heredar de la clase <code>Gato</code>, ya que comparten características, pero <code>GatoSalvaje</code> podría tener comportamientos adicionales como <code>rugir</code>.</p>
+<pre class=" language-c"><code class="prism ++ language-c">class Gato <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+
+    <span class="token function">Gato</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token function">nombre</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">maullar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">" dice: ¡Miau!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// GatoDomestico hereda de Gato</span>
+class GatoDomestico <span class="token punctuation">:</span> public Gato <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string color<span class="token punctuation">;</span>
+
+    <span class="token function">GatoDomestico</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> color<span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token function">Gato</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">color</span><span class="token punctuation">(</span>color<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    <span class="token keyword">void</span> <span class="token function">mostrarInformacion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> nombre <span class="token operator">&lt;&lt;</span> <span class="token string">", Color: "</span> <span class="token operator">&lt;&lt;</span> color <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p align="center">
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc9EHk7znuEgp8yUlIqOu6RDSFvgPb21xn-blgowPHMxvRMV3N7_fNa-W0S5bp4TNrH2REwl6nlzhY8U9esZPnsR30cMuaNZYdFIjy_fWMspxXOu935KdgxB-8Cs9_HRzEuUBrscV8nl-9G7yOz82CCZpn4?key=kbjRPG571AkLo8oSKLIbhEOe" width="400">
+</p>
+<h3 id="polimorfismo">4. Polimorfismo</h3>
+<p>El <strong>polimorfismo</strong> permite que los objetos de diferentes clases se traten de la misma forma si comparten la misma interfaz o clase base. Esto significa que diferentes clases pueden tener métodos con el mismo nombre, pero cada clase puede implementarlo de una forma distinta.</p>
+<p>Por ejemplo, un <code>Gato</code> y un <code>GatoSalvaje</code> pueden tener ambos el método <code>hacerSonido</code>, pero cada uno implementará el sonido de manera diferente.</p>
+<pre class=" language-c"><code class="prism ++ language-c">class Gato <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    virtual <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>  <span class="token comment">// Método virtual para permitir polimorfismo</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El gato dice: Miau"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+class GatoSalvaje <span class="token punctuation">:</span> public Gato <span class="token punctuation">{</span>
+public<span class="token punctuation">:</span>
+    <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">const</span> override <span class="token punctuation">{</span>  <span class="token comment">// Sobreescribimos el método</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El gato salvaje ruge: ¡GRRRR!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">escucharSonido</span><span class="token punctuation">(</span><span class="token keyword">const</span> Gato<span class="token operator">&amp;</span> gato<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    gato<span class="token punctuation">.</span><span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Aquí usamos polimorfismo para que tanto <code>Gato</code> como <code>GatoSalvaje</code> puedan usar el mismo método <code>hacerSonido</code>, pero con comportamientos diferentes.</p>
+<p>Al pasar un <code>Gato</code> o <code>GatoSalvaje</code> a <code>escucharSonido</code>, el método adecuado se ejecutará según el tipo específico de <code>Gato</code> que se pase:</p>
+<pre class=" language-c"><code class="prism ++ language-c">Gato gatoDomestico<span class="token punctuation">;</span>
+GatoSalvaje gatoSalvaje<span class="token punctuation">;</span>
+
+<span class="token function">escucharSonido</span><span class="token punctuation">(</span>gatoDomestico<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Imprime "El gato dice: Miau"</span>
+<span class="token function">escucharSonido</span><span class="token punctuation">(</span>gatoSalvaje<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// Imprime "El gato salvaje ruge: ¡GRRRR!"</span>
+</code></pre>
+<p>Estos principios ayudan a organizar y estructurar programas en POO, permitiendo construir sistemas complejos de manera modular y eficiente.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
