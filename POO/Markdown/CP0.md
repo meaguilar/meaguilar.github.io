@@ -79,7 +79,27 @@ El **JDK** (Java Development Kit) es un conjunto de herramientas esenciales para
 		i = 5
 	```
 
+## Obtener Licencia de IntelliJ
 
+JetBrains ofrece un programa gratuito de licencias para estudiantes, lo que permite utilizar IntelliJ IDEA sin costo mientras estés matriculado. Para obtener la licencia, accede al siguiente enlace: [Free Educational Licenses](https://www.jetbrains.com/community/education/#students) y haz clic en el botón _Apply now_.
+
+**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdqGZodxtS6_dY7rLyHEwpmlTONKomirMXhZh8M16MP0AlK5wyptWKp2-zrsq4nbWt7UmOyrao8UBTye0A7q5kIygHGwBI_r4S00TXUWXlLXKh-XLgIQXsKh0pJ_4bhZEZPv1N3Uw?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
+A continuación, completa el captcha que aparece en la página y llena el formulario con la información solicitada usando el correo UCA.
+
+**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdbaDlJCSaCaPeeml-yNpXg_LMcRg62Oi03Gi_0gsHP8UHzO73kEyHgZt5bUn2WpR4GDQpvnAwh9WJfh_SeiKa7-IpoYzQPpdXm45Trng-B-jIu6wFkXtkKqiRs7VyjlEVNB6oAdw?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
+
+Una vez enviado el formulario, recibirás un correo electrónico de verificación en la cuenta que utilizaste para registrarte.
+
+**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeAskiZMEnqfhr-wLI1EmnLDjqZkzAigRQXaXxbj-vwutNq8CkYCsbH_4nEAHhHGmkQ3fh5RJN4idl9UGQoIqZIYhquf44CMGeizKwXqcwsje5nLfMipvEBvECpWJn7v3z6XmDhuA?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
+Para activar la cuenta, haz clic en el enlace de verificación. Esto habilitará el uso de IntelliJ IDEA con tu correo institucional.
+
+Una vez que la cuenta esté activada, solo queda asociarla a IntelliJ IDEA. Para ello, abre el IDE, dirígete a _Settings_ > _Manage Licenses_ y selecciona la opción de iniciar sesión con tu cuenta de Google UCA.
+
+**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcZ1pe4VF2zw3baoGR4XB4r0NdxUDzW-oHnnd-7iRb2F8JFxeYV_6WpHKCJioqUPZJmNmFSQNeIA8NAQLUg3Yjo4fyN-tY9vxh4cj55osUN0boQnVII-589kw4yLoFSgTwgUhB0Dw?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
+
+**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcnbRMByuO86p1WwYivuo6cXRtWDghl6mTTWGzsEc8dpBW91x12UDYQNdf2HS3d1GTLLjMR6E-eCL3ONaITwR0EWjn3pDtD2Tw4RO66kN9S9Z7J9B_GRfPdDcdLnMGOJ-T4u0MUVA?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
+
+Es importante aclarar que la licencia tiene una duración de 1 año, por lo tanto, cuando caduque tienes que renovarla siguiendo el mismo proceso
 
 
 ## Posibles errores y soluciones

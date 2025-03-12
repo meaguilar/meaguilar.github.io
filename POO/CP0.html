@@ -11,115 +11,192 @@
 <body class="stackedit">
   <div class="stackedit__left">
     <div class="stackedit__toc">
-      
-<ul>
-<li><a href="#configuración-del-entorno-de-desarrollo-java">Configuración del Entorno de Desarrollo Java</a>
-<ul>
-<li></li>
-<li><a href="#requisitos-para-instalar-intellij-ide">Requisitos para instalar IntelliJ IDE</a></li>
-<li><a href="#descarga-e-instalación-de-intellij-idea">Descarga e Instalación de IntelliJ IDEA</a></li>
-<li><a href="#posibles-errores-y-soluciones">Posibles errores y soluciones</a></li>
-<li><a href="#anexos">Anexos</a></li>
-</ul>
-</li>
-</ul>
+
+      <ul>
+        <li><a href="#configuración-del-entorno-de-desarrollo-java">Configuración del Entorno de Desarrollo Java</a>
+          <ul>
+            <li></li>
+            <li><a href="#requisitos-para-instalar-intellij-ide">Requisitos para instalar IntelliJ IDE</a></li>
+            <li><a href="#descarga-e-instalación-de-intellij-idea">Descarga e Instalación de IntelliJ IDEA</a></li>
+            <li><a href="#obtener-licencia-de-intellij">Obtener Licencia de IntelliJ</a></li>
+            <li><a href="#posibles-errores-y-soluciones">Posibles errores y soluciones</a></li>
+            <li><a href="#anexos">Anexos</a></li>
+          </ul>
+        </li>
+      </ul>
 
     </div>
   </div>
   <div class="stackedit__right">
     <div class="stackedit__html">
       <h1 id="configuración-del-entorno-de-desarrollo-java">Configuración del Entorno de Desarrollo Java</h1>
-<h3 id="objetivos"><strong>Objetivos</strong></h3>
-<ol>
-<li>Instalar IntelliJ IDEA (el entorno de desarrollo).</li>
-<li>Configurar el JDK (Java Development Kit) para poder programar en Java.</li>
-</ol>
-<h2 id="requisitos-para-instalar-intellij-ide">Requisitos para instalar IntelliJ IDE</h2>
+      <h3 id="objetivos"><strong>Objetivos</strong></h3>
+      <ol>
+        <li>Instalar IntelliJ IDEA (el entorno de desarrollo).</li>
+        <li>Configurar el JDK (Java Development Kit) para poder programar en Java.</li>
+      </ol>
+      <h2 id="requisitos-para-instalar-intellij-ide">Requisitos para instalar IntelliJ IDE</h2>
 
-<table>
-<thead>
-<tr>
-<th>Requisito</th>
-<th>Mínimo</th>
-<th>Recomendado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>RAM</strong></td>
-<td>2 GB de RAM</td>
-<td>8 GB de RAM total del sistema</td>
-</tr>
-<tr>
-<td><strong>Espacio en disco</strong></td>
-<td>3,5 GB libres</td>
-<td>Unidad SSD con al menos 5 GB de espacio libre</td>
-</tr>
-</tbody>
-</table><h2 id="descarga-e-instalación-de-intellij-idea"><strong>Descarga e Instalación de IntelliJ IDEA</strong></h2>
-<h3 id="paso-1-descargar-el-instalador">Paso 1: Descargar el instalador</h3>
-<p>Para descargar el instalador, accede al sitio oficial de <a href="https://www.jetbrains.com/es-es/idea/download/?section=windows">JetBrains</a>. Una vez descargado, instala el programa según tu sistema operativo.</p>
-<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc4LAMiDUqCZDHsVcRAmAZQ7De8M8Uz1G9qOxikiky3Se772D0rvZadpkQyZHbF6-rTBjf7_nNBzlWlQu6iFh17xDS5DeuN0d9ysmYb-rGlpHfPHqOcWbID7BfU42JCc8czvKKsUA?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></strong></p>
-<h3 id="paso-2-instalar-intellij-idea">Paso 2: Instalar IntelliJ IDEA</h3>
-<h4 id="windows">Windows</h4>
-<p>Ejecuta el archivo <code>.exe</code> y deja todas las opciones por defecto.</p>
-<h4 id="macos">MacOS</h4>
-<p>Abre el archivo <code>.dmg</code> que descargaste y arrastra IntelliJ IDEA a la carpeta <em>Applications</em>.</p>
-<h4 id="linux">Linux</h4>
-<p>Extrae el archivo <code>.tar.gz</code> en una carpeta de tu preferencia, abre una terminal, navega a dicha carpeta y ejecuta <code>./idea.sh</code>.</p>
-<h3 id="paso-3-abrir-intellij">Paso 3: Abrir IntelliJ</h3>
-<ol>
-<li>Abre IntelliJ IDEA desde el acceso directo o el menú de aplicaciones.</li>
-<li>En la primera ejecución, si el IDE pregunta si deseas importar configuraciones previas selecciona <em>Do not import settings</em>.</li>
-</ol>
-<p>A continuación, procederemos a crear un nuevo proyecto.</p>
-<h3 id="paso-4-crear-un-nuevo-proyecto">Paso 4: Crear un nuevo proyecto</h3>
-<ol>
-<li>
-<p><strong>Seleccionar “Nuevo Proyecto”:</strong><br>
-En la pantalla de bienvenida, haz clic en <em>New Project</em>.</p>
-<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXewx2sSgfoQQ9OvUYZxYM-Sz57F9xpUCcB0_KrXbHn5pf4Sv5oQhTN0ZsSZPo2xQiyea0a2FEHlNQaAlh8ukWCwyZgyilf1FQCkhMNmXFi56Ktwpa1Fd4P8g2QPr-0KTG75b5iy2A?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></strong></p>
-</li>
-<li>
-<p><strong>Configurar el proyecto y el JDK:</strong><br>
-El <strong>JDK</strong> (Java Development Kit) es un conjunto de herramientas esenciales para desarrollar y ejecutar aplicaciones Java. Incluye el compilador, la Máquina Virtual de Java (<strong>JVM</strong>) y bibliotecas necesarias. Para este curso, utilizaremos <strong>JDK 17</strong>, una versión estable y moderna que ofrece mejoras en rendimiento, seguridad y nuevas características del lenguaje.</p>
-<p>Para configurar el JDK en IntelliJ IDEA, primero debes crear un nuevo proyecto. Asigna un nombre y una ubicación, luego, en el panel izquierdo, selecciona <em>Java</em>. En el panel derecho, en el campo <em>Project SDK</em>, verifica si hay algún JDK está instalado.<br>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcbn_c5G8SNYv5cdkgmvR2fe2w6-hRB7h1a9hF8VhG_7FNU2tpPmUl2RR-c7ecjc4N_Uq7-P7C4mYz4SMpiZ_Yj4UsVPIn-EUjT3BeAH2yIfnIfSa_uFC33YbKTtme37IQMRLXHDg?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></p>
-<p>Si no tienes el JDK instalado, IntelliJ IDEA ofrece la opción de descargarlo automáticamente. Selecciona esta opción y el IDE se encargará de la instalación sin necesidad de hacerlo manualmente. Sin embargo, aunque esta alternativa es conveniente, instalar el JDK de forma manual brinda un mayor control y flexibilidad en distintos entornos de desarrollo.</p>
-<p>Para instalarlo manualmente, accede a la página de descargas de <a href="https://www.oracle.com/java/technologies/downloads/archive/">Java Archive JDK</a> y descarga el instalador correspondiente a tu sistema operativo. En nuestro caso, seleccionaremos la versión <strong>Java SE 17.0.12</strong> para Windows.<br>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcDRlUi4Z_EwNy2oQ7kKlk7QajUTx9QnRfoi5011s7MJPVKiAqi7ZwZEXkAgCjFI41mLpH5hp_K3FDq0v6bOEEI_JMuBLM9BCPFOnlD2mKuMhJzYhkD9iF_cUFUk5dQydWKw8Uv?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></p>
-<p>Una vez descargado, ejecuta el instalador y sigue las instrucciones en pantalla para completar la instalación.</p>
-<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfKRqkUu09y6PyYrsXxxnzfO1UCdKQ5BkXpQpC-9ukhJx6aTRW8WZ7hKogQvp71J-MV0gCZjTKcp2S3ky7feSJf42T1PxImnzK4q0skpYYahdMG8hpZElIfquHm78FSmfQ9a95vgw?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></strong><br>
-Después de instalarlo, regresa a IntelliJ IDEA y selecciona <strong>Add SDK from disk</strong>. Por defecto, el JDK se instala en la carpeta <code>C:/Program Files/Java/</code>. Busca la carpeta correspondiente, selecciónala y confirma la versión que utilizarás.</p>
-</li>
-</ol>
-<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcRSbgLczqlWUDZlksf3PHVdbLc9m5viq3Njz2ve4eQjdIiaS727v325EBiRUKHdq-n031uZng5PomJibmkNuTkp4H8hzi-GKUMkCLqiNMnShJfIUl7CC9L874F1pornC-f_GQGmw?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></strong></p>
-<ol start="4">
-<li>
-<p><strong>Finalizar la Creación:</strong><br>
-Haz clic en <em>Finish</em> para crear el proyecto. Si es la primera vez que creas un proyecto y no tienes instalado ningún JDK, empezará la descarga del mismo.</p>
-<p>**<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfa6-MKuQaVIjKbXcAYsiaKTHiGb1tw1k7RibRUNTgrATHn5DYJcmHKuN5N66MWEGu0xGKKlauLEqn3kEIjt6WfGxULkBgbRIYPQpf1ekLa2ejut5bQNRhAaaHxJE7-ZGQ34w4A6A?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></p>
-<p>Al crear el proyecto, se nos creara un pequeño programa con ello, que contiene una pequeña iteración. La ejecutaremos para verificar que hemos instalado correctamente todo, para ello, presionamos el botón de <em>run</em> que se encuentra en la parte superior derecha.</p>
-<p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcJIRWz6OC11ux5AXZquE1zWAeLQUL4Ale0zWHnbLJjM8c-C4TOrwXqGZzEvPkxBRR5ri8w3057WfjatWn5rUNvHo58UVykxLtSWHa9hAYv0a-EYpcTT5moUEOrh1M1Godxv6KXZg?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></p>
-<p>Se nos abrirá la consola y deberíamos ver la siguiente salida</p>
-<pre class=" language-shell"><code class="prism  language-shell">   Hello and welcome!i = 1
+      <table>
+        <thead>
+          <tr>
+            <th>Requisito</th>
+            <th>Mínimo</th>
+            <th>Recomendado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>RAM</strong></td>
+            <td>2 GB de RAM</td>
+            <td>8 GB de RAM total del sistema</td>
+          </tr>
+          <tr>
+            <td><strong>Espacio en disco</strong></td>
+            <td>3,5 GB libres</td>
+            <td>Unidad SSD con al menos 5 GB de espacio libre</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 id="descarga-e-instalación-de-intellij-idea"><strong>Descarga e Instalación de IntelliJ IDEA</strong></h2>
+      <h3 id="paso-1-descargar-el-instalador">Paso 1: Descargar el instalador</h3>
+      <p>Para descargar el instalador, accede al sitio oficial de <a
+          href="https://www.jetbrains.com/es-es/idea/download/?section=windows">JetBrains</a>. Una vez descargado,
+        instala el programa según tu sistema operativo.</p>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc4LAMiDUqCZDHsVcRAmAZQ7De8M8Uz1G9qOxikiky3Se772D0rvZadpkQyZHbF6-rTBjf7_nNBzlWlQu6iFh17xDS5DeuN0d9ysmYb-rGlpHfPHqOcWbID7BfU42JCc8czvKKsUA?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong></p>
+      <h3 id="paso-2-instalar-intellij-idea">Paso 2: Instalar IntelliJ IDEA</h3>
+      <h4 id="windows">Windows</h4>
+      <p>Ejecuta el archivo <code>.exe</code> y deja todas las opciones por defecto.</p>
+      <h4 id="macos">MacOS</h4>
+      <p>Abre el archivo <code>.dmg</code> que descargaste y arrastra IntelliJ IDEA a la carpeta <em>Applications</em>.
+      </p>
+      <h4 id="linux">Linux</h4>
+      <p>Extrae el archivo <code>.tar.gz</code> en una carpeta de tu preferencia, abre una terminal, navega a dicha
+        carpeta y ejecuta <code>./idea.sh</code>.</p>
+      <h3 id="paso-3-abrir-intellij">Paso 3: Abrir IntelliJ</h3>
+      <ol>
+        <li>Abre IntelliJ IDEA desde el acceso directo o el menú de aplicaciones.</li>
+        <li>En la primera ejecución, si el IDE pregunta si deseas importar configuraciones previas selecciona <em>Do not
+            import settings</em>.</li>
+      </ol>
+      <p>A continuación, procederemos a crear un nuevo proyecto.</p>
+      <h3 id="paso-4-crear-un-nuevo-proyecto">Paso 4: Crear un nuevo proyecto</h3>
+      <ol>
+        <li>
+          <p><strong>Seleccionar “Nuevo Proyecto”:</strong><br>
+            En la pantalla de bienvenida, haz clic en <em>New Project</em>.</p>
+          <p><strong><img
+                src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXewx2sSgfoQQ9OvUYZxYM-Sz57F9xpUCcB0_KrXbHn5pf4Sv5oQhTN0ZsSZPo2xQiyea0a2FEHlNQaAlh8ukWCwyZgyilf1FQCkhMNmXFi56Ktwpa1Fd4P8g2QPr-0KTG75b5iy2A?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+                alt=""></strong></p>
+        </li>
+        <li>
+          <p><strong>Configurar el proyecto y el JDK:</strong><br>
+            El <strong>JDK</strong> (Java Development Kit) es un conjunto de herramientas esenciales para desarrollar y
+            ejecutar aplicaciones Java. Incluye el compilador, la Máquina Virtual de Java (<strong>JVM</strong>) y
+            bibliotecas necesarias. Para este curso, utilizaremos <strong>JDK 17</strong>, una versión estable y moderna
+            que ofrece mejoras en rendimiento, seguridad y nuevas características del lenguaje.</p>
+          <p>Para configurar el JDK en IntelliJ IDEA, primero debes crear un nuevo proyecto. Asigna un nombre y una
+            ubicación, luego, en el panel izquierdo, selecciona <em>Java</em>. En el panel derecho, en el campo
+            <em>Project SDK</em>, verifica si hay algún JDK está instalado.<br>
+            <img
+              src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcbn_c5G8SNYv5cdkgmvR2fe2w6-hRB7h1a9hF8VhG_7FNU2tpPmUl2RR-c7ecjc4N_Uq7-P7C4mYz4SMpiZ_Yj4UsVPIn-EUjT3BeAH2yIfnIfSa_uFC33YbKTtme37IQMRLXHDg?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+              alt="">
+          </p>
+          <p>Si no tienes el JDK instalado, IntelliJ IDEA ofrece la opción de descargarlo automáticamente. Selecciona
+            esta opción y el IDE se encargará de la instalación sin necesidad de hacerlo manualmente. Sin embargo,
+            aunque esta alternativa es conveniente, instalar el JDK de forma manual brinda un mayor control y
+            flexibilidad en distintos entornos de desarrollo.</p>
+          <p>Para instalarlo manualmente, accede a la página de descargas de <a
+              href="https://www.oracle.com/java/technologies/downloads/archive/">Java Archive JDK</a> y descarga el
+            instalador correspondiente a tu sistema operativo. En nuestro caso, seleccionaremos la versión <strong>Java
+              SE 17.0.12</strong> para Windows.<br>
+            <img
+              src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcDRlUi4Z_EwNy2oQ7kKlk7QajUTx9QnRfoi5011s7MJPVKiAqi7ZwZEXkAgCjFI41mLpH5hp_K3FDq0v6bOEEI_JMuBLM9BCPFOnlD2mKuMhJzYhkD9iF_cUFUk5dQydWKw8Uv?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+              alt="">
+          </p>
+          <p>Una vez descargado, ejecuta el instalador y sigue las instrucciones en pantalla para completar la
+            instalación.</p>
+          <p><strong><img
+                src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfKRqkUu09y6PyYrsXxxnzfO1UCdKQ5BkXpQpC-9ukhJx6aTRW8WZ7hKogQvp71J-MV0gCZjTKcp2S3ky7feSJf42T1PxImnzK4q0skpYYahdMG8hpZElIfquHm78FSmfQ9a95vgw?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+                alt=""></strong><br>
+            Después de instalarlo, regresa a IntelliJ IDEA y selecciona <strong>Add SDK from disk</strong>. Por defecto,
+            el JDK se instala en la carpeta <code>C:/Program Files/Java/</code>. Busca la carpeta correspondiente,
+            selecciónala y confirma la versión que utilizarás.</p>
+        </li>
+      </ol>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcRSbgLczqlWUDZlksf3PHVdbLc9m5viq3Njz2ve4eQjdIiaS727v325EBiRUKHdq-n031uZng5PomJibmkNuTkp4H8hzi-GKUMkCLqiNMnShJfIUl7CC9L874F1pornC-f_GQGmw?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong></p>
+      <ol start="4">
+        <li>
+          <p><strong>Finalizar la Creación:</strong><br>
+            Haz clic en <em>Finish</em> para crear el proyecto. Si es la primera vez que creas un proyecto y no tienes
+            instalado ningún JDK, empezará la descarga del mismo.</p>
+          <p>**<img
+              src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfa6-MKuQaVIjKbXcAYsiaKTHiGb1tw1k7RibRUNTgrATHn5DYJcmHKuN5N66MWEGu0xGKKlauLEqn3kEIjt6WfGxULkBgbRIYPQpf1ekLa2ejut5bQNRhAaaHxJE7-ZGQ34w4A6A?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+              alt=""></p>
+          <p>Al crear el proyecto, se nos creara un pequeño programa con ello, que contiene una pequeña iteración. La
+            ejecutaremos para verificar que hemos instalado correctamente todo, para ello, presionamos el botón de
+            <em>run</em> que se encuentra en la parte superior derecha.</p>
+          <p><img
+              src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcJIRWz6OC11ux5AXZquE1zWAeLQUL4Ale0zWHnbLJjM8c-C4TOrwXqGZzEvPkxBRR5ri8w3057WfjatWn5rUNvHo58UVykxLtSWHa9hAYv0a-EYpcTT5moUEOrh1M1Godxv6KXZg?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+              alt=""></p>
+          <p>Se nos abrirá la consola y deberíamos ver la siguiente salida</p>
+          <pre class=" language-shell"><code class="prism  language-shell">   Hello and welcome!i = 1
    i = 2
    i = 3
    i = 4
    i = 5
 </code></pre>
-</li>
-</ol>
-<h2 id="posibles-errores-y-soluciones">Posibles errores y soluciones</h2>
-<ol>
-<li>
-<p><strong>Problema al crear el proyecto</strong><br>
-<img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfxGe19ogFmLxbR1Y3hLAwEQKMbhEsFqjMbXaHhP8GUc653K3NFj-DnuQIdM8FVt83CozEH_DyNI1IC4Zi2D7fE4KDZ0Qm6wjwf-ZVjjHCT-k7ehm3eJUDXvWjGztOGfMWrn-WKYg?key=UmqXHDTx4TfuBEhIlfOzqhwb" alt=""></p>
-<p>Para solucionar este error, solamente debemos ejecutar IntelliJ IDEA como administrador.</p>
-</li>
-</ol>
-<h2 id="anexos">Anexos</h2>
-<p><a href="https://www.jetbrains.com/help/idea/installation-guide.html#toolbox">Guia instalación oficial de IntelliJ</a></p>
+        </li>
+      </ol>
+      <h2 id="obtener-licencia-de-intellij">Obtener Licencia de IntelliJ</h2>
+      <p>JetBrains ofrece un programa gratuito de licencias para estudiantes, lo que permite utilizar IntelliJ IDEA sin
+        costo mientras estés matriculado. Para obtener la licencia, accede al siguiente enlace: <a
+          href="https://www.jetbrains.com/community/education/#students">Free Educational Licenses</a> y haz clic en el
+        botón <em>Apply now</em>.</p>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdqGZodxtS6_dY7rLyHEwpmlTONKomirMXhZh8M16MP0AlK5wyptWKp2-zrsq4nbWt7UmOyrao8UBTye0A7q5kIygHGwBI_r4S00TXUWXlLXKh-XLgIQXsKh0pJ_4bhZEZPv1N3Uw?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong><br>
+        A continuación, completa el captcha que aparece en la página y llena el formulario con la información solicitada
+        usando el correo UCA.</p>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdbaDlJCSaCaPeeml-yNpXg_LMcRg62Oi03Gi_0gsHP8UHzO73kEyHgZt5bUn2WpR4GDQpvnAwh9WJfh_SeiKa7-IpoYzQPpdXm45Trng-B-jIu6wFkXtkKqiRs7VyjlEVNB6oAdw?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong></p>
+      <p>Una vez enviado el formulario, recibirás un correo electrónico de verificación en la cuenta que utilizaste para
+        registrarte.</p>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeAskiZMEnqfhr-wLI1EmnLDjqZkzAigRQXaXxbj-vwutNq8CkYCsbH_4nEAHhHGmkQ3fh5RJN4idl9UGQoIqZIYhquf44CMGeizKwXqcwsje5nLfMipvEBvECpWJn7v3z6XmDhuA?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong><br>
+        Para activar la cuenta, haz clic en el enlace de verificación. Esto habilitará el uso de IntelliJ IDEA con tu
+        correo institucional.</p>
+      <p>Una vez que la cuenta esté activada, solo queda asociarla a IntelliJ IDEA. Para ello, abre el IDE, dirígete a
+        <em>Settings</em> &gt; <em>Manage Licenses</em> y selecciona la opción de iniciar sesión con tu cuenta de Google
+        UCA.</p>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcZ1pe4VF2zw3baoGR4XB4r0NdxUDzW-oHnnd-7iRb2F8JFxeYV_6WpHKCJioqUPZJmNmFSQNeIA8NAQLUg3Yjo4fyN-tY9vxh4cj55osUN0boQnVII-589kw4yLoFSgTwgUhB0Dw?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong></p>
+      <p><strong><img
+            src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcnbRMByuO86p1WwYivuo6cXRtWDghl6mTTWGzsEc8dpBW91x12UDYQNdf2HS3d1GTLLjMR6E-eCL3ONaITwR0EWjn3pDtD2Tw4RO66kN9S9Z7J9B_GRfPdDcdLnMGOJ-T4u0MUVA?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+            alt=""></strong></p>
+      <p>Es importante aclarar que la licencia tiene una duración de 1 año, por lo tanto, cuando caduque tienes que
+        renovarla siguiendo el mismo proceso</p>
+      <h2 id="posibles-errores-y-soluciones">Posibles errores y soluciones</h2>
+      <ol>
+        <li>
+          <p><strong>Problema al crear el proyecto</strong><br>
+            <img
+              src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfxGe19ogFmLxbR1Y3hLAwEQKMbhEsFqjMbXaHhP8GUc653K3NFj-DnuQIdM8FVt83CozEH_DyNI1IC4Zi2D7fE4KDZ0Qm6wjwf-ZVjjHCT-k7ehm3eJUDXvWjGztOGfMWrn-WKYg?key=UmqXHDTx4TfuBEhIlfOzqhwb"
+              alt="">
+          </p>
+          <p>Para solucionar este error, solamente debemos ejecutar IntelliJ IDEA como administrador.</p>
+        </li>
+      </ol>
+      <h2 id="anexos">Anexos</h2>
+      <p><a href="https://www.jetbrains.com/help/idea/installation-guide.html#toolbox">Guia instalación oficial de
+          IntelliJ</a></p>
 
     </div>
   </div>
