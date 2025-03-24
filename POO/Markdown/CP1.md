@@ -207,7 +207,7 @@ Se utiliza cuando el número de iteraciones no está determinado de antemano
  ```Java
  int counter = 0;
  
-while(contador < 3) {
+while(counter < 3) {
     System.out.println("Contador: " + counter);
     counter++;
 }
