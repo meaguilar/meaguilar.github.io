@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab03Poo</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#patrones-de-diseño-en-java">Patrones de Diseño en Java</a>
+<ul>
+<li><a href="#¿qué-son-los-patrones-de-diseño">¿Qué son los patrones de diseño?</a></li>
+<li><a href="#factory-method--🔧">Factory Method  🔧</a></li>
+<li><a href="#adapter🔌">Adapter🔌</a></li>
+<li><a href="#observer-👀">Observer 👀</a></li>
+<li><a href="#colecciones-en-java">Colecciones en Java</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="patrones-de-diseño-en-java">Patrones de Diseño en Java</h1>
+<p>En este laboratorio, exploraremos tres patrones de diseño fundamentales en el desarrollo de software orientado a objetos</p>
+<ul>
+<li>
+<p><strong>Factory Method</strong> (Método de Fábrica)</p>
+</li>
+<li>
+<p><strong>Adapter</strong> (Adaptador)</p>
+</li>
+<li>
+<p><strong>Observer</strong> (Observador)</p>
+</li>
+</ul>
+<p>Estos patrones nos permiten crear soluciones más flexibles, reutilizables y mantenibles al abordar problemas comunes en la programación.</p>
+<h2 id="¿qué-son-los-patrones-de-diseño">¿Qué son los patrones de diseño?</h2>
+<p>Los <strong>patrones de diseño</strong> son <strong>soluciones reutilizables a problemas comunes</strong> que surgen durante el desarrollo de software. No son fragmentos de código específicos, sino <strong>modelos generales que puedes adaptar</strong> a distintas situaciones para escribir código más claro, flexible y mantenible.</p>
+<h3 id="tipos-de-patrones-de-diseño">Tipos de Patrones de Diseño</h3>
+<p>Los patrones de diseño se dividen generalmente en <strong>tres categorías principales</strong>:</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeRNmh-uYjf6Oy-46Lr3zWr0bt9yustizIl5nac00ioHAKp64uwu-bgylhkEPnSQoQ-qaqXGHpEk5QGLty-MQ0BhuHhx7pPsTxb8iDcldRaMRBhznHE0pp-dU3eoy8asRE0DsZz?key=f7rwYIcXUeGVARv8sk0DWs0G" alt=""></strong></p>
+<h2 id="factory-method--🔧">Factory Method  🔧</h2>
+<p>El <strong>Factory Method</strong> es un patrón de diseño creacional que proporciona una interfaz para crear objetos en una superclase, pero permite que las subclases alteren el tipo de objetos que se crearán.</p>
+<p>Imagina que estás desarrollando una aplicación de logística que inicialmente solo maneja transporte por camión. Con el tiempo, necesitas agregar transporte marítimo y aéreo. Si el código está fuertemente acoplado a la clase <code>Camion</code>, agregar nuevos tipos de transporte requerirá modificar muchas partes del código existente o incluso agregando <strong>código repetido</strong>.</p>
+<p>El patrón Factory Method te permite:</p>
+<ul>
+<li>
+<p><strong>Desacoplar</strong> la creación de objetos del código cliente.</p>
+</li>
+<li>
+<p><strong>Extender</strong> fácilmente la aplicación con nuevos tipos de productos sin modificar el código existente.</p>
+</li>
+<li>
+<p><strong>Cumplir</strong> con el principio de abierto/cerrado: el código está abierto para extensión, pero cerrado para modificación.</p>
+</li>
+</ul>
+<p>Por ejemplo:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">interface</span> <span class="token class-name">Transporte</span> <span class="token punctuation">{</span>
+   <span class="token keyword">void</span> <span class="token function">entregar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Definimos las clases concretas</span>
+<span class="token keyword">class</span> <span class="token class-name">Camion</span> <span class="token keyword">implements</span> <span class="token class-name">Transporte</span> <span class="token punctuation">{</span>
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">entregar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Entrega por carretera."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Barco</span> <span class="token keyword">implements</span> <span class="token class-name">Transporte</span> <span class="token punctuation">{</span>
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">entregar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Entrega por mar."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Clase creadora</span>
+<span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Logistica</span> <span class="token punctuation">{</span>
+   <span class="token keyword">public</span> <span class="token keyword">abstract</span> Transporte <span class="token function">crearTransporte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">planEntrega</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       Transporte transporte <span class="token operator">=</span> <span class="token function">crearTransporte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       transporte<span class="token punctuation">.</span><span class="token function">entregar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Creadores concretos</span>
+<span class="token keyword">class</span> <span class="token class-name">LogisticaCarretera</span> <span class="token keyword">extends</span> <span class="token class-name">Logistica</span> <span class="token punctuation">{</span>
+   <span class="token keyword">public</span> Transporte <span class="token function">crearTransporte</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Camion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">LogisticaMaritima</span> <span class="token keyword">extends</span> <span class="token class-name">Logistica</span> <span class="token punctuation">{</span>
+   <span class="token keyword">public</span> Transporte <span class="token function">crearTransporte</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Barco</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="adapter🔌">Adapter🔌</h2>
+<p>El patrón <strong>Adapter</strong> es un patrón de diseño estructural que permite que objetos con interfaces incompatibles colaboren entre sí. Actúa como un puente entre dos interfaces incompatibles, permitiendo que trabajen juntas sin necesidad de modificar su código fuente.</p>
+<p>Imagina que tienes un enchufe de tres patas y una toma de corriente de dos agujeros. Necesitas un adaptador para conectar el enchufe a la toma. De manera similar, el patrón Adapter permite que dos interfaces incompatibles se conecten.</p>
+<p>Por ejemplo, supongamos que estamos desarrollando una aplicación que utiliza una interfaz <code>LectorAudio</code> para reproducir audio. Sin embargo, tenemos una clase existente <code>ReproductorMP3</code> que no implementa esta interfaz. Podemos utilizar el patrón Adapter para que <code>ReproductorMP3</code> sea compatible con <code>LectorAudio</code>.</p>
+<p>Los componentes principales del patrón Adapter son:</p>
+<ol>
+<li>
+<p><strong>Target (Objetivo)</strong>: La interfaz que el cliente espera utilizar.</p>
+</li>
+<li>
+<p><strong>Adaptee (Adaptado)</strong>: La clase existente que tiene una interfaz incompatible con la que el cliente espera.</p>
+</li>
+<li>
+<p><strong>Adapter (Adaptador)</strong>: Una clase que implementa la interfaz Target y traduce las llamadas del cliente a la interfaz del Adaptee.</p>
+</li>
+</ol>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// Target</span>
+<span class="token keyword">interface</span> <span class="token class-name">LectorAudio</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">reproducir</span><span class="token punctuation">(</span>String archivo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Adaptee</span>
+<span class="token keyword">class</span> <span class="token class-name">ReproductorMP3</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">playMP3</span><span class="token punctuation">(</span>String nombreArchivo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Reproduciendo archivo MP3: "</span> <span class="token operator">+</span> nombreArchivo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Adapter</span>
+<span class="token keyword">class</span> <span class="token class-name">AdaptadorReproductorMP3</span> <span class="token keyword">implements</span> <span class="token class-name">LectorAudio</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> ReproductorMP3 reproductor<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">AdaptadorReproductorMP3</span><span class="token punctuation">(</span>ReproductorMP3 reproductor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>reproductor <span class="token operator">=</span> reproductor<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">reproducir</span><span class="token punctuation">(</span>String archivo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        reproductor<span class="token punctuation">.</span><span class="token function">playMP3</span><span class="token punctuation">(</span>archivo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Cliente</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Cliente</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ReproductorMP3 reproductorMP3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReproductorMP3</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        LectorAudio lector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AdaptadorReproductorMP3</span><span class="token punctuation">(</span>reproductorMP3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lector<span class="token punctuation">.</span><span class="token function">reproducir</span><span class="token punctuation">(</span><span class="token string">"cancion.mp3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="observer-👀">Observer 👀</h2>
+<p>El patrón <strong>Observer</strong> es un patrón de diseño de comportamiento que permite que un objeto (llamado <strong>Sujeto</strong> o <strong>Publisher</strong>) notifique automáticamente a otros objetos (llamados <strong>Observadores</strong> o <strong>Subscribers</strong>) sobre cambios en su estado. Esto establece una relación de uno a muchos entre objetos, promoviendo un diseño desacoplado y flexible.</p>
+<p>Imagina que te suscribes a un periódico. Cada vez que se publica una nueva edición, el periódico (Sujeto) te la envía automáticamente, sin que tengas que verificar constantemente si hay una nueva edición.</p>
+<p>Por ejemplo</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// Observer</span>
+<span class="token keyword">interface</span> <span class="token class-name">Observer</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span>String weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Subject</span>
+<span class="token keyword">interface</span> <span class="token class-name">Subject</span> <span class="token punctuation">{</span>
+    <span class="token keyword">void</span> <span class="token function">addObserver</span><span class="token punctuation">(</span>Observer o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">removeObserver</span><span class="token punctuation">(</span>Observer o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">void</span> <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ConcreteSubject</span>
+<span class="token keyword">class</span> <span class="token class-name">WeatherStation</span> <span class="token keyword">implements</span> <span class="token class-name">Subject</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> List<span class="token operator">&lt;</span>Observer<span class="token operator">&gt;</span> observers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> String weather<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setWeather</span><span class="token punctuation">(</span>String weather<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>weather <span class="token operator">=</span> weather<span class="token punctuation">;</span>
+        <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getWeather</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>weather<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addObserver</span><span class="token punctuation">(</span>Observer o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        observers<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">removeObserver</span><span class="token punctuation">(</span>Observer o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        observers<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">notifyObservers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>Observer o <span class="token operator">:</span> observers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            o<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ConcreteObserver</span>
+<span class="token keyword">class</span> <span class="token class-name">MobileDevice</span> <span class="token keyword">implements</span> <span class="token class-name">Observer</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String deviceName<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">MobileDevice</span><span class="token punctuation">(</span>String name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>deviceName <span class="token operator">=</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">update</span><span class="token punctuation">(</span>String weather<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>deviceName <span class="token operator">+</span> <span class="token string">" recibió actualización del clima: "</span> <span class="token operator">+</span> weather<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Cliente</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        WeatherStation station <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeatherStation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        MobileDevice device1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MobileDevice</span><span class="token punctuation">(</span><span class="token string">"Dispositivo A"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        MobileDevice device2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MobileDevice</span><span class="token punctuation">(</span><span class="token string">"Dispositivo B"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        station<span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span>device1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        station<span class="token punctuation">.</span><span class="token function">addObserver</span><span class="token punctuation">(</span>device2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        station<span class="token punctuation">.</span><span class="token function">setWeather</span><span class="token punctuation">(</span><span class="token string">"Soleado"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        station<span class="token punctuation">.</span><span class="token function">setWeather</span><span class="token punctuation">(</span><span class="token string">"Lluvioso"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<h2 id="colecciones-en-java">Colecciones en Java</h2>
+<p>Cualquier grupo de objetos individuales representados como una sola unidad se conoce como Colección de Objetos. En Java, se ha definido un marco independiente, denominado <strong>“Marco de Colección”,</strong> que alberga todas las clases e interfaces de la Colección de Java. Y existen muchos tipos de colecciones, por ejemplo</p>
+<ul>
+<li>Listas</li>
+<li>Colas</li>
+<li>Pilas</li>
+<li>Tablas hash</li>
+</ul>
+<h3 id="listas-arraylist">Listas (ArrayList)</h3>
+<p>Los ArrayList son parte de todas estas colecciones y que en Java forma parte del paquete de <code>java.util</code>. La principal ventaja de un ArrayList es que, a diferencia de los arrays normales, no es necesario especificar el tamaño al crearlo. Ajusta automáticamente su capacidad a medida que se añaden o eliminan elementos.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span>  java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>ArrayList<span class="token punctuation">;</span> <span class="token comment">//Importación</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Main</span>  <span class="token punctuation">{</span>
+  <span class="token keyword">public</span>  <span class="token keyword">static</span>  <span class="token keyword">void</span>  <span class="token function">main</span>  <span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span>  args<span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+  
+  <span class="token comment">// Creando un ArrayList</span>
+  ArrayList<span class="token operator">&lt;</span>Integer<span class="token operator">&gt;</span>  a  <span class="token operator">=</span>  <span class="token keyword">new</span>  <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span>Integer<span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">// Añadiendo nuevos elementos</span>
+  a<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  a<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  a<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Existen muchas operaciones que podemos hacer con un ArrayList, por ejemplo, con una lista podemos agregar, eliminar, actualizar elementos de esa lista.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>*<span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String args<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// ArrayList de Strings</span>
+        ArrayList<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> lenguajes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token comment">// 1. Agregando nuevos elementos</span>
+
+        <span class="token comment">// Agregando elementos a la lista</span>
+        lenguajes<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Java"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        lenguajes<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Go"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Lista original: "</span> <span class="token operator">+</span> lenguajes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token comment">// Añadiendo en un índice específico</span>
+        lenguajes<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"JavaScript"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Añadiendo un elemento en la posición 1: "</span> <span class="token operator">+</span> lenguajes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token comment">// 2. Eliminar elementos usando el índice</span>
+        lenguajes<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Elemento removido en el índice 0: "</span> <span class="token operator">+</span> lenguajes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token comment">// Removiendo usando el valor</span>
+        lenguajes<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">"JavaScript"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"JavaScript eliminado: "</span> <span class="token operator">+</span> lenguajes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token comment">// 3. Actualizando valores</span>
+      
+        <span class="token comment">// Actualizando el valor</span>
+        lenguajes<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"Python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      
+        <span class="token comment">// Imprimiendo todos los lenguajes</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Lista después de la actualización: "</span> <span class="token operator">+</span> lenguajes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Esto nos dará la siguiente salida</p>
+<pre class=" language-shell"><code class="prism  language-shell">Lista original : [Java, Go]
+Añadiendo un elemento en la posición 1 : [Java, JavaScript, Go]
+Elemento removido en el índice 0 : [JavaScript, Go]
+JavaScript eliminado : [Go]
+Lista después de la actualización del valor : [Java]
+</code></pre>
+<p>Esto solo son sus operaciones básicas, sin embargo, existen muchos métodos que podemos usar para una lista, puedes leer más sobre Listas en este enlace <a href="https://www.geeksforgeeks.org/arraylist-in-java/">ArrayList in Java</a></p>
+<h3 id="colas">Colas</h3>
+<p>Las colas también son parte del paquete de <code>java.util</code> para recordar un poco de Colas, recordemos que es una estructura dinámica que almacena y procesa los datos en orden FIFO es decir el primero en entrar, es el primero en salir. Es una lista ordenada de objetos, limitada a insertar elementos al final de la lista y eliminar elementos al principio.</p>
+<p>Para implementarlo podemos guiarnos del siguiente código:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>LinkedList<span class="token punctuation">;</span>
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Queue<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">QueueExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Queue<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> languagesQueue <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Agregar lenguajes de programación a la cola</span>
+        languagesQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Java"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        languagesQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        languagesQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"JavaScript"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Imprimir la cola</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cola de lenguajes: "</span> <span class="token operator">+</span> languagesQueue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Eliminar el primer elemento de la cola</span>
+        String removedLanguage <span class="token operator">=</span> languagesQueue<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Lenguaje eliminado: "</span> <span class="token operator">+</span> removedLanguage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Imprimir la cola actualizada</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cola después de la eliminación: "</span> <span class="token operator">+</span> languagesQueue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Agregar otro lenguaje a la cola</span>
+        languagesQueue<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Go"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Obtener el primer elemento de la cola sin eliminarlo</span>
+        String peekedLanguage <span class="token operator">=</span> languagesQueue<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Primer lenguaje en la cola (peek): "</span> <span class="token operator">+</span> peekedLanguage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Imprimir la cola final</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Cola después de peek: "</span> <span class="token operator">+</span> languagesQueue<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>La salida seria la siguiente</p>
+<pre class=" language-shell"><code class="prism  language-shell">Cola de lenguajes: [Java, Python, JavaScript]  
+Lenguaje eliminado: Java  
+Cola después de la eliminación: [Python, JavaScript]  
+Primer lenguaje en la cola (peek): Python  
+Cola después de peek: [Python, JavaScript, Go]  
+</code></pre>
+<h3 id="pilas">Pilas</h3>
+<p>Las pilas también son parte del paquete de <code>java.util</code> para recordar un poco de Pilas, recordemos que es una estructura dinámica que siguen el principio LIFO (Last In, First Out), donde el último elemento en entrar es el primero en salir. La clase <code>Stack</code> de <code>java.util</code> facilita su implementación.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Stack<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">StackExample</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Creando una pila de lenguajes de programación</span>
+        Stack<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> languagesStack <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stack</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// Agregar elementos a la pila</span>
+        languagesStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Java"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        languagesStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"Python"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        languagesStack<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"JavaScript"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Pila de lenguajes: "</span> <span class="token operator">+</span> languagesStack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// Eliminar el elemento superior de la pila</span>
+        String removedLanguage <span class="token operator">=</span> languagesStack<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Lenguaje eliminado (pop): "</span> <span class="token operator">+</span> removedLanguage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token comment">// Observar el elemento en la cima sin eliminarlo</span>
+        String peekedLanguage <span class="token operator">=</span> languagesStack<span class="token punctuation">.</span><span class="token function">peek</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Lenguaje en la cima (peek): "</span> <span class="token operator">+</span> peekedLanguage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Pila después de pop y peek: "</span> <span class="token operator">+</span> languagesStack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>La salida es la siguiente</p>
+<pre><code>Pila de lenguajes: [Java, Python, JavaScript]
+Lenguaje eliminado (pop): JavaScript
+Lenguaje en la cima (peek): Python
+Pila después de pop y peek: [Java, Python]
+</code></pre>
+<blockquote>
+<p>Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote>
+
+    </div>
+  </div>
+</body>
+
+</html>
