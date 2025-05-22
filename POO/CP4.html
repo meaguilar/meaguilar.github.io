@@ -1,0 +1,630 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labo04Pooo</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#programando-con-java-fx">Programando con Java FX</a>
+<ul>
+<li><a href="#¿qué-es-javafx">¿Qué es JavaFX?</a></li>
+<li><a href="#creación-del-proyecto">Creación del proyecto</a></li>
+<li><a href="#teoria">Teoria</a></li>
+<li><a href="#proyecto-a-realizar">Proyecto a realizar</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="programando-con-java-fx">Programando con Java FX</h1>
+<p>En este laboratorio aprenderás a crear una aplicación básica con <strong>JavaFX</strong> aplicando principios de <strong>Programación Orientada a Objetos (POO)</strong>, usando <strong>Gradle</strong> como sistema de compilación.</p>
+<h2 id="¿qué-es-javafx">¿Qué es JavaFX?</h2>
+<p>JavaFX es la librería de Java para crear ventanas, botones, textos y todo tipo de elementos gráficos. A diferencia de Swing, JavaFX usa un “grafo de escena” donde cada <strong>componente</strong> que puede ser un botón, un texto, un panel es un nodo que se agrega a un árbol. Esto facilita pensar tu interfaz como capas de objetos: primero la ventana, luego un contenedor, luego los controles dentro. En el fondo, con JavaFX solo estás describiendo en código cómo dibujar ese árbol de nodos.</p>
+<h2 id="creación-del-proyecto">Creación del proyecto</h2>
+<ol>
+<li>
+<p>En la pantalla de bienvenida de IntelliJ, elige <strong>New Project</strong>.</p>
+</li>
+<li>
+<p>Selecciona <strong>JavaFX</strong> y marca la casilla <strong>Gradle</strong>.</p>
+</li>
+<li>
+<p>Luego seleccionamos <strong>Next</strong><br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdRUiQ7yExGsk6EFaSfZNmUDiefmQ_hZaeNeNGohGeqKbCnxghZ1kZk7VACjsXu-GufQzzZsgIoxTZFVMGBgOTs1w_E-jZRwjDwnTbKr5JGMN7kqKoc4O6BnphKuKwS4_SNpmRV?key=wvcAPdd-0TgW15_xZ62NjQ" alt=""></strong><br>
+Esto lo que hará es crearnos nuestro proyecto usando Gradle y Groovy DSL</p>
+</li>
+<li>
+<p>Cuando pasemos a la siguiente ventana par agregar librerías, no agregaremos ninguna en este caso.</p>
+</li>
+<li>
+<p>Una vez configurado el proyecto, hay que ejecutar el gradle, para esto nos iremos al siguiente apartado en la parte lateral derecha para ejecutar una tarea de Gradle<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcICoH96chkeW8-LO558tWRPC93DCnjg1ITXe7GZRarABb2-hJmoW6VaV8R-B_upLUYRyybIyXOkQhWdbap-yEl6LiNNylVtPyq_tpToY83KTf7Jpww2T0mWJjt_5Su8GoUzYGXxQ?key=wvcAPdd-0TgW15_xZ62NjQ" alt=""></strong></p>
+</li>
+<li>
+<p>Y ejecutaremos el comando <code>gradlew run</code><br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe8sw_hFC38rva7cyO7DJIN4AmGbWogRz06K9N2aeDgVCR2l4irjVTC7PBw7tvBZhkVcp21sz3ysRdp2GKxz4-xL5QqHaBJGfmKDqtCuMCbMPpKQEORKMmaec7lap5HKRT7cUSAcg?key=wvcAPdd-0TgW15_xZ62NjQ" alt=""></strong></p>
+</li>
+</ol>
+<p>Tras compilar y arrancar la aplicación, ya no necesitarás este comando; bastará con el botón <strong>Run</strong> al lado de la clase principal <code>HelloApplication</code></p>
+<h3 id="¿qué-es-gradle">¿Qué es Gradle?</h3>
+<p><strong>Gradle</strong> es la herramienta encargada de todo lo que ocurre antes de que tu aplicación se ejecute: descarga las librerías que necesitas como JavaFX, compila tu código Java y finalmente empaqueta el resultado en un JAR o en lo que prefieras. En lugar de hacer esos pasos uno por uno en la consola, Gradle los orquesta automáticamente según le indiques.</p>
+<p>Una vez guardas <code>build.gradle</code>, IntelliJ detecta automáticamente el cambio y, con un clic en “Refresh”, descarga todo y deja tu proyecto listo para compilar y ejecutar.</p>
+<h2 id="teoria">Teoria</h2>
+<h3 id="archivos-fxml">Archivos FXML</h3>
+<p>FXML es un lenguaje basado en XML que permite describir de forma declarativa la interfaz de usuario de una aplicación JavaFX. En lugar de instanciar y configurar cada nodo (botones, paneles, imágenes…) directamente en el código Java, escribimos su estructura y propiedades en un archivo con extensión <code>.fxml</code>, que normalmente se guarda dentro de la carpeta <code>resources</code> junto a otros recursos de la aplicación.</p>
+<p>Al inicio de tu aplicación, cargas esta definición con una línea como</p>
+<pre class=" language-java"><code class="prism  language-java">FXMLLoader fxmlLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span>HelloApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"hello-view.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+Scene scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>fxmlLoader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1280</span><span class="token punctuation">,</span> <span class="token number">720</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>De este modo JavaFX construye el árbol de nodos que tú describiste en el XML y lo adapta al tamaño en píxeles que hayas especificado para la ventana.</p>
+<h3 id="controladores">Controladores</h3>
+<p>El controlador es la clase Java que aporta la lógica y el comportamiento a los componentes declarados en el FXML. En el propio archivo <code>.fxml</code> se vincula dicha clase mediante el atributo <code>fx:controller="com.ejemplo.demo5.HelloController"</code>, y dentro del controlador se usan anotaciones <code>@FXML</code> para inyectar las referencias a los nodos del XML.</p>
+<p>Por ejemplo, si en el FXML defines <code>&lt;Label fx:id="welcomeText" /&gt;</code>, en el controlador escribirás <code>@FXML private Label welcomeText;</code> para que JavaFX te proporcione esa instancia al cargar la vista</p>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VBox</span> <span class="token attr-name">alignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>207.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>300.0<span class="token punctuation">"</span></span> <span class="token attr-name">spacing</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/17.0.12<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.ejemplo.demo5.HelloController<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>padding</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Insets</span> <span class="token attr-name">bottom</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20.0<span class="token punctuation">"</span></span> <span class="token attr-name">left</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20.0<span class="token punctuation">"</span></span> <span class="token attr-name">right</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20.0<span class="token punctuation">"</span></span> <span class="token attr-name">top</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>20.0<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>padding</span><span class="token punctuation">&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>welcomeText<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#onHelloButtonClick<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Hello!<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>VBox</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>Para lograr que una acción en la interfaz dispare un comportamiento concreto, se establece en el archivo FXML un identificador de evento que hace referencia al método controlador. Al pulsar el botón, JavaFX busca ese nombre y ejecuta el método correspondiente en la clase controladora. De este modo, la lógica de actualización—por ejemplo, cambiar el texto de una etiqueta—queda encapsulada en ese método, que se invoca de forma automática cada vez que el usuario interactúa con el botón.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token annotation punctuation">@FXML</span>  
+<span class="token keyword">private</span> Label welcomeText<span class="token punctuation">;</span>  
+  
+<span class="token annotation punctuation">@FXML</span>  
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onHelloButtonClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    welcomeText<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span><span class="token string">"Welcome to JavaFX Application!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="proyecto-a-realizar">Proyecto a realizar</h2>
+<p>El proyecto que realizaremos en esta guía será sobre una aplicación del espacio, para eso usaremos el siguiente diagrama UML</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeU7sglEZunLLTSrE8A8CdjecpqJuYPLKh2UX_Upxp9oCRgtt5bAlCkrNnuTI39cnWbRsIyimVnDZ5KlVaZczM9hnxwdcvP_LzWlIp8W7mzDr-qpjOWfMWfuzyFe4T3NxUc4m0viw?key=wvcAPdd-0TgW15_xZ62NjQ" alt=""></strong><br>
+Que nos generará la siguiente aplicación</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfWP7GtFNmIoAAfXzV_4yVxwDk0oHqKjjvUZ2B7lwND96aRp2KKpKynoQ3lXY85Hp7uhNqX8LTnQ8O3Lms8Ntj9v1aPcuSgWIoWZsMCL_SFQ0jlYcQcaDUGK7kSxwaegKVZLDH5nA?key=wvcAPdd-0TgW15_xZ62NjQ" alt=""></strong></p>
+<h3 id="paso-1.-crear-el-paquete-con-los-modelos">Paso 1. Crear el paquete con los modelos</h3>
+<p>Configura la capa de datos definiendo en un único paquete los modelos del diagrama UML; la interfaz y las clases que representan entidades espaciales. Todos los archivos deben ir dentro del mismo paquete</p>
+<p><strong>SpaceEntity.java</strong></p>
+<pre class=" language-java"><code class="prism  language-java">	<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SpaceEntity</span> <span class="token punctuation">{</span>
+    String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">double</span> <span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    String <span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>CelestialBody.java</strong></p>
+<pre class=" language-java"><code class="prism  language-java">	<span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">CelestialBody</span> <span class="token keyword">implements</span> <span class="token class-name">SpaceEntity</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> String name<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">double</span> mass<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> String image<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">CelestialBody</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">double</span> mass<span class="token punctuation">,</span> String image<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>mass <span class="token operator">=</span> mass<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>image <span class="token operator">=</span> image<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> name<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">double</span> <span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mass<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> String <span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> image<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token keyword">double</span> <span class="token function">getEscapeVelocity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Planet.java</strong></p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Planet</span> <span class="token keyword">extends</span> <span class="token class-name">CelestialBody</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token keyword">int</span> numberOfMoons<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Planet</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">double</span> mass<span class="token punctuation">,</span> <span class="token keyword">int</span> numberOfMoons<span class="token punctuation">,</span> String image<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> mass<span class="token punctuation">,</span> image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>numberOfMoons <span class="token operator">=</span> numberOfMoons<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getNumberOfMoons</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> numberOfMoons<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">double</span> <span class="token function">getEscapeVelocity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">double</span> G <span class="token operator">=</span> <span class="token number">6.67430e-11</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> radius <span class="token operator">=</span> <span class="token number">6.371e6</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> G <span class="token operator">*</span> <span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> radius<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Moon.java</strong></p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Moon</span> <span class="token keyword">extends</span> <span class="token class-name">CelestialBody</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> String parentPlanet<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Moon</span><span class="token punctuation">(</span>String name<span class="token punctuation">,</span> <span class="token keyword">double</span> mass<span class="token punctuation">,</span> String parentPlanet<span class="token punctuation">,</span> String image<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> mass<span class="token punctuation">,</span> image<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>parentPlanet <span class="token operator">=</span> parentPlanet<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> String <span class="token function">getParentPlanet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> parentPlanet<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token keyword">double</span> <span class="token function">getEscapeVelocity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token keyword">double</span> G <span class="token operator">=</span> <span class="token number">6.67430e-11</span><span class="token punctuation">;</span>
+        <span class="token keyword">double</span> radius <span class="token operator">=</span> <span class="token number">1.737e6</span><span class="token punctuation">;</span> <span class="token comment">// radio medio de la Luna en metros</span>
+        <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> G <span class="token operator">*</span> <span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">/</span> radius<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="crear-la-vista-principal">Crear la vista principal</h3>
+<p>Empezaremos a crear la vista principal de nuestra aplicación, para eso necesitaremos dos componente esenciales<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdMNGS0fkG0M_qQZBiBIgF4wYBXhv36QVqB-kSmDcleC8iHGRaDW1iIKa5vz2hIssc_t6GJuSZdQw7FT8_c4sNzSfM5k7DMsCcSMqSirVYSb7Bf8PqvCCOLeetlDNCoW4Tq7lQ-CA?key=wvcAPdd-0TgW15_xZ62NjQ" alt=""></strong><br>
+Un componente donde pueda almacenar el titulo y el botón de agregar y un componente donde pueda almacenar todos los planetas y lunas. Para eso crearemos un archivo llamado <code>space-view.fxml</code> dentro de la carpeta <code>resources</code></p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string">"1.0"</span> encoding<span class="token operator">=</span><span class="token string">"UTF-8"</span><span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>geometry<span class="token punctuation">.</span>Insets<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span>Button<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span>Label<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span>ScrollPane<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>TilePane<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>VBox<span class="token operator">?</span><span class="token operator">&gt;</span>  
+  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>HBox<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span><span class="token operator">?</span><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>Region<span class="token operator">?</span><span class="token operator">&gt;</span>  
+<span class="token operator">&lt;</span>VBox xmlns<span class="token operator">=</span><span class="token string">"http://javafx.com/javafx/17"</span>  
+  xmlns<span class="token operator">:</span>fx<span class="token operator">=</span><span class="token string">"http://javafx.com/fxml/1"</span>  
+  fx<span class="token operator">:</span>controller<span class="token operator">=</span><span class="token string">"com.ejemplo.demo5.HelloController"</span>  
+  spacing<span class="token operator">=</span><span class="token string">"15"</span><span class="token operator">&gt;</span>  
+  
+ <span class="token operator">&lt;</span>padding<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>Insets top<span class="token operator">=</span><span class="token string">"20"</span> right<span class="token operator">=</span><span class="token string">"20"</span> bottom<span class="token operator">=</span><span class="token string">"20"</span> left<span class="token operator">=</span><span class="token string">"20"</span><span class="token operator">/</span><span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span><span class="token operator">/</span>padding<span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span>HBox alignment<span class="token operator">=</span><span class="token string">"CENTER_LEFT"</span> spacing<span class="token operator">=</span><span class="token string">"15"</span><span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span>Label text<span class="token operator">=</span><span class="token string">"SpaceApp"</span> style<span class="token operator">=</span><span class="token string">"-fx-font-size:25px; -fx-font-weight:bold;"</span><span class="token operator">/</span><span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span>Region fx<span class="token operator">:</span>id<span class="token operator">=</span><span class="token string">"spacer"</span> HBox<span class="token punctuation">.</span>hgrow<span class="token operator">=</span><span class="token string">"ALWAYS"</span><span class="token operator">/</span><span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span>Button text<span class="token operator">=</span><span class="token string">"Agregar Nuevo Planeta"</span> onAction<span class="token operator">=</span><span class="token string">"#openAddPlanetForm"</span><span class="token operator">/</span><span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span><span class="token operator">/</span>HBox<span class="token operator">&gt;</span>  
+ <span class="token operator">&lt;</span>ScrollPane fitToWidth<span class="token operator">=</span><span class="token string">"true"</span> fitToHeight<span class="token operator">=</span><span class="token string">"true"</span>  
+  hbarPolicy<span class="token operator">=</span><span class="token string">"AS_NEEDED"</span> vbarPolicy<span class="token operator">=</span><span class="token string">"AS_NEEDED"</span> style<span class="token operator">=</span><span class="token string">"-fx-background-color: transparent; -fx-border-color: transparent;"</span><span class="token operator">&gt;</span>  
+	 <span class="token operator">&lt;</span>content<span class="token operator">&gt;</span> <span class="token operator">&lt;</span>TilePane fx<span class="token operator">:</span>id<span class="token operator">=</span><span class="token string">"tilePane"</span>  
+	  hgap<span class="token operator">=</span><span class="token string">"15"</span> vgap<span class="token operator">=</span><span class="token string">"15"</span>  
+	  prefColumns<span class="token operator">=</span><span class="token string">"3"</span>  
+	  alignment<span class="token operator">=</span><span class="token string">"CENTER"</span>  
+	  <span class="token operator">&gt;</span>  
+		 <span class="token operator">&lt;</span><span class="token operator">/</span>TilePane<span class="token operator">&gt;</span> 
+	 <span class="token operator">&lt;</span><span class="token operator">/</span>content<span class="token operator">&gt;</span> 
+<span class="token operator">&lt;</span><span class="token operator">/</span>ScrollPane<span class="token operator">&gt;</span>
+ <span class="token operator">&lt;</span><span class="token operator">/</span>VBox<span class="token operator">&gt;</span>
+</code></pre>
+<blockquote>
+<p>Nota: Este código dará algunos errores hasta que terminemos la implementación</p>
+</blockquote>
+<p>En el codigo es importante resaltar que:</p>
+<ul>
+<li>
+<p><strong>VBox</strong>: contenedor vertical que apila sus nodos con un espacio fijo (<code>spacing="15"</code>) y un espaciado interno definido en <code>&lt;padding&gt;</code>.</p>
+</li>
+<li>
+<p><strong>HBox</strong>: en la parte superior, coloca el <strong>Label</strong> y el <strong>Button</strong> en línea. El <code>spacing="15"</code> deja 15 px entre elementos, y la <strong>Region</strong> con <code>HBox.hgrow="ALWAYS"</code> se expande para empujar el botón hacia la derecha, logrando que el texto y el boton queden separados, uno en cada esquina.</p>
+</li>
+<li>
+<p><strong>ScrollPane</strong>: hace que el contenido sea desplazable si supera el tamaño de la ventana.</p>
+<ul>
+<li>
+<p><code>fitToWidth="true"</code> y <code>fitToHeight="true"</code> ajustan el contenido para llenar siempre el ancho y alto disponibles.</p>
+</li>
+<li>
+<p><code>hbarPolicy</code> y <code>vbarPolicy</code> controlan cuándo aparecen las barras de desplazamiento (<code>AS_NEEDED</code>).</p>
+</li>
+<li>
+<p>El estilo transparente elimina bordes o fondos no deseados.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>content</strong> (dentro de ScrollPane): etiqueta obligatoria para envolver el nodo que realmente será scrollable, en este caso el <strong>TilePane</strong>.</p>
+</li>
+<li>
+<p><strong>TilePane</strong>: organiza dinámicamente sus hijos en una cuadrícula de hasta <code>prefColumns</code> columnas, con separaciones <code>hgap</code> y <code>vgap</code>. El atributo <code>alignment="CENTER"</code> centra la cuadrícula dentro del ScrollPane cuando hay espacio sobrante.</p>
+</li>
+</ul>
+<h3 id="establecer-pantalla-principal">Establecer pantalla principal</h3>
+<p>Cuando creamos el proyecto, nos creo dos clases dentro de Main, el <code>HelloController</code> y el <code>HelloApplication</code>. En el <code>HelloApplication</code>modificaremos el codigo para que arranque con la vista que acabamos de crear</p>
+<pre class=" language-java"><code class="prism  language-java">  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloApplication</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>  
+    <span class="token annotation punctuation">@Override</span>  
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span>Stage stage<span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>  
+        FXMLLoader fxmlLoader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span>HelloApplication<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"space-view.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        Scene scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>fxmlLoader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1280</span><span class="token punctuation">,</span> <span class="token number">720</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        stage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Planet's Demo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        stage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        stage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token function">launch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Con <code>getResource</code> le decimos que archivo FXML va a abrir y al crear la escena también que tamaño tendrá en pixeles, así como el titulo de la ventana.</p>
+<h3 id="cartas-de-los-cuerpos-celestes">Cartas de los cuerpos celestes</h3>
+<p>Ahora antes de continuar, crearemos las cards de cada planeta, es decir las que van dentro del ScrollPane y donde se muestra la información de cada cuerpo celeste.</p>
+<p>Para eso crearemos en Resource una vista llamada  <code>space-cell.fxml</code> en Resources</p>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="token prolog">&lt;?import javafx.geometry.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.control.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.effect.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.image.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.layout.*?&gt;</span>
+<span class="token prolog">&lt;?import javafx.scene.text.*?&gt;</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VBox</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/17.0.12<span class="token punctuation">"</span></span>
+      <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span>
+      <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.ejemplo.demo5.SpaceController<span class="token punctuation">"</span></span>
+      <span class="token attr-name">alignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span>
+      <span class="token attr-name">prefWidth</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>268.0<span class="token punctuation">"</span></span> <span class="token attr-name">prefHeight</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>240<span class="token punctuation">"</span></span>
+      <span class="token attr-name">spacing</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>background</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Background</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>fills</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BackgroundFill</span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>white<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>radii</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>CornerRadii</span> <span class="token attr-name">topLeft</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">topRight</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span>
+                                     <span class="token attr-name">bottomRight</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">bottomLeft</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>radii</span><span class="token punctuation">&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>insets</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Insets</span> <span class="token attr-name">top</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">right</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span>
+                                <span class="token attr-name">bottom</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">left</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>insets</span><span class="token punctuation">&gt;</span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>BackgroundFill</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>fills</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Background</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>background</span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>effect</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>DropShadow</span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#444444<span class="token punctuation">"</span></span>
+                    <span class="token attr-name">offsetX</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0<span class="token punctuation">"</span></span> <span class="token attr-name">offsetY</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span>
+                    <span class="token attr-name">radius</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>5<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>effect</span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ImageView</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>imgEntity<span class="token punctuation">"</span></span>
+               <span class="token attr-name">fitWidth</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span> <span class="token attr-name">fitHeight</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>100<span class="token punctuation">"</span></span>
+               <span class="token attr-name">preserveRatio</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lblName<span class="token punctuation">"</span></span> <span class="token attr-name">textAlignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>System Bold<span class="token punctuation">"</span></span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>14<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+    
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lblMass<span class="token punctuation">"</span></span> <span class="token attr-name">textAlignment</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>CENTER<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>font</span><span class="token punctuation">&gt;</span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Font</span> <span class="token attr-name">size</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>font</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>Label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>VBox</span><span class="token punctuation">&gt;</span></span>
+
+</code></pre>
+<p>Es importante resaltar algunas etiquetas relevantes como:</p>
+<ul>
+<li>
+<p><strong><code>&lt;background&gt;</code> / <code>BackgroundFill</code></strong>: Rellena el fondo de la tarjeta con color blanco.</p>
+<ul>
+<li>
+<p><code>CornerRadii</code>: bordes redondeados de 10 px en cada esquina.</p>
+</li>
+<li>
+<p><code>Insets</code>: margen interno para separar contenido del borde.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>&lt;effect&gt;</code> / <code>DropShadow</code></strong>: Aplica una sombra sutil debajo de la card para darle profundidad.</p>
+<ul>
+<li><code>offsetY="2"</code> desplaza la sombra 2 px hacia abajo.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>ImageView</code></strong></p>
+</li>
+<li>
+<p><code>fitWidth</code> y <code>fitHeight</code>: ajusta la imagen a 100×100 px.</p>
+</li>
+<li>
+<p><code>preserveRatio="true"</code>: mantiene la proporción original de la imagen.</p>
+</li>
+</ul>
+<h3 id="controlador-de-la-carta.">Controlador de la carta.</h3>
+<p>Una vez teniendo el diseño de la carta, haremos su controlador, el cual se encargará como tal de una función que nos montara los datos, es decir, que recibiremos una entidad de tipo espacio (SpaceEntity) y una url de una imagen. Una vez nuestro controlador reciba eso, lo que haremos será montarla en los labels que definimos en la interfaz. Para eso crearemos un controlador llamado <code>SpaceController</code></p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span>FXML<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span>Label<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>image<span class="token punctuation">.</span>Image<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>image<span class="token punctuation">.</span>ImageView<span class="token punctuation">;</span>  
+  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>InputStream<span class="token punctuation">;</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpaceController</span> <span class="token punctuation">{</span>  
+    <span class="token annotation punctuation">@FXML</span>  
+  <span class="token keyword">private</span> ImageView imgEntity<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> Label lblName<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> Label lblMass<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setData</span><span class="token punctuation">(</span>SpaceEntity entity<span class="token punctuation">,</span> String imagePathOrUrl<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        lblName<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>entity<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        lblMass<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token string">"Masa: %.2e kg"</span><span class="token punctuation">,</span> entity<span class="token punctuation">.</span><span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        Image image <span class="token operator">=</span> null<span class="token punctuation">;</span>  
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>imagePathOrUrl<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span>imagePathOrUrl<span class="token punctuation">,</span>  
+                        <span class="token number">100</span><span class="token punctuation">,</span>  
+                        <span class="token number">100</span><span class="token punctuation">,</span>  
+                        <span class="token boolean">true</span><span class="token punctuation">,</span>  
+                        <span class="token boolean">true</span><span class="token punctuation">,</span>  
+                        <span class="token boolean">false</span>  
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+                InputStream is <span class="token operator">=</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResourceAsStream</span><span class="token punctuation">(</span>imagePathOrUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>is <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                    image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span>is<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                <span class="token punctuation">}</span>  
+            <span class="token punctuation">}</span>  
+  
+            <span class="token comment">// Comprueba si hubo error interno  </span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>image <span class="token operator">!=</span> null <span class="token operator">&amp;&amp;</span> image<span class="token punctuation">.</span><span class="token function">isError</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                System<span class="token punctuation">.</span>err<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Error cargando imagen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            ex<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+  
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>image <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            imgEntity<span class="token punctuation">.</span><span class="token function">setImage</span><span class="token punctuation">(</span>image<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Acá en este código lo más relevante es el montado de la imagen, ya que recibimos una url, no sabemos si es de internet o si es una url de un archivo local, por lo que, instanciamos del objeto <code>Image</code> de JavaFX y hacemos una comprobación de si la imagen comienza con http, es decir que viene de internet y solo rellenamos con la url y le definimos el tamaño</p>
+<pre class=" language-java"><code class="prism  language-java">image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span>imagePathOrUrl<span class="token punctuation">,</span>  
+        <span class="token number">100</span><span class="token punctuation">,</span>  
+        <span class="token number">100</span><span class="token punctuation">,</span>  
+        <span class="token boolean">true</span><span class="token punctuation">,</span>  
+        <span class="token boolean">true</span><span class="token punctuation">,</span>  
+        <span class="token boolean">false</span>  
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>De no ser así se hace otro proceso extrayendo el recurso como un <code>Stream</code></p>
+<h3 id="controlador-de-la-pantalla-principal">Controlador de la pantalla principal</h3>
+<p>Ahora, ya que tenemos las cartas y tenemos la pantalla principal, solo nos falta unirlo, eso lo haremos mediante el controlador de la pantalla principal, que en nuestro caso será el controlador que nos deja definido IntelliJ cuando creamos un nuevo proyecto, es decir en el archivo <code>HelloController</code> dentro de ese archivo definiremos</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>collections<span class="token punctuation">.</span>FXCollections<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>collections<span class="token punctuation">.</span>ObservableList<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span>FXML<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span>FXMLLoader<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>Node<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>Scene<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>TilePane<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>stage<span class="token punctuation">.</span>Stage<span class="token punctuation">;</span>  
+  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span>IOException<span class="token punctuation">;</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloController</span> <span class="token punctuation">{</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> TilePane tilePane<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">private</span> ObservableList<span class="token operator">&lt;</span>SpaceEntity<span class="token operator">&gt;</span> entities<span class="token punctuation">;</span>  
+  
+    <span class="token annotation punctuation">@FXML</span>  
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>  
+        entities <span class="token operator">=</span> FXCollections<span class="token punctuation">.</span><span class="token function">observableArrayList</span><span class="token punctuation">(</span>  
+                <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span><span class="token string">"Tierra"</span><span class="token punctuation">,</span>  <span class="token number">5.97e24</span><span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"https://cdn.pixabay.com/photo/2016/06/14/20/38/planet-earth-1457453_1280.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span><span class="token string">"Marte"</span><span class="token punctuation">,</span>   <span class="token number">6.39e23</span><span class="token punctuation">,</span>  <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"https://static.vecteezy.com/system/resources/previews/056/369/903/non_2x/the-planet-mars-is-shown-in-this-image-png.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span><span class="token string">"Júpiter"</span><span class="token punctuation">,</span> <span class="token number">1.898e27</span><span class="token punctuation">,</span> <span class="token number">79</span><span class="token punctuation">,</span> <span class="token string">"https://d2pn8kiwq2w21t.cloudfront.net/images/Jupiter-800h-v2_02.width-1024.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>  <span class="token string">"Luna"</span><span class="token punctuation">,</span>    <span class="token number">7.35e22</span><span class="token punctuation">,</span> <span class="token string">"Tierra"</span><span class="token punctuation">,</span>  
+                        <span class="token string">"https://static.vecteezy.com/system/resources/thumbnails/017/785/725/small/full-moon-isolated-on-transparent-background-png.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>  <span class="token string">"Fobos"</span><span class="token punctuation">,</span>   <span class="token number">1.0659e16</span><span class="token punctuation">,</span><span class="token string">"Marte"</span><span class="token punctuation">,</span>  
+                        <span class="token string">"https://static.wikia.nocookie.net/hola--srgedfg/images/5/50/441-4410958_mars-and-survey-the-red-planets-two-moons.png/revision/latest/scale-to-width-down/340?cb=20200331152719&amp;path-prefix=es"</span><span class="token punctuation">)</span>  
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>SpaceEntity entidad <span class="token operator">:</span> entities<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            FXMLLoader loader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"space-cell.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            Node cell <span class="token operator">=</span> loader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            SpaceController ctrl <span class="token operator">=</span> loader<span class="token punctuation">.</span><span class="token function">getController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            String imageUrl <span class="token operator">=</span> entidad<span class="token punctuation">.</span><span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null  
+  <span class="token operator">?</span> entidad<span class="token punctuation">.</span><span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+                    <span class="token operator">:</span> <span class="token string">"/images/default.png"</span><span class="token punctuation">;</span>  
+            ctrl<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span>entidad<span class="token punctuation">,</span> imageUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            tilePane<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> ObservableList<span class="token operator">&lt;</span>SpaceEntity<span class="token operator">&gt;</span> <span class="token function">getEntities</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> entities<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Funcion initialize</strong><br>
+Dentro de este código la función initialize que se encarga o se carga cuando se muestra la pantalla, lo que hace es que no crea una <code>ObservableList</code>  que extiende a <code>List</code>, pero con la capacidad de <strong>notificar automáticamente</strong> los cambios como inserciones, borrados,  o movimientos a quien se haya registrado como oyente. Dentro del Initialize le agregaremos un arreglo el cual contendrá datos <em>hardcodeados</em> o “quemados” para lograr visualizar como se ve.</p>
+<p>Luego para cada espacio del arreglo, vamos a cargar un nuevo <code>space-cell</code> que es la card que hemos creado, y para cada uno vamos a cargarle el controlador, ya que, como habíamos hecho antes, a la función <code>setData</code> le pasaremos el objeto y la imagen</p>
+<pre class=" language-java"><code class="prism  language-java">ctrl<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span>entidad<span class="token punctuation">,</span> imageUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Y una vez cargada la card al panel que tenemos, le asignaremos ese nueva card.</p>
+<p><strong>Funcion addEntity</strong><br>
+Esta función funciona igual, con la única excepción que esta función ya no le asignaremos datos quemados, si no que recibiremos la entidad nueva y la asignaremos una sola vez, pero en esencia el montado es igual, solo que <strong>no es iterativo</strong></p>
+<p><strong>Funcion getEntities</strong><br>
+Esta funcion lo que hará es retornanos las entidades que estén dentro del panel, esto nos sirvira más adelante para saber cuales entidades estan agregadas ya.</p>
+<h3 id="vista-para-agregar-nuevos-planetas">Vista para agregar nuevos planetas</h3>
+<p>Por ultimo agregaremos una funcionalidad más, el cual será para agregar otro planeta u otra luna y para eso, crearemos una nueva vista que se llame <code>form-add-planet.fxml</code></p>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>  
+<span class="token prolog">&lt;?import javafx.scene.control.*?&gt;</span>  
+<span class="token prolog">&lt;?import javafx.scene.layout.*?&gt;</span>  
+<span class="token prolog">&lt;?import javafx.geometry.Insets?&gt;</span>  
+  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>VBox</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/javafx/17<span class="token punctuation">"</span></span>  
+  <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/fxml/1<span class="token punctuation">"</span></span>  
+  <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.ejemplo.demo5.AddPlanetController<span class="token punctuation">"</span></span>  
+  <span class="token attr-name">spacing</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>padding</span><span class="token punctuation">&gt;</span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Insets</span> <span class="token attr-name">top</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>15<span class="token punctuation">"</span></span> <span class="token attr-name">right</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>15<span class="token punctuation">"</span></span> <span class="token attr-name">bottom</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>15<span class="token punctuation">"</span></span> <span class="token attr-name">left</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>15<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>padding</span><span class="token punctuation">&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Agregar Nueva Entidad<span class="token punctuation">"</span></span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">-fx-font-size</span><span class="token punctuation">:</span><span class="token number">16</span>px<span class="token punctuation">;</span><span class="token property">-fx-font-weight</span><span class="token punctuation">:</span>bold<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ComboBox</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>typeComboBox<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Tipo de entidad<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nameField<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Nombre<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>massField<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Masa (kg)<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>imageField<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>URL de la Imagen<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>moonCountField<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Cantidad de Lunas<span class="token punctuation">"</span></span> <span class="token attr-name">visible</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ComboBox</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>parentPlanetCombo<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Planeta padre<span class="token punctuation">"</span></span> <span class="token attr-name">visible</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+  
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Agregar<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#addEntity<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>VBox</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>Para esta vista lo unico que hay que resaltar son los campos de texto, el primero es ComboBox el cual es para definir un campo donde puedo seleccionar opciones. Y por ultimo un TextField que es un campo donde puedo ingresar texto.</p>
+<h3 id="modificación-del-controlador-principal">Modificación del controlador principal</h3>
+<p>Antes de continuar con el controlador del formulario, modificaremos el controlador principal <code>HelloController</code> el cual le agregaremos una función y es que, cuando en la pantalla principal demos click en el boton de agregar nuevo planeta, debe abrirnos la vista que acabamos de crear, por lo tanto lo haremos con la siguiente función</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token annotation punctuation">@FXML</span>  
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">openAddPlanetForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> IOException <span class="token punctuation">{</span>  
+    FXMLLoader loader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"form-add-planet.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    Stage stage <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Stage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    stage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>loader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+    AddPlanetController addCtrl <span class="token operator">=</span> loader<span class="token punctuation">.</span><span class="token function">getController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    addCtrl<span class="token punctuation">.</span><span class="token function">setMainController</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+    stage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Agregar Nueva Entidad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    stage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Esto lo agregamos despues del getEntity y lo que hará es que de manera similar cargará la escena obteniendo la vista como un recurso, es importante que si le pusimos otro nombre a la vista de formulario, ponerselo ya que se deja hardcodeado el nombre del archivo a cargar.</p>
+<h3 id="controlador-de-agregar-un-nuevo-planeta">Controlador de agregar un nuevo planeta</h3>
+<p>Por ultimo, agregaremos un controlador para la vista de agregar un nuevo planeta, lo llamaremos <code>AddPlanetController</code> y definiremos lo siguiente:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> javafx<span class="token punctuation">.</span>collections<span class="token punctuation">.</span>FXCollections<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>fxml<span class="token punctuation">.</span>FXML<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span>ComboBox<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> javafx<span class="token punctuation">.</span>scene<span class="token punctuation">.</span>control<span class="token punctuation">.</span>TextField<span class="token punctuation">;</span>  
+  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>List<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>stream<span class="token punctuation">.</span>Collectors<span class="token punctuation">;</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AddPlanetController</span> <span class="token punctuation">{</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> ComboBox<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> typeComboBox<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> TextField nameField<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> TextField massField<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> TextField imageField<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> TextField moonCountField<span class="token punctuation">;</span>  
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> ComboBox<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> parentPlanetCombo<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">private</span> HelloController mainController<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setMainController</span><span class="token punctuation">(</span>HelloController controller<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>mainController <span class="token operator">=</span> controller<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token annotation punctuation">@FXML</span>  
+  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        typeComboBox<span class="token punctuation">.</span><span class="token function">getItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token string">"Planeta"</span><span class="token punctuation">,</span> <span class="token string">"Luna"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        typeComboBox<span class="token punctuation">.</span><span class="token function">valueProperty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addListener</span><span class="token punctuation">(</span><span class="token punctuation">(</span>obs<span class="token punctuation">,</span> old<span class="token punctuation">,</span> nuevo<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">boolean</span> isPlanet <span class="token operator">=</span> <span class="token string">"Planeta"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>nuevo<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            moonCountField<span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span>isPlanet<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            parentPlanetCombo<span class="token punctuation">.</span><span class="token function">setVisible</span><span class="token punctuation">(</span><span class="token operator">!</span>isPlanet<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isPlanet<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> planetNames <span class="token operator">=</span> mainController<span class="token punctuation">.</span><span class="token function">getEntities</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+                        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">&gt;</span> e <span class="token keyword">instanceof</span> <span class="token class-name">Planet</span><span class="token punctuation">)</span>  
+                        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>SpaceEntity<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">)</span>  
+                        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                parentPlanetCombo<span class="token punctuation">.</span><span class="token function">setItems</span><span class="token punctuation">(</span>FXCollections<span class="token punctuation">.</span><span class="token function">observableArrayList</span><span class="token punctuation">(</span>planetNames<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token annotation punctuation">@FXML</span>  
+  <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">addEntity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        String tipo <span class="token operator">=</span> typeComboBox<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        String nombre <span class="token operator">=</span> nameField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">double</span> masa <span class="token operator">=</span> Double<span class="token punctuation">.</span><span class="token function">parseDouble</span><span class="token punctuation">(</span>massField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        String imagen <span class="token operator">=</span> imageField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        SpaceEntity nuevaEntidad<span class="token punctuation">;</span>  
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"Planeta"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>tipo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">int</span> numLunas <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>moonCountField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            nuevaEntidad <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> masa<span class="token punctuation">,</span> numLunas<span class="token punctuation">,</span> imagen<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+            String planetaPadre <span class="token operator">=</span> parentPlanetCombo<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            nuevaEntidad <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> masa<span class="token punctuation">,</span> planetaPadre<span class="token punctuation">,</span> imagen<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+  
+        mainController<span class="token punctuation">.</span><span class="token function">addEntity</span><span class="token punctuation">(</span>nuevaEntidad<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token function">clearFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        nameField<span class="token punctuation">.</span><span class="token function">getScene</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">clearFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        nameField<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        massField<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        imageField<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        moonCountField<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        parentPlanetCombo<span class="token punctuation">.</span><span class="token function">getSelectionModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clearSelection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        typeComboBox<span class="token punctuation">.</span><span class="token function">getSelectionModel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">clearSelection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Funcion Initialize</strong><br>
+Ahora, es importante definir que hace cada función, la función Initialize o que hace es que al empezar crea las opciones que tendrá el ComboBox que son para crear un planeta o una luna. Luego, cada que cambiemos de opción, esto cargara un Listener o una escucha y esto ya que, cuando cambie, queremos que algunos campos se muestren, por ejemplo, si es un planeta, debe mostrarse la cantidad de lunas y si no es una luna, debe mostrarse el planeta padre. En el segundo caso, de que no sea un planeta, lo que haremos es que vamos a llenar el ComboBox del planeta padre, con todos los planetas que ya hemos agregado mediante este fragmento de código</p>
+<pre class=" language-java"><code class="prism  language-java">List<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> planetNames <span class="token operator">=</span> mainController<span class="token punctuation">.</span><span class="token function">getEntities</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+        <span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>e <span class="token operator">-</span><span class="token operator">&gt;</span> e <span class="token keyword">instanceof</span> <span class="token class-name">Planet</span><span class="token punctuation">)</span>  
+        <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>SpaceEntity<span class="token operator">:</span><span class="token operator">:</span>getName<span class="token punctuation">)</span>  
+        <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">toList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>Funcion addEntity</strong><br>
+Esta funcion solamente agregara un nuevo planeta o nueva luna, para eso hara uso del controlador principal que instanciamos al principio del codigo</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">private</span> HelloController mainController<span class="token punctuation">;</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setMainController</span><span class="token punctuation">(</span>HelloController controller<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">this</span><span class="token punctuation">.</span>mainController <span class="token operator">=</span> controller<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Una vez instanciado, podemos acceder a sus métodos, y haremos uso del addEntity de ese controlador pasándole una entidad de tipo <code>SpaceEntity</code> que puede ser un Planeta o una Luna, dependiendo del tipo que este seleccionado en ComboBox</p>
+<pre class=" language-java"><code class="prism  language-java">SpaceEntity nuevaEntidad<span class="token punctuation">;</span>  
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"Planeta"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>tipo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> numLunas <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>moonCountField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    nuevaEntidad <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> masa<span class="token punctuation">,</span> numLunas<span class="token punctuation">,</span> imagen<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+    String planetaPadre <span class="token operator">=</span> parentPlanetCombo<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    nuevaEntidad <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> masa<span class="token punctuation">,</span> planetaPadre<span class="token punctuation">,</span> imagen<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  
+  
+mainController<span class="token punctuation">.</span><span class="token function">addEntity</span><span class="token punctuation">(</span>nuevaEntidad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Por ultimo, solo se llama a la funcion clearFields para limpiar todos los campos e igual cerrar la ventana</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token function">clearFields</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+nameField<span class="token punctuation">.</span><span class="token function">getScene</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getWindow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hide</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+
+    </div>
+  </div>
+</body>
+
+</html>
