@@ -612,3 +612,9 @@ Por ultimo, solo se llama a la funcion clearFields para limpiar todos los campos
 clearFields();  
 nameField.getScene().getWindow().hide();
 ```
+## Consideraciones finales
+
+Ten en cuenta que el código se ha ido desarrollando de forma incremental, incorporando funciones a medida que surgían las necesidades. Sin embargo, con fines académicos seguiremos fielmente los pasos de la guía. Durante el proceso es normal que aparezcan errores; al completar todos los ejercicios, deberías recuperar la interfaz original.
+
+Para facilitar el seguimiento y la centralización, todo el proyecto está disponible en GitHub:  
+[https://github.com/JosseJuventino/SpaceApp](https://github.com/JosseJuventino/SpaceApp)
