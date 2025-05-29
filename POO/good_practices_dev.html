@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GoodPractices</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#buenas-practicas-para-desarrollo">Buenas practicas para desarrollo</a>
+<ul>
+<li><a href="#google-java-style">Google Java Style</a></li>
+<li><a href="#documentación-con-javadoc">Documentación con JavaDoc</a></li>
+<li><a href="#guía-para-escribir-buenos-commits">Guía para escribir buenos commits</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="buenas-practicas-para-desarrollo">Buenas practicas para desarrollo</h1>
+<h2 id="google-java-style">Google Java Style</h2>
+<p>La Guía de Estilo de Java de Google es un conjunto de reglas estrictas que definen cómo debe formatearse el código Java para lograr un aspecto homogéneo en proyectos grandes y colaborativos.</p>
+<h3 id="identación">Identación</h3>
+<p>Se utiliza una identación de 2 espacios por nivel. Se deben dejar espacios alrededor de operadores y después de comas para mejorar la legibilidad.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// Correcto (espacio después de coma y alrededor de operadores)</span>
+<span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">calcularTotal</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="longitud-de-la-líneas-de-código">Longitud de la líneas de código</h3>
+<p>Las líneas de código deben limitarse a <strong>100 caracteres</strong> como máximo. Si una línea supera este límite, se debe aplicar un ajuste de línea (line-wrapping) en puntos lógicos del código.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">LongStringExample</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> String <span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Esta es una cadena de texto muy larga que se ha dividido en dos líneas para "</span> <span class="token operator">+</span>
+           <span class="token string">"cumplir con el límite de 100 caracteres por línea."</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="uso-de-llaves">Uso de llaves</h3>
+<p>Las llaves se colocan en la misma línea que la declaración del bloque (estilo K&amp;R o llaves egipcias). Incluso para bloques de una sola línea, se recomienda usar llaves para mayor claridad.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConditionExample</span> <span class="token punctuation">{</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">checkValue</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El valor es positivo."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El valor es cero o negativo."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="convenciones-de-nomenclatura">Convenciones de Nomenclatura</h3>
+<h4 id="nombres-de-clases">Nombres de clases</h4>
+<p>Los nombres de las clases deben ser escritas en UpperCamelCase y generalmente los nombres son sustantivos</p>
+<h4 id="nombres-de-metodos">Nombres de metodos</h4>
+<p>Los métodos deben ser escritos usando el formato lowerCamelCase y generalmente los nombres de los métodos son verbos</p>
+<h4 id="nombres-de-constantes">Nombres de constantes</h4>
+<p>Las constantes de cualquier tipo primitivo o complejo se usa el formato UPPER_SNAKE_CASE</p>
+<p><strong>Ejemplo</strong>:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DataProcessor</span> <span class="token punctuation">{</span>  <span class="token comment">// UpperCamelCase para clases</span>
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_SIZE <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>  <span class="token comment">// Constante en UPPER_SNAKE_CASE</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">int</span> processedCount<span class="token punctuation">;</span>  <span class="token comment">// lowerCamelCase para variables</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">processData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  <span class="token comment">// lowerCamelCase para métodos</span>
+    processedCount<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token comment">// ...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="documentación-con-javadoc">Documentación con JavaDoc</h2>
+<p>JavaDoc es la herramienta estándar de Java para generar documentación legible en HTML a partir de comentarios especiales incrustados en el código fuente. Una buena práctica de JavaDoc implica no solo describir la funcionalidad, sino también emplear etiquetas adecuadas y seguir convenciones claras para facilitar el uso de bibliotecas y APIs.</p>
+<h3 id="estructura-de-un-comentario-javadoc">Estructura de un comentario JavaDoc</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">/**
+ * &lt;Resumen breve en presente&gt;.
+ *
+ * &lt;Descripción ampliada, si aplica. Puede incluir varias líneas y listas HTML.&gt;
+ *
+ * @param nombreParámetro Descripción detallada.
+ * @return Descripción de lo que retorna el método.
+ * @throws TipoExcepción Condición bajo la cual se lanza.
+ * @see OtraClase#otroMétodo()
+ * @since Versión
+ * @deprecated &lt;Razón y alternativa&gt;
+ */</span>
+<span class="token keyword">public</span> Tipo mé<span class="token function">todo</span><span class="token punctuation">(</span>Tipo nombreParámetro<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>Cuando documentos con JavaDoc, es necesario poner los delimitadores obligatorios <code>/** ... */**</code> . La primera linea debe ser un resumen conciso y despues de una linea en blanco, una descripción detallada.<br>
+Existen varias etiquetas que podemos poner cuando documentamos.</p>
+
+<table>
+<thead>
+<tr>
+<th>Etiqueta</th>
+<th>Uso breve</th>
+<th>Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@param</code></td>
+<td>Describe cada parámetro del método.</td>
+<td><code>@param userId Identificador del usuario.</code></td>
+</tr>
+<tr>
+<td><code>@return</code></td>
+<td>Explica el valor que devuelve el método.</td>
+<td><code>@return Lista de usuarios.</code></td>
+</tr>
+<tr>
+<td><code>@throws</code></td>
+<td>Documenta las excepciones que puede lanzar el método.</td>
+<td><code>@throws IOException Si falla la lectura.</code></td>
+</tr>
+<tr>
+<td><code>@see</code></td>
+<td>Enlaza a clases, métodos o URLs relacionados.</td>
+<td><code>@see java.util.List</code></td>
+</tr>
+<tr>
+<td><code>@since</code></td>
+<td>Indica la versión en la que apareció el elemento.</td>
+<td><code>@since 1.2</code></td>
+</tr>
+<tr>
+<td><code>@deprecated</code></td>
+<td>Marca elementos obsoletos y su alternativa recomendada.</td>
+<td><code>@deprecated Usa newMethod() en su lugar.</code></td>
+</tr>
+<tr>
+<td><code>@author</code></td>
+<td>Nombre del autor o del equipo que creó el código.</td>
+<td><code>@author Josse Castillo</code></td>
+</tr>
+<tr>
+<td><code>@version</code></td>
+<td>Especifica la versión actual de la clase o API.</td>
+<td><code>@version 2.0</code></td>
+</tr>
+<tr>
+<td><code>@serial</code></td>
+<td>Documenta un campo serializable en una clase que implementa Serializable.</td>
+<td><code>@serial UID de la instancia.</code></td>
+</tr>
+<tr>
+<td><code>@serialField</code></td>
+<td>Describe un campo serializable específico (JDK 1.4+).</td>
+<td><code>@serialField nombreUsuario Campo serializado.</code></td>
+</tr>
+<tr>
+<td><code>@serialData</code></td>
+<td>Documenta el formato de datos adicionales en writeObject/readObject.</td>
+<td><code>@serialData Formato: &lt;code&gt;key=value;&lt;/code&gt;</code></td>
+</tr>
+<tr>
+<td><code>@link</code></td>
+<td>Inserta un enlace en línea a otro elemento (en texto).</td>
+<td><code>{@link UserManager#createUser}</code></td>
+</tr>
+<tr>
+<td><code>@linkplain</code></td>
+<td>Inserta un enlace en línea pero con el texto tal cual.</td>
+<td><code>{@linkplain java.io.File File}</code></td>
+</tr>
+<tr>
+<td><code>@literal</code></td>
+<td>Muestra texto sin interpretar etiquetas HTML o JavaDoc.</td>
+<td><code>{@literal &lt;T&gt;}</code></td>
+</tr>
+<tr>
+<td><code>@code</code></td>
+<td>Formatea un fragmento de código en línea.</td>
+<td><code>{@code Map&lt;String, List&lt;User&gt;&gt;}</code></td>
+</tr>
+<tr>
+<td><code>{@inheritDoc}</code></td>
+<td>Hereda la documentación del elemento padre (override).</td>
+<td>Usado en Javadoc de métodos sobrescritos.</td>
+</tr>
+<tr>
+<td><code>@apiNote</code></td>
+<td>Añade notas de uso o detalles adicionales para el usuario de la API.</td>
+<td><code>@apiNote Ejecutar tras inicializar el contexto.</code></td>
+</tr>
+<tr>
+<td><code>@implSpec</code></td>
+<td>Describe requisitos de implementación para implementadores.</td>
+<td><code>@implSpec Debe ser thread-safe.</code></td>
+</tr>
+<tr>
+<td><code>@implNote</code></td>
+<td>Notas específicas sobre la implementación interna.</td>
+<td><code>@implNote Usa cache LRU interna.</code></td>
+</tr>
+</tbody>
+</table><h3 id="convenciones-sobre-las-etiquetas">Convenciones sobre las etiquetas</h3>
+<ol>
+<li>
+<p><strong>Orden de etiquetas</strong>: siempre <code>@param</code>, luego <code>@return</code>, <code>@throws</code>, y al final las de metadatos (<code>@since</code>, <code>@deprecated</code>, <code>@see</code>).</p>
+</li>
+<li>
+<p><strong>Consistencia en estilo</strong>: mayúsculas, puntuación y estructura similares en todo el proyecto.</p>
+</li>
+<li>
+<p><strong>Actualización constante</strong>: sincronizar JavaDoc con cambios de firma o comportamiento.</p>
+</li>
+<li>
+<p><strong>Evitar redundancia</strong>: no repetir el nombre del parámetro en la descripción.</p>
+</li>
+</ol>
+<p><strong>Ejemplo:</strong></p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">/**
+ * Convierte una cadena de texto a formato Title Case (cada palabra inicia en mayúscula).
+ *
+ * Recorre las palabras separadas por espacios, capitaliza la primera letra
+ * y convierte el resto a minúsculas. Devuelve una cadena nueva sin modificar la original.
+ *
+ * @author José Castillo
+ * @author German Santos
+ * @version 1.3
+ * @since 2.0
+ * @param texto Cadena de entrada; no puede ser nula.
+ * @return La misma cadena con cada palabra en Title Case.
+ * @throws IllegalArgumentException Si {@code texto} es nulo o vacío.
+ * @see String#toUpperCase()
+ */</span>
+<span class="token keyword">public</span> String <span class="token function">toTitleCase</span><span class="token punctuation">(</span>String texto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>texto <span class="token operator">==</span> null <span class="token operator">||</span> texto<span class="token punctuation">.</span><span class="token function">isBlank</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"El texto no puede ser nulo o vacío."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    StringBuilder resultado <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">StringBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>String palabra <span class="token operator">:</span> texto<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"\\s+"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        resultado<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>Character<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span>palabra<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                 <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>palabra<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                 <span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> resultado<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="guía-para-escribir-buenos-commits">Guía para escribir buenos commits</h2>
+<h3 id="usa-el-verbo-imperativo-añadir--cambiar--arreglar--remover-…">1. Usa el verbo imperativo (<code>Añadir</code>,  <code>Cambiar</code>,  <code>Arreglar</code>,  <code>Remover</code>, …)</h3>
+<p>Aunque el mensaje puede sonar un poco raro el verbo presente es una forma de expresar la acción que se realiza en el commit. Por ejemplo, <code>Añadir</code> significa que se añade un nuevo archivo, <code>Cambiar</code> significa que se modifica un archivo existente y <code>Arreglar</code> significa que se arregla un bug.</p>
+<p><img src="https://imgs.xkcd.com/comics/git_commit_2x.png" alt="enter image description here"></p>
+<p>Sé que muchas veces estamos tentados a escribirlo en pasado  <em>“Añadido…”</em>,  <em>“Arreglado…”</em>  o  <em>“Removido…”</em>  pero  <strong>cada commit hay que entenderlo como una instrucción para cambiar el estado del proyecto</strong>. Dicho de otro modo, el verbo presente nos permite saber qué estado queremos que el proyecto se encuentre en el momento de añadir el commit.</p>
+<p>Sólo hay que ver también los mensajes de commit que el propio Git nos añade (al hacer merge de una rama usa  <code>Merge branch</code>).</p>
+<h3 id="no-uses-punto-final-ni-puntos-suspensivos-en-tus-mensajes">2. No uses punto final ni puntos suspensivos en tus mensajes</h3>
+<p>Usar puntuación, más allá de las comas, es innecesario a la hora de crear un buen mensaje de commit. Cada carácter cuenta a la hora de crear un buen mensaje de commit así que no lo desperdicies con puntos innecesarios.</p>
+<pre class=" language-shell"><code class="prism  language-shell">git commit -m "Add new search feature." # ❌  
+git commit -m "Fix a problem with the topbar..." # ❌  
+git commit -m "Change the default system color" # ✅
+</code></pre>
+<p>¿Por qué? <strong>El primer mensaje de commit es el título del commit.</strong> Y según las reglas de puntuación para títulos, tanto en castellano como en inglés, estos no llevan puntuación final. Sobre los puntos suspensivos… ¡Nuestros commits no deberían tener ningún suspenso! Deben ser una instrucción clara y concisa.</p>
+<h3 id="usa-como-máximo-50-carácteres-para-tu-mensaje-de-commit">3. Usa como máximo 50 carácteres para tu mensaje de commit</h3>
+<p>Sé corto y conciso. Si tienes mucho que explicar… seguramente es que tu commit hace demasiadas cosas. ¿Puedes separarlo en diferentes commits? Pues hazlo.</p>
+<p>Haz que el mensaje sea claro, directo y que realmente refleje los cambios que lleva.</p>
+<pre class=" language-shell"><code class="prism  language-shell">git commit -m "Add new search feature and change typography to improve performance" # ❌  
+git commit -m "Add new search feature" # ✅  
+git commit -m "Change typography to improve performance" # ✅
+</code></pre>
+<h3 id="usa-un-prefijo-para-tus-commits-para-hacerlos-más-semánticos">4. Usa un prefijo para tus commits para hacerlos más semánticos</h3>
+<p>Cuando un proyecto crece, es necesario que existan ciertas reglas para que el historial sea legible. Para ello, puedes añadir un prefijo para darle más significado a los commits que realizas. A esto se le llama  <em>commits semánticos</em>  y se haría de la siguiente manera:</p>
+<pre class=" language-shell"><code class="prism  language-shell">&lt;tipo-de-commit&gt;[scope]: &lt;descripcion&gt;
+feat: add new search feature
+</code></pre>
+<p>Puedes usar los siguientes prefijos</p>
+<ul>
+<li><strong>feat</strong>: Una nueva característica para el usuario.</li>
+<li><strong>fix</strong>: Arregla un bug que afecta al usuario.</li>
+<li><strong>perf</strong>: Cambios que mejoran el rendimiento del sitio.</li>
+<li><strong>build</strong>: Cambios en el sistema de build, tareas de despliegue o instalación.</li>
+<li><strong>ci</strong>: Cambios en la integración continua.</li>
+<li><strong>docs</strong>: Cambios en la documentación.</li>
+<li><strong>refactor</strong>: Refactorización del código como cambios de nombre de variables o funciones.</li>
+<li><strong>style</strong>: Cambios de formato, tabulaciones, espacios o puntos y coma, etc; no afectan al usuario.</li>
+<li><strong>test</strong>: Añade tests o refactoriza uno existente.</li>
+</ul>
+<p>En su defecto tambien puedes usar emojis para indicar el tipo de commit que se esta haciendo, por ejemplo usando la herramienta Gitmoji, donde <strong>cada emoji tiene su propia razon de ser</strong>  es decir, no debemos poner el emoji que mejor nos parezca, si no el que este acorde al commit, puedes revisarlo en la siguiente web.<br>
+<a href="https://gitmoji.dev/">https://gitmoji.dev/</a></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
