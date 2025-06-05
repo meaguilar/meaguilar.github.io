@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab05Poo</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#conectando-javafx-a-la-base-de-datos">Conectando JavaFX a la Base de Datos</a>
+<ul>
+<li><a href="#creando-base-de-datos">Creando base de datos</a></li>
+<li><a href="#conectandose-desde-javafx">Conectandose desde JavaFX</a></li>
+<li><a href="#creando-data-access-object">Creando Data Access Object</a></li>
+<li><a href="#insertar-en-la-base-de-datos">Insertar en la base de datos</a></li>
+<li><a href="#obtener-de-la-base-de-datos">Obtener de la base de datos</a></li>
+</ul>
+</li>
+<li><a href="#referencias-y-recursos-extra">Referencias y recursos extra</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="conectando-javafx-a-la-base-de-datos">Conectando JavaFX a la Base de Datos</h1>
+<p><strong>Nota:</strong> En este laboratorio partiremos de la aplicación desarrollada en el ejercicio anterior, <em>“Programando con JavaFX”</em> (código fuente disponible en GitHub: <a href="https://github.com/JosseJuventino/SpaceApp">https://github.com/JosseJuventino/SpaceApp</a>). A partir de ahí, incorporaremos la capa de persistencia necesaria para almacenar y recuperar nuestras entidades desde una base de datos SQL Server.</p>
+<p>Para comunicarnos con la base de datos emplearemos el driver JDBC oficial de Microsoft. Al tratarse de un proyecto gestionado con Gradle, basta con añadir la dependencia adecuada en el archivo <code>build.gradle</code>.</p>
+<p>Podemos ver todas las versiones disponibles y las instrucciones de integración en Maven Repository por ejemplo para Gradle o para Maven. Para entornos Java 17, busca la variante <code>mssql-jdbc</code> con JRE 17 en este enlace:<br>
+<a href="https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc/12.3.0.jre17-preview">https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc/12.3.0.jre17-preview</a></p>
+<p>Una vez identificada la  versión correcta, modificaremos el <code>build.gradle</code> así:</p>
+<pre class=" language-java"><code class="prism  language-java">dependencies <span class="token punctuation">{</span>  
+	<span class="token function">testImplementation</span><span class="token punctuation">(</span><span class="token string">"org.junit.jupiter:junit-jupiter-api:${junitVersion}"</span><span class="token punctuation">)</span>  
+    <span class="token function">testRuntimeOnly</span><span class="token punctuation">(</span><span class="token string">"org.junit.jupiter:junit-jupiter-engine:${junitVersion}"</span><span class="token punctuation">)</span>  
+    implementation <span class="token string">'com.microsoft.sqlserver:mssql-jdbc:12.3.0.jre17-preview'</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Una vez agregado solo corremos en gradle el comando</p>
+<pre class=" language-shell"><code class="prism  language-shell">gradlew run
+</code></pre>
+<h2 id="creando-base-de-datos">Creando base de datos</h2>
+<p>Primero comenzaremos creando nuestra base de datos en SQL Server, es decir, definiendo en base a nuestro modelo UML del laboratorio anterior las tablas que necesitaremos, para eso en SQL Server, nos conectaremos primero usando SQL Management Studio.</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdH5Dno5N8C0SVunt78F_RZdr5kFF8gnpbnP79MWWEn5tviiNUQ7LZjAIBy3DRfbdx7UnWMMvW0rcbh4vrLJeIN-K6ixPZCw1m0-Sqh0kwnGDOIor2r_IDqehbG8RUo1YLd-di8lQ?key=jN8y74_RcgslP0y-cCJmzQ" alt=""></strong><br>
+Sera importante verificar con que usuario y con que contraseña iniciamos sesión y que nos funcione al iniciar sesion con <em>SQL Server Authentication</em> no con el <em>Windows Authentication</em>, esto ya que posteriormente usaremos esas credenciales para conectarnos.</p>
+<blockquote>
+<p>De no funcionar la conexión por favor avisar a cualquiera de los instructores.</p>
+</blockquote>
+<p>Luego, crearemos nuestra base de datos que la llamaremos en este caso PlanetasDB, esto usando el siguiente query</p>
+<pre class=" language-sql"><code class="prism  language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> PlanetasDB<span class="token punctuation">;</span>
+GO
+<span class="token keyword">USE</span> PlanetasDB<span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> Planets <span class="token punctuation">(</span>
+    id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token keyword">IDENTITY</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    name NVARCHAR<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    mass <span class="token keyword">FLOAT</span><span class="token punctuation">,</span>
+    moonCount <span class="token keyword">INT</span><span class="token punctuation">,</span>
+    image NVARCHAR<span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> Moons <span class="token punctuation">(</span>
+    id <span class="token keyword">INT</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token keyword">IDENTITY</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    name NVARCHAR<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    mass <span class="token keyword">FLOAT</span><span class="token punctuation">,</span>
+    parentPlanet NVARCHAR<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    image NVARCHAR<span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Esto nos creara una tabla para guardar los planetas y las lunas por separado.</p>
+<h2 id="conectandose-desde-javafx">Conectandose desde JavaFX</h2>
+<p>Una vez tengamos nuestra conexión, desde nuestro proyecto de JavaFX crearemos una carpeta llamada <code>util</code> (al mismo nivel donde esta el archivo <code>HelloApplication</code> esto para mantener organizado nuestros archivos, y dentro de esa carpeta crearemos un archivo llamado <code>DBConnection</code> que contendra lo siguiente</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>ejemplo<span class="token punctuation">.</span>demo5<span class="token punctuation">.</span>util<span class="token punctuation">;</span>  
+  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>Connection<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>DriverManager<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>SQLException<span class="token punctuation">;</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DBConnection</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String URL <span class="token operator">=</span> <span class="token string">"jdbc:sqlserver://localhost:1433;databaseName=PlanetasDB;encrypt=true;trustServerCertificate=true"</span><span class="token punctuation">;</span>  
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String USER <span class="token operator">=</span> <span class="token string">"sa"</span><span class="token punctuation">;</span>  
+    <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PASSWORD <span class="token operator">=</span> <span class="token string">"123456"</span><span class="token punctuation">;</span>  
+  
+    <span class="token keyword">private</span> <span class="token function">DBConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">static</span> Connection <span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> SQLException <span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> DriverManager<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span>URL<span class="token punctuation">,</span> USER<span class="token punctuation">,</span> PASSWORD<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este código es importante recalcar que, estamos creando una instancia o una conexión con el Driver que instalamos al principio, para eso hay que definir 3 strings, uno con la URL de conexión o lo que se llama “Cadena de conexión” donde para futuras conexiones, solo hay que cambiar el nombre de la base de datos y el puerto de ser necesario (Ya por defecto deberia ser el 1433)</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">private</span>  <span class="token keyword">static</span>  <span class="token keyword">final</span> String URL <span class="token operator">=</span>  <span class="token string">"jdbc:sqlserver://localhost:1433;databaseName=[Base de datos];encrypt=true;trustServerCertificate=true"</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Y otros dos strings donde se definamos el usuario y la contraseña con el que nos conectaremos a la base de datos</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String USER <span class="token operator">=</span> <span class="token string">"sa"</span><span class="token punctuation">;</span>  
+<span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> String PASSWORD <span class="token operator">=</span> <span class="token string">"123456"</span><span class="token punctuation">;</span> 
+</code></pre>
+<h2 id="creando-data-access-object">Creando Data Access Object</h2>
+<p>Comencemos por entender qué es un <strong>Data Access Object</strong> (DAO). Básicamente, un DAO es una clase (o un conjunto de clases) cuya única responsabilidad es la interacción con la base de datos para una entidad específica. Al usar esta capa, encapsulamos las operaciones de acceso a datos y mantenemos el código más limpio y organizado.</p>
+<p>Por ejemplo, podemos crear una carpeta llamada <code>DAO</code> al mismo nivel que las demás que ya tenemos en el proyecto. Dentro de esa carpeta, añadiremos un archivo llamado <code>MoonDAO.java</code>, que se encargará de todas las operaciones sobre la tabla <code>Moons</code>. El código podría ser así:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>ejemplo<span class="token punctuation">.</span>demo5<span class="token punctuation">.</span>model<span class="token punctuation">.</span>Moon<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ejemplo<span class="token punctuation">.</span>demo5<span class="token punctuation">.</span>util<span class="token punctuation">.</span>DBConnection<span class="token punctuation">;</span>  
+  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>Connection<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>PreparedStatement<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>SQLException<span class="token punctuation">;</span>  
+  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MoonDAO</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">insertarMoon</span><span class="token punctuation">(</span>Moon moon<span class="token punctuation">)</span> <span class="token keyword">throws</span> SQLException <span class="token punctuation">{</span>  
+        String sql <span class="token operator">=</span> <span class="token string">"INSERT INTO Moons (name, mass, parentPlanet, image) VALUES (?, ?, ?, ?)"</span><span class="token punctuation">;</span>  
+        <span class="token keyword">try</span> <span class="token punctuation">(</span>Connection conn <span class="token operator">=</span> DBConnection<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+             PreparedStatement stmt <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">prepareStatement</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  
+            stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> moon<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            stmt<span class="token punctuation">.</span><span class="token function">setDouble</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> moon<span class="token punctuation">.</span><span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> moon<span class="token punctuation">.</span><span class="token function">getParentPlanet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> moon<span class="token punctuation">.</span><span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            stmt<span class="token punctuation">.</span><span class="token function">executeUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Si revisamos este ejemplo, vemos que lo único que hacemos es definir la consulta SQL y, dentro de un bloque <code>try-with-resources</code>, preparamos la sentencia. Los signos <code>?</code> en la consulta indican los parámetros que vamos a sustituir, en el mismo orden en que los colocamos. En este caso todos son cadenas de texto o valores numéricos sencillos; si alguno fuera de otro tipo (por ejemplo, <code>Date</code> o <code>boolean</code>), usaríamos el método <code>set</code> correspondiente según la columna en la base de datos.</p>
+<p>De este modo, cada vez que queramos insertar un nuevo objeto <code>Moon</code>, bastará con llamar a <code>insertarMoon(moon)</code>, y la lógica de conexión y preparación de la consulta quedará oculta dentro de la clase <code>MoonDAO</code>. Así mantenemos el resto del código libre de detalles de SQL y de manejo de conexiones.</p>
+<p>Igualmente en la misma carpeta crearemos la clase <code>PlanetDao</code></p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> com<span class="token punctuation">.</span>ejemplo<span class="token punctuation">.</span>demo5<span class="token punctuation">.</span>model<span class="token punctuation">.</span>Planet<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> com<span class="token punctuation">.</span>ejemplo<span class="token punctuation">.</span>demo5<span class="token punctuation">.</span>util<span class="token punctuation">.</span>DBConnection<span class="token punctuation">;</span>  
+  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>Connection<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>PreparedStatement<span class="token punctuation">;</span>  
+<span class="token keyword">import</span> java<span class="token punctuation">.</span>sql<span class="token punctuation">.</span>SQLException<span class="token punctuation">;</span>  
+  
+  
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PlanetDAO</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">savePlanet</span><span class="token punctuation">(</span>Planet planet<span class="token punctuation">)</span> <span class="token keyword">throws</span> SQLException <span class="token punctuation">{</span>  
+        String sql <span class="token operator">=</span> <span class="token string">"INSERT INTO Planets (name, mass, moonCount, image) VALUES (?, ?, ?, ?)"</span><span class="token punctuation">;</span>  
+  
+        <span class="token keyword">try</span> <span class="token punctuation">(</span>Connection conn <span class="token operator">=</span> DBConnection<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+             PreparedStatement stmt <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">prepareStatement</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  
+            stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> planet<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            stmt<span class="token punctuation">.</span><span class="token function">setDouble</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> planet<span class="token punctuation">.</span><span class="token function">getMass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            stmt<span class="token punctuation">.</span><span class="token function">setInt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> planet<span class="token punctuation">.</span><span class="token function">getNumberOfMoons</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> planet<span class="token punctuation">.</span><span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            stmt<span class="token punctuation">.</span><span class="token function">executeUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="insertar-en-la-base-de-datos">Insertar en la base de datos</h2>
+<p>Ahora que ya hemos definido el método para insertar un nuevo elemento en la base de datos, solo necesitamos <strong>invocarlo desde el código</strong>. Para ello, modificaremos la clase <code>AddPlanetController</code>, específicamente dentro del método <code>addEntity</code>. En el bloque <code>try</code>, luego de crear el objeto <code>Planet</code> o <code>Moon</code>, llamaremos al método que realiza la inserción.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"Planeta"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>tipo<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">int</span> numLunas <span class="token operator">=</span> Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>moonCountField<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    Planet planeta <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> masa<span class="token punctuation">,</span> numLunas<span class="token punctuation">,</span> imagen<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">new</span> <span class="token class-name">PlanetDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">savePlanet</span><span class="token punctuation">(</span>planeta<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//Agrega a la base de datos </span>
+    nuevaEntidad <span class="token operator">=</span> planeta<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+    String planetaPadre <span class="token operator">=</span> parentPlanetCombo<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    Moon luna <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>nombre<span class="token punctuation">,</span> masa<span class="token punctuation">,</span> planetaPadre<span class="token punctuation">,</span> imagen<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">new</span> <span class="token class-name">MoonDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insertarMoon</span><span class="token punctuation">(</span>luna<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//Agrega a la base de datos </span>
+    nuevaEntidad <span class="token operator">=</span> luna<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Por ejemplo, en esta línea:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">new</span> <span class="token class-name">PlanetDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">savePlanet</span><span class="token punctuation">(</span>planeta<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>estamos utilizando el método que implementamos previamente, instanciando la clase <code>PlanetDAO</code> y ejecutando su método <code>savePlanet()</code> para guardar el planeta en la base de datos.</p>
+<h2 id="obtener-de-la-base-de-datos">Obtener de la base de datos</h2>
+<p>Para que nuestra aplicación deje de utilizar datos <em>hardcodeados</em> (o <em>quemados</em>), realizaremos un mapeo de los registros que ya han sido ingresados en la base de datos.</p>
+<p>Para lograrlo, utilizaremos nuestras clases <code>PlanetDAO</code> y <code>MoonDAO</code>, y en cada una de ellas agregaremos un nuevo método justo debajo del método <code>save</code>, el cual permitirá recuperar todos los registros existentes desde la base de datos.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Planet<span class="token operator">&gt;</span> <span class="token function">getAllPlanets</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> SQLException <span class="token punctuation">{</span>  
+    List<span class="token operator">&lt;</span>Planet<span class="token operator">&gt;</span> planets <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    String sql <span class="token operator">=</span> <span class="token string">"SELECT name, mass, moonCount, image FROM Planets"</span><span class="token punctuation">;</span>  
+  
+    <span class="token keyword">try</span> <span class="token punctuation">(</span>Connection conn <span class="token operator">=</span> DBConnection<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+         Statement stmt <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">createStatement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+         ResultSet rs <span class="token operator">=</span> stmt<span class="token punctuation">.</span><span class="token function">executeQuery</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>rs<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            planets<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span><span class="token string">"mass"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getInt</span><span class="token punctuation">(</span><span class="token string">"moonCount"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"image"</span><span class="token punctuation">)</span>  
+            <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">return</span> planets<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> List<span class="token operator">&lt;</span>Moon<span class="token operator">&gt;</span> <span class="token function">getAllMoons</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> SQLException <span class="token punctuation">{</span>  
+    List<span class="token operator">&lt;</span>Moon<span class="token operator">&gt;</span> moons <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">&gt;</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    String sql <span class="token operator">=</span> <span class="token string">"SELECT name, mass, parentPlanet, image FROM Moons"</span><span class="token punctuation">;</span>  
+  
+    <span class="token keyword">try</span> <span class="token punctuation">(</span>Connection conn <span class="token operator">=</span> DBConnection<span class="token punctuation">.</span><span class="token function">getConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+         Statement stmt <span class="token operator">=</span> conn<span class="token punctuation">.</span><span class="token function">createStatement</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+         ResultSet rs <span class="token operator">=</span> stmt<span class="token punctuation">.</span><span class="token function">executeQuery</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>rs<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            moons<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getDouble</span><span class="token punctuation">(</span><span class="token string">"mass"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"parentPlanet"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+                    rs<span class="token punctuation">.</span><span class="token function">getString</span><span class="token punctuation">(</span><span class="token string">"image"</span><span class="token punctuation">)</span>  
+            <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">return</span> moons<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este caso, la diferencia principal con el método de inserción es que ahora estaremos recuperando los datos existentes. Para ello, consultaremos la base de datos y, si el <code>ResultSet</code> contiene resultados, agregaremos cada luna o planeta a una lista correspondiente.<br>
+De esta manera, obtendremos una lista con todas las lunas y otra con todos los planetas almacenados en la base.</p>
+<p>Finalmente, solo nos queda utilizar esas listas en la aplicación. Para hacerlo, simplemente debemos modificar el método <code>initialize</code> de la clase <code>HelloController</code>, reemplazando los datos quemados por los obtenidos desde la base de datos.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>  
+    PlanetDAO planetDAO <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PlanetDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    MoonDAO moonDAO <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MoonDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+    entities <span class="token operator">=</span> FXCollections<span class="token punctuation">.</span><span class="token function">observableArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    entities<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>planetDAO<span class="token punctuation">.</span><span class="token function">getAllPlanets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    entities<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>moonDAO<span class="token punctuation">.</span><span class="token function">getAllMoons</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>SpaceEntity entidad <span class="token operator">:</span> entities<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        FXMLLoader loader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"space-cell.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        Node cell <span class="token operator">=</span> loader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        SpaceController ctrl <span class="token operator">=</span> loader<span class="token punctuation">.</span><span class="token function">getController</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        String imageUrl <span class="token operator">=</span> entidad<span class="token punctuation">.</span><span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> null  
+  <span class="token operator">?</span> entidad<span class="token punctuation">.</span><span class="token function">getImageUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  
+                <span class="token operator">:</span> <span class="token string">"/images/default.png"</span><span class="token punctuation">;</span>  
+        ctrl<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span>entidad<span class="token punctuation">,</span> imageUrl<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        tilePane<span class="token punctuation">.</span><span class="token function">getChildren</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>cell<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p>La única diferencia respecto a la implementación anterior es que, en lugar de definir manualmente los objetos <code>Planet</code> y <code>Moon</code> directamente en el código como:</p>
+<pre class=" language-java"><code class="prism  language-java">entities <span class="token operator">=</span> FXCollections<span class="token punctuation">.</span><span class="token function">observableArrayList</span><span class="token punctuation">(</span>  
+        <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span><span class="token string">"Tierra"</span><span class="token punctuation">,</span>  <span class="token number">5.97e24</span><span class="token punctuation">,</span>  <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"https://cdn.pixabay.com/photo/2016/06/14/20/38/planet-earth-1457453_1280.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+        <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span><span class="token string">"Marte"</span><span class="token punctuation">,</span>   <span class="token number">6.39e23</span><span class="token punctuation">,</span>  <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"https://static.vecteezy.com/system/resources/previews/056/369/903/non_2x/the-planet-mars-is-shown-in-this-image-png.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+        <span class="token keyword">new</span> <span class="token class-name">Planet</span><span class="token punctuation">(</span><span class="token string">"Júpiter"</span><span class="token punctuation">,</span> <span class="token number">1.898e27</span><span class="token punctuation">,</span> <span class="token number">79</span><span class="token punctuation">,</span> <span class="token string">"https://d2pn8kiwq2w21t.cloudfront.net/images/Jupiter-800h-v2_02.width-1024.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+        <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>  <span class="token string">"Luna"</span><span class="token punctuation">,</span>    <span class="token number">7.35e22</span><span class="token punctuation">,</span> <span class="token string">"Tierra"</span><span class="token punctuation">,</span>  
+                <span class="token string">"https://static.vecteezy.com/system/resources/thumbnails/017/785/725/small/full-moon-isolated-on-transparent-background-png.png"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>  
+        <span class="token keyword">new</span> <span class="token class-name">Moon</span><span class="token punctuation">(</span>  <span class="token string">"Fobos"</span><span class="token punctuation">,</span>   <span class="token number">1.0659e16</span><span class="token punctuation">,</span><span class="token string">"Marte"</span><span class="token punctuation">,</span>  
+                <span class="token string">"https://static.wikia.nocookie.net/hola--srgedfg/images/5/50/441-4410958_mars-and-survey-the-red-planets-two-moons.png/revision/latest/scale-to-width-down/340?cb=20200331152719&amp;path-prefix=es"</span><span class="token punctuation">)</span>  
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Ahora creamos una lista observable vacía y le agregamos los datos obtenidos desde la base de datos mediante nuestros DAOs, ya que cada método devuelve una lista de entidades:</p>
+<pre class=" language-java"><code class="prism  language-java">PlanetDAO planetDAO <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PlanetDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+MoonDAO moonDAO <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MoonDAO</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+entities <span class="token operator">=</span> FXCollections<span class="token punctuation">.</span><span class="token function">observableArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+entities<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>planetDAO<span class="token punctuation">.</span><span class="token function">getAllPlanets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+entities<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>moonDAO<span class="token punctuation">.</span><span class="token function">getAllMoons</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Con esto, nuestra aplicación deja de depender de datos quemados y se alimenta dinámicamente con la información almacenada en la base de datos.</p>
+<p>En general, el flujo de trabajo con la base de datos sigue la misma estructura: consiste en modificar el DAO correspondiente y ajustar la lógica según el tipo de operación que necesitemos realizar, ya sea cargar, agregar, actualizar o leer los elementos utilizados en nuestra aplicación.</p>
+<p>Con los cambios hechos, en nuestra aplicación al ver la tabla las veremos llenadas:<br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfxfofCdd5RZii1FNbUWKnaferjJOZs-R75hG2PMC5IflT4mQ6cNdYiWAvwrDxYjk5-vlAmTF-hvb82rdaTVXGb0NniIZVx1IcsKcuh1khzldiWaz3paAK4-h23apcxS5WLgMs1?key=jN8y74_RcgslP0y-cCJmzQ" alt=""></strong><br>
+<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc16AZXzPs635G5MNweuKjfsztSVPYTP1sYzPEHKk5F5Xl1woqCttpL9k9lPw7MvfchXr9hkoimoiMjSeMuzTcV57E6ZQQ48qfL22ZVA3RFv4wMfGJagvmS5XVzNQ92uzv5y4Oybg?key=jN8y74_RcgslP0y-cCJmzQ" alt=""></strong></p>
+<p>Y la misma información en nuestra aplicación de las tablas, en la aplicación:</p>
+<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXelMWGdy99VJl8z5BXYdqo2rXYYSrCchpNjCxO7YQWON8xZwn2TuAHlSOyqe9M1Q_pJjHBcNuXWSvRCSQOm91PPfvdm_32iqekSV_dzxm1QnTWOHnxpC6vSueIaRbta1ryZByinaA?key=jN8y74_RcgslP0y-cCJmzQ" alt=""></strong></p>
+<h1 id="referencias-y-recursos-extra">Referencias y recursos extra</h1>
+<p><a href="https://www.geeksforgeeks.org/sql-cheat-sheet/">Hoja de trucos SQL</a> - Hoja de trucos con las sentencias básicas de SQL.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
