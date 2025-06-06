@@ -19,8 +19,53 @@ Una vez agregado solo corremos en gradle el comando
 ```shell
 gradlew run
 ```
+## Verificaciones previas
+Antes de comenzar hay que verificar algunos requerimientos que tenemos que tener para conectarnos a la base de datos desde nuestra aplicación
+
+### Servicio corriendo de SQL
+
+Verifica que el servicio de SQL Server esté activo. Si no lo está, arráncalo y configúralo para que se inicie automáticamente.
+<video width="100%" controls>
+  <source
+    src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/main/POO/videos/2025-06-06%2008-35-26.mp4"
+    type="video/mp4">
+  Tu navegador no soporta la etiqueta de video.
+</video>
+
+En dado caso que no este corriendo, solo encenderlo y dejarlo en habilitado.
+
+### Cambiar contraseña al usuario administrador de base de datos
+Para establecer una contraseña nueva en el usuario administrador de la base de datos, sigue los pasos que se muestran en el video. Asegúrate de que el usuario tenga permisos de inicio de sesión y que la configuración coincida con lo mostrado.
+
+<video width="100%" controls>
+  <source
+    src="https://github.com/meaguilar/meaguilar.github.io/raw/refs/heads/main/POO/videos/2025-06-06%2008-46-49.mp4"
+    type="video/mp4">
+  Tu navegador no soporta la etiqueta de video.
+</video>
+
+### Habilitar inicios de sesión SQL Authentication y Windows Authentication
+Activa tanto **SQL Server Authentication** como **Windows Authentication** en las propiedades de seguridad de tu instancia. Luego, reinicia el servicio para que los cambios surtan efecto.
+<video width="100%" controls>
+  <source
+    src="https://github.com/meaguilar/meaguilar.github.io/raw/refs/heads/main/POO/videos/2025-06-06%2008-50-44.mp4"
+    type="video/mp4">
+  Tu navegador no soporta la etiqueta de video.
+</video>
+
+### Verificar que el puerto TCP esta abierto
+Abre el **SQL Server Configuration Manager** y habilita las conexiones TCP/IP. Comprueba que el puerto TCP esté configurado en **1433**. Si no lo está, ajústalo y reinicia el servicio.
+
+<video width="100%" controls>
+  <source
+    src="https://github.com/meaguilar/meaguilar.github.io/raw/refs/heads/main/POO/videos/2025-06-06%2008-51-43.mp4"
+    type="video/mp4">
+  Tu navegador no soporta la etiqueta de video.
+</video>
+
+
 ## Creando base de datos
-Primero comenzaremos creando nuestra base de datos en SQL Server, es decir, definiendo en base a nuestro modelo UML del laboratorio anterior las tablas que necesitaremos, para eso en SQL Server, nos conectaremos primero usando SQL Management Studio.
+Primero comenzaremos creando nuestra base de datos en SQL Server, es decir, definiendo en base a nuestro modelo UML del laboratorio anterior las tablas que necesitaremos, para eso en SQL Server, nos conectaremos primero usando SQL Management Studio usando el usuario sa y la contraseña que configuramos.
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdH5Dno5N8C0SVunt78F_RZdr5kFF8gnpbnP79MWWEn5tviiNUQ7LZjAIBy3DRfbdx7UnWMMvW0rcbh4vrLJeIN-K6ixPZCw1m0-Sqh0kwnGDOIor2r_IDqehbG8RUo1YLd-di8lQ?key=jN8y74_RcgslP0y-cCJmzQ)**
 Sera importante verificar con que usuario y con que contraseña iniciamos sesión y que nos funcione al iniciar sesion con _SQL Server Authentication_ no con el _Windows Authentication_, esto ya que posteriormente usaremos esas credenciales para conectarnos.

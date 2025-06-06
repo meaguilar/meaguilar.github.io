@@ -15,6 +15,7 @@
 <ul>
 <li><a href="#conectando-javafx-a-la-base-de-datos">Conectando JavaFX a la Base de Datos</a>
 <ul>
+<li><a href="#verificaciones-previas">Verificaciones previas</a></li>
 <li><a href="#creando-base-de-datos">Creando base de datos</a></li>
 <li><a href="#conectandose-desde-javafx">Conectandose desde JavaFX</a></li>
 <li><a href="#creando-data-access-object">Creando Data Access Object</a></li>
@@ -44,14 +45,35 @@
 <p>Una vez agregado solo corremos en gradle el comando</p>
 <pre class=" language-shell"><code class="prism  language-shell">gradlew run
 </code></pre>
-<video width="640" height="360" controls>
-  <source
-    src="https://github.com/meaguilar/meaguilar.github.io/raw/refs/heads/main/POO/videos/2025-06-06%2008-35-26.mp4"
-    type="video/mp4">
+<h2 id="verificaciones-previas">Verificaciones previas</h2>
+<p>Antes de comenzar hay que verificar algunos requerimientos que tenemos que tener para conectarnos a la base de datos desde nuestra aplicación</p>
+<h3 id="servicio-corriendo-de-sql">Servicio corriendo de SQL</h3>
+<p>Verifica que el servicio de SQL Server esté activo. Si no lo está, arráncalo y configúralo para que se inicie automáticamente.<br>
+</p>
+  
   Tu navegador no soporta la etiqueta de video.
-</video>
+
+<p>En dado caso que no este corriendo, solo encenderlo y dejarlo en habilitado.</p>
+<h3 id="cambiar-contraseña-al-usuario-administrador-de-base-de-datos">Cambiar contraseña al usuario administrador de base de datos</h3>
+<p>Para establecer una contraseña nueva en el usuario administrador de la base de datos, sigue los pasos que se muestran en el video. Asegúrate de que el usuario tenga permisos de inicio de sesión y que la configuración coincida con lo mostrado.</p>
+
+  
+  Tu navegador no soporta la etiqueta de video.
+
+<h3 id="habilitar-inicios-de-sesión-sql-authentication-y-windows-authentication">Habilitar inicios de sesión SQL Authentication y Windows Authentication</h3>
+<p>Activa tanto <strong>SQL Server Authentication</strong> como <strong>Windows Authentication</strong> en las propiedades de seguridad de tu instancia. Luego, reinicia el servicio para que los cambios surtan efecto.<br>
+</p>
+  
+  Tu navegador no soporta la etiqueta de video.
+
+<h3 id="verificar-que-el-puerto-tcp-esta-abierto">Verificar que el puerto TCP esta abierto</h3>
+<p>Abre el <strong>SQL Server Configuration Manager</strong> y habilita las conexiones TCP/IP. Comprueba que el puerto TCP esté configurado en <strong>1433</strong>. Si no lo está, ajústalo y reinicia el servicio.</p>
+
+  
+  Tu navegador no soporta la etiqueta de video.
+
 <h2 id="creando-base-de-datos">Creando base de datos</h2>
-<p>Primero comenzaremos creando nuestra base de datos en SQL Server, es decir, definiendo en base a nuestro modelo UML del laboratorio anterior las tablas que necesitaremos, para eso en SQL Server, nos conectaremos primero usando SQL Management Studio.</p>
+<p>Primero comenzaremos creando nuestra base de datos en SQL Server, es decir, definiendo en base a nuestro modelo UML del laboratorio anterior las tablas que necesitaremos, para eso en SQL Server, nos conectaremos primero usando SQL Management Studio usando el usuario sa y la contraseña que configuramos.</p>
 <p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdH5Dno5N8C0SVunt78F_RZdr5kFF8gnpbnP79MWWEn5tviiNUQ7LZjAIBy3DRfbdx7UnWMMvW0rcbh4vrLJeIN-K6ixPZCw1m0-Sqh0kwnGDOIor2r_IDqehbG8RUo1YLd-di8lQ?key=jN8y74_RcgslP0y-cCJmzQ" alt=""></strong><br>
 Sera importante verificar con que usuario y con que contraseña iniciamos sesión y que nos funcione al iniciar sesion con <em>SQL Server Authentication</em> no con el <em>Windows Authentication</em>, esto ya que posteriormente usaremos esas credenciales para conectarnos.</p>
 <blockquote>
