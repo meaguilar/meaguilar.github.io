@@ -11,7 +11,7 @@
 
 - **Responsabilidad única:** una función debe hacer una sola cosa bien.
 
-- **Nombres claros:** verbos en `camelCase` o `snake_case` consistente con tu código base.
+- **Nombres claros:** verbos en `camelCase`, `PascalCase` o `snake_case` consistente con tu código base.
 
 - **Const-correctness:** marca parámetros y métodos `const` cuando no modifiquen estado.
 - **Pasa por referencia:** los pequeños tipos triviales por **valor** (`int`, `double`,`char`,`string`,`bool`, etc.).
