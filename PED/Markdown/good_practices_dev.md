@@ -1,18 +1,163 @@
 ﻿# Buenas practicas para desarrollo
 
-https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
 
-https://google.github.io/styleguide/cppguide.html
+[# C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)
 
-https://pvs-studio.com/en/blog/posts/cpp/0391/
+[Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
 
-https://rigtorp.se/cpp-best-practices/
+[W3schools | C++](https://www.w3schools.com/cpp/default.asp)
 
-https://micro-os-plus.github.io/develop/sutter-101/
+### 1) Declaración y diseño de funciones
 
-https://medium.com/@Code_Analysis/collecting-the-best-c-practices-4b867006849f
+- **Responsabilidad única:** una función debe hacer una sola cosa bien.
 
-https://opentitan.org/book/doc/contributing/style_guides/c_cpp_coding_style.html
+- **Nombres claros:** verbos en `camelCase` o `snake_case` consistente con tu código base.
+
+- **Const-correctness:** marca parámetros y métodos `const` cuando no modifiquen estado.
+- **Pasa por referencia:** los pequeños tipos triviales por **valor** (`int`, `double`,`char`,`string`,`bool`, etc.).
+- **Validación**: valida precondiciones al inicio para evitar errorres durante el proceso de la función.
+
+### 2) Variables y estilo
+
+-   **Inicializa siempre** (brace-initialization).
+    
+-   **`auto` con criterio**: úsalo cuando el tipo es obvio del lado derecho o es verboso (iteradores); evita ocultar tipos no triviales.
+    
+-   **`const` por defecto**: variables que no cambian o no se modificaran nunca → `const`.
+
+- **Ámbito mínimo**: declara lo más cerca del uso. Evita declarar variables que no se usaran durante el proceso de ejecución.
+-   **Nombres descriptivos**: evita abreviaturas crípticas; unidades en el nombre si aplica (e.g., `int X`→`int totalAmount`).
+
+### 3) Estructuras dinámicas (memoria)
+
+En C++, `struct` y `class` son casi lo mismo:
+
+-   La diferencia principal es que en `struct` los miembros son **públicos por defecto**, mientras que en `class` son **privados por defecto**.
+    
+-   En la práctica, `struct` suele usarse más para **agrupación de datos simples (POD: Plain Old Data)** y `class` para **abstracciones con lógica y encapsulación**.
+-  **Nombres y estilo:** Usa **PascalCase** o **CamelCase** consistente para nombres. Evita nombres genéricos como `Data`, `Info`, `Values`. Ponle nombres que indiquen claramente qué representa.
+
+-   **RAII primero**: evita `new/delete` manuales. Usa **contenedores STL** y **smart pointers**.
+--  **RAII** significa **Resource Acquisition Is Initialization** (“la adquisición del recurso es inicialización”) y es un principio central de C++.
+    
+-   Para arrays dinámicos, **prefiere** `std::vector`, `std::string`, `std::array` (tamaño fijo).
+    
+-   Evita fugas y dobles `delete` con smart pointers y contenedores.
+```
+struct UserProfile {
+    std::string name;
+    int age;
+    std::string email;
+};
+```
+-   Puedes añadir métodos, pero que sean **ligeros y relacionados directamente con los datos**.
+    
+
+```
+struct Rectangle {
+    double width;
+    double height;
+
+    double area() const { return width * height; }
+};
+```
+-   Si la lógica empieza a crecer demasiado → usa `class`.
+
+#### Ejemplo sin RAII (mala práctica con `new/delete`)
+```
+void foo() {
+    int* arr = new int[100];  // reservar memoria
+    // ... usar arr ...
+    delete[] arr;             // liberar memoria (si no lo haces -> fuga)
+}
+```
+#### Ejemplo con RAII (buena práctica)
+```
+#include <vector>
+#include <memory>
+
+void foo() {
+    std::vector<int> arr(100); // RAII: vector libera solo
+    // ... usar arr ...
+} // al salir del scope, arr libera la memoria automáticamente
+```
+Así garantizas que **el compilador gestione la liberación** automáticamente cuando el objeto sale de scope, incluso si hay errores o excepciones.
+
+### 4) Casteo de datos
+
+-    **Evita el cast estilo C** `(T)x`.
+    
+-   **Prefiere**: `static_cast<T>(expr)` para conversiones conocidas y seguras en compile-time.
+
+### Conversión numérica
+### ❌ Mala práctica
+```
+int x = 42;
+double y = (double)x;   // C-cast
+```
+Problemas:
+
+-   Poco claro qué tipo de cast es (puede ser reinterpret, const, etc.).
+    
+-   Difícil de detectar errores con warnings.
+
+### ✅ Buena práctica
+```
+int x = 42;
+double y = static_cast<double>(x); // cast explícito y seguro
+```
+### 5) Punteros y referencias
+
+-   **Prefiere referencias** cuando el argumento debe existir; punteros cuando puede ser nulo (o para semántica de “opcional” en código legacy).
+    
+-   Usa `nullptr` (no `NULL`).
+
+### 6) Pilas y Colas
+
+-   Usa **`std::stack<T, Container>`** y **`std::queue<T, Container>`** como adaptadores.
+- Para colas con prioridad: `std::priority_queue`.
+```
+std::stack<int> st;
+st.push(10); st.pop();
+std::queue<std::string> q;
+q.push("msg"); q.front(); q.pop();
+```
+
+### 7) Bucles: for, while, range-based
+-   **Prefiere** bucle **range-based** y **algoritmos STL** (`std::for_each`, `std::transform`, `std::accumulate`) por legibilidad y seguridad.
+    
+-   Evita índices si no son necesarios.
+
+### 8) Cómo evitar bucles infinitos
+
+-   **Condición de salida clara**: debe depender de variables que **cambian** dentro del bucle.
+    
+-   **Progreso garantizado**: introduce una métrica que decrece/avanza (ej., tamaño restante, contador).
+    
+-   **Límites/failsafes**: agrega un **contador máximo** de iteraciones o un **deadline** de tiempo para tareas potencialmente no deterministas (I/O, red).
+- **Time-outs** con `std::chrono`.
+```
+int attempts = 0;
+const int kMaxAttempts = 1000;
+while (!done()) {
+    step();
+    if (++attempts > kMaxAttempts) {
+        throw std::runtime_error("Exceeded max attempts");
+    }
+}
+```
+```
+using namespace std::chrono;
+auto deadline = steady_clock::now() + 500ms;
+while (!ready()) {
+    if (steady_clock::now() >= deadline) break; // salir con timeout
+    std::this_thread::sleep_for(1ms);           // cede CPU si es espera activa
+}
+```
+### 10) Organización de código y headers
+
+-   **Regla de oro**: declara en `.hpp`/`.h`, define en `.cpp`.
+
 
 ## Guía para escribir buenos commits
 
