@@ -6,7 +6,7 @@ La Guía de Estilo de C++ de Google es un conjunto de reglas estrictas que defin
 ### Identación
 
 Se utiliza una **identación de 2 espacios** por nivel. Además, se deben dejar **espacios alrededor de operadores** y después de comas para mejorar la legibilidad.
-```
+```C++
 int CalcularTotal(int a, int b) {
   return a + b * 2;
 } // Correcto (espacios alrededor de operadores y después de comas)
@@ -15,7 +15,7 @@ int CalcularTotal(int a, int b) {
 
 Las líneas de código deben limitarse a **80 caracteres** como máximo.  
 Si una línea supera este límite, se debe aplicar un **ajuste de línea (line-wrapping)** en puntos lógicos del código, como después de operadores, comas o concatenaciones.
-```
+```C++
 #include <string>
 
 std::string GetMessage() {
@@ -27,7 +27,7 @@ std::string GetMessage() {
 
 Las llaves se colocan en la **misma línea que la declaración del bloque** (estilo K&R o llaves egipcias).  
 Incluso para bloques de una sola línea, **se recomienda usar llaves** para mayor claridad y evitar errores.
-```
+```C++
 #include <iostream>
 
 void CheckValue(int value) {
@@ -47,7 +47,7 @@ Ya que en C++ se usan **clases, structs y namespaces**, también conviene aplica
 - **Nombres claros:** verbos en **`camelCase`**, **`PascalCase`** o **`snake_case`** consistente con tu código base.
 
 Ejemplo **`PascalCase`** : Todas las palabras inician con mayúscula, incluido el inicio. Muy usado en C# o para nombres de clases en C++.
-```
+```C++
 #include <iostream>
 
 int CalcularAreaCuadrado(int Lado) {
@@ -61,7 +61,7 @@ int main() {
 }
 ```
 Ejemplo **`camelCase`** : Primera palabra en minúscula, las siguientes en mayúscula inicial. Ejemplo típico en Java/JavaScript, pero también usado en C++.
-```
+```C++
 #include <iostream>
 
 int calcularAreaCuadrado(int lado) {
@@ -75,7 +75,7 @@ int main() {
 }
 ```
 Ejemplo **`snake_case`** : Todas en minúsculas y separadas con guiones bajos `_`. Muy común en C y Python.
-```
+```C++
 #include <iostream>
 
 int calcular_area_cuadrado(int lado) {
@@ -124,7 +124,7 @@ Cada archivo `.hpp` o `.cc` debe empezar con un bloque de cabecera que incluya:
 -   (Opcional) **Licencia** si aplica
 
 Ejemplo:
-```
+```C++
 /**
  * @file math_utils.hpp
  * @brief Funciones matemáticas auxiliares para cálculos básicos.
@@ -152,7 +152,7 @@ Cada función debe incluir:
 -   **Ejemplo de uso** (opcional, pero útil)
     
 Ejemplo:
-```
+```C++
 /**
  * @brief Calcula el área de un cuadrado.
  *
@@ -189,7 +189,7 @@ Sólo hay que ver también los mensajes de commit que el propio Git nos añade (
 
 ### 2. No uses punto final ni puntos suspensivos en tus mensajes
 Usar puntuación, más allá de las comas, es innecesario a la hora de crear un buen mensaje de commit. Cada carácter cuenta a la hora de crear un buen mensaje de commit así que no lo desperdicies con puntos innecesarios.
-```shell
+```Bash
 git commit -m "Add new search feature." # ❌  
 git commit -m "Fix a problem with the topbar..." # ❌  
 git commit -m "Change the default system color" # ✅
@@ -200,14 +200,14 @@ git commit -m "Change the default system color" # ✅
 Sé corto y conciso. Si tienes mucho que explicar… seguramente es que tu commit hace demasiadas cosas. ¿Puedes separarlo en diferentes commits? Pues hazlo.
 
 Haz que el mensaje sea claro, directo y que realmente refleje los cambios que lleva.
-```Shell
+```Bash
 git commit -m "Add new search feature and change typography to improve performance" # ❌  
 git commit -m "Add new search feature" # ✅  
 git commit -m "Change typography to improve performance" # ✅
 ```
 ### 4. Usa un prefijo para tus commits para hacerlos más semánticos
 Cuando un proyecto crece, es necesario que existan ciertas reglas para que el historial sea legible. Para ello, puedes añadir un prefijo para darle más significado a los commits que realizas. A esto se le llama  _commits semánticos_  y se haría de la siguiente manera:
-```shell
+```Bash
 <tipo-de-commit>[scope]: <descripcion>
 feat: add new search feature
 ```
@@ -263,7 +263,7 @@ Tema: `{texto}`
 **Prompt:** Reescribe este mensaje de commit a **Conventional Commits** y mejora claridad técnica. Mantén intención original.
 Resumen: `Añadí int sum(int a,int b) en math.cpp y su prototipo en math.h.`
 
-**Ejemplo:**
+**Ejemplo de salida:**
 ```
 feat(math): agregar función sum de dos enteros.
 Se implementa sum(a, b) y se declara en math.h para reutilización.
@@ -277,7 +277,7 @@ Material: `Resumen: Implementé factorial iterativo y pruebas mínimas.
 Archivos: src/math/factorial.cpp, include/math/factorial.h, tests/FactorialTests.cpp
 `
 
-**Ejemplo:**
+**Ejemplo de salida:**
 ```
 Resumen: Añade factorial(unsigned int) iterativo.  
 Cambios: nueva función + pruebas de 0,1,5.  
@@ -291,7 +291,7 @@ Riesgos: valores grandes pueden desbordar (documentado).
 **Prompt:** Redacta un Issue de mejora con: Motivación, Propuesta, Alcance, Impacto, Alternativas, Checklist.  
 Tema: `Crash cuando divisor=0 en divide.cpp (Windows, MSVC).`
 
-**Ejemplo:**
+**Ejemplo de salida:**
 ```
 Título: Evitar división por cero en divide.cpp  
 Expected vs Actual:

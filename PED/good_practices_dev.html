@@ -31,32 +31,32 @@
 <p>La Guía de Estilo de C++ de Google es un conjunto de reglas estrictas que definen cómo debe formatearse el código para lograr un aspecto homogéneo en proyectos grandes y colaborativos.</p>
 <h3 id="identación">Identación</h3>
 <p>Se utiliza una <strong>identación de 2 espacios</strong> por nivel. Además, se deben dejar <strong>espacios alrededor de operadores</strong> y después de comas para mejorar la legibilidad.</p>
-<pre><code>int CalcularTotal(int a, int b) {
-  return a + b * 2;
-} // Correcto (espacios alrededor de operadores y después de comas)
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">CalcularTotal</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token comment">// Correcto (espacios alrededor de operadores y después de comas)</span>
 </code></pre>
 <h3 id="longitud-de-las-líneas-de-código">Longitud de las líneas de código</h3>
 <p>Las líneas de código deben limitarse a <strong>80 caracteres</strong> como máximo.<br>
 Si una línea supera este límite, se debe aplicar un <strong>ajuste de línea (line-wrapping)</strong> en puntos lógicos del código, como después de operadores, comas o concatenaciones.</p>
-<pre><code>#include &lt;string&gt;
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 
-std::string GetMessage() {
-  return "Esta es una cadena de texto muy larga que se ha dividido en dos líneas para "
-         "cumplir con el límite de 100 caracteres por línea.";
-}
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token function">GetMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">"Esta es una cadena de texto muy larga que se ha dividido en dos líneas para "</span>
+         <span class="token string">"cumplir con el límite de 100 caracteres por línea."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="uso-de-llaves">Uso de llaves</h3>
 <p>Las llaves se colocan en la <strong>misma línea que la declaración del bloque</strong> (estilo K&amp;R o llaves egipcias).<br>
 Incluso para bloques de una sola línea, <strong>se recomienda usar llaves</strong> para mayor claridad y evitar errores.</p>
-<pre><code>#include &lt;iostream&gt;
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
-void CheckValue(int value) {
-  if (value &gt; 0) {
-    std::cout &lt;&lt; "El valor es positivo.\n";
-  } else {
-    std::cout &lt;&lt; "El valor es cero o negativo.\n";
-  }
-}
+<span class="token keyword">void</span> <span class="token function">CheckValue</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El valor es positivo.\n"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"El valor es cero o negativo.\n"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Ya que en C++ se usan <strong>clases, structs y namespaces</strong>, también conviene aplicar la misma regla de llaves.</p>
 <h3 id="declaración-y-diseño-de-funciones">Declaración y diseño de funciones</h3>
@@ -69,43 +69,43 @@ void CheckValue(int value) {
 </li>
 </ul>
 <p>Ejemplo <strong><code>PascalCase</code></strong> : Todas las palabras inician con mayúscula, incluido el inicio. Muy usado en C# o para nombres de clases en C++.</p>
-<pre><code>#include &lt;iostream&gt;
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
-int CalcularAreaCuadrado(int Lado) {
-  return Lado * Lado;
-}
+<span class="token keyword">int</span> <span class="token function">CalcularAreaCuadrado</span><span class="token punctuation">(</span><span class="token keyword">int</span> Lado<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Lado <span class="token operator">*</span> Lado<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main() {
-  int Lado = 5;
-  std::cout &lt;&lt; "Área (PascalCase): " &lt;&lt; CalcularAreaCuadrado(Lado) &lt;&lt; std::endl;
-  return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> Lado <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Área (PascalCase): "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">CalcularAreaCuadrado</span><span class="token punctuation">(</span>Lado<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Ejemplo <strong><code>camelCase</code></strong> : Primera palabra en minúscula, las siguientes en mayúscula inicial. Ejemplo típico en Java/JavaScript, pero también usado en C++.</p>
-<pre><code>#include &lt;iostream&gt;
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
-int calcularAreaCuadrado(int lado) {
-  return lado * lado;
-}
+<span class="token keyword">int</span> <span class="token function">calcularAreaCuadrado</span><span class="token punctuation">(</span><span class="token keyword">int</span> lado<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> lado <span class="token operator">*</span> lado<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main() {
-  int lado = 5;
-  std::cout &lt;&lt; "Área (camelCase): " &lt;&lt; calcularAreaCuadrado(lado) &lt;&lt; std::endl;
-  return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> lado <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Área (camelCase): "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">calcularAreaCuadrado</span><span class="token punctuation">(</span>lado<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <p>Ejemplo <strong><code>snake_case</code></strong> : Todas en minúsculas y separadas con guiones bajos <code>_</code>. Muy común en C y Python.</p>
-<pre><code>#include &lt;iostream&gt;
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
-int calcular_area_cuadrado(int lado) {
-  return lado * lado;
-}
+<span class="token keyword">int</span> <span class="token function">calcular_area_cuadrado</span><span class="token punctuation">(</span><span class="token keyword">int</span> lado<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> lado <span class="token operator">*</span> lado<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int main() {
-  int lado = 5;
-  std::cout &lt;&lt; "Área (snake_case): " &lt;&lt; calcular_area_cuadrado(lado) &lt;&lt; std::endl;
-  return 0;
-}
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">int</span> lado <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Área (snake_case): "</span> <span class="token operator">&lt;&lt;</span> <span class="token function">calcular_area_cuadrado</span><span class="token punctuation">(</span>lado<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <ul>
 <li>
@@ -160,7 +160,7 @@ int main() {
 </li>
 </ul>
 <p>Ejemplo:</p>
-<pre><code>/**
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
  * @file math_utils.hpp
  * @brief Funciones matemáticas auxiliares para cálculos básicos.
  *
@@ -168,7 +168,7 @@ int main() {
  *
  * @author Cristofer
  * @date 2025-08-15
- */
+ */</span>
 </code></pre>
 <h3 id="documentación-de-funciones">Documentación de funciones</h3>
 <p>Usar un formato estandarizado (ej. <strong>Doxygen</strong>) para que las herramientas puedan generar documentación automáticamente.</p>
@@ -191,7 +191,7 @@ int main() {
 </li>
 </ul>
 <p>Ejemplo:</p>
-<pre><code>/**
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">/**
  * @brief Calcula el área de un cuadrado.
  *
  * Recibe la longitud de un lado y devuelve el área correspondiente.
@@ -203,9 +203,9 @@ int main() {
  *
  * @example
  * int a = calcularAreaCuadrado(5); // devuelve 25
- */
-int CalcularAreaCuadrado(int lado){
-};
+ */</span>
+<span class="token keyword">int</span> <span class="token function">CalcularAreaCuadrado</span><span class="token punctuation">(</span><span class="token keyword">int</span> lado<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="referencias">Referencias</h3>
 <p>Esta guía de buenas prácticas en C++ está basada en los siguientes recursos:</p>
@@ -221,21 +221,21 @@ int CalcularAreaCuadrado(int lado){
 <p>Sólo hay que ver también los mensajes de commit que el propio Git nos añade (al hacer merge de una rama usa  <code>Merge branch</code>).</p>
 <h3 id="no-uses-punto-final-ni-puntos-suspensivos-en-tus-mensajes">2. No uses punto final ni puntos suspensivos en tus mensajes</h3>
 <p>Usar puntuación, más allá de las comas, es innecesario a la hora de crear un buen mensaje de commit. Cada carácter cuenta a la hora de crear un buen mensaje de commit así que no lo desperdicies con puntos innecesarios.</p>
-<pre class=" language-shell"><code class="prism  language-shell">git commit -m "Add new search feature." # ❌  
-git commit -m "Fix a problem with the topbar..." # ❌  
-git commit -m "Change the default system color" # ✅
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"Add new search feature."</span> <span class="token comment"># ❌  </span>
+<span class="token function">git</span> commit -m <span class="token string">"Fix a problem with the topbar..."</span> <span class="token comment"># ❌  </span>
+<span class="token function">git</span> commit -m <span class="token string">"Change the default system color"</span> <span class="token comment"># ✅</span>
 </code></pre>
 <p>¿Por qué? <strong>El primer mensaje de commit es el título del commit.</strong> Y según las reglas de puntuación para títulos, tanto en castellano como en inglés, estos no llevan puntuación final. Sobre los puntos suspensivos… ¡Nuestros commits no deberían tener ningún suspenso! Deben ser una instrucción clara y concisa.</p>
 <h3 id="usa-como-máximo-50-carácteres-para-tu-mensaje-de-commit">3. Usa como máximo 50 carácteres para tu mensaje de commit</h3>
 <p>Sé corto y conciso. Si tienes mucho que explicar… seguramente es que tu commit hace demasiadas cosas. ¿Puedes separarlo en diferentes commits? Pues hazlo.</p>
 <p>Haz que el mensaje sea claro, directo y que realmente refleje los cambios que lleva.</p>
-<pre class=" language-shell"><code class="prism  language-shell">git commit -m "Add new search feature and change typography to improve performance" # ❌  
-git commit -m "Add new search feature" # ✅  
-git commit -m "Change typography to improve performance" # ✅
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"Add new search feature and change typography to improve performance"</span> <span class="token comment"># ❌  </span>
+<span class="token function">git</span> commit -m <span class="token string">"Add new search feature"</span> <span class="token comment"># ✅  </span>
+<span class="token function">git</span> commit -m <span class="token string">"Change typography to improve performance"</span> <span class="token comment"># ✅</span>
 </code></pre>
 <h3 id="usa-un-prefijo-para-tus-commits-para-hacerlos-más-semánticos">4. Usa un prefijo para tus commits para hacerlos más semánticos</h3>
 <p>Cuando un proyecto crece, es necesario que existan ciertas reglas para que el historial sea legible. Para ello, puedes añadir un prefijo para darle más significado a los commits que realizas. A esto se le llama  <em>commits semánticos</em>  y se haría de la siguiente manera:</p>
-<pre class=" language-shell"><code class="prism  language-shell">&lt;tipo-de-commit&gt;[scope]: &lt;descripcion&gt;
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token operator">&lt;</span>tipo-de-commit<span class="token operator">&gt;</span><span class="token punctuation">[</span>scope<span class="token punctuation">]</span>: <span class="token operator">&lt;</span>descripcion<span class="token operator">&gt;</span>
 feat: add new search feature
 </code></pre>
 <p>Puedes usar los siguientes prefijos</p>
@@ -274,7 +274,7 @@ Tema: <code>{texto}</code></p>
 <h3 id="ejemplo-de-commit">Ejemplo de Commit</h3>
 <p><strong>Prompt:</strong> Reescribe este mensaje de commit a <strong>Conventional Commits</strong> y mejora claridad técnica. Mantén intención original.<br>
 Resumen: <code>Añadí int sum(int a,int b) en math.cpp y su prototipo en math.h.</code></p>
-<p><strong>Ejemplo:</strong></p>
+<p><strong>Ejemplo de salida:</strong></p>
 <pre><code>feat(math): agregar función sum de dos enteros.
 Se implementa sum(a, b) y se declara en math.h para reutilización.
 Cómo probar: compilar con CMake y ejecutar.
@@ -283,7 +283,7 @@ Cómo probar: compilar con CMake y ejecutar.
 <h3 id="ejemplo-de-pr">Ejemplo de PR</h3>
 <p><strong>Prompt:</strong> Crea una descripción de PR con secciones: Resumen, Contexto, Cambios clave (bullets), Checklist. Español, conciso, profesional.<br>
 Material: <code>Resumen: Implementé factorial iterativo y pruebas mínimas. Archivos: src/math/factorial.cpp, include/math/factorial.h, tests/FactorialTests.cpp</code></p>
-<p><strong>Ejemplo:</strong></p>
+<p><strong>Ejemplo de salida:</strong></p>
 <pre><code>Resumen: Añade factorial(unsigned int) iterativo.  
 Cambios: nueva función + pruebas de 0,1,5.  
 Cómo probar: cmake -S . -B build &amp;&amp; cmake --build build &amp;&amp; ctest -R FactorialTests
@@ -293,7 +293,7 @@ Riesgos: valores grandes pueden desbordar (documentado).
 <h3 id="ejemplo-de-issue">Ejemplo de Issue</h3>
 <p><strong>Prompt:</strong> Redacta un Issue de mejora con: Motivación, Propuesta, Alcance, Impacto, Alternativas, Checklist.<br>
 Tema: <code>Crash cuando divisor=0 en divide.cpp (Windows, MSVC).</code></p>
-<p><strong>Ejemplo:</strong></p>
+<p><strong>Ejemplo de salida:</strong></p>
 <pre><code>Título: Evitar división por cero en divide.cpp  
 Expected vs Actual:
 -   Expected: retornar error o 0 sin crashear.
