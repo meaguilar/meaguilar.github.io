@@ -181,9 +181,7 @@ Esta guía de buenas prácticas en C++ está basada en los siguientes recursos:
 ### 1. Usa el verbo imperativo (`Añadir`,  `Cambiar`,  `Arreglar`,  `Remover`, …)
 Aunque el mensaje puede sonar un poco raro el verbo presente es una forma de expresar la acción que se realiza en el commit. Por ejemplo, `Añadir` significa que se añade un nuevo archivo, `Cambiar` significa que se modifica un archivo existente y `Arreglar` significa que se arregla un bug.
 
-
-
-![enter image description here](https://imgs.xkcd.com/comics/git_commit_2x.png)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/good_practices_dev/A.png)
 
 Sé que muchas veces estamos tentados a escribirlo en pasado  _“Añadido…”_,  _“Arreglado…”_  o  _“Removido…”_  pero  **cada commit hay que entenderlo como una instrucción para cambiar el estado del proyecto**. Dicho de otro modo, el verbo presente nos permite saber qué estado queremos que el proyecto se encuentre en el momento de añadir el commit.
 
@@ -292,6 +290,7 @@ Riesgos: valores grandes pueden desbordar (documentado).
 
 **Prompt:** Redacta un Issue de mejora con: Motivación, Propuesta, Alcance, Impacto, Alternativas, Checklist.  
 Tema: `Crash cuando divisor=0 en divide.cpp (Windows, MSVC).`
+
 **Ejemplo:**
 ```
 Título: Evitar división por cero en divide.cpp  
