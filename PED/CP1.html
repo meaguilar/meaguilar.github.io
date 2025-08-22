@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CP1.md</title>
+  <title>CP1</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -144,7 +144,9 @@
 </li>
 <li>
 <p>Usa el cuerpo del mensaje para explicar los cambios: Además del titulo, un commit tiene un cuerpo del mensaje, en el cuál, puedes explicar a los colaboradores del repositorio tus cambios.</p>
-<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"fix: Corregir error en la validación del formulario de registro"</span> -m "Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente. El problema se debía a una falta de validación en el campo de contraseña que permitía caracteres especiales no permitidos
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"fix: Corregir error en la validación del formulario de registro"</span>
+-m <span class="token string">"Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente. 
+El problema se debía a una falta de validación en el campo de contraseña que permitía caracteres especiales no permitidos."</span>
 </code></pre>
 </li>
 <li>
@@ -288,16 +290,12 @@
 <ul>
 <li><strong>Git log</strong>: este comando mostrará una lista de commits con detalles como el ID del commit, la fecha, el autor y el mensaje del commit. El ID del commit es una cadena alfanumérica que generalmente se muestra al principio de cada entrada.</li>
 </ul>
-<pre><code>```bash
-git log
-``` 
+<pre class=" language-bash"><code class="prism  language-bash">	<span class="token function">git</span> log
 </code></pre>
 <ul>
 <li><strong>Git checkout (Commit)</strong>: Una vez que tienes el ID del commit, puedes usar el siguiente comando para moverte a ese commit específico:</li>
 </ul>
-<pre><code>```bash
-git checkout &lt;commit_id&gt;
-``` 
+<pre class=" language-bash"><code class="prism  language-bash">	<span class="token function">git</span> checkout <span class="token operator">&lt;</span>commit_id<span class="token operator">&gt;</span>
 </code></pre>
 <ul>
 <li><strong>Git diff</strong>: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades</li>
@@ -305,7 +303,7 @@ git checkout &lt;commit_id&gt;
 <p>La mejor manera de explicar cómo funciona git diff es con un ejemplo. Supongamos que se crea un nuevo proyecto con el nombre de “proyecto_nuevo” y que se añade dos documentos de texto. Estos documentos se denominan color_primero.txt y color_segundo.txt. El contenido de color_primero.txt es la frase “El primer color es azul”. El documento color_segundo.txt solo contiene la frase “El segundo color es el rojo”. Si ahora entras en git diff, al principio no pasará nada, porque el repositorio todavía no contiene ningún cambio que pueda ser comparado, se tendrían que mover los dos documentos al área de staging con el comando git add.</p>
 <p>Primero se debe comprobar con el comando git status qué cambios se han realizado y, por tanto, están teóricamente listos para un commit. En este caso se visualizan los dos documentos de texto color_primero.txt y color_segundo.txt.</p>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/D.png" alt="enter image description here"></p>
-<p>Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:</p>
+<p>Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” 	por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:</p>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/E.png" alt="enter image description here"></p>
 <ul>
 <li>
@@ -334,7 +332,7 @@ git checkout &lt;commit_id&gt;
 </ul>
 <h2 id="indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</h2>
 <ol>
-<li><strong>Crea un grupo</strong>: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen)</li>
+<li><strong>Crea un grupo</strong>: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen).</li>
 <li><strong>Clona el repositorio</strong>: Utiliza el enlace proporcionado para clonar el repositorio en tu entorno de trabajo.</li>
 <li><strong>Desarrolla el ejercicio</strong>: Sigue las instrucciones del instructor para completar el ejercicio propuesto. Además asegúrate de trabajar con <strong>metodología Git Flow</strong></li>
 <li><strong>Verifica los cambios en GitHub</strong>: Ingresa a tu repositorio en GitHub y asegúrate de que los cambios hayan sido correctamente reflejados.</li>

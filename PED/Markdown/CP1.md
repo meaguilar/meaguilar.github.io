@@ -114,7 +114,9 @@ Hacer buenos commits en Git es una habilidad crucial para mantener un historial 
     
 4.  Usa el cuerpo del mensaje para explicar los cambios: Además del titulo, un commit tiene un cuerpo del mensaje, en el cuál, puedes explicar a los colaboradores del repositorio tus cambios.
 	```bash
-	git commit -m "fix: Corregir error en la validación del formulario de registro" -m "Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente. El problema se debía a una falta de validación en el campo de contraseña que permitía caracteres especiales no permitidos
+	git commit -m "fix: Corregir error en la validación del formulario de registro"
+	-m "Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente. 
+	El problema se debía a una falta de validación en el campo de contraseña que permitía caracteres especiales no permitidos."
 	```
 5.  Sigue la convención del mensaje de commit definida por tu equipo.
     
@@ -264,14 +266,13 @@ Puedes leer más sobre como usar Git Flow en este recurso:
 ## Comandos Git
 
  -   **Git log**: este comando mostrará una lista de commits con detalles como el ID del commit, la fecha, el autor y el mensaje del commit. El ID del commit es una cadena alfanumérica que generalmente se muestra al principio de cada entrada.
-	```bash
+```bash
 	git log
-	``` 
+```
  -   **Git checkout (Commit)**: Una vez que tienes el ID del commit, puedes usar el siguiente comando para moverte a ese commit específico:
-    ```bash
+```bash
 	git checkout <commit_id>
-	``` 
-
+```
  -   **Git diff**: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades
  
 La mejor manera de explicar cómo funciona git diff es con un ejemplo. Supongamos que se crea un nuevo proyecto con el nombre de “proyecto_nuevo” y que se añade dos documentos de texto. Estos documentos se denominan color_primero.txt y color_segundo.txt. El contenido de color_primero.txt es la frase “El primer color es azul”. El documento color_segundo.txt solo contiene la frase “El segundo color es el rojo”. Si ahora entras en git diff, al principio no pasará nada, porque el repositorio todavía no contiene ningún cambio que pueda ser comparado, se tendrían que mover los dos documentos al área de staging con el comando git add.
@@ -280,7 +281,7 @@ Primero se debe comprobar con el comando git status qué cambios se han realizad
 
 ![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/D.png)
 
-Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:
+Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” 	por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:
 
 ![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/E.png)
 
@@ -309,7 +310,7 @@ Ahora, se cambia el segundo documento modificando el enunciado “El segundo col
 
 ## Indicaciones para el ejercicio evaluado
     
-1. **Crea un grupo**: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen)
+1. **Crea un grupo**: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen).
 2. **Clona el repositorio**: Utiliza el enlace proporcionado para clonar el repositorio en tu entorno de trabajo.
 3.  **Desarrolla el ejercicio**: Sigue las instrucciones del instructor para completar el ejercicio propuesto. Además asegúrate de trabajar con **metodología Git Flow**
 4. **Verifica los cambios en GitHub**: Ingresa a tu repositorio en GitHub y asegúrate de que los cambios hayan sido correctamente reflejados.
