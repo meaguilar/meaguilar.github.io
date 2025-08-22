@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CP1</title>
+  <title>CP1.md</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -40,10 +40,10 @@
   </div>
   <div class="stackedit__right">
     <div class="stackedit__html">
-      <h1 id="comandos-avanzados-de-git"><strong>Comandos Avanzados de Git</strong></h1>
+      <h1 id="comandos-avanzados-de-git">Comandos Avanzados de Git</h1>
 <p>En este laboratorio, aprenderás diferentes comandos de Git, metodología de trabajo con Git, para la eficiencia de la gestión de versiones de aplicaciones.</p>
 <h2 id="git---comandos-básicos">Git - Comandos básicos</h2>
-<p>Git es un sistema de control de versiones creado por Linus Torvalds en 2005. Su principal propósito es permitir que varios desarrolladores trabajen en un mismo proyecto de manera eficiente y organizada, asegurando que todos los cambios en el código fuente se registren y gestionen adecuadamente.</p>
+<p>Git es un sistema de control de versiones creado por <strong>Linus Torvalds</strong> en 2005. Su principal propósito es permitir que varios desarrolladores trabajen en un mismo proyecto de manera eficiente y organizada, asegurando que todos los cambios en el código fuente se registren y gestionen adecuadamente.</p>
 <h4 id="configuración-de-git-importante">Configuración de Git (Importante)</h4>
 <h4 id="clonando-repositorios">Clonando repositorios</h4>
 <ul>
@@ -111,7 +111,7 @@
 </li>
 </ul>
 <h3 id="flujo-de-trabajo-básico-en-git">Flujo de trabajo básico en Git</h3>
-<p><img src="https://miro.medium.com/max/686/1*diRLm1S5hkVoh5qeArND0Q@2x.png" alt="Estados en Git"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/A.png" alt="enter image description here"></p>
 <ul>
 <li><strong>Working directory:</strong> es el espacio donde trabajas en el proyecto, haciendo cambios en los archivos y carpetas que componen tu código fuente.</li>
 <li><strong>Staging area:</strong> es un espacio en el repositorio de Git donde preparas los cambios antes de confirmarlos. Es una etapa intermedia entre los cambios realizados en el directorio de trabajo y el historial de commits del repositorio.</li>
@@ -160,7 +160,7 @@
 <p>GitFlow es una metodología de ramificación (branching) para trabajar con Git que proporciona una estructura clara y bien definida para el desarrollo de software en equipo. Esta metodología fue creada por Vincent Driessen en 2010 y es ampliamente utilizada en proyectos de software empresariales.</p>
 <p>GitFlow utiliza dos ramas principales en el repositorio: una rama “main” que representa la versión estable del software y una rama “develop” que representa la versión en desarrollo. Además, utiliza ramas secundarias para el desarrollo de nuevas funciones y correcciones de errores. Estas ramas secundarias pueden ser temporales o permanentes, dependiendo del alcance y duración de la tarea.</p>
 <p>El flujo de trabajo de GitFlow se divide en varias fases, que se detallan a continuación:</p>
-<p><img src="https://miro.medium.com/v2/resize:fit:801/1*mWbys9ZZF9FgUcVLWWBNJw.png" alt="Conociendo GitFlow. En esta oportunidad quiero que… | by Sergio Humberto  Guzmán Maldonado | Medium"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/B.png" alt="enter image description here"></p>
 <ul>
 <li>
 <p><strong>Rama “Main o Master”:</strong> La rama main o principal almacena el historial de publicación oficial, asimismo en esta rama conviene etiquetar todas las confirmaciones de la rama main con un número de versión.</p>
@@ -272,38 +272,42 @@
 <pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> flow release start v1.0.0
 </code></pre>
 <p>En este punto se recomienda que en esta rama nueva se hagan cambios o preparaciones para subir la versión, nuevamente puedes hacerlos con los comandos de <code>git add</code> y <code>git commit</code></p>
-<p>Cuando finalices las pruebas finales, termina la versión final</p>
+<p>Cuando finalices las pruebas finales, termina la versión final.</p>
 <pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> flow release finish v1.0.0
 </code></pre>
 <p>Esto fusionará <code>release/1.0</code> en <code>master</code>, etiquetará la versión, y también fusionará los cambios en <code>develop</code>. Además, eliminará la rama <code>release/1.0</code>.</p>
-<p>Luego, para reflejar estos cambios en el repositorio remoto, sigue los siguientes comandos</p>
+<p>Luego, para reflejar estos cambios en el repositorio remoto, sigue los siguientes comandos:</p>
 <pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push origin master
 <span class="token function">git</span> push origin develop
 </code></pre>
 <p>Puedes leer más sobre como usar Git Flow en este recurso:</p>
 <ul>
-<li><a href="https://gfourmis.co/gitflow-sin-morir-en-el-intento/">[GitFlow: ¿Qué és y cómo aplicarlo sin morir en el intento?]</a></li>
+<li><a href="https://gfourmis.co/gitflow-sin-morir-en-el-intento/">GitFlow: ¿Qué és y cómo aplicarlo sin morir en el intento?</a></li>
 </ul>
-<h2 id="comandos-git"><strong>Comandos Git</strong></h2>
+<h2 id="comandos-git">Comandos Git</h2>
 <ul>
-<li>
-<p><strong>Git log</strong>: este comando mostrará una lista de commits con detalles como el ID del commit, la fecha, el autor y el mensaje del commit. El ID del commit es una cadena alfanumérica que generalmente se muestra al principio de cada entrada.</p>
-<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> log
+<li><strong>Git log</strong>: este comando mostrará una lista de commits con detalles como el ID del commit, la fecha, el autor y el mensaje del commit. El ID del commit es una cadena alfanumérica que generalmente se muestra al principio de cada entrada.</li>
+</ul>
+<pre><code>```bash
+git log
+``` 
 </code></pre>
-</li>
-<li>
-<p><strong>Git checkout (Commit)</strong>: Una vez que tienes el ID del commit, puedes usar el siguiente comando para moverte a ese commit específico:</p>
-<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout <span class="token operator">&lt;</span>commit_id<span class="token operator">&gt;</span>
+<ul>
+<li><strong>Git checkout (Commit)</strong>: Una vez que tienes el ID del commit, puedes usar el siguiente comando para moverte a ese commit específico:</li>
+</ul>
+<pre><code>```bash
+git checkout &lt;commit_id&gt;
+``` 
 </code></pre>
-</li>
-<li>
-<p><strong>Git diff</strong>: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades</p>
+<ul>
+<li><strong>Git diff</strong>: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades</li>
+</ul>
 <p>La mejor manera de explicar cómo funciona git diff es con un ejemplo. Supongamos que se crea un nuevo proyecto con el nombre de “proyecto_nuevo” y que se añade dos documentos de texto. Estos documentos se denominan color_primero.txt y color_segundo.txt. El contenido de color_primero.txt es la frase “El primer color es azul”. El documento color_segundo.txt solo contiene la frase “El segundo color es el rojo”. Si ahora entras en git diff, al principio no pasará nada, porque el repositorio todavía no contiene ningún cambio que pueda ser comparado, se tendrían que mover los dos documentos al área de staging con el comando git add.</p>
 <p>Primero se debe comprobar con el comando git status qué cambios se han realizado y, por tanto, están teóricamente listos para un commit. En este caso se visualizan los dos documentos de texto color_primero.txt y color_segundo.txt.</p>
-<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdc-U9BPfGZQHXhYVBBHKtFfl725YUvV1Mbv2eCK4ZCjVPJHvee_D9EZoKJ-7Z7TtBX7_JskmfMpw-LIlHaEqV53uJ7CZdjzCseMivcXrJD4xOMKoKZPJOkOqsfclCQCjtBtqGikNBv66xwyehgQgmPDH4mCk7ojxuFG0UHAA?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/D.png" alt="enter image description here"></p>
 <p>Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:</p>
-<p><strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc2KRBIvTH_hFHMMDR-YBTaUAmVOQN017JYbJKUoKhFPjSrVuirzf8iq26u0zucwzOVnuVk36vb55XHpi-nxRHU9A6JuuKcF3JZoEjCpnmeJSKJZuet1mJJEhy4f16AF6-GUdD4ccvBC1B7Nee-N3LS-M1PCOr4NsN-SQPxmQ?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></p>
-</li>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/E.png" alt="enter image description here"></p>
+<ul>
 <li>
 <p><strong>Git tag</strong>: En Git, los tags son referencias estáticas a puntos específicos en la historia del repositorio, generalmente se utilizan para marcar versiones importantes o hitos en el desarrollo del proyecto.</p>
 <ul>
@@ -328,13 +332,13 @@
 </ul>
 </li>
 </ul>
-<h2 id="indicaciones-para-el-ejercicio-evaluado"><strong>Indicaciones para el ejercicio evaluado</strong></h2>
+<h2 id="indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</h2>
 <ol>
 <li><strong>Crea un grupo</strong>: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen)</li>
 <li><strong>Clona el repositorio</strong>: Utiliza el enlace proporcionado para clonar el repositorio en tu entorno de trabajo.</li>
 <li><strong>Desarrolla el ejercicio</strong>: Sigue las instrucciones del instructor para completar el ejercicio propuesto. Además asegúrate de trabajar con <strong>metodología Git Flow</strong></li>
 <li><strong>Verifica los cambios en GitHub</strong>: Ingresa a tu repositorio en GitHub y asegúrate de que los cambios hayan sido correctamente reflejados.</li>
-<li><strong>Elimina credenciales de Windows (si aplicable)</strong>: Si utilizaste computadoras del laboratorio, recuerda borrar tus credenciales de Windows para proteger tu información.</li>
+<li><strong>Elimina credenciales de Windows (si aplica)</strong>: Si utilizaste computadoras del laboratorio, recuerda borrar tus credenciales de Windows para proteger tu información.</li>
 <li><strong>Elimina programas y carpetas temporales</strong>: Asegúrate de borrar cualquier programa o carpeta que hayas creado durante la práctica, especialmente en computadoras compartidas.</li>
 </ol>
 <h2 id="anexos">Anexos</h2>
@@ -346,19 +350,33 @@
 </code></pre>
 </li>
 <li>Cuando se te pida, elige una ubicación para guardar la clave. La ubicación predeterminada (<code>~/.ssh/id_rsa</code>) es generalmente adecuada,.</li>
-<li>También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no usar una frase de contraseña.<br>
-<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd7ItOfC65WG7PmOoRLciZzPqD-yxt0lRPPmCJBniuGTvWJ90-01y30PCiH6RAbD85at5DFkZLz_cPva6BFcDQ3Ydmrd_LiHmC3WrrjY3wwCDgYJIlMg4czgmScjrUkGgIw3Yzn9kQNlTj7EYjZxoDRigkt9wWbdhbaWgdsww?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
+<li>También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no usar una frase de contraseña.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/F.png" alt="enter image description here"></p>
+<ul>
 <li>Luego en tu computador, dirígete a la ubicación donde se creo el SSH publico, que es el que esta marcado en rojo en la fotografía anterior. Si copias y pegas la ruta en tu gestor de archivos, te abrirá un bloc de notas con una serie de caracteres, la cual es nuestra llave publica.</li>
-<li>Copia la llave publica generada</li>
-<li>Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos “configuración”<br>
-<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXd369XKIVQGD58NDnCvGXW7tgcBIAFyp7rJJAwlzu6jWOA8RjNfU3Rp0ue_763RYrsi04SN8o2OXkUr8UcC3ldXZgNzee_FnFjLWx5WUXVnn6gIUm3_e5Eotrn6UTn909JNq3WrESuQaH9flVIRDLCF0grNkiEOCGjp_klRLA?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
-<li>En la configuración nos iremos al apartado “SSH keys and GPG keys” y agregaremos una nueva llave SSH<br>
-<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXe12JVCGiS3FmyH-nHGD6_LKxv32tpI5IrmjIENJQV3oUyQ6y2XD0yhTxlYwuy4YpbU348RJNX7W-tTxfSM-Se1tnDcszEhJzI7am5CIYQmv1dYTg0i6SEooKSecEdrBP3Q-gk5fc3osgpcl3k7wC0w42g_7Zgo5-ToO24itg?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong><br>
-Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la “key” pegamos la llave publica que estaba en nuestro bloc de notas.</li>
-<li>Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.<br>
-<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXes4-RvZ4dZNRhf1J6BChMmTiT_Tv03AYkcfMVNxgAxcxIFy-BcwetDRAXNWjMXwbjnVzIXBqSUmt1MrN2d_y90Jl6ixI12fcMqGgiO_3qf_e0arzhkVoa6H478T5mRjMDuZRGvjtwyaMb3SUj6_pnkvZ8JCeive_rJ7mlC3Q?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
-<li>Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a “yes” y si hicimos los pasos correctamente, lo clonará.<br>
-<strong><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdPeLtifLRnrKNJc6PovR-iJmNq6T31qO3Z5VxnrOuqvz4Ec-r3k-sbiwpSYaTVLrZkA4K9Wx4UqVJJPhySTT3Kaw_OPhR9Mm1BhMZ4GFYUqoziGmiVe-mmZZW7MWWHfcQI-UKur-x7QFnvt7_7opmDMK0nUaJPNQkmCsRR?key=EhCsE0g7-bE307ibHBtdPA" alt=""></strong></li>
+<li>Copia la llave publica generada.</li>
+<li>Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos “configuración”</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/G.png" alt="enter image description here"></p>
+<ul>
+<li>En la configuración nos iremos al apartado “SSH keys and GPG keys” y agregaremos una nueva llave SSH</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/H.png" alt="enter image description here"></p>
+<ul>
+<li>
+<p>Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la “key” pegamos la llave publica que estaba en nuestro bloc de notas.</p>
+</li>
+<li>
+<p>Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/I.png" alt="enter image description here"></p>
+<ul>
+<li>Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a “yes” y si hicimos los pasos correctamente, lo clonará.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/J.png" alt="enter image description here"></p>
+<ul>
 <li>Si tienes dudas o errores, no dudes en consultar con tu instructor.</li>
 </ul>
 
