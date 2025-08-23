@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-08-22T18:49:18-06:00",
+  "id": "g01",
+  "duration": 0,
+  "title": "Transact-SQL / T-SQL",
+  "summary": "Guía de aprendizaje 01",
+  "source": ".\\G01.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "databases"
+  ],
+  "tags": [
+    "databases"
+  ],
+  "feedback": "mailto:e",
+  "url": "g01"
+}
