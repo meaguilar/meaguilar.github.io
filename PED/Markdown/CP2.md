@@ -37,7 +37,6 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
-
 ```
 ### Declaración y Definición de Funciones
 En C++, las funciones pueden declararse antes de `main()` y definirse después. Esto se conoce como **prototipo de función**.
@@ -64,7 +63,8 @@ Los parámetros de una función en C++ se pueden pasar de varias formas:
 - **Parámetros por valor**
 Cuando los parámetros se pasan por valor, se envía una copia del valor al interior de la función. Los cambios dentro de la función no afectan las variables originales.
 
-	**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXfTHvn_szuVOC6MM2TtzUfzcmidjr0YVMmUVJAflk0Ffl8tF_RQE9Pzfu4DmiU9mYR7ixANUB2LxuQ5mwV1j7hBGCRfLVkX1dBL5uZeRrDFafHBX5DwK8SWrfymZ6C6LMkhLnplvCiNgIV2ujHqoO7dc_ynj6Qnii4N-Bjst8LgAAw_OsSinw?key=K9mfK9RbIhO_z31INKZxXg)**
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif)
+
 ```c++
 #include  <iostream>
 const  int  kInitialNumber  =  5;
@@ -146,12 +146,20 @@ int main(int argc, char* argv[]) {
     int numbers[kArraySize] = {10, 20, 30, 40, 50};  
     
     for (int i = 0; i < kArraySize; i++) { 
-        std::cout << "Elemento en la posicion " << i << ": " << numbers[i] << std::endl; 
+        std::cout << "Elemento en la posición " << i << ": " << numbers[i] << std::endl; 
     } 
     
     return 0; 
 }
 ```
+```
+Elemento en la posición 0: 10
+Elemento en la posición 1: 20
+Elemento en la posición 2: 30
+Elemento en la posición 3: 40
+Elemento en la posición 4: 50
+```
+
 
 ### Arreglo multidimensional o Matriz
 
@@ -220,7 +228,17 @@ int main(int argc, char* argv[]) {
     
     return 0; 
 }
-
+```
+```
+Elemento de la posición [0][0]: 1
+Elemento de la posición [0][1]: 2
+Elemento de la posición [0][2]: 3
+Elemento de la posición [1][0]: 4
+Elemento de la posición [1][1]: 5
+Elemento de la posición [1][2]: 6
+Elemento de la posición [2][0]: 7
+Elemento de la posición [2][1]: 8
+Elemento de la posición [2][2]: 9
 ```
 
 ### Structs
@@ -424,4 +442,90 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+```
+```
+Libro 1:
+Titulo: El amor en los tiempos del colera
+Autor: Gabriel Garcia Marquez
+Paginas: 417
+Precio: $29.99
+Libro 2:
+Titulo: Don Quijote de la Mancha
+Autor: Miguel de Cervantes
+Paginas: 1023
+Precio: $35.5
+```
+## Libreria Vector
+
+`std::vector` es el **arreglo dinámico** de C++: almacena elementos contiguos en memoria, crece automáticamente y ofrece acceso aleatorio en O(1). Es el contenedor más usado de la STL por su **simplicidad, rendimiento y compatibilidad** con APIs de bajo nivel (via `data()`).
+```c++
+#include <vector>
+```
+### Ventajas de usar la libreria vector
+- Rendimiento
+	 - **Memoria contigua** → excelente **localidad de caché** y acceso.
+- Seguridad y corrección
+	- **RAII**: gestiona memoria automáticamente (sin `new/delete`).
+	- **Excepción segura** en muchas operaciones; estado consistente si algo falla.
+	- Tipado fuerte y sin desbordes implícitos típicos de arreglos C.
+- Facilidad de uso
+	- **Interfaz**: `push_back`, `emplace_back`, `insert`, `erase`, `resize`, etc.
+	- **Iteradores** y compatibilidad total con los algoritmos de `<algorithm>`.
+	- **Inicialización sencilla** con listas: `{1,2,3}`.
+	- **Tamaño dinámico** (crece/disminuye sin que tengas que gestionar memoria).
+- Integración
+	- Funciona con **range-for**, `std::sort`, `std::find`, `std::unique`, etc.
+	-   Amplio soporte en bibliotecas y ejemplos de la comunidad.
+- Flexibilidad
+	-   Permite **almacenar tipos no triviales**; con `emplace_back` construyes in-place.
+	- Fácil de **copiar** o **mover** colecciones completas.
+
+
+```c++
+#include <iostream>
+#include <vector>
+
+int main(){
+    std::vector<int> v;
+
+    // Añadir
+    v.push_back(10);    // copia/mueve un 10 al final
+    v.emplace_back(20); // construye in-place (mejor para tipos complejos)
+
+    // Acceso
+    int x = v[0];    // sin verificación
+    int y = v.at(0); // con verificación (lanza std::out_of_range)
+    int primero = v.front();
+    int ultimo = v.back();
+
+    // Iterar
+    std::cout << "Iteración range-for: ";
+    for (int e : v) std::cout << e << ' '; // range-for
+
+    std::cout << "\nIteración con iterador: ";
+    for (auto it = v.begin(); it != v.end(); ++it) // con iteradores
+        std::cout << *it << ' ';
+
+    // Insertar / borrar en posiciones
+    v.insert(v.begin() + 1, 99); // O(n)
+    std::cout << "\nIteración range-for(insert): ";
+    for (int e : v) std::cout << e << ' ';
+    
+    v.erase(v.begin()); // borra el primero
+    std::cout << "\nIteración range-for(erase begin): ";
+    for (int e : v) std::cout << e << ' ';
+
+    std::cout << "\nIteración range-for(clear): ";
+    v.clear(); // deja size=0 (capacidad se mantiene)
+    for (int e : v) std::cout << e << ' ';
+    
+    return 0;
+}
+```
+```
+Iteración range-for: 10 20 
+Iteración con iterador: 10 20 
+Iteración range-for(insert): 10 99 20 
+Iteración range-for(erase begin): 99 20 
+Iteración range-for(clear):
 ```
