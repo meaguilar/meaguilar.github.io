@@ -115,7 +115,7 @@ Hacer buenos commits en Git es una habilidad crucial para mantener un historial 
 4.  Usa el cuerpo del mensaje para explicar los cambios: Además del titulo, un commit tiene un cuerpo del mensaje, en el cuál, puedes explicar a los colaboradores del repositorio tus cambios.
 	```bash
 	git commit -m "fix: Corregir error en la validación del formulario de registro"
-	-m "Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente. 
+	-m "Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente.
 	El problema se debía a una falta de validación en el campo de contraseña que permitía caracteres especiales no permitidos."
 	```
 5.  Sigue la convención del mensaje de commit definida por tu equipo.
@@ -166,7 +166,7 @@ Por ejemplo, si se está creando la aplicación de un miniExcel, una aplicación
 3.  Integración de la nueva función: Una vez que se han completado las pruebas y la nueva función funciona correctamente, se integra en la rama **"develop"**. Se verifica que todo el código de la rama *"feature/matriz-excel"* esté integrado en la rama **"develop".**
     ```bash
     git add . 
-    git commit -m "Añadida la funcionalidad de 	cuadrícula del Excel"
+    git commit -m "Añadida la funcionalidad de cuadrícula del Excel"
 	git checkout develop 
 	git merge feature/matriz-excel
 	 ```
@@ -255,7 +255,7 @@ Esto fusionará `release/1.0` en `master`, etiquetará la versión, y también f
 
 Luego, para reflejar estos cambios en el repositorio remoto, sigue los siguientes comandos:
 ```bash
-git push origin master
+git push origin main
 git push origin develop
 ```
 
@@ -266,13 +266,18 @@ Puedes leer más sobre como usar Git Flow en este recurso:
 ## Comandos Git
 
  -   **Git log**: este comando mostrará una lista de commits con detalles como el ID del commit, la fecha, el autor y el mensaje del commit. El ID del commit es una cadena alfanumérica que generalmente se muestra al principio de cada entrada.
+
 ```bash
-	git log
+git log
 ```
+
+
  -   **Git checkout (Commit)**: Una vez que tienes el ID del commit, puedes usar el siguiente comando para moverte a ese commit específico:
+
 ```bash
-	git checkout <commit_id>
-```
+git checkout <commit_id>
+```	
+
  -   **Git diff**: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades
  
 La mejor manera de explicar cómo funciona git diff es con un ejemplo. Supongamos que se crea un nuevo proyecto con el nombre de “proyecto_nuevo” y que se añade dos documentos de texto. Estos documentos se denominan color_primero.txt y color_segundo.txt. El contenido de color_primero.txt es la frase “El primer color es azul”. El documento color_segundo.txt solo contiene la frase “El segundo color es el rojo”. Si ahora entras en git diff, al principio no pasará nada, porque el repositorio todavía no contiene ningún cambio que pueda ser comparado, se tendrían que mover los dos documentos al área de staging con el comando git add.

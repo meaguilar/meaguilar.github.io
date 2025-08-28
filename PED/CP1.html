@@ -145,7 +145,7 @@
 <li>
 <p>Usa el cuerpo del mensaje para explicar los cambios: Además del titulo, un commit tiene un cuerpo del mensaje, en el cuál, puedes explicar a los colaboradores del repositorio tus cambios.</p>
 <pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">"fix: Corregir error en la validación del formulario de registro"</span>
--m <span class="token string">"Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente. 
+-m <span class="token string">"Se corrigió un error que impedía que los usuarios con una contraseña válida pudieran registrarse correctamente.
 El problema se debía a una falta de validación en el campo de contraseña que permitía caracteres especiales no permitidos."</span>
 </code></pre>
 </li>
@@ -199,7 +199,7 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 <li>
 <p>Integración de la nueva función: Una vez que se han completado las pruebas y la nueva función funciona correctamente, se integra en la rama <strong>“develop”</strong>. Se verifica que todo el código de la rama <em>“feature/matriz-excel”</em> esté integrado en la rama <strong>“develop”.</strong></p>
 <pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> add <span class="token keyword">.</span> 
-<span class="token function">git</span> commit -m <span class="token string">"Añadida la funcionalidad de 	cuadrícula del Excel"</span>
+<span class="token function">git</span> commit -m <span class="token string">"Añadida la funcionalidad de cuadrícula del Excel"</span>
 <span class="token function">git</span> checkout develop 
 <span class="token function">git</span> merge feature/matriz-excel
 </code></pre>
@@ -279,7 +279,7 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 </code></pre>
 <p>Esto fusionará <code>release/1.0</code> en <code>master</code>, etiquetará la versión, y también fusionará los cambios en <code>develop</code>. Además, eliminará la rama <code>release/1.0</code>.</p>
 <p>Luego, para reflejar estos cambios en el repositorio remoto, sigue los siguientes comandos:</p>
-<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push origin master
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> push origin main
 <span class="token function">git</span> push origin develop
 </code></pre>
 <p>Puedes leer más sobre como usar Git Flow en este recurso:</p>
@@ -290,12 +290,12 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 <ul>
 <li><strong>Git log</strong>: este comando mostrará una lista de commits con detalles como el ID del commit, la fecha, el autor y el mensaje del commit. El ID del commit es una cadena alfanumérica que generalmente se muestra al principio de cada entrada.</li>
 </ul>
-<pre class=" language-bash"><code class="prism  language-bash">	<span class="token function">git</span> log
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> log
 </code></pre>
 <ul>
 <li><strong>Git checkout (Commit)</strong>: Una vez que tienes el ID del commit, puedes usar el siguiente comando para moverte a ese commit específico:</li>
 </ul>
-<pre class=" language-bash"><code class="prism  language-bash">	<span class="token function">git</span> checkout <span class="token operator">&lt;</span>commit_id<span class="token operator">&gt;</span>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout <span class="token operator">&lt;</span>commit_id<span class="token operator">&gt;</span>
 </code></pre>
 <ul>
 <li><strong>Git diff</strong>: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades</li>
