@@ -522,19 +522,19 @@ int main() {
         std::cout << *it << ' ';
 
     // Insertar / borrar en posiciones
-    v.insert(v.begin() + 1, 100); // O(n)
-    std::cout << "\nIteración range-for(insert): ";
+v.insert(v.begin() + 1, 100); // O(n)
+std::cout << "\nIteración range-for(insert): ";
+for (int e : v) std::cout << e << ' ';
+
+v.erase(v.begin()); // borra el primero
+std::cout << "\nIteración range-for(erase begin): ";
     for (int e : v) std::cout << e << ' ';
 
-    v.erase(v.begin()); // borra el primero
-    std::cout << "\nIteración range-for(erase begin): ";
-    for (int e : v) std::cout << e << ' ';
+std::cout << "\nIteración range-for(clear): ";
+v.clear(); // deja size=0 (capacidad se mantiene)
+for (int e : v) std::cout << e << ' ';
 
-    std::cout << "\nIteración range-for(clear): ";
-    v.clear(); // deja size=0 (capacidad se mantiene)
-    for (int e : v) std::cout << e << ' ';
-
-    return 0;
+return 0;
 }
 ```
 ```
@@ -562,7 +562,7 @@ struct Producto {
 // Utilidad para imprimir el vector
 void imprimir(const std::vector<Producto> v, const std::string titulo) {
     std::cout << "\n" << titulo << " (" << v.size() << "):\n";
-    for (const auto& p : v) {
+    for (const auto p : v) {
         std::cout << "  id=" << p.id
                   << ", nombre=" << p.nombre
                   << ", precio=" << p.precio << '\n';
@@ -663,4 +663,3 @@ Después de clear() (0):
        -   **Evita los arreglos “clásicos” de C** salvo que sea necesario.
     -   **Recorrer con for-each**: más seguro y claro que manejar índices a mano.
     -   **Límites**: nunca accedas a posiciones fuera del arreglo.
-    -   **Usa algoritmos de la librería estándar** (`std::sort`, `std::find`, `std::accumulate`).
