@@ -2,6 +2,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,windows,macos,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,windows,macos,linux
 
+### Compiled source ###
+**/*.exe
+*.exe
+!*/bin/*.exe
+
 ### Linux ###
 *~
 
