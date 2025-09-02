@@ -12,7 +12,7 @@ En C++, una **función** es un bloque de código que realiza una tarea específi
 -   **Legibilidad:** Los programas que usan funciones suelen ser más fáciles de leer y entender.
 -   **Mantenimiento:** Al modificar el comportamiento de una tarea específica, solo necesitas cambiar el código en una función, sin afectar el resto del programa.
 
-### Sintaxis de una función
+## Sintaxis de una función
 Una función en C++ se compone de varias partes clave:
 
 1.  **Tipo de retorno:** El tipo de dato que la función devuelve (por ejemplo, `int`, `float`, `void`,  **u otro tipos de datos complejos.**). Si la función no devuelve ningún valor, se utiliza `void`.
@@ -29,7 +29,7 @@ int Add(int a, int b) {
     return a + b;
 }
 
-int main(int argc, char* argv[]) {
+int main() {
     int x = 5;
     int y = 3;
     int result = Add(x, y);
@@ -38,14 +38,17 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 ```
-### Declaración y Definición de Funciones
+```
+La suma de 5 y 3 es: 8
+```
+## Declaración y Definición de Funciones
 En C++, las funciones pueden declararse antes de `main()` y definirse después. Esto se conoce como **prototipo de función**.
 ```c++
 #include <iostream>
 
 int Add(int a, int b);
 
-int main(int argc, char* argv[]) {
+int main() {
     int x = 5;
     int y = 3;
     int result = Add(x, y);
@@ -57,7 +60,10 @@ int Add(int a, int b) {
     return a + b;
 }
 ```
-### Parámetros de una Función
+```
+La suma de 5 y 3 es: 8
+```
+## Parámetros de una Función
 Los parámetros de una función en C++ se pueden pasar de varias formas:
 
 - **Parámetros por valor**
@@ -73,12 +79,15 @@ int  DoubleValue(int  number) {
 	return  number  *  2;
 }
 
-int  main(int  argc, char  *argv[]) {
+int  main() {
 	int  number  =  DoubleValue(kInitialNumber);
-	std::cout  <<  "El valor del numero duplicado es: "  <<  number  <<  std::endl; // 10
+	std::cout << "El valor del numero duplicado es: " << number << std::endl;
 
 	return  0;
 }
+```
+```
+El valor del numero duplicado es: 10
 ```
 - **Parámetros por defecto**
 C++ permite definir valores por defecto para los parámetros de una función. Si no se proporcionan argumentos durante la llamada a la función, se utilizan estos valores.
@@ -88,9 +97,9 @@ C++ permite definir valores por defecto para los parámetros de una función. Si
 // 2 sera el valor por defecto si no se pasa B
 int Sum(int a, int b = 2);
 
-int main(int argc, char* argv[]) {
-    std::cout << Sum(5) << std::endl;    // 7
-    std::cout << Sum(5, 10) << std::endl; // 15
+int main() {
+    std::cout << Sum(5) << std::endl;
+    std::cout << Sum(5, 10) << std::endl;
 
     return 0;
 }
@@ -98,6 +107,10 @@ int main(int argc, char* argv[]) {
 int Sum(int a, int b) {
     return a + b;
 }
+```
+```
+7
+15
 ```
 ## Estructuras de datos estáticas
 Las estructuras de datos estáticas son aquellas que se declaran con un tamaño fijo en tiempo de compilación. Las estructuras estáticas ocupan un bloque de memoria continuo que se mantiene constante mientras el programa está en ejecución.
@@ -118,14 +131,14 @@ int numbers[5] = {1, 2, 3, 4, 5, 6};
 
 std::string fruits[4] = {"Manzana", "Pera", "Mandarina", "Naranja"};
 ```
-#### Asignación de valores a un arreglo (vector)
+### Asignación de valores a un arreglo (vector)
 Para asignar valores desde teclado a un arreglo unidimensional (vector), se hace uso de la estructura  `for`. 
 ```c++
 #include <iostream>
 
 const int kArraySize = 5;
 
-int main(int argc, char* argv[]) {
+int main() {
     int numbers[kArraySize];  
     for (int i = 0; i < kArraySize; i++) { 
         std::cout << "Ingrese un valor: ";
@@ -135,14 +148,14 @@ int main(int argc, char* argv[]) {
     return 0; 
 }
 ```
-#### Imprimiendo valores de un arreglo (vector)
+### Imprimiendo valores de un arreglo (vector)
 Para imprimir los valores que contiene un arreglo, se hace uso de la estructura `for`, la cual nos ayuda a recorrer todos los valores que contiene el arreglo.
 ```c++
 #include <iostream>
 
 const int kArraySize = 5;
 
-int main(int argc, char* argv[]) {
+int main() {
     int numbers[kArraySize] = {10, 20, 30, 40, 50};  
     
     for (int i = 0; i < kArraySize; i++) { 
@@ -161,7 +174,7 @@ Elemento en la posición 4: 50
 ```
 
 
-### Arreglo multidimensional o Matriz
+## Arreglo multidimensional o Matriz
 
 Una **matriz** es una extensión de un arreglo estático, pero en lugar de ser unidimensional, es multidimensional. La más común es la **matriz bidimensional**, que puede pensarse como una tabla de filas y columnas. Al igual que los arreglos, el tamaño de la matriz se define en tiempo de compilación y no puede cambiarse durante la ejecución del programa.
 
@@ -181,7 +194,7 @@ char board[3][3] = {
     {'X', 'O', 'X'} 
 };
 ```
-#### Ejemplo: Asignación de valores a un arreglo (matriz)
+### Ejemplo: Asignación de valores a un arreglo (matriz)
 Para asignar valores desde teclado a un arreglo multidimensional (matriz), se hace uso de la estructura  `for`. 
 
 ```c++
@@ -190,7 +203,7 @@ Para asignar valores desde teclado a un arreglo multidimensional (matriz), se ha
 const int kMatrixRows = 3;
 const int kMatrixCols = 3;
 
-int main(int argc, char* argv[]) {
+int main() {
     int matrix[kMatrixRows][kMatrixRows];
     
     for (int i = 0; i < kMatrixRows; i++) { 
@@ -203,7 +216,7 @@ int main(int argc, char* argv[]) {
     return 0; 
 }
 ```
-#### Ejemplo: Imprimir una matriz
+### Ejemplo: Imprimir una matriz
 
 Para acceder a los elementos de una matriz, se utiliza un par de índices: uno para las filas y otro para las columnas. Para recorrer e imprimir todos los elementos de una matriz, se puede usar un bucle `for` anidado.
 
@@ -213,7 +226,7 @@ Para acceder a los elementos de una matriz, se utiliza un par de índices: uno p
 const int kMatrixCols = 3;
 const int kMatrixRows = 3;
 
-int main(int argc, char* argv[]) {
+int main() {
     int matrix[kMatrixRows][kMatrixCols] = { 
         {1, 2, 3}, 
         {4, 5, 6}, 
@@ -222,7 +235,8 @@ int main(int argc, char* argv[]) {
     
     for (int i = 0; i < kMatrixRows; i++) { 
         for (int j = 0; j < kMatrixCols; j++) { 
-            std::cout << "Elemento de la posicion [" << i << "][" << j << "]: " << matrix[i][j] << std::endl; 
+            std::cout << "Elemento de la posicion [" << i << "][" << j << "]: "
+             << matrix[i][j] << std::endl; 
         } 
     } 
     
@@ -241,7 +255,7 @@ Elemento de la posición [2][1]: 8
 Elemento de la posición [2][2]: 9
 ```
 
-### Structs
+## Structs
 
 Un **struct** es una estructura de datos compuesta que permite agrupar diferentes **tipos de datos bajo un mismo nombre**.  A diferencia de los arreglos (vector y matriz), que solo pueden almacenar datos del mismo tipo, los structs permiten almacenar datos de distintos tipos. Cada elemento dentro de un struct se llama _miembro_.
 
@@ -298,7 +312,8 @@ Para imprimir los structs, los podemos imprimir manualmente uno a uno, de la mis
 ```c++
 std::cout << "Book 1:" << std::endl; 
 std::cout << "Title: " << book1.title << std::endl;
-std::cout << "Author: " << book1.author.first_name << " " << book1.author.last_name << std::endl; 
+std::cout << "Author: " << book1.author.first_name << " " << book1.author.last_name 
+<< std::endl; 
 std::cout << "Pages: " << book1.pages << std::endl; 
 std::cout << "Price: $" << book1.price << std::endl;
 ```
@@ -336,8 +351,7 @@ struct Book {
     Author authors[kNumAuthors]; 
 };
 
-int main(int argc, char* argv[]) {
-
+int main() {
     // Declarando un nuevo libro
     Book book;
     
@@ -380,8 +394,7 @@ struct Book {
     Author authors[kNumAuthorsPerBook]; 
 };
 
-int main(int argc, char* argv[]) {
-
+int main() {
     // Creando un arreglo de libros
     Book books[kNumBooks];
     
@@ -455,9 +468,9 @@ Autor: Miguel de Cervantes
 Paginas: 1023
 Precio: $35.5
 ```
-## Libreria Vector
+## Uso de libreria `vector`
+Es el **arreglo dinámico** de C++, la clase vector de la Biblioteca Estándar de C++ es una plantilla de clase para contenedores de secuencia. Una plantilla de clase que almacena los elementos de un tipo determinado en una organización lineal y permite el acceso aleatorio rápido a cualquier elemento. Un vector es el contenedor más apropiado para una secuencia cuando el rendimiento de acceso aleatorio es importante.
 
-`std::vector` es el **arreglo dinámico** de C++: almacena elementos contiguos en memoria, crece automáticamente y ofrece acceso aleatorio en O(1). Es el contenedor más usado de la STL por su **simplicidad, rendimiento y compatibilidad** con APIs de bajo nivel (via `data()`).
 ```c++
 #include <vector>
 ```
@@ -480,23 +493,25 @@ Precio: $35.5
 	-   Permite **almacenar tipos no triviales**; con `emplace_back` construyes in-place.
 	- Fácil de **copiar** o **mover** colecciones completas.
 
-
+### Ejemplo de uso de vectores con valores primitivos
 ```c++
 #include <iostream>
 #include <vector>
 
-int main(){
-    std::vector<int> v;
+int main() {
+    std::vector<int> v = {10, 20};  // Inicializando con valores
 
     // Añadir
-    v.push_back(10);    // copia/mueve un 10 al final
-    v.emplace_back(20); // construye in-place (mejor para tipos complejos)
+    v.push_back(30);    // copia/mueve un 10 al final
+    v.emplace_back(40); // construye in-place (mejor para tipos complejos)
 
     // Acceso
     int x = v[0];    // sin verificación
     int y = v.at(0); // con verificación (lanza std::out_of_range)
     int primero = v.front();
+    std::cout << "Primer valor: "<< primero << "\n";
     int ultimo = v.back();
+    std::cout << "Ultimo valor: "<< ultimo << "\n";
 
     // Iterar
     std::cout << "Iteración range-for: ";
@@ -507,25 +522,144 @@ int main(){
         std::cout << *it << ' ';
 
     // Insertar / borrar en posiciones
-    v.insert(v.begin() + 1, 99); // O(n)
-    std::cout << "\nIteración range-for(insert): ";
-    for (int e : v) std::cout << e << ' ';
-    
-    v.erase(v.begin()); // borra el primero
-    std::cout << "\nIteración range-for(erase begin): ";
+v.insert(v.begin() + 1, 100); // O(n)
+std::cout << "\nIteración range-for(insert): ";
+for (int e : v) std::cout << e << ' ';
+
+v.erase(v.begin()); // borra el primero
+std::cout << "\nIteración range-for(erase begin): ";
     for (int e : v) std::cout << e << ' ';
 
-    std::cout << "\nIteración range-for(clear): ";
-    v.clear(); // deja size=0 (capacidad se mantiene)
-    for (int e : v) std::cout << e << ' ';
+std::cout << "\nIteración range-for(clear): ";
+v.clear(); // deja size=0 (capacidad se mantiene)
+for (int e : v) std::cout << e << ' ';
+
+return 0;
+}
+```
+```
+Primer valor: 10
+Ultimo valor: 40
+Iteración range-for: 10 20 30 40 
+Iteración con iterador: 10 20 30 40 
+Iteración range-for(insert): 10 100 20 30 40 
+Iteración range-for(erase begin): 100 20 30 40 
+Iteración range-for(clear):
+```
+### Ejemplo de uso de vectores con Structs
+
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+
+struct Producto {
+    int id;
+    std::string nombre;
+    double precio;
+};
+
+// Utilidad para imprimir el vector
+void imprimir(const std::vector<Producto> v, const std::string titulo) {
+    std::cout << "\n" << titulo << " (" << v.size() << "):\n";
+    for (const auto p : v) {
+        std::cout << "  id=" << p.id
+                  << ", nombre=" << p.nombre
+                  << ", precio=" << p.precio << '\n';
+    }
+}
+
+int main() {
+    // 1) Inicialización
+    std::vector<Producto> inventario = {
+        {1, "Pan",   0.50},
+        {2, "Leche", 4.10},
+        {3, "Huevos",2.40}
+    };
+
+    // Agregar elementos
+    inventario.push_back({4, "Café", 3.20});        // push_back con lista
+    inventario.emplace_back(5, "Azúcar", 0.95);     // emplace_back construye in-place
+
+    imprimir(inventario, "Después de inicializar y agregar");
+
+    // 2) Acceso y modificación
+    // Por índice (sin verificación)
+    inventario[1].nombre = "Leche descremada"; // Cambiamos el nombre de la leche
+
+    imprimir(inventario, "Después de accesos/modificaciones");
+
+    // 3) Eliminación
+    // a) Por índice (ejemplo: eliminar el segundo elemento, índice 1)
+    if (inventario.size() > 1) {
+        inventario.erase(inventario.begin() + 1);
+    }
+    imprimir(inventario, "Después de borrar por índice (índice 1)");
+    
+    // c) Del final (pop_back) si no está vacío
+    if (!inventario.empty()) {
+        inventario.pop_back();
+    }
+    imprimir(inventario, "Después de pop_back");
+
+    // d) Limpiar todo (mantiene capacidad)
+    inventario.clear();
+    imprimir(inventario, "Después de clear()");
     
     return 0;
 }
 ```
 ```
-Iteración range-for: 10 20 
-Iteración con iterador: 10 20 
-Iteración range-for(insert): 10 99 20 
-Iteración range-for(erase begin): 99 20 
-Iteración range-for(clear):
+Después de inicializar y agregar (5):
+  id=1, nombre=Pan, precio=0.5
+  id=2, nombre=Leche, precio=4.1
+  id=3, nombre=Huevos, precio=2.4
+  id=4, nombre=Café, precio=3.2
+  id=5, nombre=Azúcar, precio=0.95
+
+Después de accesos/modificaciones (5):
+  id=1, nombre=Pan, precio=0.5
+  id=2, nombre=Leche descremada, precio=4.1
+  id=3, nombre=Huevos, precio=2.4
+  id=4, nombre=Café, precio=3.2
+  id=5, nombre=Azúcar, precio=0.95
+
+Después de borrar por índice (índice 1) (4):
+  id=1, nombre=Pan, precio=0.5
+  id=3, nombre=Huevos, precio=2.4
+  id=4, nombre=Café, precio=3.2
+  id=5, nombre=Azúcar, precio=0.95
+
+Después de pop_back (3):
+  id=1, nombre=Pan, precio=0.5
+  id=3, nombre=Huevos, precio=2.4
+  id=4, nombre=Café, precio=3.2
+
+Después de clear() (0):
 ```
+
+## Guía de Buenas Prácticas con Funciones, Struct y Arreglos
+
+- ### Funciones
+	-   **Nombres claros**: el nombre debe indicar qué hace la función (ej. `calcularPromedio`, `imprimirUsuario`).
+	-   **Parámetros simples**: no pases datos de más; si solo se leen, márcalos como `const`.
+    -   **Una sola responsabilidad**: cada función debe hacer solo una cosa y hacerla bien.
+    -   **Resultados importantes**: si el valor que devuelve la función es necesario, evita que pueda ser ignorado (en C++ se usa `[[nodiscard]]`).
+    -   **Errores**: maneja los casos donde algo pueda fallar (ej. devolver un valor nulo u opcional si no se puede calcular).
+    -   **Tamaño**: mejor varias funciones pequeñas que una gigante.
+
+- ### Structs
+	-   **Usar para agrupar datos**: un `struct` es ideal cuando tienes datos relacionados.
+    -   **Nombres descriptivos**: ponle nombres que tengan sentido (`Usuario`, `Producto`, `Color`).
+    -   **Inicialización clara**: usa llaves `{}` para asegurarte de que todos los campos tengan valores.
+    -   **Evitar abreviaturas**: mejor `edad` que `ed`.
+
+- ###  Arreglos
+	-   **Prefiere estructuras modernas**:
+    
+	    -   Usa `std::array` si el tamaño es fijo.
+        
+	    -   Usa `std::vector` si el tamaño cambia.
+       -   **Evita los arreglos “clásicos” de C** salvo que sea necesario.
+    -   **Recorrer con for-each**: más seguro y claro que manejar índices a mano.
+    -   **Límites**: nunca accedas a posiciones fuera del arreglo.
