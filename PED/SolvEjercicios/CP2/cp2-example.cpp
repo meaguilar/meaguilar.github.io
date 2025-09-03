@@ -35,9 +35,9 @@ std::vector<Item> SolicitarDatos(int cantidadRegistros) {
     return registros;
 }
 
-void Mostrar(const std::vector<Item>& registros) {
+void Mostrar(const std::vector<Item> registros) {
     std::cout << "\nLISTADO\n";
-    for (const auto& r : registros) {
+    for (const auto r : registros) {
         std::cout << "Campo 1: " << r.campo1
                   << " | Campo 2: " << r.campo2
                   << " | Cantidad: " << r.cantidad
