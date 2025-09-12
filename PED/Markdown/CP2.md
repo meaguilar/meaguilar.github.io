@@ -522,19 +522,19 @@ int main() {
         std::cout << *it << ' ';
 
     // Insertar / borrar en posiciones
-v.insert(v.begin() + 1, 100); // O(n)
-std::cout << "\nIteración range-for(insert): ";
-for (int e : v) std::cout << e << ' ';
-
-v.erase(v.begin()); // borra el primero
-std::cout << "\nIteración range-for(erase begin): ";
+    v.insert(v.begin() + 1, 100); // O(n)
+    std::cout << "\nIteración range-for(insert): ";
     for (int e : v) std::cout << e << ' ';
 
-std::cout << "\nIteración range-for(clear): ";
-v.clear(); // deja size=0 (capacidad se mantiene)
-for (int e : v) std::cout << e << ' ';
+    v.erase(v.begin()); // borra el primero
+    std::cout << "\nIteración range-for(erase begin): ";
+    for (int e : v) std::cout << e << ' ';
 
-return 0;
+    std::cout << "\nIteración range-for(clear): ";
+    v.clear(); // deja size=0 (capacidad se mantiene)
+    for (int e : v) std::cout << e << ' ';
+
+    return 0;
 }
 ```
 ```
