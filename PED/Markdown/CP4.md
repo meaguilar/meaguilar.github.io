@@ -1,11 +1,9 @@
-﻿
-# Punteros
+﻿# Punteros
 En este laboratorio aprenderás sobre el uso de punteros, cómo declararlos, cómo utilizarlos, y su importancia en la gestión de memoria y manipulación de datos en programación.
 
 ### ¿Qué son los punteros?
 
 En tu computadora, cada variable que tu guardas, en realidad el valor de esa variable se guarda en **una dirección de memoria**. La dirección de memoria es el **lugar físico** donde la memoria **está** siendo guardada. Los punteros, van a permitirnos almacenar la dirección de memoria de cualquier variable y nos permitirán manipularla.
-
 
 Como tal, una variable tiene 3 características fundamentales:
 
@@ -45,7 +43,7 @@ El asterisco (`*`) se utiliza para acceder al **valor** almacenado en la direcci
 int  a  =  10;
 int*  p  =  &a;
 
-int  main(int  argc,  char*  argv[])  {
+int  main()  {
 	std::cout  <<  "Valor de a: "  <<  a  << std::endl;
 	std::cout  <<  "Dirección de a: "  <<  &a  <<std::endl;
 	std::cout  <<  "Valor de p: "  <<  p  << std::endl;
@@ -53,6 +51,13 @@ int  main(int  argc,  char*  argv[])  {
 	std::cout  <<  "Dirección de p: "  <<  &p  << std::endl;
 	return  0;
 } 
+```
+```bash
+Valor de a: 10
+Dirección de a: 0x59db2d50c010
+Valor de p: 0x59db2d50c010
+Valor de *p: 10
+Dirección de p: 0x59db2d50c018
 ```
 En este ejemplo, `*p` accede al **valor** almacenado en la dirección de memoria a la que `p` apunta, es decir, el valor de `a`. La expresión `*p` es equivalente a acceder directamente a `a`.
 
@@ -66,18 +71,17 @@ Para manejar esto, se usan dos comandos importantes: `new` para **pedir** espaci
 ```c++
 #include <iostream>
 
-int main(int argc, char* argv[]) {
+int main() {
     int* p = new int;
     *p = 42;  
-
     std::cout << "Valor en el heap: " << *p << std::endl;
-
     delete p;  
-    
     p = nullptr; 
-
     return 0;
 }
+```
+```bash
+Valor en el heap: 42
 ```
 En este ejemplo, hemos usado `new` para pedir espacio en el heap y almacenamos la dirección de esa memoria en el puntero `p`. Usamos `p` para almacenar el valor `42` en esa memoria.
 
@@ -92,7 +96,7 @@ Después de liberar la memoria con `delete`, es buena práctica asignar `nullptr
 
 #### Paso por valor y por referencia
 
-![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXc7MKyKN-EU3Zl3Ow5J_iq_VmB7bKNq1HOjUhy6yTTnj6RmHP9H4OYZvZrE18oToHvF8SCrq_zT2Dl8I0dlw_1aGOW1ScUkAL-NadMddpMCF5bZ2TyTYY-Hr_EDfvBIoDxXi9nwUp_Tx1Z1uMyfDUhKGj2U4n7E3zqELe1wet_ZqCBctADggnI?key=Ebc5RBD3qg94hAq1Y-1isQ)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif)
 
 
 Uno de los mejores usos de los punteros es que nos permite optimizar nuestro programa. Y un ejemplo muy claro, es en las funciones.
@@ -107,20 +111,21 @@ void Sumar(int x, int y) {
   x += 10;
   y += 10;
   std::cout << "Dentro de la función: x = " << x 
-            << ", y = " << y << std::endl;
+       << ", y = " << y << std::endl;
 }
 
-int main(int argc, char* argv[]) {
+int main() {
   int a = 5;
   int b = 3;
-
   Sumar(a, b);
-
   std::cout << "Fuera de la función: a = " << a 
-            << ", b = " << b << std::endl;
-
+       << ", b = " << b << std::endl;
   return 0;
 }
+```
+```bash
+Dentro de la función: x = 15, y = 13
+Fuera de la función: a = 5, b = 3
 ```
 Por otro lado, cuando pasamos un parámetro **por referencia**, le estamos dando a la función acceso directo al valor original mediante su dirección de memoria. Esto significa que cualquier cambio que la función haga **sí afectará** al valor original fuera de la función.
 
@@ -132,21 +137,21 @@ void SumarPorReferencia(int& x, int& y) {
   x += 10;
   y += 10;
   std::cout << "Dentro de la función: x = " << x 
-            << ", y = " << y << std::endl;
+       << ", y = " << y << std::endl;
 }
 
-int main(int argc, char* argv[]) {
+int main() {
   int a = 5;
   int b = 3;
-
   SumarPorReferencia(a, b);
-
-  std::cout << "Fuera de la función: a = " << a 
-            << ", b = " << b << std::endl;
-
+  std::cout << "Fuera de la función: a = " << a << 
+	   ", b = " << b << std::endl;
   return 0;
 }
-
+```
+```bash
+Dentro de la función: x = 15, y = 13
+Fuera de la función: a = 15, b = 13
 ```
 
 ## Punteros en arreglos
@@ -156,20 +161,66 @@ Por lo tanto, no es necesario usar el operador `&` para obtener la dirección de
 ```c++
 #include <iostream>
 
-int main(int argc, char* argv[]) {
+int main() {
     int arr[5] = {10, 20, 30, 40, 50};
-
     int* p = arr;
-
     std::cout << "Primer elemento (usando puntero): " << *p << std::endl;
-
-    std::cout << "Segundo elemento : " << *(p + 1) << std::endl;
-
+    std::cout << "Segundo elemento (usando puntero + indice): " 
+	     << *(p + 1) << std::endl;
     return 0;
 }
 ```
+```bash
+Primer elemento (usando puntero): 10
+Segundo elemento (usando puntero + indice): 20
+```
 El uso de punteros permite que las funciones puedan trabajar con arreglos sin tener que pasar copias de los datos, lo que ahorra memoria y tiempo de ejecución.
 
+- **Ejemplo con array clásico**
+```c++
+#include <iostream>
+
+void imprimirArray(int* arr, int size) {
+    for (int i = 0; i < size; i++) {
+        std::cout << *(arr + i) << " "; // equivalente a arr[i]
+    }
+}
+
+int main() {
+    int numeros[] = {10, 20, 30, 40, 50};
+    // Calcular el tamaño del arrat
+    int size = sizeof(numeros) / sizeof(numeros[0]);
+    std::cout << "Array con punteros: ";
+    imprimirArray(numeros, size);
+    return 0;
+}
+```
+```
+Array con punteros: 10 20 30 40 50
+```
+- **Ejemplo con `std::vector`**
+```c++
+#include <iostream>
+#include <vector>
+
+void imprimirVector(const std::vector<int>& vec) {
+    // Accediendo con puntero al primer elemento
+    const int* ptr = vec.data(); // devuelve un puntero al arreglo interno
+    for (size_t i = 0; i < vec.size(); i++) {
+        std::cout << *(ptr + i) << " "; // equivalente a vec[i]
+    }
+}
+
+int main() {
+    std::vector<int> numeros = {5, 15, 25, 35, 45};
+    std::cout << "Vector con punteros: ";
+    imprimirVector(numeros);
+    return 0;
+}
+```
+```
+Vector con punteros: 5 15 25 35 45
+```
 ## Arreglos, punteros y funciones.
 Cuando se pasa un arreglo a una función, en realidad lo que se está pasando es un **puntero** que apunta al primer elemento del arreglo. Esto se debe a que los arreglos son tratados como punteros cuando se pasan a funciones, permitiendo acceder y manipular directamente los elementos del arreglo.
 
@@ -183,17 +234,14 @@ void ModificarArreglo(int* arr, int size) {
     }
 }
 
-int main(int argc, char* argv[]) {
+int main() {
     int arr[5] = {1, 2, 3, 4, 5};  // Arreglo original
-
     // Llamada a la función, pasando el arreglo y su tamaño
     ModificarArreglo(arr, 5);
-
     // Mostrar los valores modificados
     for (int i = 0; i < 5; ++i) {
         std::cout << "Elemento " << i + 1 << ": " << arr[i] << std::endl;
     }
-
     return 0;
 }
 
@@ -201,6 +249,58 @@ int main(int argc, char* argv[]) {
 En la función `ModificarArreglo`, se recorre el arreglo y se le suma 10 a cada elemento. Esto modifica los elementos directamente en el arreglo original `arr` del `main` porque hemos pasado un puntero al arreglo.
 
 La modificación es visible en el `main` después de la llamada a la función, ya que se trabaja sobre la misma ubicación de memoria.
+
+## Buenas practicas de uso de Referencia  `&` y Punteros `*`
+
+**Paso por referencia (`&`)**
+El paso por referencia (`&`) permite que una función modifique directamente la variable que recibe.
+- Usar `const &` cuando no necesitas modificar el valor
+	-   Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).
+	```c++
+	void imprimir(const std::string& texto) {
+    std::cout << texto << std::endl;
+	}
+	```
+- Usar `&` cuando quieres modificar la variable
+	```c++
+	void incrementar(int& numero) {
+	    numero++;
+	}
+	```
+- Preferir referencias sobre punteros cuando sea posible.
+
+**Punteros (`*`)**
+Los punteros permiten trabajar con direcciones de memoria.
+
+- Inicializar punteros siempre
+
+	- Nunca los dejes sin valor, inicialízalos con `nullptr`.
+- Liberar memoria asignada dinámicamente
+	-   Cada `new` debe tener un `delete`.
+	-   Cada `new[]` debe tener un `delete[]`.
+- Evitan fugas de memoria (memory leaks).
+- Evitar el uso innecesario de punteros crudos.
+- Comprobar `nullptr` antes de usar.
+
+## ¿Cuándo usar cada uno?
+
+-   **Referencia (`&`)**
+    
+    -   Cuando siempre debe existir un valor.
+        
+    -   Para pasar parámetros sin copiar.
+        
+    -   Para modificar argumentos de una función.
+        
+-   **Puntero (`*`)**
+    
+    -   Cuando puede no existir el valor (opcional).
+        
+    -   Para manejar arreglos dinámicos.
+        
+    -   En estructuras de bajo nivel (drivers, APIs C).
+        
+    -   Cuando se necesita cambiar a qué objeto apunta.
 
 ## Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos
 

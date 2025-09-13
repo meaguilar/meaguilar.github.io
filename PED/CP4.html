@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Labo04 - Punteros</title>
+  <title>CP4</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -24,6 +24,8 @@
 </li>
 <li><a href="#punteros-en-arreglos">Punteros en arreglos</a></li>
 <li><a href="#arreglos-punteros-y-funciones.">Arreglos, punteros y funciones.</a></li>
+<li><a href="#buenas-practicas-de-uso-de-referencia---y-punteros-">Buenas practicas de uso de Referencia  & y Punteros *</a></li>
+<li><a href="#¿cuándo-usar-cada-uno">¿Cuándo usar cada uno?</a></li>
 <li><a href="#importancia-de-los-punteros-en-la-gestión-de-memoria-y-manipulación-de-datos">Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos</a></li>
 </ul>
 </li>
@@ -64,7 +66,7 @@
 <span class="token keyword">int</span>  a  <span class="token operator">=</span>  <span class="token number">10</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span><span class="token operator">*</span>  p  <span class="token operator">=</span>  <span class="token operator">&amp;</span>a<span class="token punctuation">;</span>
 
-<span class="token keyword">int</span>  <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span>  argc<span class="token punctuation">,</span>  <span class="token keyword">char</span><span class="token operator">*</span>  argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
+<span class="token keyword">int</span>  <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">{</span>
 	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Valor de a: "</span>  <span class="token operator">&lt;&lt;</span>  a  <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
 	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Dirección de a: "</span>  <span class="token operator">&lt;&lt;</span>  <span class="token operator">&amp;</span>a  <span class="token operator">&lt;&lt;</span>std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
 	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Valor de p: "</span>  <span class="token operator">&lt;&lt;</span>  p  <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
@@ -73,6 +75,12 @@
 	<span class="token keyword">return</span>  <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span> 
 </code></pre>
+<pre class=" language-bash"><code class="prism  language-bash">Valor de a: 10
+Dirección de a: 0x59db2d50c010
+Valor de p: 0x59db2d50c010
+Valor de *p: 10
+Dirección de p: 0x59db2d50c018
+</code></pre>
 <p>En este ejemplo, <code>*p</code> accede al <strong>valor</strong> almacenado en la dirección de memoria a la que <code>p</code> apunta, es decir, el valor de <code>a</code>. La expresión <code>*p</code> es equivalente a acceder directamente a <code>a</code>.</p>
 <h2 id="punteros-propietarios">Punteros propietarios</h2>
 <p>Cuando un programa necesita más espacio para guardar algo grande, usa una parte especial de la memoria llamada <strong><em>heap</em></strong>. Cuando hace esto, el programa recibe una “dirección” que le dice dónde se guarda ese algo, y esa dirección se guarda en forma de puntero. Este tipo de punteros se llaman <strong>punteros propietarios</strong>.</p>
@@ -80,18 +88,16 @@
 <p>Para manejar esto, se usan dos comandos importantes: <code>new</code> para <strong>pedir</strong> espacio en el heap y <code>delete</code> para <strong>liberar</strong> ese espacio cuando ya no lo necesitas.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span><span class="token operator">*</span> p <span class="token operator">=</span> new <span class="token keyword">int</span><span class="token punctuation">;</span>
     <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span>  
-
     std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Valor en el heap: "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-
     delete p<span class="token punctuation">;</span>  
-    
     p <span class="token operator">=</span> nullptr<span class="token punctuation">;</span> 
-
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-bash"><code class="prism  language-bash">Valor en el heap: 42
 </code></pre>
 <p>En este ejemplo, hemos usado <code>new</code> para pedir espacio en el heap y almacenamos la dirección de esa memoria en el puntero <code>p</code>. Usamos <code>p</code> para almacenar el valor <code>42</code> en esa memoria.</p>
 <p>Si no liberamos la memoria con <code>delete</code>, esa memoria sigue ocupada aunque ya no la estemos usando, lo que genera una <strong>fuga de memoria</strong>.</p>
@@ -100,7 +106,7 @@
 <p>Después de liberar la memoria con <code>delete</code>, es buena práctica asignar <code>nullptr</code> al puntero. Esto ayuda a evitar que el puntero siga apuntando a una ubicación de memoria que ya no es válida (puntero colgante).</p>
 <h2 id="punteros-en-parámetros">Punteros en parámetros</h2>
 <h4 id="paso-por-valor-y-por-referencia">Paso por valor y por referencia</h4>
-<p><img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXc7MKyKN-EU3Zl3Ow5J_iq_VmB7bKNq1HOjUhy6yTTnj6RmHP9H4OYZvZrE18oToHvF8SCrq_zT2Dl8I0dlw_1aGOW1ScUkAL-NadMddpMCF5bZ2TyTYY-Hr_EDfvBIoDxXi9nwUp_Tx1Z1uMyfDUhKGj2U4n7E3zqELe1wet_ZqCBctADggnI?key=Ebc5RBD3qg94hAq1Y-1isQ" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif" alt="enter image description here"></p>
 <p>Uno de los mejores usos de los punteros es que nos permite optimizar nuestro programa. Y un ejemplo muy claro, es en las funciones.</p>
 <p>En los laboratorios anteriores estudiamos que los parámetros los podemos pasar a una función por <strong>por valor</strong>, al hacerlo estamos dando a la función una <strong>copia del valor original</strong>. Esto significa que cualquier cambio que la función haga en ese valor <strong>no afectará</strong> al valor original fuera de la función.</p>
 <h4 id="ejemplo-de-función-con-parametros-por-valor">Ejemplo de función con parametros por valor</h4>
@@ -110,20 +116,20 @@
   x <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
   y <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
   std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Dentro de la función: x = "</span> <span class="token operator">&lt;&lt;</span> x 
-            <span class="token operator">&lt;&lt;</span> <span class="token string">", y = "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+       <span class="token operator">&lt;&lt;</span> <span class="token string">", y = "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
   <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-
   <span class="token function">Sumar</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
   std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Fuera de la función: a = "</span> <span class="token operator">&lt;&lt;</span> a 
-            <span class="token operator">&lt;&lt;</span> <span class="token string">", b = "</span> <span class="token operator">&lt;&lt;</span> b <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-
+       <span class="token operator">&lt;&lt;</span> <span class="token string">", b = "</span> <span class="token operator">&lt;&lt;</span> b <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-bash"><code class="prism  language-bash">Dentro de la función: x <span class="token operator">=</span> 15, y <span class="token operator">=</span> 13
+Fuera de la función: a <span class="token operator">=</span> 5, b <span class="token operator">=</span> 3
 </code></pre>
 <p>Por otro lado, cuando pasamos un parámetro <strong>por referencia</strong>, le estamos dando a la función acceso directo al valor original mediante su dirección de memoria. Esto significa que cualquier cambio que la función haga <strong>sí afectará</strong> al valor original fuera de la función.</p>
 <h4 id="ejemplo-de-función-con-parametros-por-referencia">Ejemplo de función con parametros por referencia</h4>
@@ -133,40 +139,84 @@
   x <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
   y <span class="token operator">+</span><span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
   std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Dentro de la función: x = "</span> <span class="token operator">&lt;&lt;</span> x 
-            <span class="token operator">&lt;&lt;</span> <span class="token string">", y = "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+       <span class="token operator">&lt;&lt;</span> <span class="token string">", y = "</span> <span class="token operator">&lt;&lt;</span> y <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
   <span class="token keyword">int</span> b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>
-
   <span class="token function">SumarPorReferencia</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Fuera de la función: a = "</span> <span class="token operator">&lt;&lt;</span> a 
-            <span class="token operator">&lt;&lt;</span> <span class="token string">", b = "</span> <span class="token operator">&lt;&lt;</span> b <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Fuera de la función: a = "</span> <span class="token operator">&lt;&lt;</span> a <span class="token operator">&lt;&lt;</span> 
+	   <span class="token string">", b = "</span> <span class="token operator">&lt;&lt;</span> b <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
+</code></pre>
+<pre class=" language-bash"><code class="prism  language-bash">Dentro de la función: x <span class="token operator">=</span> 15, y <span class="token operator">=</span> 13
+Fuera de la función: a <span class="token operator">=</span> 15, b <span class="token operator">=</span> 13
 </code></pre>
 <h2 id="punteros-en-arreglos">Punteros en arreglos</h2>
 <p>En C++, los <strong>arreglos</strong> y los <strong>punteros</strong> están estrechamente relacionados. Un arreglo es básicamente una secuencia contigua de elementos almacenados en la memoria, y el <strong>nombre del arreglo</strong> es en realidad un <strong>puntero</strong> que apunta a la dirección de memoria del primer elemento del arreglo.</p>
 <p>Por lo tanto, no es necesario usar el operador <code>&amp;</code> para obtener la dirección del primer elemento del arreglo, ya que el nombre del arreglo ya es un puntero.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-
     <span class="token keyword">int</span><span class="token operator">*</span> p <span class="token operator">=</span> arr<span class="token punctuation">;</span>
-
     std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Primer elemento (usando puntero): "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span>p <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-
-    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Segundo elemento : "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Segundo elemento (usando puntero + indice): "</span> 
+	     <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>p <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<pre class=" language-bash"><code class="prism  language-bash">Primer elemento <span class="token punctuation">(</span>usando puntero<span class="token punctuation">)</span>: 10
+Segundo elemento <span class="token punctuation">(</span>usando puntero + indice<span class="token punctuation">)</span>: 20
+</code></pre>
 <p>El uso de punteros permite que las funciones puedan trabajar con arreglos sin tener que pasar copias de los datos, lo que ahorra memoria y tiempo de ejecución.</p>
+<ul>
+<li><strong>Ejemplo con array clásico</strong></li>
+</ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">imprimirArray</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span> arr<span class="token punctuation">,</span> <span class="token keyword">int</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> size<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>arr <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment">// equivalente a arr[i]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> numeros<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">40</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token comment">// Calcular el tamaño del arrat</span>
+    <span class="token keyword">int</span> size <span class="token operator">=</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>numeros<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Array con punteros: "</span><span class="token punctuation">;</span>
+    <span class="token function">imprimirArray</span><span class="token punctuation">(</span>numeros<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Array con punteros: 10 20 30 40 50
+</code></pre>
+<ul>
+<li><strong>Ejemplo con <code>std::vector</code></strong></li>
+</ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+
+<span class="token keyword">void</span> <span class="token function">imprimirVector</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span><span class="token operator">&amp;</span> vec<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Accediendo con puntero al primer elemento</span>
+    <span class="token keyword">const</span> <span class="token keyword">int</span><span class="token operator">*</span> ptr <span class="token operator">=</span> vec<span class="token punctuation">.</span><span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// devuelve un puntero al arreglo interno</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>size_t i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> vec<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token operator">*</span><span class="token punctuation">(</span>ptr <span class="token operator">+</span> i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span> <span class="token comment">// equivalente a vec[i]</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> numeros <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">35</span><span class="token punctuation">,</span> <span class="token number">45</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Vector con punteros: "</span><span class="token punctuation">;</span>
+    <span class="token function">imprimirVector</span><span class="token punctuation">(</span>numeros<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Vector con punteros: 5 15 25 35 45
+</code></pre>
 <h2 id="arreglos-punteros-y-funciones.">Arreglos, punteros y funciones.</h2>
 <p>Cuando se pasa un arreglo a una función, en realidad lo que se está pasando es un <strong>puntero</strong> que apunta al primer elemento del arreglo. Esto se debe a que los arreglos son tratados como punteros cuando se pasan a funciones, permitiendo acceder y manipular directamente los elementos del arreglo.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
@@ -178,23 +228,100 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token keyword">int</span> argc<span class="token punctuation">,</span> <span class="token keyword">char</span><span class="token operator">*</span> argv<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Arreglo original</span>
-
     <span class="token comment">// Llamada a la función, pasando el arreglo y su tamaño</span>
     <span class="token function">ModificarArreglo</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
     <span class="token comment">// Mostrar los valores modificados</span>
     <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">+</span> <span class="token number">1</span> <span class="token operator">&lt;&lt;</span> <span class="token string">": "</span> <span class="token operator">&lt;&lt;</span> arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 </code></pre>
 <p>En la función <code>ModificarArreglo</code>, se recorre el arreglo y se le suma 10 a cada elemento. Esto modifica los elementos directamente en el arreglo original <code>arr</code> del <code>main</code> porque hemos pasado un puntero al arreglo.</p>
 <p>La modificación es visible en el <code>main</code> después de la llamada a la función, ya que se trabaja sobre la misma ubicación de memoria.</p>
+<h2 id="buenas-practicas-de-uso-de-referencia---y-punteros-">Buenas practicas de uso de Referencia  <code>&amp;</code> y Punteros <code>*</code></h2>
+<p><strong>Paso por referencia (<code>&amp;</code>)</strong><br>
+El paso por referencia (<code>&amp;</code>) permite que una función modifique directamente la variable que recibe.</p>
+<ul>
+<li>Usar <code>const &amp;</code> cuando no necesitas modificar el valor
+<ul>
+<li>Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).</li>
+</ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">imprimir</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> texto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> texto <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>Usar <code>&amp;</code> cuando quieres modificar la variable<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">incrementar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> numero<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    numero<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+</li>
+<li>Preferir referencias sobre punteros cuando sea posible.</li>
+</ul>
+<p><strong>Punteros (<code>*</code>)</strong><br>
+Los punteros permiten trabajar con direcciones de memoria.</p>
+<ul>
+<li>
+<p>Inicializar punteros siempre</p>
+<ul>
+<li>Nunca los dejes sin valor, inicialízalos con <code>nullptr</code>.</li>
+</ul>
+</li>
+<li>
+<p>Liberar memoria asignada dinámicamente</p>
+<ul>
+<li>Cada <code>new</code> debe tener un <code>delete</code>.</li>
+<li>Cada <code>new[]</code> debe tener un <code>delete[]</code>.</li>
+</ul>
+</li>
+<li>
+<p>Evitan fugas de memoria (memory leaks).</p>
+</li>
+<li>
+<p>Evitar el uso innecesario de punteros crudos.</p>
+</li>
+<li>
+<p>Comprobar <code>nullptr</code> antes de usar.</p>
+</li>
+</ul>
+<h2 id="¿cuándo-usar-cada-uno">¿Cuándo usar cada uno?</h2>
+<ul>
+<li>
+<p><strong>Referencia (<code>&amp;</code>)</strong></p>
+<ul>
+<li>
+<p>Cuando siempre debe existir un valor.</p>
+</li>
+<li>
+<p>Para pasar parámetros sin copiar.</p>
+</li>
+<li>
+<p>Para modificar argumentos de una función.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Puntero (<code>*</code>)</strong></p>
+<ul>
+<li>
+<p>Cuando puede no existir el valor (opcional).</p>
+</li>
+<li>
+<p>Para manejar arreglos dinámicos.</p>
+</li>
+<li>
+<p>En estructuras de bajo nivel (drivers, APIs C).</p>
+</li>
+<li>
+<p>Cuando se necesita cambiar a qué objeto apunta.</p>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="importancia-de-los-punteros-en-la-gestión-de-memoria-y-manipulación-de-datos">Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos</h2>
 <p>Los punteros juegan un papel fundamental en la <strong>gestión eficiente de la memoria</strong> y en la <strong>manipulación de datos</strong> dentro de la programación.</p>
 <p>En muchas aplicaciones, no siempre sabemos cuánta memoria será necesaria durante la ejecución del programa. Los punteros nos permiten <strong>asignar y liberar memoria dinámica</strong> de manera manual, lo cual es crucial para gestionar correctamente los recursos en programas que requieren mucha memoria o cuya cantidad de datos no es fija.</p>
