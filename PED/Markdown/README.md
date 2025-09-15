@@ -48,7 +48,7 @@ https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/main/PED/Imagene
 ### Con URL RAW
 
 ```md
-![Diagrama CP4](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/main/PED/Imagenes/CP4/B.png)
+![Diagrama CP1](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/main/PED/Imagenes/CP1/A.png)
 ```
 * Nota: en **repos privados** los enlaces RAW no serán accesibles para lectores anónimos.
 
@@ -74,7 +74,7 @@ Esta sección documenta el flujo para **editar archivos Markdown** de las guías
 
      1. En StackEdit, abre el **panel lateral** → **Synchronize** → **Add synchronization**.
      2. Elige **GitHub** y autoriza a StackEdit.
-     3. Selecciona **Repository**, **Branch** y la **ruta del archivo** (p. ej. `PED/Guias/CP4.md`).
+     3. Selecciona **Repository**, **Branch** y la **ruta del archivo** (p. ej. `PED/Guias/CP1.md`).
      4. Activa **Push on save** (si quieres que cada guardado haga commit) o haz **Manual push** al finalizar.
    * **Desde un archivo local / pegar contenido**
 
@@ -91,10 +91,10 @@ Esta sección documenta el flujo para **editar archivos Markdown** de las guías
    * Si no, usa **Synchronize → Push** cuando termines.
    * Verifica en GitHub que el archivo se actualizó en la **rama correcta**.
 
-> **Sugerencia de ramas:** Trabaja en una **rama feature** (p. ej. `docs/cp4-actualizacion`) y luego abre un **Pull Request** para revisión antes de fusionar a `main`.
+> **Sugerencia de ramas:** Trabaja en una **rama feature** (p. ej. `docs/cp1-actualizacion`) y luego abre un **Pull Request** para revisión antes de fusionar a `main`.
 
 ## “Click para ampliar” (miniatura enlazada a la imagen grande)
 
 ```md
-[![Mini](../Imagenes/CP4/B.png)](../Imagenes/CP4/B.png)
+[![Mini](../Imagenes/CP1/A.png)](../Imagenes/CP1/A.png)
 ```

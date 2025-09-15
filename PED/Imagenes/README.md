@@ -35,23 +35,6 @@ PED/
   * **SVG**: vectores (diagramas exportados). *Evita SVG con scripts incrustados.*
 * **Tamaño recomendado**: intenta **≤ 300 KB** por imagen (optimiza antes de subir).
 
-## Subir imágenes (dos caminos)
-
-### A) Vía interfaz web de GitHub
-
-1. Navega a la carpeta del repo donde irán las imágenes (p. ej. `PED/Imagenes/CP4/`).
-2. Clic en **Add file → Upload files** y arrastra tus imágenes.
-3. Escribe un **mensaje de commit** y confirma con **Commit changes**.
-
-### B) Vía Git (CLI)
-
-```bash
-# Ubica las imágenes en la carpeta esperada
-git add PED/Imagenes/CP4/B.png
-git commit -m "feat(images): agrega B.png para guía CP4"
-git push origin main
-```
-
 ## Obtener la URL RAW (directa) de una imagen
 
 1. Abre el archivo de imagen en GitHub (vista del repositorio).
@@ -91,8 +74,3 @@ https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/main/PED/Imagene
 * **No carga la imagen**: verifica que la URL/relativa sea correcta y que el archivo exista en esa ruta y rama.
 * **En repo privado no se ve**: el lector no autenticado no puede ver RAW. Usa repo público/Pages/bucket.
 * **Espacios en el nombre**: evita espacios; si existen, debes codificarlos como `%20` en la URL.
-
-## Notas finales
-
-* Prefiere **rutas relativas** si imagen y guía viven en el **mismo repo**.
-* Usa **RAW** o **Pages** si las guías se consumirán fuera del repo.
