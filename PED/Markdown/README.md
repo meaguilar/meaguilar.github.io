@@ -15,9 +15,9 @@ Ejemplo para un curso con guías:
 ```
 PED/
   Guias/
-    CP4.md
+    CP1.md
   Imagenes/
-    CP4/
+    CP1/
       A.png
       B.png
       diagrama-1.svg
