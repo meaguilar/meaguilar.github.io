@@ -1,4 +1,5 @@
 ﻿# Punteros
+
 En este laboratorio aprenderás sobre el uso de punteros, cómo declararlos, cómo utilizarlos, y su importancia en la gestión de memoria y manipulación de datos en programación.
 
 ### ¿Qué son los punteros?
@@ -14,6 +15,22 @@ Como tal, una variable tiene 3 características fundamentales:
 Entonces, a simple modo podemos decir que un puntero es como un tipo especial de variable, que tiene las características que mencionamos anteriormente, como todas las variables, con la única **diferencia** que su valor no será un dato como tal, si no que era una dirección de memoria que esta **apuntando** a otro objeto (int, float, chat).
 
 Entonces los punteros nos servirán para acceder a esos objetos a los cuales apuntan, es decir, hacer referencia a ellos usando su dirección de memoria. Ahora, si tu un puntero no lo inicializas bien, va a apuntar a una direccion de memoria **no valida**.
+
+## Escenario
+
+Imagina que tienes un documento llamado **“informe.docx”**.
+
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/B.png)
+
+| Caso 1: Archivo en tu computadora (local, sin Internet) | Caso 2: Archivo en OneDrive (en la nube, con Internet) |
+|---------------------------------------------------------|--------------------------------------------------------|
+| - Tienes el archivo directamente en tu escritorio.      | - No tienes el archivo físicamente en tu escritorio.    |
+| - Lo abres con Word, haces cambios y lo guardas.        | - Tienes un **enlace (dirección URL)** que apunta al archivo en OneDrive. |
+| - Estás **trabajando sobre el archivo original**.       | - Abres ese enlace y estás **trabajando a través de un puntero (dirección en la nube)**. |
+| Esto se parece a una **referencia (`&`)** en C++        | Esto se parece a un **puntero (`*`)** en C++           |
+| - Es un acceso **directo** al recurso.                  | - No tienes el archivo en sí, sino la **dirección**.    |
+| - No necesitas intermediarios.                          | - Usas esa dirección para llegar hasta el archivo.      |
+| - Si lo cambias, se modifica de inmediato el archivo.   | - Si la dirección está mal → sería como un `nullptr`.   |
 
 ### Ejemplo de definición de puntero
 ```c++
@@ -244,7 +261,6 @@ int main() {
     }
     return 0;
 }
-
 ```
 En la función `ModificarArreglo`, se recorre el arreglo y se le suma 10 a cada elemento. Esto modifica los elementos directamente en el arreglo original `arr` del `main` porque hemos pasado un puntero al arreglo.
 
@@ -254,14 +270,14 @@ La modificación es visible en el `main` después de la llamada a la función, y
 
 **Paso por referencia (`&`)**
 El paso por referencia (`&`) permite que una función modifique directamente la variable que recibe.
-- Usar `const &` cuando no necesitas modificar el valor
+- Usar `const &` cuando no necesitas modificar el valor.
 	-   Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).
 	```c++
 	void imprimir(const std::string& texto) {
     std::cout << texto << std::endl;
 	}
 	```
-- Usar `&` cuando quieres modificar la variable
+- Usar `&` cuando quieres modificar la variable.
 	```c++
 	void incrementar(int& numero) {
 	    numero++;
@@ -272,10 +288,10 @@ El paso por referencia (`&`) permite que una función modifique directamente la 
 **Punteros (`*`)**
 Los punteros permiten trabajar con direcciones de memoria.
 
-- Inicializar punteros siempre
+- Inicializar punteros siempre.
 
 	- Nunca los dejes sin valor, inicialízalos con `nullptr`.
-- Liberar memoria asignada dinámicamente
+- Liberar memoria asignada dinámicamente.
 	-   Cada `new` debe tener un `delete`.
 	-   Cada `new[]` debe tener un `delete[]`.
 - Evitan fugas de memoria (memory leaks).
@@ -298,15 +314,7 @@ Los punteros permiten trabajar con direcciones de memoria.
         
     -   Para manejar arreglos dinámicos.
         
-    -   En estructuras de bajo nivel (drivers, APIs C).
+    -   En estructuras de bajo nivel.
         
     -   Cuando se necesita cambiar a qué objeto apunta.
-
-## Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos
-
-Los punteros juegan un papel fundamental en la **gestión eficiente de la memoria** y en la **manipulación de datos** dentro de la programación. 
-
-En muchas aplicaciones, no siempre sabemos cuánta memoria será necesaria durante la ejecución del programa. Los punteros nos permiten **asignar y liberar memoria dinámica** de manera manual, lo cual es crucial para gestionar correctamente los recursos en programas que requieren mucha memoria o cuya cantidad de datos no es fija.
-
-Al usar punteros, es posible **optimizar el rendimiento** del programa al reducir el uso de memoria y permitir un acceso más rápido a los datos.
 

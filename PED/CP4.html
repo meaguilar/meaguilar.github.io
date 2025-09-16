@@ -16,6 +16,7 @@
 <li><a href="#punteros">Punteros</a>
 <ul>
 <li></li>
+<li><a href="#escenario">Escenario</a></li>
 <li><a href="#punteros-propietarios">Punteros propietarios</a></li>
 <li><a href="#punteros-en-parámetros">Punteros en parámetros</a>
 <ul>
@@ -26,7 +27,6 @@
 <li><a href="#arreglos-punteros-y-funciones.">Arreglos, punteros y funciones.</a></li>
 <li><a href="#buenas-practicas-de-uso-de-referencia---y-punteros-">Buenas practicas de uso de Referencia  & y Punteros *</a></li>
 <li><a href="#¿cuándo-usar-cada-uno">¿Cuándo usar cada uno?</a></li>
-<li><a href="#importancia-de-los-punteros-en-la-gestión-de-memoria-y-manipulación-de-datos">Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos</a></li>
 </ul>
 </li>
 </ul>
@@ -47,7 +47,48 @@
 </ul>
 <p>Entonces, a simple modo podemos decir que un puntero es como un tipo especial de variable, que tiene las características que mencionamos anteriormente, como todas las variables, con la única <strong>diferencia</strong> que su valor no será un dato como tal, si no que era una dirección de memoria que esta <strong>apuntando</strong> a otro objeto (int, float, chat).</p>
 <p>Entonces los punteros nos servirán para acceder a esos objetos a los cuales apuntan, es decir, hacer referencia a ellos usando su dirección de memoria. Ahora, si tu un puntero no lo inicializas bien, va a apuntar a una direccion de memoria <strong>no valida</strong>.</p>
-<h3 id="ejemplo-de-definición-de-puntero">Ejemplo de definición de puntero</h3>
+<h2 id="escenario">Escenario</h2>
+<p>Imagina que tienes un documento llamado <strong>“informe.docx”</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/B.png" alt="enter image description here"></p>
+
+<table>
+<thead>
+<tr>
+<th>Caso 1: Archivo en tu computadora (local, sin Internet)</th>
+<th>Caso 2: Archivo en OneDrive (en la nube, con Internet)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>- Tienes el archivo directamente en tu escritorio.</td>
+<td>- No tienes el archivo físicamente en tu escritorio.</td>
+</tr>
+<tr>
+<td>- Lo abres con Word, haces cambios y lo guardas.</td>
+<td>- Tienes un <strong>enlace (dirección URL)</strong> que apunta al archivo en OneDrive.</td>
+</tr>
+<tr>
+<td>- Estás <strong>trabajando sobre el archivo original</strong>.</td>
+<td>- Abres ese enlace y estás <strong>trabajando a través de un puntero (dirección en la nube)</strong>.</td>
+</tr>
+<tr>
+<td>Esto se parece a una <strong>referencia (<code>&amp;</code>)</strong> en C++</td>
+<td>Esto se parece a un <strong>puntero (<code>*</code>)</strong> en C++</td>
+</tr>
+<tr>
+<td>- Es un acceso <strong>directo</strong> al recurso.</td>
+<td>- No tienes el archivo en sí, sino la <strong>dirección</strong>.</td>
+</tr>
+<tr>
+<td>- No necesitas intermediarios.</td>
+<td>- Usas esa dirección para llegar hasta el archivo.</td>
+</tr>
+<tr>
+<td>- Si lo cambias, se modifica de inmediato el archivo.</td>
+<td>- Si la dirección está mal → sería como un <code>nullptr</code>.</td>
+</tr>
+</tbody>
+</table><h3 id="ejemplo-de-definición-de-puntero">Ejemplo de definición de puntero</h3>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> a <span class="token operator">=</span> <span class="token number">42</span><span class="token punctuation">;</span> 
 <span class="token keyword">int</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token operator">&amp;</span>a<span class="token punctuation">;</span> 
 </code></pre>
@@ -238,7 +279,6 @@ Segundo elemento <span class="token punctuation">(</span>usando puntero + indice
     <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
 <p>En la función <code>ModificarArreglo</code>, se recorre el arreglo y se le suma 10 a cada elemento. Esto modifica los elementos directamente en el arreglo original <code>arr</code> del <code>main</code> porque hemos pasado un puntero al arreglo.</p>
 <p>La modificación es visible en el <code>main</code> después de la llamada a la función, ya que se trabaja sobre la misma ubicación de memoria.</p>
@@ -246,7 +286,7 @@ Segundo elemento <span class="token punctuation">(</span>usando puntero + indice
 <p><strong>Paso por referencia (<code>&amp;</code>)</strong><br>
 El paso por referencia (<code>&amp;</code>) permite que una función modifique directamente la variable que recibe.</p>
 <ul>
-<li>Usar <code>const &amp;</code> cuando no necesitas modificar el valor
+<li>Usar <code>const &amp;</code> cuando no necesitas modificar el valor.
 <ul>
 <li>Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).</li>
 </ul>
@@ -255,7 +295,7 @@ std<span class="token punctuation">:</span><span class="token punctuation">:</sp
 <span class="token punctuation">}</span>
 </code></pre>
 </li>
-<li>Usar <code>&amp;</code> cuando quieres modificar la variable<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">incrementar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> numero<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<li>Usar <code>&amp;</code> cuando quieres modificar la variable.<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">incrementar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> numero<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     numero<span class="token operator">++</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
@@ -266,13 +306,13 @@ std<span class="token punctuation">:</span><span class="token punctuation">:</sp
 Los punteros permiten trabajar con direcciones de memoria.</p>
 <ul>
 <li>
-<p>Inicializar punteros siempre</p>
+<p>Inicializar punteros siempre.</p>
 <ul>
 <li>Nunca los dejes sin valor, inicialízalos con <code>nullptr</code>.</li>
 </ul>
 </li>
 <li>
-<p>Liberar memoria asignada dinámicamente</p>
+<p>Liberar memoria asignada dinámicamente.</p>
 <ul>
 <li>Cada <code>new</code> debe tener un <code>delete</code>.</li>
 <li>Cada <code>new[]</code> debe tener un <code>delete[]</code>.</li>
@@ -314,7 +354,7 @@ Los punteros permiten trabajar con direcciones de memoria.</p>
 <p>Para manejar arreglos dinámicos.</p>
 </li>
 <li>
-<p>En estructuras de bajo nivel (drivers, APIs C).</p>
+<p>En estructuras de bajo nivel.</p>
 </li>
 <li>
 <p>Cuando se necesita cambiar a qué objeto apunta.</p>
@@ -322,10 +362,6 @@ Los punteros permiten trabajar con direcciones de memoria.</p>
 </ul>
 </li>
 </ul>
-<h2 id="importancia-de-los-punteros-en-la-gestión-de-memoria-y-manipulación-de-datos">Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos</h2>
-<p>Los punteros juegan un papel fundamental en la <strong>gestión eficiente de la memoria</strong> y en la <strong>manipulación de datos</strong> dentro de la programación.</p>
-<p>En muchas aplicaciones, no siempre sabemos cuánta memoria será necesaria durante la ejecución del programa. Los punteros nos permiten <strong>asignar y liberar memoria dinámica</strong> de manera manual, lo cual es crucial para gestionar correctamente los recursos en programas que requieren mucha memoria o cuya cantidad de datos no es fija.</p>
-<p>Al usar punteros, es posible <strong>optimizar el rendimiento</strong> del programa al reducir el uso de memoria y permitir un acceso más rápido a los datos.</p>
 
     </div>
   </div>
