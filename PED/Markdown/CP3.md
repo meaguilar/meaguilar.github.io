@@ -1,237 +1,293 @@
-﻿# Funciones recursivas
+﻿# Punteros
 
-En este laboratorio aprenderás sobre que son las funciones recursivas, su implementación y aplicaciones prácticas.
+En este laboratorio aprenderás sobre el uso de punteros, cómo declararlos, cómo utilizarlos, y su importancia en la gestión de memoria y manipulación de datos en programación.
 
-## ¿Qué es recursividad?
-La recursividad es una técnica de programación donde una función **se llama a sí misma** para resolver un problema. En esencia, una función recursiva aborda un problema dividiéndolo en subproblemas más pequeños y más sencillos de resolver, hasta llegar a una condición base que **detiene la recursión**.
+### ¿Qué son los punteros?
 
-Es crucial establecer una **condición base** o **condición de paro**  que detenga la recursividad, para evitar que la función se llame indefinidamente.
+En tu computadora, cada variable que tu guardas, en realidad el valor de esa variable se guarda en **una dirección de memoria**. La dirección de memoria es el **lugar físico** donde la memoria **está** siendo guardada. Los punteros, van a permitirnos almacenar la dirección de memoria de cualquier variable y nos permitirán manipularla.
 
-![](https://i.ytimg.com/vi/_-5l_gKnnsM/maxresdefault.jpg)
+Como tal, una variable tiene 3 características fundamentales:
 
+- **Su valor** 
+- **Su nombre** 
+- **Dirección de memoria**
 
-### 1. **Características Clave de las Funciones Recursivas**
+Entonces, a simple modo podemos decir que un puntero es como un tipo especial de variable, que tiene las características que mencionamos anteriormente, como todas las variables, con la única **diferencia** que su valor no será un dato como tal, si no que era una dirección de memoria que esta **apuntando** a otro objeto (int, float, chat).
 
--   **Llamada Recursiva:** En el corazón de toda función recursiva hay una llamada a sí misma, es decir se invoca a si misma adentro.
--   **Caso Base:** Este es el punto de parada. Sin un caso base, la función seguiría llamándose a sí misma indefinidamente, lo que llevaría a un error.
--   **Descomposición del Problema:** Cada vez que la función se llama a sí misma, debe acercarse al caso base.
+Entonces los punteros nos servirán para acceder a esos objetos a los cuales apuntan, es decir, hacer referencia a ellos usando su dirección de memoria. Ahora, si tu un puntero no lo inicializas bien, va a apuntar a una direccion de memoria **no valida**.
 
-### **2. Ventajas de la Recursividad**
+## Escenario
 
--   **Simplicidad Elegante:** En algunos casos, las soluciones recursivas pueden ser más claras y elegantes que las iterativas, facilitando la comprensión del código.
--   **Resolución de Problemas Complejos:** La recursividad es especialmente útil cuando un problema puede dividirse naturalmente en subproblemas más pequeños.
+Imagina que tienes un documento llamado **“informe.docx”**.
 
-### 3. **Desventajas de la Recursividad**
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/B.png)
 
--   **Consumo de Memoria:** Cada llamada recursiva se guarda en la pila de ejecución, lo que puede consumir mucha memoria si hay demasiadas llamadas anidadas. 
+| Caso 1: Archivo en tu computadora (local, sin Internet) | Caso 2: Archivo en OneDrive (en la nube, con Internet) |
+|---------------------------------------------------------|--------------------------------------------------------|
+| - Tienes el archivo directamente en tu escritorio.      | - No tienes el archivo físicamente en tu escritorio.    |
+| - Lo abres con Word, haces cambios y lo guardas.        | - Tienes un **enlace (dirección URL)** que apunta al archivo en OneDrive. |
+| - Estás **trabajando sobre el archivo original**.       | - Abres ese enlace y estás **trabajando a través de un puntero (dirección en la nube)**. |
+| Esto se parece a una **referencia (`&`)** en C++        | Esto se parece a un **puntero (`*`)** en C++           |
+| - Es un acceso **directo** al recurso.                  | - No tienes el archivo en sí, sino la **dirección**.    |
+| - No necesitas intermediarios.                          | - Usas esa dirección para llegar hasta el archivo.      |
+| - Si lo cambias, se modifica de inmediato el archivo.   | - Si la dirección está mal → sería como un `nullptr`.   |
 
-## Ejemplos de recursividad
-A continuación, implementaremos algunos ejemplos clásicos de funciones recursivas para ilustrar cómo funcionan en la práctica.
+### Ejemplo de definición de puntero
+```c++
+int a = 42; 
+int* p = &a; 
+```
+### ¿Qué significan el `*` y el `&` en los punteros?
+Cuando trabajamos con punteros, es esencial entender el significado de los operadores `*` y `&` porque son clave para manipular direcciones de memoria y valores.
 
-### 1. Factorial de un número
-El factorial de un número n (denotado como n!) es el producto de todos los enteros positivos menores o iguales a n. Por ejemplo:
-$$5! = 5 × 4 × 3 × 2 × 1 =120$$
+### El operador `&`: Operador de Referencia
 
- Se define recursivamente como:
-
-$$ n! = n × (n - 1)! $$
-
-Y la condición de paro o **caso base** es que:
- $$0! = 1$$
+El **ampersand (`&`)** se utiliza para obtener la **dirección de memoria** de una variable. Este proceso se llama **referenciar** una variable.
  
- Implementando esto a código obtenemos lo siguiente:
+ #### Ejemplo:
+ ```c++
+int a = 10;
+int* p = &a;
+ ```
+
+Aquí, `p` es un puntero que almacena la **dirección de memoria** de la variable `a`. En este caso, `&a` proporciona la dirección donde `a` está almacenada en la memoria.
+
+### El operador `*`: Operador de Desreferencia
+El asterisco (`*`) se utiliza para acceder al **valor** almacenado en la dirección de memoria que el puntero contiene. Este proceso se llama **desreferenciar** un puntero.
+
+```c++
+#include  <iostream>
+int  a  =  10;
+int*  p  =  &a;
+
+int  main()  {
+	std::cout  <<  "Valor de a: "  <<  a  << std::endl;
+	std::cout  <<  "Dirección de a: "  <<  &a  <<std::endl;
+	std::cout  <<  "Valor de p: "  <<  p  << std::endl;
+	std::cout  <<  "Valor de *p: "  <<  *p  << std::endl;
+	std::cout  <<  "Dirección de p: "  <<  &p  << std::endl;
+	return  0;
+} 
+```
+```bash
+Valor de a: 10
+Dirección de a: 0x59db2d50c010
+Valor de p: 0x59db2d50c010
+Valor de *p: 10
+Dirección de p: 0x59db2d50c018
+```
+En este ejemplo, `*p` accede al **valor** almacenado en la dirección de memoria a la que `p` apunta, es decir, el valor de `a`. La expresión `*p` es equivalente a acceder directamente a `a`.
+
+
+
+## Punteros en parámetros
+
+#### Paso por valor y por referencia
+
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif)
+
+
+Uno de los mejores usos de los punteros es que nos permite optimizar nuestro programa. Y un ejemplo muy claro, es en las funciones.
+
+En los laboratorios anteriores estudiamos que los parámetros los podemos pasar a una función por **por valor**, al hacerlo estamos dando a la función una **copia del valor original**. Esto significa que cualquier cambio que la función haga en ese valor **no afectará** al valor original fuera de la función.
+
+#### Ejemplo de función con parametros por valor
 ```c++
 #include <iostream>
 
-int factorial(int n) {
-    if (n == 0) {
-        return 1; // Caso base o condición de paro
-    } else {
-        return n * factorial(n - 1); // Llamada recursiva
+void Sumar(int x, int y) {
+  x += 10;
+  y += 10;
+  std::cout << "Dentro de la función: x = " << x 
+       << ", y = " << y << std::endl;
+}
+
+int main() {
+  int a = 5;
+  int b = 3;
+  Sumar(a, b);
+  std::cout << "Fuera de la función: a = " << a 
+       << ", b = " << b << std::endl;
+  return 0;
+}
+```
+```bash
+Dentro de la función: x = 15, y = 13
+Fuera de la función: a = 5, b = 3
+```
+Por otro lado, cuando pasamos un parámetro **por referencia**, le estamos dando a la función acceso directo al valor original mediante su dirección de memoria. Esto significa que cualquier cambio que la función haga **sí afectará** al valor original fuera de la función.
+
+#### Ejemplo de función con parametros por referencia
+```c++
+#include <iostream>
+
+void SumarPorReferencia(int& x, int& y) {
+  x += 10;
+  y += 10;
+  std::cout << "Dentro de la función: x = " << x 
+       << ", y = " << y << std::endl;
+}
+
+int main() {
+  int a = 5;
+  int b = 3;
+  SumarPorReferencia(a, b);
+  std::cout << "Fuera de la función: a = " << a << 
+	   ", b = " << b << std::endl;
+  return 0;
+}
+```
+```bash
+Dentro de la función: x = 15, y = 13
+Fuera de la función: a = 15, b = 13
+```
+
+## Punteros en arreglos
+En C++, los **arreglos** y los **punteros** están estrechamente relacionados. Un arreglo es básicamente una secuencia contigua de elementos almacenados en la memoria, y el **nombre del arreglo** es en realidad un **puntero** que apunta a la dirección de memoria del primer elemento del arreglo.
+
+Por lo tanto, no es necesario usar el operador `&` para obtener la dirección del primer elemento del arreglo, ya que el nombre del arreglo ya es un puntero.
+```c++
+#include <iostream>
+
+int main() {
+    int arr[5] = {10, 20, 30, 40, 50};
+    int* p = arr;
+    std::cout << "Primer elemento (usando puntero): " << *p << std::endl;
+    std::cout << "Segundo elemento (usando puntero + indice): " 
+	     << *(p + 1) << std::endl;
+    return 0;
+}
+```
+```bash
+Primer elemento (usando puntero): 10
+Segundo elemento (usando puntero + indice): 20
+```
+El uso de punteros permite que las funciones puedan trabajar con arreglos sin tener que pasar copias de los datos, lo que ahorra memoria y tiempo de ejecución.
+
+- **Ejemplo con array clásico**
+```c++
+#include <iostream>
+
+void imprimirArray(int* arr, int size) {
+    for (int i = 0; i < size; i++) {
+        std::cout << *(arr + i) << " "; // equivalente a arr[i]
+        // se aplica la aritmética de punteros para recorrer el arreglo * + índice
     }
 }
 
 int main() {
-    int num;
-    std::cout << "Ingresa un numero: ";
-    std::cin >> num;
-    std::cout << "El factorial de " << num << " es: " << factorial(num) << std::endl;
+    int numeros[] = {10, 20, 30, 40, 50};
+    // Calcular el tamaño del array
+    int size = sizeof(numeros) / sizeof(numeros[0]);
+    std::cout << "Array con punteros: ";
+    imprimirArray(numeros, size);
     return 0;
 }
 ```
-En este ejemplo, como se vio en la teoría, la función `factorial` dentro de la misma función se esta llamando a si misma, retornando la operación mencionada anteriormente en la teoría.
-
-Esta iteración la seguirá haciendo hasta que el numero que retorne sea igual a 0. Esa condición que hacemos al principio, es nuestra condición de paro, cuando eso se cumpla, la función ya no seguirá haciendo llamadas recursivas.
-
-### 2. Sucesión de Fibonacci
-Otro ejemplo matemático donde podemos usar recursividad es la sucesión de Fibonacci. Esta es un serie de números donde el siguiente es la suma de los dos anteriores. 
-$$0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89$$
-
-Es decir:
-- 0 + 1 da como resultado 1
-- 1 + 1 da como resultado 2
-- 1 + 2 da como resultado 3
-- 2 + 3 da como resultado 5
-
-Y así sucesivamente e indefinidamente, esto lo podemos aplicar a código, aunque la sucesión de Fibonacci sea infinita. Es decir, a la función brindarle una posición y en base a eso calcule cual es el número. Por ejemplo, en la posición 6 esta el numero 8.
-
-![](https://camo.githubusercontent.com/9a6d55ad66f71602c9219b3afdc37a23c5f3fd0050ed0de57f0b3af0fc154d3a/68747470733a2f2f692e70696e696d672e636f6d2f6f726967696e616c732f39612f35662f62662f39613566626661313530666465616239306133666434633339616665646635342e676966)
-
-Aplicando esto a código, nos queda lo siguiente:
+```
+Array con punteros: 10 20 30 40 50
+```
+- **Ejemplo con `std::vector`**
 ```c++
 #include <iostream>
+#include <vector>
 
-int Fibonacci(int n) {
+void imprimirVector(const std::vector<int>& vec) {
+    // Accediendo con puntero al primer elemento
+    const int* ptr = vec.data(); // devuelve un puntero al arreglo interno
+    for (size_t i = 0; i < vec.size(); i++) {
+        std::cout << *(ptr + i) << " "; // equivalente a vec[i]
+        // se aplica la aritmética de punteros para recorrer el arreglo * + indice
+    }
+}
 
-  // Condición de paro
-  // si n es 0 o 1, se retorna el mismo número
-  
-  if (n == 0) {
+int main() {
+    std::vector<int> numeros = {5, 15, 25, 35, 45};
+    std::cout << "Vector con punteros: ";
+    imprimirVector(numeros);
     return 0;
-  } else if (n == 1) {
-    return 1;
-  }
-  
-  // Caso recursivo: se suman los dos números anteriores
-  return Fibonacci(n - 1) + Fibonacci(n - 2);
-}
-
-int main() {
-  int numero;
-  std::cout << "Ingresa un numero: ";
-  std::cin >> numero;
-
-  std::cout << "El numero de Fibonacci en la posicion " << numero << " es "
-            << Fibonacci(numero) << std::endl;
-
-  return 0;
 }
 ```
-En este ejemplo, vimos que llamamos a la misma función en el cuerpo de la función, y esta el `n` que recibe es el que retornó en su llamada anterior, esto hasta que llegue a nuestra condición de paro, sea 0 o sea 1.
+```
+Vector con punteros: 5 15 25 35 45
+```
+## Arreglos, punteros y funciones.
+Cuando se pasa un arreglo a una función, en realidad lo que se está pasando es un **puntero** que apunta al primer elemento del arreglo. Esto se debe a que los arreglos son tratados como punteros cuando se pasan a funciones, permitiendo acceder y manipular directamente los elementos del arreglo.
 
-### 3. Cuenta regresiva
-De momento los ejemplos que hemos visto, son de libros, muy matemáticos, sin embargo, las funciones recursivas las podemos usar para cosas mas sencillas. Por ejemplo para una cuenta regresiva.
-
-La idea es sencilla, queremos una función que en cada llamada, haga que el numero disminuya, haciendo que cada vez que se llama, retorne el numero restado 1. Pero... **¿Hasta donde?**
-En este caso si no ponemos un paro, seguirá restando uno al numero indefinidamente. Por lo tanto, nuestra función se detendrá cuando lleguemos a 0.
-
-Aplicando esto a código obtenemos:
 ```c++
 #include <iostream>
 
-void Countdown(int n) {
-  // Caso base: nuestra cuenta llega a 0
-  if (n < 0) {
-    return;
-  }
-  // Muestra el numero de la cuenta regresiva
-  std::cout << n << std::endl;
-  
-  /* Vuelve a llamarse a si misma, 
-  pasandole el mismo numero, restado 1 */
-  
-  Countdown(n - 1);
+// Función que recibe un puntero a un arreglo y su tamaño
+void ModificarArreglo(int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        arr[i] += 10;  // Modifica cada elemento sumando 10
+    }
 }
 
 int main() {
-  int number;
-  std::cout << "Ingrese un numero para iniciar la cuenta: ";
-  std::cin >> number;
-
-  Countdown(number);
-
-  return 0;
+    int arr[5] = {1, 2, 3, 4, 5};  // Arreglo original
+    // Llamada a la función, pasando el arreglo y su tamaño
+    ModificarArreglo(arr, 5);
+    // Mostrar los valores modificados
+    for (int i = 0; i < 5; ++i) {
+        std::cout << "Elemento " << i + 1 << ": " << arr[i] << std::endl;
+    }
+    return 0;
 }
 ```
+En la función `ModificarArreglo`, se recorre el arreglo y se le suma 10 a cada elemento. Esto modifica los elementos directamente en el arreglo original `arr` del `main` porque hemos pasado un puntero al arreglo.
 
-## Tipos de recursividad 
-Las funciones recursivas se pueden clasificar en diferentes tipos según cómo se estructuren las llamadas recursivas
+La modificación es visible en el `main` después de la llamada a la función, ya que se trabaja sobre la misma ubicación de memoria.
 
-### 1. Recursividad Directa
-En la recursividad directa, una función se llama a sí misma directamente. Este es el tipo más común de recursividad y el que hemos visto en los ejemplos anteriores.
-```c++
-#include <iostream>
+## ¿Cuándo usar cada uno?
 
-int CountCharacters(const char* str) {
-  if (str[0] == '\0') {
-    return 0;  // Caso base: si alcanzamos el final de la cadena, retornamos 0.
-  } else {
-    return 1 + CountCharacters(str + 1);  // Llamada recursiva con el siguiente carácter.
-  }
-}
+-   **Referencia (`&`)**
+    
+    -   Cuando siempre debe existir un valor.
+        
+    -   Para pasar parámetros sin copiar.
+        
+    -   Para modificar argumentos de una función.
+        
+-   **Puntero (`*`)**
+    
+    -   Cuando puede no existir el valor (opcional).
+        
+    -   Para manejar arreglos dinámicos.
+        
+    -   En estructuras de bajo nivel.
+        
+    -   Cuando se necesita cambiar a qué objeto apunta.
 
-int main() {
-  const char* myString = "Hola, mundo!";
+## Buenas practicas de uso de Referencia  `&` y Punteros `*`
 
-  int count = CountCharacters(myString);
+**Paso por referencia (`&`)**
+El paso por referencia (`&`) permite que una función modifique directamente la variable que recibe.
+- Usar `const &` cuando no necesitas modificar el valor.
+	-   Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).
+	```c++
+	void imprimir(const std::string& texto) {
+    std::cout << texto << std::endl;
+	}
+	```
+- Usar `&` cuando quieres modificar la variable.
+	```c++
+	void incrementar(int& numero) {
+	    numero++;
+	}
+	```
+- Preferir referencias sobre punteros cuando sea posible.
 
-  std::cout << "La cadena '" << myString << "' tiene " << count << " caracteres." << std::endl;
+**Punteros (`*`)**
+Los punteros permiten trabajar con direcciones de memoria.
 
-  return 0;
-}
-```
-### 2. Recursividad Indirecta
-En la recursividad indirecta, una función A llama a otra función B, y la función B a su vez llama a la función A.
-```c++
-#include <iostream>
+- Inicializar punteros siempre.
 
-// Función A: Llama a FunctionB si n es mayor que 0.
-void FunctionA(int n) {
-  if (n > 0) {
-    FunctionB(n - 1);
-  }
-}
+- Liberar memoria asignada dinámicamente.
 
-// Función B: Llama a FunctionA si n es mayor que 1.
-void FunctionB(int n) {
-  if (n > 1) {
-    FunctionA(n / 2);
-  }
-}
+- Evitar el uso innecesario de punteros crudos.
 
 
-int main() {
-  int number;
 
-  // Solicita al usuario que ingrese un número.
-  std::cout << "Ingrese un numero: ";
-  std::cin >> number;
 
-  // Inicia la recursividad llamando a la FunctionA.
-  FunctionA(number);
 
-  return 0;
-}
-```
-
-#
-En conclusión, la recursividad es una técnica clave en programación que permite resolver problemas complejos  al dividirlos en subproblemas más pequeños.
-
- Aunque puede simplificar el código y facilitar la resolución de ciertos problemas, es importante ser consciente de sus limitaciones en términos de **consumo de memoria y rendimiento.**
- 
-
-## Anexos
-
-### Uso de SSH para clonar repositorios
-Configurar SSH te permite establecer conexiones seguras a servidores y gestionar repositorios remotos en GitHub u otros servicios. Aquí está una guía paso a paso para configurar SSH en Windows
-
-- Asegúrate primero de tener Git instalado en tu computadora
-- Luego de eso, hay que generar una llave SSH, para esto podemos ejecutar el siguiente comando en nuestro terminal:
-	 ```bash
-	 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-	 ``` 
--   Cuando se te pida, elige una ubicación para guardar la clave. La ubicación predeterminada (`~/.ssh/id_rsa`) es generalmente adecuada,.
--   También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no usar una frase de contraseña.
-**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXd7ItOfC65WG7PmOoRLciZzPqD-yxt0lRPPmCJBniuGTvWJ90-01y30PCiH6RAbD85at5DFkZLz_cPva6BFcDQ3Ydmrd_LiHmC3WrrjY3wwCDgYJIlMg4czgmScjrUkGgIw3Yzn9kQNlTj7EYjZxoDRigkt9wWbdhbaWgdsww?key=EhCsE0g7-bE307ibHBtdPA)**
-- Luego en tu computador, dirígete a la ubicación donde se creo el SSH publico, que es el que esta marcado en rojo en la fotografía anterior. Si copias y pegas la ruta en tu gestor de archivos, te abrirá un bloc de notas con una serie de caracteres, la cual es nuestra llave publica.
-- Copia la llave publica generada
-- Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos "configuración"
-	**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXd369XKIVQGD58NDnCvGXW7tgcBIAFyp7rJJAwlzu6jWOA8RjNfU3Rp0ue_763RYrsi04SN8o2OXkUr8UcC3ldXZgNzee_FnFjLWx5WUXVnn6gIUm3_e5Eotrn6UTn909JNq3WrESuQaH9flVIRDLCF0grNkiEOCGjp_klRLA?key=EhCsE0g7-bE307ibHBtdPA)**
-- En la configuración nos iremos al apartado "SSH keys and GPG keys" y agregaremos una nueva llave SSH
-**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXe12JVCGiS3FmyH-nHGD6_LKxv32tpI5IrmjIENJQV3oUyQ6y2XD0yhTxlYwuy4YpbU348RJNX7W-tTxfSM-Se1tnDcszEhJzI7am5CIYQmv1dYTg0i6SEooKSecEdrBP3Q-gk5fc3osgpcl3k7wC0w42g_7Zgo5-ToO24itg?key=EhCsE0g7-bE307ibHBtdPA)**
-Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la "key" pegamos la llave publica que estaba en nuestro bloc de notas.
-- Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.
-**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXes4-RvZ4dZNRhf1J6BChMmTiT_Tv03AYkcfMVNxgAxcxIFy-BcwetDRAXNWjMXwbjnVzIXBqSUmt1MrN2d_y90Jl6ixI12fcMqGgiO_3qf_e0arzhkVoa6H478T5mRjMDuZRGvjtwyaMb3SUj6_pnkvZ8JCeive_rJ7mlC3Q?key=EhCsE0g7-bE307ibHBtdPA)**
-- Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a "yes" y si hicimos los pasos correctamente, lo clonará.
-**![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXdPeLtifLRnrKNJc6PovR-iJmNq6T31qO3Z5VxnrOuqvz4Ec-r3k-sbiwpSYaTVLrZkA4K9Wx4UqVJJPhySTT3Kaw_OPhR9Mm1BhMZ4GFYUqoziGmiVe-mmZZW7MWWHfcQI-UKur-x7QFnvt7_7opmDMK0nUaJPNQkmCsRR?key=EhCsE0g7-bE307ibHBtdPA)**
-- Si tienes dudas o errores, no dudes en consultar con tu instructor.
