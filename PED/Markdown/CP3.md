@@ -20,7 +20,7 @@ Entonces los punteros nos servirán para acceder a esos objetos a los cuales apu
 
 Imagina que tienes un documento llamado **“informe.docx”**.
 
-![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/B.png)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP3/B.png)
 
 | Caso 1: Archivo en tu computadora (local, sin Internet) | Caso 2: Archivo en OneDrive (en la nube, con Internet) |
 |---------------------------------------------------------|--------------------------------------------------------|
