@@ -259,35 +259,49 @@ La modificación es visible en el `main` después de la llamada a la función, y
         
     -   Cuando se necesita cambiar a qué objeto apunta.
 
-## Buenas practicas de uso de Referencia  `&` y Punteros `*`
+## Buenas prácticas de uso de Referencias (`&`) y Punteros (`*`)
 
-**Paso por referencia (`&`)**
-El paso por referencia (`&`) permite que una función modifique directamente la variable que recibe.
-- Usar `const &` cuando no necesitas modificar el valor.
-	-   Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).
-	```c++
-	void imprimir(const std::string& texto) {
-    std::cout << texto << std::endl;
-	}
-	```
-- Usar `&` cuando quieres modificar la variable.
-	```c++
-	void incrementar(int& numero) {
-	    numero++;
-	}
-	```
-- Preferir referencias sobre punteros cuando sea posible.
+### Paso por referencia (`&`)
 
-**Punteros (`*`)**
-Los punteros permiten trabajar con direcciones de memoria.
+El paso por referencia permite que una función acceda y, si es necesario, modifique directamente la variable que recibe.
 
-- Inicializar punteros siempre.
+-   Usar `const &` cuando no necesitas modificar el valor.
+    
+    -   Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).
+           
+    ```cpp
+    void imprimir(const std::string& texto) {
+        std::cout << texto << std::endl;
+    }
+    ```
+    
+-   Usar `&` cuando quieras modificar la variable.
+    
+    ```cpp
+    void incrementar(int& numero) {
+        numero++;
+    }
+    ```
+    
+-   **Preferir referencias sobre punteros cuando solo necesites manipular el contenido de las variables en funciones.**  
+    Las referencias son más claras y evitan errores comunes como trabajar con direcciones nulas.
+    
+### Punteros (`*`)
 
-- Liberar memoria asignada dinámicamente.
+Los punteros permiten trabajar directamente con direcciones de memoria y son esenciales en varios escenarios.
 
-- Evitar el uso innecesario de punteros crudos.
+-   Inicializar siempre los punteros.
+    
+-   Usar punteros cuando necesites:
+    
+    -   Manipular variables de forma indirecta.
+        
+    -   Gestionar memoria dinámica.
+        
+    -   Crear estructuras dinámicas (listas enlazadas, árboles, etc.).
+        
+-   Si reservas memoria dinámicamente , debes liberarla siempre.
+    
+-   Evitar el uso innecesario de punteros crudos; en C++ moderno considera el uso de **smart pointers** para una gestión más segura.
 
-
-
-
-
+ Los punteros no están “prohibidos”, sino que tienen su lugar cuando hablamos de memoria dinámica o estructuras avanzadas.

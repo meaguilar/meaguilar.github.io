@@ -25,7 +25,7 @@
 <li><a href="#punteros-en-arreglos">Punteros en arreglos</a></li>
 <li><a href="#arreglos-punteros-y-funciones.">Arreglos, punteros y funciones.</a></li>
 <li><a href="#¿cuándo-usar-cada-uno">¿Cuándo usar cada uno?</a></li>
-<li><a href="#buenas-practicas-de-uso-de-referencia---y-punteros-">Buenas practicas de uso de Referencia  & y Punteros *</a></li>
+<li><a href="#buenas-prácticas-de-uso-de-referencias--y-punteros-">Buenas prácticas de uso de Referencias (&) y Punteros (*)</a></li>
 </ul>
 </li>
 </ul>
@@ -295,39 +295,60 @@ Segundo elemento <span class="token punctuation">(</span>usando puntero + indice
 </ul>
 </li>
 </ul>
-<h2 id="buenas-practicas-de-uso-de-referencia---y-punteros-">Buenas practicas de uso de Referencia  <code>&amp;</code> y Punteros <code>*</code></h2>
-<p><strong>Paso por referencia (<code>&amp;</code>)</strong><br>
-El paso por referencia (<code>&amp;</code>) permite que una función modifique directamente la variable que recibe.</p>
+<h2 id="buenas-prácticas-de-uso-de-referencias--y-punteros-">Buenas prácticas de uso de Referencias (<code>&amp;</code>) y Punteros (<code>*</code>)</h2>
+<h3 id="paso-por-referencia-">Paso por referencia (<code>&amp;</code>)</h3>
+<p>El paso por referencia permite que una función acceda y, si es necesario, modifique directamente la variable que recibe.</p>
 <ul>
-<li>Usar <code>const &amp;</code> cuando no necesitas modificar el valor.
+<li>
+<p>Usar <code>const &amp;</code> cuando no necesitas modificar el valor.</p>
 <ul>
 <li>Evita copias innecesarias en parámetros grandes (strings, vectores, objetos).</li>
 </ul>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">imprimir</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>string<span class="token operator">&amp;</span> texto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> texto <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">imprimir</span><span class="token punctuation">(</span><span class="token keyword">const</span> std<span class="token operator">::</span>string<span class="token operator">&amp;</span> texto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> texto <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 </li>
-<li>Usar <code>&amp;</code> cuando quieres modificar la variable.<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">incrementar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> numero<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<li>
+<p>Usar <code>&amp;</code> cuando quieras modificar la variable.</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">void</span> <span class="token function">incrementar</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">&amp;</span> numero<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     numero<span class="token operator">++</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 </li>
-<li>Preferir referencias sobre punteros cuando sea posible.</li>
+<li>
+<p><strong>Preferir referencias sobre punteros cuando solo necesites manipular el contenido de las variables en funciones.</strong><br>
+Las referencias son más claras y evitan errores comunes como trabajar con direcciones nulas.</p>
+</li>
 </ul>
-<p><strong>Punteros (<code>*</code>)</strong><br>
-Los punteros permiten trabajar con direcciones de memoria.</p>
+<h3 id="punteros-">Punteros (<code>*</code>)</h3>
+<p>Los punteros permiten trabajar directamente con direcciones de memoria y son esenciales en varios escenarios.</p>
 <ul>
 <li>
-<p>Inicializar punteros siempre.</p>
+<p>Inicializar siempre los punteros.</p>
 </li>
 <li>
-<p>Liberar memoria asignada dinámicamente.</p>
+<p>Usar punteros cuando necesites:</p>
+<ul>
+<li>
+<p>Manipular variables de forma indirecta.</p>
 </li>
 <li>
-<p>Evitar el uso innecesario de punteros crudos.</p>
+<p>Gestionar memoria dinámica.</p>
+</li>
+<li>
+<p>Crear estructuras dinámicas (listas enlazadas, árboles, etc.).</p>
 </li>
 </ul>
+</li>
+<li>
+<p>Si reservas memoria dinámicamente , debes liberarla siempre.</p>
+</li>
+<li>
+<p>Evitar el uso innecesario de punteros crudos; en C++ moderno considera el uso de <strong>smart pointers</strong> para una gestión más segura.</p>
+</li>
+</ul>
+<p>Los punteros no están “prohibidos”, sino que tienen su lugar cuando hablamos de memoria dinámica o estructuras avanzadas.</p>
 
     </div>
   </div>
