@@ -283,8 +283,8 @@ El paso por referencia permite que una función acceda y, si es necesario, modif
     }
     ```
     
--   **Preferir referencias sobre punteros cuando solo necesites manipular el contenido de las variables en funciones.**  
-    Las referencias son más claras y evitan errores comunes como trabajar con direcciones nulas.
+-   Preferir referencias sobre punteros cuando solo necesites manipular el contenido de las variables en funciones.
+	 -    Las referencias son más claras y evitan errores comunes como trabajar con direcciones nulas.
     
 ### Punteros (`*`)
 
