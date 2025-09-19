@@ -302,6 +302,7 @@ Los punteros permiten trabajar directamente con direcciones de memoria y son ese
         
 -   Si reservas memoria dinámicamente , debes liberarla siempre.
     
--   Evitar el uso innecesario de punteros crudos; en C++ moderno considera el uso de **smart pointers** para una gestión más segura.
+-   Evitar el uso innecesario de **punteros crudos**; en C++ moderno considera el uso de **smart pointers** para una gestión más segura.
+	- Un **puntero crudo** es un puntero tradicional que almacena directamente una dirección de memoria y cuya gestión (asignación y liberación) depende completamente del programador, sin mecanismos automáticos de seguridad o liberación de recursos.
 
  Los punteros no están “prohibidos”, sino que tienen su lugar cuando hablamos de memoria dinámica o estructuras avanzadas.
