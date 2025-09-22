@@ -9,8 +9,9 @@ Una **lista dinámica** es una estructura de datos en la que los elementos se or
 A diferencia de las **listas estáticas** o arreglos, las listas dinámicas **no necesitan un tamaño fijo** y permiten una mayor flexibilidad en la gestión de la memoria.
 
 ### Características de las listas dinámicas
+
 - **Uso de punteros**: Los nodos de una lista dinámica almacenan punteros que enlazan los nodos entre sí.
-- **Memoria dinámica**: Se gestiona mediante punteros, lo que permite un uso eficiente de la me la listaista dn un al sguta, a
+- **Memoria dinámica**: Se gestiona en tiempo de ejecución mediante punteros, lo que permite que la lista pueda crecer o reducirse de forma flexible y aprovechar mejor el espacio disponible en la memoria.
 -  **Inserción y eliminación eficientes**: Las operaciones de inserción y eliminación de elementos son más eficientes que en los arreglos estáticos.
 
 ## Importancia de los Punteros en la Gestión de Memoria y Manipulación de Datos
