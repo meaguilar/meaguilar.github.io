@@ -173,7 +173,7 @@ void EliminarNnodo(Nodo*& cabeza, int valor) {
 ```
 
 ### Ejemplo completo
-Puedes ver un ejemplo completo de la implementación de listas simples en este [repositorio lista simplemente enlazada](https://github.com/meaguilar/meaguilar.github.io/blob/main/PED/RepoLaboratorios/Listas/ListasSimples.cc).
+Puedes ver un ejemplo completo de la implementación de listas simples en este [repositorio lista simplemente enlazada](https://github.com/UCASV/RecursosExtraPED/blob/main/Listas/ListasSimples.cc).
 
 ## Listas doblemente enlazadas
 
@@ -269,7 +269,7 @@ void MostrarLista(Nodo* cabeza) {
 ```
 
 ### Ejemplo completo
-Puedes ver un ejemplo completo de la implementación de listas dobles en este [repositorio listas doblemente enlazadas](https://github.com/meaguilar/meaguilar.github.io/blob/main/PED/RepoLaboratorios/Listas/ListasDobles.cc)
+Puedes ver un ejemplo completo de la implementación de listas dobles en este [repositorio lista doblemente enlazada](https://github.com/UCASV/RecursosExtraPED/blob/main/Listas/ListasDobles.cc)
 
 
 ## Listas circulares simplemente enlazadas
@@ -368,7 +368,7 @@ void EliminarNodo(Nodo*& cabeza, int valor) {
 }
 ```
 ### Ejemplo completo
-Puedes ver un ejemplo completo de la implementación de listas simples circulares en este [repositorio lista circular simplemente enlazada](https://github.com/meaguilar/meaguilar.github.io/blob/main/PED/RepoLaboratorios/Listas/ListasSimplesCirculares.cc).
+Puedes ver un ejemplo completo de la implementación de listas simples circulares en este [repositorio lista circular simplemente enlazada](https://github.com/UCASV/RecursosExtraPED/blob/main/Listas/ListasSimplesCirculares.cc).
 
 ## Listas circulares doblemente enlazadas
 Una **lista circular doblemente enlazada** es una estructura de datos dinámica en la que cada nodo tiene dos punteros: uno que apunta al siguiente nodo y otro que apunta al anterior. La principal diferencia con las listas doblemente enlazadas tradicionales es que el último nodo está conectado al primero y viceversa, formando un ciclo cerrado.
@@ -479,7 +479,7 @@ void MostrarLista(Nodo* cabeza) {
 ```
 
 ### Ejemplo completo
-Puedes ver un ejemplo completo de la implementación de listas dobles circulares en este [repositorio lista circular doblemente enlazada](https://github.com/meaguilar/meaguilar.github.io/blob/main/PED/RepoLaboratorios/Listas/ListasDoblesCirculares.cc).
+Puedes ver un ejemplo completo de la implementación de listas dobles circulares en este [repositorio lista circular doblemente enlazada](https://github.com/UCASV/RecursosExtraPED/blob/main/Listas/ListasDoblesCirculares.cc).
 
 ## Ventajas de las listas enlazadas
 Cada tipo de lista ofrece diferentes ventajas: las **listas enlazadas simples** son fáciles de implementar y permiten una gestión básica de datos, mientras que las **listas doblemente enlazadas** facilitan el recorrido bidireccional. Por otro lado, las **listas circulares** son ideales para aplicaciones donde se requiere un recorrido continuo y cíclico de los datos.
@@ -517,9 +517,10 @@ Las listas enlazadas, aunque ofrecen muchas ventajas, también presentan algunas
     -   Al insertar: crea el nodo, ajusta enlaces (`next`/`prev`) y recién conecta.
     -   Al eliminar: cambia enlaces primero, luego libera la memoria.
 
+
 ## Referencias
 Puedes leer más sobre las listas enlazadas, te recomendamos los siguientes enlaces que puedes visitar para entender un poco más sobre como funcionan.
 
-https://conclase.net/c/edd/cap4
-https://youtu.be/15urP2LmfqY?si=Xfad9_-OtewdvhqO
+- [103. Programación en C++ || Listas || Concepto de Lista Enlazada](https://youtu.be/15urP2LmfqY?si=QpnrlXg95SHIsgwi)
 
+- [Listas circulares](https://conclase.net/c/edd/cap4)
