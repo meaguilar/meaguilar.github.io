@@ -235,6 +235,13 @@ int main() {
     return 0;
 }
 ```
+```
+Elemento 1: 11
+Elemento 2: 12
+Elemento 3: 13
+Elemento 4: 14
+Elemento 5: 15
+```
 En la función `ModificarArreglo`, se recorre el arreglo y se le suma 10 a cada elemento. Esto modifica los elementos directamente en el arreglo original `arr` del `main` porque hemos pasado un puntero al arreglo.
 
 La modificación es visible en el `main` después de la llamada a la función, ya que se trabaja sobre la misma ubicación de memoria.
