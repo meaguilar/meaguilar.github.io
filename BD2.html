@@ -25,7 +25,7 @@
       href="https://storage.googleapis.com/claat-public/codelab-elements.css"
       rel="stylesheet"
     />
-    <link href="styles.css" rel="stylesheet" />
+    <link href="./ABD/Laboratorio 2/Guia practica/styles.css" rel="stylesheet" />
   </head>
   <body>
     <google-codelab
@@ -113,7 +113,7 @@
   <ol>
     <li>Inicia sesión con un usuario administrador usando <strong>Windows Authentication</strong>.</li>
     <li>Ve al panel izquierdo: <strong>Security → Logins → sa</strong> y haz clic derecho → <strong>Properties</strong>.</li>
-    <img src="menu_sqlserver.png" alt="menu sql server" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+    <img src="./ABD/Laboratorio 2/Guia practica/menu_sqlserver.png" alt="menu sql server" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
 
     <li>En la pestaña <strong>Status</strong>, asegúrate de seleccionar:
       <ul>
@@ -121,11 +121,11 @@
         <li><strong>Login:</strong> Enabled</li>
       </ul>
     </li>
-    <img src="activar_sa.png" alt="activar sa desde propiedades" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+    <img src="./ABD/Laboratorio 2/Guia practica/activar_sa.png" alt="activar sa desde propiedades" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
 
     <li>Ve a la pestaña <strong>General</strong> y asigna una contraseña segura.</li>
     <li>Haz clic en <strong>OK</strong> para guardar los cambios.</li>
-    <img src="cambiar_clave.png" alt="cambiar clave sa desde propiedades" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+    <img src="./ABD/Laboratorio 2/Guia practica/cambiar_clave.png" alt="cambiar clave sa desde propiedades" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
   </ol>
 
   <h3>Opcional: Cómo activar el inicio de sesion por medio de <strong>SQL Server Authentication  </strong> si está deshabilitado</h3>
@@ -137,7 +137,7 @@
   <ol>
     <li>Conéctate a la instancia de SQL Server usando <strong>Windows Authentication</strong> con un usuario administrador.</li>
     <li>Haz clic derecho sobre el servidor en el <strong>Object Explorer</strong> → selecciona <strong>Properties</strong>.</li>
-    <img src="menu_activar_autenticacion.png" alt="Propiedades del servidor en SSMS" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+    <img src="./ABD/Laboratorio 2/Guia practica/menu_activar_autenticacion.png" alt="Propiedades del servidor en SSMS" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
 
     <li>En la ventana de propiedades, ve a la pestaña <strong>Security</strong> y selecciona la opción:
       <ul>
@@ -145,11 +145,11 @@
       </ul>
       Esto habilita el modo mixto (Windows + SQL Server logins).
     </li>
-    <img src="activar_sqlserverandwindows.png" alt="Habilitar autenticación mixta en SQL Server" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+    <img src="./ABD/Laboratorio 2/Guia practica/activar_sqlserverandwindows.png" alt="Habilitar autenticación mixta en SQL Server" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
 
     <li>Haz clic en <strong>OK</strong> para guardar los cambios.</li>
     <li><strong>Importante:</strong> Reinicia el servicio de SQL Server desde el <strong>Servicios de Windows</strong> para aplicar la nueva configuración.</li>
-    <img src="reiniciar_servicio.png" alt="Reiniciar servicio SQL Server" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+    <img src="./ABD/Laboratorio 2/Guia practica/reiniciar_servicio.png" alt="Reiniciar servicio SQL Server" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
   </ol>
 
   <!-- 🔹 Apartado Opcional 2: Cambiar nombre del login sa -->
@@ -192,7 +192,7 @@
   </div>
 
   <p>Ahora que ya tenemos activado el usuario administrador, iniciamos sesión utilizando el modo de autenticación <strong>SQL Server Authentication</strong> y colocamos las credenciales que asignamos anteriormente:</p>
-  <img src="login_sql.png" alt="login como sa" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
+  <img src="./ABD/Laboratorio 2/Guia practica/login_sql.png" alt="login como sa" style="max-width: 100%; border: 1px solid #ccc; border-radius: 4px;">
 
   <h3>Obligatorio: Crear la base de datos <strong>DB_Gimnasio</strong> con sus tablas e inserciones para continuar con la practica y posteriormente realizar los ejercicios guiados.</h3>
   <div class="code-container">
@@ -765,7 +765,7 @@ GO
             </tr>
             <tr>
               <td>1</td>
-              <td>Diego Eduardo Castro Quintanilla (00117322@uca.edu.sv)</td>
+              <td>Diego Eduardo Castro Quintanilla (00117322@uca.edu.sv), Claudia Maria Chavez Grande (00037221@uca.edu.sv)</td>
             </tr>
           </tbody>
         </table>
