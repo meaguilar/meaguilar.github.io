@@ -1,4 +1,4 @@
-﻿/* 
+/* 
 	LABORATORIO 2 ADMINISTRACION DE BASES DE DATOS 
     GUIA: PARTE PRACTICA
 	FECHA: 21/09/2025
@@ -9,9 +9,11 @@
 -- 0. Iniciar sesion en SQL Server como usuario administrador (sa) 
 -- Importante: Iniciar sesion con el usuario "sa" para tener todos los permisos de administrador
 -- Utilizar SQL Server Authentication para iniciar sesion para evitar problemas de privilegios.
+-- ADVERTENCIA!!!!: En caso de no iniciar sesion con el administrador (sa) pueden ocurrir problemas de privilegios
+-- al intentar crear o borrar los objetos de la practica
+
 
 -- Crear la base de datos con sus tablas e inserciones 
--- 1. Confirmar base de datos de trabajo; crear si no existe.
 IF DB_ID(N'DB_Gimnasio') IS NULL
 BEGIN
     PRINT 'Creando base de datos DB_Gimnasio...';
@@ -19,10 +21,8 @@ BEGIN
 END
 GO
 
--- 2. Crear tablas de ejemplo (si no existen) para aplicar permisos.
 USE DB_Gimnasio;
 
--- Tabla Cliente
 IF OBJECT_ID(N'dbo.Cliente', N'U') IS NULL
 BEGIN
     CREATE TABLE dbo.Cliente (
@@ -35,7 +35,6 @@ INSERT INTO dbo.Cliente(nombre,email)
 VALUES ('Ana Pérez','ana@fit.com'),('Luis Díaz','luis@fit.com'),('María López','maria@fit.com'); 
 END
 
--- Tabla Membresia
 IF OBJECT_ID(N'dbo.Membresia', N'U') IS NULL
 BEGIN
     CREATE TABLE dbo.Membresia (
@@ -50,16 +49,17 @@ BEGIN
 	  VALUES (1,'Mensual','2025-08-01',NULL),(2,'Trimestral','2025-07-15','2025-10-14'); 
 END
 
--- FIN DEL PRERREQUISITO
+-- FIN DEL CODIGO DE PREREQUISITO
 
-/* EJERCICIO GUIADO */
+/* !!! SE SUGIERE EXPLICAR EL EJERCICIO GUIADO */
 
 /**	PARTE A) CREACION DE LOGINS Y USUARIOS **/ 
 
--- 1-A: Crear el LOGIN SQL para perfil de analítica 
--- Los LOGIN se crean en la base de datos "master"
--- debido a que se crean a nivel de servidor.
--- El uso de IF NOT EXISTS es opcional es para validar que no exista el login o usuario
+-- 1. Crear el LOGIN SQL para perfil de analítica (usuario que unicamente consulta datos) 
+-- Los LOGIN se crean en la base de datos "master" debido a que se crean a nivel de servidor.
+-- El uso de IF NOT EXISTS es opcional y es para validar que no exista el login o usuario
+-- Se puede ejecutar el comando corto sin ningun problema solo que en caso que ya exista dara error 
+-- mientras que el otro dara unicamente un Warning.
 
 USE [master]
 GO
@@ -85,12 +85,12 @@ CREATE LOGIN [orange]
 
 -- IMPORTANTE!!: Este login orange está pensado para el rol analítica, es decir, un usuario que solo leerá datos sin modificarlos.
 
--- 2️-A: Crear usuario en la base de datos DB_Gimnasio para el login orange
+-- 2️. Crear usuario en la base de datos DB_Gimnasio y asignarle el login orange
 -- Tenemos que conectarnos a la base de datos donde trabajaremos
 
 USE DB_Gimnasio;
 
--- Creamos el usuario "orange" a partir del login "orange"
+-- Creamos el usuario "orange" asignandole el login que creamos antes "orange"
 -- Esto permite que el login pueda acceder específicamente a la base "DB_Gimnasio"
 
 -- Validamos si ya existe el usuario
@@ -107,7 +107,7 @@ CREATE USER [orange] FOR LOGIN [orange];
 
 -- !!! Ahora el login orange ya puede acceder a DB_Gimnasio como usuario orange
 
--- 3-A Crear LOGIN SQL para la aplicación app_gym
+-- 3. Crear LOGIN SQL para la aplicación app_gym
 USE [master];
 
 -- Verificamos que no exista el login
@@ -129,7 +129,7 @@ CREATE LOGIN [app_gym]
    CHECK_EXPIRATION = OFF, 
    CHECK_POLICY = ON; 
 
--- 4️-A Crear el usuario en DB_Gimnasio para app_gym
+-- 4️. Crear el usuario en DB_Gimnasio para app_gym
 USE DB_Gimnasio;
 
 -- Creamos el usuario app_gym dentro de la base de datos
@@ -150,7 +150,7 @@ CREATE USER [app_gym] FOR LOGIN [app_gym];
 -- En SQL Server, los roles son grupos de permisos. 
 -- En lugar de asignar permisos a cada usuario directamente
 
--- 1-B Crear un rol de solo lectura (db_lectura)
+-- 1. Crear un rol de solo lectura (db_lectura)
 -- Creamos el rol "db_lectura" que servirá para usuarios con acceso solo de lectura
 USE DB_Gimnasio;
 
@@ -172,7 +172,7 @@ GRANT SELECT ON SCHEMA::dbo TO db_lectura;
 EXEC sp_addrolemember 'db_lectura', 'orange';
 GO
 
--- 2-B Crear un rol para la aplicación (db_app)
+-- 2. Crear un rol para la aplicación (db_app)
 -- Creamos el rol "db_app" que servirá para la aplicación del gimnasio
 IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'db_app')
 BEGIN
@@ -194,7 +194,7 @@ GRANT SELECT, INSERT, UPDATE ON dbo.Membresia TO db_app;
 EXEC sp_addrolemember 'db_app','app_gym';
 GO
 
--- 3-B Denegar acciones peligrosas
+-- 3. Denegar acciones peligrosas (DENY)
 -- Incluso si un rol o usuario llegara a tener permisos más amplios en el futuro, podemos blindar ciertas acciones con DENY
 
 -- Negamos la posibilidad de borrar clientes
@@ -209,7 +209,7 @@ GO
 -- Una vez creados los logins, usuarios y roles, debemos probar que los permisos funcionan como esperamos.
 -- ¿Sera que app_gym puede borrar clientes? 
 
--- 1-C Probar que app_gym NO puede borrar clientes
+-- 1. Comprobar que app_gym NO puede borrar clientes
 USE DB_Gimnasio;
 
 -- Ejecutamos las sentencias como app_gym
@@ -222,7 +222,7 @@ DELETE FROM dbo.Cliente WHERE id = 1;
 REVERT;
 GO
 
--- 2-C Probar que app_gym sí puede insertar y actualizar
+-- 2. Comprobar que app_gym sí puede insertar y actualizar
 
 -- Ejecutamos la sentencia como app_gym
 EXECUTE AS USER = 'app_gym';
@@ -252,7 +252,7 @@ SELECT USER_NAME() AS UsuarioDBActual, ORIGINAL_LOGIN() AS LoginOriginal;
 
 -- Importante: UsuarioDBActual deberia ser dbo y no app_gym
 
--- 3-C Probar que orange solo puede leer
+-- 3. Comprobar que orange solo puede leer
 --- PRUEBA: ¿Sera que orange tiene solo lectura en esquema dbo? (INSERT debe FALLAR) 
 EXECUTE AS USER = 'orange';
 
@@ -267,7 +267,7 @@ INSERT INTO dbo.Cliente (nombre) VALUES (N'Eduardo Castro');
 REVERT;
 GO
 
--- 4-C Consultar permisos efectivos de un usuario
+-- 4. Consultar los permisos efectivos de un usuario
 
 -- Primero verificamos con que usuario estamos activos en la base de datos 
 SELECT USER_NAME() AS UsuarioDBActual, ORIGINAL_LOGIN() AS LoginOriginal;
@@ -285,22 +285,22 @@ SELECT *
 FROM fn_my_permissions(NULL,'DATABASE');
 GO
 
-/** PARTE D: EJEMPLOS DE BUENAS PRACTICAS **/
+/** PARTE D: EJEMPLOS DE BUENAS PRACTICAS (En codigo)**/
 
-/** Contraseñas seguras **/
+/** 1. Contraseñas seguras **/
 CREATE LOGIN usuario_seguro 
 WITH PASSWORD = 'CLaVeS3gura@2025!',  -- Cumple con la complejidad de las politicas 
      CHECK_POLICY = ON;          -- Aplica politicas de seguridad 
 GO
 
-/** Rotación de contraseñas **/
+/** 2. Rotación de contraseñas **/
 CREATE LOGIN usuario_rotacion
 WITH PASSWORD = 'R0taci0n$2025',
      CHECK_POLICY = ON,          
-     CHECK_EXPIRATION = ON;      -- La contraseña expira tras cierto tiempo (Rotacion)
+     CHECK_EXPIRATION = ON;      -- La contraseña expira tras cierto tiempo o rota
 GO
 
-/** Principio de menor privilegio. **/
+/** 3. Principio de menor privilegio. **/
 
 -- Crear usuario desde un login existente
 CREATE USER lector FOR LOGIN usuario_seguro;
@@ -308,27 +308,21 @@ CREATE USER lector FOR LOGIN usuario_seguro;
 -- Asignar solo permisos necesarios para el funcionamiento del usuario en este caso de lectura en una tabla específica
 GRANT SELECT ON dbo.Cliente TO lector;
 
-/** Uso de roles en lugar de asignar permisos a usuarios individuales. **/
+/** 4. Uso de roles en lugar de asignar permisos a usuarios individuales. **/
 
 -- Crear rol de solo lectura
 CREATE ROLE soloLectura;
 
--- Conceder permisos de lectura a todas las tablas del esquema dbo
+-- Conceder permisos de lectura a todas las tablas del esquema dbo que es donde estan nuestras tablas
 GRANT SELECT ON SCHEMA::dbo TO soloLectura;
 
--- Agregar usuarios al rol
+-- Asignamos el rol a los usuarios
 EXEC sp_addrolemember 'soloLectura', 'lector';
 EXEC sp_addrolemember 'soloLectura', 'usuario_rotacion';
 
 /*	FIN DEL EJERCICIO GUIADO	*/
 
-/**	OPCIONAL: SCRIPT DE LIMPIEZA PARA BORRAR OBJETOS DE LA PRÁCTICA **/
-
--- Muestra el login de servidor con el que entraste a SQL Server (LOGIN)
-SELECT SUSER_NAME() AS LoginActual, SUSER_SNAME() AS LoginSName, SYSTEM_USER AS SystemUser;
-
--- Mostrar que usuario y que login esta actualmente activo (USER)
-SELECT USER_NAME() AS UsuarioDBActual, ORIGINAL_LOGIN() AS LoginOriginal;
+/**	OPCIONAL: SCRIPT DE LIMPIEZA PARA BORRAR TODOS LOS USUARIOS, ROLES, LOGINS Y TABLAS CREADAS DURANTE LA PRÁCTICA **/
 
 USE DB_Gimnasio;
 
