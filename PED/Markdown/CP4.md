@@ -196,11 +196,12 @@ Algo importante que aclarar es que en las listas doblemente enlazadas, el nodo a
 ### Agregar un nodo al principio
 Para crear un nuevo nodo, se asigna el valor proporcionado y se conecta al actual primer nodo de la lista. Si ya hay nodos en la lista, actualiza el nodo que estaba al inicio para que reconozca al nuevo nodo como su anterior. Al final, establece este nuevo nodo como el nuevo inicio de la lista actualizando el puntero `cabeza`.
 ```c++
-void AgregarNodoAlInicio(Nodo*& cabeza, int valor) {
-    Nodo* nuevo_nodo = new Nodo();
+void AgregarNodoAlInicio(NodoDoble*& cabeza, int valor) {
+    NodoDoble* nuevo_nodo = new NodoDoble();
     nuevo_nodo->dato = valor;
     nuevo_nodo->siguiente = cabeza;
     nuevo_nodo->anterior = nullptr;
+
     if (cabeza != nullptr) {
         cabeza->anterior = nuevo_nodo;
     }
@@ -210,8 +211,8 @@ void AgregarNodoAlInicio(Nodo*& cabeza, int valor) {
 ### Agregar un nodo al final
 Inicialmente crea un nuevo nodo con el valor dado y lo prepara para ser el último estableciendo su puntero `siguiente` a `nullptr`. Si la lista está vacía, simplemente establece este nuevo nodo como el primer y último nodo de la lista. Si hay otros nodos, recorre la lista hasta el final y enlaza el nuevo nodo al último nodo existente, ajustando adecuadamente los punteros `siguiente` del último nodo y `anterior` del nuevo nodo.
 ```c++
-void AgregarNodoAlFinal(Nodo*& cabeza, int valor) {
-    Nodo* nuevo_nodo = new Nodo();
+void AgregarNodoAlFinal(NodoDoble*& cabeza, int valor) {
+    NodoDoble* nuevo_nodo = new NodoDoble();
     nuevo_nodo->dato = valor;
     nuevo_nodo->siguiente = nullptr;
 
@@ -219,7 +220,7 @@ void AgregarNodoAlFinal(Nodo*& cabeza, int valor) {
         nuevo_nodo->anterior = nullptr;
         cabeza = nuevo_nodo;
     } else {
-        Nodo* actual = cabeza;
+        NodoDoble* actual = cabeza;
         while (actual->siguiente != nullptr) {
             actual = actual->siguiente;
         }
@@ -233,8 +234,8 @@ void AgregarNodoAlFinal(Nodo*& cabeza, int valor) {
 Para eliminar un nodo primero, busca por toda la lista hasta encontrar el nodo con el valor que se quiere eliminar. Si lo encuentra, desconecta ese nodo de la lista ajustando los enlaces del nodo anterior y del siguiente, para que ya no se conecten con el nodo eliminado. Si el nodo a eliminar es el primero, simplemente cambia el inicio de la lista al siguiente nodo. Si no encuentra el nodo con el valor deseado, no hace nada. Al final, elimina el nodo para liberar el espacio que ocupaba.
 
 ```c++
-void EliminarNodo(Nodo*& cabeza, int valor) {
-    Nodo* actual = cabeza;
+void EliminarNodo(NodoDoble*& cabeza, int valor) {
+    NodoDoble* actual = cabeza;
 
     while (actual != nullptr && actual->dato != valor) {
         actual = actual->siguiente;
@@ -259,8 +260,9 @@ void EliminarNodo(Nodo*& cabeza, int valor) {
 ### Recorrer un nodo
 Esta función recorre y muestra los valores de una lista doblemente enlazada, empezando desde el primer nodo de la lista. Comienza con el primer nodo y continúa avanzando de nodo en nodo hasta que no hay más nodos que mostrar, lo que se indica cuando el nodo actual es `nullptr`
 ```c++
-void MostrarLista(Nodo* cabeza) {
-    Nodo* actual = cabeza;
+// Mostrar la lista desde el inicio hasta el final
+void MostrarListaInicioAFin(NodoDoble* cabeza) {
+    NodoDoble* actual = cabeza;
     while (actual != nullptr) {
         std::cout << actual->dato << " <-> ";
         actual = actual->siguiente;
@@ -383,17 +385,17 @@ Una **lista circular doblemente enlazada** es una estructura de datos dinámica 
 ### Nodos en una lista circular doblemente enlazada
 Así como las listas doblemente enlazadas, las listas circulares doblemente enlazadas se definen de la misma manera, un nodo tiene un nodo anterior y uno siguiente, lo podemos definir con la siguiente estructura:
 ```c++
-struct Nodo {
-    int dato;            // Valor almacenado en el nodo
-    Nodo* siguiente;     // Puntero al siguiente nodo
-    Nodo* anterior;      // Puntero al nodo anterior
+struct NodoDoble {
+    int dato;
+    NodoDoble* siguiente;
+    NodoDoble* anterior;
 };
 ```
 ### Agregar un nodo al principio
 Para agregar un nuevo nodo al principio primero se verifica si la lista está vacía, de ser el caso, el nuevo nodo apunta a sí mismo tanto como siguiente como anterior. Si la lista ya contiene nodos, el nuevo nodo se conecta al nodo existente que era la cabeza y se ajustan los punteros del último nodo para mantener la circularidad.
 ```c++
-void AgregarNodoAlPrincipio(Nodo*& cabeza, int valor) {
-    Nodo* nuevo_nodo = new Nodo();
+void AgregarNodoAlPrincipio(NodoDoble*& cabeza, int valor) {
+    NodoDoble* nuevo_nodo = new NodoDoble();
     nuevo_nodo->dato = valor;
 
     if (cabeza == nullptr) {
@@ -401,7 +403,7 @@ void AgregarNodoAlPrincipio(Nodo*& cabeza, int valor) {
         nuevo_nodo->anterior = nuevo_nodo;
         cabeza = nuevo_nodo;
     } else {
-        Nodo* ultimo = cabeza->anterior;
+        NodoDoble* ultimo = cabeza->anterior;
         nuevo_nodo->siguiente = cabeza;
         nuevo_nodo->anterior = ultimo;
         cabeza->anterior = nuevo_nodo;
@@ -413,8 +415,8 @@ void AgregarNodoAlPrincipio(Nodo*& cabeza, int valor) {
 ### Agregar un nodo al final
 En este caso, cumple lo mismo si solo es un nodo, pero, si la lista ya tiene nodos, el nuevo nodo se conecta al último nodo existente y se ajustan los punteros para mantener la circularidad.
 ```c++
-void AgregarNodoAlFinal(Nodo*& cabeza, int valor) {
-    Nodo* nuevo_nodo = new Nodo();
+void AgregarNodoAlFinal(NodoDoble*& cabeza, int valor) {
+    NodoDoble* nuevo_nodo = new NodoDoble();
     nuevo_nodo->dato = valor;
 
     if (cabeza == nullptr) {
@@ -422,7 +424,7 @@ void AgregarNodoAlFinal(Nodo*& cabeza, int valor) {
         nuevo_nodo->anterior = nuevo_nodo;
         cabeza = nuevo_nodo;
     } else {
-        Nodo* ultimo = cabeza->anterior;
+        NodoDoble* ultimo = cabeza->anterior;
         nuevo_nodo->siguiente = cabeza;
         nuevo_nodo->anterior = ultimo;
         ultimo->siguiente = nuevo_nodo;
@@ -433,29 +435,27 @@ void AgregarNodoAlFinal(Nodo*& cabeza, int valor) {
 ### Eliminar un nodo con un valor específico
 Para eliminar un nodo de la lista circular doble, se debe localizar el nodo con el valor deseado. Una vez encontrado, se ajustan los punteros del nodo anterior y del siguiente para que el nodo sea excluido de la lista. Si el nodo a eliminar es la cabeza, se actualiza la referencia de la cabeza.
 ```c++
-void EliminarNodo(Nodo*& cabeza, int valor) {
+void EliminarNodo(NodoDoble*& cabeza, int valor) {
     if (cabeza == nullptr) return;
 
-    Nodo* actual = cabeza;
+    NodoDoble* actual = cabeza;
 
     do {
         if (actual->dato == valor) {
+            NodoDoble* anterior = actual->anterior;
+            NodoDoble* siguiente = actual->siguiente;
+
             if (actual == cabeza && actual->siguiente == cabeza) {
                 delete actual;
                 cabeza = nullptr;
-                return;
+            } else {
+                anterior->siguiente = siguiente;
+                siguiente->anterior = anterior;
+                if (actual == cabeza) {
+                    cabeza = siguiente;
+                }
+                delete actual;
             }
-
-            Nodo* anterior = actual->anterior;
-            Nodo* siguiente = actual->siguiente;
-            anterior->siguiente = siguiente;
-            siguiente->anterior = anterior;
-
-            if (actual == cabeza) {
-                cabeza = siguiente;
-            }
-
-            delete actual;
             return;
         }
         actual = actual->siguiente;
@@ -465,17 +465,19 @@ void EliminarNodo(Nodo*& cabeza, int valor) {
 ### Mostrar todos los nodos
 Para recorrer y mostrar todos los nodos, se comienza desde la cabeza y sigue recorriendo los nodos en dirección hacia adelante. Dado que es una lista circular, el bucle se detiene cuando vuelve a la cabeza.
 ```c++
-void MostrarLista(Nodo* cabeza) {
+void MostrarListaInicioAFin(NodoDoble* cabeza) {
     if (cabeza == nullptr) {
         std::cout << "La lista está vacía" << std::endl;
         return;
     }
 
-    Nodo* actual = cabeza;
+    NodoDoble* actual = cabeza;
     do {
         std::cout << actual->dato << " <-> ";
         actual = actual->siguiente;
     } while (actual != cabeza);
+
+    std::cout << "(circular)" << std::endl;
 }
 ```
 
