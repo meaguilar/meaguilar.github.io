@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CP5</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#estructuras-de-datos-dinámicas-lineales-colas-y-pilas">Estructuras de datos dinámicas lineales colas y pilas</a>
+<ul>
+<li><a href="#¿qué-son-las-pilas-y-colas">¿Qué son las Pilas y Colas?</a></li>
+<li><a href="#pilas">Pilas</a></li>
+<li><a href="#uso-de-pilas-de-manera-manual">Uso de pilas de manera manual</a></li>
+<li><a href="#uso-de-pilas-usando-libreria-de-c">Uso de pilas usando libreria de C++</a></li>
+<li><a href="#colas-queues">Colas (Queues)</a></li>
+<li><a href="#uso-de-colas-de-manera-manual">Uso de colas de manera manual</a></li>
+<li><a href="#función-para-desencolar-dequeue">Función para desencolar (Dequeue)</a></li>
+<li><a href="#obtener-el-valor-del-frente-front">Obtener el valor del frente (Front)</a></li>
+<li><a href="#uso-de-colas-usando-librería-de-c">Uso de colas usando librería de C++</a></li>
+<li><a href="#referencias">Referencias</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="estructuras-de-datos-dinámicas-lineales-colas-y-pilas">Estructuras de datos dinámicas lineales colas y pilas</h1>
+<p>En este laboratorio estudiaremos sobre el uso de pilas y colas dinámicas, cómo declararlas, utilizarlas, y su importancia en la organización y manipulación de datos en la programación.</p>
+<h2 id="¿qué-son-las-pilas-y-colas">¿Qué son las Pilas y Colas?</h2>
+<p>Las <strong>pilas</strong> y <strong>colas</strong> son estructuras de datos lineales que permiten almacenar y acceder a elementos de manera ordenada. Ambas utilizan nodos y punteros para gestionar la memoria de forma dinámica, lo que significa que pueden crecer o reducirse según sea necesario durante la ejecución del programa, <strong>al igual que las listas que estudiamos en el laboratorio anterior</strong>.</p>
+<h2 id="pilas">Pilas</h2>
+<p>Una <strong>pila</strong> es una estructura de datos que sigue el principio <strong>LIFO (Last In, First Out)</strong>, es decir, el último elemento en entrar es el primero en salir. Imagina una pila de platos: el último plato que colocas en la cima es el primero que quitarás.<br>
+<img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Stack-data-structure.webp" alt="Stack-data-structure"></p>
+<h3 id="operaciones-básicas-en-una-pila">Operaciones básicas en una pila</h3>
+<ul>
+<li><strong>Push (Apilar)</strong>: Agregar un elemento al tope de la pila.</li>
+<li><strong>Pop (Desapilar)</strong>: Eliminar el elemento del tope de la pila.</li>
+<li><strong>Peek (Cima)</strong>: Obtener el valor del elemento en el tope sin eliminarlo.</li>
+<li><strong>isEmpty (Está vacía)</strong>: Verificar si la pila está vacía.</li>
+</ul>
+<h3 id="definición-de-una-pila">Definición de una pila</h3>
+<p>Cada nodo en una pila almacena un valor y un puntero al nodo siguiente.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> dato<span class="token punctuation">;</span>         <span class="token comment">// Valor almacenado en el nodo</span>
+    Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span>  <span class="token comment">// Puntero al siguiente nodo</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="uso-de-pilas-de-manera-manual">Uso de pilas de manera manual</h2>
+<h3 id="apilar-push">Apilar (Push)</h3>
+<p>Cuando agregamos elementos a una pila, esta por defecto se va a agregar hasta encima, por el principio que mencionamos anteriormente, que cuando apilamos, el ultimo que agregamos es el primero.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">Push</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cima<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
+    nuevo_nodo<span class="token operator">-&gt;</span>siguiente <span class="token operator">=</span> cima<span class="token punctuation">;</span>
+    cima <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>NOTA</strong>: En este caso, <code>cima</code> es el ultimo elemento que se agrego, por eso al final del codigo, decimos que</p>
+<pre class=" language-c"><code class="prism ++ language-c">cima <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
+</code></pre>
+<p>para ir actualizando la cima cada que se agrega un nuevo nodo.</p>
+<h3 id="desapilar-pop">Desapilar (Pop)</h3>
+<p>Elimina el nodo del tope de la pila y devuelve su valor.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">Pop</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span><span class="token operator">&amp;</span> cima<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cima <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"La pila está vacía."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// O lanzar una excepción</span>
+    <span class="token punctuation">}</span>
+    
+    Nodo<span class="token operator">*</span> nodo_eliminar <span class="token operator">=</span> cima<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> valor <span class="token operator">=</span> nodo_eliminar<span class="token operator">-&gt;</span>dato<span class="token punctuation">;</span>
+    cima <span class="token operator">=</span> cima<span class="token operator">-&gt;</span>siguiente<span class="token punctuation">;</span>
+    delete nodo_eliminar<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> valor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este caso, si la cima (que como dijimos anteriormente es el ultimo nodo que agregamos) esta vacia, significa que NO hay elementos, asi que ya no eliminamos. Pero de haber, lo interesante es que al final, decimos que:</p>
+<pre class=" language-c"><code class="prism ++ language-c">cima <span class="token operator">=</span> cima<span class="token operator">-&gt;</span>siguiente<span class="token punctuation">;</span>
+</code></pre>
+<p>Dando a entender que ahora, como eliminamos la cima, el que estaba debajo del que acabamos de eliminar, <strong>es la nueva cima</strong></p>
+<h3 id="section"></h3>
+<h3 id="obtener-la-cima-peek">Obtener la cima (Peek)</h3>
+<p>Esta función solo muestra la cima, sin embargo no la elimina.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">Peek</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> cima<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cima <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"La pila está vacía."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// O lanzar una excepción</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> cima<span class="token operator">-&gt;</span>dato<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="ejemplo-completo-de-una-pila">Ejemplo completo de una pila</h3>
+<p>Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las pilas, en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/PilasManual.cc">Repositorio - manual stack</a></p>
+<h2 id="uso-de-pilas-usando-libreria-de-c">Uso de pilas usando libreria de C++</h2>
+<p>Ahora que ya aprendimos como funcionan las pilas internamente podemos hacer uso de una libreria que C++ ya trae por defecto, que es<br>
+<code>std::stack</code>. Esta libreria nos traerá todas las funciones que mencionamos anteriormente y las tendremos a dispocision para manejar pilas de una manera muchisimo más sencilla.</p>
+<p>Para eso, primero importaremos la libreria, para eso la importaremos de la siguiente manera:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack&gt;</span></span>
+</code></pre>
+<p>Luego, en ves de crear los nodos, ahora lo declararemos de la siguiente manera:</p>
+<pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>stack<span class="token operator">&lt;</span>TipoDeDato<span class="token operator">&gt;</span> nombre_de_la_pila<span class="token punctuation">;</span>
+</code></pre>
+<p>Donde el <code>tipo de dato</code> puede ser int, float, char o incluso una estructura. Mientras que el nombre de la pila, sera el identificador de toda nuestra pila.</p>
+<p>Ahora que ya creamos nuestra pila, ya podemos hacer uso de las funciones que trae la libreria:</p>
+<ul>
+<li><strong><code>push(valor)</code></strong>: Agrega un elemento al tope de la pila.</li>
+<li><strong><code>pop()</code></strong>: Elimina el elemento del tope de la pila.</li>
+<li><strong><code>top()</code></strong>: Devuelve una referencia al elemento en el tope de la pila.</li>
+<li><strong><code>empty()</code></strong>: Devuelve <code>true</code> si la pila está vacía; de lo contrario, devuelve <code>false</code>.</li>
+<li><strong><code>size()</code></strong>: Devuelve el número de elementos en la pila.</li>
+</ul>
+<p>Para hacer uso de todas estas funciones, accederemos a traves de nuestra pila. Por ejemplo:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Declaramos una pila de enteros</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>stack<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> pila<span class="token punctuation">;</span>
+
+    <span class="token comment">// PUSH (apilar elementos)</span>
+    pila<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pila<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pila<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pila<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elementos en la pila: "</span> <span class="token operator">&lt;&lt;</span> pila<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// → 4 elementos</span>
+
+    <span class="token comment">// Mostrar el elemento en la cima (peek / top)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>pila<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento en la cima (peek): "</span> <span class="token operator">&lt;&lt;</span> pila<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// → 2</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// POP (desapilar elementos)</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\nDesapilando elementos..."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>pila<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Sale: "</span> <span class="token operator">&lt;&lt;</span> pila<span class="token punctuation">.</span><span class="token function">top</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        pila<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// elimina el elemento superior</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Verificar si está vacía</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pila<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\nLa pila ahora está vacía."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Elementos en la pila: 4
+Elemento en la cima (peek): 2
+
+Desapilando elementos...
+Sale: 2
+Sale: 2
+Sale: 3
+Sale: 4
+
+La pila ahora está vacía.
+</code></pre>
+<h3 id="ejemplo-practico-de-uso-de-libreria">Ejemplo practico de uso de libreria</h3>
+<p>Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las pilas, en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/PilasLibreria.cc">Repositorio - stack library</a></p>
+<h2 id="colas-queues">Colas (Queues)</h2>
+<p>Una <strong>cola</strong> es una estructura de datos que sigue el principio <strong>FIFO (First In, First Out)</strong>, es decir, el primer elemento en entrar es el primero en salir. Puedes imaginar una fila de personas esperando para ser atendidas; la primera persona en llegar es la primera en ser atendida.</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/amimacion-fila-unica.gif" alt="Animación de fila única" width="450">
+</p>
+<p>A diferencia de las pilas, donde el acceso es por un solo extremo, en las colas se interactúa por ambos extremos: los elementos se <strong>agregan</strong> por un extremo (final) y se <strong>eliminan</strong> por el otro (frente).</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Queue-data-structure.png" alt="Queue-data-structure"></p>
+<h3 id="operaciones-básicas-en-una-cola">Operaciones básicas en una cola</h3>
+<ul>
+<li><strong>Enqueue (Encolar)</strong>: Agregar un elemento al final de la cola.</li>
+<li><strong>Dequeue (Desencolar)</strong>: Eliminar el elemento al frente de la cola.</li>
+<li><strong>Front (Frente)</strong>: Obtener el valor del elemento al frente sin eliminarlo.</li>
+<li><strong>isEmpty (Está vacía)</strong>: Verificar si la cola está vacía.</li>
+</ul>
+<h3 id="definición-de-un-nodo">Definición de un nodo</h3>
+<p>Al igual que en las listas y pilas, una cola está compuesta por <strong>nodos</strong>. Cada nodo contiene un valor y un puntero al siguiente nodo.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> dato<span class="token punctuation">;</span>         <span class="token comment">// Valor almacenado en el nodo</span>
+    Nodo<span class="token operator">*</span> siguiente<span class="token punctuation">;</span>  <span class="token comment">// Puntero al siguiente nodo</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Primero, recordemos la definición de la estructura <code>Nodo</code>:</p>
+<p>Cada <code>Nodo</code> contiene:</p>
+<ul>
+<li>Un valor (<code>dato</code>).</li>
+<li>Un puntero al siguiente <code>Nodo</code> en la cola (<code>siguiente</code>).</li>
+</ul>
+<p>Los nodos están enlazados entre sí formando una <strong>lista enlazada</strong>. En este caso, utilizamos una lista enlazada simple para implementar la cola.</p>
+<h3 id="definición-de-una-cola">Definición de una cola</h3>
+<p>Para facilitar el acceso tanto al frente como al final de la cola, utilizamos una estructura que mantiene punteros a ambos extremos.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Cola <span class="token punctuation">{</span>
+    Nodo<span class="token operator">*</span> frente<span class="token punctuation">;</span>     <span class="token comment">// Puntero al frente de la cola</span>
+    Nodo<span class="token operator">*</span> final<span class="token punctuation">;</span>      <span class="token comment">// Puntero al final de la cola</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p>La estructura <code>Cola</code> contiene dos punteros:</p>
+<ul>
+<li><code>frente</code>: Apunta al primer nodo de la cola (donde se realiza la operación de <strong>desencolar</strong>).</li>
+<li><code>final</code>: Apunta al último nodo de la cola (donde se realiza la operación de <strong>encolar</strong>).</li>
+</ul>
+<p>Aunque <code>Cola</code> no tiene un miembro que sea directamente un <code>Nodo</code>, mantiene punteros a los nodos que conforman la cola. Esto es suficiente para gestionar la estructura y realizar las operaciones necesarias.</p>
+<h2 id="uso-de-colas-de-manera-manual">Uso de colas de manera manual</h2>
+<h3 id="encolar-enqueue">Encolar (Enqueue)</h3>
+<p>Esta función nos agregará un nodo al final de la cola.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">Encolar</span><span class="token punctuation">(</span>Cola<span class="token operator">*</span><span class="token operator">&amp;</span> cola<span class="token punctuation">,</span> <span class="token keyword">int</span> valor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Nodo<span class="token operator">*</span> nuevo_nodo <span class="token operator">=</span> new <span class="token function">Nodo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    nuevo_nodo<span class="token operator">-&gt;</span>dato <span class="token operator">=</span> valor<span class="token punctuation">;</span>
+    nuevo_nodo<span class="token operator">-&gt;</span>siguiente <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cola<span class="token operator">-&gt;</span>frente <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// La cola está vacía</span>
+        cola<span class="token operator">-&gt;</span>frente <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// La cola tiene al menos un elemento</span>
+        cola<span class="token operator">-&gt;</span>final<span class="token operator">-&gt;</span>siguiente <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cola<span class="token operator">-&gt;</span>final <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este código, primero se crea un nuevo <code>nodo</code> y luego se le asignan los valores, una vez tienen los valores, al igual que una <strong>lista enlazada</strong>, el siguiente del nuevo nodo que acabamos de crear apuntara a <code>nillptr</code>.  Luego solo se hace una pequeña verificación para analizar si la lista esta vacía o no, y en base a eso agregar al final de la lista.</p>
+<h2 id="función-para-desencolar-dequeue">Función para desencolar (Dequeue)</h2>
+<p>Esta función eliminara el nodo que este de primero, funciona igual que una fila de personas, el primero que entra, será el primero <strong>en salir</strong>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">Desencolar</span><span class="token punctuation">(</span>Cola<span class="token operator">*</span><span class="token operator">&amp;</span> cola<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cola<span class="token operator">-&gt;</span>frente <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"La cola está vacía."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    Nodo<span class="token operator">*</span> nodo_eliminar <span class="token operator">=</span> cola<span class="token operator">-&gt;</span>frente<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> valor <span class="token operator">=</span> nodo_eliminar<span class="token operator">-&gt;</span>dato<span class="token punctuation">;</span>
+    cola<span class="token operator">-&gt;</span>frente <span class="token operator">=</span> cola<span class="token operator">-&gt;</span>frente<span class="token operator">-&gt;</span>siguiente<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cola<span class="token operator">-&gt;</span>frente <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Si la cola quedó vacía, actualizamos el puntero final</span>
+        cola<span class="token operator">-&gt;</span>final <span class="token operator">=</span> nullptr<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    delete nodo_eliminar<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> valor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este código después de verificar la fila esta vacía o no, si no lo está, entonces como ya tenemos un puntero, se dice que el nodo a eliminar será justo el de enfrente. Luego, solo se hace una pequeña comparación para mover la lista, donde el nuevo frente será justo <strong>el siguiente del frente que vamos a eliminar</strong>. Luego, solo se hace la comparación de que si justo ese nodo era el ultimo, entonces la cola, el final y el principio, son <code>nullptr</code> y se libera la memoria del nodo que se elimino.</p>
+<h2 id="obtener-el-valor-del-frente-front">Obtener el valor del frente (Front)</h2>
+<p>Esta función, hace casi lo mismo que el de eliminar, solo que, no elimina como tal el nodo, solo lo muestra.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">Frente</span><span class="token punctuation">(</span>Cola<span class="token operator">*</span> cola<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cola<span class="token operator">-&gt;</span>frente <span class="token operator">==</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"La cola está vacía."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> cola<span class="token operator">-&gt;</span>frente<span class="token operator">-&gt;</span>dato<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Acá cabe aclarar que la función debe ser <strong>del mismo tipo de dato</strong> del contenido de cada nodo, en este caso estamos asumiendo que el dato es un entero, por eso retorna la función un <strong>entero</strong>.</p>
+<h3 id="ejemplo-completo-de-una-pila-manualmente.">Ejemplo completo de una pila manualmente.</h3>
+<p>Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las colas, en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/ColasManual.cc">Repositorio - manual queue</a></p>
+<h2 id="uso-de-colas-usando-librería-de-c">Uso de colas usando librería de C++</h2>
+<p>Al igual que con las pilas, C++ nos provee de una librería para gestionar las colas llamada <code>queue</code></p>
+<h3 id="incluyendo-la-librería">Incluyendo la librería</h3>
+<p>Para utilizar <code>std::queue</code>,  incluiremos el encabezado correspondiente:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue&gt;</span></span>
+</code></pre>
+<h3 id="definición-de-una-cola-1">Definición de una cola</h3>
+<p>La sintaxis general para declarar una cola es:</p>
+<pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>queue<span class="token operator">&lt;</span>TipoDeDato<span class="token operator">&gt;</span> nombre_de_la_cola<span class="token punctuation">;</span>
+</code></pre>
+<p>Donde el <code>tipo de dato</code> puede ser int, float, char o incluso una estructura. Mientras que el nombre de la cola, sera el identificador de toda nuestra cola.</p>
+<p>Ahora que ya creamos nuestra cola, ya podemos hacer uso de las funciones que trae la libreria:</p>
+<ul>
+<li><strong><code>push(valor)</code></strong>: Agrega un elemento al final de la cola.</li>
+<li><strong><code>pop()</code></strong>: Elimina el elemento al frente de la cola.</li>
+<li><strong><code>front()</code></strong>: Devuelve una referencia al elemento al frente de la cola.</li>
+<li><strong><code>back()</code></strong>: Devuelve una referencia al último elemento de la cola.</li>
+<li><strong><code>empty()</code></strong>: Devuelve <code>true</code> si la cola está vacía; de lo contrario, devuelve <code>false</code>.</li>
+<li><strong><code>size()</code></strong>: Devuelve el número de elementos en la cola.</li>
+</ul>
+<p>Podemos notar que el uso y las funciones son muy parecidas a las de las pilas. De igual manera para acceder a las funciones de las colas, lo hacemos a través de la cola que hemos creado con la librería.</p>
+<h3 id="ejemplo-de-uso">Ejemplo de uso</h3>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;queue&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Declaramos una cola de enteros</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> cola<span class="token punctuation">;</span>
+
+    <span class="token comment">// ENQUEUE (agregar elementos al final)</span>
+    cola<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cola<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cola<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cola<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elementos en la cola: "</span> <span class="token operator">&lt;&lt;</span> cola<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// → 4 elementos</span>
+
+    <span class="token comment">// Mostrar el primer elemento (peek / front)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>cola<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Elemento al frente (peek): "</span> <span class="token operator">&lt;&lt;</span> cola<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span> <span class="token comment">// → 1</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// DEQUEUE (eliminar el elemento del frente)</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\nDesencolando elementos..."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>cola<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Sale: "</span> <span class="token operator">&lt;&lt;</span> cola<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+        cola<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// elimina el frente</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Verificar si está vacía</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cola<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\nLa cola ahora está vacía."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Elementos en la cola: 4
+Elemento al frente (peek): 1
+
+Desencolando elementos...
+Sale: 1
+Sale: 2
+Sale: 3
+Sale: 1
+
+La cola ahora está vacía.
+</code></pre>
+<h3 id="ejemplo-practico-de-uso-de-libreria-1">Ejemplo practico de uso de libreria</h3>
+<p>Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las colas, en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/ColasLibreria.cc">Repositorio - queue library</a></p>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/dsa/stack-data-structure/">Stack Data Structure - GeeksforGeeks</a></li>
+<li><a href="https://www.geeksforgeeks.org/dsa/queue-data-structure/">Queue Data Structure - GeeksforGeeks</a></li>
+<li><a href="https://www.w3schools.com/dsa/dsa_data_stacks.php">DSA Stacks - w3schools</a></li>
+<li><a href="https://www.w3schools.com/dsa/dsa_data_queues.php">DSA Queues - w3schools</a></li>
+<li><a href="https://visualgo.net/en/list">Linked List (Single, Doubly), Stack, Queue, Deque - VisuAlgo</a></li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
