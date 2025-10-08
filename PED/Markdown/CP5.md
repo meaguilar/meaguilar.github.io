@@ -7,8 +7,8 @@ Las **pilas** y **colas** son estructuras de datos lineales que permiten almacen
 
 ## Pilas
 Una **pila** es una estructura de datos que sigue el principio **LIFO (Last In, First Out)**, es decir, el último elemento en entrar es el primero en salir. Imagina una pila de platos: el último plato que colocas en la cima es el primero que quitarás.
-![Stack-data-structure](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Stack-data-structure.webp)
 
+![Stack-data-structure](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Stack-data-structure.webp)
 
 ### Operaciones básicas en una pila
 
@@ -25,7 +25,6 @@ struct Nodo {
     Nodo* siguiente;  // Puntero al siguiente nodo
 };
 ```
-
 ##  Uso de pilas de manera manual
 
 ### Apilar (Push)
@@ -82,7 +81,6 @@ int Peek(Nodo* cima) {
 ###  Ejemplo completo de una pila
 Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las pilas, en este [Repositorio - manual stack](https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/PilasManual.cc)
 
-
 ##  Uso de pilas usando libreria de C++
 Ahora que ya aprendimos como funcionan las pilas internamente podemos hacer uso de una libreria que C++ ya trae por defecto, que es 
 `std::stack`. Esta libreria nos traerá todas las funciones que mencionamos anteriormente y las tendremos a dispocision para manejar pilas de una manera muchisimo más sencilla.
@@ -92,7 +90,7 @@ Para eso, primero importaremos la libreria, para eso la importaremos de la sigui
 #include <iostream>
 #include <stack>
 ```
-Luego, en ves de crear los nodos, ahora lo declararemos de la siguiente manera:
+En lugar de crear los nodos manualmente, ahora podemos declarar la pila de la siguiente manera:
 ```c++
 std::stack<TipoDeDato> nombre_de_la_pila;
 ```
@@ -239,7 +237,7 @@ void Encolar(Cola*& cola, int valor) {
     cola->final = nuevo_nodo;
 }
 ```
-En este código, primero se crea un nuevo `nodo` y luego se le asignan los valores, una vez tienen los valores, al igual que una **lista enlazada**, el siguiente del nuevo nodo que acabamos de crear apuntara a `nillptr`.  Luego solo se hace una pequeña verificación para analizar si la lista esta vacía o no, y en base a eso agregar al final de la lista.
+En este código, primero se crea un nuevo `nodo` y luego se le asignan los valores, una vez tienen los valores, al igual que una **lista enlazada**, el siguiente del nuevo nodo que acabamos de crear apuntara a `nullptr`.  Luego solo se hace una pequeña verificación para analizar si la lista esta vacía o no, y en base a eso agregar al final de la lista.
 
 ## Función para desencolar (Dequeue)
 Esta función eliminara el nodo que este de primero, funciona igual que una fila de personas, el primero que entra, será el primero **en salir**.
@@ -362,10 +360,13 @@ La cola ahora está vacía.
 ### Ejemplo practico de uso de libreria
 Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las colas, en este [Repositorio - queue library](https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/ColasLibreria.cc)
 
-
 ## Referencias
 - [Stack Data Structure - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/stack-data-structure/)
+
 - [Queue Data Structure - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/queue-data-structure/)
+
 - [DSA Stacks - w3schools](https://www.w3schools.com/dsa/dsa_data_stacks.php)
+
 - [DSA Queues - w3schools](https://www.w3schools.com/dsa/dsa_data_queues.php)
+
 - [Linked List (Single, Doubly), Stack, Queue, Deque - VisuAlgo](https://visualgo.net/en/list)

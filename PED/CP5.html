@@ -38,8 +38,8 @@
 <h2 id="¿qué-son-las-pilas-y-colas">¿Qué son las Pilas y Colas?</h2>
 <p>Las <strong>pilas</strong> y <strong>colas</strong> son estructuras de datos lineales que permiten almacenar y acceder a elementos de manera ordenada. Ambas utilizan nodos y punteros para gestionar la memoria de forma dinámica, lo que significa que pueden crecer o reducirse según sea necesario durante la ejecución del programa, <strong>al igual que las listas que estudiamos en el laboratorio anterior</strong>.</p>
 <h2 id="pilas">Pilas</h2>
-<p>Una <strong>pila</strong> es una estructura de datos que sigue el principio <strong>LIFO (Last In, First Out)</strong>, es decir, el último elemento en entrar es el primero en salir. Imagina una pila de platos: el último plato que colocas en la cima es el primero que quitarás.<br>
-<img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Stack-data-structure.webp" alt="Stack-data-structure"></p>
+<p>Una <strong>pila</strong> es una estructura de datos que sigue el principio <strong>LIFO (Last In, First Out)</strong>, es decir, el último elemento en entrar es el primero en salir. Imagina una pila de platos: el último plato que colocas en la cima es el primero que quitarás.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Stack-data-structure.webp" alt="Stack-data-structure"></p>
 <h3 id="operaciones-básicas-en-una-pila">Operaciones básicas en una pila</h3>
 <ul>
 <li><strong>Push (Apilar)</strong>: Agregar un elemento al tope de la pila.</li>
@@ -107,7 +107,7 @@
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack&gt;</span></span>
 </code></pre>
-<p>Luego, en ves de crear los nodos, ahora lo declararemos de la siguiente manera:</p>
+<p>En lugar de crear los nodos manualmente, ahora podemos declarar la pila de la siguiente manera:</p>
 <pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>stack<span class="token operator">&lt;</span>TipoDeDato<span class="token operator">&gt;</span> nombre_de_la_pila<span class="token punctuation">;</span>
 </code></pre>
 <p>Donde el <code>tipo de dato</code> puede ser int, float, char o incluso una estructura. Mientras que el nombre de la pila, sera el identificador de toda nuestra pila.</p>
@@ -227,7 +227,7 @@ La pila ahora está vacía.
     cola<span class="token operator">-&gt;</span>final <span class="token operator">=</span> nuevo_nodo<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<p>En este código, primero se crea un nuevo <code>nodo</code> y luego se le asignan los valores, una vez tienen los valores, al igual que una <strong>lista enlazada</strong>, el siguiente del nuevo nodo que acabamos de crear apuntara a <code>nillptr</code>.  Luego solo se hace una pequeña verificación para analizar si la lista esta vacía o no, y en base a eso agregar al final de la lista.</p>
+<p>En este código, primero se crea un nuevo <code>nodo</code> y luego se le asignan los valores, una vez tienen los valores, al igual que una <strong>lista enlazada</strong>, el siguiente del nuevo nodo que acabamos de crear apuntara a <code>nullptr</code>.  Luego solo se hace una pequeña verificación para analizar si la lista esta vacía o no, y en base a eso agregar al final de la lista.</p>
 <h2 id="función-para-desencolar-dequeue">Función para desencolar (Dequeue)</h2>
 <p>Esta función eliminara el nodo que este de primero, funciona igual que una fila de personas, el primero que entra, será el primero <strong>en salir</strong>.</p>
 <pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> <span class="token function">Desencolar</span><span class="token punctuation">(</span>Cola<span class="token operator">*</span><span class="token operator">&amp;</span> cola<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -334,11 +334,21 @@ La cola ahora está vacía.
 <p>Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las colas, en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/PilasYColas/ColasLibreria.cc">Repositorio - queue library</a></p>
 <h2 id="referencias">Referencias</h2>
 <ul>
-<li><a href="https://www.geeksforgeeks.org/dsa/stack-data-structure/">Stack Data Structure - GeeksforGeeks</a></li>
-<li><a href="https://www.geeksforgeeks.org/dsa/queue-data-structure/">Queue Data Structure - GeeksforGeeks</a></li>
-<li><a href="https://www.w3schools.com/dsa/dsa_data_stacks.php">DSA Stacks - w3schools</a></li>
-<li><a href="https://www.w3schools.com/dsa/dsa_data_queues.php">DSA Queues - w3schools</a></li>
-<li><a href="https://visualgo.net/en/list">Linked List (Single, Doubly), Stack, Queue, Deque - VisuAlgo</a></li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/dsa/stack-data-structure/">Stack Data Structure - GeeksforGeeks</a></p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/dsa/queue-data-structure/">Queue Data Structure - GeeksforGeeks</a></p>
+</li>
+<li>
+<p><a href="https://www.w3schools.com/dsa/dsa_data_stacks.php">DSA Stacks - w3schools</a></p>
+</li>
+<li>
+<p><a href="https://www.w3schools.com/dsa/dsa_data_queues.php">DSA Queues - w3schools</a></p>
+</li>
+<li>
+<p><a href="https://visualgo.net/en/list">Linked List (Single, Doubly), Stack, Queue, Deque - VisuAlgo</a></p>
+</li>
 </ul>
 
     </div>
