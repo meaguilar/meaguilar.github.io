@@ -1,269 +1,368 @@
-﻿# **Estructuras de datos dinámicas lineales colas y pilas**
+﻿# Algoritmos de Ordenamiento y Búsqueda
 
-En este laboratorio estudiaremos sobre el uso de pilas y colas dinámicas, cómo declararlas, utilizarlas, y su importancia en la organización y manipulación de datos en la programación.
+En este laboratorio estudiaremos sobre el uso de algoritmos de ordenamiento y búsqueda, cómo declararlos, utilizarlos, y su importancia en la organización y manipulación de datos en la programación.
 
-## ¿Qué son las Pilas y Colas?
-Las **pilas** y **colas** son estructuras de datos lineales que permiten almacenar y acceder a elementos de manera ordenada. Ambas utilizan nodos y punteros para gestionar la memoria de forma dinámica, lo que significa que pueden crecer o reducirse según sea necesario durante la ejecución del programa, **al igual que las listas que estudiamos en el laboratorio anterior**.
+# Algoritmos de ordenamiento
+Los **algoritmos de ordenamiento** son técnicas utilizadas en programación para organizar los elementos de una lista o conjunto de datos según un criterio, como el orden ascendente o descendente. Estos algoritmos son esenciales cuando se necesita organizar datos de manera eficiente, ya sea números, palabras o cualquier tipo de información que deba seguir un orden.
 
-## Pilas
-Una **pila** es una estructura de datos que sigue el principio **LIFO (Last In, First Out)**, es decir, el último elemento en entrar es el primero en salir. Imagina una pila de platos: el último plato que colocas en la cima es el primero que quitarás.
+## Ordenamiento Burbuja (Bubble Sort)
 
-<p align="center"> <img src="https://firebasestorage.googleapis.com/v0/b/noamgemstone.appspot.com/o/pngwing.com.png?alt=media&token=c55df121-a369-4de0-80a9-30ba67f02808" alt="Descripción de la imagen" width="0"/> </p>
+El **algoritmo de ordenamiento burbuja** es una forma básica de organizar una lista de elementos. Lo que hace es revisar cada par de elementos adyacentes y, si están en el orden incorrecto, intercambiarlos.
 
-### Operaciones básicas en una pila
+### ¿Cómo funciona?
+1)   Se comparan los dos primeros elementos de la lista. Si el primero debería ir después del segundo, los cambia de lugar.
+2)  Luego pasa al siguiente par de elementos y hace lo mismo, repitiendo el proceso hasta llegar al final de la lista.
+3) Al final de cada recorrido, el número más grande "sube" o "flota" hasta el final de la lista, como una burbuja.
+3) Este proceso se repite varias veces hasta que ya no haya necesidad de hacer más cambios, lo que significa que la lista está ordenada.
 
--   **Push (Apilar)**: Agregar un elemento al tope de la pila.
--   **Pop (Desapilar)**: Eliminar el elemento del tope de la pila.
--   **Peek (Cima)**: Obtener el valor del elemento en el tope sin eliminarlo.
--   **isEmpty (Está vacía)**: Verificar si la pila está vacía.
+![bubble-sort-animation](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/bubble-sort-animation.gif)
 
-### Definición de una pila
-Cada nodo en una pila almacena un valor y un puntero al nodo siguiente.
+### Implementación de Bubble Sort
 ```c++
-struct Nodo {
-    int dato;         // Valor almacenado en el nodo
-    Nodo* siguiente;  // Puntero al siguiente nodo
-};
-```
-
-##  Uso de pilas de manera manual
-
-### Apilar (Push)
-Cuando agregamos elementos a una pila, esta por defecto se va a agregar hasta encima, por el principio que mencionamos anteriormente, que cuando apilamos, el ultimo que agregamos es el primero.
-```c++
-void Push(Nodo*& cima, int valor) {
-    Nodo* nuevo_nodo = new Nodo();
-    nuevo_nodo->dato = valor;
-    nuevo_nodo->siguiente = cima;
-    cima = nuevo_nodo;
+void BubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Intercambiar arr[j] y arr[j + 1]
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 }
 ```
 
-**NOTA**: En este caso, `cima` es el ultimo elemento que se agrego, por eso al final del codigo, decimos que 
-```c++
-cima = nuevo_nodo;
-```
-para ir actualizando la cima cada que se agrega un nuevo nodo.
+## Ordenamiento por Selección (Selection Sort)
+El **Selection Sort** (ordenamiento por selección) es un algoritmo de ordenamiento sencillo, pero no tan eficiente en términos de tiempo cuando se trabaja con conjuntos de datos grandes. La idea principal de este algoritmo es seleccionar repetidamente el **mínimo**  o **maximo** elemento de la parte no ordenada del arreglo y colocarlo en su posición correcta.
 
-### Desapilar (Pop)
-Elimina el nodo del tope de la pila y devuelve su valor.
+![selection-sort-animation](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/selection-sort-animation.gif)
+
+### Implementación del Selection Sort
 ```c++
-int Pop(Nodo*& cima) {
-    if (cima == nullptr) {
-        std::cerr << "La pila está vacía." << std::endl;
-        return -1; // O lanzar una excepción
+void SelectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int min_idx = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_idx]) {
+                min_idx = j;
+            }
+        }
+        // Intercambiar el elemento más pequeño con el primero
+        int temp = arr[min_idx];
+        arr[min_idx] = arr[i];
+        arr[i] = temp;
     }
+}
+```
+## Ordenamiento por Inserción (Insertion Sort)
+El **Insertion Sort** (ordenamiento por inserción) es un algoritmo de ordenamiento simple pero eficiente cuando se trabaja con arreglos pequeños o parcialmente ordenados. La idea detrás de este algoritmo es que los elementos del arreglo se dividen en dos partes: una parte ordenada y una parte no ordenada. Se van tomando elementos de la parte no ordenada uno por uno e insertándolos en la posición correcta dentro de la parte ordenada.
+
+### ¿Cómo funciona?
+1)   **Iniciar con el primer elemento**: Se **asume** que el primer elemento del arreglo está en la parte ordenada, ya que un solo elemento ya está ordenado por definición.
     
-    Nodo* nodo_eliminar = cima;
-    int valor = nodo_eliminar->dato;
-    cima = cima->siguiente;
-    delete nodo_eliminar;
-    return valor;
-}
-```
-En este caso, si la cima (que como dijimos anteriormente es el ultimo nodo que agregamos) esta vacia, significa que NO hay elementos, asi que ya no eliminamos. Pero de haber, lo interesante es que al final, decimos que:
-```c++
-cima = cima->siguiente;
-``` 
-Dando a entender que ahora, como eliminamos la cima, el que estaba debajo del que acabamos de eliminar, **es la nueva cima**
-### 
+2)   **Tomar el siguiente elemento**: A partir del segundo elemento, el algoritmo selecciona el elemento actual de la parte no ordenada y busca la posición correcta en la parte ordenada.
+    
+   3)  **Mover elementos mayores hacia la derecha**: Para encontrar la posición correcta, los elementos mayores de la parte ordenada se desplazan hacia la derecha para hacer espacio para el nuevo elemento.
+    
+4)  **Insertar el nuevo elemento**: Una vez que se encuentra la posición correcta, el elemento se inserta en esa posición.
+    
+5)  **Repetir el proceso**: El proceso se repite para todos los elementos hasta que toda la lista esté ordenada.
 
-### Obtener la cima (Peek)
-Esta función solo muestra la cima, sin embargo no la elimina.
+![insertion-sort-animation](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/insertion-sort-animation.gif)
+
+### Implementación de Insertion Sort
 ```c++
-int Peek(Nodo* cima) {
-    if (cima == nullptr) {
-        std::cerr << "La pila está vacía." << std::endl;
-        return -1; // O lanzar una excepción
+void InsertionSort(int arr[], int n) {
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j = j - 1;
+        }
+        arr[j + 1] = key;
     }
-    return cima->dato;
 }
 ```
-###  Ejemplo completo de una pila
-Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las pilas, en este <a href="https://github.com/German234/LaboratoriosPED/blob/e039ff2747632b5f9b67b1811cdd88ed8d158bbb/Laboratorio-6/PilasManual.cc">repositorio</a>.
 
+ ### Ejemplo Completo de Algoritmos de Ordenamiento
+ Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este [Repositorio - Algoritmos de Ordenamiento](https://github.com/UCASV/RecursosExtraPED/blob/main/SortYBinarySearch/AlgoritmosOrdenamiento.cc)
+ 
+## Ordenamiento usando la librería de C++
+La librería estándar de C++ provee algoritmos eficientes para el ordenamiento de datos. El algoritmo más común para ordenar datos es `std::sort`, el cual se encuentra en la cabecera `<algorithm>`.
 
-##  Uso de pilas usando libreria de C++
-Ahora que ya aprendimos como funcionan las pilas internamente podemos hacer uso de una libreria que C++ ya trae por defecto, que es 
-`std::stack`. Esta libreria nos traerá todas las funciones que mencionamos anteriormente y las tendremos a dispocision para manejar pilas de una manera muchisimo más sencilla.
+### Uso de `std::sort`
 
-Para eso, primero importaremos la libreria, para eso la importaremos de la siguiente manera:
+`std::sort` es una función que implementa algoritmos optimizados para ordenamiento, como **QuickSort** y **HeapSort** ofreciendo un rendimiento más optimo.
+
+```c++
+#include <algorithm>
+#include <iostream>
+
+int main() {
+    int arr[] = {64, 34, 25, 12, 22, 11, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    std::sort(arr, arr + n);
+
+    std::cout << "Arreglo ordenado: ";
+    for (int i = 0; i < n; i++) {
+        std::cout << arr[i] << " ";
+    }
+    return 0;
+}
+```
+En este ejemplo, `std::sort` ordena el arreglo de enteros en orden ascendente. Solo necesitas darle el rango de elementos que quieres ordenar. `arr` es el primer elemento del arreglo, y `arr + n` indica la posición justo después del último elemento. 
+
+En C++, los rangos son **[primero, último)**, lo que significa que el primer valor se incluye, pero el último no. Por eso, `arr + n` apunta justo después del último elemento, indicando el final del rango a ordenar.. Como resultado, `std::sort` ordena todos los elementos desde el principio hasta el final del arreglo.
+
+# Algoritmos de búsqueda
+
+Los **algoritmos de búsqueda** son métodos usados en programación para encontrar un elemento específico dentro de un conjunto de datos, como una lista o un arreglo. Son esenciales cuando se necesita localizar rápidamente un dato en particular, especialmente en grandes volúmenes de información.
+
+## Búsqueda Lineal (Linear Search)
+
+La **búsqueda lineal** es el algoritmo más simple de todos. Consiste en recorrer una lista de datos desde el primer hasta el último elemento, comparando cada uno con el valor que estamos buscando. Si encuentra el valor, la búsqueda termina; si no lo encuentra después de recorrer todos los elementos, devuelve un valor que indica que no se encontró el elemento.
+
+### ¿Cómo funciona?
+
+1.  **Inicio en el primer elemento**: Comenzamos desde el primer elemento de la lista.
+2.  **Comparación**: Comparamos el valor del elemento actual con el valor que estamos buscando.
+3.  **Encontrar o seguir buscando**:
+    -   Si el valor es igual al buscado, se devuelve el índice de ese elemento.
+    -   Si no es igual, se avanza al siguiente elemento y se repite el proceso.
+4.  **Finalizar la búsqueda**: Si se recorren todos los elementos sin encontrar una coincidencia, el valor no está presente en la lista.
+
+![linear_search](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/linear_search.gif)
+
+### Implementación de Linear Search
+```c++
+int LinearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i;  // Devuelve el índice donde se encuentra el valor
+        }
+    }
+    return -1;  // Si no se encuentra, devuelve -1
+}
+```
+## Búsqueda Binaria (Binary Search)
+
+La **búsqueda binaria** es un algoritmo mucho más eficiente que la búsqueda lineal, pero requiere que los datos estén **ordenados**. Funciona dividiendo repetidamente el espacio de búsqueda a la mitad, lo que reduce drásticamente el número de comparaciones necesarias.
+
+### ¿Cómo funciona?
+
+1.  **Dividir la lista**: Comienza comparando el valor buscado con el valor en el medio de la lista.
+2.  **Reducir el espacio de búsqueda**:
+    -   Si el valor buscado es menor que el valor en el medio, la búsqueda continúa en la mitad izquierda de la lista.
+    -   Si el valor buscado es mayor, continúa en la mitad derecha.
+3.  **Repetir el proceso**: El proceso de dividir a la mitad se repite hasta que se encuentra el valor o se reduce el espacio de búsqueda a cero (lo que indica que el valor no está presente).
+
+![binary_search](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/binary_search.gif)
+
+### Implementación de Binary Search
+```c++
+int BinarySearch(int arr[], int low, int high, int key) {
+    while (low <= high) {
+        int mid = low + (high - low) / 2;  // Encuentra el punto medio
+        
+        if (arr[mid] == key) {
+            return mid;  // El valor ha sido encontrado
+        }
+        
+        if (arr[mid] < key) {
+            low = mid + 1;  // El valor está en la mitad derecha
+        } else {
+            high = mid - 1;  // El valor está en la mitad izquierda
+        }
+    }
+    return -1;  // El valor no está presente
+}
+```
+
+ ### Ejemplo Completo de Algoritmos de Ordenamiento
+ Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este [Repositorio - Algoritmos de Busqueda](https://github.com/UCASV/RecursosExtraPED/blob/main/SortYBinarySearch/AlgoritmosBusqueda.cc)
+ 
+## Busqueda usando la librería de C++
+La librería estándar de C++ provee la función `std::binary_search` para realizar búsquedas de manera eficiente en arreglos **ordenados** haciendo uso del algoritmo del mismo nombre.
+
+### Uso de `std::binary_search`
+Así como se explicó anteriormente, el algoritmo `binary search` requiere que el arreglo esté previamente ordenado, por lo cual debemos proveerle un arreglo que cumpla esa caracteristica.
+
+```c++
+#include <algorithm>
+#include <iostream>
+
+int main() {
+    int arr[] = {11, 12, 22, 25, 34, 64, 90};
+    int n = sizeof(arr) / sizeof(arr[0]);
+
+    int key = 22;
+    bool found = std::binary_search(arr, arr + n, key);
+
+    if (found)
+        std::cout << "Elemento " << key << " encontrado en el arreglo.\n";
+    else
+        std::cout << "Elemento " << key << " no encontrado.\n";
+
+    return 0;
+}
+```
+En este ejemplo, `std::binary_search` se utiliza para verificar si el valor `22` está presente en el arreglo. Para que la función funcione correctamente, necesitamos pasarle tres parámetros: el inicio del arreglo, el final del arreglo y el valor que queremos buscar. l inicio del arreglo se indica con `arr`, y el final con `arr + n`, que apunta justo después del último elemento, asegurando que todos los valores sean considerados en la búsqueda. El tercer parámetro es el valor que estamos buscando, en este caso `22`.
+
+Es importante recordar que la búsqueda binaria **solo funciona en arreglos ordenados**, ya que el algoritmo divide el arreglo en mitades de forma eficiente para encontrar el valor. Si el valor se encuentra, la función devuelve `true`; si no, devuelve `false`
+
+## Estructuras de datos dinámicas lineales: Listas (std::list)
+
+En este laboratorio estudiaremos el uso de **listas dinámicas** mediante la librería estándar de C++ `<list>`.  
+Aprenderemos qué son, cómo declararlas, utilizarlas y cuáles son sus operaciones más importantes en la organización y manipulación de datos.
+
+### ¿Qué son las Listas?
+
+Una **lista** es una estructura de datos dinámica **lineal** que permite almacenar y acceder a elementos de forma **secuencial**, con la ventaja de poder **insertar o eliminar elementos en cualquier posición** sin necesidad de mover todos los demás.
+
+A diferencia de los **vectores (`std::vector`)**, las listas **no almacenan los elementos de forma contigua en memoria**, sino que cada elemento está enlazado con el siguiente y el anterior, permitiendo una gestión flexible del tamaño y de las operaciones intermedias.
+
+En C++, esta estructura se maneja fácilmente con la librería estándar **`std::list`**, que representa una **lista doblemente enlazada**.
+
+## Inclusión de la librería `std::list`
+
+Para usar las listas en C++, debemos incluir la librería:
+
 ```c++
 #include <iostream>
-#include <stack>
+#include <list>
 ```
-Luego, en ves de crear los nodos, ahora lo declararemos de la siguiente manera:
-```c++
-std::stack<TipoDeDato> nombre_de_la_pila;
-```
-Donde el `tipo de dato` puede ser int, float, char o incluso una estructura. Mientras que el nombre de la pila, sera el identificador de toda nuestra pila.
+### Definición de una lista
 
-Ahora que ya creamos nuestra pila, ya podemos hacer uso de las funciones que trae la libreria:
-
--   **`push(valor)`**: Agrega un elemento al tope de la pila.
--   **`pop()`**: Elimina el elemento del tope de la pila.
--   **`top()`**: Devuelve una referencia al elemento en el tope de la pila.
--   **`empty()`**: Devuelve `true` si la pila está vacía; de lo contrario, devuelve `false`.
--   **`size()`**: Devuelve el número de elementos en la pila.
-
-Para hacer uso de todas estas funciones, accederemos a traves de nuestra pila. Por ejemplo:
+La sintaxis general para declarar una lista es la siguiente:
 
 ```c++
-pila.push(10);
-pila.push(20);
-pila.push(30);
+std::list<TipoDeDato> nombre_de_la_lista;
 ```
 
-### Ejemplo practico de uso de libreria
-Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las pilas, en este <a href="https://github.com/German234/LaboratoriosPED/blob/e039ff2747632b5f9b67b1811cdd88ed8d158bbb/Laboratorio-6/PilasLibreria.cc">repositorio</a>.
+## Operaciones básicas de una lista
 
-## Colas (Queues)
-Una **cola** es una estructura de datos que sigue el principio **FIFO (First In, First Out)**, es decir, el primer elemento en entrar es el primero en salir. Puedes imaginar una fila de personas esperando para ser atendidas; la primera persona en llegar es la primera en ser atendida.
+Una lista en C++ nos permite realizar varias operaciones fundamentales para agregar, eliminar y recorrer elementos.
 
-<p align="center"> <img src="https://www.encolate.es/wp-content/uploads/2019/11/amimacion-fila-unica.gif" alt="Descripción de la imagen" width="300"/> </p>
+-   **`push_back(valor)`** → Agrega un elemento al **final** de la lista.
+   
+-   **`push_front(valor)`** → Agrega un elemento al **inicio** de la lista.
+    
+-   **`insert(iterador, valor)`** → Inserta un elemento en una posición específica.
 
-A diferencia de las pilas, donde el acceso es por un solo extremo, en las colas se interactúa por ambos extremos: los elementos se **agregan** por un extremo (final) y se **eliminan** por el otro (frente).
+-   **`pop_back()`** → Elimina el último elemento.
+    
+-   **`pop_front()`** → Elimina el primer elemento.
+    
+-   **`erase(iterador)`** → Elimina el elemento en una posición específica.
+    
+-   **`clear()`** → Elimina todos los elementos.
+    
+-   **`remove(valor)`** → Elimina todos los elementos con el valor indicado.
 
-### Operaciones básicas en una cola
+-   **`front()`** → Devuelve una referencia al **primer elemento**.
+    
+-   **`back()`** → Devuelve una referencia al **último elemento**.
+    
+-   **`empty()`** → Devuelve `true` si la lista está vacía.
+    
+-   **`size()`** → Retorna la cantidad de elementos en la lista.
 
--   **Enqueue (Encolar)**: Agregar un elemento al final de la cola.
--   **Dequeue (Desencolar)**: Eliminar el elemento al frente de la cola.
--   **Front (Frente)**: Obtener el valor del elemento al frente sin eliminarlo.
--   **isEmpty (Está vacía)**: Verificar si la cola está vacía.
+### Otras operaciones importantes
 
-### Definición de un nodo
+-   **`sort()`** → Ordena los elementos de menor a mayor.
+    
+-   **`reverse()`** → Invierte el orden de los elementos.
+    
+-   **`unique()`** → Elimina elementos consecutivos duplicados.
+    
+-   **`merge(otra_lista)`** → Combina dos listas **ordenadas** en una sola.
+    
+-   **`splice(pos, otra_lista)`** → Mueve elementos de una lista a otra sin copiarlos.
 
-Al igual que en las listas y pilas, una cola está compuesta por **nodos**. Cada nodo contiene un valor y un puntero al siguiente nodo.
+### Ejemplo completo de uso de librería `<list>`
+A continuación, un ejemplo donde se aplican varias de las funciones mencionadas:
 
-```c++
-struct Nodo {
-    int dato;         // Valor almacenado en el nodo
-    Nodo* siguiente;  // Puntero al siguiente nodo
-};
-```
-
-Primero, recordemos la definición de la estructura `Nodo`:
-
-Cada `Nodo` contiene:
-
--   Un valor (`dato`).
--   Un puntero al siguiente `Nodo` en la cola (`siguiente`).
-
-Los nodos están enlazados entre sí formando una **lista enlazada**. En este caso, utilizamos una lista enlazada simple para implementar la cola.
-
-### Definición de una cola
-
-Para facilitar el acceso tanto al frente como al final de la cola, utilizamos una estructura que mantiene punteros a ambos extremos.
-```c++
-struct Cola {
-    Nodo* frente;     // Puntero al frente de la cola
-    Nodo* final;      // Puntero al final de la cola
-};
-```
-La estructura `Cola` contiene dos punteros:
-
--   `frente`: Apunta al primer nodo de la cola (donde se realiza la operación de **desencolar**).
--   `final`: Apunta al último nodo de la cola (donde se realiza la operación de **encolar**).
-
-Aunque `Cola` no tiene un miembro que sea directamente un `Nodo`, mantiene punteros a los nodos que conforman la cola. Esto es suficiente para gestionar la estructura y realizar las operaciones necesarias.
-
-## Uso de colas de manera manual
-
-### Encolar (Enqueue)
-Esta función nos agregará un nodo al final de la cola.
-```c++
-void Encolar(Cola*& cola, int valor) {
-    Nodo* nuevo_nodo = new Nodo();
-    nuevo_nodo->dato = valor;
-    nuevo_nodo->siguiente = nullptr;
-
-    if (cola->frente == nullptr) {
-        // La cola está vacía
-        cola->frente = nuevo_nodo;
-    } else {
-        // La cola tiene al menos un elemento
-        cola->final->siguiente = nuevo_nodo;
-    }
-    cola->final = nuevo_nodo;
-}
-```
-En este código, primero se crea un nuevo `nodo` y luego se le asignan los valores, una vez tienen los valores, al igual que una **lista enlazada**, el siguiente del nuevo nodo que acabamos de crear apuntara a `nillptr`.  Luego solo se hace una pequeña verificación para analizar si la lista esta vacía o no, y en base a eso agregar al final de la lista.
-
-## Función para desencolar (Dequeue)
-Esta función eliminara el nodo que este de primero, funciona igual que una fila de personas, el primero que entra, será el primero **en salir**.
-
-```c++
-int Desencolar(Cola*& cola) {
-    if (cola->frente == nullptr) {
-        std::cerr << "La cola está vacía." << std::endl;
-    }
-
-    Nodo* nodo_eliminar = cola->frente;
-    int valor = nodo_eliminar->dato;
-    cola->frente = cola->frente->siguiente;
-
-    if (cola->frente == nullptr) {
-        // Si la cola quedó vacía, actualizamos el puntero final
-        cola->final = nullptr;
-    }
-
-    delete nodo_eliminar;
-    return valor;
-}
-```
-En este código después de verificar la fila esta vacía o no, si no lo está, entonces como ya tenemos un puntero, se dice que el nodo a eliminar será justo el de enfrente. Luego, solo se hace una pequeña comparación para mover la lista, donde el nuevo frente será justo **el siguiente del frente que vamos a eliminar**. Luego, solo se hace la comparación de que si justo ese nodo era el ultimo, entonces la cola, el final y el principio, son `nullptr` y se libera la memoria del nodo que se elimino.
-
-## Obtener el valor del frente (Front)
-
-Esta función, hace casi lo mismo que el de eliminar, solo que, no elimina como tal el nodo, solo lo muestra.
-
-```c++
-int Frente(Cola* cola) {
-    if (cola->frente == nullptr) {
-        std::cerr << "La cola está vacía." << std::endl;
-    }
-    return cola->frente->dato;
-}
-```
-Acá cabe aclarar que la función debe ser **del mismo tipo de dato** del contenido de cada nodo, en este caso estamos asumiendo que el dato es un entero, por eso retorna la función un **entero**.
-
-###  Ejemplo completo de una pila manualmente.
-Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las colas, en este <a href="https://github.com/German234/LaboratoriosPED/blob/e039ff2747632b5f9b67b1811cdd88ed8d158bbb/Laboratorio-6/ColasManual.cc">repositorio</a>.
-
-## Uso de colas usando librería de C++
-Al igual que con las pilas, C++ nos provee de una librería para gestionar las colas llamada `queue`
-
-### Incluyendo la librería
-Para utilizar `std::queue`,  incluiremos el encabezado correspondiente:
 ```c++
 #include <iostream>
-#include <queue>
+#include <list>
+using namespace std;
+
+int main() {
+    // Declaramos una lista de enteros
+    list<int> numeros;
+
+    // Agregamos elementos
+    numeros.push_back(10);
+    numeros.push_back(20);
+    numeros.push_front(5);
+
+    cout << "Lista inicial: ";
+    for (int n : numeros) cout << n << " ";
+    cout << endl;
+
+    // Insertar un elemento en una posición específica
+    auto it = numeros.begin();
+    ++it; // avanzamos una posición
+    numeros.insert(it, 15); // insertamos 15 después del primer elemento
+
+    cout << "Después de insertar 15: ";
+    for (int n : numeros) cout << n << " ";
+    cout << endl;
+
+    // Eliminar elementos
+    numeros.remove(20); // elimina el número 20
+    cout << "Después de eliminar 20: ";
+    for (int n : numeros) cout << n << " ";
+    cout << endl;
+
+    // Ordenar y revertir la lista
+    numeros.sort();
+    numeros.reverse();
+
+    cout << "Lista ordenada y luego invertida: ";
+    for (int n : numeros) cout << n << " ";
+    cout << endl;
+
+    // Tamaño y extremos
+    cout << "Primer elemento: " << numeros.front() << endl;
+    cout << "Último elemento: " << numeros.back() << endl;
+    cout << "Total de elementos: " << numeros.size() << endl;
+
+    // Vaciar la lista
+    numeros.clear();
+    if (numeros.empty()) {
+        cout << "La lista está vacía." << endl;
+    }
+
+    return 0;
+}
 ```
-### Definición de una cola
-La sintaxis general para declarar una cola es:
-```c++
-std::queue<TipoDeDato> nombre_de_la_cola;
 ```
-Donde el `tipo de dato` puede ser int, float, char o incluso una estructura. Mientras que el nombre de la cola, sera el identificador de toda nuestra cola.
-
-Ahora que ya creamos nuestra cola, ya podemos hacer uso de las funciones que trae la libreria:
-
--   **`push(valor)`**: Agrega un elemento al final de la cola.
--   **`pop()`**: Elimina el elemento al frente de la cola.
--   **`front()`**: Devuelve una referencia al elemento al frente de la cola.
--   **`back()`**: Devuelve una referencia al último elemento de la cola.
--   **`empty()`**: Devuelve `true` si la cola está vacía; de lo contrario, devuelve `false`.
--   **`size()`**: Devuelve el número de elementos en la cola.
-
-Podemos notar que el uso y las funciones son muy parecidas a las de las pilas. De igual manera para acceder a las funciones de las colas, lo hacemos a través de la cola que hemos creado con la librería.
-
-### Ejemplo de uso
-```c++
-    std::queue<int> cola;
-    cola.push(10);
-    cola.push(20);
-    cola.push(30);
+Lista inicial: 5 10 20 
+Después de insertar 15: 5 15 10 20 
+Después de eliminar 20: 5 15 10 
+Lista ordenada y luego invertida: 15 10 5 
+Primer elemento: 15
+Último elemento: 5
+Total de elementos: 3
+La lista está vacía.
 ```
 
-### Ejemplo practico de uso de libreria
-Puedes mirar un ejemplo completo de todas las funciones que se pueden hacer con las colas, en este <a href="https://github.com/German234/LaboratoriosPED/blob/e039ff2747632b5f9b67b1811cdd88ed8d158bbb/Laboratorio-6/PilasLibreria.cc">repositorio</a>.
+## Anexos
+
+**VisuAlgo** es una herramienta interactiva y visual que ayuda a entender y simular diferentes algoritmos de búsqueda, ordenamiento, y estructuras de datos. 
+[Sorting (Bubble, Selection, Insertion, Merge, Quick, Counting, Radix) - VisuAlgo](https://visualgo.net/en/sorting)
+
+**Cplusplus** contiene la referencia de la libreria `algorithm`
+[cplusplus.com/reference/algorithm/](https://cplusplus.com/reference/algorithm/)
+
+[Bubble Sort | Sorting Algorithm | Code Pumpkin](https://codepumpkin.com/bubble-sort/)
+
+[Bubble Sort Algorithm in Java | Visualization and Examples](https://swtestacademy.com/bubble-sort-algorithm-java-visualization-examples/)
+
+[Insertion Sort Algorithm in Java | Visualization and Examples](https://swtestacademy.com/insertion-sort-algorithm-java-visualization-examples/)
+
+[Selection Sort Algorithm in Java | Visualization and Examples](https://swtestacademy.com/selection-sort-algorithm-java-visualization-examples/)
