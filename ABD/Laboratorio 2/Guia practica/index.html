@@ -381,45 +381,18 @@
             Los <strong>LOGIN</strong> se crean en la base de datos "master"
             debido a que se crean a nivel de servidor.
           </li>
-          <li>
-            IMPORTANTE: El uso de IF NOT EXISTS es opcional es para validar que
-            no exista el
-            <strong>login</strong> o <strong>usuario</strong> es una aplicación
-            de las consultas estudiadas durante la clase
-            <strong
-              >tambien puedes ejecutar las consultas sin esta
-              validación solo ejecuta una de las dos formas.</strong
-            >
-          </li>
         </ul>
         <div class="code-container">
           <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
           <pre><code class="language-sql">
-  -- Los login se crean a nivel de servidor (en la bd master)
+  -- LOS LOGINS SE CREAN A NIVEL DE SERVIDOR (en la bd master)
   USE [master]
   GO
 
-  -- Validando que no exista ya un login llamado orange
-  IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'orange')
-  BEGIN
-    CREATE LOGIN [orange] 
-    WITH PASSWORD = 'UCA@2025', 
-    CHECK_POLICY = ON,          
-    CHECK_EXPIRATION = ON;      
-  END
-  ELSE 
-    PRINT 'Ya existe el Login "orange"'
-GO
-          </code></pre>
-        </div>
-        <p>Crear el <strong>login</strong> sin validar existencia previa</p>
-        <div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
   CREATE LOGIN [orange] 
   WITH PASSWORD = 'UCA@2025', 
   CHECK_POLICY = ON,         
-  CHECK_EXPIRATION = ON;
+  CHECK_EXPIRATION = ON;  
           </code></pre>
         </div>
         <p>
@@ -453,30 +426,11 @@ GO
         </p>
         <div class="code-container">
           <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
   -- Nos conectamos a la base de datos donde asignaremos el usuario
   USE DB_Gimnasio;
 
-  -- Validamos si ya existe el usuario
-  IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'orange')
-  BEGIN
-    CREATE USER [orange] FOR LOGIN [orange];
-  END
-  ELSE
-    PRINT 'Ya existe el usuario "orange" en DB_Gimnasio'
-  GO
-          </code></pre>
-        </div>
-        <p>Creando el usuario "orange" sin validar existencia</p>
-        <div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
-  -- Nos conectamos a la base de datos donde asignaremos el usuario
-  USE DB_Gimnasio;
-
-  -- Creamos el usuario orange sin validar que ya exista
+  -- Creamos el usuario orange asignando el login orange
   CREATE USER [orange] FOR LOGIN [orange];
-          </code></pre>
         </div>
 
         <div class="important-box">
@@ -494,32 +448,12 @@ GO
           <pre><code class="language-sql">
   USE [master];
 
-  -- Verificamos que no exista el login
-  IF NOT EXISTS (SELECT 1 FROM sys.server_principals WHERE name = N'app_gym')
-  BEGIN
-    PRINT 'Creando LOGIN [app_gym]';
-    CREATE LOGIN [app_gym] 
-    WITH PASSWORD = 'UCA@2025', -- Contraseña inicial
-    CHECK_EXPIRATION = OFF, -- La clave nunca expira 
-    CHECK_POLICY = ON; -- Se valida que la contraseña cumpla reglas de seguridad de Windows 
-  END
-  ELSE
-	  PRINT 'Ya existe el login "app_gym" en DB_Gimnasio'
-  GO
-          </code></pre>
-        </div>
-        <p>Creando LOGIN de "app_gym" sin validar existencia</p>
-        <div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
-  USE [master];
-
-  -- Creamos el login sin validar que ya exista
+  -- Creamos el login para app_gym
   CREATE LOGIN [app_gym] 
   WITH PASSWORD = 'UCA@2025',
   CHECK_EXPIRATION = OFF, 
   CHECK_POLICY = ON;
-        </code></pre>
+          </code></pre>
         </div>
         <p>
           Ahora vamos a crear el <strong>usuario</strong> app_gym en la base de
@@ -530,26 +464,10 @@ GO
           <pre><code class="language-sql">
   USE DB_Gimnasio;
 
-  -- Creamos el usuario app_gym dentro de la base de datos
-  IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'app_gym')
-  BEGIN
-    CREATE USER [app_gym] FOR LOGIN [app_gym];
-  END
-  ELSE
-	  PRINT 'Ya existe el usuario "orange" en DB_Gimnasio'
-  GO
-          </code></pre>
-        </div>
-  <p>Creando usuario "app_gym" sin validar existencia</p>
-        <div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
-  USE DB_Gimnasio;
-
-  -- Creamos el usuario app_gym sin validar que ya exista
+  -- Creamos el usuario app_gym con el login app_gym
   CREATE USER [app_gym] FOR LOGIN [app_gym];
-        </code></pre>
-        </div>
+          </code></pre>
+        
       </google-codelab-step>
 
       <!-- Paso 4 -->
@@ -595,30 +513,13 @@ GO
         <div class="code-container">
           <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
           <pre><code class="language-sql">
-  -- Creamos el rol "db_lectura" que servirá para usuarios con acceso únicamente a lectura
   USE DB_Gimnasio;
 
-  -- Creamos rol "db_lectura" validando existencia
-  IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'db_lectura')
-  BEGIN
-      CREATE ROLE db_lectura;
-  END
-  ELSE
-      PRINT 'Ya existe el rol "db_lectura" en DB_Gimnasio';
+  -- Creamos rol "db_lectura" 
+  CREATE ROLE db_lectura;
 </code></pre>
         </div>
   
-  <p>Creando el rol "db_lectura" sin validar existencia</p>
-
-        <div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
-  USE DB_Gimnasio;
-
-  -- Creamos rol "db_lectura" sin validar existencia
-  CREATE ROLE db_lectura;
-        </code></pre>
-        </div>
         <!-- Administración de permisos -->
         <h3>Administración de permisos</h3>
         <p>
@@ -650,8 +551,8 @@ GO
 -- Otorgamos permiso de SELECT (solo lectura) sobre TODO el esquema dbo (donde estan nuestras tablas)
 GRANT SELECT ON SCHEMA::dbo TO db_lectura;
 
--- Hacemos miembro del rol "db_lectura" al usuario orange
-EXEC sp_addrolemember 'db_lectura', 'orange';
+-- Importante al usuario "orange" le asignamos el rol "db_lectura" 
+EXEC sp_addrolemember 'db_lectura', 'orange'; -- primero rol, luego usuario
 GO
 </code></pre>
         </div>
@@ -667,25 +568,12 @@ GO
         <div class="code-container">
           <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
           <pre><code class="language-sql">
--- Creamos el rol "db_app" que servirá para la aplicación del gimnasio
-IF NOT EXISTS (SELECT 1 FROM sys.database_principals WHERE name = N'db_app')
-BEGIN
-    PRINT 'Creando ROLE [db_app]...';
-    CREATE ROLE db_app;
-END
-ELSE
-    PRINT 'Ya existe el rol "db_app" en DB_Gimnasio';
+  -- Creando el rol para db_app
+  CREATE ROLE db_app;
 </code></pre>
         </div>
-  <p>Creando el rol "db_app" sin validar existencia</p>
-<div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-          <pre><code class="language-sql">
-  -- Creamos rol sin validar existencia 
-  CREATE ROLE db_app;
-        </code></pre>
-        </div>
-  <p>Asignando los permisos especificos al rol "db_app"</p>
+
+  <p>Asignandole los permisos especificos al rol "db_app"</p>
         <div class="code-container">
           <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
           <pre><code class="language-sql">
