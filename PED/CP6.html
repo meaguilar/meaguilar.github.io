@@ -30,6 +30,7 @@
 <li><a href="#estructuras-de-datos-dinámicas-lineales-listas-stdlist">Estructuras de datos dinámicas lineales: Listas (std::list)</a></li>
 <li><a href="#inclusión-de-la-librería-stdlist">Inclusión de la librería std::list</a></li>
 <li><a href="#operaciones-básicas-de-una-lista">Operaciones básicas de una lista</a></li>
+<li><a href="#ejemplo-práctico">Ejemplo práctico</a></li>
 <li><a href="#anexos">Anexos</a></li>
 </ul>
 </li>
@@ -367,6 +368,121 @@ Primer elemento: 15
 Último elemento: 5
 Total de elementos: 3
 La lista está vacía.
+</code></pre>
+<h2 id="ejemplo-práctico">Ejemplo práctico</h2>
+<p>En este ejemplo se demuestra el uso integrado y aplicado de todas las librerías estudiadas en este laboratorio.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;list&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span></span>
+using namespace std<span class="token punctuation">;</span>
+
+<span class="token keyword">struct</span> Estudiante <span class="token punctuation">{</span>
+    string nombre<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> anioNacimiento<span class="token punctuation">;</span>
+
+    <span class="token keyword">int</span> <span class="token function">calcularEdad</span><span class="token punctuation">(</span><span class="token keyword">int</span> anioActual<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> anioActual <span class="token operator">-</span> anioNacimiento<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// --- Funciones ---</span>
+Estudiante <span class="token function">agregarEstudianteManual</span><span class="token punctuation">(</span><span class="token keyword">const</span> string<span class="token operator">&amp;</span> nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> anioNacimiento<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Estudiante e<span class="token punctuation">;</span>
+    e<span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+    e<span class="token punctuation">.</span>anioNacimiento <span class="token operator">=</span> anioNacimiento<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> e<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">ordenarPorEdad</span><span class="token punctuation">(</span>list<span class="token operator">&lt;</span>Estudiante<span class="token operator">&gt;</span><span class="token operator">&amp;</span> lista<span class="token punctuation">,</span> <span class="token keyword">int</span> anioActual<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    lista<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span><span class="token punctuation">[</span>anioActual<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">const</span> Estudiante<span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> Estudiante<span class="token operator">&amp;</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">.</span><span class="token function">calcularEdad</span><span class="token punctuation">(</span>anioActual<span class="token punctuation">)</span> <span class="token operator">&gt;</span> b<span class="token punctuation">.</span><span class="token function">calcularEdad</span><span class="token punctuation">(</span>anioActual<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">buscarPorNombre</span><span class="token punctuation">(</span>list<span class="token operator">&lt;</span>Estudiante<span class="token operator">&gt;</span><span class="token operator">&amp;</span> lista<span class="token punctuation">,</span> <span class="token keyword">const</span> string<span class="token operator">&amp;</span> nombreBuscado<span class="token punctuation">,</span> <span class="token keyword">int</span> anioActual<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">auto</span> cmp <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">const</span> Estudiante<span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> Estudiante<span class="token operator">&amp;</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">.</span>nombre <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>nombre<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    lista<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Estudiante clave<span class="token punctuation">{</span>nombreBuscado<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">auto</span> it <span class="token operator">=</span> <span class="token function">lower_bound</span><span class="token punctuation">(</span>lista<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lista<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> clave<span class="token punctuation">,</span> cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> lista<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> it<span class="token operator">-&gt;</span>nombre <span class="token operator">==</span> nombreBuscado<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Coincidencias encontradas para \""</span> <span class="token operator">&lt;&lt;</span> nombreBuscado <span class="token operator">&lt;&lt;</span> <span class="token string">"\":\n"</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> jt <span class="token operator">=</span> it<span class="token punctuation">;</span> jt <span class="token operator">!=</span> lista<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> jt<span class="token operator">-&gt;</span>nombre <span class="token operator">==</span> nombreBuscado<span class="token punctuation">;</span> <span class="token operator">++</span>jt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            cout <span class="token operator">&lt;&lt;</span> <span class="token string">" - Nombre: "</span> <span class="token operator">&lt;&lt;</span> jt<span class="token operator">-&gt;</span>nombre
+                 <span class="token operator">&lt;&lt;</span> <span class="token string">" | Año de nacimiento: "</span> <span class="token operator">&lt;&lt;</span> jt<span class="token operator">-&gt;</span>anioNacimiento
+                 <span class="token operator">&lt;&lt;</span> <span class="token string">" | Edad: "</span> <span class="token operator">&lt;&lt;</span> jt<span class="token operator">-&gt;</span><span class="token function">calcularEdad</span><span class="token punctuation">(</span>anioActual<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" años\n"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        cout <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"No se encontró el estudiante \""</span> <span class="token operator">&lt;&lt;</span> nombreBuscado <span class="token operator">&lt;&lt;</span> <span class="token string">"\".\n\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">void</span> <span class="token function">mostrarEstudiantes</span><span class="token punctuation">(</span><span class="token keyword">const</span> list<span class="token operator">&lt;</span>Estudiante<span class="token operator">&gt;</span><span class="token operator">&amp;</span> lista<span class="token punctuation">,</span> <span class="token keyword">int</span> anioActual<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"----- LISTA DE ESTUDIANTES -----\n"</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> e <span class="token punctuation">:</span> lista<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> e<span class="token punctuation">.</span>nombre
+             <span class="token operator">&lt;&lt;</span> <span class="token string">" | Año de nacimiento: "</span> <span class="token operator">&lt;&lt;</span> e<span class="token punctuation">.</span>anioNacimiento
+             <span class="token operator">&lt;&lt;</span> <span class="token string">" | Edad: "</span> <span class="token operator">&lt;&lt;</span> e<span class="token punctuation">.</span><span class="token function">calcularEdad</span><span class="token punctuation">(</span>anioActual<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" años\n"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"--------------------------------\n\n"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    list<span class="token operator">&lt;</span>Estudiante<span class="token operator">&gt;</span> estudiantes<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> anioActual <span class="token operator">=</span> <span class="token number">2025</span><span class="token punctuation">;</span>
+    
+    <span class="token comment">// Agregamos estudiantes directamente</span>
+    estudiantes<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">agregarEstudianteManual</span><span class="token punctuation">(</span><span class="token string">"Bob"</span><span class="token punctuation">,</span> <span class="token number">2002</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    estudiantes<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">agregarEstudianteManual</span><span class="token punctuation">(</span><span class="token string">"Carlo"</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    estudiantes<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">agregarEstudianteManual</span><span class="token punctuation">(</span><span class="token string">"Beatriz"</span><span class="token punctuation">,</span> <span class="token number">2004</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    estudiantes<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token function">agregarEstudianteManual</span><span class="token punctuation">(</span><span class="token string">"Ana"</span><span class="token punctuation">,</span> <span class="token number">2003</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Mostramos la lista original</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Lista original:\n"</span><span class="token punctuation">;</span>
+    <span class="token function">mostrarEstudiantes</span><span class="token punctuation">(</span>estudiantes<span class="token punctuation">,</span> anioActual<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Ordenamos por edad</span>
+    <span class="token function">ordenarPorEdad</span><span class="token punctuation">(</span>estudiantes<span class="token punctuation">,</span> anioActual<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Después de ordenar por edad (de mayor a menor):\n"</span><span class="token punctuation">;</span>
+    <span class="token function">mostrarEstudiantes</span><span class="token punctuation">(</span>estudiantes<span class="token punctuation">,</span> anioActual<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Buscamos por nombre usando lower_bound</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Buscando a 'Ana'...\n"</span><span class="token punctuation">;</span>
+    <span class="token function">buscarPorNombre</span><span class="token punctuation">(</span>estudiantes<span class="token punctuation">,</span> <span class="token string">"Ana"</span><span class="token punctuation">,</span> anioActual<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Buscando a 'Luis'...\n"</span><span class="token punctuation">;</span>
+    <span class="token function">buscarPorNombre</span><span class="token punctuation">(</span>estudiantes<span class="token punctuation">,</span> <span class="token string">"Luis"</span><span class="token punctuation">,</span> anioActual<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Lista original:
+----- LISTA DE ESTUDIANTES -----
+Nombre: Bob | Año de nacimiento: 2002 | Edad: 23 años
+Nombre: Carlo | Año de nacimiento: 2000 | Edad: 25 años
+Nombre: Beatriz | Año de nacimiento: 2004 | Edad: 21 años
+Nombre: Ana | Año de nacimiento: 2003 | Edad: 22 años
+--------------------------------
+
+Después de ordenar por edad (de mayor a menor):
+----- LISTA DE ESTUDIANTES -----
+Nombre: Carlo | Año de nacimiento: 2000 | Edad: 25 años
+Nombre: Bob | Año de nacimiento: 2002 | Edad: 23 años
+Nombre: Ana | Año de nacimiento: 2003 | Edad: 22 años
+Nombre: Beatriz | Año de nacimiento: 2004 | Edad: 21 años
+--------------------------------
+
+Buscando a 'Ana'...
+Coincidencias encontradas para "Ana":
+ - Nombre: Ana | Año de nacimiento: 2003 | Edad: 22 años
+
+Buscando a 'Luis'...
+No se encontró el estudiante "Luis".
 </code></pre>
 <h2 id="anexos">Anexos</h2>
 <p><strong>VisuAlgo</strong> es una herramienta interactiva y visual que ayuda a entender y simular diferentes algoritmos de búsqueda, ordenamiento, y estructuras de datos.<br>
