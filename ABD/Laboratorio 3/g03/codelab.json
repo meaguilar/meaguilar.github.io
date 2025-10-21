@@ -1,0 +1,24 @@
+{
+  "environment": "web",
+  "format": "html",
+  "prefix": "https://storage.googleapis.com",
+  "mainga": "UA-49880327-14",
+  "updated": "2025-10-20T18:33:06-06:00",
+  "id": "g03",
+  "duration": 0,
+  "title": "Índices y Secuencias en SQL Server",
+  "summary": "“Guía de aprendizaje 03”",
+  "source": ".\\g03.md",
+  "theme": "",
+  "status": [
+    "published"
+  ],
+  "category": [
+    "databases"
+  ],
+  "tags": [
+    "sqlserver"
+  ],
+  "feedback": "mailto:evarela@uca.edu.sv",
+  "url": "g03"
+}

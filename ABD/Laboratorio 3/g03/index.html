@@ -1,0 +1,160 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Índices y Secuencias en SQL Server</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="g03"
+                  title="Índices y Secuencias en SQL Server"
+                  environment="web"
+                  feedback-link="mailto:evarela@uca.edu.sv">
+    
+      <google-codelab-step label="Objetivos del laboratorio" duration="0">
+        <ul>
+<li>Comprender qué son los índices y cómo mejoran el rendimiento de las consultas.</li>
+<li>Crear, inspeccionar y eliminar distintos tipos de índices (<code>CLUSTERED</code>, <code>NONCLUSTERED</code>, <code>UNIQUE</code>, <code>COMPOSITE</code>, <code>INCLUDE</code>).</li>
+<li>Entender qué es una secuencia (<code>SEQUENCE</code>) y cómo se utiliza para generar valores numéricos automáticos.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="¿Qué es un índice en SQL Server?" duration="0">
+        <p>Un <strong>índice</strong> es una estructura de datos auxiliar (normalmente un <strong>árbol B-Tree</strong>) que SQL Server usa para acceder más rápido a los registros de una tabla o vista.<br> Funciona como el índice de un libro: en lugar de revisar todas las páginas, el motor usa el índice para saltar directamente al registro deseado.</p>
+<aside class="special"><p> Los índices son fundamentales para optimizar consultas con grandes volúmenes de datos. </p>
+</aside>
+<h2 is-upgraded>Ventajas</h2>
+<ul>
+<li>Mejora drásticamente la velocidad de las consultas con <code>WHERE</code>, <code>JOIN</code>, <code>ORDER BY</code> y <code>GROUP BY</code>.</li>
+<li>Reduce el tiempo de búsqueda en tablas grandes.</li>
+<li>Permite mantener la unicidad de valores si se define como <code>UNIQUE</code>.</li>
+</ul>
+<h2 is-upgraded>Desventajas</h2>
+<ul>
+<li>Ocupan espacio adicional en disco.</li>
+<li>Pueden ralentizar operaciones de escritura (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>) porque el índice también debe actualizarse.</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Tipos de índices en SQL Server" duration="0">
+        <h2 is-upgraded>Índice Clustered (Agrupado)</h2>
+<p>El índice <strong>clustered</strong> determina el orden físico de los datos en la tabla.<br> Cada tabla solo puede tener <strong>un</strong> índice clustered, ya que los datos se almacenan físicamente siguiendo ese orden.</p>
+<p>Por defecto, la <strong>clave primaria PRIMARY KEY</strong> crea un índice clustered automáticamente, a menos que se especifique lo contrario.</p>
+<p><strong>Sintaxis:</strong></p>
+<pre><code language="language-sql" class="language-sql">CREATE CLUSTERED INDEX IX_Empleados_Departamento ON Empleados(Departamento);
+</code></pre>
+<h2 is-upgraded>Índice Nonclustered (No agrupado)</h2>
+<p>El índice <strong>nonclustered</strong> es una estructura separada que almacena una copia ordenada de las columnas indexadas y un puntero a las filas reales de la tabla.<br> No cambia el orden físico de los datos.</p>
+<p><strong>Sintaxis:</strong></p>
+<pre><code language="language-sql" class="language-sql">CREATE NONCLUSTERED INDEX IX_Empleados_Salario ON Empleados(Salario);
+</code></pre>
+<h2 is-upgraded>Índice Único (<code>UNIQUE</code>)</h2>
+<p>Garantiza que los valores de la(s) columna(s) sean únicos dentro de la tabla.<br> Puede ser <strong>CLUSTERED</strong> o <strong>NONCLUSTERED</strong>.</p>
+<p><strong>Sintaxis:</strong></p>
+<pre><code language="language-sql" class="language-sql">CREATE UNIQUE INDEX IX_Empleados_Email ON Empleados(Email);
+</code></pre>
+<h2 is-upgraded>Índice Compuesto</h2>
+<p>Usa más de una columna como clave del índice.<br> SQL Server ordena primero por la primera columna y luego por las siguientes.</p>
+<p><strong>Sintaxis:</strong></p>
+<pre><code language="language-sql" class="language-sql">CREATE NONCLUSTERED INDEX IX_Ventas_Region_Fecha ON Ventas(Region, Fecha);
+</code></pre>
+<h2 is-upgraded>Índice con columnas incluidas (<code>INCLUDE</code>)</h2>
+<p>Permite incluir columnas adicionales en el índice sin que formen parte de la clave de ordenación.<br> Estas columnas se almacenan junto al índice y pueden <strong>cubrir consultas</strong> sin acceder a la tabla base.</p>
+<p><strong>Sintaxis:</strong></p>
+<pre><code language="language-sql" class="language-sql">CREATE NONCLUSTERED INDEX IX_Ventas_Region
+ON Ventas(Region)
+INCLUDE (Fecha, Monto);
+</code></pre>
+<aside class="special"><p> Los índices con columnas incluidas son ideales para consultas con múltiples columnas en `SELECT`, pero pocas en `WHERE`. </p>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Administración de índices" duration="0">
+        <ul>
+<li><strong>Ver índices existentes:</strong><pre><code language="language-sql" class="language-sql">EXEC sp_helpindex &#39;Empleados&#39;;
+</code></pre>
+</li>
+<li><strong>Eliminar un índice:</strong><pre><code language="language-sql" class="language-sql">DROP INDEX IX_Empleados_Salario ON Empleados;
+</code></pre>
+</li>
+<li><strong>Verificar índices faltantes:</strong><pre><code language="language-sql" class="language-sql">SELECT * FROM sys.dm_db_missing_index_details;
+</code></pre>
+</li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="¿Qué es una Secuencia (
+SEQUENCE)?" duration="0">
+        <p>Una <strong>secuencia</strong> es un objeto de base de datos que genera una serie numérica de valores en orden definido.<br> Es independiente de cualquier tabla, a diferencia de <code>IDENTITY</code>, que pertenece a una columna específica.</p>
+<p><strong>Sintaxis para crear una secuencia:</strong></p>
+<pre><code language="language-sql" class="language-sql">CREATE SEQUENCE Seq_Facturas
+    AS INT
+    START WITH 1000
+    INCREMENT BY 1;
+</code></pre>
+<p><strong>Usar una secuencia en una inserción:</strong></p>
+<pre><code language="language-sql" class="language-sql">INSERT INTO Facturas (NumeroFactura, Cliente, Total)
+VALUES (NEXT VALUE FOR Seq_Facturas, &#39;Juan Pérez&#39;, 350.75);
+</code></pre>
+<p><strong>Reiniciar una secuencia:</strong></p>
+<pre><code language="language-sql" class="language-sql">ALTER SEQUENCE Seq_Facturas RESTART WITH 2000;
+</code></pre>
+<p><strong>Eliminar una secuencia:</strong></p>
+<pre><code language="language-sql" class="language-sql">DROP SEQUENCE Seq_Facturas;
+</code></pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Créditos" duration="0">
+        <p>Departamento de Electrónica e Informática, Universidad Centroamericana José Simeón Cañas, La Libertad, El Salvador.</p>
+<p><strong>Versión de este documento:</strong> Versión 1.00, 2025.</p>
+<table>
+<tr><td colspan="1" rowspan="1"><p><strong>Versión</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Año</strong></p>
+</td><td colspan="1" rowspan="1"><p><strong>Autores</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p><strong>1.00</strong></p>
+</td><td colspan="1" rowspan="1"><p>2025</p>
+</td><td colspan="1" rowspan="1"><p>Claudia Maria Chavez Grande, 00037221@uca.edu.sv</p>
+</td></tr>
+</table>
+<p><img alt="license" src="img\\2d61b47ed7775e46.jpg"> This work is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
