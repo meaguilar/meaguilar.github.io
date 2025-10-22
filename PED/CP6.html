@@ -143,6 +143,8 @@
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<pre><code>Arreglo ordenado: 11 12 22 25 34 64 90
+</code></pre>
 <p>En este ejemplo, <code>std::sort</code> ordena el arreglo de enteros en orden ascendente. Solo necesitas darle el rango de elementos que quieres ordenar. <code>arr</code> es el primer elemento del arreglo, y <code>arr + n</code> indica la posición justo después del último elemento.</p>
 <p>En C++, los rangos son <strong>[primero, último)</strong>, lo que significa que el primer valor se incluye, pero el último no. Por eso, <code>arr + n</code> apunta justo después del último elemento, indicando el final del rango a ordenar… Como resultado, <code>std::sort</code> ordena todos los elementos desde el principio hasta el final del arreglo.</p>
 <h1 id="algoritmos-de-búsqueda">Algoritmos de búsqueda</h1>
@@ -227,6 +229,8 @@
 
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+</code></pre>
+<pre><code>Elemento 22 encontrado en el arreglo.
 </code></pre>
 <p>En este ejemplo, <code>std::binary_search</code> se utiliza para verificar si el valor <code>22</code> está presente en el arreglo. Para que la función funcione correctamente, necesitamos pasarle tres parámetros: el inicio del arreglo, el final del arreglo y el valor que queremos buscar. l inicio del arreglo se indica con <code>arr</code>, y el final con <code>arr + n</code>, que apunta justo después del último elemento, asegurando que todos los valores sean considerados en la búsqueda. El tercer parámetro es el valor que estamos buscando, en este caso <code>22</code>.</p>
 <p>Es importante recordar que la búsqueda binaria <strong>solo funciona en arreglos ordenados</strong>, ya que el algoritmo divide el arreglo en mitades de forma eficiente para encontrar el valor. Si el valor se encuentra, la función devuelve <code>true</code>; si no, devuelve <code>false</code></p>

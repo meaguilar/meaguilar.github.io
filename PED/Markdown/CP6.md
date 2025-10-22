@@ -113,6 +113,9 @@ int main() {
     return 0;
 }
 ```
+```
+Arreglo ordenado: 11 12 22 25 34 64 90
+```
 En este ejemplo, `std::sort` ordena el arreglo de enteros en orden ascendente. Solo necesitas darle el rango de elementos que quieres ordenar. `arr` es el primer elemento del arreglo, y `arr + n` indica la posición justo después del último elemento. 
 
 En C++, los rangos son **[primero, último)**, lo que significa que el primer valor se incluye, pero el último no. Por eso, `arr + n` apunta justo después del último elemento, indicando el final del rango a ordenar.. Como resultado, `std::sort` ordena todos los elementos desde el principio hasta el final del arreglo.
@@ -208,6 +211,9 @@ int main() {
 
     return 0;
 }
+```
+```
+Elemento 22 encontrado en el arreglo.
 ```
 En este ejemplo, `std::binary_search` se utiliza para verificar si el valor `22` está presente en el arreglo. Para que la función funcione correctamente, necesitamos pasarle tres parámetros: el inicio del arreglo, el final del arreglo y el valor que queremos buscar. l inicio del arreglo se indica con `arr`, y el final con `arr + n`, que apunta justo después del último elemento, asegurando que todos los valores sean considerados en la búsqueda. El tercer parámetro es el valor que estamos buscando, en este caso `22`.
 
