@@ -181,8 +181,8 @@ int BinarySearch(int arr[], int low, int high, int key) {
 }
 ```
 
- ### Ejemplo Completo de Algoritmos de Ordenamiento
- Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este [Repositorio - Algoritmos de Busqueda](https://github.com/UCASV/RecursosExtraPED/blob/main/SortYBinarySearch/AlgoritmosBusqueda.cc)
+### Ejemplo Completo de Algoritmos de Ordenamiento
+Puedes ver un ejemplo de todos los algoritmos de ordenamiento en este [Repositorio - Algoritmos de Busqueda](https://github.com/UCASV/RecursosExtraPED/blob/main/SortYBinarySearch/AlgoritmosBusqueda.cc)
  
 ## Busqueda usando la librería de C++
 La librería estándar de C++ provee la función `std::binary_search` para realizar búsquedas de manera eficiente en arreglos **ordenados** haciendo uso del algoritmo del mismo nombre.
@@ -389,7 +389,9 @@ void buscarPorNombre(list<Estudiante>& lista, const string& nombreBuscado, int a
     };
     lista.sort(cmp);
 
-    Estudiante clave{nombreBuscado, 0};
+    Estudiante clave{};
+    clave.nombre = nombreBuscado;
+
     auto it = lower_bound(lista.begin(), lista.end(), clave, cmp);
 
     if (it != lista.end() && it->nombre == nombreBuscado) {
@@ -469,6 +471,8 @@ Buscando a 'Luis'...
 No se encontró el estudiante "Luis".
 ```
 
+### Ejemplo Completo
+Puedes ver un ejemplo de esta implementación en este [Repositorio - Example](https://github.com/UCASV/RecursosExtraPED/blob/main/SortYBinarySearch/demo.cc)
 
 ## Anexos
 

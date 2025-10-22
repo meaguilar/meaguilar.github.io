@@ -406,7 +406,9 @@ Estudiante <span class="token function">agregarEstudianteManual</span><span clas
     <span class="token punctuation">}</span><span class="token punctuation">;</span>
     lista<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span>cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    Estudiante clave<span class="token punctuation">{</span>nombreBuscado<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    Estudiante clave<span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    clave<span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombreBuscado<span class="token punctuation">;</span>
+
     <span class="token keyword">auto</span> it <span class="token operator">=</span> <span class="token function">lower_bound</span><span class="token punctuation">(</span>lista<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> lista<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> clave<span class="token punctuation">,</span> cmp<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
     <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> lista<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> it<span class="token operator">-&gt;</span>nombre <span class="token operator">==</span> nombreBuscado<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -484,6 +486,8 @@ Coincidencias encontradas para "Ana":
 Buscando a 'Luis'...
 No se encontró el estudiante "Luis".
 </code></pre>
+<h3 id="ejemplo-completo">Ejemplo Completo</h3>
+<p>Puedes ver un ejemplo de esta implementación en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/SortYBinarySearch/demo.cc">Repositorio - Example</a></p>
 <h2 id="anexos">Anexos</h2>
 <p><strong>VisuAlgo</strong> es una herramienta interactiva y visual que ayuda a entender y simular diferentes algoritmos de búsqueda, ordenamiento, y estructuras de datos.<br>
 <a href="https://visualgo.net/en/sorting">Sorting (Bubble, Selection, Insertion, Merge, Quick, Counting, Radix) - VisuAlgo</a></p>
