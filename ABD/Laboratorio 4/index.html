@@ -64,8 +64,7 @@
           <li><code>ROWS</code> o <code>RANGE</code>: especifica el marco de filas a considerar.</li>
         </ul>
         <div class="code-container">
-          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-<pre><code class="language-sql">-- Forma general
+<pre><code class="language-sql">
 &lt;FUNCION_DE_VENTANA&gt;() OVER (
   PARTITION BY &lt;columna&gt;
   ORDER BY &lt;columna&gt;
@@ -192,7 +191,7 @@ ORDER BY vendedor_id, fecha_venta;
       </google-codelab-step>
 
       <!-- 6. Comparación: GROUP BY vs WINDOW FUNCTIONS -->
-      <google-codelab-step label="GROUP BY vs. WINDOW FUNCTIONS" duration="0">
+      <google-codelab-step label="GROUP BY vs WINDOW FUNCTIONS" duration="0">
         <table>
           <thead><tr><th>Aspecto</th><th>GROUP BY</th><th>OVER()</th></tr></thead>
           <tbody>
