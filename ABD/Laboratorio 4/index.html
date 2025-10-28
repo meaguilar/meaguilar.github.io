@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" name="viewport" />
+    <title>Guía Laboratorio 4 — Consultas avanzadas con Window Functions en SQL Server</title>
+    <!-- Google Fonts and Material Icons -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Codelab Styles -->
+    <link href="https://storage.googleapis.com/claat-public/codelab-elements.css" rel="stylesheet" />
+    <style>
+      /* Plantilla: plantilla_laboratorio */
+      .important-box {
+        background-color: #e6f4ea;
+        border-left: 5px solid #34a853;
+        padding: 12px;
+        margin: 16px 0;
+        border-radius: 4px;
+      }
+      .code-container { position: relative; }
+      .copy-btn {
+        position: absolute;
+        top: 6px; right: 6px;
+        background: transparent; color: white;
+        border: transparent; padding: 4px 8px; font-size: 12px;
+        border-radius: 3px; cursor: pointer;
+      }
+      pre { white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <google-codelab id="lab-sqlserver-l4" title="Laboratorio 4 — Window Functions en SQL Server" environment="web">
+
+      <!-- 1. ¿Qué son las Window Functions? -->
+      <google-codelab-step label="Introducción a Window Functions" duration="0">
+        <p><b>Objetivos de la practica:</b></p>
+
+        <ul>
+          <li>Entender y aplicar funciones ventana: <code>ROW_NUMBER</code>, <code>RANK</code>, <code>DENSE_RANK</code>, <code>NTILE</code>, <code>SUM/AVG/COUNT OVER</code>, <code>LAG/LEAD</code>, <code>FIRST_VALUE/LAST_VALUE</code>, <code>PERCENT_RANK</code>, <code>CUME_DIST</code>.</li>
+          <li>Usar <code>PARTITION BY</code> (particiones) y <code>ORDER BY</code> (orden dentro de la partición) con marcos (<code>ROWS BETWEEN</code>).</li>
+          <li>Cubrir casos típicos: top N por grupo, acumulados, promedios móviles, comparación con registro previo/siguiente, percentiles.</li>
+        </ul>
+        <p><b>¿Qué son las Window Functions?</b></p>
+        <p>Las Window Functions (o funciones de ventana) son funciones que realizan cálculos sobre un conjunto de filas relacionado con la fila actual, sin agrupar los resultados como lo hace GROUP BY.
+ En otras palabras, permiten aplicar funciones de agregación o análisis sobre una “ventana” de datos, manteniendo el contexto de cada fila.
+</p>
+        <p><b>Ejemplo conceptual</b></p>
+        <div class="important-box">
+          Imagina que deseas calcular el promedio de ventas por región, pero mostrando todas las filas individuales de vendedores.
+ Con GROUP BY, obtendrías una fila por región.
+ Con OVER(PARTITION BY ...), obtienes el promedio en cada fila, sin perder el detalle.
+
+        </div>
+      </google-codelab-step>
+
+      <!-- 2. Sintaxis general -->
+      <google-codelab-step label="Sintaxis general" duration="0">
+        <ul>
+          <li><code>&lt;función_de_ventana&gt;()</code>: la función que se aplicará (p. ej. <code>AVG</code>, <code>SUM</code>, <code>RANK</code>).</li>
+          <li><code>OVER</code>: palabra clave que define la ventana de datos.</li>
+          <li><code>PARTITION BY</code>: divide el conjunto de resultados en grupos (particiones).</li>
+          <li><code>ORDER BY</code>: define el orden dentro de cada partición.</li>
+          <li><code>ROWS</code> o <code>RANGE</code>: especifica el marco de filas a considerar.</li>
+        </ul>
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">-- Forma general
+&lt;FUNCION_DE_VENTANA&gt;() OVER (
+  PARTITION BY &lt;columna&gt;
+  ORDER BY &lt;columna&gt;
+  ROWS | RANGE &lt;frame_especification&gt; 
+) AS alias
+</code></pre>
+        </div>
+      </google-codelab-step>
+
+      <!-- 3. Tipos principales de Window Functions -->
+      <google-codelab-step label="Tipos principales de Window Functions" duration="0">
+        <h3>a) Funciones de Agregación</h3>
+        <p>Permiten aplicar funciones como <code>SUM</code>, <code>AVG</code>, <code>MIN</code>, <code>MAX</code>, <code>COUNT</code> dentro de una ventana.</p>
+        <p><b>Ejemplo:</b> Promedio de salario por departamento sin perder el detalle</p>
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+SELECT 
+  empleado_id, 
+  departamento, 
+  salario,
+  AVG(salario) OVER (PARTITION BY departamento) AS promedio_departamento
+FROM empleados;
+</code></pre>
+        </div>
+        <p>Aquí, cada empleado mostrará su salario y el promedio de su departamento sin agrupar resultados.</p>
+
+        <h3>b) Funciones de Clasificación</h3>
+        <p>Se utilizan para ordenar y numerar filas.</p>
+        <ul>
+          <li><code>ROW_NUMBER()</code>: número secuencial según el orden.</li>
+          <li><code>RANK()</code>: rango con huecos en empates.</li>
+          <li><code>DENSE_RANK()</code>: rango sin huecos.</li>
+          <li><code>NTILE(n)</code>: divide los resultados en <em>n</em> grupos.</li>
+        </ul>
+        <p><b>Ejemplo:</b></p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+SELECT 
+  empleado_id,
+  departamento,
+  salario,
+  ROW_NUMBER() OVER(ORDER BY salario DESC) AS num_fila,
+  RANK() OVER(ORDER BY salario DESC) AS rango,
+  DENSE_RANK() OVER(ORDER BY salario DESC) AS rango_denso
+FROM empleados;
+</code></pre>
+        </div>
+
+        <h3>c) Funciones de Desplazamiento</h3>
+        <p>Permiten acceder a los valores de otras filas dentro de la ventana.</p>
+        <ul>
+          <li><code>LAG(col, n, def)</code>: valor de la <em>n</em>-ésima fila anterior.</li>
+          <li><code>LEAD(col, n, def)</code>: valor de la <em>n</em>-ésima fila siguiente.</li>
+          <li><code>FIRST_VALUE(col)</code>: primer valor de la partición.</li>
+          <li><code>LAST_VALUE(col)</code>: último valor de la partición.</li>
+        </ul>
+                <p><b>Ejemplo:</b> diferencia de salario con el empleado anterior</p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+SELECT 
+  empleado_id,
+  salario, 
+  LAG(salario, 1) OVER (ORDER BY salario) AS salario_anterior,
+  salario - LAG(salario, 1) OVER(ORDER BY salario) AS diferencia
+FROM empleados;
+</code></pre>
+        </div>
+
+        <h3>d) Agregación Acumulada</h3>
+        <p>Usan <code>ORDER BY</code> y marcos (<code>ROWS BETWEEN</code>) para totales progresivos o promedios móviles.</p>
+                        <p><b>Ejemplo:</b> total acumulado</p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+SELECT 
+  empleado_id, 
+  fecha_venta, 
+  monto,
+  SUM(monto) OVER(ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS total_acumulado
+FROM ventas;
+</code></pre>
+        </div>
+      </google-codelab-step>
+
+      <!-- 4. Marcos de Ventana (Frame Clauses) -->
+      <google-codelab-step label="Marcos de Ventana (Frame Clauses)" duration="0">
+        <p>El marco define qué filas se usan en el cálculo para cada fila actual.</p>
+        <center>
+          <table>
+          <thead><tr><th>Cláusula</th><th>Significado</th></tr></thead>
+          <tbody>
+            <tr><td><code>ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</code></td><td>Desde el inicio hasta la fila actual.</td></tr>
+            <tr><td><code>ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING</code></td><td>Una fila antes y una después.</td></tr>
+            <tr><td><code>RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW</code></td><td>Basada en valores (no posiciones); ojo con duplicados en el orden.</td></tr>
+          </tbody>
+        </table>
+        </center>
+      </google-codelab-step>
+
+      <!-- 5. Ejemplo completo -->
+      <google-codelab-step label="Ejemplo completo" duration="0">
+        <p><strong>Escenario:</strong> Calcular el total acumulado y el promedio móvil de las ventas de cada vendedor.</p>
+      <div class="code-container">
+  <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+  <pre><code class="language-sql">
+SELECT
+    vendedor_id,
+    fecha_venta,
+    monto,
+    SUM(monto) OVER(PARTITION BY vendedor_id ORDER BY fecha_venta
+                    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS total_acumulado,
+    AVG(monto) OVER(PARTITION BY vendedor_id ORDER BY fecha_venta
+                    ROWS BETWEEN 2 PRECEDING AND CURRENT ROW) AS promedio_movil
+FROM ventas
+ORDER BY vendedor_id, fecha_venta;
+  </code></pre>
+</div>
+      </google-codelab-step>
+
+      <!-- 6. Comparación: GROUP BY vs WINDOW FUNCTIONS -->
+      <google-codelab-step label="GROUP BY vs. WINDOW FUNCTIONS" duration="0">
+        <table>
+          <thead><tr><th>Aspecto</th><th>GROUP BY</th><th>OVER()</th></tr></thead>
+          <tbody>
+            <tr><td>Devuelve una fila por grupo</td><td>✅</td><td>❌ (mantiene todas las filas)</td></tr>
+            <tr><td>Múltiples cálculos en una sola consulta</td><td>❌ (subconsultas)</td><td>✅</td></tr>
+            <tr><td>Requiere agregación total</td><td>✅</td><td>❌</td></tr>
+            <tr><td>Útil para análisis fila a fila</td><td>❌</td><td>✅</td></tr>
+          </tbody>
+        </table>
+      </google-codelab-step>
+
+      <!-- 7. Buenas prácticas y notas -->
+      <google-codelab-step label="Buenas prácticas y notas" duration="0">
+        <ul>
+          <li>Incluye <code>ORDER BY</code> dentro de <code>OVER()</code> si la función depende del orden (<code>LAG</code>, <code>LEAD</code>, <code>RANK</code>).</li>
+          <li>Evita ventanas grandes sin partición: puede afectar rendimiento.</li>
+          <li>Puedes combinar varias Window Functions en una misma consulta.</li>
+          <li>No todas las funciones soportan <code>ROWS/RANGE</code>; revisa documentación.</li>
+        </ul>
+        <div class="important-box"><strong>Tip:</strong> Usa índices que apoyen el <code>ORDER BY</code> de tus ventanas para reducir costos de ordenamiento.</div>
+      </google-codelab-step>
+
+      <!-- 8. Casos de uso comunes -->
+      <google-codelab-step label="Casos de uso comunes" duration="0">
+        <ul>
+          <li>Ranking de ventas o desempeño.</li>
+          <li>Comparación con promedio o valor anterior.</li>
+          <li>Cálculo de métricas acumuladas o móviles.</li>
+          <li>Análisis de tendencias en series temporales.</li>
+          <li>Evaluaciones comparativas por grupos (departamentos, zonas, periodos).</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- 9. Parte práctica -->
+      <google-codelab-step label="Parte práctica" duration="0">
+        <p>Sigue las indicaciones de tu instructor para desarrollar la clave asignada. Documenta tus código y realiza de forma ordenada cada uno de los ejercicios.</p>
+        <div class="code-container">
+<button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+-- Base de datos a utilizar para la realizacion de los ejercicios practicos.
+-- Administracion de bases de datos 02-2025
+IF DB_ID(N'DB_FoodSupplier') IS NULL
+BEGIN
+    PRINT 'Creando base de datos DB_Supermarket...';
+    CREATE DATABASE DB_FoodSupplier;
+END
+GO
+
+USE DB_FoodSupplier;
+
+CREATE TABLE Employee (
+    EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
+    FullName NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) UNIQUE NOT NULL,
+    PhoneNumber NVARCHAR(20)
+);
+
+CREATE TABLE Product (
+    ProductID INT IDENTITY(1,1) PRIMARY KEY,
+    ProductName NVARCHAR(100) NOT NULL,
+    PriceUSD DECIMAL(10,2) NOT NULL,
+    PriceEUR DECIMAL(10,2) NOT NULL,
+    ProductType NVARCHAR(20) CHECK (ProductType IN ('Fruit', 'Vegetable')) NOT NULL
+);
+
+CREATE TABLE Client (
+    ClientID INT IDENTITY(1,1) PRIMARY KEY,
+    ClientName NVARCHAR(100) NOT NULL,
+    ClientType NVARCHAR(20) CHECK (ClientType IN ('Person', 'Company')) NOT NULL,
+    StartDate DATE NOT NULL,
+    IndustrySector NVARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Contract (
+    ContractID INT IDENTITY(1,1) PRIMARY KEY,
+    SignDate DATE NOT NULL,
+    ExpirationDate DATE NOT NULL,
+    EmployeeID INT NOT NULL,
+    ClientID INT NOT NULL,
+    Currency NVARCHAR(3) CHECK (Currency IN ('USD', 'EUR')) NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES Employee(EmployeeID),
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID)
+);
+
+CREATE TABLE ContractProducts (
+    ContractProductID INT IDENTITY(1,1) PRIMARY KEY,
+    ContractID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL CHECK (Quantity > 0),
+    FOREIGN KEY (ContractID) REFERENCES Contract(ContractID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+CREATE TABLE Sale (
+    SaleID INT IDENTITY(1,1) PRIMARY KEY,
+    SaleDate DATE NOT NULL,
+    ClientID INT NOT NULL,
+    PaymentMethod NVARCHAR(20) CHECK (PaymentMethod IN ('Credit', 'Bank Transfer', 'Cash')) NOT NULL,
+    Currency NVARCHAR(3) CHECK (Currency IN ('USD', 'EUR')) NOT NULL,
+    FOREIGN KEY (ClientID) REFERENCES Client(ClientID)
+);
+
+CREATE TABLE SaleProducts (
+    SaleProductID INT IDENTITY(1,1) PRIMARY KEY,
+    SaleID INT NOT NULL,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL CHECK (Quantity > 0),
+    FOREIGN KEY (SaleID) REFERENCES Sale(SaleID),
+    FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+INSERT INTO Employee (FullName, Email, PhoneNumber) VALUES
+('Alice Johnson', 'alice.johnson@veggiesupply.com', '+1-555-1001'),
+('Brian Smith', 'brian.smith@veggiesupply.com', '+1-555-1002'),
+('Carla Diaz', 'carla.diaz@veggiesupply.com', '+1-555-1003'),
+('Daniel Ortega', 'daniel.ortega@veggiesupply.com', '+1-555-1004'),
+('Eva Brown', 'eva.brown@veggiesupply.com', '+1-555-1005'),
+('Frank Miller', 'frank.miller@veggiesupply.com', '+1-555-1006'),
+('Grace Lee', 'grace.lee@veggiesupply.com', '+1-555-1007'),
+('Henry Chen', 'henry.chen@veggiesupply.com', '+1-555-1008'),
+('Isabel Torres', 'isabel.torres@veggiesupply.com', '+1-555-1009'),
+('James Wilson', 'james.wilson@veggiesupply.com', '+1-555-1010');
+
+INSERT INTO Product (ProductName, PriceUSD, PriceEUR, ProductType) VALUES
+('Apple', 1.20, 1.10, 'Fruit'),
+('Banana', 0.90, 0.85, 'Fruit'),
+('Orange', 1.10, 1.00, 'Fruit'),
+('Strawberry', 2.50, 2.30, 'Fruit'),
+('Mango', 2.00, 1.85, 'Fruit'),
+('Pineapple', 3.00, 2.80, 'Fruit'),
+('Grapes', 2.20, 2.00, 'Fruit'),
+('Blueberry', 3.50, 3.30, 'Fruit'),
+('Pear', 1.40, 1.25, 'Fruit'),
+('Watermelon', 4.00, 3.70, 'Fruit'),
+('Carrot', 0.80, 0.75, 'Vegetable'),
+('Tomato', 1.10, 1.00, 'Vegetable'),
+('Lettuce', 1.00, 0.95, 'Vegetable'),
+('Cucumber', 0.90, 0.85, 'Vegetable'),
+('Broccoli', 1.50, 1.40, 'Vegetable'),
+('Spinach', 1.20, 1.10, 'Vegetable'),
+('Potato', 0.70, 0.65, 'Vegetable'),
+('Onion', 0.60, 0.55, 'Vegetable'),
+('Pepper', 1.80, 1.65, 'Vegetable'),
+('Garlic', 2.00, 1.85, 'Vegetable');
+
+INSERT INTO Client (ClientName, ClientType, StartDate, IndustrySector) VALUES
+('FreshBite Restaurant', 'Company', '2021-03-15', 'Restaurant'),
+('GreenLeaf Foods', 'Company', '2020-07-22', 'Food Industry'),
+('Healthy Harvest Market', 'Company', '2019-11-05', 'Retail'),
+('UrbanEat Caf�', 'Company', '2022-02-10', 'Restaurant'),
+('Nature�s Choice', 'Company', '2021-09-18', 'Food Industry'),
+('Chef Antonio', 'Person', '2020-05-12', 'Restaurant'),
+('HomeFresh Delivery', 'Company', '2022-06-30', 'Logistics'),
+('Organic World', 'Company', '2019-04-02', 'Retail'),
+('Laura�s Kitchen', 'Person', '2023-01-05', 'Catering'),
+('GreenEats Factory', 'Company', '2020-12-14', 'Food Processing');
+
+INSERT INTO Contract (SignDate, ExpirationDate, EmployeeID, ClientID, Currency)
+VALUES
+('2023-01-15', '2024-01-15', 1, 1, 'USD'),
+('2023-03-10', '2024-03-10', 2, 2, 'EUR'),
+('2023-05-20', '2024-05-20', 3, 3, 'USD'),
+('2023-07-01', '2024-07-01', 4, 4, 'EUR'),
+('2023-08-25', '2024-08-25', 5, 5, 'USD'),
+('2023-09-05', '2024-09-05', 6, 6, 'EUR'),
+('2023-10-10', '2024-10-10', 7, 7, 'USD'),
+('2023-11-20', '2024-11-20', 8, 8, 'EUR');
+
+INSERT INTO ContractProducts (ContractID, ProductID, Quantity)
+VALUES
+(1, 1, 500),  (1, 11, 400),
+(2, 5, 300),  (2, 13, 350),
+(3, 2, 600),  (3, 17, 700),
+(4, 4, 200),  (4, 18, 250),
+(5, 6, 150),  (5, 19, 180),
+(6, 8, 220),  (6, 12, 260),
+(7, 9, 320),  (7, 15, 400),
+(8, 10, 280), (8, 16, 300);
+
+INSERT INTO Sale (SaleDate, ClientID, PaymentMethod, Currency)
+VALUES
+('2024-01-05', 1, 'Credit', 'USD'),
+('2024-01-10', 2, 'Cash', 'EUR'),
+('2024-02-15', 3, 'Bank Transfer', 'USD'),
+('2024-03-01', 4, 'Cash', 'EUR'),
+('2024-03-20', 5, 'Credit', 'USD'),
+('2024-04-05', 6, 'Bank Transfer', 'EUR'),
+('2024-05-10', 7, 'Cash', 'USD'),
+('2024-06-01', 8, 'Credit', 'EUR'),
+('2024-06-25', 9, 'Cash', 'USD'),
+('2024-07-05', 10, 'Credit', 'EUR'),
+('2024-07-22', 1, 'Cash', 'USD'),
+('2024-08-10', 2, 'Bank Transfer', 'EUR'),
+('2024-09-01', 3, 'Credit', 'USD'),
+('2024-09-15', 4, 'Cash', 'EUR'),
+('2024-10-05', 5, 'Credit', 'USD'),
+('2024-10-20', 6, 'Bank Transfer', 'EUR');
+
+INSERT INTO SaleProducts (SaleID, ProductID, Quantity)
+VALUES
+(1, 1, 120),   (1, 11, 90),
+(2, 5, 100),   (2, 12, 80),
+(3, 2, 200),   (3, 17, 150),
+(4, 4, 130),   (4, 18, 100),
+(5, 6, 70),    (5, 19, 90),
+(6, 8, 110),   (6, 13, 100),
+(7, 9, 140),   (7, 15, 160),
+(8, 10, 200),  (8, 16, 190),
+(9, 3, 150),   (9, 14, 130),
+(10, 7, 170),  (10, 11, 160),
+(11, 1, 80),   (11, 17, 60),
+(12, 5, 100),  (12, 12, 90),
+(13, 2, 140),  (13, 19, 120),
+(14, 4, 160),  (14, 15, 150),
+(15, 6, 90),   (15, 18, 85),
+(16, 9, 130),  (16, 16, 125);
+
+INSERT INTO Contract (SignDate, ExpirationDate, EmployeeID, ClientID, Currency)
+VALUES
+('2023-12-05', '2024-12-05', 9, 9, 'USD'),
+('2024-01-10', '2025-01-10', 10, 10, 'EUR'),
+('2024-02-20', '2025-02-20', 3, 2, 'USD'),
+('2024-03-15', '2025-03-15', 5, 4, 'EUR');
+
+INSERT INTO ContractProducts (ContractID, ProductID, Quantity)
+VALUES
+(9, 1, 250),   (9, 13, 220),
+(10, 3, 180),  (10, 19, 200),
+(11, 5, 300),  (11, 17, 350),
+(12, 8, 260),  (12, 14, 280);
+
+INSERT INTO Sale (SaleDate, ClientID, PaymentMethod, Currency)
+VALUES
+('2024-11-01', 7, 'Cash', 'USD'),
+('2024-11-10', 8, 'Credit', 'EUR'),
+('2024-11-25', 9, 'Bank Transfer', 'USD'),
+('2024-12-05', 10, 'Credit', 'EUR'),
+('2024-12-15', 3, 'Cash', 'USD'),
+('2024-12-22', 5, 'Bank Transfer', 'EUR');
+
+INSERT INTO SaleProducts (SaleID, ProductID, Quantity)
+VALUES
+(17, 2, 150),   (17, 11, 130),
+(18, 6, 100),   (18, 16, 120),
+(19, 10, 200),  (19, 17, 180),
+(20, 9, 160),   (20, 18, 150),
+(21, 3, 120),   (21, 19, 100),
+(22, 8, 130),   (22, 15, 110);
+
+INSERT INTO Contract (SignDate, ExpirationDate, EmployeeID, ClientID, Currency)
+VALUES
+('2024-04-01', '2025-04-01', 1, 5, 'USD'),
+('2024-04-15', '2025-04-15', 2, 6, 'EUR'),
+('2024-05-05', '2025-05-05', 3, 7, 'USD'),
+('2024-05-25', '2025-05-25', 4, 8, 'EUR'),
+('2024-06-10', '2025-06-10', 5, 9, 'USD'),
+('2024-07-01', '2025-07-01', 6, 10, 'EUR'),
+('2024-07-20', '2025-07-20', 7, 1, 'USD'),
+('2024-08-05', '2025-08-05', 8, 3, 'EUR');
+
+INSERT INTO ContractProducts (ContractID, ProductID, Quantity)
+VALUES
+(13, 6, 400),  (13, 17, 450),
+(14, 8, 220),  (14, 13, 240),
+(15, 10, 300), (15, 11, 280),
+(16, 3, 260),  (16, 18, 250),
+(17, 1, 500),  (17, 14, 480),
+(18, 9, 350),  (18, 12, 300),
+(19, 2, 320),  (19, 19, 310),
+(20, 5, 200),  (20, 16, 230);
+
+INSERT INTO Sale (SaleDate, ClientID, PaymentMethod, Currency)
+VALUES
+('2025-01-05', 1, 'Credit', 'USD'),
+('2025-01-12', 2, 'Cash', 'EUR'),
+('2025-01-22', 3, 'Bank Transfer', 'USD'),
+('2025-02-05', 4, 'Credit', 'EUR'),
+('2025-02-20', 5, 'Cash', 'USD'),
+('2025-03-01', 6, 'Credit', 'EUR'),
+('2025-03-15', 7, 'Bank Transfer', 'USD'),
+('2025-04-02', 8, 'Credit', 'EUR'),
+('2025-04-18', 9, 'Cash', 'USD'),
+('2025-05-05', 10, 'Credit', 'EUR'),
+('2025-05-20', 2, 'Bank Transfer', 'USD'),
+('2025-06-01', 5, 'Cash', 'EUR');
+
+INSERT INTO SaleProducts (SaleID, ProductID, Quantity)
+VALUES
+(23, 1, 150),   (23, 11, 120),
+(24, 5, 90),    (24, 12, 80),
+(25, 2, 180),   (25, 17, 160),
+(26, 4, 130),   (26, 18, 110),
+(27, 6, 100),   (27, 19, 120),
+(28, 8, 200),   (28, 13, 180),
+(29, 9, 140),   (29, 15, 130),
+(30, 10, 220),  (30, 16, 210),
+(31, 3, 160),   (31, 14, 150),
+(32, 7, 170),   (32, 11, 155),
+(33, 1, 130),   (33, 19, 115),
+(34, 5, 100),   (34, 12, 95);
+</code></pre>
+</div>
+
+
+<div class="important-box">
+<p>Una vez ejecutado el script, verifica que las tablas se hayan creado correctamente y los datos estén disponibles. Puedes usar <code>SELECT TOP(5) * FROM nombre_tabla;</code> para revisar cada una.</p>
+</div>
+      </google-codelab-step>
+
+      <!-- Créditos -->
+      <google-codelab-step label="Créditos" duration="0">
+        <p>
+          Departamento de Electrónica e Informática, Universidad Centroamericana
+          José Simeón Cañas, La Libertad, El Salvador.
+        </p>
+        <p><strong>Versión de este documento:</strong> Versión 1, 2025.</p>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Versión</strong></td>
+              <td><strong>Autores</strong></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>
+                Vanessa Sarai Duran Cruz (00025822@uca.edu.sv), Diego Eduardo Castro Quintanilla (00037221@uca.edu.sv), Kevin Josue Claros Castro (00157320@uca.edu.sv) 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <img
+            alt="license"
+            src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
+          /><br />
+          This work is licensed under a
+          <a
+            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            target="_blank"
+          >
+            Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+            International License </a
+          >.
+        </p>
+      </google-codelab-step>
+
+    </google-codelab>
+
+    <!-- Codelab Scripts -->
+    <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+    <script>
+      function copyCode(btn) {
+        const code = btn.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = "Copiado!";
+          setTimeout(() => (btn.innerText = "Copiar"), 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
