@@ -106,11 +106,11 @@ Los **recorridos de un árbol binario** son formás de visitar todos los nodos d
 
 ```c++
 void InOrden(Nodo* raiz) {
-	if (raiz != nullptr) {
-		InOrden(raiz->izquierda);
-		std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
-		InOrden(raiz->derecha);
-	}
+    if (raiz != nullptr) {
+        InOrden(raiz->izquierda);
+        std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
+        InOrden(raiz->derecha);
+    }
 };
 ```
 ![inorder-visualization](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/inorder-visualization.png)
@@ -119,11 +119,11 @@ void InOrden(Nodo* raiz) {
 
 ```c++
 void PreOrden(Nodo* raiz) {
-	if (raiz != nullptr) {
-		std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
-		PreOrden(raiz->izquierda);
-		PreOrden(raiz->derecha);
-	}
+    if (raiz != nullptr) {
+        std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
+        PreOrden(raiz->izquierda);
+        PreOrden(raiz->derecha);
+    }
 };
 ```
 ![preorder-visualization](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/preorder-visualization.png)
@@ -132,11 +132,11 @@ void PreOrden(Nodo* raiz) {
 
 ```c++
 void PostOrden(Nodo* raiz) {
-	if (raiz != nullptr) {
-		PostOrden(raiz->izquierda);
-		PostOrden(raiz->derecha);
-		std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
-	}
+    if (raiz != nullptr) {
+        PostOrden(raiz->izquierda);
+        PostOrden(raiz->derecha);
+        std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
+    }
 };
 ```
 ![postorder-visualization](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/postorder-visualization.png)
@@ -230,9 +230,9 @@ Persona buscar = {2, ""};  // Solo necesitamos el 'id' para buscar
 auto it = personas.find(buscar);
 
 if (it != personas.end()) {
-	std::cout << "Persona encontrada: " << it->nombre << std::endl;
+    std::cout << "Persona encontrada: " << it->nombre << std::endl;
 } else {
-	std::cout << "Persona no encontrada." << std::endl;
+    std::cout << "Persona no encontrada." << std::endl;
 };
 ```
 
@@ -253,19 +253,19 @@ personas.erase(eliminar);
 Para recorrer el conjunto e imprimir los elementos, podemos usar un bucle `for`, donde el conjunto ya se encuentra ordenado automáticamente.
 
 ```c++
- for (auto it = personas.begin(); it != personas.end(); ++it) {
-    const auto& persona = *it;
-    std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
-}
+for (auto it = personas.begin(); it != personas.end(); ++it) {
+   const auto& persona = *it;
+   std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
+};
 ```
 `personas.begin()` indica el inicio y `personas.end()` el último elemento del conjunto.
 
 Una forma mucho más común de implementar un recorrido y simplificándolo, es aplicando un **bucle rango** . Este tipo de bucle simplifica la iteración sobre contenedores como `std::set`, `std::vector`, `std::array`, entre otros. Lo podemos definir de la siguiente manera.
 
 ```c++
- for (const auto& persona : personas) {
-    std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
- }
+for (const auto& persona : personas) {
+   std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
+};
 ```
 
   **`const`**: Indica que la variable `persona` no se puede modificar durante la iteración. Esto asegura que el contenido de cada objeto no cambie accidentalmente.
