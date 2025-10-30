@@ -76,7 +76,7 @@ Nodo* Insertar(Nodo* raiz, Datos nuevo_dato) {
     }
 
     return raiz;
-}
+};
 ```
 ### 2. Buscar un nodo
 Para buscar un nodo en el árbol, compararemos el **id** del campo `Datos` para determinar si el nodo se encuentra en el árbol.
@@ -96,7 +96,7 @@ bool Buscar(Nodo* raiz, int id) {
     } else {
         return Buscar(raiz->derecha, id);
     }
-}
+};
 ```
 ### 3. Recorrer un árbol binario
 
@@ -104,41 +104,41 @@ Los **recorridos de un árbol binario** son formás de visitar todos los nodos d
 
 -   **Recorrido Inorden (IPD):** En el recorrido **inorden**, primero se visita el **hijo izquierdo**, luego se **visita el nodo** padre, y finalmente se visita el **hijo derecho**.
 
-	```c++
-	void InOrden(Nodo* raiz) {
-	    if (raiz != nullptr) {
-	        InOrden(raiz->izquierda);
-	        std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
-	        InOrden(raiz->derecha);
-	    }
+```c++
+void InOrden(Nodo* raiz) {
+	if (raiz != nullptr) {
+		InOrden(raiz->izquierda);
+		std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
+		InOrden(raiz->derecha);
 	}
-	```
+};
+```
 ![inorder-visualization](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/inorder-visualization.png)
 
 -   **Recorrido Preorden (PID):** En el recorrido **preorden**, primero se **visita el nodo** padre, luego se visita el **hijo izquierdo**, y finalmente se visita el **hijo derecho**.
 
-	```c++
-	void PreOrden(Nodo* raiz) {
-	    if (raiz != nullptr) {
-	        std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
-	        PreOrden(raiz->izquierda);
-	        PreOrden(raiz->derecha);
-	    }
+```c++
+void PreOrden(Nodo* raiz) {
+	if (raiz != nullptr) {
+		std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
+		PreOrden(raiz->izquierda);
+		PreOrden(raiz->derecha);
 	}
-	```
+};
+```
 ![preorder-visualization](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/preorder-visualization.png)
 
 -   **Recorrido Postorden (IDP):** En el recorrido **postorden**, primero se visita el **hijo izquierdo**, luego se visita el **hijo derecho**, y finalmente se visita el **nodo padre**. 
 
-	```c++
-	void PostOrden(Nodo* raiz) {
-	    if (raiz != nullptr) {
-	        PostOrden(raiz->izquierda);
-	        PostOrden(raiz->derecha);
-	        std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
-	    }
+```c++
+void PostOrden(Nodo* raiz) {
+	if (raiz != nullptr) {
+		PostOrden(raiz->izquierda);
+		PostOrden(raiz->derecha);
+		std::cout << "ID: " << raiz->dato.id << ", Nombre: " << raiz->dato.nombre << std::endl;
 	}
-	```
+};
+```
 ![postorder-visualization](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/postorder-visualization.png)
 
 ### 4. **Eliminar un Nodo**
@@ -225,15 +225,15 @@ personas.insert({2, "Pedro"});
 Puedes buscar un elemento para ver si está en el conjunto. Como es de tipo booleano, te devolverá verdadero o falso, indicando si lo encontró o no.
 
 ```c++
-    // Buscar una persona por id
-    Persona buscar = {2, ""};  // Solo necesitamos el 'id' para buscar
-    auto it = personas.find(buscar);
+// Buscar una persona por id
+Persona buscar = {2, ""};  // Solo necesitamos el 'id' para buscar
+auto it = personas.find(buscar);
 
-    if (it != personas.end()) {
-        std::cout << "Persona encontrada: " << it->nombre << std::endl;
-    } else {
-        std::cout << "Persona no encontrada." << std::endl;
-    }
+if (it != personas.end()) {
+	std::cout << "Persona encontrada: " << it->nombre << std::endl;
+} else {
+	std::cout << "Persona no encontrada." << std::endl;
+};
 ```
 
 #### ¿Qué es el tipo de dato auto?

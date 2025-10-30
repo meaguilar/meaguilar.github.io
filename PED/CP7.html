@@ -95,7 +95,7 @@
     <span class="token punctuation">}</span>
 
     <span class="token keyword">return</span> raiz<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="buscar-un-nodo">2. Buscar un nodo</h3>
 <p>Para buscar un nodo en el árbol, compararemos el <strong>id</strong> del campo <code>Datos</code> para determinar si el nodo se encuentra en el árbol.</p>
@@ -113,51 +113,45 @@
     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span> <span class="token function">Buscar</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">,</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="recorrer-un-árbol-binario">3. Recorrer un árbol binario</h3>
 <p>Los <strong>recorridos de un árbol binario</strong> son formás de visitar todos los nodos del árbol siguiendo un orden específico. Existen tres tipos principales de recorridos: <strong>inorden</strong>, <strong>preorden</strong> y <strong>postorden</strong>. La principal diferencia entre estos recorridos es el momento en que se visita el nodo <strong>padre</strong> en relación con su hijo izquierdo e hijo derecho.</p>
 <ul>
-<li>
-<p><strong>Recorrido Inorden (IPD):</strong> En el recorrido <strong>inorden</strong>, primero se visita el <strong>hijo izquierdo</strong>, luego se <strong>visita el nodo</strong> padre, y finalmente se visita el <strong>hijo derecho</strong>.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">InOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">InOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-        <span class="token function">InOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
+<li><strong>Recorrido Inorden (IPD):</strong> En el recorrido <strong>inorden</strong>, primero se visita el <strong>hijo izquierdo</strong>, luego se <strong>visita el nodo</strong> padre, y finalmente se visita el <strong>hijo derecho</strong>.</li>
 </ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">InOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">InOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+		<span class="token function">InOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/inorder-visualization.png" alt="inorder-visualization"></p>
 <ul>
-<li>
-<p><strong>Recorrido Preorden (PID):</strong> En el recorrido <strong>preorden</strong>, primero se <strong>visita el nodo</strong> padre, luego se visita el <strong>hijo izquierdo</strong>, y finalmente se visita el <strong>hijo derecho</strong>.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">PreOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-        <span class="token function">PreOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">PreOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
+<li><strong>Recorrido Preorden (PID):</strong> En el recorrido <strong>preorden</strong>, primero se <strong>visita el nodo</strong> padre, luego se visita el <strong>hijo izquierdo</strong>, y finalmente se visita el <strong>hijo derecho</strong>.</li>
 </ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">PreOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+		<span class="token function">PreOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">PreOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/preorder-visualization.png" alt="preorder-visualization"></p>
 <ul>
-<li>
-<p><strong>Recorrido Postorden (IDP):</strong> En el recorrido <strong>postorden</strong>, primero se visita el <strong>hijo izquierdo</strong>, luego se visita el <strong>hijo derecho</strong>, y finalmente se visita el <strong>nodo padre</strong>.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">PostOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token function">PostOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">PostOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-</li>
+<li><strong>Recorrido Postorden (IDP):</strong> En el recorrido <strong>postorden</strong>, primero se visita el <strong>hijo izquierdo</strong>, luego se visita el <strong>hijo derecho</strong>, y finalmente se visita el <strong>nodo padre</strong>.</li>
 </ul>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">PostOrden</span><span class="token punctuation">(</span>Nodo<span class="token operator">*</span> raiz<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>raiz <span class="token operator">!=</span> nullptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">PostOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>izquierda<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">PostOrden</span><span class="token punctuation">(</span>raiz<span class="token operator">-&gt;</span>derecha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+		std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> raiz<span class="token operator">-&gt;</span>dato<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/postorder-visualization.png" alt="postorder-visualization"></p>
 <h3 id="eliminar-un-nodo">4. <strong>Eliminar un Nodo</strong></h3>
 <p>La eliminación de un nodo sigue las mismás reglas, pero comparando siempre el <strong>id</strong> del campo <code>Datos</code> para encontrar el nodo a eliminar.</p>
@@ -239,15 +233,15 @@ personas<span class="token punctuation">.</span><span class="token function">ins
 </li>
 </ul>
 <p>Puedes buscar un elemento para ver si está en el conjunto. Como es de tipo booleano, te devolverá verdadero o falso, indicando si lo encontró o no.</p>
-<pre class=" language-c"><code class="prism ++ language-c">    <span class="token comment">// Buscar una persona por id</span>
-    Persona buscar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Solo necesitamos el 'id' para buscar</span>
-    <span class="token keyword">auto</span> it <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>buscar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">// Buscar una persona por id</span>
+Persona buscar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Solo necesitamos el 'id' para buscar</span>
+<span class="token keyword">auto</span> it <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>buscar<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> personas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona encontrada: "</span> <span class="token operator">&lt;&lt;</span> it<span class="token operator">-&gt;</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-        std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona no encontrada."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> personas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona encontrada: "</span> <span class="token operator">&lt;&lt;</span> it<span class="token operator">-&gt;</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+	std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona no encontrada."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
 <h4 id="¿qué-es-el-tipo-de-dato-auto">¿Qué es el tipo de dato auto?</h4>
 <p>El tipo de dato <code>auto</code> es una palabra clave que permite al compilador deducir automáticamente el tipo de una variable a partir de su valor de inicialización. Es especialmente útil cuando el tipo de la variable es complejo o largo de escribir, como en el caso de los iteradores, funciones lambda, o punteros inteligentes.</p>
