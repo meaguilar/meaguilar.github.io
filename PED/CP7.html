@@ -192,6 +192,8 @@ Nodo<span class="token operator">*</span> <span class="token function">Eliminar<
     <span class="token keyword">return</span> raiz<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
+<h3 id="ejemplo-completo-de-los-recorridos-y-busquedas-manuales-de-árboles-binarios">Ejemplo completo de los recorridos y busquedas manuales de árboles binarios</h3>
+<p>Puedes consultar un ejemplo completo de los recorridos y búsquedas manuales en árboles binarios en el siguiente repositorio: <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesManual.cc">Repositorio - Árboles manual</a></p>
 <h2 id="librería-de-árboles-c">Librería de Árboles C++</h2>
 <p>En este laboratorio utilizaremos la librería <code>std::set</code>, que implementa un árbol de búsqueda balanceado, comúnmente un <strong>Red-Black Tree</strong>. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.</p>
 <h3 id="propiedades-de-la-librería-stdset">Propiedades de la librería <code>std::set</code></h3>
@@ -216,6 +218,36 @@ Nodo<span class="token operator">*</span> <span class="token function">Eliminar<
 <p>Luego para definir un conjunto, lo haremos de la siguiente manera.</p>
 <pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>set<span class="token operator">&lt;</span>Persona<span class="token operator">&gt;</span> personas<span class="token punctuation">;</span>
 </code></pre>
+<h3 id="métodos-básicos-de-librería-stdset">Métodos básicos de librería <code>std::set</code></h3>
+<p><strong>Métodos de inserción</strong></p>
+<ul>
+<li><code>insert(valor)</code>: Inserta un elemento en el set (si no existe).</li>
+<li><code>insert(hint, valor)</code>: Inserta con una posición sugerida (optimiza si el orden es conocido).</li>
+<li><code>insert(rango_inicio, rango_fin)</code>: Inserta un rango de elementos de otro contenedor.</li>
+</ul>
+<p><strong>Métodos de eliminación</strong></p>
+<ul>
+<li><code>erase(valor)</code>: Elimina el elemento igual a <code>valor</code> (si existe).</li>
+<li><code>erase(iterador)</code>: Elimina el elemento apuntado por el iterador.</li>
+<li><code>erase(rango_inicio, rango_fin)</code>: Elimina un rango de elementos.</li>
+<li><code>clear()</code>: Borra todos los elementos del set.</li>
+</ul>
+<p><strong>Métodos de búsqueda</strong></p>
+<ul>
+<li><code>find(valor)</code>: Devuelve un iterador al elemento si existe, o <code>end()</code> si no.</li>
+<li><code>count(valor)</code>: Devuelve <code>1</code> si el valor existe, <code>0</code> si no.</li>
+<li><code>lower_bound(valor)</code>: Devuelve iterador al primer elemento <strong>≥ valor</strong>.</li>
+</ul>
+<p><strong>Métodos de iteración</strong></p>
+<ul>
+<li><code>begin()</code>: Iterador al primer elemento (menor).</li>
+<li><code>end()</code>: Iterador “uno más allá” del último elemento.</li>
+</ul>
+<p><strong>Métodos de capacidad</strong></p>
+<ul>
+<li><code>size()</code>: Retorna el número de elementos.</li>
+<li><code>empty()</code>: Retorna <code>true</code> si está vacío.</li>
+</ul>
 <h3 id="operaciones-basicas-de-stdset">Operaciones basicas de <code>std::set</code></h3>
 <ul>
 <li>
@@ -276,9 +308,8 @@ personas<span class="token punctuation">.</span><span class="token function">era
 <p><strong><code>&amp;</code></strong> (Referencia): Permite evitar la copia de cada elemento en cada iteración. En lugar de copiar los elementos del contenedor <code>personas</code>, se accede a ellos por referencia, lo que mejora la eficiencia al no duplicar los objetos.</p>
 <p><strong><code>persona</code></strong>: Es la variable que representa un elemento individual del contenedor <code>personas</code>. En cada iteración, <code>persona</code> toma el valor de un objeto diferente del tipo <code>Persona</code>.</p>
 <p><strong><code>personas</code></strong>: Es el contenedor que estamos recorriendo. En este caso, es un <code>std::set&lt;Persona&gt;</code>.</p>
-<ul>
-<li>Ejemplo completo en este <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/LibreriaSet.cc">Repositorio - Uso de la librería Set</a>.</li>
-</ul>
+<h3 id="ejemplo-completo-de-árboles-binarios-con-la-librería-stdset">Ejemplo completo de árboles binarios con la librería <code>std::set</code></h3>
+<p>Puedes consultar un ejemplo completo de el uso de la librería <code>std::set</code> en árboles binarios en el siguiente repositorio: <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesLibreriaSet.cc">Repositorio - Uso de la librería Set</a></p>
 <h1 id="anexos">Anexos</h1>
 <ul>
 <li>

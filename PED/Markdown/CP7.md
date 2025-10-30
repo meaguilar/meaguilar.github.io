@@ -182,6 +182,11 @@ Nodo* Eliminar(Nodo* raiz, int id) {
     return raiz;
 }
 ```
+### Ejemplo completo de los recorridos y busquedas manuales de árboles binarios
+
+Puedes consultar un ejemplo completo de los recorridos y búsquedas manuales en árboles binarios en el siguiente repositorio: [Repositorio - Árboles manual](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesManual.cc)
+
+
 ## Librería de Árboles C++
 
 En este laboratorio utilizaremos la librería `std::set`, que implementa un árbol de búsqueda balanceado, comúnmente un **Red-Black Tree**. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.
@@ -211,6 +216,32 @@ Luego para definir un conjunto, lo haremos de la siguiente manera.
 ```c++
 std::set<Persona> personas;
 ```
+### Métodos básicos de librería `std::set`
+
+**Métodos de inserción**
+
+- `insert(valor)`: Inserta un elemento en el set (si no existe).
+- `insert(hint, valor)`: Inserta con una posición sugerida (optimiza si el orden es conocido).
+- `insert(rango_inicio, rango_fin)`: Inserta un rango de elementos de otro contenedor.
+
+**Métodos de eliminación**
+- `erase(valor)`: Elimina el elemento igual a `valor` (si existe).
+- `erase(iterador)`: Elimina el elemento apuntado por el iterador.
+- `erase(rango_inicio, rango_fin)`: Elimina un rango de elementos.
+- `clear()`: Borra todos los elementos del set.
+
+**Métodos de búsqueda**
+- `find(valor)`: Devuelve un iterador al elemento si existe, o `end()` si no.
+- `count(valor)`: Devuelve `1` si el valor existe, `0` si no.
+- `lower_bound(valor)`: Devuelve iterador al primer elemento **≥ valor**.
+
+**Métodos de iteración**
+- `begin()`: Iterador al primer elemento (menor).
+- `end()`: Iterador “uno más allá” del último elemento.
+
+**Métodos de capacidad**
+- `size()`: Retorna el número de elementos.
+- `empty()`: Retorna `true` si está vacío.
 
 ### Operaciones basicas de `std::set`
 
@@ -276,7 +307,9 @@ for (const auto& persona : personas) {
 
 **`personas`**: Es el contenedor que estamos recorriendo. En este caso, es un `std::set<Persona>`.
 
-- Ejemplo completo en este [Repositorio - Uso de la librería Set](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/LibreriaSet.cc).
+### Ejemplo completo de árboles binarios con la librería `std::set`
+
+Puedes consultar un ejemplo completo de el uso de la librería `std::set` en árboles binarios en el siguiente repositorio: [Repositorio - Uso de la librería Set](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesLibreriaSet.cc)
 
 # Anexos
 
