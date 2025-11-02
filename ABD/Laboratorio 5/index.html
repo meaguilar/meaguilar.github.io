@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" name="viewport" />
+    <title>Laboratorio 5 — Copias de seguridad en SQL Server</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="https://storage.googleapis.com/claat-public/codelab-elements.css" rel="stylesheet" />
+    <style>
+      .important-box {
+        background-color: #e6f4ea;
+        border-left: 5px solid #34a853;
+        padding: 12px;
+        margin: 16px 0;
+        border-radius: 4px;
+      }
+      pre { white-space: pre-wrap; }
+      .code-container { position: relative; }
+      .copy-btn {
+        position: absolute; top: 6px; right: 6px;
+        background: transparent; color: white;
+        border: transparent; padding: 4px 8px; font-size: 12px;
+        border-radius: 3px; cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <google-codelab id="lab-sqlserver-l5" title="Laboratorio 5 — Copias de seguridad en SQL Server" environment="web">
+
+      <!-- 1. Introducción -->
+      <google-codelab-step label="Introducción" duration="0">
+        <p><b>Definición:</b> Una copia de seguridad (backup) es una reproducción consistente del estado de la base de datos en un instante específico, guardada en un medio alterno. Permite recuperar la información ante fallas del sistema, errores humanos o desastres.</p>
+        <p><b>¿Cuál es su utilidad?</b></p>
+        <ul>
+          <li>Proteger la integridad y disponibilidad de los datos ante incidentes.</li>
+          <li>Reducir la pérdida de información (RPO) restaurando hasta un instante definido.</li>
+          <li>Disminuir el tiempo de inactividad (RTO) mediante procedimientos de restauración probados.</li>
+          <li>Cumplir requisitos normativos y de auditoría.</li>
+          <li>Servir como base para estrategias avanzadas de recuperación (DIFFERENTIAL y LOG con PITR).</li>
+        </ul>
+        <img src="resources/img_introduccion.webp" alt="Backups en SQL Server" width="85%" />
+
+      </google-codelab-step>
+
+      <!-- 2. Copias de seguridad -->
+      <google-codelab-step label="Copias de seguridad" duration="0">
+        <p>
+            En esta práctica aprenderás cómo funcionan los distintos tipos de copias de seguridad 
+            (<b>backups</b>) en SQL Server. Una buena estrategia combina respaldos 
+            <b>FULL</b>, <b>DIFFERENTIAL</b> y <b>LOG</b> según lo que necesites recuperar 
+            si ocurre una falla o pérdida de datos.
+        </p>
+
+        <h3>1. Respaldo lógico</h3>
+        <p>
+            Este tipo de respaldo <b>genera un archivo .sql</b> con las instrucciones para volver a crear 
+            tus tablas, datos o procedimientos. Es como “copiar el contenido” de la base de datos en forma de texto.
+        </p>
+
+        <ul>
+            <li>Se usa cuando deseas mover solo algunas tablas o estructuras específicas.</li>
+            <li>No guarda los archivos internos ni la cadena de recuperación del log.</li>
+            <li>Ideal para <b>ambientes de práctica, pruebas o migraciones pequeñas</b>.</li>
+        </ul>
+
+        <p>A continuación se presenta un ejemplo de como realizar un respaldo lógico en SQL Server: </p>
+        <center>
+            <figure>
+            <img src="resources/parte2_img1.jpg" alt="Generar script paso 1" width="80%" />
+            <figcaption>Paso 1: Accede al menú “Tasks” → “Generate Scripts”.</figcaption>
+            </figure>
+            <figure>
+            <img src="resources/parte2_img2.jpg" alt="Selección de objetos" width="80%" /><br>
+            <figcaption>Paso 2: Selecciona los objetos (tablas o procedimientos) que deseas exportar.</figcaption>
+            </figure>
+            <figure>
+            <img src="resources/parte2_img3.jpg" alt="Configuración de salida" width="80%" />
+            <figcaption>Paso 3: Configura el tipo de salida y la ruta donde se va a guardar.</figcaption>
+            </figure>
+            <figure>
+            <img src="resources/parte2_img4.jpg" alt="Vista previa del script" width="80%" />
+            <figcaption>Paso 4: Visualiza el script que se genero.</figcaption>
+            </figure>
+        </center>
+
+        <div class="important-box">
+            <p>
+            <b>Importante: </b>Durante los laboratorios este ha sido el tipo de respaldo que hemos utilizado 
+            para cargar las bases de datos usadas en los ejercicios propuestos.
+            </p>
+        </div>
+
+        <h3>2. Respaldo físico</h3>
+        <p>
+            Este respaldo <b>guarda toda la base de datos real</b> en un archivo con extensión 
+            <code>.bak</code> (para los datos) y puede incluir también un archivo del log 
+            (<code>.trn</code>).
+        </p>
+
+        <ul>
+            <li>Se usa en entornos reales o de producción, donde se necesita una recuperación confiable.</li>
+            <li>Permite restaurar la base exactamente como estaba en el momento en que se generó el respaldo.</li>
+        </ul>
+
+        <b>Archivos importantes:</b><br>
+        <b>MDF / NDF:</b> almacenan los datos y objetos (tablas, índices, procedimientos, etc.)<br>
+        <b>LDF:</b> guarda las transacciones que se ejecutan en la base de datos.<br>
+
+        <div class="important-box">
+            <b>Nota:</b> En modelos de recuperación <b>FULL</b> o <b>BULK_LOGGED</b>, 
+            es necesario realizar también <code>BACKUP LOG</code> periódicamente para evitar 
+            que el archivo <b>LDF</b> crezca demasiado.
+        </div>
+     </google-codelab-step>
+
+
+
+      <!-- 3. Modelos de recuperación -->
+      <google-codelab-step label="Modelos de recuperación" duration="0">
+        <p>
+            Un <b>modelo de recuperación</b> define cómo SQL Server administra el registro de transacciones (log)
+            y determina qué tan detallada puede ser una restauración después de una falla.
+            Cada modelo ofrece un nivel distinto de protección y control sobre los datos.
+        </p>
+
+        <h3>1. Modelo Simple</h3>
+        <p>
+            En este modelo, SQL Server <b>elimina automáticamente los registros del log</b> cuando ya no son necesarios,
+            evitando que el archivo crezca demasiado.  
+            Es un modelo sencillo y rápido, pero no permite restaurar la base a un punto exacto en el tiempo.
+        </p>
+        <ul>
+            <li>No se puede realizar respaldo del log de transacciones.</li>
+            <li>Reduce el espacio ocupado por el log, ya que se vacía constantemente.</li>
+            <li>Ideal para <b>laboratorios, desarrollo o bases con poca criticidad</b>.</li>
+        </ul>
+
+        <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+    ALTER DATABASE MiBase SET RECOVERY SIMPLE;</code></pre>
+    </div> 
+
+        <h3>2. Modelo Full</h3>
+        <p>
+            En el modelo Full, SQL Server <b>registra todas las transacciones</b> y no elimina los registros del log
+            hasta que se haga un respaldo de log.  
+            Es el más seguro y completo, ya que permite restaurar la base de datos hasta un instante exacto antes de un error
+            (lo que se conoce como recuperación punto en el tiempo o PITR).
+        </p>
+        <ul>
+            <li>Permite realizar respaldos FULL, DIFFERENTIAL y LOG.</li>
+            <li>Es el modelo recomendado para <b>entornos de producción</b>.</li>
+            <li>Requiere programar respaldos de log para evitar que el archivo LDF crezca sin control.</li>
+        </ul>
+        <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+    ALTER DATABASE MiBase SET RECOVERY FULL;</code></pre>
+    </div>        
+
+        <h3>3. Modelo Bulk-Logged</h3>
+        <p>
+            Este modelo es una combinación entre Simple y Full.  
+            SQL Server <b>registra de forma mínima</b> las operaciones masivas (como cargas de datos o reconstrucción de índices)
+            para mejorar el rendimiento durante esas tareas.  
+            Sin embargo, <b>durante esas operaciones no se puede restaurar punto a punto</b>.
+        </p>
+        <ul>
+            <li>Ideal cuando se hacen <b>importaciones grandes o tareas de mantenimiento masivo</b>.</li>
+            <li>Guarda suficiente información para mantener la integridad, pero reduce el tamaño del log.</li>
+            <li>Después de una carga masiva, conviene volver a modelo FULL y hacer un respaldo completo.</li>
+        </ul>
+
+        <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+    ALTER DATABASE MiBase SET RECOVERY BULK_LOGGED;</code></pre>
+    </div> 
+
+        <div class="important-box">
+            <b>Resumen rápido:</b>
+            <ul>
+            <li><b>Simple:</b> ideal para pruebas o entornos de desarrollo. Sin recuperación detallada.</li>
+            <li><b>Full:</b> el más completo; permite restaurar hasta un punto exacto (PITR).</li>
+            <li><b>Bulk-Logged:</b> útil para cargas masivas o procesos pesados; prioriza velocidad sobre detalle.</li>
+            </ul>
+        </div>
+      </google-codelab-step>
+
+
+
+      <!-- 4. Tipos de backup -->
+      <google-codelab-step label="Tipos de Backup" duration="0">
+  <p>
+    En SQL Server existen diferentes tipos de copias de seguridad (<b>backups</b>), 
+    cada una con un propósito específico.  
+    Combinar adecuadamente estos tipos permite equilibrar el uso de <b>espacio en disco</b>, 
+    el <b>tiempo de respaldo</b> y la <b>velocidad de restauración</b> cuando ocurre una falla.
+  </p>
+
+  <h3>1. Backup FULL (Completo)</h3>
+  <p>
+    Crea una <b>copia total de la base de datos</b> tal como se encuentra en ese momento, 
+    incluyendo todos los objetos (tablas, vistas, procedimientos) y parte del registro de transacciones 
+    necesarios para recuperarla completamente.
+  </p>
+
+  <ul>
+    <li>Es el punto de partida de cualquier estrategia de respaldo.</li>
+    <li>Todos los respaldos diferenciales y de log dependen de él.</li>
+    <li>Permite restaurar la base completamente desde cero.</li>
+  </ul>
+
+  <p><b>Cuándo usarlo:</b></p>
+  <ul>
+    <li>Siempre como respaldo inicial o base.</li>
+    <li>De forma periódica (diaria o semanal) según la importancia de los datos.</li>
+    <li>Antes de actualizaciones, mantenimiento o cambios importantes en el sistema.</li>
+  </ul>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+BACKUP DATABASE MiBase
+TO DISK = 'C:\backups\MiBase_FULL.bak'
+WITH INIT, COMPRESSION, STATS = 5;</code></pre>
+  </div>
+
+  <div class="important-box">
+    <b>Importante:</b>  
+    El backup FULL es como una <b>fotografía completa</b> de la base de datos.  
+    Sin este respaldo, no se pueden utilizar los diferenciales ni los logs posteriores.
+  </div>
+
+  <h3>2. Backup DIFFERENTIAL (Diferencial)</h3>
+  <p>
+    Este respaldo guarda únicamente <b>los cambios realizados desde el último respaldo FULL</b>.  
+    No copia toda la base, sino solo las páginas modificadas, lo que lo hace <b>más rápido y liviano</b>.
+  </p>
+
+  <p><b>Ventajas:</b></p>
+  <ul>
+    <li>Ahorra espacio de almacenamiento y tiempo de ejecución.</li>
+    <li>Permite restaurar más rápido, usando solo el último FULL y el último DIF.</li>
+  </ul>
+
+  <p><b>Cuándo usarlo:</b></p>
+  <ul>
+    <li>Cuando se requiere una <b>recuperación rápida</b> (bajo RTO).</li>
+    <li>En bases donde los datos cambian constantemente entre respaldos FULL.</li>
+  </ul>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+BACKUP DATABASE MiBase
+TO DISK = 'C:\backups\MiBase_DIFF.bak'
+WITH DIFFERENTIAL, COMPRESSION, STATS = 5;</code></pre>
+  </div>
+
+  <div class="important-box">
+    <b>Ejemplo:</b>  
+    Si el lunes realizas un FULL y el martes un DIFFERENTIAL,  
+    este segundo incluirá solo los cambios hechos desde el lunes.
+  </div>
+
+  <h3>3. Backup LOG (Registro de transacciones)</h3>
+  <p>
+    Este respaldo guarda únicamente el <b>transaction log</b>, es decir, 
+    todas las operaciones realizadas desde el último respaldo de log, diferencial o full.  
+    Permite recuperar la base <b>hasta un punto exacto en el tiempo</b> antes de un fallo (PITR – Point In Time Recovery).
+  </p>
+
+  <p><b>Ventajas:</b></p>
+  <ul>
+    <li>Minimiza la pérdida de datos (bajo RPO).</li>
+    <li>Permite restaurar la base justo antes de un error humano o fallo.</li>
+    <li>Mantiene activa la cadena de recuperación entre respaldos.</li>
+  </ul>
+
+  <p><b>Requisitos:</b></p>
+  <ul>
+    <li>El modelo de recuperación debe ser <b>FULL</b> o <b>BULK_LOGGED</b>.</li>
+    <li>No funciona en el modelo <b>SIMPLE</b>.</li>
+  </ul>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+BACKUP LOG MiBase
+TO DISK = 'C:\backups\MiBase_LOG_001.trn'
+WITH INIT, COMPRESSION, STATS = 5;</code></pre>
+  </div>
+
+  <div class="important-box">
+    <b>Nota:</b>  
+    Cada backup LOG guarda solo las transacciones nuevas desde el último respaldo.  
+    Si se interrumpe la cadena (por ejemplo, eliminando un backup log), 
+    <b>no se podrán restaurar los posteriores correctamente</b>.
+  </div>
+
+</google-codelab-step>
+
+
+      <!-- 5. Plan de respaldo -->
+<google-codelab-step label="Plan de respaldo" duration="0">
+  <p>
+    Un <b>plan de respaldo</b> establece <b>cada cuánto y qué tipo de copia de seguridad se realizará</b> 
+    para proteger la información sin afectar el rendimiento del sistema.
+    La meta es lograr un equilibrio entre <b>frecuencia de respaldo, uso de espacio y tiempo de restauración</b>.
+  </p>
+
+  <p>
+    A continuación se presenta un ejemplo de <b>agenda recomendada</b> para un entorno académico o de pequeña empresa,
+    donde la carga de trabajo no es tan alta pero se busca mantener la seguridad de los datos.
+  </p>
+
+  <center>
+    <table>
+      <thead>
+        <tr>
+          <th>Horario / Frecuencia</th>
+          <th>Tipo de Backup</th>
+          <th>Propósito</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Domingo 00:00</b></td>
+          <td>FULL semanal</td>
+          <td>Genera una copia completa de la base de datos. Es el punto base para los demás respaldos.</td>
+        </tr>
+        <tr>
+          <td><b>Miércoles 00:00</b></td>
+          <td>DIFFERENTIAL intermedio</td>
+          <td>Incluye los cambios realizados desde el último FULL. Acelera la restauración sin usar demasiado espacio.</td>
+        </tr>
+        <tr>
+          <td><b>Diariamente a las 20:00</b></td>
+          <td>LOG diario</td>
+          <td>Guarda las transacciones recientes del día, permitiendo restauraciones más precisas sin hacer backups constantes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+
+  <p>
+    Con este plan, se obtiene un respaldo completo semanal, 
+    un respaldo diferencial a mitad de semana, 
+    y respaldos de log diarios que complementan la protección de los datos sin sobrecargar el sistema.
+  </p>
+
+  <div class="important-box">
+    <strong>Buenas prácticas de respaldo:</strong>
+    <ul>
+      <li><b>Regla 3-2-1:</b> Mantén tres copias de los datos (producción, local y nube).</li>
+      <li><b>Verifica el espacio:</b> asegúrate de que las carpetas de destino tengan suficiente almacenamiento.</li>
+      <li><b>Usa nombres claros:</b> incluye el tipo de respaldo y la fecha, por ejemplo:
+        <code>MiBase_DIFF_2025-11-05_0000.bak</code></li>
+      <li><b>Automatiza tareas:</b> programa los respaldos con SQL Agent o scripts PowerShell.</li>
+      <li><b>Pruebas de restauración:</b> realiza una restauración de prueba al menos una vez al mes para comprobar la integridad de los archivos.</li>
+    </ul>
+  </div>
+
+</google-codelab-step>
+
+
+      <!-- 6. Ejemplo práctico -->
+<google-codelab-step label="Ejemplo práctico" duration="0">
+  <p>
+    En esta sección se simulará un flujo completo de respaldo y recuperación en SQL Server, 
+    con el objetivo de observar de forma <b>evidente</b> cómo los diferentes tipos de backups 
+    (FULL y DIFFERENTIAL) permiten recuperar los datos después de una pérdida o alteración.
+  </p>
+
+  <h3>1. Preparación del entorno</h3>
+  <p>
+    Antes de comenzar, asegúrate de que exista una carpeta llamada <b>C:\backups\</b> en el servidor.  
+    Todos los archivos generados durante esta práctica se guardarán en esa ruta.
+  </p>
+
+   <img src="resources/parte6_img1.jpg" alt="Creacion de carpeta de backups" width="85%" />
+
+
+  <div class="important-box">
+    <b>Importante:</b> si la carpeta no existe, créala manualmente antes de continuar.
+  </div>
+
+  <h3>2. Creación de la base de datos y respaldo FULL inicial</h3>
+  <p>
+    Se creará una base de datos llamada <b>DB_Gimnasio</b> con una tabla sencilla (<code>ref.Cliente</code>) 
+    y se generará el primer respaldo completo (<b>FULL</b>).  
+    Al no especificarse el modelo de recuperación, SQL Server aplica el modelo por defecto 
+    de la base <i>model</i>, que normalmente es <b>FULL</b>.
+  </p>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+USE master;
+GO
+
+IF DB_ID('DB_Gimnasio') IS NULL
+BEGIN
+    CREATE DATABASE DB_Gimnasio;
+END
+GO
+
+USE DB_Gimnasio;
+GO
+
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'ref')
+    EXEC('CREATE SCHEMA ref');
+GO
+
+IF OBJECT_ID('ref.Cliente') IS NULL
+BEGIN
+    CREATE TABLE ref.Cliente (
+        Id INT IDENTITY(1,1) PRIMARY KEY,
+        Nombre NVARCHAR(100) NOT NULL,
+        Email NVARCHAR(200) NOT NULL
+    );
+
+    INSERT INTO ref.Cliente (Nombre, Email) VALUES
+    ('Ana','ana@fit.com'),
+    ('Luis','luis@fit.com'),
+    ('Sara','sara@fit.com');
+END
+GO
+
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <p><b>Generar el backup FULL inicial:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+BACKUP DATABASE DB_Gimnasio
+TO DISK = 'C:\backups\DBGim_FULL_BASE.bak'
+WITH INIT, COMPRESSION, STATS = 5;
+    </code></pre>
+  </div>
+
+  <h3>3. Simular un daño masivo y restaurar con FULL</h3>
+  <p>
+    En este paso se provocará un daño intencional sobre la tabla <code>ref.Cliente</code> 
+    alterando los correos electrónicos, para luego restaurar la base desde el respaldo FULL.
+  </p>
+
+  <p><b>Simular el error intencional:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+UPDATE ref.Cliente
+SET Email = CONCAT(LOWER(Nombre), '.lol@fit.com');
+
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <p><b>Restaurar la base desde el respaldo FULL:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+USE master;
+ALTER DATABASE DB_Gimnasio SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+RESTORE DATABASE DB_Gimnasio
+FROM DISK = 'C:\backups\DBGim_FULL_BASE.bak'
+WITH REPLACE, RECOVERY, STATS = 5;
+
+ALTER DATABASE DB_Gimnasio SET MULTI_USER;
+GO
+
+USE DB_Gimnasio;
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <div class="important-box">
+    <b>Resultado esperado:</b>  
+    Los correos deben volver a su estado original (<i>@fit.com</i>), confirmando 
+    que la restauración desde el backup FULL fue exitosa.
+  </div>
+
+  <h3>4. Backup diferencial y restauración</h3>
+  <p>
+    A continuación, insertaremos nuevos registros, realizaremos un respaldo 
+    <b>DIFERENCIAL</b>, modificaremos datos y finalmente restauraremos para ver el cambio.
+  </p>
+
+  <p><b>Insertar nuevos registros:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+INSERT INTO ref.Cliente (Nombre, Email) VALUES
+('Julia','julia@fit.com'),
+('Pedro','pedro@fit.com'),
+('Marta','marta@fit.com'),
+('Bruno','bruno@fit.com'),
+('Diana','diana@fit.com'),
+('Carla','carla@fit.com'),
+('Iván','ivan@fit.com'),
+('Noé','noe@fit.com'),
+('Rosa','rosa@fit.com'),
+('Tom','tom@fit.com');
+
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <p><b>Crear backup diferencial:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+BACKUP DATABASE DB_Gimnasio
+TO DISK = 'C:\backups\DBGim_DIFF_10inserts.bak'
+WITH DIFFERENTIAL, COMPRESSION, STATS = 5;</code></pre>
+  </div>
+
+  <p><b>Alterar los datos después del diferencial:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+UPDATE ref.Cliente
+SET Email = REPLACE(Email, '@fit.com', '@alterado.com')
+WHERE Id > 3;
+
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <p><b>Restaurar utilizando FULL + DIFFERENTIAL:</b></p>
+  <p>
+    Para aplicar correctamente un respaldo diferencial, primero se debe restaurar 
+    el último FULL con la opción <code>NORECOVERY</code> y luego el diferencial con <code>RECOVERY</code>.
+  </p>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+USE master;
+ALTER DATABASE DB_Gimnasio SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+RESTORE DATABASE DB_Gimnasio
+FROM DISK = 'C:\backups\DBGim_FULL_BASE.bak'
+WITH NORECOVERY, REPLACE, STATS = 5;
+
+RESTORE DATABASE DB_Gimnasio
+FROM DISK = 'C:\backups\DBGim_DIFF_10inserts.bak'
+WITH RECOVERY, STATS = 5;
+
+ALTER DATABASE DB_Gimnasio SET MULTI_USER;
+GO
+
+USE DB_Gimnasio;
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <div class="important-box">
+    <b>Resultado esperado:</b>  
+    Los registros insertados deben recuperarse con sus correos originales (<i>@fit.com</i>), 
+    demostrando que el respaldo diferencial fue aplicado correctamente.
+  </div>
+
+<h3>5. Ejemplo final — Backup y restauración de LOG</h3>
+  <p>
+    Finalmente, realizaremos un <b>backup de LOG</b> para capturar las transacciones recientes y 
+    luego restaurar la base de datos hasta un punto exacto en el tiempo (<b>Point-In-Time Recovery</b>).
+  </p>
+
+  <p><b>Insertar nuevos datos antes del backup de log:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+INSERT INTO ref.Cliente (Nombre, Email) VALUES
+('Leo','leo@fit.com'),
+('Nora','nora@fit.com'),
+('Oscar','oscar@fit.com');
+
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <p><b>Generar el respaldo de log:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+BACKUP LOG DB_Gimnasio
+TO DISK = 'C:\backups\DBGim_LOG_001.trn'
+WITH INIT, COMPRESSION, STATS = 5;</code></pre>
+  </div>
+
+  <p><b>Simular un error posterior al log:</b></p>
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+DELETE FROM ref.Cliente WHERE Nombre IN ('Leo','Nora');
+
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <p><b>Restaurar con FULL + DIF + LOG (punto en el tiempo):</b></p>
+  <p>
+    Ahora restauraremos la base usando el último respaldo FULL, el último DIF y el LOG.  
+    El parámetro <b>STOPAT</b> permite definir el instante exacto al que queremos recuperar la base.
+  </p>
+
+  <div class="code-container">
+    <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+    <pre><code class="language-sql">
+USE master;
+ALTER DATABASE DB_Gimnasio SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+RESTORE DATABASE DB_Gimnasio
+FROM DISK = 'C:\backups\DBGim_FULL_BASE.bak'
+WITH NORECOVERY, REPLACE;
+
+RESTORE DATABASE DB_Gimnasio
+FROM DISK = 'C:\backups\DBGim_DIFF_10inserts.bak'
+WITH NORECOVERY;
+
+RESTORE LOG DB_Gimnasio
+FROM DISK = 'C:\backups\DBGim_LOG_001.trn'
+WITH STOPAT = '2025-11-01T10:30:00', RECOVERY, STATS = 5;
+
+ALTER DATABASE DB_Gimnasio SET MULTI_USER;
+GO
+
+USE DB_Gimnasio;
+SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+  </div>
+
+  <div class="important-box">
+    <b>Resultado esperado:</b>  
+    Los registros de <i>Leo</i> y <i>Nora</i> deben volver a aparecer, 
+    demostrando que la restauración punto en el tiempo con <b>BACKUP LOG</b> fue exitosa.
+  </div>
+
+
+</google-codelab-step>
+
+<!-- Paso 7 -->
+      <google-codelab-step duration="0" label="Ejercicio Propuesto">
+  <p>
+    En esta sección trabajarás con la base de datos 
+    <b><code>pubs</code></b> para aplicar los conceptos de 
+    <b>copias de seguridad y restauración en SQL Server</b>.
+  </p>
+
+  <p>
+    Antes de iniciar el ejercicio, asegúrate de cumplir con los siguientes prerrequisitos:
+  </p>
+  <ul>
+    <li>Tener instalada y accesible la base de datos <b><code>pubs</code></b> en tu instancia de SQL Server.</li>
+    <li>Contar con permisos para ejecutar comandos <b>BACKUP</b> y <b>RESTORE</b>.</li>
+    <li>Haber creado la carpeta <b>C:\backups\</b> para almacenar los archivos de respaldo.</li>
+  </ul>
+
+  <div class="important-box">
+     
+    <p>
+      <b>Importante: </b>Este ejercicio forma parte de la evaluación práctica del laboratorio y debe realizarse 
+      individualmente, documentando con capturas cada resultado obtenido.
+    </p>
+  </div>
+</google-codelab-step>
+
+
+      <!-- Paso 8 -->
+      <google-codelab-step duration="0" label="Créditos" step="9">
+        <p>
+          Departamento de Electrónica e Informática, Universidad Centroamericana
+          José Simeón Cañas, La Libertad, El Salvador.
+        </p>
+        <p><strong>Versión de este documento:</strong> Versión 1, 2025.</p>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Versión</strong></td>
+              <td><strong>Autores</strong></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>
+                Diego Eduardo Castro Quintanilla (00117322@uca.edu.sv)
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <img
+            alt="license"
+            src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
+          /><br />
+          This work is licensed under a
+          <a
+            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            target="_blank"
+          >
+            Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+            International License </a
+          >.
+        </p>
+      </google-codelab-step>
+    </google-codelab>
+
+
+
+
+    <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+    <script>
+      function copyCode(btn) {
+        const code = btn.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = "Copiado!";
+          setTimeout(() => (btn.innerText = "Copiar"), 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
