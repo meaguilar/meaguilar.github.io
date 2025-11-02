@@ -40,82 +40,95 @@
           <li>Cumplir requisitos normativos y de auditoría.</li>
           <li>Servir como base para estrategias avanzadas de recuperación (DIFFERENTIAL y LOG con PITR).</li>
         </ul>
-        <img src="resources/img_introduccion.webp" alt="Backups en SQL Server" width="85%" />
-
-      </google-codelab-step>
-
-      <!-- 2. Copias de seguridad -->
-      <google-codelab-step label="Copias de seguridad" duration="0">
-        <p>
-            En esta práctica aprenderás cómo funcionan los distintos tipos de copias de seguridad 
+        <div class="important-box">
+          <p>En esta práctica aprenderás cómo funcionan los distintos tipos de copias de seguridad 
             (<b>backups</b>) en SQL Server. Una buena estrategia combina respaldos 
             <b>FULL</b>, <b>DIFFERENTIAL</b> y <b>LOG</b> según lo que necesites recuperar 
-            si ocurre una falla o pérdida de datos.
+            si ocurre una falla o pérdida de datos.</p>
+        </div>
+        <img src="resources/img_introduccion.webp" alt="Backups en SQL Server" width="85%" />
+      </google-codelab-step>
+
+      <!-- 2. Tipos de respaldo -->
+      <google-codelab-step label="Tipos de respaldo" duration="0">
+        <p>
+          En esta sección conocerás los <b>principales tipos de respaldo</b> que se pueden realizar en SQL Server 
+          para proteger la información de una base de datos.  
+          Comprender la diferencia entre <b>respaldo lógico</b> y <b>respaldo físico</b> 
+          te permitirá aplicar la estrategia más adecuada según el entorno (laboratorio, desarrollo o producción).
         </p>
 
         <h3>1. Respaldo lógico</h3>
         <p>
-            Este tipo de respaldo <b>genera un archivo .sql</b> con las instrucciones para volver a crear 
-            tus tablas, datos o procedimientos. Es como “copiar el contenido” de la base de datos en forma de texto.
+          Este tipo de respaldo <b>genera un archivo .sql</b> con las instrucciones necesarias para volver a crear 
+          tus tablas, datos o procedimientos.  
+          Es como “copiar el contenido” de la base en forma de texto legible.
         </p>
 
         <ul>
-            <li>Se usa cuando deseas mover solo algunas tablas o estructuras específicas.</li>
-            <li>No guarda los archivos internos ni la cadena de recuperación del log.</li>
-            <li>Ideal para <b>ambientes de práctica, pruebas o migraciones pequeñas</b>.</li>
+          <li>Se utiliza cuando deseas mover solo algunas tablas o estructuras específicas.</li>
+          <li>No conserva los archivos internos ni la cadena de recuperación del log.</li>
+          <li>Ideal para <b>ambientes de práctica, pruebas o migraciones pequeñas</b>.</li>
         </ul>
 
-        <p>A continuación se presenta un ejemplo de como realizar un respaldo lógico en SQL Server: </p>
+        <p>A continuación se presenta un ejemplo de cómo realizar un respaldo lógico en SQL Server:</p>
+
         <center>
-            <figure>
+          <figure>
             <img src="resources/parte2_img1.jpg" alt="Generar script paso 1" width="80%" />
             <figcaption>Paso 1: Accede al menú “Tasks” → “Generate Scripts”.</figcaption>
-            </figure>
-            <figure>
-            <img src="resources/parte2_img2.jpg" alt="Selección de objetos" width="80%" /><br>
+          </figure>
+          <figure>
+            <img src="resources/parte2_img2.jpg" alt="Selección de objetos" width="80%" />
             <figcaption>Paso 2: Selecciona los objetos (tablas o procedimientos) que deseas exportar.</figcaption>
-            </figure>
-            <figure>
+          </figure>
+          <figure>
             <img src="resources/parte2_img3.jpg" alt="Configuración de salida" width="80%" />
-            <figcaption>Paso 3: Configura el tipo de salida y la ruta donde se va a guardar.</figcaption>
-            </figure>
-            <figure>
+            <figcaption>Paso 3: Configura el tipo de salida y la ruta donde se guardará el archivo .sql.</figcaption>
+          </figure>
+          <figure>
             <img src="resources/parte2_img4.jpg" alt="Vista previa del script" width="80%" />
-            <figcaption>Paso 4: Visualiza el script que se genero.</figcaption>
-            </figure>
+            <figcaption>Paso 4: Visualiza el script generado antes de exportarlo.</figcaption>
+          </figure>
         </center>
 
         <div class="important-box">
-            <p>
-            <b>Importante: </b>Durante los laboratorios este ha sido el tipo de respaldo que hemos utilizado 
-            para cargar las bases de datos usadas en los ejercicios propuestos.
-            </p>
+          <b>Importante:</b>
+          <p>
+            Durante los laboratorios, este ha sido el tipo de respaldo utilizado para cargar las bases 
+            de datos empleadas en los ejercicios prácticos.
+          </p>
         </div>
 
         <h3>2. Respaldo físico</h3>
         <p>
-            Este respaldo <b>guarda toda la base de datos real</b> en un archivo con extensión 
-            <code>.bak</code> (para los datos) y puede incluir también un archivo del log 
-            (<code>.trn</code>).
+          A diferencia del respaldo lógico, el <b>respaldo físico</b> guarda la base de datos real tal como existe en el disco.  
+          SQL Server crea un archivo con extensión <code>.bak</code> que contiene todas las estructuras, datos y registros necesarios 
+          para restaurar completamente la base de datos en otro momento.
         </p>
 
         <ul>
-            <li>Se usa en entornos reales o de producción, donde se necesita una recuperación confiable.</li>
-            <li>Permite restaurar la base exactamente como estaba en el momento en que se generó el respaldo.</li>
+          <li>Se usa en entornos de <b>producción</b> o en sistemas donde es vital mantener la integridad de los datos.</li>
+          <li>Permite restaurar la base exactamente como estaba en el momento del respaldo.</li>
+          <li>Puede incluir también un archivo del log (<code>.trn</code>) si se realiza un respaldo del registro de transacciones.</li>
         </ul>
 
-        <b>Archivos importantes:</b><br>
-        <b>MDF / NDF:</b> almacenan los datos y objetos (tablas, índices, procedimientos, etc.)<br>
-        <b>LDF:</b> guarda las transacciones que se ejecutan en la base de datos.<br>
+        <p>
+          Los archivos principales que conforman una base de datos en SQL Server son:
+        </p>
+        <ul>
+          <li><b>MDF (Primary Data File):</b> contiene los datos y objetos principales (tablas, índices, vistas).</li>
+          <li><b>NDF (Secondary Data File):</b> archivos adicionales de datos, usados para distribuir información en distintos discos.</li>
+          <li><b>LDF (Log File):</b> almacena las transacciones realizadas en la base; necesario para auditoría y recuperación.</li>
+        </ul>
 
         <div class="important-box">
-            <b>Nota:</b> En modelos de recuperación <b>FULL</b> o <b>BULK_LOGGED</b>, 
-            es necesario realizar también <code>BACKUP LOG</code> periódicamente para evitar 
-            que el archivo <b>LDF</b> crezca demasiado.
+          <b>Nota:</b> 
+          En modelos de recuperación <b>FULL</b> o <b>BULK_LOGGED</b>, 
+          es necesario realizar también <code>BACKUP LOG</code> periódicamente para evitar 
+          que el archivo <b>LDF</b> crezca en exceso y consuma todo el espacio del disco.
         </div>
-     </google-codelab-step>
-
-
+      </google-codelab-step>
 
       <!-- 3. Modelos de recuperación -->
       <google-codelab-step label="Modelos de recuperación" duration="0">
@@ -140,7 +153,7 @@
         <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-    ALTER DATABASE MiBase SET RECOVERY SIMPLE;</code></pre>
+    ALTER DATABASE MiBD SET RECOVERY SIMPLE;</code></pre>
     </div> 
 
         <h3>2. Modelo Full</h3>
@@ -158,7 +171,7 @@
         <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-    ALTER DATABASE MiBase SET RECOVERY FULL;</code></pre>
+    ALTER DATABASE MiBD SET RECOVERY FULL;</code></pre>
     </div>        
 
         <h3>3. Modelo Bulk-Logged</h3>
@@ -177,7 +190,7 @@
         <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-    ALTER DATABASE MiBase SET RECOVERY BULK_LOGGED;</code></pre>
+    ALTER DATABASE MiBD SET RECOVERY BULK_LOGGED;</code></pre>
     </div> 
 
         <div class="important-box">
@@ -224,8 +237,8 @@
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-BACKUP DATABASE MiBase
-TO DISK = 'C:\backups\MiBase_FULL.bak'
+BACKUP DATABASE MiBD
+TO DISK = 'C:\backups\MiBD_FULL.bak'
 WITH INIT, COMPRESSION, STATS = 5;</code></pre>
   </div>
 
@@ -256,8 +269,8 @@ WITH INIT, COMPRESSION, STATS = 5;</code></pre>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-BACKUP DATABASE MiBase
-TO DISK = 'C:\backups\MiBase_DIFF.bak'
+BACKUP DATABASE MiBD
+TO DISK = 'C:\backups\MiBD_DIFF.bak'
 WITH DIFFERENTIAL, COMPRESSION, STATS = 5;</code></pre>
   </div>
 
@@ -290,8 +303,8 @@ WITH DIFFERENTIAL, COMPRESSION, STATS = 5;</code></pre>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-BACKUP LOG MiBase
-TO DISK = 'C:\backups\MiBase_LOG_001.trn'
+BACKUP LOG MiBD
+TO DISK = 'C:\backups\MiBD_LOG_001.trn'
 WITH INIT, COMPRESSION, STATS = 5;</code></pre>
   </div>
 
@@ -360,7 +373,7 @@ WITH INIT, COMPRESSION, STATS = 5;</code></pre>
       <li><b>Verifica el espacio:</b> asegúrate de que las carpetas de destino tengan suficiente almacenamiento.</li>
       <li><b>Usa nombres claros:</b> incluye el tipo de respaldo y la fecha, por ejemplo:
         <code>MiBase_DIFF_2025-11-05_0000.bak</code></li>
-      <li><b>Automatiza tareas:</b> programa los respaldos con SQL Agent o scripts PowerShell.</li>
+      <li><b>Automatiza tareas:</b> programa los respaldos con SQL Agent.</li>
       <li><b>Pruebas de restauración:</b> realiza una restauración de prueba al menos una vez al mes para comprobar la integridad de los archivos.</li>
     </ul>
   </div>
@@ -702,10 +715,6 @@ SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
         </p>
       </google-codelab-step>
     </google-codelab>
-
-
-
-
     <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
     <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
     <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
