@@ -93,9 +93,8 @@
         </center>
 
         <div class="important-box">
-          <b>Importante:</b>
           <p>
-            Durante los laboratorios, este ha sido el tipo de respaldo utilizado para cargar las bases 
+            <b>Importante: </b>Durante los laboratorios, este ha sido el tipo de respaldo utilizado para cargar las bases 
             de datos empleadas en los ejercicios prácticos.
           </p>
         </div>
@@ -366,13 +365,12 @@ WITH INIT, COMPRESSION, STATS = 5;</code></pre>
     y respaldos de log diarios que complementan la protección de los datos sin sobrecargar el sistema.
   </p>
 
-  <div class="important-box">
-    <strong>Buenas prácticas de respaldo:</strong>
+  <div class="important-box"><strong>Buenas prácticas de respaldo:</strong>
     <ul>
       <li><b>Regla 3-2-1:</b> Mantén tres copias de los datos (producción, local y nube).</li>
       <li><b>Verifica el espacio:</b> asegúrate de que las carpetas de destino tengan suficiente almacenamiento.</li>
       <li><b>Usa nombres claros:</b> incluye el tipo de respaldo y la fecha, por ejemplo:
-        <code>MiBase_DIFF_2025-11-05_0000.bak</code></li>
+        <code>MiBD_DIFF_2025-11-05_0000.bak</code></li>
       <li><b>Automatiza tareas:</b> programa los respaldos con SQL Agent.</li>
       <li><b>Pruebas de restauración:</b> realiza una restauración de prueba al menos una vez al mes para comprobar la integridad de los archivos.</li>
     </ul>
@@ -425,36 +423,41 @@ GO
 USE DB_Gimnasio;
 GO
 
-IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'ref')
-    EXEC('CREATE SCHEMA ref');
+IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'person')
+    EXEC('CREATE SCHEMA person');
 GO
 
-IF OBJECT_ID('ref.Cliente') IS NULL
+IF OBJECT_ID('person.Cliente') IS NULL
 BEGIN
-    CREATE TABLE ref.Cliente (
+    CREATE TABLE person.Cliente (
         Id INT IDENTITY(1,1) PRIMARY KEY,
         Nombre NVARCHAR(100) NOT NULL,
+        DUI CHAR(9) UNIQUE NOT NULL,
         Email NVARCHAR(200) NOT NULL
     );
 
-    INSERT INTO ref.Cliente (Nombre, Email) VALUES
-    ('Ana','ana@fit.com'),
-    ('Luis','luis@fit.com'),
-    ('Sara','sara@fit.com');
+  INSERT INTO person.Cliente (Nombre, DUI, Email) VALUES
+  ('James','012345670','james@fit.com'),
+  ('Diego','012345671','diego@fit.com'),
+  ('Claudia','012345672','claudia@fit.com'),
+  ('Vanessa','012345673','vanessa@fit.com'),
+  ('Kevin','012345674','kevin@fit.com'),
+  ('Moises','012345675','moises@fit.com'),
+  ('Anthony','012345676','anthony@fit.com');
 END
 GO
 
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id;</code></pre>
   </div>
 
   <p><b>Generar el backup FULL inicial:</b></p>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
+/****** Realizar Backup FULL ******/
 BACKUP DATABASE DB_Gimnasio
 TO DISK = 'C:\backups\DBGim_FULL_BASE.bak'
-WITH INIT, COMPRESSION, STATS = 5;
-    </code></pre>
+WITH INIT, COMPRESSION, STATS = 5;</code></pre>
   </div>
 
   <h3>3. Simular un daño masivo y restaurar con FULL</h3>
@@ -467,16 +470,16 @@ WITH INIT, COMPRESSION, STATS = 5;
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-UPDATE ref.Cliente
-SET Email = CONCAT(LOWER(Nombre), '.lol@fit.com');
+UPDATE person.Cliente
+SET Email = 'email_corrupto', DUI = Id ,Nombre = 'nulo';
 
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id;</code></pre>
   </div>
 
   <p><b>Restaurar la base desde el respaldo FULL:</b></p>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-    <pre><code class="language-sql">
+    <pre><code class="language-sql">/****** Restaurar desde backup FULL ******/
 USE master;
 ALTER DATABASE DB_Gimnasio SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 
@@ -488,12 +491,12 @@ ALTER DATABASE DB_Gimnasio SET MULTI_USER;
 GO
 
 USE DB_Gimnasio;
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id;</code></pre>
   </div>
 
   <div class="important-box">
     <b>Resultado esperado:</b>  
-    Los correos deben volver a su estado original (<i>@fit.com</i>), confirmando 
+    Todos los registros deben volver a su estado original, confirmando 
     que la restauración desde el backup FULL fue exitosa.
   </div>
 
@@ -507,39 +510,57 @@ SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-INSERT INTO ref.Cliente (Nombre, Email) VALUES
-('Julia','julia@fit.com'),
-('Pedro','pedro@fit.com'),
-('Marta','marta@fit.com'),
-('Bruno','bruno@fit.com'),
-('Diana','diana@fit.com'),
-('Carla','carla@fit.com'),
-('Iván','ivan@fit.com'),
-('Noé','noe@fit.com'),
-('Rosa','rosa@fit.com'),
-('Tom','tom@fit.com');
+INSERT INTO person.Cliente (Nombre, DUI, Email) VALUES
+('Bryan','012345677','bryan@fit.com'),
+('Douglas','012345678','douglas@fit.com'),
+('Carlos','012345679','carlos@fit.com'),
+('Roberto','012345680','roberto@fit.com'),
+('Jose','012345681','jose@fit.com'),
+('Andrea','012345682','andrea@fit.com'),
+('Violeta','012345683','violeta@fit.com'),
+('Samuel','012345684','samuel@fit.com'),
+('Luis','012345685','luis@fit.com'),
+('Hector','012345686','hector@fit.com'),
+('Daniel','012345687','daniel@fit.com'),
+('Jeremias','012345688','jeremias@fit.com'),
+('Nestor','012345689','nestor@fit.com'),
+('Gabriel','012345690','gabriel@fit.com'),
+('Reynaldo','012345691','reynaldo@fit.com'),
+('Juan','012345692','juan@fit.com'),
+('Marcos','012345693','marcos@fit.com'),
+('Lourdes','012345694','lourdes@fit.com'),
+('Wilber','012345695','wilber@fit.com'),
+('Andre','012345696','andre@fit.com'),
+('Adriana','012345697','adriana@fit.com'),
+('Leonel','012345698','leonel@fit.com'),
+('Francisco','012345699','francisco@fit.com'),
+('Josue','012345700','josue@fit.com'),
+('Michael','012345701','michael@fit.com'),
+('Kalet','012345702','kalet@fit.com'),
+('Steven','012345703','steven@fit.com');
 
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id DESC;</code></pre>
   </div>
 
   <p><b>Crear backup diferencial:</b></p>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
+/****** Backup diferencial ******/
 BACKUP DATABASE DB_Gimnasio
-TO DISK = 'C:\backups\DBGim_DIFF_10inserts.bak'
+TO DISK = 'C:\backups\DBGim_DIFFinserts.bak'
 WITH DIFFERENTIAL, COMPRESSION, STATS = 5;</code></pre>
   </div>
 
-  <p><b>Alterar los datos después del diferencial:</b></p>
+  <p><b>Simular un daño masivo en los datos después del backup diferencial:</b></p>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-UPDATE ref.Cliente
-SET Email = REPLACE(Email, '@fit.com', '@alterado.com')
-WHERE Id > 3;
+UPDATE person.Cliente
+SET Email = 'LOL@ALTERADO.COM', DUI = Id
+WHERE Id > 6;
 
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id DESC;</code></pre>
   </div>
 
   <p><b>Restaurar utilizando FULL + DIFFERENTIAL:</b></p>
@@ -550,7 +571,7 @@ SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
 
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-    <pre><code class="language-sql">
+    <pre><code class="language-sql">/****** Restauración FULL + DIFERENCIAL ******/
 USE master;
 ALTER DATABASE DB_Gimnasio SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 
@@ -559,19 +580,19 @@ FROM DISK = 'C:\backups\DBGim_FULL_BASE.bak'
 WITH NORECOVERY, REPLACE, STATS = 5;
 
 RESTORE DATABASE DB_Gimnasio
-FROM DISK = 'C:\backups\DBGim_DIFF_10inserts.bak'
+FROM DISK = 'C:\backups\DBGim_DIFFinserts.bak'
 WITH RECOVERY, STATS = 5;
 
 ALTER DATABASE DB_Gimnasio SET MULTI_USER;
 GO
 
 USE DB_Gimnasio;
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id DESC;</code></pre>
   </div>
 
   <div class="important-box">
     <b>Resultado esperado:</b>  
-    Los registros insertados deben recuperarse con sus correos originales (<i>@fit.com</i>), 
+    Los registros insertados deben recuperarse con sus DUIs y correos originales (<i>@fit.com</i>), 
     demostrando que el respaldo diferencial fue aplicado correctamente.
   </div>
 
@@ -585,18 +606,18 @@ SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-INSERT INTO ref.Cliente (Nombre, Email) VALUES
-('Leo','leo@fit.com'),
-('Nora','nora@fit.com'),
-('Oscar','oscar@fit.com');
+INSERT INTO person.Cliente (Nombre, DUI, Email) VALUES
+('Marlene','012345704','marlene@fit.com'),
+('Elisa','012345705','elisa@fit.com'),
+('Erick','012345706','erick@fit.com');
 
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id DESC;</code></pre>
   </div>
 
   <p><b>Generar el respaldo de log:</b></p>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-    <pre><code class="language-sql">
+    <pre><code class="language-sql">/****** Backup Log ******/
 BACKUP LOG DB_Gimnasio
 TO DISK = 'C:\backups\DBGim_LOG_001.trn'
 WITH INIT, COMPRESSION, STATS = 5;</code></pre>
@@ -606,9 +627,10 @@ WITH INIT, COMPRESSION, STATS = 5;</code></pre>
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
-DELETE FROM ref.Cliente WHERE Nombre IN ('Leo','Nora');
+-- IMPORTANTE ANOTAR LA HORA EXACTA A LA QUE SE REALIZO EL DELETE (en Messages)
+DELETE FROM person.Cliente WHERE Nombre IN ('Erick','Marlene','Elisa');
 
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id DESC;</code></pre>
   </div>
 
   <p><b>Restaurar con FULL + DIF + LOG (punto en el tiempo):</b></p>
@@ -619,36 +641,41 @@ SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
 
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
-    <pre><code class="language-sql">
+    <pre><code class="language-sql">/****** Restauración FULL + DIF + LOG (PITR) ******/
 USE master;
 ALTER DATABASE DB_Gimnasio SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
 
+-- Restaurar respaldo FULL
 RESTORE DATABASE DB_Gimnasio
 FROM DISK = 'C:\backups\DBGim_FULL_BASE.bak'
 WITH NORECOVERY, REPLACE;
 
+-- Restaurar respaldo diferencial
 RESTORE DATABASE DB_Gimnasio
-FROM DISK = 'C:\backups\DBGim_DIFF_10inserts.bak'
+FROM DISK = 'C:\backups\DBGim_DIFFinserts.bak'
 WITH NORECOVERY;
 
+-- Restaurar log hasta antes del DELETE
 RESTORE LOG DB_Gimnasio
 FROM DISK = 'C:\backups\DBGim_LOG_001.trn'
-WITH STOPAT = '2025-11-01T10:30:00', RECOVERY, STATS = 5;
+WITH STOPAT = '2025-11-02T18:56:50',  -- unos segundos ANTES del DELETE
+RECOVERY, STATS = 5;
+
+-- Ejecuta este comando en caso de que de error (si no falla ignoralo)
+RESTORE DATABASE DB_Gimnasio WITH RECOVERY;
 
 ALTER DATABASE DB_Gimnasio SET MULTI_USER;
 GO
 
 USE DB_Gimnasio;
-SELECT * FROM ref.Cliente ORDER BY Id;</code></pre>
+SELECT * FROM person.Cliente ORDER BY Id;</code></pre>
   </div>
 
   <div class="important-box">
     <b>Resultado esperado:</b>  
-    Los registros de <i>Leo</i> y <i>Nora</i> deben volver a aparecer, 
+    Los registros de <i>Marlene</i>, <i>Elisa</i> y <i>Erick</i> deben volver a aparecer, 
     demostrando que la restauración punto en el tiempo con <b>BACKUP LOG</b> fue exitosa.
   </div>
-
-
 </google-codelab-step>
 
 <!-- Paso 7 -->
