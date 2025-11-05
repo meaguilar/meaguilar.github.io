@@ -186,41 +186,70 @@ Nodo* Eliminar(Nodo* raiz, int id) {
 
 Puedes consultar un ejemplo completo de los recorridos y búsquedas manuales en árboles binarios en el siguiente repositorio: [Repositorio - Árboles manual](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesManual.cc)
 
+## Red-Black Tree
+Un **árbol rojo-negro (Red-Black Tree)** es un **árbol binario de búsqueda auto-balanceado** que garantiza operaciones en **O(log n)** para inserción, búsqueda y borrado. Se usa como estructura interna de `std::set` y `std::map`.
+
+![Red Black Tree](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/Red-Black-Tree.png)
+
+### Ideas clave
+
+-   **Orden BST**: para cada nodo, todos los valores del subárbol izquierdo son menores y los del derecho mayores.
+-   **Color por nodo**: cada nodo es **rojo** o **negro** (solo un bit extra).
+-   **Reglas de balance** (intuitivas):
+    1.  La **raíz** es negra.
+    2.  Todas las **hojas nulas (NIL)** se consideran negras.
+    3.  Un **nodo rojo no puede tener hijo rojo** (no hay dos rojos consecutivos).
+    4.  Todo **camino desde un nodo hasta sus hojas NIL tiene el mismo número de nodos negros** (altura negra constante).
+
+Cuando una inserción o eliminación rompe alguna regla, el árbol realiza **rotaciones** (izq./der.) y **recoloraciones** para recuperar el balance.  
+
+**¿Qué ganamos?** Un árbol balanceado siempre, sin necesidad de re-balanceos costosos como en peores casos de un BST normal.
+
 
 ## Librería de Árboles C++
 
-En este laboratorio utilizaremos la librería `std::set`, que implementa un árbol de búsqueda balanceado, comúnmente un **Red-Black Tree**. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.
+En este laboratorio utilizaremos la librería `std::set` y `std::map`, que implementa un árbol de búsqueda balanceado, comúnmente un **Red-Black Tree**. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.
+
+![Map vs Set](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/Map-vs-Set.png)
 
 ### Propiedades de la librería `std::set` 
--   **Orden**: Los elementos siempre se almacenan en orden ascendente.
--   **No duplicados**: No se permiten elementos duplicados.
--   **Autobalanceado**: Internamente, utiliza un árbol binario de búsqueda balanceado para optimizar las operaciones.
+-   **Elementos únicos**: Cada valor dentro del conjunto es **único**; si se intenta insertar un elemento duplicado, será ignorado automáticamente.
+-   **Orden automático**: Los elementos se almacenan de forma **ordenada ascendentemente** según el operador `<` del tipo de dato (puede personalizarse con un comparador).
+-   **Estructura interna balanceada**: Está implementado como un **árbol rojo–negro**, lo que garantiza operaciones eficientes de inserción, búsqueda y eliminación en tiempo **O(log n)**.
+-   **Inmutabilidad de elementos**: Los valores almacenados dentro del `set` son **constantes**; no se pueden modificar directamente una vez insertados, ya que esto alteraría el orden del árbol.
+-   **Ideal para pruebas de pertenencia**: Es especialmente útil cuando se necesita saber rápidamente si un elemento existe en una colección sin duplicados.
 
-### Definición del conjunto
-Para definir un conjunto, lo haremos primero creando una estructura mediante el siguiente código mediante el siguiente código.
+### Propiedades de la librería `std::map`
+-   **Clave–Valor**: Cada elemento del mapa almacena un par formado por una **clave única** y un **valor asociado**.
+-   **Sin claves duplicadas**: No se pueden repetir las claves; si insertas una clave existente, el valor anterior se reemplaza.
+-   **Ordenado automáticamente**: Los elementos se ordenan según la clave, en orden ascendente por defecto (`<`).
+-   **Acceso rápido**: Permite acceder, insertar o eliminar elementos en tiempo logarítmico (_O(log n)_), gracias a su implementación como **árbol rojo–negro**.
+-   **Modificable por valor**: Es posible cambiar el valor asociado a una clave existente sin afectar el orden del árbol.
 
-```c++
-struct Persona {
-    int id;
-    std::string nombre;
+### Comparación entre `std::set` y `std::map`
 
-    // Sobrecargamos el operador < para ordenar por id
-    bool operator<(const Persona& otra) const {
-        return id < otra.id;
-    }
-};
-```
-En este caso, para el conjunto que vamos a crear, es necesario que la estructura personalizada defina el operador `<`, ya que C++ no sabe cómo comparar automáticamente dichos tipos, al no existir una regla predefinida para determinar cuál es **'menor'**. Aquí es donde entra en juego la **sobrecarga del operador `<`**: debemos especificar cómo comparar dos objetos de la estructura `Persona` para que el conjunto pueda ordenarlos correctamente, en este caso, definimos que lo ordene por id. Si no lo hacemos, se generará un error de compilación.
+| Característica | `std::set` | `std::map` |
+|----------------|-------------|-------------|
+| **Tipo de dato almacenado** | Solo almacena **valores únicos** | Almacena **pares (clave, valor)** |
+| **Definición** | `std::set<T>` | `std::map<Key, Value>` |
+| **Clave** | El **valor mismo** actúa como clave | La **clave** y el **valor** son independientes |
+| **Duplicados** | No se permiten valores duplicados | No se permiten **claves** duplicadas (los valores pueden repetirse) |
+| **Orden** | Ordenado automáticamente por el valor (`<`) | Ordenado automáticamente por la **clave** (`<`) |
+| **Acceso a elementos** | Solo se puede **buscar o recorrer** valores | Se puede **buscar por clave** y **modificar el valor asociado** |
+| **Inserción** | `insert(valor)` o `emplace(valor)` | `insert({clave, valor})` o `operator[](clave) = valor` |
+| **Modificación de elementos** | No es posible modificar un elemento directamente | El valor puede modificarse mediante la clave |
+| **Uso típico** | Verificar existencia, eliminar duplicados, mantener ordenado un conjunto de valores únicos | Crear diccionarios, tablas de correspondencia o contadores clave→valor |
+| **Estructura interna** | Árbol binario balanceado (Red-Black Tree) | Árbol binario balanceado (Red-Black Tree) |
+| **Complejidad** | Inserción, búsqueda y borrado en **O(log n)** | Inserción, búsqueda y borrado en **O(log n)** |
+| **Variantes con duplicados** | `std::multiset` | `std::multimap` |
 
-Luego para definir un conjunto, lo haremos de la siguiente manera.
-```c++
-std::set<Persona> personas;
-```
-### Métodos básicos de librería `std::set`
+
+### Métodos básicos de librería `std::set` y `std::map`
 
 **Métodos de inserción**
 
 - `insert(valor)`: Inserta un elemento en el set (si no existe).
+- `insert(clave, valor)`: Inserta un elemento en el map (si no existe).
 - `insert(hint, valor)`: Inserta con una posición sugerida (optimiza si el orden es conocido).
 - `insert(rango_inicio, rango_fin)`: Inserta un rango de elementos de otro contenedor.
 
@@ -243,73 +272,152 @@ std::set<Persona> personas;
 - `size()`: Retorna el número de elementos.
 - `empty()`: Retorna `true` si está vacío.
 
-### Operaciones basicas de `std::set`
 
-- ### Insertar elementos
-Cada vez que agregas algo a un `std::set`, lo guarda en orden y no deja que haya duplicados. Si intentas agregar algo que ya existe, simplemente no lo inserta.
+## Métodos básicos de librerías `std::set` y `std::map`
+
+### Métodos de inserción
+- `insert(valor)`: Inserta un elemento en el `set` (si no existe).  
+- `insert(clave, valor)`: Inserta un nuevo par en el `map` con la **clave** y el **valor** (si la clave no existe).  
+- `insert(hint, valor)`: Inserta un elemento con una **posición sugerida**.  
+  - `hint`: Iterador que indica el lugar aproximado de inserción.  
+  - `valor`: Elemento a insertar.  
+  - Optimiza la inserción cuando el orden es conocido previamente.  
+- `insert(rango_inicio, rango_fin)`: Inserta un **rango completo de elementos** desde otro contenedor.  
+  - `rango_inicio`: Iterador al inicio del rango.  
+  - `rango_fin`: Iterador al final del rango.  
+  - Copia los elementos dentro del rango en el contenedor actual.
+
+### Métodos de eliminación
+- `erase(valor)`:  
+  - En `set`: Elimina el **valor** especificado (si existe).  
+  - En `map`: Elimina el elemento con la **clave** indicada.  
+- `erase(iterador)`:  
+  - Elimina el elemento apuntado por el **iterador**.  
+  - Parámetro: iterador válido dentro del contenedor.  
+- `erase(rango_inicio, rango_fin)`:  
+  - Elimina todos los elementos comprendidos en el **rango** indicado.  
+  - Parámetros: iteradores de inicio y fin del rango.  
+- `clear()`:  
+  - Elimina **todos los elementos** del contenedor, dejándolo vacío.  
+  - No recibe parámetros.
+
+### Métodos de búsqueda
+- `find(valor)`:  
+  - En `set`: Busca el **valor** y devuelve un iterador a él (o `end()` si no existe).  
+  - En `map`: Busca la **clave** y devuelve un iterador al par correspondiente (o `end()` si no existe).  
+- `count(valor)`:  
+  - En `set`: Devuelve `1` si el **valor** existe, `0` si no.  
+  - En `map`: Devuelve `1` si la **clave** existe, `0` si no.  
+- `lower_bound(valor)`:  
+  - Devuelve un **iterador** al primer elemento **≥ valor** (o **≥ clave** en `map`).  
+  - Útil para buscar rangos dentro del contenedor ordenado.  
+- `upper_bound(valor)`:  
+  - Devuelve un **iterador** al primer elemento **> valor** (o **> clave** en `map`).  
+  - Permite definir el final de un rango de búsqueda.  
+
+### Métodos de iteración
+- `begin()`:  
+  - Devuelve un **iterador al primer elemento** (el menor en orden).  
+  - En `map`, el primer elemento corresponde a la **clave más pequeña**.  
+- `end()`:  
+  - Devuelve un **iterador “uno más allá”** del último elemento (no accesible directamente).  
+  - Se usa para determinar el final en los bucles de recorrido.  
+- `rbegin()`:  
+  - Devuelve un **iterador inverso** al último elemento (mayor en orden).  
+- `rend()`:  
+  - Devuelve un **iterador inverso “uno antes” del primero**.  
+
+### Métodos de capacidad
+- `size()`:  
+  - Retorna el **número total de elementos** almacenados en el contenedor.  
+  - Tipo de retorno: `size_t`.  
+- `empty()`:  
+  - Retorna `true` si el contenedor está **vacío**, `false` en caso contrario.  
+  - No recibe parámetros.  
+- `max_size()`:  
+  - Devuelve el **número máximo de elementos** que el contenedor puede almacenar según el sistema.  
+
+## Ejemplo 1: Registro de visitantes frecuentes (uso de `set`)
+
+### El museo nacional desea registrar a sus visitantes frecuentes. 
+Cada visitante tiene un número de documento, nombre y categoría (estudiante, docente o público general).  
+El sistema debe evitar duplicados y mantener los visitantes **ordenados automáticamente**.
+
+Utiliza **set** para almacenar a los visitantes, ya que este contenedor evita repetidos y mantiene los datos ordenados.
+
+**Funciones a implementar:**
+-   **Registrar Visitante:** Inserta un visitante nuevo. Si el documento ya existe, muestra un mensaje de error.
+-   **Buscar Visitante:** Dado el documento, muestra su información.
+-   **Eliminar Visitante:** Elimina un visitante usando su documento.
+-   **Mostrar Visitantes:** Muestra todos los visitantes registrados en orden.
+-   **Registrar desde Lista:** Inserta varios visitantes de otra lista usando un rango.
+-   **Contar Visitante:** Verifica si un documento está registrado.
+-   **Mostrar desde Documento:** Usa `lower_bound` para mostrar visitantes desde un valor dado.
+-   **Mostrar Cantidad:** Indica cuántos visitantes hay registrados.
+-   **Limpiar Registro:** Elimina todos los visitantes (clear).
+
+**Validaciones:**  
+No permitir duplicados ni campos vacíos. Mostrar mensaje si el visitante no existe al eliminar o buscar.
+
 ```c++
-personas.insert({1, "Juan"}); 
-personas.insert({3, "Ana"}); 
-personas.insert({2, "Pedro"});
-```
-- ### Buscar un elemento en el conjunto
-Puedes buscar un elemento para ver si está en el conjunto. Como es de tipo booleano, te devolverá verdadero o falso, indicando si lo encontró o no.
+#include <iostream>
+#include <set>
+#include <string>
 
-```c++
-// Buscar una persona por id
-Persona buscar = {2, ""};  // Solo necesitamos el 'id' para buscar
-auto it = personas.find(buscar);
+struct Visitante {
+    string documento;
+    string nombre;
+    string categoria;
+};
 
-if (it != personas.end()) {
-    std::cout << "Persona encontrada: " << it->nombre << std::endl;
-} else {
-    std::cout << "Persona no encontrada." << std::endl;
+// Comparador para ordenar por documento
+struct CompVisitante {
+    bool operator()(const Visitante& a, const Visitante& b) const {
+        return a.documento < b.documento;
+    }
 };
 ```
 
-#### ¿Qué es el tipo de dato auto?
+El código fuente completo correspondiente a este ejercicio presentado en esta guía se encuentra disponible en el repositorio oficial del curso en **GitHub** en [EjercicioSet](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/EjercicioSet.cc).
 
-El tipo de dato `auto` es una palabra clave que permite al compilador deducir automáticamente el tipo de una variable a partir de su valor de inicialización. Es especialmente útil cuando el tipo de la variable es complejo o largo de escribir, como en el caso de los iteradores, funciones lambda, o punteros inteligentes.
+## Ejemplo 2: Sistema de inventario de ferretería (uso de `map`)
 
-Como `personas.find(buscar)` devuelve un iterador que apunta al tipo de dato almacenado en el contenedor en este caso, una estructura `Persona`, `it` será del tipo adecuado, que normalmente sería algo como `std::set<Persona>::iterator`, en vez de escribir todo eso, lo simplificamos con `auto`.
+### Una ferretería necesita un sistema para registrar sus productos.
+Cada producto tiene un código único, nombre, categoría, precio y cantidad en existencia.  
+El sistema debe mantener los productos **ordenados por código** y permitir actualizaciones rápidas.
 
-- ### Eliminar del conjunto
-Para eliminar una persona, usamos la función `erase`, pasando el identificador que queremos eliminar.
+Utiliza **map** para almacenar los productos, donde la llave sea el código.
+
+**Funciones a implementar:**
+-   **Agregar Producto:** Inserta un nuevo producto si el código no existe.
+-   **Actualizar Producto:** Usa el acceso directo para modificar el precio o cantidad.
+-   **Buscar Producto:** Muestra la información de un producto dado su código.
+-   **Eliminar Producto:** Elimina un producto usando su código.
+-   **Mostrar Inventario:** Muestra todos los productos en orden ascendente.
+-   **Buscar por Rango:** Usa `lower_bound` y `upper_bound` para mostrar productos con código mayor o igual a uno dado.
+-   **Contar Productos:** Indica el total de registros.
+-   **Limpiar Inventario:** Vacía todo el registro.
+    
+**Validaciones:**  
+No permitir precios o existencias negativas, ni códigos duplicados o vacíos.
 
 ```c++
-Persona eliminar = {1, ""};  // Solo necesitamos el 'id' para eliminar
-personas.erase(eliminar);
-```
-- ### Recorrer un conjunto
-Para recorrer el conjunto e imprimir los elementos, podemos usar un bucle `for`, donde el conjunto ya se encuentra ordenado automáticamente.
+#include <iostream>
+#include <map>
+#include <string>
 
-```c++
-for (auto it = personas.begin(); it != personas.end(); ++it) {
-   const auto& persona = *it;
-   std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
+struct Producto {
+    string nombre;
+    string categoria;
+    double precio;
+    int stock;
 };
+
+void mostrarCantidad(const map<string, Producto>& inventario) {
+    cout << "Total de productos: " << inventario.size() << "\n";
+}
 ```
-`personas.begin()` indica el inicio y `personas.end()` el último elemento del conjunto.
-
-Una forma mucho más común de implementar un recorrido y simplificándolo, es aplicando un **bucle rango** . Este tipo de bucle simplifica la iteración sobre contenedores como `std::set`, `std::vector`, `std::array`, entre otros. Lo podemos definir de la siguiente manera.
-
-```c++
-for (const auto& persona : personas) {
-   std::cout << "ID: " << persona.id << ", Nombre: " << persona.nombre << std::endl;
-};
-```
-
-  **`const`**: Indica que la variable `persona` no se puede modificar durante la iteración. Esto asegura que el contenido de cada objeto no cambie accidentalmente.
-  
-**`&`** (Referencia): Permite evitar la copia de cada elemento en cada iteración. En lugar de copiar los elementos del contenedor `personas`, se accede a ellos por referencia, lo que mejora la eficiencia al no duplicar los objetos.
-
-**`persona`**: Es la variable que representa un elemento individual del contenedor `personas`. En cada iteración, `persona` toma el valor de un objeto diferente del tipo `Persona`.
-
-**`personas`**: Es el contenedor que estamos recorriendo. En este caso, es un `std::set<Persona>`.
-
-### Ejemplo completo de árboles binarios con la librería `std::set`
-
-Puedes consultar un ejemplo completo de el uso de la librería `std::set` en árboles binarios en el siguiente repositorio: [Repositorio - Uso de la librería Set](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesLibreriaSet.cc)
+El código fuente completo correspondiente a este ejercicio presentado en esta guía se encuentra disponible en el repositorio oficial del curso en **GitHub** en [EjercicioMap](https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/EjercicioMap.cc).
 
 # Anexos
 
@@ -322,3 +430,9 @@ Puedes consultar un ejemplo completo de el uso de la librería `std::set` en ár
 -   [Binary Tree Traversals — Preorder, Inorder, and Postorder (EnjoyAlgorithms)](https://www.enjoyalgorithms.com/blog/binary-tree-traversals-preorder-inorder-postorder) — Artículo académico que explica de manera clara los tres recorridos fundamentales de los árboles binarios (preorden, inorden y postorden). Incluye diagramas ilustrativos, pseudocódigo y ejemplos en C++ y Python, reforzando la comprensión de las operaciones de recorrido recursivo.
 
 - [Red/Black Tree Visualization — University of San Francisco](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html) — Herramienta interactiva desarrollada por la _University of San Francisco_ que permite visualizar el funcionamiento interno de los **árboles rojo-negro**, una estructura de datos auto-balanceada. Presenta de forma animada los procesos de inserción, eliminación y rotación de nodos, facilitando la comprensión del equilibrio dinámico de este tipo de árbol binario de búsqueda.
+
+- [Introduction to Red-Black Tree – GeeksforGeeks](https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/) — Explica la estructura y funcionamiento de los **árboles Red-Black**, base interna de `std::map` y `std::set`. Describe sus reglas de balanceo, ventajas en eficiencia y cómo garantizan operaciones rápidas de búsqueda e inserción.
+
+- [Using std::map with a custom class key – Walletfox](https://www.walletfox.com/course/mapwithcustomclasskey.php) — Muestra cómo usar `std::map` con **claves personalizadas**, definiendo comparadores o el operador `<` para mantener el orden de los elementos. Incluye ejemplos prácticos con clases.
+
+- [C++ Map – Programiz](https://www.programiz.com/cpp-programming/map) — Ofrece una guía básica sobre `std::map`, explicando su estructura de pares clave-valor, sus métodos principales (`insert`, `erase`, `find`, `[]`) y ejemplos de recorrido y acceso ordenado.

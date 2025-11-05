@@ -20,7 +20,11 @@
 <li><a href="#¿qué-es-un-árbol-binario">¿Qué es un Árbol Binario?</a></li>
 <li><a href="#representación-de-un-árbol-binario-en-c">Representación de un Árbol binario en C++</a></li>
 <li><a href="#operaciones-básicas-en-árboles-binarios">Operaciones Básicas en Árboles Binarios</a></li>
+<li><a href="#red-black-tree">Red-Black Tree</a></li>
 <li><a href="#librería-de-árboles-c">Librería de Árboles C++</a></li>
+<li><a href="#métodos-básicos-de-librerías-stdset-y-stdmap">Métodos básicos de librerías std::set y std::map</a></li>
+<li><a href="#ejemplo-1-registro-de-visitantes-frecuentes-uso-de-set">Ejemplo 1: Registro de visitantes frecuentes (uso de set)</a></li>
+<li><a href="#ejemplo-2-sistema-de-inventario-de-ferretería-uso-de-map">Ejemplo 2: Sistema de inventario de ferretería (uso de map)</a></li>
 </ul>
 </li>
 <li><a href="#anexos">Anexos</a></li>
@@ -194,34 +198,120 @@ Nodo<span class="token operator">*</span> <span class="token function">Eliminar<
 </code></pre>
 <h3 id="ejemplo-completo-de-los-recorridos-y-busquedas-manuales-de-árboles-binarios">Ejemplo completo de los recorridos y busquedas manuales de árboles binarios</h3>
 <p>Puedes consultar un ejemplo completo de los recorridos y búsquedas manuales en árboles binarios en el siguiente repositorio: <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesManual.cc">Repositorio - Árboles manual</a></p>
+<h2 id="red-black-tree">Red-Black Tree</h2>
+<p>Un <strong>árbol rojo-negro (Red-Black Tree)</strong> es un <strong>árbol binario de búsqueda auto-balanceado</strong> que garantiza operaciones en <strong>O(log n)</strong> para inserción, búsqueda y borrado. Se usa como estructura interna de <code>std::set</code> y <code>std::map</code>.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/Red-Black-Tree.png" alt="Red Black Tree"></p>
+<h3 id="ideas-clave">Ideas clave</h3>
+<ul>
+<li><strong>Orden BST</strong>: para cada nodo, todos los valores del subárbol izquierdo son menores y los del derecho mayores.</li>
+<li><strong>Color por nodo</strong>: cada nodo es <strong>rojo</strong> o <strong>negro</strong> (solo un bit extra).</li>
+<li><strong>Reglas de balance</strong> (intuitivas):
+<ol>
+<li>La <strong>raíz</strong> es negra.</li>
+<li>Todas las <strong>hojas nulas (NIL)</strong> se consideran negras.</li>
+<li>Un <strong>nodo rojo no puede tener hijo rojo</strong> (no hay dos rojos consecutivos).</li>
+<li>Todo <strong>camino desde un nodo hasta sus hojas NIL tiene el mismo número de nodos negros</strong> (altura negra constante).</li>
+</ol>
+</li>
+</ul>
+<p>Cuando una inserción o eliminación rompe alguna regla, el árbol realiza <strong>rotaciones</strong> (izq./der.) y <strong>recoloraciones</strong> para recuperar el balance.</p>
+<p><strong>¿Qué ganamos?</strong> Un árbol balanceado siempre, sin necesidad de re-balanceos costosos como en peores casos de un BST normal.</p>
 <h2 id="librería-de-árboles-c">Librería de Árboles C++</h2>
-<p>En este laboratorio utilizaremos la librería <code>std::set</code>, que implementa un árbol de búsqueda balanceado, comúnmente un <strong>Red-Black Tree</strong>. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.</p>
+<p>En este laboratorio utilizaremos la librería <code>std::set</code> y <code>std::map</code>, que implementa un árbol de búsqueda balanceado, comúnmente un <strong>Red-Black Tree</strong>. Esto garantiza que el código sea eficiente en términos de velocidad de ejecución.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP7/Map-vs-Set.png" alt="Map vs Set"></p>
 <h3 id="propiedades-de-la-librería-stdset">Propiedades de la librería <code>std::set</code></h3>
 <ul>
-<li><strong>Orden</strong>: Los elementos siempre se almacenan en orden ascendente.</li>
-<li><strong>No duplicados</strong>: No se permiten elementos duplicados.</li>
-<li><strong>Autobalanceado</strong>: Internamente, utiliza un árbol binario de búsqueda balanceado para optimizar las operaciones.</li>
+<li><strong>Elementos únicos</strong>: Cada valor dentro del conjunto es <strong>único</strong>; si se intenta insertar un elemento duplicado, será ignorado automáticamente.</li>
+<li><strong>Orden automático</strong>: Los elementos se almacenan de forma <strong>ordenada ascendentemente</strong> según el operador <code>&lt;</code> del tipo de dato (puede personalizarse con un comparador).</li>
+<li><strong>Estructura interna balanceada</strong>: Está implementado como un <strong>árbol rojo–negro</strong>, lo que garantiza operaciones eficientes de inserción, búsqueda y eliminación en tiempo <strong>O(log n)</strong>.</li>
+<li><strong>Inmutabilidad de elementos</strong>: Los valores almacenados dentro del <code>set</code> son <strong>constantes</strong>; no se pueden modificar directamente una vez insertados, ya que esto alteraría el orden del árbol.</li>
+<li><strong>Ideal para pruebas de pertenencia</strong>: Es especialmente útil cuando se necesita saber rápidamente si un elemento existe en una colección sin duplicados.</li>
 </ul>
-<h3 id="definición-del-conjunto">Definición del conjunto</h3>
-<p>Para definir un conjunto, lo haremos primero creando una estructura mediante el siguiente código mediante el siguiente código.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Persona <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> id<span class="token punctuation">;</span>
-    std<span class="token punctuation">:</span><span class="token punctuation">:</span>string nombre<span class="token punctuation">;</span>
+<h3 id="propiedades-de-la-librería-stdmap">Propiedades de la librería <code>std::map</code></h3>
+<ul>
+<li><strong>Clave–Valor</strong>: Cada elemento del mapa almacena un par formado por una <strong>clave única</strong> y un <strong>valor asociado</strong>.</li>
+<li><strong>Sin claves duplicadas</strong>: No se pueden repetir las claves; si insertas una clave existente, el valor anterior se reemplaza.</li>
+<li><strong>Ordenado automáticamente</strong>: Los elementos se ordenan según la clave, en orden ascendente por defecto (<code>&lt;</code>).</li>
+<li><strong>Acceso rápido</strong>: Permite acceder, insertar o eliminar elementos en tiempo logarítmico (<em>O(log n)</em>), gracias a su implementación como <strong>árbol rojo–negro</strong>.</li>
+<li><strong>Modificable por valor</strong>: Es posible cambiar el valor asociado a una clave existente sin afectar el orden del árbol.</li>
+</ul>
+<h3 id="comparación-entre-stdset-y-stdmap">Comparación entre <code>std::set</code> y <code>std::map</code></h3>
 
-    <span class="token comment">// Sobrecargamos el operador &lt; para ordenar por id</span>
-    bool operator<span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token keyword">const</span> Persona<span class="token operator">&amp;</span> otra<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> id <span class="token operator">&lt;</span> otra<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p>En este caso, para el conjunto que vamos a crear, es necesario que la estructura personalizada defina el operador <code>&lt;</code>, ya que C++ no sabe cómo comparar automáticamente dichos tipos, al no existir una regla predefinida para determinar cuál es <strong>‘menor’</strong>. Aquí es donde entra en juego la <strong>sobrecarga del operador <code>&lt;</code></strong>: debemos especificar cómo comparar dos objetos de la estructura <code>Persona</code> para que el conjunto pueda ordenarlos correctamente, en este caso, definimos que lo ordene por id. Si no lo hacemos, se generará un error de compilación.</p>
-<p>Luego para definir un conjunto, lo haremos de la siguiente manera.</p>
-<pre class=" language-c"><code class="prism ++ language-c">std<span class="token punctuation">:</span><span class="token punctuation">:</span>set<span class="token operator">&lt;</span>Persona<span class="token operator">&gt;</span> personas<span class="token punctuation">;</span>
-</code></pre>
-<h3 id="métodos-básicos-de-librería-stdset">Métodos básicos de librería <code>std::set</code></h3>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th><code>std::set</code></th>
+<th><code>std::map</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Tipo de dato almacenado</strong></td>
+<td>Solo almacena <strong>valores únicos</strong></td>
+<td>Almacena <strong>pares (clave, valor)</strong></td>
+</tr>
+<tr>
+<td><strong>Definición</strong></td>
+<td><code>std::set&lt;T&gt;</code></td>
+<td><code>std::map&lt;Key, Value&gt;</code></td>
+</tr>
+<tr>
+<td><strong>Clave</strong></td>
+<td>El <strong>valor mismo</strong> actúa como clave</td>
+<td>La <strong>clave</strong> y el <strong>valor</strong> son independientes</td>
+</tr>
+<tr>
+<td><strong>Duplicados</strong></td>
+<td>No se permiten valores duplicados</td>
+<td>No se permiten <strong>claves</strong> duplicadas (los valores pueden repetirse)</td>
+</tr>
+<tr>
+<td><strong>Orden</strong></td>
+<td>Ordenado automáticamente por el valor (<code>&lt;</code>)</td>
+<td>Ordenado automáticamente por la <strong>clave</strong> (<code>&lt;</code>)</td>
+</tr>
+<tr>
+<td><strong>Acceso a elementos</strong></td>
+<td>Solo se puede <strong>buscar o recorrer</strong> valores</td>
+<td>Se puede <strong>buscar por clave</strong> y <strong>modificar el valor asociado</strong></td>
+</tr>
+<tr>
+<td><strong>Inserción</strong></td>
+<td><code>insert(valor)</code> o <code>emplace(valor)</code></td>
+<td><code>insert({clave, valor})</code> o <code>operator[](clave) = valor</code></td>
+</tr>
+<tr>
+<td><strong>Modificación de elementos</strong></td>
+<td>No es posible modificar un elemento directamente</td>
+<td>El valor puede modificarse mediante la clave</td>
+</tr>
+<tr>
+<td><strong>Uso típico</strong></td>
+<td>Verificar existencia, eliminar duplicados, mantener ordenado un conjunto de valores únicos</td>
+<td>Crear diccionarios, tablas de correspondencia o contadores clave→valor</td>
+</tr>
+<tr>
+<td><strong>Estructura interna</strong></td>
+<td>Árbol binario balanceado (Red-Black Tree)</td>
+<td>Árbol binario balanceado (Red-Black Tree)</td>
+</tr>
+<tr>
+<td><strong>Complejidad</strong></td>
+<td>Inserción, búsqueda y borrado en <strong>O(log n)</strong></td>
+<td>Inserción, búsqueda y borrado en <strong>O(log n)</strong></td>
+</tr>
+<tr>
+<td><strong>Variantes con duplicados</strong></td>
+<td><code>std::multiset</code></td>
+<td><code>std::multimap</code></td>
+</tr>
+</tbody>
+</table><h3 id="métodos-básicos-de-librería-stdset-y-stdmap">Métodos básicos de librería <code>std::set</code> y <code>std::map</code></h3>
 <p><strong>Métodos de inserción</strong></p>
 <ul>
 <li><code>insert(valor)</code>: Inserta un elemento en el set (si no existe).</li>
+<li><code>insert(clave, valor)</code>: Inserta un elemento en el map (si no existe).</li>
 <li><code>insert(hint, valor)</code>: Inserta con una posición sugerida (optimiza si el orden es conocido).</li>
 <li><code>insert(rango_inicio, rango_fin)</code>: Inserta un rango de elementos de otro contenedor.</li>
 </ul>
@@ -248,68 +338,196 @@ Nodo<span class="token operator">*</span> <span class="token function">Eliminar<
 <li><code>size()</code>: Retorna el número de elementos.</li>
 <li><code>empty()</code>: Retorna <code>true</code> si está vacío.</li>
 </ul>
-<h3 id="operaciones-basicas-de-stdset">Operaciones basicas de <code>std::set</code></h3>
+<h2 id="métodos-básicos-de-librerías-stdset-y-stdmap">Métodos básicos de librerías <code>std::set</code> y <code>std::map</code></h2>
+<h3 id="métodos-de-inserción">Métodos de inserción</h3>
 <ul>
-<li>
-<h3 id="insertar-elementos">Insertar elementos</h3>
+<li><code>insert(valor)</code>: Inserta un elemento en el <code>set</code> (si no existe).</li>
+<li><code>insert(clave, valor)</code>: Inserta un nuevo par en el <code>map</code> con la <strong>clave</strong> y el <strong>valor</strong> (si la clave no existe).</li>
+<li><code>insert(hint, valor)</code>: Inserta un elemento con una <strong>posición sugerida</strong>.
+<ul>
+<li><code>hint</code>: Iterador que indica el lugar aproximado de inserción.</li>
+<li><code>valor</code>: Elemento a insertar.</li>
+<li>Optimiza la inserción cuando el orden es conocido previamente.</li>
+</ul>
+</li>
+<li><code>insert(rango_inicio, rango_fin)</code>: Inserta un <strong>rango completo de elementos</strong> desde otro contenedor.
+<ul>
+<li><code>rango_inicio</code>: Iterador al inicio del rango.</li>
+<li><code>rango_fin</code>: Iterador al final del rango.</li>
+<li>Copia los elementos dentro del rango en el contenedor actual.</li>
+</ul>
 </li>
 </ul>
-<p>Cada vez que agregas algo a un <code>std::set</code>, lo guarda en orden y no deja que haya duplicados. Si intentas agregar algo que ya existe, simplemente no lo inserta.</p>
-<pre class=" language-c"><code class="prism ++ language-c">personas<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"Juan"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-personas<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token string">"Ana"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
-personas<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"Pedro"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+<h3 id="métodos-de-eliminación">Métodos de eliminación</h3>
 <ul>
-<li>
-<h3 id="buscar-un-elemento-en-el-conjunto">Buscar un elemento en el conjunto</h3>
+<li><code>erase(valor)</code>:
+<ul>
+<li>En <code>set</code>: Elimina el <strong>valor</strong> especificado (si existe).</li>
+<li>En <code>map</code>: Elimina el elemento con la <strong>clave</strong> indicada.</li>
+</ul>
+</li>
+<li><code>erase(iterador)</code>:
+<ul>
+<li>Elimina el elemento apuntado por el <strong>iterador</strong>.</li>
+<li>Parámetro: iterador válido dentro del contenedor.</li>
+</ul>
+</li>
+<li><code>erase(rango_inicio, rango_fin)</code>:
+<ul>
+<li>Elimina todos los elementos comprendidos en el <strong>rango</strong> indicado.</li>
+<li>Parámetros: iteradores de inicio y fin del rango.</li>
+</ul>
+</li>
+<li><code>clear()</code>:
+<ul>
+<li>Elimina <strong>todos los elementos</strong> del contenedor, dejándolo vacío.</li>
+<li>No recibe parámetros.</li>
+</ul>
 </li>
 </ul>
-<p>Puedes buscar un elemento para ver si está en el conjunto. Como es de tipo booleano, te devolverá verdadero o falso, indicando si lo encontró o no.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token comment">// Buscar una persona por id</span>
-Persona buscar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Solo necesitamos el 'id' para buscar</span>
-<span class="token keyword">auto</span> it <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>buscar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h3 id="métodos-de-búsqueda">Métodos de búsqueda</h3>
+<ul>
+<li><code>find(valor)</code>:
+<ul>
+<li>En <code>set</code>: Busca el <strong>valor</strong> y devuelve un iterador a él (o <code>end()</code> si no existe).</li>
+<li>En <code>map</code>: Busca la <strong>clave</strong> y devuelve un iterador al par correspondiente (o <code>end()</code> si no existe).</li>
+</ul>
+</li>
+<li><code>count(valor)</code>:
+<ul>
+<li>En <code>set</code>: Devuelve <code>1</code> si el <strong>valor</strong> existe, <code>0</code> si no.</li>
+<li>En <code>map</code>: Devuelve <code>1</code> si la <strong>clave</strong> existe, <code>0</code> si no.</li>
+</ul>
+</li>
+<li><code>lower_bound(valor)</code>:
+<ul>
+<li>Devuelve un <strong>iterador</strong> al primer elemento <strong>≥ valor</strong> (o <strong>≥ clave</strong> en <code>map</code>).</li>
+<li>Útil para buscar rangos dentro del contenedor ordenado.</li>
+</ul>
+</li>
+<li><code>upper_bound(valor)</code>:
+<ul>
+<li>Devuelve un <strong>iterador</strong> al primer elemento <strong>&gt; valor</strong> (o <strong>&gt; clave</strong> en <code>map</code>).</li>
+<li>Permite definir el final de un rango de búsqueda.</li>
+</ul>
+</li>
+</ul>
+<h3 id="métodos-de-iteración">Métodos de iteración</h3>
+<ul>
+<li><code>begin()</code>:
+<ul>
+<li>Devuelve un <strong>iterador al primer elemento</strong> (el menor en orden).</li>
+<li>En <code>map</code>, el primer elemento corresponde a la <strong>clave más pequeña</strong>.</li>
+</ul>
+</li>
+<li><code>end()</code>:
+<ul>
+<li>Devuelve un <strong>iterador “uno más allá”</strong> del último elemento (no accesible directamente).</li>
+<li>Se usa para determinar el final en los bucles de recorrido.</li>
+</ul>
+</li>
+<li><code>rbegin()</code>:
+<ul>
+<li>Devuelve un <strong>iterador inverso</strong> al último elemento (mayor en orden).</li>
+</ul>
+</li>
+<li><code>rend()</code>:
+<ul>
+<li>Devuelve un <strong>iterador inverso “uno antes” del primero</strong>.</li>
+</ul>
+</li>
+</ul>
+<h3 id="métodos-de-capacidad">Métodos de capacidad</h3>
+<ul>
+<li><code>size()</code>:
+<ul>
+<li>Retorna el <strong>número total de elementos</strong> almacenados en el contenedor.</li>
+<li>Tipo de retorno: <code>size_t</code>.</li>
+</ul>
+</li>
+<li><code>empty()</code>:
+<ul>
+<li>Retorna <code>true</code> si el contenedor está <strong>vacío</strong>, <code>false</code> en caso contrario.</li>
+<li>No recibe parámetros.</li>
+</ul>
+</li>
+<li><code>max_size()</code>:
+<ul>
+<li>Devuelve el <strong>número máximo de elementos</strong> que el contenedor puede almacenar según el sistema.</li>
+</ul>
+</li>
+</ul>
+<h2 id="ejemplo-1-registro-de-visitantes-frecuentes-uso-de-set">Ejemplo 1: Registro de visitantes frecuentes (uso de <code>set</code>)</h2>
+<h3 id="el-museo-nacional-desea-registrar-a-sus-visitantes-frecuentes.">El museo nacional desea registrar a sus visitantes frecuentes.</h3>
+<p>Cada visitante tiene un número de documento, nombre y categoría (estudiante, docente o público general).<br>
+El sistema debe evitar duplicados y mantener los visitantes <strong>ordenados automáticamente</strong>.</p>
+<p>Utiliza <strong>set</strong> para almacenar a los visitantes, ya que este contenedor evita repetidos y mantiene los datos ordenados.</p>
+<p><strong>Funciones a implementar:</strong></p>
+<ul>
+<li><strong>Registrar Visitante:</strong> Inserta un visitante nuevo. Si el documento ya existe, muestra un mensaje de error.</li>
+<li><strong>Buscar Visitante:</strong> Dado el documento, muestra su información.</li>
+<li><strong>Eliminar Visitante:</strong> Elimina un visitante usando su documento.</li>
+<li><strong>Mostrar Visitantes:</strong> Muestra todos los visitantes registrados en orden.</li>
+<li><strong>Registrar desde Lista:</strong> Inserta varios visitantes de otra lista usando un rango.</li>
+<li><strong>Contar Visitante:</strong> Verifica si un documento está registrado.</li>
+<li><strong>Mostrar desde Documento:</strong> Usa <code>lower_bound</code> para mostrar visitantes desde un valor dado.</li>
+<li><strong>Mostrar Cantidad:</strong> Indica cuántos visitantes hay registrados.</li>
+<li><strong>Limpiar Registro:</strong> Elimina todos los visitantes (clear).</li>
+</ul>
+<p><strong>Validaciones:</strong><br>
+No permitir duplicados ni campos vacíos. Mostrar mensaje si el visitante no existe al eliminar o buscar.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;set&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
 
-<span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">!=</span> personas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona encontrada: "</span> <span class="token operator">&lt;&lt;</span> it<span class="token operator">-&gt;</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona no encontrada."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token keyword">struct</span> Visitante <span class="token punctuation">{</span>
+    string documento<span class="token punctuation">;</span>
+    string nombre<span class="token punctuation">;</span>
+    string categoria<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Comparador para ordenar por documento</span>
+<span class="token keyword">struct</span> CompVisitante <span class="token punctuation">{</span>
+    bool <span class="token function">operator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">const</span> Visitante<span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword">const</span> Visitante<span class="token operator">&amp;</span> b<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a<span class="token punctuation">.</span>documento <span class="token operator">&lt;</span> b<span class="token punctuation">.</span>documento<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
-<h4 id="¿qué-es-el-tipo-de-dato-auto">¿Qué es el tipo de dato auto?</h4>
-<p>El tipo de dato <code>auto</code> es una palabra clave que permite al compilador deducir automáticamente el tipo de una variable a partir de su valor de inicialización. Es especialmente útil cuando el tipo de la variable es complejo o largo de escribir, como en el caso de los iteradores, funciones lambda, o punteros inteligentes.</p>
-<p>Como <code>personas.find(buscar)</code> devuelve un iterador que apunta al tipo de dato almacenado en el contenedor en este caso, una estructura <code>Persona</code>, <code>it</code> será del tipo adecuado, que normalmente sería algo como <code>std::set&lt;Persona&gt;::iterator</code>, en vez de escribir todo eso, lo simplificamos con <code>auto</code>.</p>
+<p>El código fuente completo correspondiente a este ejercicio presentado en esta guía se encuentra disponible en el repositorio oficial del curso en <strong>GitHub</strong> en <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/EjercicioSet.cc">EjercicioSet</a>.</p>
+<h2 id="ejemplo-2-sistema-de-inventario-de-ferretería-uso-de-map">Ejemplo 2: Sistema de inventario de ferretería (uso de <code>map</code>)</h2>
+<h3 id="una-ferretería-necesita-un-sistema-para-registrar-sus-productos.">Una ferretería necesita un sistema para registrar sus productos.</h3>
+<p>Cada producto tiene un código único, nombre, categoría, precio y cantidad en existencia.<br>
+El sistema debe mantener los productos <strong>ordenados por código</strong> y permitir actualizaciones rápidas.</p>
+<p>Utiliza <strong>map</strong> para almacenar los productos, donde la llave sea el código.</p>
+<p><strong>Funciones a implementar:</strong></p>
 <ul>
-<li>
-<h3 id="eliminar-del-conjunto">Eliminar del conjunto</h3>
-</li>
+<li><strong>Agregar Producto:</strong> Inserta un nuevo producto si el código no existe.</li>
+<li><strong>Actualizar Producto:</strong> Usa el acceso directo para modificar el precio o cantidad.</li>
+<li><strong>Buscar Producto:</strong> Muestra la información de un producto dado su código.</li>
+<li><strong>Eliminar Producto:</strong> Elimina un producto usando su código.</li>
+<li><strong>Mostrar Inventario:</strong> Muestra todos los productos en orden ascendente.</li>
+<li><strong>Buscar por Rango:</strong> Usa <code>lower_bound</code> y <code>upper_bound</code> para mostrar productos con código mayor o igual a uno dado.</li>
+<li><strong>Contar Productos:</strong> Indica el total de registros.</li>
+<li><strong>Limpiar Inventario:</strong> Vacía todo el registro.</li>
 </ul>
-<p>Para eliminar una persona, usamos la función <code>erase</code>, pasando el identificador que queremos eliminar.</p>
-<pre class=" language-c"><code class="prism ++ language-c">Persona eliminar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// Solo necesitamos el 'id' para eliminar</span>
-personas<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>eliminar<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
-<ul>
-<li>
-<h3 id="recorrer-un-conjunto">Recorrer un conjunto</h3>
-</li>
-</ul>
-<p>Para recorrer el conjunto e imprimir los elementos, podemos usar un bucle <code>for</code>, donde el conjunto ya se encuentra ordenado automáticamente.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">auto</span> it <span class="token operator">=</span> personas<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it <span class="token operator">!=</span> personas<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token operator">++</span>it<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-   <span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> persona <span class="token operator">=</span> <span class="token operator">*</span>it<span class="token punctuation">;</span>
-   std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<p><strong>Validaciones:</strong><br>
+No permitir precios o existencias negativas, ni códigos duplicados o vacíos.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;map&gt;</span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+<span class="token keyword">struct</span> Producto <span class="token punctuation">{</span>
+    string nombre<span class="token punctuation">;</span>
+    string categoria<span class="token punctuation">;</span>
+    <span class="token keyword">double</span> precio<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> stock<span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">mostrarCantidad</span><span class="token punctuation">(</span><span class="token keyword">const</span> map<span class="token operator">&lt;</span>string<span class="token punctuation">,</span> Producto<span class="token operator">&gt;</span><span class="token operator">&amp;</span> inventario<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Total de productos: "</span> <span class="token operator">&lt;&lt;</span> inventario<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
-<p><code>personas.begin()</code> indica el inicio y <code>personas.end()</code> el último elemento del conjunto.</p>
-<p>Una forma mucho más común de implementar un recorrido y simplificándolo, es aplicando un <strong>bucle rango</strong> . Este tipo de bucle simplifica la iteración sobre contenedores como <code>std::set</code>, <code>std::vector</code>, <code>std::array</code>, entre otros. Lo podemos definir de la siguiente manera.</p>
-<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> persona <span class="token punctuation">:</span> personas<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-   std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"ID: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>id <span class="token operator">&lt;&lt;</span> <span class="token string">", Nombre: "</span> <span class="token operator">&lt;&lt;</span> persona<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-</code></pre>
-<p><strong><code>const</code></strong>: Indica que la variable <code>persona</code> no se puede modificar durante la iteración. Esto asegura que el contenido de cada objeto no cambie accidentalmente.</p>
-<p><strong><code>&amp;</code></strong> (Referencia): Permite evitar la copia de cada elemento en cada iteración. En lugar de copiar los elementos del contenedor <code>personas</code>, se accede a ellos por referencia, lo que mejora la eficiencia al no duplicar los objetos.</p>
-<p><strong><code>persona</code></strong>: Es la variable que representa un elemento individual del contenedor <code>personas</code>. En cada iteración, <code>persona</code> toma el valor de un objeto diferente del tipo <code>Persona</code>.</p>
-<p><strong><code>personas</code></strong>: Es el contenedor que estamos recorriendo. En este caso, es un <code>std::set&lt;Persona&gt;</code>.</p>
-<h3 id="ejemplo-completo-de-árboles-binarios-con-la-librería-stdset">Ejemplo completo de árboles binarios con la librería <code>std::set</code></h3>
-<p>Puedes consultar un ejemplo completo de el uso de la librería <code>std::set</code> en árboles binarios en el siguiente repositorio: <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/ArbolesLibreriaSet.cc">Repositorio - Uso de la librería Set</a></p>
+<p>El código fuente completo correspondiente a este ejercicio presentado en esta guía se encuentra disponible en el repositorio oficial del curso en <strong>GitHub</strong> en <a href="https://github.com/UCASV/RecursosExtraPED/blob/main/ArbolesBinarios/EjercicioMap.cc">EjercicioMap</a>.</p>
 <h1 id="anexos">Anexos</h1>
 <ul>
 <li>
@@ -326,6 +544,15 @@ personas<span class="token punctuation">.</span><span class="token function">era
 </li>
 <li>
 <p><a href="https://www.cs.usfca.edu/~galles/visualization/RedBlack.html">Red/Black Tree Visualization — University of San Francisco</a> — Herramienta interactiva desarrollada por la <em>University of San Francisco</em> que permite visualizar el funcionamiento interno de los <strong>árboles rojo-negro</strong>, una estructura de datos auto-balanceada. Presenta de forma animada los procesos de inserción, eliminación y rotación de nodos, facilitando la comprensión del equilibrio dinámico de este tipo de árbol binario de búsqueda.</p>
+</li>
+<li>
+<p><a href="https://www.geeksforgeeks.org/dsa/introduction-to-red-black-tree/">Introduction to Red-Black Tree – GeeksforGeeks</a> — Explica la estructura y funcionamiento de los <strong>árboles Red-Black</strong>, base interna de <code>std::map</code> y <code>std::set</code>. Describe sus reglas de balanceo, ventajas en eficiencia y cómo garantizan operaciones rápidas de búsqueda e inserción.</p>
+</li>
+<li>
+<p><a href="https://www.walletfox.com/course/mapwithcustomclasskey.php">Using std::map with a custom class key – Walletfox</a> — Muestra cómo usar <code>std::map</code> con <strong>claves personalizadas</strong>, definiendo comparadores o el operador <code>&lt;</code> para mantener el orden de los elementos. Incluye ejemplos prácticos con clases.</p>
+</li>
+<li>
+<p><a href="https://www.programiz.com/cpp-programming/map">C++ Map – Programiz</a> — Ofrece una guía básica sobre <code>std::map</code>, explicando su estructura de pares clave-valor, sus métodos principales (<code>insert</code>, <code>erase</code>, <code>find</code>, <code>[]</code>) y ejemplos de recorrido y acceso ordenado.</p>
 </li>
 </ul>
 
