@@ -243,36 +243,6 @@ En este laboratorio utilizaremos la librería `std::set` y `std::map`, que imple
 | **Complejidad** | Inserción, búsqueda y borrado en **O(log n)** | Inserción, búsqueda y borrado en **O(log n)** |
 | **Variantes con duplicados** | `std::multiset` | `std::multimap` |
 
-
-### Métodos básicos de librería `std::set` y `std::map`
-
-**Métodos de inserción**
-
-- `insert(valor)`: Inserta un elemento en el set (si no existe).
-- `insert(clave, valor)`: Inserta un elemento en el map (si no existe).
-- `insert(hint, valor)`: Inserta con una posición sugerida (optimiza si el orden es conocido).
-- `insert(rango_inicio, rango_fin)`: Inserta un rango de elementos de otro contenedor.
-
-**Métodos de eliminación**
-- `erase(valor)`: Elimina el elemento igual a `valor` (si existe).
-- `erase(iterador)`: Elimina el elemento apuntado por el iterador.
-- `erase(rango_inicio, rango_fin)`: Elimina un rango de elementos.
-- `clear()`: Borra todos los elementos del set.
-
-**Métodos de búsqueda**
-- `find(valor)`: Devuelve un iterador al elemento si existe, o `end()` si no.
-- `count(valor)`: Devuelve `1` si el valor existe, `0` si no.
-- `lower_bound(valor)`: Devuelve iterador al primer elemento **≥ valor**.
-
-**Métodos de iteración**
-- `begin()`: Iterador al primer elemento (menor).
-- `end()`: Iterador “uno más allá” del último elemento.
-
-**Métodos de capacidad**
-- `size()`: Retorna el número de elementos.
-- `empty()`: Retorna `true` si está vacío.
-
-
 ## Métodos básicos de librerías `std::set` y `std::map`
 
 ### Métodos de inserción
