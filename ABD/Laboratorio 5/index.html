@@ -109,7 +109,7 @@
         <ul>
           <li>Se usa en entornos de <b>producción</b> o en sistemas donde es vital mantener la integridad de los datos.</li>
           <li>Permite restaurar la base exactamente como estaba en el momento del respaldo.</li>
-          <li>Puede incluir también un archivo del log (<code>.trn</code>) si se realiza un respaldo del registro de transacciones.</li>
+          <li>Puede incluir también un archivo del log <b>.trn</b> si se realiza un respaldo del registro de transacciones.</li>
         </ul>
 
         <p>
@@ -621,6 +621,8 @@ WITH INIT, COMPRESSION, STATS = 5;</code></pre>
   </div>
 
   <p><b>Simular un error posterior al log:</b></p>
+  <p><b>IMPORTANTE: Para ejecutar el restore point in time necesitamos la hora exacta en la que se realizo la eliminación por lo tanto tenemos que capturar ese dato</b></p>
+
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">
@@ -635,7 +637,6 @@ SELECT * FROM person.Cliente ORDER BY Id DESC;</code></pre>
     Ahora restauraremos la base usando el último respaldo FULL, el último DIF y el LOG.  
     El parámetro <b>STOPAT</b> permite definir el instante exacto al que queremos recuperar la base.
   </p>
-
   <div class="code-container">
     <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
     <pre><code class="language-sql">/****** Restauración FULL + DIF + LOG (PITR) ******/
@@ -653,6 +654,7 @@ FROM DISK = 'C:\backups\DBGim_DIFFinserts.bak'
 WITH NORECOVERY;
 
 -- Restaurar log hasta antes del DELETE
+/*IMPORTANTE: WITH STOPAT se ejecuta solo para hacer una restauracion hasta un punto de tiempo si no se requiere se elimina esa línea.*/
 RESTORE LOG DB_Gimnasio
 FROM DISK = 'C:\backups\DBGim_LOG_001.trn'
 WITH STOPAT = '2025-11-02T18:56:50',  -- unos segundos ANTES del DELETE
