@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes" name="viewport" />
+    <title>Guía — Auditoría de Bases de Datos en SQL Server</title>
+
+    <!-- Google Fonts and Material Icons -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+    <!-- Codelab Styles -->
+    <link href="https://storage.googleapis.com/claat-public/codelab-elements.css" rel="stylesheet" />
+
+    <style>
+      /* Plantilla: plantilla_laboratorio */
+      .important-box {
+        background-color: #e6f4ea;
+        border-left: 5px solid #34a853;
+        padding: 12px;
+        margin: 16px 0;
+        border-radius: 4px;
+      }
+      .code-container { position: relative; }
+      .copy-btn {
+        position: absolute;
+        top: 6px; right: 6px;
+        background: transparent; color: white;
+        border: transparent; padding: 4px 8px; font-size: 12px;
+        border-radius: 3px; cursor: pointer;
+      }
+      pre { white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <google-codelab
+      id="lab-sqlserver-auditoria"
+      title="Auditoría de Bases de Datos en SQL Server"
+      environment="web">
+
+      <!-- Título general del documento (Heading 2 en Word): Auditoría de Bases de Datos -->
+      <!-- 1. ¿Qué es una auditoría en bases de datos? -->
+      <google-codelab-step label="Introducción" duration="0">
+        <h3>¿Qué es una auditoría en bases de datos?</h3>
+        <p>
+          Una auditoría en SQL Server sirve para registrar las acciones...que realizan los usuarios en el servidor o en una base de datos.
+          Ayuda a detectar cambios no autorizados, accesos indebidos o errores, y permite saber quién hizo qué, cuándo y desde dónde.
+        </p>
+
+        <p>Se usa para:</p>
+        <ul>
+          <li>Cumplir normas de seguridad (ISO, GDPR, etc.).</li>
+          <li>Detectar intentos de eliminar o modificar datos.</li>
+          <li>Analizar incidentes o fallas.</li>
+          <li>Registrar accesos y errores de autenticación.</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- 2. Componentes principales -->
+      <google-codelab-step label="Componentes principales" duration="0">
+        <p>SQL Server usa tres partes para realizar auditorías:</p>
+
+        <table>
+  <thead>
+    <tr>
+      <th>Componente</th>
+      <th>Descripción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Server Audit</strong></td>
+      <td>Define dónde se guardará la información (por ejemplo, en un archivo físico).</td>
+    </tr>
+    <tr>
+      <td><strong>Database Audit Specification</strong></td>
+      <td>Indica qué acciones o eventos se auditarán dentro de una base de datos.</td>
+    </tr>
+    <tr>
+      <td><strong>Audit Action</strong></td>
+      <td>Es la acción específica que se registrará (DELETE, ALTER TABLE, DENIED_ACCESS, etc.).</td>
+    </tr>
+  </tbody>
+</table>
+
+        <p>
+          El <b>Server Audit</b> recibe los eventos definidos en la <b>Database Audit Specification</b>,
+          que describe qué se debe auditar.
+        </p>
+      </google-codelab-step>
+
+      <!-- 3. Creación del objeto de auditoría (Server Audit) -->
+      <google-codelab-step label="Creación del objeto de auditoría (Server Audit)" duration="0">
+        <p>
+          Primero se crea un objeto a nivel servidor que indica <b>dónde guardar los registros:</b>
+        </p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+USE master;
+CREATE SERVER AUDIT Audit_Gimnasio
+TO FILE (FILEPATH = 'C:\audits\', MAXSIZE = 50 MB, 
+ROLLOVER_ON_FILE_TARGET = ON)
+WITH (QUEUE_DELAY = 1000, ON_FAILURE = CONTINUE);
+ALTER SERVER AUDIT Audit_Gimnasio WITH (STATE = ON);
+</code></pre>
+        </div>
+
+        <p>Explicación corta:</p>
+        <ul>
+          <li>FILEPATH: ruta donde se guardan los archivos.</li>
+          <li>MAXSIZE: tamaño máximo por archivo.</li>
+          <li>ROLLOVER_ON_FILE_TARGET: crea un nuevo archivo cuando se llena.</li>
+          <li>QUEUE_DELAY: tiempo antes de escribir los datos.</li>
+          <li>ON_FAILURE: qué hacer si hay error (en este caso, continuar).</li>
+          <li>STATE = ON: activa la auditoría.</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- 4. Auditoría a nivel de base de datos -->
+      <google-codelab-step label="Auditoría a nivel de base de datos" duration="0">
+        <p>
+          Después se indica <b>qué evento auditar</b>. En este caso, los intentos de eliminar datos de <code>ref.Cliente</code>:
+        </p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+USE DB_Gimnasio;
+CREATE DATABASE AUDIT SPECIFICATION Audit_DB_Cliente
+FOR SERVER AUDIT Audit_Gimnasio
+ADD (DELETE ON OBJECT::ref.Cliente BY PUBLIC)
+WITH (STATE = ON);
+</code></pre>
+        </div>
+
+        <p>En resumen:</p>
+        <ul>
+          <li>Se vincula al audit principal (<code>FOR SERVER AUDIT</code>).</li>
+          <li>Se audita cualquier <code>DELETE</code> en <code>ref.Cliente</code>.</li>
+          <li><code>STATE = ON</code> la activa.</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- 5. Prueba de la auditoría -->
+      <google-codelab-step label="Prueba de la auditoría" duration="0">
+        <p>Para probar, se ejecuta un <b>DELETE</b> cualquiera:</p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+DELETE FROM ref.Cliente WHERE id = -1;
+</code></pre>
+        </div>
+
+        <p>
+          No importa si el registro existe o no, el intento quedará <b>registrado</b> en el archivo de auditoría.
+        </p>
+      </google-codelab-step>
+
+      <!-- 6. Ver los eventos auditados -->
+      <google-codelab-step label="Ver los eventos auditados" duration="0">
+        <p>Para revisar los registros:</p>
+
+        <div class="code-container">
+          <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
+<pre><code class="language-sql">
+SELECT * 
+FROM sys.fn_get_audit_file('C:\audits\*', DEFAULT, DEFAULT);
+</code></pre>
+        </div>
+
+        <p>Este comando muestra los datos de auditoría, como:</p>
+        <ul>
+          <li>Fecha y hora (<code>event_time</code>).</li>
+          <li>Usuario (<code>server_principal_name</code>).</li>
+          <li>Tipo de acción (<code>action_id</code>).</li>
+          <li>Objeto afectado (<code>object_name</code>).</li>
+          <li>Resultado (éxito o error).</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- 7. Buenas prácticas -->
+      <google-codelab-step label="Buenas prácticas" duration="0">
+        <ul>
+          <li>Guardar los archivos en carpetas con permisos limitados.</li>
+          <li>Limpiar o archivar logs antiguos.</li>
+          <li>No auditar todo (puede afectar el rendimiento).</li>
+          <li>Usar <b>Database Mail</b> o alertas para notificar eventos importantes.</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- 8. Conclusión -->
+      <google-codelab-step label="Conclusión" duration="0">
+        <p>
+          Las auditorías en SQL Server ayudan a <b>mantener la seguridad y el control</b> sobre las acciones dentro de la base de datos.
+          En este laboratorio se busca:
+        </p>
+        <ul>
+          <li>Crear una auditoría a nivel servidor.</li>
+          <li>Registrar acciones de tipo <code>DELETE</code>.</li>
+          <li>Verificar que los eventos se registren correctamente.</li>
+          <li>Explorar cómo auditar más eventos o enviar alertas automáticas.</li>
+        </ul>
+      </google-codelab-step>
+
+      <!-- Créditos -->
+    <google-codelab-step label="Créditos" duration="0">
+        <p>
+          Departamento de Electrónica e Informática, Universidad Centroamericana
+          José Simeón Cañas, La Libertad, El Salvador.
+        </p>
+        <p><strong>Versión de este documento:</strong> Versión 1, 2025.</p>
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>Versión</strong></td>
+              <td><strong>Autores</strong></td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>
+                Vanessa Sarai Duran Cruz (00025822@uca.edu.sv), Diego Eduardo Castro Quintanilla (00117322@uca.edu.sv), Claudia María Chávez Grande (00037221@uca.edu.sv) 
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <img
+            alt="license"
+            src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png"
+          /><br />
+          This work is licensed under a
+          <a
+            href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
+            target="_blank"
+          >
+            Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+            International License </a
+          >.
+        </p>
+        </google-codelab-step>
+
+    </google-codelab>
+
+    <!-- Codelab Scripts -->
+    <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+    <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+    <script>
+      function copyCode(btn) {
+        const code = btn.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code).then(() => {
+          btn.innerText = "Copiado!";
+          setTimeout(() => (btn.innerText = "Copiar"), 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
