@@ -1,0 +1,140 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>preparacion-entorno-java (1).md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#configuración-del-entorno-de-desarrollo-para-java">Configuración del entorno de desarrollo para Java</a>
+<ul>
+<li><a href="#requisitos-para-instalar-intellij-idea">Requisitos para instalar IntelliJ IDEA</a></li>
+<li><a href="#descarga-e-instalación-de-intellij-idea"> Descarga e Instalación de IntelliJ IDEA</a></li>
+<li><a href="#ejecute-el-instalador-de-intellij-idea-y-siga-las-instrucciones-del-asistente">Ejecute el instalador de IntelliJ IDEA y siga las instrucciones del asistente</a></li>
+<li></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="configuración-del-entorno-de-desarrollo-para-java">Configuración del entorno de desarrollo para Java</h1>
+<ol>
+<li>Instalar IntelliJ IDEA (Entorno de Desarrollo Integrado).</li>
+<li>Configurar el JDK (Java Development Kit)</li>
+</ol>
+<hr>
+<h2 id="requisitos-para-instalar-intellij-idea">Requisitos para instalar IntelliJ IDEA</h2>
+
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Mínimo</th>
+<th>Recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>RAM</strong></td>
+<td>2 GB de RAM</td>
+<td>8 GB de RAM total del sistema</td>
+</tr>
+<tr>
+<td><strong>Espacio en disco</strong></td>
+<td>3,5 GB libres</td>
+<td>Unidad SSD con al menos 5 GB de espacio libre</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="descarga-e-instalación-de-intellij-idea"><img src="imagenes/intellij_logo.png" alt=""> Descarga e Instalación de IntelliJ IDEA</h2>
+<h3 id="paso-1-descargar-el-instalador">Paso 1: Descargar el instalador</h3>
+<p>Accede al sitio oficial de <a href="https://www.jetbrains.com/es-es/idea/download/?section=windows">JetBrains</a>. Una vez descargado, instala el programa según tu sistema operativo.</p>
+<p><img src="../imagenes/preparacion-entorno-java/1.png" alt="Descarga IntelliJ"></p>
+<hr>
+<h3 id="paso-2-instalar-intellij-idea">Paso 2: Instalar IntelliJ IDEA</h3>
+<h4 id="windows">Windows</h4>
+<p>Ejecuta el archivo <code>.exe</code> y deja todas las opciones por defecto.</p>
+<h4 id="macos">MacOS</h4>
+<p>Abre el archivo <code>.dmg</code> que descargaste y arrastra IntelliJ IDEA a la carpeta <em>Applications</em>.</p>
+<h4 id="linux">Linux</h4>
+<p>Extrae el archivo <code>.tar.gz</code> en una carpeta de tu preferencia, abre una terminal, navega a dicha carpeta y ejecuta <code>./idea.sh</code>.</p>
+<h2 id="ejecute-el-instalador-de-intellij-idea-y-siga-las-instrucciones-del-asistente">Ejecute el instalador de IntelliJ IDEA y siga las instrucciones del asistente</h2>
+<p>Durante el paso <strong>Opciones de instalación</strong>, puede configurar lo siguiente según sus preferencias:</p>
+<ol>
+<li>
+<p><strong>Crear un acceso directo en el escritorio</strong><br>
+Para abrir IntelliJ IDEA rápidamente desde el escritorio.</p>
+</li>
+<li>
+<p><strong>Agregar los lanzadores de línea de comandos a la variable PATH</strong><br>
+Esto le permitirá ejecutar los comandos de IntelliJ IDEA desde cualquier directorio en el símbolo del sistema o terminal.</p>
+</li>
+<li>
+<p><strong>Agregar “Abrir carpeta como proyecto” al menú contextual</strong><br>
+Esta opción permite que, al hacer clic derecho sobre una carpeta, pueda abrirla directamente como proyecto en IntelliJ IDEA.</p>
+</li>
+<li>
+<p><strong>Asociar extensiones de archivo con IntelliJ IDEA</strong><br>
+Los archivos con extensiones específicas se abrirán automáticamente con IntelliJ IDEA al hacer doble clic sobre ellos.</p>
+</li>
+</ol>
+<p><img src="../imagenes/preparacion-entorno-java/2.png" alt="Opciones de instalación"></p>
+<p><strong>Ejecutar IntelliJ IDEA:</strong><br>
+Para abrir IntelliJ IDEA, búsquelo en el menú Inicio de Windows o use el acceso directo que se creó en el escritorio.</p>
+<hr>
+<h3 id="paso-3-abrir-intellij-y-crear-un-nuevo-proyecto">Paso 3: Abrir IntelliJ y crear un nuevo proyecto</h3>
+<ol>
+<li>Abre IntelliJ IDEA desde el acceso directo o menú de aplicaciones.</li>
+<li>Si el IDE pregunta si deseas importar configuraciones previas, selecciona <em>Do not import settings</em>.</li>
+<li>Haz clic en <em>New Project</em> en la pantalla de bienvenida.</li>
+</ol>
+<p><img src="../imagenes/preparacion-entorno-java/2.1.png" alt="Nuevo Proyecto IntelliJ"></p>
+<hr>
+<h3 id="paso-4-configurar-el-jdk">Paso 4: Configurar el JDK</h3>
+<p>El <strong>JDK</strong> (Java Development Kit) es un conjunto de herramientas esenciales para desarrollar y ejecutar aplicaciones Java. Incluye el compilador, la Máquina Virtual de Java (<strong>JVM</strong>) y bibliotecas necesarias. Para este curso, utilizaremos <strong>JDK 17</strong>, tiene soporte oficial hasta el año 2029, estable y moderna ó <strong>JDK 21</strong>.</p>
+<p>Para configurar el JDK en IntelliJ IDEA:</p>
+<ol>
+<li>Crea un nuevo proyecto, asigna nombre y ubicación.</li>
+<li>En el panel izquierdo, selecciona <em>Java</em>.</li>
+<li>En <em>SDK</em>, verifica si hay algún JDK instalado.</li>
+</ol>
+<p><img src="../imagenes/preparacion-entorno-java/3.png" alt="Configurando Proyecto Java"></p>
+<p>Si no está instalado, IntelliJ IDEA puede descargarlo automáticamente. Alternativamente, descarga manualmente desde <a href="https://www.oracle.com/java/technologies/downloads/archive/">Java Archive JDK</a> (<strong>Java SE 17.0.12</strong>).</p>
+<p><img src="../imagenes/preparacion-entorno-java/4.png" alt="Descargar JDK"></p>
+<p>Una vez instalado, regresa a IntelliJ y selecciona <strong>Add JDK from disk</strong>, buscando la carpeta de instalación del JDK (<code>C:/Program Files/Java/</code> por defecto).</p>
+<p><img src="../imagenes/preparacion-entorno-java/5.png" alt="Agregar JDK"></p>
+<p><img src="../imagenes/preparacion-entorno-java/6.png" alt="Agregar JDK"></p>
+<hr>
+<h3 id="paso-5-finalizar-creación-de-proyecto">Paso 5: Finalizar creación de proyecto</h3>
+<p>Seleccionar la opción <em>Add sample code</em>, esto generará un ejemplo de prueba. Haz clic en <em>create</em> para crear el proyecto.</p>
+<p><img src="../imagenes/preparacion-entorno-java/7.png" alt="Crear proyecto"></p>
+<p>Ejecuta el botón <em>Run</em> para comprobar que todo funciona.</p>
+<h2 id="section"><img src="../imagenes/preparacion-entorno-java/8.png" alt="Ejecutar Programa"></h2>
+<h3 id="resultado-final">Resultado final</h3>
+<p><img src="../imagenes/preparacion-entorno-java/9.png" alt="Resultado Programa"></p>
+<p>La consola debería mostrar:</p>
+<pre class=" language-shell"><code class="prism  language-shell">Hello and welcome!
+i = 1
+i = 2
+i = 3
+i = 4
+i = 5
+
+
+</code></pre>
+
+    </div>
+  </div>
+</body>
+
+</html>
