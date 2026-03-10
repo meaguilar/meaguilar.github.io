@@ -1,0 +1,481 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fundamentos-programacion-java.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#fundamentos-de-programación-en-java-y-buenas-prácticas">Fundamentos de programación en Java y buenas prácticas</a></li>
+<li><a href="#estructura-básica-de-un-programa-java">Estructura Básica de un Programa Java</a>
+<ul>
+<li><a href="#modificadores-de-acceso">Modificadores de acceso</a></li>
+</ul>
+</li>
+<li><a href="#relación-archivo--clase">Relación archivo / clase</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#tipos-de-datos-y-arreglos">Tipos de Datos y Arreglos</a>
+<ul>
+<li><a href="#tipos-primitivos">Tipos Primitivos</a></li>
+</ul>
+</li>
+<li><a href="#tipos-de-la-biblioteca-estándar">Tipos de la Biblioteca Estándar</a>
+<ul>
+<li><a href="#string">String</a></li>
+<li><a href="#comparación-de-strings">Comparación de Strings</a></li>
+</ul>
+</li>
+<li><a href="#entrada-de-datos-con-scanner">Entrada de Datos con Scanner</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#arreglos">Arreglos</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#estructuras-condicionales">Estructuras Condicionales</a>
+<ul>
+<li><a href="#if---else">If - Else</a></li>
+<li><a href="#switch">Switch</a></li>
+</ul>
+</li>
+<li><a href="#estructuras-repetitivas">Estructuras Repetitivas</a>
+<ul>
+<li><a href="#for">For</a></li>
+<li><a href="#while">While</a></li>
+</ul>
+</li>
+<li><a href="#funciones-métodos">Funciones (Métodos)</a>
+<ul>
+<li><a href="#método-sin-parámetros">Método sin parámetros</a></li>
+<li><a href="#método-con-parámetros">Método con parámetros</a></li>
+</ul>
+</li>
+<li><a href="#manejo-de-excepciones">Manejo de Excepciones</a>
+<ul>
+<li><a href="#try-with-resources">Try With Resources</a></li>
+</ul>
+</li>
+<li><a href="#buenas-prácticas-de-programación">Buenas Prácticas de Programación</a>
+<ul>
+<li><a href="#documentación">Documentación</a></li>
+</ul>
+</li>
+<li><a href="#modularización">Modularización</a></li>
+<li><a href="#google-java-style">Google Java Style</a>
+<ul>
+<li><a href="#identación">Identación</a></li>
+<li><a href="#longitud-de-línea">Longitud de línea</a></li>
+<li><a href="#uso-de-llaves">Uso de llaves</a></li>
+<li><a href="#convenciones-de-nombres">Convenciones de Nombres</a></li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="fundamentos-de-programación-en-java-y-buenas-prácticas">Fundamentos de programación en Java y buenas prácticas</h1>
+<p>Esta guía introduce los fundamentos de programación en Java, abordando la estructura básica de un programa, tipos de datos, entrada y salida de información, arreglos y estructuras de control. Además, presenta conceptos esenciales como la creación de métodos, el manejo de excepciones y la modularización del código. Finalmente, se incluyen buenas prácticas de desarrollo, convenciones de estilo y documentación con JavaDoc, con el objetivo de fomentar la escritura de código claro, organizado y mantenible.</p>
+<hr>
+<h1 id="estructura-básica-de-un-programa-java">Estructura Básica de un Programa Java</h1>
+<p>Un programa Java se compone de <strong>clases</strong> que contienen métodos. Cada programa debe tener un método <code>main</code> que actúa como punto de entrada de nuestra aplicación.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"¡Hola Mundo!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>En este ejemplo:</p>
+<ul>
+<li><code>Main</code> es el nombre de la clase.</li>
+<li>Por convención se usa <strong>PascalCase</strong> para nombrar clases.</li>
+<li>El método <code>main</code> imprime el mensaje <strong>“¡Hola Mundo!”</strong> en la consola.</li>
+</ul>
+<hr>
+<h2 id="modificadores-de-acceso">Modificadores de acceso</h2>
+<p>Algunas palabras clave importantes:</p>
+<ul>
+<li>
+<p><strong>public</strong><br>
+Permite acceso desde cualquier parte del programa.<br>
+La clase principal <code>Main</code> debe ser pública para ejecutarse.</p>
+</li>
+<li>
+<p><strong>private</strong><br>
+Restringe el acceso solo a la clase donde se declara.</p>
+</li>
+<li>
+<p><strong>static</strong><br>
+Indica que el elemento pertenece a la clase y no a objetos específicos.</p>
+</li>
+</ul>
+<blockquote>
+<p>🔍 <strong>¿Por qué <code>main</code> es static?</strong><br>
+El método <code>main</code> debe ser <code>static</code> porque se ejecuta sin necesidad de crear un objeto de la clase.</p>
+</blockquote>
+<hr>
+<h1 id="relación-archivo--clase">Relación archivo / clase</h1>
+<p>En Java existe una regla fundamental:</p>
+<p>✅ <strong>El nombre del archivo <code>.java</code> debe coincidir exactamente con el nombre de la clase pública.</strong></p>
+<h3 id="ejemplo">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// Archivo: MiPrograma.java</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MiPrograma</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="múltiples-clases">Múltiples clases</h3>
+<p>Si hay varias clases en el archivo:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Aplicacion</span> <span class="token punctuation">{</span> 
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Helper</span> <span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>El archivo debe llamarse:</p>
+<pre><code>Aplicacion.java
+</code></pre>
+<p>porque es la única clase pública.</p>
+<p>💡 <strong>Consejo</strong></p>
+<ul>
+<li>Si una clase es <code>public</code>, el archivo <strong>debe llamarse igual</strong>.</li>
+<li>Si no hay clases públicas, el archivo puede tener cualquier nombre.</li>
+<li>Usa siempre <strong>PascalCase</strong> para clases.</li>
+</ul>
+<hr>
+<h1 id="tipos-de-datos-y-arreglos">Tipos de Datos y Arreglos</h1>
+<h2 id="tipos-primitivos">Tipos Primitivos</h2>
+<p>Java define varios tipos primitivos para almacenar valores básicos.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span>         <span class="token comment">// Entero</span>
+<span class="token keyword">double</span> price <span class="token operator">=</span> <span class="token number">19.99</span><span class="token punctuation">;</span> <span class="token comment">// Decimal</span>
+<span class="token keyword">char</span> letter <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>    <span class="token comment">// Carácter</span>
+<span class="token keyword">boolean</span> active <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">// Booleano</span>
+</code></pre>
+<hr>
+<h1 id="tipos-de-la-biblioteca-estándar">Tipos de la Biblioteca Estándar</h1>
+<h2 id="string">String</h2>
+<p>La clase <code>String</code> representa cadenas de caracteres.</p>
+<p>Es <strong>inmutable</strong>, lo que significa que su valor no puede modificarse después de crearse.</p>
+<pre class=" language-java"><code class="prism  language-java">String day <span class="token operator">=</span> <span class="token string">"Lunes"</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="métodos-comunes">Métodos comunes</h3>
+<pre class=" language-java"><code class="prism  language-java">String texto <span class="token operator">=</span> <span class="token string">"Laboratorio 1"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> longitud <span class="token operator">=</span> texto<span class="token punctuation">.</span><span class="token function">length</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String mayus <span class="token operator">=</span> texto<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String sub <span class="token operator">=</span> texto<span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+String nuevo <span class="token operator">=</span> texto<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token string">"Laboratorio"</span><span class="token punctuation">,</span> <span class="token string">"Practica"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="concatenación">Concatenación</h3>
+<pre class=" language-java"><code class="prism  language-java">String nombre <span class="token operator">=</span> <span class="token string">"Josse"</span><span class="token punctuation">;</span>
+
+String saludo <span class="token operator">=</span> <span class="token string">"Hola, "</span> <span class="token operator">+</span> nombre <span class="token operator">+</span> <span class="token string">"!"</span><span class="token punctuation">;</span>
+String concatenado <span class="token operator">=</span> nombre<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token string">" Castillo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<hr>
+<h2 id="comparación-de-strings">Comparación de Strings</h2>
+<p>En Java <strong>no se recomienda usar <code>==</code> para comparar Strings</strong>.</p>
+<p>Se debe usar <code>equals()</code>.</p>
+<pre class=" language-java"><code class="prism  language-java">String nombre1 <span class="token operator">=</span> <span class="token string">"Ana"</span><span class="token punctuation">;</span>
+String nombre2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">"Ana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>nombre1<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>nombre2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>nombre1 <span class="token operator">==</span> nombre2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<ul>
+<li><code>equals()</code> compara <strong>contenido</strong></li>
+<li><code>==</code> compara <strong>referencias de objeto</strong></li>
+</ul>
+<hr>
+<h1 id="entrada-de-datos-con-scanner">Entrada de Datos con Scanner</h1>
+<p>La clase <code>Scanner</code> permite leer datos del teclado.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Scanner<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        Scanner sc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Ingresa tu nombre:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String nombre <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Hola, "</span> <span class="token operator">+</span> nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        sc<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="leer-otros-tipos-de-datos">Leer otros tipos de datos</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span> edad <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">double</span> altura <span class="token operator">=</span> sc<span class="token punctuation">.</span><span class="token function">nextDouble</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>💡 <strong>Nota:</strong><br>
+Cierra el <code>Scanner</code> cuando ya no lo necesites.</p>
+<hr>
+<h1 id="arreglos">Arreglos</h1>
+<p>Los arreglos almacenan múltiples valores del mismo tipo.</p>
+<h3 id="inicialización-directa">Inicialización directa</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span><span class="token punctuation">[</span><span class="token punctuation">]</span> numbers <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="declaración-con-tamaño-fijo">Declaración con tamaño fijo</h3>
+<pre class=" language-java"><code class="prism  language-java">String<span class="token punctuation">[</span><span class="token punctuation">]</span> names <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+names<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Ana"</span><span class="token punctuation">;</span>
+names<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Luis"</span><span class="token punctuation">;</span>
+names<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Pedro"</span><span class="token punctuation">;</span>
+</code></pre>
+<hr>
+<h1 id="estructuras-condicionales">Estructuras Condicionales</h1>
+<h2 id="if---else">If - Else</h2>
+<p>Permite ejecutar código dependiendo de una condición.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span> note <span class="token operator">=</span> <span class="token number">85</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>note <span class="token operator">&gt;=</span> <span class="token number">90</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Excelente"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>note <span class="token operator">&gt;=</span> <span class="token number">70</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Aprobado"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Reprobado"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="switch">Switch</h2>
+<p>Permite evaluar múltiples casos.</p>
+<pre class=" language-java"><code class="prism  language-java">String day <span class="token operator">=</span> <span class="token string">"Lunes"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">switch</span><span class="token punctuation">(</span>day<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"Lunes"</span><span class="token operator">:</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inicio de semana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Día no reconocido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="switch-moderno-java-14">Switch moderno (Java 14+)</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">switch</span><span class="token punctuation">(</span>dia<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"Lunes"</span> <span class="token operator">-</span><span class="token operator">&gt;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Inicio de semana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"Viernes"</span> <span class="token operator">-</span><span class="token operator">&gt;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"¡Fin de semana!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span> <span class="token operator">-</span><span class="token operator">&gt;</span> System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Día laboral"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="estructuras-repetitivas">Estructuras Repetitivas</h1>
+<h2 id="for">For</h2>
+<p>Se usa cuando sabemos cuántas veces se repetirá el ciclo.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">5</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Iteración: "</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="while">While</h2>
+<p>Se usa cuando no sabemos el número exacto de iteraciones.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span> counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span>counter <span class="token operator">&lt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Contador: "</span> <span class="token operator">+</span> counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    counter<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="funciones-métodos">Funciones (Métodos)</h1>
+<p>Los métodos son bloques de código reutilizables.</p>
+<hr>
+<h2 id="método-sin-parámetros">Método sin parámetros</h2>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"¡Bienvenido!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="método-con-parámetros">Método con parámetros</h2>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> resultado <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La suma es: "</span> <span class="token operator">+</span> resultado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="manejo-de-excepciones">Manejo de Excepciones</h1>
+<p>Permite manejar errores sin detener el programa.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+   <span class="token keyword">int</span> result <span class="token operator">=</span> <span class="token number">10</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>ArithmeticException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Error: División por cero"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Bloque finally ejecutado"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="try-with-resources">Try With Resources</h2>
+<p>Permite cerrar recursos automáticamente.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">import</span> java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>Scanner<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">try</span> <span class="token punctuation">(</span>Scanner scanner <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scanner</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>in<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"Ingrese su edad: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">int</span> edad <span class="token operator">=</span> scanner<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Edad ingresada: "</span> <span class="token operator">+</span> edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Error: Entrada inválida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="buenas-prácticas-de-programación">Buenas Prácticas de Programación</h1>
+<h2 id="documentación">Documentación</h2>
+<p>Usa comentarios para explicar el propósito del código.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// Este método calcula la suma de dos números</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="javadoc">JavaDoc</h3>
+<p>Permite generar documentación automática.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">/**
+ * Suma dos números enteros.
+ * @param a Primer número
+ * @param b Segundo número
+ * @return Resultado de la suma
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="modularización">Modularización</h1>
+<p>Divide el programa en clases y métodos.</p>
+<p>Esto mejora:</p>
+<ul>
+<li>mantenimiento</li>
+<li>reutilización</li>
+<li>organización del código</li>
+</ul>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Calculadora</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> resultado <span class="token operator">=</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Resultado: "</span> <span class="token operator">+</span> resultado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="google-java-style">Google Java Style</h1>
+<p>La <strong>Guía de Estilo de Java de Google</strong> define reglas para mantener un código consistente.</p>
+<hr>
+<h2 id="identación">Identación</h2>
+<p>Se utilizan <strong>2 espacios por nivel</strong>.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">calcularTotal</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="longitud-de-línea">Longitud de línea</h2>
+<p>Máximo <strong>100 caracteres por línea</strong>.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">return</span> <span class="token string">"Esta es una cadena muy larga "</span> <span class="token operator">+</span>
+       <span class="token string">"que se divide para respetar el límite"</span><span class="token punctuation">;</span>
+</code></pre>
+<hr>
+<h2 id="uso-de-llaves">Uso de llaves</h2>
+<p>Las llaves deben colocarse en la misma línea.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Positivo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Negativo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h2 id="convenciones-de-nombres">Convenciones de Nombres</h2>
+<h3 id="clases">Clases</h3>
+<p>Formato:</p>
+<pre><code>UpperCamelCase
+</code></pre>
+<p>Ejemplo:</p>
+<pre><code>DataProcessor
+</code></pre>
+<hr>
+<h3 id="métodos">Métodos</h3>
+<p>Formato:</p>
+<pre><code>lowerCamelCase
+</code></pre>
+<p>Ejemplo:</p>
+<pre><code>processData()
+</code></pre>
+<hr>
+<h3 id="constantes">Constantes</h3>
+<p>Formato:</p>
+<pre><code>UPPER_SNAKE_CASE
+</code></pre>
+<p>Ejemplo:</p>
+<pre><code>MAX_SIZE
+</code></pre>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DataProcessor</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_SIZE <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">int</span> processedCount<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">processData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    processedCount<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="anexos">Anexos</h1>
+<h3 id="documentación-oficial-de-java">Documentación oficial de Java</h3>
+<p><a href="https://docs.oracle.com/javase/tutorial/">https://docs.oracle.com/javase/tutorial/</a></p>
+<h3 id="guía-de-estilo-de-google">Guía de estilo de Google</h3>
+<p><a href="https://google.github.io/styleguide/javaguide.html">https://google.github.io/styleguide/javaguide.html</a></p>
+<h3 id="practicar-java-online">Practicar Java online</h3>
+<p><a href="https://replit.com/languages/java">https://replit.com/languages/java</a></p>
+<h3 id="ejercicios-de-java">Ejercicios de Java</h3>
+<p><a href="https://exercism.org/tracks/java">https://exercism.org/tracks/java</a></p>
+<h3 id="manejo-de-excepciones-en-java">Manejo de excepciones en Java</h3>
+<p><a href="https://docs.oracle.com/javase/tutorial/essential/exceptions/">https://docs.oracle.com/javase/tutorial/essential/exceptions/</a></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
