@@ -18,7 +18,7 @@
 ### Paso 1: Descargar el instalador
 Accede al sitio oficial de [JetBrains](https://www.jetbrains.com/es-es/idea/download/?section=windows). Una vez descargado, instala el programa según tu sistema operativo.
 
-![Descarga IntelliJ](imagenes/1.png)
+![Descarga IntelliJ](../imagenes/guia-preparacion/1.png)
 
 ---
 
