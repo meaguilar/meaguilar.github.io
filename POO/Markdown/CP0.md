@@ -12,7 +12,7 @@
 | **RAM**              | 2 GB de RAM     | 8 GB de RAM total del sistema                |
 | **Espacio en disco** | 3,5 GB libres                | Unidad SSD con al menos 5 GB de espacio libre  |
 
-## **Descarga e Instalación de IntelliJ IDEA**
+## **Descarga e Instalación de IntelliJ IDEA**e
 
 ### Paso 1: Descargar el instalador
 Para descargar el instalador, accede al sitio oficial de [JetBrains](https://www.jetbrains.com/es-es/idea/download/?section=windows). Una vez descargado, instala el programa según tu sistema operativo.
@@ -93,7 +93,7 @@ Una vez enviado el formulario, recibirás un correo electrónico de verificació
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeAskiZMEnqfhr-wLI1EmnLDjqZkzAigRQXaXxbj-vwutNq8CkYCsbH_4nEAHhHGmkQ3fh5RJN4idl9UGQoIqZIYhquf44CMGeizKwXqcwsje5nLfMipvEBvECpWJn7v3z6XmDhuA?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
 Para activar la cuenta, haz clic en el enlace de verificación. Esto habilitará el uso de IntelliJ IDEA con tu correo institucional.
 
-Una vez que la cuenta esté activada, solo queda asociarla a IntelliJ IDEA. Para ello, abre el IDE, dirígete a _Settings_ > _Manage Licenses_ y selecciona la opción de iniciar sesión con tu cuenta de Google UCA.
+Una vez que la cuenta esté activada, solo queda asociarla a IntelliJ IDEA. Para ello, abre el IDE, dirígete a _Settings_ > _Manage Licenses_ y selecciona la opción de iniciar sesión con tu cuenta de correo institucional UCA.
 
 **![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXcZ1pe4VF2zw3baoGR4XB4r0NdxUDzW-oHnnd-7iRb2F8JFxeYV_6WpHKCJioqUPZJmNmFSQNeIA8NAQLUg3Yjo4fyN-tY9vxh4cj55osUN0boQnVII-589kw4yLoFSgTwgUhB0Dw?key=UmqXHDTx4TfuBEhIlfOzqhwb)**
 
