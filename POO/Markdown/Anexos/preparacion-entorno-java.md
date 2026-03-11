@@ -18,7 +18,7 @@
 ### Paso 1: Descargar el instalador
 Accede al sitio oficial de [JetBrains](https://www.jetbrains.com/es-es/idea/download/?section=windows). Una vez descargado, instala el programa según tu sistema operativo.
 
-![Descarga IntelliJ](../imagenes/preparacion-entorno-java/1.png)
+![Descarga IntelliJ](../../imagenes/preparacion-entorno-java/1.png)
 
 ---
 
@@ -49,7 +49,7 @@ Durante el paso **Opciones de instalación**, puede configurar lo siguiente seg�
 4. **Asociar extensiones de archivo con IntelliJ IDEA**  
    Los archivos con extensiones específicas se abrirán automáticamente con IntelliJ IDEA al hacer doble clic sobre ellos.
 
-![Opciones de instalación](../imagenes/preparacion-entorno-java/2.png)
+![Opciones de instalación](../../imagenes/preparacion-entorno-java/2.png)
 
 **Ejecutar IntelliJ IDEA:**  
 Para abrir IntelliJ IDEA, búsquelo en el menú Inicio de Windows o use el acceso directo que se creó en el escritorio.
@@ -62,7 +62,7 @@ Para abrir IntelliJ IDEA, búsquelo en el menú Inicio de Windows o use el acces
 2. Si el IDE pregunta si deseas importar configuraciones previas, selecciona _Do not import settings_.  
 3. Haz clic en _New Project_ en la pantalla de bienvenida.
 
-![Nuevo Proyecto IntelliJ](../imagenes/preparacion-entorno-java/2.1.png)
+![Nuevo Proyecto IntelliJ](../../imagenes/preparacion-entorno-java/2.1.png)
 
 
 ---
@@ -75,31 +75,31 @@ Para configurar el JDK en IntelliJ IDEA:
 2. En el panel izquierdo, selecciona _Java_.  
 3. En _SDK_, verifica si hay algún JDK instalado.
 
-![Configurando Proyecto Java](../imagenes/preparacion-entorno-java/3.png)
+![Configurando Proyecto Java](../../imagenes/preparacion-entorno-java/3.png)
 
 Si no está instalado, IntelliJ IDEA puede descargarlo automáticamente. Alternativamente, descarga manualmente desde [Java Archive JDK](https://www.oracle.com/java/technologies/downloads/archive/) (**Java SE 17.0.12**).
 
-![Descargar JDK](../imagenes/preparacion-entorno-java/4.png)
+![Descargar JDK](../../imagenes/preparacion-entorno-java/4.png)
 
 Una vez instalado, regresa a IntelliJ y selecciona **Add JDK from disk**, buscando la carpeta de instalación del JDK (`C:/Program Files/Java/` por defecto).
 
-![Agregar JDK](../imagenes/preparacion-entorno-java/5.png)
+![Agregar JDK](../../imagenes/preparacion-entorno-java/5.png)
 
-![Agregar JDK](../imagenes/preparacion-entorno-java/6.png)
+![Agregar JDK](../../imagenes/preparacion-entorno-java/6.png)
 
 ---
 
 ### Paso 5: Finalizar creación de proyecto
 Seleccionar la opción _Add sample code_, esto generará un ejemplo de prueba. Haz clic en _create_ para crear el proyecto. 
 
-![Crear proyecto](../imagenes/preparacion-entorno-java/7.png)
+![Crear proyecto](../../imagenes/preparacion-entorno-java/7.png)
 
-Ejecuta el botón _Run_ para comprobar que todo funciona.
+Ejecuta el botón _Run_ para comprobar que todo funciona
 
-![Ejecutar Programa](../imagenes/preparacion-entorno-java/8.png)
+![Ejecutar Programa](../../imagenes/preparacion-entorno-java/8.png)
 -- 
 ### Resultado final 
-![Resultado Programa](../imagenes/preparacion-entorno-java/9.png)
+![Resultado Programa](../../imagenes/preparacion-entorno-java/9.png)
 
 La consola debería mostrar:
 ```shell
