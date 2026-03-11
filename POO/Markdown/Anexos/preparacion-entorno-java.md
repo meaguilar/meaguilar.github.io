@@ -109,5 +109,9 @@ i = 2
 i = 3
 i = 4
 i = 5
+```
 
+# Anexos 
 
+1. Hoja de referencia rápida (cheat sheet) para IntelliJ IDEA, la cual muestra atajos de teclado y comandos útiles dentro del IDE para programar de manera más eficiente. [Referencia rápida de IntelliJ IDEA](https://quickref.me/idea.html)
+2. Documentación de JetBrains para IntelliJ IDEA, [Guía oficial de IntelliJ IDEA - Getting Started](https://www.jetbrains.com/help/idea/getting-started.html)
