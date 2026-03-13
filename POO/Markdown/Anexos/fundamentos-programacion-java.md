@@ -428,52 +428,68 @@ public class Calculadora {
 
 ---
 
-# Google Java Style
+# Google Java Style Guide
 
-La **Guía de Estilo de Java de Google** define reglas para mantener un código consistente.
+La **Google Java Style Guide** define reglas y convenciones para escribir código consistente, legible y mantenible en Java.
+
+Seguir estas reglas permite que diferentes desarrolladores puedan **leer, mantener y colaborar en el mismo código fácilmente**.
 
 ---
 
-## Identación
+# 1. Identación
 
-Se utilizan **2 espacios por nivel**.
+Se utilizan **2 espacios por nivel de indentación**.
+
+No se recomienda usar **tabulaciones**.
+
+### Ejemplo
 
 ```java
-public int calcularTotal(int a, int b) {
-  return a + b * 2;
+public int calcularTotal(int numeroA, int numeroB) {
+  return numeroA + numeroB * 2;
 }
 ```
 
 ---
 
-## Longitud de línea
+# 2. Longitud de línea
 
-Máximo **100 caracteres por línea**.
+El máximo recomendado es **100 caracteres por línea**.
+
+Si una línea es muy larga, debe dividirse para mejorar la legibilidad.
+
+### Ejemplo
 
 ```java
-return "Esta es una cadena muy larga " +
-       "que se divide para respetar el límite";
+return "Este es un mensaje muy largo " +
+       "que se divide para respetar el límite de longitud de línea";
 ```
 
 ---
 
-## Uso de llaves
+# 3. Uso de llaves
 
-Las llaves deben colocarse en la misma línea.
+Las llaves `{}` deben colocarse **en la misma línea de la declaración**.
+
+### Ejemplo
 
 ```java
-if (value > 0) {
-  System.out.println("Positivo");
+if (edad > 18) {
+  System.out.println("Es mayor de edad");
 } else {
-  System.out.println("Negativo");
+  System.out.println("Es menor de edad");
 }
 ```
 
 ---
 
-## Convenciones de Nombres
+# 4. Convenciones de Nombres
 
-### Clases
+Las convenciones de nombres ayudan a **identificar rápidamente el propósito de cada elemento del código**.
+
+---
+
+# 4.1 Clases
 
 Formato:
 
@@ -481,15 +497,54 @@ Formato:
 UpperCamelCase
 ```
 
-Ejemplo:
+Cada palabra inicia con mayúscula.
+
+### Ejemplos
 
 ```
-DataProcessor
+GestorUsuarios
+ProcesadorDatos
+ServicioPedidos
+ControladorUsuarios
+```
+
+### Ejemplo en código
+
+```java
+public class ProcesadorDatos {
+
+}
 ```
 
 ---
 
-### Métodos
+# 4.2 Interfaces
+
+Las **interfaces** también utilizan **UpperCamelCase**.
+
+Generalmente representan **comportamientos o capacidades**.
+
+### Ejemplos
+
+```
+ProcesadorPagos
+RepositorioUsuarios
+ServicioNotificaciones
+```
+
+### Ejemplo
+
+```java
+public interface ProcesadorPagos {
+
+  void procesarPago(double monto);
+
+}
+```
+
+---
+
+# 4.3 Métodos
 
 Formato:
 
@@ -497,43 +552,235 @@ Formato:
 lowerCamelCase
 ```
 
-Ejemplo:
+La primera palabra inicia en **minúscula**.
+
+### Ejemplos
 
 ```
-processData()
+calcularTotal()
+procesarPedido()
+buscarUsuarioPorId()
+enviarCorreo()
+```
+
+### Ejemplo
+
+```java
+public void procesarPedido() {
+  contadorPedidos++;
+}
 ```
 
 ---
 
-### Constantes
+# 4.4 Variables
 
-Formato:
+Las variables también utilizan **lowerCamelCase**.
+
+### Ejemplos
+
+```
+nombreUsuario
+precioTotal
+contadorPedidos
+estadoActivo
+```
+
+### Ejemplo
+
+```java
+int precioTotal = 100;
+String nombreUsuario = "Carlos";
+```
+
+---
+
+# 4.5 Constantes
+
+Las constantes se escriben en:
 
 ```
 UPPER_SNAKE_CASE
 ```
 
-Ejemplo:
+Todas las letras en mayúscula separadas por `_`.
+
+### Ejemplos
 
 ```
-MAX_SIZE
+MAX_PEDIDOS
+TIEMPO_ESPERA
+VERSION_API
 ```
+
+### Ejemplo
 
 ```java
-public class DataProcessor {
+public class Configuracion {
 
-  private static final int MAX_SIZE = 100;
-
-  private int processedCount;
-
-  public void processData() {
-    processedCount++;
-  }
+  public static final int MAX_PEDIDOS = 100;
+  public static final int TIEMPO_ESPERA = 30;
 
 }
 ```
 
 ---
+
+# 4.6 Parámetros de métodos
+
+Los parámetros también usan **lowerCamelCase**.
+
+### Ejemplo
+
+```java
+public int calcularTotal(int precio, int cantidad) {
+  return precio * cantidad;
+}
+```
+
+---
+
+# 4.7 Paquetes (Packages)
+
+Los paquetes se escriben **completamente en minúsculas**.
+
+Formato común:
+
+```
+com.empresa.proyecto.modulo
+```
+
+### Ejemplos
+
+```
+com.empresa.usuarios.servicio
+com.empresa.pedidos.controlador
+com.empresa.productos.repositorio
+```
+
+### Ejemplo
+
+```java
+package com.empresa.pedidos.servicio;
+```
+
+---
+
+# 4.8 Enumeraciones (Enums)
+
+Los nombres de **Enums** utilizan **UpperCamelCase**.
+
+Los valores internos usan **UPPER_SNAKE_CASE**.
+
+### Ejemplo
+
+```java
+public enum EstadoPedido {
+  PENDIENTE,
+  PROCESANDO,
+  COMPLETADO,
+  CANCELADO
+}
+```
+
+---
+
+# 4.9 Variables booleanas
+
+Se recomienda usar prefijos que indiquen estado.
+
+Prefijos comunes:
+
+```
+es
+tiene
+puede
+debe
+```
+
+### Ejemplos
+
+```
+esActivo
+tienePermiso
+puedeEditar
+debeActualizar
+```
+
+### Ejemplo
+
+```java
+boolean esActivo = true;
+boolean tienePermiso = false;
+```
+
+---
+
+# 5. Ejemplo completo aplicando las convenciones
+
+```java
+package com.empresa.pedidos.servicio;
+
+public class ServicioPedidos {
+
+  private static final int MAX_PEDIDOS = 100;
+
+  private int contadorPedidos;
+
+  public void procesarPedido(String idPedido) {
+    if (contadorPedidos < MAX_PEDIDOS) {
+      contadorPedidos++;
+      System.out.println("Procesando pedido: " + idPedido);
+    } else {
+      System.out.println("Se alcanzó el número máximo de pedidos permitidos");
+    }
+  }
+
+  public int obtenerCantidadPedidos() {
+    return contadorPedidos;
+  }
+}
+```
+
+---
+
+# Nota importante
+
+En este documento los ejemplos se presentan **en español con fines educativos** para facilitar la comprensión de las convenciones.
+
+Sin embargo, en proyectos profesionales se recomienda **escribir el código en inglés**, incluyendo:
+
+- nombres de clases
+- métodos
+- variables
+- paquetes
+- comentarios técnicos
+
+Esto se debe a que:
+
+- El **ecosistema de programación está en inglés**
+- Facilita la **colaboración internacional**
+- La mayoría de **frameworks, librerías y documentación** están en inglés
+- Es el **estándar en la industria del software**
+
+Ejemplo profesional equivalente:
+
+```java
+public class OrderService {
+
+  private static final int MAX_ORDERS = 100;
+
+  private int orderCount;
+
+  public void processOrder(String orderId) {
+    if (orderCount < MAX_ORDERS) {
+      orderCount++;
+      System.out.println("Processing order: " + orderId);
+    }
+  }
+
+}
+```
 
 # Anexos
 
