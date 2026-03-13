@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -74,14 +74,70 @@
 </ul>
 </li>
 <li><a href="#modularización">Modularización</a></li>
-<li><a href="#google-java-style">Google Java Style</a>
+<li><a href="#google-java-style-guide">Google Java Style Guide</a></li>
+<li><a href="#identación">1. Identación</a>
 <ul>
-<li><a href="#identación">Identación</a></li>
-<li><a href="#longitud-de-línea">Longitud de línea</a></li>
-<li><a href="#uso-de-llaves">Uso de llaves</a></li>
-<li><a href="#convenciones-de-nombres">Convenciones de Nombres</a></li>
+<li></li>
 </ul>
 </li>
+<li><a href="#longitud-de-línea">2. Longitud de línea</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#uso-de-llaves">3. Uso de llaves</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#convenciones-de-nombres">4. Convenciones de Nombres</a></li>
+<li><a href="#clases">4.1 Clases</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#interfaces">4.2 Interfaces</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#métodos">4.3 Métodos</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#variables">4.4 Variables</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#constantes">4.5 Constantes</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#parámetros-de-métodos">4.6 Parámetros de métodos</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#paquetes-packages">4.7 Paquetes (Packages)</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#enumeraciones-enums">4.8 Enumeraciones (Enums)</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#variables-booleanas">4.9 Variables booleanas</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#ejemplo-completo-aplicando-las-convenciones">5. Ejemplo completo aplicando las convenciones</a></li>
+<li><a href="#nota-importante">Nota importante</a></li>
 <li><a href="#anexos">Anexos</a>
 <ul>
 <li></li>
@@ -400,68 +456,232 @@ names<span class="token punctuation">[</span><span class="token number">2</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <hr>
-<h1 id="google-java-style">Google Java Style</h1>
-<p>La <strong>Guía de Estilo de Java de Google</strong> define reglas para mantener un código consistente.</p>
+<h1 id="google-java-style-guide">Google Java Style Guide</h1>
+<p>La <strong>Google Java Style Guide</strong> define reglas y convenciones para escribir código consistente, legible y mantenible en Java.</p>
+<p>Seguir estas reglas permite que diferentes desarrolladores puedan <strong>leer, mantener y colaborar en el mismo código fácilmente</strong>.</p>
 <hr>
-<h2 id="identación">Identación</h2>
-<p>Se utilizan <strong>2 espacios por nivel</strong>.</p>
-<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">calcularTotal</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">,</span> <span class="token keyword">int</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> a <span class="token operator">+</span> b <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<h1 id="identación">1. Identación</h1>
+<p>Se utilizan <strong>2 espacios por nivel de indentación</strong>.</p>
+<p>No se recomienda usar <strong>tabulaciones</strong>.</p>
+<h3 id="ejemplo-1">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">calcularTotal</span><span class="token punctuation">(</span><span class="token keyword">int</span> numeroA<span class="token punctuation">,</span> <span class="token keyword">int</span> numeroB<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> numeroA <span class="token operator">+</span> numeroB <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <hr>
-<h2 id="longitud-de-línea">Longitud de línea</h2>
-<p>Máximo <strong>100 caracteres por línea</strong>.</p>
-<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">return</span> <span class="token string">"Esta es una cadena muy larga "</span> <span class="token operator">+</span>
-       <span class="token string">"que se divide para respetar el límite"</span><span class="token punctuation">;</span>
+<h1 id="longitud-de-línea">2. Longitud de línea</h1>
+<p>El máximo recomendado es <strong>100 caracteres por línea</strong>.</p>
+<p>Si una línea es muy larga, debe dividirse para mejorar la legibilidad.</p>
+<h3 id="ejemplo-2">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">return</span> <span class="token string">"Este es un mensaje muy largo "</span> <span class="token operator">+</span>
+       <span class="token string">"que se divide para respetar el límite de longitud de línea"</span><span class="token punctuation">;</span>
 </code></pre>
 <hr>
-<h2 id="uso-de-llaves">Uso de llaves</h2>
-<p>Las llaves deben colocarse en la misma línea.</p>
-<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Positivo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<h1 id="uso-de-llaves">3. Uso de llaves</h1>
+<p>Las llaves <code>{}</code> deben colocarse <strong>en la misma línea de la declaración</strong>.</p>
+<h3 id="ejemplo-3">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">if</span> <span class="token punctuation">(</span>edad <span class="token operator">&gt;</span> <span class="token number">18</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Es mayor de edad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Negativo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Es menor de edad"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <hr>
-<h2 id="convenciones-de-nombres">Convenciones de Nombres</h2>
-<h3 id="clases">Clases</h3>
+<h1 id="convenciones-de-nombres">4. Convenciones de Nombres</h1>
+<p>Las convenciones de nombres ayudan a <strong>identificar rápidamente el propósito de cada elemento del código</strong>.</p>
+<hr>
+<h1 id="clases">4.1 Clases</h1>
 <p>Formato:</p>
 <pre><code>UpperCamelCase
 </code></pre>
-<p>Ejemplo:</p>
-<pre><code>DataProcessor
+<p>Cada palabra inicia con mayúscula.</p>
+<h3 id="ejemplos">Ejemplos</h3>
+<pre><code>GestorUsuarios
+ProcesadorDatos
+ServicioPedidos
+ControladorUsuarios
+</code></pre>
+<h3 id="ejemplo-en-código">Ejemplo en código</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ProcesadorDatos</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span>
 </code></pre>
 <hr>
-<h3 id="métodos">Métodos</h3>
+<h1 id="interfaces">4.2 Interfaces</h1>
+<p>Las <strong>interfaces</strong> también utilizan <strong>UpperCamelCase</strong>.</p>
+<p>Generalmente representan <strong>comportamientos o capacidades</strong>.</p>
+<h3 id="ejemplos-1">Ejemplos</h3>
+<pre><code>ProcesadorPagos
+RepositorioUsuarios
+ServicioNotificaciones
+</code></pre>
+<h3 id="ejemplo-4">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ProcesadorPagos</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">void</span> <span class="token function">procesarPago</span><span class="token punctuation">(</span><span class="token keyword">double</span> monto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="métodos">4.3 Métodos</h1>
 <p>Formato:</p>
 <pre><code>lowerCamelCase
 </code></pre>
-<p>Ejemplo:</p>
-<pre><code>processData()
+<p>La primera palabra inicia en <strong>minúscula</strong>.</p>
+<h3 id="ejemplos-2">Ejemplos</h3>
+<pre><code>calcularTotal()
+procesarPedido()
+buscarUsuarioPorId()
+enviarCorreo()
+</code></pre>
+<h3 id="ejemplo-5">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">procesarPedido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  contadorPedidos<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <hr>
-<h3 id="constantes">Constantes</h3>
-<p>Formato:</p>
+<h1 id="variables">4.4 Variables</h1>
+<p>Las variables también utilizan <strong>lowerCamelCase</strong>.</p>
+<h3 id="ejemplos-3">Ejemplos</h3>
+<pre><code>nombreUsuario
+precioTotal
+contadorPedidos
+estadoActivo
+</code></pre>
+<h3 id="ejemplo-6">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">int</span> precioTotal <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+String nombreUsuario <span class="token operator">=</span> <span class="token string">"Carlos"</span><span class="token punctuation">;</span>
+</code></pre>
+<hr>
+<h1 id="constantes">4.5 Constantes</h1>
+<p>Las constantes se escriben en:</p>
 <pre><code>UPPER_SNAKE_CASE
 </code></pre>
-<p>Ejemplo:</p>
-<pre><code>MAX_SIZE
+<p>Todas las letras en mayúscula separadas por <code>_</code>.</p>
+<h3 id="ejemplos-4">Ejemplos</h3>
+<pre><code>MAX_PEDIDOS
+TIEMPO_ESPERA
+VERSION_API
 </code></pre>
-<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DataProcessor</span> <span class="token punctuation">{</span>
+<h3 id="ejemplo-7">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Configuracion</span> <span class="token punctuation">{</span>
 
-  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_SIZE <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_PEDIDOS <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> TIEMPO_ESPERA <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
 
-  <span class="token keyword">private</span> <span class="token keyword">int</span> processedCount<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="parámetros-de-métodos">4.6 Parámetros de métodos</h1>
+<p>Los parámetros también usan <strong>lowerCamelCase</strong>.</p>
+<h3 id="ejemplo-8">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">calcularTotal</span><span class="token punctuation">(</span><span class="token keyword">int</span> precio<span class="token punctuation">,</span> <span class="token keyword">int</span> cantidad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> precio <span class="token operator">*</span> cantidad<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="paquetes-packages">4.7 Paquetes (Packages)</h1>
+<p>Los paquetes se escriben <strong>completamente en minúsculas</strong>.</p>
+<p>Formato común:</p>
+<pre><code>com.empresa.proyecto.modulo
+</code></pre>
+<h3 id="ejemplos-5">Ejemplos</h3>
+<pre><code>com.empresa.usuarios.servicio
+com.empresa.pedidos.controlador
+com.empresa.productos.repositorio
+</code></pre>
+<h3 id="ejemplo-9">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>empresa<span class="token punctuation">.</span>pedidos<span class="token punctuation">.</span>servicio<span class="token punctuation">;</span>
+</code></pre>
+<hr>
+<h1 id="enumeraciones-enums">4.8 Enumeraciones (Enums)</h1>
+<p>Los nombres de <strong>Enums</strong> utilizan <strong>UpperCamelCase</strong>.</p>
+<p>Los valores internos usan <strong>UPPER_SNAKE_CASE</strong>.</p>
+<h3 id="ejemplo-10">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> EstadoPedido <span class="token punctuation">{</span>
+  PENDIENTE<span class="token punctuation">,</span>
+  PROCESANDO<span class="token punctuation">,</span>
+  COMPLETADO<span class="token punctuation">,</span>
+  CANCELADO
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="variables-booleanas">4.9 Variables booleanas</h1>
+<p>Se recomienda usar prefijos que indiquen estado.</p>
+<p>Prefijos comunes:</p>
+<pre><code>es
+tiene
+puede
+debe
+</code></pre>
+<h3 id="ejemplos-6">Ejemplos</h3>
+<pre><code>esActivo
+tienePermiso
+puedeEditar
+debeActualizar
+</code></pre>
+<h3 id="ejemplo-11">Ejemplo</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">boolean</span> esActivo <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token keyword">boolean</span> tienePermiso <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</code></pre>
+<hr>
+<h1 id="ejemplo-completo-aplicando-las-convenciones">5. Ejemplo completo aplicando las convenciones</h1>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">package</span> com<span class="token punctuation">.</span>empresa<span class="token punctuation">.</span>pedidos<span class="token punctuation">.</span>servicio<span class="token punctuation">;</span>
 
-  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">processData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    processedCount<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServicioPedidos</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_PEDIDOS <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">int</span> contadorPedidos<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">procesarPedido</span><span class="token punctuation">(</span>String idPedido<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>contadorPedidos <span class="token operator">&lt;</span> MAX_PEDIDOS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      contadorPedidos<span class="token operator">++</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Procesando pedido: "</span> <span class="token operator">+</span> idPedido<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Se alcanzó el número máximo de pedidos permitidos"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">obtenerCantidadPedidos</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> contadorPedidos<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<hr>
+<h1 id="nota-importante">Nota importante</h1>
+<p>En este documento los ejemplos se presentan <strong>en español con fines educativos</strong> para facilitar la comprensión de las convenciones.</p>
+<p>Sin embargo, en proyectos profesionales se recomienda <strong>escribir el código en inglés</strong>, incluyendo:</p>
+<ul>
+<li>nombres de clases</li>
+<li>métodos</li>
+<li>variables</li>
+<li>paquetes</li>
+<li>comentarios técnicos</li>
+</ul>
+<p>Esto se debe a que:</p>
+<ul>
+<li>El <strong>ecosistema de programación está en inglés</strong></li>
+<li>Facilita la <strong>colaboración internacional</strong></li>
+<li>La mayoría de <strong>frameworks, librerías y documentación</strong> están en inglés</li>
+<li>Es el <strong>estándar en la industria del software</strong></li>
+</ul>
+<p>Ejemplo profesional equivalente:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">OrderService</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token keyword">int</span> MAX_ORDERS <span class="token operator">=</span> <span class="token number">100</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">private</span> <span class="token keyword">int</span> orderCount<span class="token punctuation">;</span>
+
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">processOrder</span><span class="token punctuation">(</span>String orderId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>orderCount <span class="token operator">&lt;</span> MAX_ORDERS<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      orderCount<span class="token operator">++</span><span class="token punctuation">;</span>
+      System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Processing order: "</span> <span class="token operator">+</span> orderId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 
 <span class="token punctuation">}</span>
 </code></pre>
-<hr>
 <h1 id="anexos">Anexos</h1>
 <h3 id="documentación-oficial-de-java">Documentación oficial de Java</h3>
 <p><a href="https://docs.oracle.com/javase/tutorial/">https://docs.oracle.com/javase/tutorial/</a></p>
