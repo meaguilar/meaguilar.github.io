@@ -1,4 +1,5 @@
-﻿# Programando Orientado a Objetos
+﻿
+# Programando Orientado a Objetos
 
 En este laboratorio, exploraremos los conceptos fundamentales de la **Programación Orientada a Objetos (POO)**, que nos permitirá organizar y manipular la información de forma modular y reutilizable en el desarrollo de software.
 
@@ -6,9 +7,9 @@ En este laboratorio, exploraremos los conceptos fundamentales de la **Programaci
 POO organiza el software en **clases y objetos** para mejorar orden, reutilizacion y mantenimiento.
 
 ## ¿Qué es una clase?
-![Clase](imagenes/Laboratorio_1/1.png)
-![Atributos](imagenes/Laboratorio_1/4.png)
-![Metodos](imagenes/Laboratorio_1/3.png)
+![Clase](Imagenes/Laboratorio_1/1.png)
+![Atributos](Imagenes/Laboratorio_1/4.png)
+![Metodos](Imagenes/Laboratorio_1/3.png)
 
 Una clase define:
 
@@ -36,14 +37,14 @@ public class Mascota {
 
 ## ¿Qué es un objeto?
 
-![¿Qué es un objeto?](imagenes/Laboratorio_1/2.png)
+![¿Qué es un objeto?](Imagenes/Laboratorio_1/2.png)
 
 Un objeto es una instancia concreta de una clase.
 
 
 ### Instanciar una clase
 
-![Instanciacion de una clase](imagenes/Laboratorio_1/9.png)
+![Instanciacion de una clase](Imagenes/Laboratorio_1/9.png)
 
 Declarar una referencia no crea el objeto; se crea con `new`.
 
@@ -69,18 +70,18 @@ public class Main {
 ```shell
 Nombre:  Spike
 Edad:  3
-¿Está  durmiendo?  No
+¿Está  comiendo?  No
 ```
 
 ### Abstracción
 
-![Abstracción](imagenes/Laboratorio_1/10.png)
+![Abstracción](Imagenes/Laboratorio_1/10.png)
 
 Abstraer es modelar solo lo necesario del problema.
 
 ### Constructores
 
-![Constructores](imagenes/Laboratorio_1/5.png)
+![Constructores](Imagenes/Laboratorio_1/5.png)
 
 Un constructor inicializa el objeto al crearlo.
 
@@ -110,21 +111,9 @@ Un constructor inicializa el objeto al crearlo.
 ```
 > 💡****Nota:**** No es necesario escribir un constructor para una clase. Es porque el compilador java crea un constructor predeterminado (constructor sin argumentos) si su clase no tiene ninguno.
 
-### Modificadores de acceso
-
-![Modificadores de acceso](imagenes/Laboratorio_1/6.png)
-
-- `public`: accesible desde cualquier clase.
-- `private`: accesible solo dentro de la clase.
-- `protected`: accesible en el mismo paquete y subclases.
-- Sin modificador: acceso por paquete.
-  
-> 💡**Nota**: _Las interfaces y clases anidadas pueden tener todos los modificadores de acceso._  
-💡**Nota**: _No podemos declarar clase/interfaz con modificadores de acceso privados o protegidos._
-
 ### Encapsulamiento
 
-![Encapsulamiento](imagenes/Laboratorio_1/7.png)
+![Encapsulamiento](Imagenes/Laboratorio_1/7.png)
 
 Encapsular protege los atributos y controla el acceso mediante metodos.
 
@@ -133,14 +122,14 @@ public class Mascota {
     // Atributos encapsulados
     private String nombre;
     private int edad;
-    private  boolean  durmiendo;
+    private  boolean  comiendo;
 
     // Constructor
 
-    public  Mascota(String  nombre, int  edad, boolean  durmiendo) {
+    public  Mascota(String  nombre, int  edad, boolean  comiendo) {
         this.nombre = nombre;
         this.edad = edad;
-        this.durmiendo = durmiendo;
+        this.comiendo= comiendo;
     }
     // Métodos de acceso (getters y setters)
     public String getNombre() {
@@ -159,32 +148,50 @@ public class Mascota {
         this.edad = edad;
     }
 
-    public  boolean  isDurmiendo() {
-        return durmiendo;
+    public  boolean  isComiendo() {
+        return comiendo;
     }
 
-    public  void  setDurmiendo(boolean  durmiendo) {
-        this.durmiendo = durmiendo;
+    public  void  setComiendo(boolean  comiendo) {
+        this.comiendo= comiendo;
     }
 }
 ```
 
+#### Modificadores de acceso
+
+![Modificadores de acceso](Imagenes/Laboratorio_1/6.png)
+
+|Modificador|Clase misma|Paquete|Subclases|Todo proyecto|
+|-|-|-|-|-|
+|`public`|✅|✅|✅|✅|
+| | 
+|`private`|✅|✅|✅|❌|
+| | 
+|(default)|✅|✅|❌|❌|
+| |
+|private|✅|❌|❌|❌|
+
+  
+> 💡**Nota**: _Las interfaces y clases anidadas pueden tener todos los modificadores de acceso._  
+💡**Nota**: _No podemos declarar clase/interfaz con modificadores de acceso privados o protegidos._
+💡**Nota**: _Los paquetes son carpetas lógicas que mantienen tu código limpio y organizado, como cajones en tu escritorio_ 
+
 ### Uso de `this` 
 
-![Uso de this](imagenes/Laboratorio_1/8.png)
+![Uso de this](Imagenes/Laboratorio_1/8.png)
 
 - `this`: referencia al objeto actual.
 ```Java
-// Superclase
 public  class  Mascota {
     String  nombre;
     int  edad;
-    boolean  durmiendo;
+    boolean  commiendo;
 
-    public  Mascota(String  nombre, int  edad, boolean  durmiendo) {
+    public  Mascota(String  nombre, int  edad, boolean  comiendo) {
         this.nombre = nombre; // 'this.nombre' es el atributo de la clase
         this.edad = edad;  // 'edad' es el parámetro del constructor
-        this.durmiendo = durmiendo;
+        this.comiendo= comiendo;
     }
 
     public  void  hacerSonido() {
@@ -194,44 +201,9 @@ public  class  Mascota {
 ```
 
 ## Implementando lo que hemos aprendido
-
-``` Java
-
-public  class  Mascota {
-    // Atributos
-    String  nombre;
-    int  edad;
-    boolean  durmiendo;
-
-    // Constructor parametrizado
-    public  Mascota(String  nombre, int  edad, boolean  durmiendo) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.durmiendo = durmiendo;
-    }
-
-    // Métodos
-    public  void  dormir() {
-        this.durmiendo = true;
-        System.out.println("La mascota está durmiendo.");
-    }
-
-    public  void  despertar() {
-        this.durmiendo = false;
-        System.out.println("La mascota está despierta.");
-    }
-
-    public  void  mostrarInfo() {
-        System.out.println("Nombre: "  + nombre);
-        System.out.println("Edad: "  + edad);
-        System.out.println("¿Está durmiendo? "  + (durmiendo ?  "Sí"  :  "No"));
-    }
-}
-```
-
+<a  href="../Anexos/Ejemplos/Mascota.java"  target="_blank"  rel="noopener">Ver clase Mascota.java</a>
 ## Cierre
 POO permite escribir codigo mas claro, reutilizable y facil de mantener mediante clases y objetos.
-
 
 # Anexos
 -   **Documentación oficial de Oracle Java**: Guía completa de la plataforma Java y tutoriales sobre POO.
