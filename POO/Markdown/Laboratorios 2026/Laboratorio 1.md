@@ -36,7 +36,7 @@ public class Mascota {
 
 ## ¿Qué es un objeto?
 
-![¿Qué es un objeto?](imagenes/Laboratorio_1/2.jpeg)
+![¿Qué es un objeto?](imagenes/Laboratorio_1/2.png)
 
 Un objeto es una instancia concreta de una clase.
 
@@ -74,7 +74,7 @@ Edad:  3
 
 ### Abstracción
 
-![Abstracción](imagenes/Laboratorio_1/10.jpeg)
+![Abstracción](imagenes/Laboratorio_1/10.png)
 
 Abstraer es modelar solo lo necesario del problema.
 
@@ -124,7 +124,7 @@ Un constructor inicializa el objeto al crearlo.
 
 ### Encapsulamiento
 
-![Encapsulamiento](imagenes/Laboratorio_1/7.jpeg)
+![Encapsulamiento](imagenes/Laboratorio_1/7.png)
 
 Encapsular protege los atributos y controla el acceso mediante metodos.
 
@@ -171,7 +171,7 @@ public class Mascota {
 
 ### Uso de `this` 
 
-![Uso de this](imagenes/Laboratorio_1/8.jpeg)
+![Uso de this](imagenes/Laboratorio_1/8.png)
 
 - `this`: referencia al objeto actual.
 ```Java
