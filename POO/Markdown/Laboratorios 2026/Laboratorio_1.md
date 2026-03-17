@@ -7,9 +7,9 @@ En este laboratorio, exploraremos los conceptos fundamentales de la **Programaci
 POO organiza el software en **clases y objetos** para mejorar orden, reutilizacion y mantenimiento.
 
 ## ¿Qué es una clase?
-![Clase](imagenes/Laboratorio_1/1.png)
-![Atributos](imagenes/Laboratorio_1/4.png)
-![Metodos](imagenes/Laboratorio_1/3.png)
+![Clase](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/1.png)
+![Atributos](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/4.png)
+![Metodos](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/3.png)
 
 Una clase define:
 
@@ -37,14 +37,14 @@ public class Mascota {
 
 ## ¿Qué es un objeto?
 
-![¿Qué es un objeto?](imagenes/Laboratorio_1/2.png)
+![¿Qué es un objeto?](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/2.png)
 
 Un objeto es una instancia concreta de una clase.
 
 
 ### Instanciar una clase
 
-![Instanciacion de una clase](imagenes/Laboratorio_1/9.png)
+![Instanciacion de una clase](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/9.png)
 
 Declarar una referencia no crea el objeto; se crea con `new`.
 
@@ -75,13 +75,13 @@ Edad:  3
 
 ### Abstracción
 
-![Abstracción](imagenes/Laboratorio_1/10.png)
+![Abstracción](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/10.png)
 
 Abstraer es modelar solo lo necesario del problema.
 
 ### Constructores
 
-![Constructores](imagenes/Laboratorio_1/5.png)
+![Constructores](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/5.png)
 
 Un constructor inicializa el objeto al crearlo.
 
@@ -113,54 +113,13 @@ Un constructor inicializa el objeto al crearlo.
 
 ### Encapsulamiento
 
-![Encapsulamiento](imagenes/Laboratorio_1/7.png)
+![Encapsulamiento](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/7.png)
 
 Encapsular protege los atributos y controla el acceso mediante metodos.
 
-```java
-public class Mascota {
-    // Atributos encapsulados
-    private String nombre;
-    private int edad;
-    private  boolean  comiendo;
-
-    // Constructor
-
-    public  Mascota(String  nombre, int  edad, boolean  comiendo) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.comiendo= comiendo;
-    }
-    // Métodos de acceso (getters y setters)
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public  boolean  isComiendo() {
-        return comiendo;
-    }
-
-    public  void  setComiendo(boolean  comiendo) {
-        this.comiendo= comiendo;
-    }
-}
-```
-
 #### Modificadores de acceso
 
-![Modificadores de acceso](imagenes/Laboratorio_1/6.png)
+![Modificadores de acceso](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/6.png)
 
 |Modificador|Clase misma|Paquete|Subclases|Todo proyecto|
 |-|-|-|-|-|
@@ -179,7 +138,7 @@ public class Mascota {
 
 ### Uso de `this` 
 
-![Uso de this](imagenes/Laboratorio_1/8.png)
+![Uso de this](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/8.png)
 
 - `this`: referencia al objeto actual.
 ```Java
@@ -201,7 +160,7 @@ public  class  Mascota {
 ```
 
 ## Implementando lo que hemos aprendido
-<a  href="../Anexos/Ejercicios/Laboratorio1/Mascota.java"  target="_blank"  rel="noopener">Ver clase Mascota.java</a>
+<a  href="https://github.com/meaguilar/POO-2026/blob/main/Ejercicios-Laboratorios/Laboratorio-1/Mascota.java"  target="_blank"  rel="noopener">Ver clase Mascota.java</a>
 ## Cierre
 POO permite escribir codigo mas claro, reutilizable y facil de mantener mediante clases y objetos.
 

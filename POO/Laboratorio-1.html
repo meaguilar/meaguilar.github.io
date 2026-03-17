@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programacion Orientada a Objetos</title>
+  <title>Laboratorio 1</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -113,47 +113,8 @@ Edad:  3
 <p>💡<strong><strong>Nota:</strong></strong> No es necesario escribir un constructor para una clase. Es porque el compilador java crea un constructor predeterminado (constructor sin argumentos) si su clase no tiene ninguno.</p>
 </blockquote>
 <h3 id="encapsulamiento">Encapsulamiento</h3>
-<p><img src="/Markdown/Laboratorios%202026/imagenes/Laboratorio_1/7.png" alt="Encapsulamiento"></p>
+<p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_1/7.png" alt="Encapsulamiento"></p>
 <p>Encapsular protege los atributos y controla el acceso mediante metodos.</p>
-<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
-    <span class="token comment">// Atributos encapsulados</span>
-    <span class="token keyword">private</span> String nombre<span class="token punctuation">;</span>
-    <span class="token keyword">private</span> <span class="token keyword">int</span> edad<span class="token punctuation">;</span>
-    <span class="token keyword">private</span>  <span class="token keyword">boolean</span>  comiendo<span class="token punctuation">;</span>
-
-    <span class="token comment">// Constructor</span>
-
-    <span class="token keyword">public</span>  <span class="token function">Mascota</span><span class="token punctuation">(</span>String  nombre<span class="token punctuation">,</span> <span class="token keyword">int</span>  edad<span class="token punctuation">,</span> <span class="token keyword">boolean</span>  comiendo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>comiendo<span class="token operator">=</span> comiendo<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token comment">// Métodos de acceso (getters y setters)</span>
-    <span class="token keyword">public</span> String <span class="token function">getNombre</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> nombre<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNombre</span><span class="token punctuation">(</span>String nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> edad<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setEdad</span><span class="token punctuation">(</span><span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span>  <span class="token keyword">boolean</span>  <span class="token function">isComiendo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">return</span> comiendo<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">setComiendo</span><span class="token punctuation">(</span><span class="token keyword">boolean</span>  comiendo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">this</span><span class="token punctuation">.</span>comiendo<span class="token operator">=</span> comiendo<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
 <h4 id="modificadores-de-acceso">Modificadores de acceso</h4>
 <p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_1/6.png" alt="Modificadores de acceso"></p>
 
@@ -245,7 +206,7 @@ Edad:  3
 <span class="token punctuation">}</span>
 </code></pre>
 <h2 id="implementando-lo-que-hemos-aprendido">Implementando lo que hemos aprendido</h2>
-<p><a href="Markdown/Laboratorios%202026/Anexos/Ejercicios/Laboratorio1/Mascota.java" target="_blank" rel="noopener">Ver clase Mascota.java</a></p>
+<p><a href="https://github.com/meaguilar/POO-2026/blob/main/Ejercicios-Laboratorios/Laboratorio-1/Mascota.java" target="_blank" rel="noopener">Ver clase Mascota.java</a></p>
 <h2 id="cierre">Cierre</h2>
 <p>POO permite escribir codigo mas claro, reutilizable y facil de mantener mediante clases y objetos.</p>
 <h1 id="anexos">Anexos</h1>
