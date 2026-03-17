@@ -6,7 +6,9 @@ En este laboratorio, exploraremos los conceptos fundamentales de la **Programaci
 POO organiza el software en **clases y objetos** para mejorar orden, reutilizacion y mantenimiento.
 
 ## ¿Qué es una clase?
-![¿Qué es una clase?](imagenes/Laboratorio_1/1.png)
+![Clase](imagenes/Laboratorio_1/1.png)
+![Atributos](imagenes/Laboratorio_1/4.png)
+![Metodos](imagenes/Laboratorio_1/3.png)
 
 Una clase define:
 
@@ -20,7 +22,7 @@ public class Mascota {
     String nombre;
     int edad;
     boolean comiendo;
-
+    
     public void comer() {
         this.comiendo = true;
         System.out.println("Ñam Ñam Ñam");
@@ -32,15 +34,53 @@ public class Mascota {
 }
 ```
 
+## ¿Qué es un objeto?
+
+![¿Qué es un objeto?](imagenes/Laboratorio_1/2.jpeg)
+
+Un objeto es una instancia concreta de una clase.
+
+
+### Instanciar una clase
+
+![Instanciacion de una clase](imagenes/Laboratorio_1/9.png)
+
+Declarar una referencia no crea el objeto; se crea con `new`.
+
+```java
+Mascota perro;
+perro = new Mascota("Spike", 3);
+```
+
+### Inicializar y usar un objeto
+
+```Java
+public class Main {
+
+    public static void main(String[] args) {
+        Mascota  perro = new  Mascota("Spike", 3, false);
+        perro.mostrarInfo();
+    }
+
+}
+```
+
+**Salida**
+```shell
+Nombre:  Spike
+Edad:  3
+¿Está  durmiendo?  No
+```
+
 ### Abstracción
 
-![Abstracción](imagenes/Laboratorio_1/2.jpeg)
+![Abstracción](imagenes/Laboratorio_1/10.jpeg)
 
 Abstraer es modelar solo lo necesario del problema.
 
 ### Constructores
 
-![Constructores](imagenes/Laboratorio_1/3.png)
+![Constructores](imagenes/Laboratorio_1/5.png)
 
 Un constructor inicializa el objeto al crearlo.
 
@@ -59,7 +99,6 @@ Un constructor inicializa el objeto al crearlo.
         this.comiendo = false;
     }
 ```
-
 ```Java
     //Constructor Copia
     public Mascota(Mascota otraMascota) {
@@ -73,7 +112,7 @@ Un constructor inicializa el objeto al crearlo.
 
 ### Modificadores de acceso
 
-![Modificadores de acceso](imagenes/Laboratorio_1/4.png)
+![Modificadores de acceso](imagenes/Laboratorio_1/6.png)
 
 - `public`: accesible desde cualquier clase.
 - `private`: accesible solo dentro de la clase.
@@ -85,7 +124,7 @@ Un constructor inicializa el objeto al crearlo.
 
 ### Encapsulamiento
 
-![Encapsulamiento](imagenes/Laboratorio_1/5.jpeg)
+![Encapsulamiento](imagenes/Laboratorio_1/7.jpeg)
 
 Encapsular protege los atributos y controla el acceso mediante metodos.
 
@@ -130,13 +169,11 @@ public class Mascota {
 }
 ```
 
-### Uso de `this` y `super`
+### Uso de `this` 
 
-![Uso de this y super](imagenes/Laboratorio_1/6.jpeg)
+![Uso de this](imagenes/Laboratorio_1/8.jpeg)
 
 - `this`: referencia al objeto actual.
-- `super`: referencia a la superclase.
-
 ```Java
 // Superclase
 public  class  Mascota {
@@ -150,28 +187,9 @@ public  class  Mascota {
         this.durmiendo = durmiendo;
     }
 
-  
-
     public  void  hacerSonido() {
         System.out.println("La mascota hace un sonido genérico.");
     }
-
-}
-
-// Subclase
-public  class  Perro  extends  Mascota {
-    public  Perro(String  nombre, int  edad, boolean  durmiendo) {
-        // Llamada al constructor de la superclase
-        super(nombre, edad, durmiendo);
-    }
-
-    @Override
-    public  void  hacerSonido() {
-        // Llamada al método de la superclase
-        super.hacerSonido();
-        System.out.println("El perro ladra: ¡Guau!");
-    }
-
 }
 ```
 
@@ -209,50 +227,11 @@ public  class  Mascota {
         System.out.println("¿Está durmiendo? "  + (durmiendo ?  "Sí"  :  "No"));
     }
 }
-
-```
-
-## ¿Qué es un objeto?
-
-![¿Qué es un objeto?](imagenes/Laboratorio_1/7.jpeg)
-
-Un objeto es una instancia concreta de una clase.
-
-
-### Instanciar una clase
-
-![Instanciacion de una clase](imagenes/Laboratorio_1/8.png)
-
-Declarar una referencia no crea el objeto; se crea con `new`.
-
-```java
-Mascota perro;
-perro = new Mascota("Spike", 3);
-```
-
-### Inicializar y usar un objeto
-
-```Java
-public class Main {
-
-    public static void main(String[] args) {
-        Mascota  perro = new  Mascota("Spike", 3, false);
-        perro.mostrarInfo();
-    }
-
-}
-```
-
-**Salida**
-****
-```shell
-Nombre:  Spike
-Edad:  3
-¿Está  durmiendo?  No
 ```
 
 ## Cierre
 POO permite escribir codigo mas claro, reutilizable y facil de mantener mediante clases y objetos.
+
 
 # Anexos
 -   **Documentación oficial de Oracle Java**: Guía completa de la plataforma Java y tutoriales sobre POO.

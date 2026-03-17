@@ -1,0 +1,252 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio 1.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#programando-orientado-a-objetos">Programando Orientado a Objetos</a>
+<ul>
+<li><a href="#¿qué-es-poo">¿Qué es POO?</a></li>
+<li><a href="#¿qué-es-una-clase">¿Qué es una clase?</a></li>
+<li><a href="#¿qué-es-un-objeto">¿Qué es un objeto?</a></li>
+<li><a href="#implementando-lo-que-hemos-aprendido">Implementando lo que hemos aprendido</a></li>
+<li><a href="#cierre">Cierre</a></li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="programando-orientado-a-objetos">Programando Orientado a Objetos</h1>
+<p>En este laboratorio, exploraremos los conceptos fundamentales de la <strong>Programación Orientada a Objetos (POO)</strong>, que nos permitirá organizar y manipular la información de forma modular y reutilizable en el desarrollo de software.</p>
+<h2 id="¿qué-es-poo">¿Qué es POO?</h2>
+<p>POO organiza el software en <strong>clases y objetos</strong> para mejorar orden, reutilizacion y mantenimiento.</p>
+<h2 id="¿qué-es-una-clase">¿Qué es una clase?</h2>
+<p><img src="imagenes/Laboratorio_1/1.png" alt="Clase"><br>
+<img src="imagenes/Laboratorio_1/4.png" alt="Atributos"><br>
+<img src="imagenes/Laboratorio_1/3.png" alt="Metodos"></p>
+<p>Una clase define:</p>
+<ul>
+<li>Atributos (características)</li>
+<li>Metodos (acciones)</li>
+<li>Constructores</li>
+<li>Modificadores de acceso</li>
+</ul>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    String nombre<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> edad<span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span> comiendo<span class="token punctuation">;</span>
+    
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">comer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>comiendo <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Ñam Ñam Ñam"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Woof!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="¿qué-es-un-objeto">¿Qué es un objeto?</h2>
+<p><img src="imagenes/Laboratorio_1/2.jpeg" alt="¿Qué es un objeto?"></p>
+<p>Un objeto es una instancia concreta de una clase.</p>
+<h3 id="instanciar-una-clase">Instanciar una clase</h3>
+<p><img src="imagenes/Laboratorio_1/9.png" alt="Instanciacion de una clase"></p>
+<p>Declarar una referencia no crea el objeto; se crea con <code>new</code>.</p>
+<pre class=" language-java"><code class="prism  language-java">Mascota perro<span class="token punctuation">;</span>
+perro <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Mascota</span><span class="token punctuation">(</span><span class="token string">"Spike"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="inicializar-y-usar-un-objeto">Inicializar y usar un objeto</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Mascota  perro <span class="token operator">=</span> <span class="token keyword">new</span>  <span class="token class-name">Mascota</span><span class="token punctuation">(</span><span class="token string">"Spike"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        perro<span class="token punctuation">.</span><span class="token function">mostrarInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<p><strong>Salida</strong></p>
+<pre class=" language-shell"><code class="prism  language-shell">Nombre:  Spike
+Edad:  3
+¿Está  durmiendo?  No
+</code></pre>
+<h3 id="abstracción">Abstracción</h3>
+<p><img src="imagenes/Laboratorio_1/10.jpeg" alt="Abstracción"></p>
+<p>Abstraer es modelar solo lo necesario del problema.</p>
+<h3 id="constructores">Constructores</h3>
+<p><img src="imagenes/Laboratorio_1/5.png" alt="Constructores"></p>
+<p>Un constructor inicializa el objeto al crearlo.</p>
+<pre class=" language-java"><code class="prism  language-java">    <span class="token comment">//Constructor predeterminado explícito</span>
+    <span class="token function">Mascota</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Constructor predeterminado"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="prism  language-java">    <span class="token comment">//Constructor parametrizado</span>
+    <span class="token keyword">public</span> <span class="token function">Mascota</span><span class="token punctuation">(</span>String nombre<span class="token punctuation">,</span> <span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>comiendo <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="prism  language-java">    <span class="token comment">//Constructor Copia</span>
+    <span class="token keyword">public</span> <span class="token function">Mascota</span><span class="token punctuation">(</span>Mascota otraMascota<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> otraMascota<span class="token punctuation">.</span>nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> otraMascota<span class="token punctuation">.</span>edad<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>comiendo <span class="token operator">=</span> otraMascota<span class="token punctuation">.</span>comiendo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+</code></pre>
+<blockquote>
+<p>💡<strong><strong>Nota:</strong></strong> No es necesario escribir un constructor para una clase. Es porque el compilador java crea un constructor predeterminado (constructor sin argumentos) si su clase no tiene ninguno.</p>
+</blockquote>
+<h3 id="modificadores-de-acceso">Modificadores de acceso</h3>
+<p><img src="imagenes/Laboratorio_1/6.png" alt="Modificadores de acceso"></p>
+<ul>
+<li><code>public</code>: accesible desde cualquier clase.</li>
+<li><code>private</code>: accesible solo dentro de la clase.</li>
+<li><code>protected</code>: accesible en el mismo paquete y subclases.</li>
+<li>Sin modificador: acceso por paquete.</li>
+</ul>
+<blockquote>
+<p>💡<strong>Nota</strong>: <em>Las interfaces y clases anidadas pueden tener todos los modificadores de acceso.</em><br>
+💡<strong>Nota</strong>: <em>No podemos declarar clase/interfaz con modificadores de acceso privados o protegidos.</em></p>
+</blockquote>
+<h3 id="encapsulamiento">Encapsulamiento</h3>
+<p><img src="imagenes/Laboratorio_1/7.jpeg" alt="Encapsulamiento"></p>
+<p>Encapsular protege los atributos y controla el acceso mediante metodos.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Atributos encapsulados</span>
+    <span class="token keyword">private</span> String nombre<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> edad<span class="token punctuation">;</span>
+    <span class="token keyword">private</span>  <span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">;</span>
+
+    <span class="token comment">// Constructor</span>
+
+    <span class="token keyword">public</span>  <span class="token function">Mascota</span><span class="token punctuation">(</span>String  nombre<span class="token punctuation">,</span> <span class="token keyword">int</span>  edad<span class="token punctuation">,</span> <span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>durmiendo <span class="token operator">=</span> durmiendo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Métodos de acceso (getters y setters)</span>
+    <span class="token keyword">public</span> String <span class="token function">getNombre</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> nombre<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setNombre</span><span class="token punctuation">(</span>String nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">getEdad</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> edad<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setEdad</span><span class="token punctuation">(</span><span class="token keyword">int</span> edad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span>  <span class="token keyword">boolean</span>  <span class="token function">isDurmiendo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> durmiendo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">setDurmiendo</span><span class="token punctuation">(</span><span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>durmiendo <span class="token operator">=</span> durmiendo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="uso-de-this">Uso de <code>this</code></h3>
+<p><img src="imagenes/Laboratorio_1/8.jpeg" alt="Uso de this"></p>
+<ul>
+<li><code>this</code>: referencia al objeto actual.</li>
+</ul>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// Superclase</span>
+<span class="token keyword">public</span>  <span class="token keyword">class</span>  <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    String  nombre<span class="token punctuation">;</span>
+    <span class="token keyword">int</span>  edad<span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span>  <span class="token function">Mascota</span><span class="token punctuation">(</span>String  nombre<span class="token punctuation">,</span> <span class="token keyword">int</span>  edad<span class="token punctuation">,</span> <span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span> <span class="token comment">// 'this.nombre' es el atributo de la clase</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>  <span class="token comment">// 'edad' es el parámetro del constructor</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>durmiendo <span class="token operator">=</span> durmiendo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La mascota hace un sonido genérico."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="implementando-lo-que-hemos-aprendido">Implementando lo que hemos aprendido</h2>
+<pre class=" language-java"><code class="prism  language-java">
+<span class="token keyword">public</span>  <span class="token keyword">class</span>  <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Atributos</span>
+    String  nombre<span class="token punctuation">;</span>
+    <span class="token keyword">int</span>  edad<span class="token punctuation">;</span>
+    <span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">;</span>
+
+    <span class="token comment">// Constructor parametrizado</span>
+    <span class="token keyword">public</span>  <span class="token function">Mascota</span><span class="token punctuation">(</span>String  nombre<span class="token punctuation">,</span> <span class="token keyword">int</span>  edad<span class="token punctuation">,</span> <span class="token keyword">boolean</span>  durmiendo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>edad <span class="token operator">=</span> edad<span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>durmiendo <span class="token operator">=</span> durmiendo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Métodos</span>
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">dormir</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>durmiendo <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La mascota está durmiendo."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">despertar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>durmiendo <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La mascota está despierta."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">mostrarInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Nombre: "</span>  <span class="token operator">+</span> nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Edad: "</span>  <span class="token operator">+</span> edad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"¿Está durmiendo? "</span>  <span class="token operator">+</span> <span class="token punctuation">(</span>durmiendo <span class="token operator">?</span>  <span class="token string">"Sí"</span>  <span class="token operator">:</span>  <span class="token string">"No"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="cierre">Cierre</h2>
+<p>POO permite escribir codigo mas claro, reutilizable y facil de mantener mediante clases y objetos.</p>
+<h1 id="anexos">Anexos</h1>
+<ul>
+<li>
+<p><strong>Documentación oficial de Oracle Java</strong>: Guía completa de la plataforma Java y tutoriales sobre POO.</p>
+<ul>
+<li><a href="https://docs.oracle.com/en/java/">https://docs.oracle.com/en/java/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Java Cheat Sheet (PDF)</strong>: Resumen rápido de sintaxis y patrones de uso.</p>
+<ul>
+<li><a href="https://introcs.cs.princeton.edu/java/11cheatsheet/">https://introcs.cs.princeton.edu/java/11cheatsheet/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Canal de YouTube “Java Brains”</strong>: Vídeos sobre principios de POO, patrones y buenas prácticas.</p>
+<ul>
+<li><a href="https://www.youtube.com/user/koushks">https://www.youtube.com/user/koushks</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
