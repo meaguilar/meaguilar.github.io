@@ -201,7 +201,7 @@ public  class  Mascota {
 ```
 
 ## Implementando lo que hemos aprendido
-<a  href="../Anexos/Ejemplos/Mascota.java"  target="_blank"  rel="noopener">Ver clase Mascota.java</a>
+<a  href="../Anexos/Ejercicios/Laboratorio1/Mascota.java"  target="_blank"  rel="noopener">Ver clase Mascota.java</a>
 ## Cierre
 POO permite escribir codigo mas claro, reutilizable y facil de mantener mediante clases y objetos.
 
