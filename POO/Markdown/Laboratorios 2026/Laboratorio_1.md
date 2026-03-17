@@ -7,9 +7,9 @@ En este laboratorio, exploraremos los conceptos fundamentales de la **Programaci
 POO organiza el software en **clases y objetos** para mejorar orden, reutilizacion y mantenimiento.
 
 ## ¿Qué es una clase?
-![Clase](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/1.png)
-![Atributos](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/4.png)
-![Metodos](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/3.png)
+![Clase](/imagenes/Laboratorio_1/1.png)
+![Atributos](imagenes/Laboratorio_1/4.png)
+![Metodos](imagenes/Laboratorio_1/3.png)
 
 Una clase define:
 
@@ -37,14 +37,14 @@ public class Mascota {
 
 ## ¿Qué es un objeto?
 
-![¿Qué es un objeto?](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/2.png)
+![¿Qué es un objeto?](imagenes/Laboratorio_1/2.png)
 
 Un objeto es una instancia concreta de una clase.
 
 
 ### Instanciar una clase
 
-![Instanciacion de una clase](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/9.png)
+![Instanciacion de una clase](imagenes/Laboratorio_1/9.png)
 
 Declarar una referencia no crea el objeto; se crea con `new`.
 
@@ -75,13 +75,13 @@ Edad:  3
 
 ### Abstracción
 
-![Abstracción](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/10.png)
+![Abstracción](imagenes/Laboratorio_1/10.png)
 
 Abstraer es modelar solo lo necesario del problema.
 
 ### Constructores
 
-![Constructores](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/5.png)
+![Constructores](imagenes/Laboratorio_1/5.png)
 
 Un constructor inicializa el objeto al crearlo.
 
@@ -113,13 +113,13 @@ Un constructor inicializa el objeto al crearlo.
 
 ### Encapsulamiento
 
-![Encapsulamiento](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/7.png)
+![Encapsulamiento](imagenes/Laboratorio_1/7.png)
 
 Encapsular protege los atributos y controla el acceso mediante metodos.
 
 #### Modificadores de acceso
 
-![Modificadores de acceso](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/6.png)
+![Modificadores de acceso](imagenes/Laboratorio_1/6.png)
 
 |Modificador|Clase misma|Paquete|Subclases|Todo proyecto|
 |-|-|-|-|-|
@@ -138,7 +138,7 @@ Encapsular protege los atributos y controla el acceso mediante metodos.
 
 ### Uso de `this` 
 
-![Uso de this](Markdown/Laboratorios%202026/imagenes/Laboratorio_1/8.png)
+![Uso de this](imagenes/Laboratorio_1/8.png)
 
 - `this`: referencia al objeto actual.
 ```Java
