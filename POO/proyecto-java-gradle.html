@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto-Java-Gradle.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#proyectos-con-java---gradle">Proyectos con Java - Gradle</a>
+<ul>
+<li></li>
+<li><a href="#configurando-un-proyecto-de-java-con-gradle">Configurando un proyecto de Java con Gradle</a></li>
+</ul>
+</li>
+<li><a href="#configuración-del-archivo-build.gradle">Configuración del archivo build.gradle</a>
+<ul>
+<li><a href="#configurar-la-clase-principal-que-lanza-la-aplicación-al-iniciar">Configurar la clase principal que lanza la aplicación al iniciar</a></li>
+<li><a href="#entrada-de-datos-por-consola-con-gradle">Entrada de datos por consola con Gradle</a></li>
+<li><a href="#panel-de-gradle">Panel de Gradle</a></li>
+<li><a href="#comandos-gradle">Comandos Gradle</a></li>
+<li><a href="#proyecto-java-compilado-y-ejecutando-con-gradle">Proyecto Java compilado y ejecutando con Gradle</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="proyectos-con-java---gradle">Proyectos con Java - Gradle</h1>
+<h3 id="importancia-de-usar-gradle">Importancia de usar Gradle</h3>
+<p>Diseñar proyectos de <strong>Java con Gradle y el DSL de Groovy</strong> es importante porque permite automatizar y estandarizar el proceso de construcción del software. <strong>Gradle</strong> facilita la gestión de dependencias, la compilación, las pruebas y el empaquetado en un solo flujo eficiente. Por su parte, <strong>Groovy</strong> es el <strong>DSL (Lenguaje Específico de Dominio)</strong> utilizado por Gradle; su sintaxis clara y flexible permite escribir menos código y comprender mejor cómo funciona el proceso de construcción.</p>
+<h2 id="configurando-un-proyecto-de-java-con-gradle">Configurando un proyecto de Java con Gradle</h2>
+<ul>
+<li>Abrir <strong>IntelliJ IDEA</strong>.</li>
+<li>Crear un <strong>nuevo proyecto Java</strong>.</li>
+<li>Asignar un <strong>nombre al proyecto</strong>.</li>
+<li>Elegir el <strong>directorio de almacenamiento</strong>.</li>
+<li>Seleccionar la <strong>versión de JDK</strong> requerida.</li>
+<li>Establecer <strong>Gradle</strong> como herramienta de construcción.</li>
+<li>Elegir <strong>Groovy</strong> como DSL para Gradle.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/1.png" alt="Configurando proyecto Java"></p>
+<h3 id="estructura-de-un-proyecto-java--con-gradle">Estructura de un proyecto Java  con Gradle</h3>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/2.png" alt="Estructura proyecto Java"></p>
+<h1 id="configuración-del-archivo-build.gradle">Configuración del archivo build.gradle</h1>
+<h2 id="configurar-la-clase-principal-que-lanza-la-aplicación-al-iniciar">Configurar la clase principal que lanza la aplicación al iniciar</h2>
+<p>Al crear un proyecto, es necesario configurar el archivo <strong>build.gradle</strong> para especificar la clase principal que se debe ejecutar. De lo contrario, al compilar, se producirá un error porque el sistema no podrá localizar la clase  que se debe <strong>ejecutar al iniciar la aplicación</strong>.</p>
+<ul>
+<li>
+<p>El <strong><code>id 'application'</code></strong> activa el <em>plugin de aplicación</em> de Gradle, que permite ejecutar, empaquetar y crear archivos ejecutables de tu proyecto Java.</p>
+</li>
+<li>
+<p>La propiedad <strong><code>mainClass</code></strong> indica la <strong>clase principal</strong> con el método <code>main(String[] args)</code> que debe ejecutarse al iniciar el programa.</p>
+</li>
+</ul>
+<pre class=" language-groovy"><code class="prism  language-groovy">id<span class="token punctuation">:</span> <span class="token string">'application'</span>
+
+<span class="token comment">// Si la clase principal NO está en ningún paquete  </span>
+application <span class="token punctuation">{</span>  
+	mainClass <span class="token operator">=</span> <span class="token string">'Main'</span>  
+<span class="token punctuation">}</span>  
+  
+<span class="token comment">// Si la clase principal SÍ está dentro de un paquete  </span>
+application <span class="token punctuation">{</span>  
+	mainClass <span class="token operator">=</span> <span class="token string">'com.abc.Main'</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/3.png" alt="Configurando clase principal"></p>
+<p>Una vez realizados los cambios en el <strong>build.gradle</strong>, es necesario <strong>actualizar el proyecto</strong> para que Gradle reconozca las modificaciones. Para ello, haz clic en el botón de <strong>Gradle</strong> que aparece sobre el archivo <strong>build.gradle</strong> y selecciona la opción de <strong>refresh</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/4.png" alt="Actualizando build.gradle"></p>
+<h2 id="entrada-de-datos-por-consola-con-gradle">Entrada de datos por consola con Gradle</h2>
+<p>Para permitir la <strong>entrada de datos por consola</strong> en un proyecto Java con Gradle, es necesario <strong>configurar correctamente el archivo <code>build.gradle</code></strong>.</p>
+<ul>
+<li>La propiedad <strong><code>standardInput</code></strong> de una tarea como <code>run</code> indica <strong>de dónde tomará la entrada de datos el programa que se ejecuta</strong></li>
+</ul>
+<p>Por defecto, cuando ejecutas un programa Java desde <strong>Gradle</strong>, <strong>no se permite ingresar datos por consola</strong>.</p>
+<pre class=" language-groovy"><code class="prism  language-groovy"><span class="token comment">// Activar la entrada de datos por consola</span>
+run <span class="token punctuation">{</span>  
+  standardInput <span class="token operator">=</span> System<span class="token operator">.</span><span class="token keyword">in</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/10.png" alt="Activar entrada de datos por consola"></p>
+<p>Siempre que se realicen cambios en el <strong>archivo <code>build.gradle</code></strong>, es necesario <strong>actualizar el proyecto</strong> para que Gradle reconozca y aplique correctamente las modificaciones.</p>
+<h2 id="panel-de-gradle">Panel de Gradle</h2>
+<p>Este panel ofrece varias opciones, incluyendo la <strong>terminal</strong>, donde puedes ingresar comandos, así como <strong>buscar y seleccionar</strong> el que necesites.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/5.png" alt="Panel de gradle "></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/6.png" alt="Terminal de gradle"></p>
+<h2 id="comandos-gradle">Comandos Gradle</h2>
+<h3 id="compilar">Compilar</h3>
+<p>Para compilar el proyecto,  ejecutar el comando <strong><code>gradle build</code></strong> desde la <strong>ventana de comandos</strong> integrada en <strong>IntelliJ IDEA</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/7.png" alt="Uso de gradle build"></p>
+<h3 id="compilar-y-ejecutar">Compilar y ejecutar</h3>
+<p>Para compilar y ejecutar el proyecto al mismo tiempo, utiliza el comando <strong><code>gradle run</code></strong> desde la <strong>ventana de comandos</strong> integrada en <strong>IntelliJ IDEA</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/8.png" alt="Uso de gradle run"></p>
+<pre><code>
+    Recuerda que los comandos de Gradle solo están disponibles dentro 
+    del proyecto. Para poder utilizarlos fuera del IDE, es necesario 
+    instalar Gradle de forma global en tu computadora.
+
+</code></pre>
+<h2 id="proyecto-java-compilado-y-ejecutando-con-gradle">Proyecto Java compilado y ejecutando con Gradle</h2>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/e1c828c082e2dc8749e097d4d708d6a7bd805383/POO/imagenes/proyectos-java-gradle/9.png" alt="Proyecto compilado y ejecutado"></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
