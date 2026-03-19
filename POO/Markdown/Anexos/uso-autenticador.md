@@ -31,10 +31,10 @@ Ejemplo: Agregar la cuenta de Github, dar click al icono de código Qr y se abri
 ![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/POO/imagenes/uso-autenticador/5.jpeg)
 
 
-1. Ir a Github , buscar el código Qr para poder escanear en el autenticador, una vez agregado a la aplicación, escribir el código para verificar que se ha configurado bien la cuenta de Github en el autenticador.
+4. Ir a Github , buscar el código Qr para poder escanear en el autenticador, una vez agregado a la aplicación, escribir el código para verificar que se ha configurado bien la cuenta de Github en el autenticador.
    
 
-> 💡****Nota:**** En Github, tienes que ir a tu perfil>settings>password and authentication
+> 💡****Nota:**** En Github, tienes que ir a **tu perfil>settings>password and authentication**
 
 ![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/POO/imagenes/uso-autenticador/6.jpeg)
   
