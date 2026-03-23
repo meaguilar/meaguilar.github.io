@@ -7,7 +7,7 @@ En este laboratorio, exploraremos los conceptos fundamentales de la **Programaci
 POO organiza el software en **clases y objetos** para mejorar orden, reutilizacion y mantenimiento.
 
 ## ¿Qué es una clase?
-![Clase](/imagenes/Laboratorio_1/1.png)
+![Clase](imagenes/Laboratorio_1/1.png)
 ![Atributos](imagenes/Laboratorio_1/4.png)
 ![Metodos](imagenes/Laboratorio_1/3.png)
 

@@ -19,14 +19,14 @@ abstract class Mascota {
 
 > 💡Nota: Obliga a las clases hijas a implementar métodos
 
-![Abstracta](/imagenes/Laboratorio_2/1.png)
+![Abstracta](imagenes/Laboratorio_2/1.png)
 
 > 💡Nota: En estos casos se recomienda que los atributos esten
 > protegidos
 
 ### Herencia
 
-![Herencia](/imagenes/Laboratorio_2/2.png)
+![Herencia](imagenes/Laboratorio_2/2.png)
 
 La herencia permite que una clase hija reutilice atributos y métodos de una clase padre.
 
@@ -59,7 +59,7 @@ class Perro extends Mascota {
 
 ## Polimorfismo
 
-![Polimorfismo](/imagenes/Laboratorio_2/3.png)
+![Polimorfismo](imagenes/Laboratorio_2/3.png)
 
 El **polimorfismo** es un concepto fundamental que permite que los objetos de diferentes clases respondan de manera distinta a un mismo método.
 
@@ -105,7 +105,7 @@ class Gato extends Mascota {
 
 ### Interfaces
 
-![Interfaces](/imagenes/Laboratorio_2/4.png)
+![Interfaces](imagenes/Laboratorio_2/4.png)
 
 Una interfaz define métodos que deben implementarse.
 
