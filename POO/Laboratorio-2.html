@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio 1.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#programando-orientado-a-objetos">Programando Orientado a Objetos</a>
+<ul>
+<li></li>
+<li><a href="#polimorfismo">Polimorfismo</a></li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="programando-orientado-a-objetos">Programando Orientado a Objetos</h1>
+<p>En este laboratorio, exploraremos los pilares fundamentales de la  <strong>Programación Orientada a Objetos (POO)</strong>, que nos permitirá manipular la información de forma modular y reutilizable en el desarrollo de software.</p>
+<h3 id="clases-abstractas">Clases abstractas</h3>
+<p>Una clase abstracta no se puede instanciar y sirve como base.<br>
+Para declarar una clase abstracta, usamos la palabra clave <strong><code>abstract</code></strong>:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    <span class="token keyword">protected</span> String nombre<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Mascota</span><span class="token punctuation">(</span>String nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡Nota: Obliga a las clases hijas a implementar métodos</p>
+</blockquote>
+<p><img src="/imagenes/Laboratorio_2/1.png" alt="Abstracta"></p>
+<blockquote>
+<p>💡Nota: En estos casos se recomienda que los atributos esten<br>
+protegidos</p>
+</blockquote>
+<h3 id="herencia">Herencia</h3>
+<p><img src="/imagenes/Laboratorio_2/2.png" alt="Herencia"></p>
+<p>La herencia permite que una clase hija reutilice atributos y métodos de una clase padre.</p>
+<p>Para aplicar herencia en Java, usamos la palabra clave <strong><code>extends</code></strong>, que indica que una clase está heredando de otra.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>  
+	 <span class="token keyword">protected</span> String nombre<span class="token punctuation">;</span>  
+	 
+	 <span class="token keyword">public</span> <span class="token function">Mascota</span><span class="token punctuation">(</span>String nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+		 <span class="token keyword">this</span><span class="token punctuation">.</span>nombre <span class="token operator">=</span> nombre<span class="token punctuation">;</span>  
+	 <span class="token punctuation">}</span>  
+	 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">mostrarNombre</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+		 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	 <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Perro</span> <span class="token keyword">extends</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>  
+	  <span class="token keyword">public</span>  <span class="token function">Perro</span><span class="token punctuation">(</span>String  nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+		  <span class="token keyword">super</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	 <span class="token punctuation">}</span>  
+	  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+		  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Guau"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	 <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 <code>extends</code> permite heredar<br>
+💡 <code>this</code> objeto actual<br>
+💡 <code>super</code> llama al constructor de la clase padre</p>
+</blockquote>
+<h2 id="polimorfismo">Polimorfismo</h2>
+<p><img src="/imagenes/Laboratorio_2/3.png" alt="Polimorfismo"></p>
+<p>El <strong>polimorfismo</strong> es un concepto fundamental que permite que los objetos de diferentes clases respondan de manera distinta a un mismo método.</p>
+<h3 id="tipos-de-polimorfismo">Tipos de polimorfismo</h3>
+<h4 id="polimorfismo-en-tiempo-de-compilación-sobrecarga-de-métodos">Polimorfismo en tiempo de compilación (Sobrecarga de métodos)</h4>
+<p>Un mismo método puede tener diferentes versiones según sus parámetros.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">class</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>  
+	 <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+		 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La mascota hace un sonido."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+ <span class="token punctuation">}</span>  
+	 <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span>String sonido<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+		 System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>sonido<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	 <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+	Mascota  m  <span class="token operator">=</span>  <span class="token keyword">new</span>  <span class="token class-name">Mascota</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+		m<span class="token punctuation">.</span><span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//La mascota hace un sonido</span>
+		m<span class="token punctuation">.</span><span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token string">"Guau!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//Guau!</span>
+</code></pre>
+<h4 id="polimorfismo-en-tiempo-de-ejecución-anulación-de-métodos"><strong>Polimorfismo en Tiempo de Ejecución</strong> (Anulación de Métodos)</h4>
+<p>Cada clase hija define su propio comportamiento.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">class</span> <span class="token class-name">Perro</span> <span class="token keyword">extends</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Guau"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Gato</span> <span class="token keyword">extends</span> <span class="token class-name">Mascota</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Miau"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡<strong>Extra</strong>: Esto puedes aplicarlo usando una clase abstracta o una interfaz y así no usar <code>@Override</code></p>
+</blockquote>
+<h3 id="interfaces">Interfaces</h3>
+<p><img src="/imagenes/Laboratorio_2/4.png" alt="Interfaces"></p>
+<p>Una interfaz define métodos que deben implementarse.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">interface</span>  <span class="token class-name">Mostrable</span> <span class="token punctuation">{</span>  
+  <span class="token keyword">void</span>  <span class="token function">mostrarInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Perro</span> <span class="token keyword">extends</span> <span class="token class-name">Mascota</span> <span class="token keyword">implements</span> <span class="token class-name">Mostrable</span> <span class="token punctuation">{</span>  
+  <span class="token keyword">public</span>  <span class="token function">Perro</span><span class="token punctuation">(</span>String  nombre<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+	  <span class="token keyword">super</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+ <span class="token punctuation">}</span>  
+ <span class="token annotation punctuation">@Override</span>  
+  <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">hacerSonido</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+	  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Guau"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+ <span class="token punctuation">}</span>  
+ <span class="token annotation punctuation">@Override</span>  
+  <span class="token keyword">public</span>  <span class="token keyword">void</span>  <span class="token function">mostrarInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+	  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Soy un perro llamado "</span>  <span class="token operator">+</span>  nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+	 <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 <code>implements</code> en lugar de <code>extends</code></p>
+</blockquote>
+<h1 id="anexos">Anexos</h1>
+<ul>
+<li>
+<p><strong>Documentación oficial de Oracle Java</strong>: Guía completa de la plataforma Java y tutoriales sobre POO.</p>
+<ul>
+<li><a href="https://docs.oracle.com/en/java/">https://docs.oracle.com/en/java/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Java Cheat Sheet (PDF)</strong>: Resumen rápido de sintaxis y patrones de uso.</p>
+<ul>
+<li><a href="https://introcs.cs.princeton.edu/java/11cheatsheet/">https://introcs.cs.princeton.edu/java/11cheatsheet/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Canal de YouTube “Java Brains”</strong>: Vídeos sobre principios de POO, patrones y buenas prácticas.</p>
+<ul>
+<li><a href="https://www.youtube.com/user/koushks">https://www.youtube.com/user/koushks</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
