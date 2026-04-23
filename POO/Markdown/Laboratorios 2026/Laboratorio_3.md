@@ -4,21 +4,21 @@ En este laboratorio, exploraremos los patrones de diseño, que nos permitirá ma
 
 ### Patrones de Diseño
 
-![Patrones](/imagenes/Laboratorio_3/1.png)
+![Patrones](imagenes/Laboratorio_3/1.png)
 
 > 💡 Nos ayudan a escribir código más organizado, flexible y reutilizable.
   
 
 ### Tipos de Patrones de Diseño
 
-![TipoPatron](/imagenes/Laboratorio_3/2.png)
+![TipoPatron](imagenes/Laboratorio_3/2.png)
 
 
 ## Patron Strategy
 
 El patrón **Strategy** permite cambiar el comportamiento de un objeto sin modificar su código.
 
-![Strategy](/imagenes/Laboratorio_3/3.png)
+![Strategy](imagenes/Laboratorio_3/3.png)
 
 > 💡 Se basa en usar **interfaces** para definir diferentes formas de hacer algo.
 
