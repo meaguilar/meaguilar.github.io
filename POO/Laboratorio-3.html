@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio 1.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#programando-orientado-a-objetos">Programando Orientado a Objetos</a>
+<ul>
+<li></li>
+<li><a href="#patron-strategy">Patron Strategy</a>
+<ul>
+<li></li>
+<li><a href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="programando-orientado-a-objetos">Programando Orientado a Objetos</h1>
+<p>En este laboratorio, exploraremos los patrones de diseño, que nos permitirá manipular la información de forma modular y reutilizable en el desarrollo de software.</p>
+<h3 id="patrones-de-diseño">Patrones de Diseño</h3>
+<p><img src="imagenes/Laboratorio_3/1.png" alt="Patrones"></p>
+<blockquote>
+<p>💡 Nos ayudan a escribir código más organizado, flexible y reutilizable.</p>
+</blockquote>
+<h3 id="tipos-de-patrones-de-diseño">Tipos de Patrones de Diseño</h3>
+<p><img src="imagenes/Laboratorio_3/2.png" alt="TipoPatron"></p>
+<h2 id="patron-strategy">Patron Strategy</h2>
+<p>El patrón <strong>Strategy</strong> permite cambiar el comportamiento de un objeto sin modificar su código.</p>
+<p><img src="imagenes/Laboratorio_3/3.png" alt="Strategy"></p>
+<blockquote>
+<p>💡 Se basa en usar <strong>interfaces</strong> para definir diferentes formas de hacer algo.</p>
+</blockquote>
+<h4 id="uso-del-patron">Uso del patron</h4>
+<p>Definimos una <strong>interfaz</strong> con el comportamiento común (pagar).</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">interface</span> <span class="token class-name">MetodoPago</span> <span class="token punctuation">{</span>  
+<span class="token keyword">void</span> <span class="token function">pagar</span><span class="token punctuation">(</span><span class="token keyword">double</span> monto<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">class</span> <span class="token class-name">PagoTarjeta</span> <span class="token keyword">implements</span> <span class="token class-name">MetodoPago</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pagar</span><span class="token punctuation">(</span><span class="token keyword">double</span> monto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Pagando con tarjeta: $"</span> <span class="token operator">+</span> monto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 Usamos <code>implements</code> porque estamos creando una clase concreta basada en la interfaz.</p>
+</blockquote>
+<pre class=" language-java"><code class="prism  language-java">
+<span class="token keyword">class</span> <span class="token class-name">PagoEfectivo</span> <span class="token keyword">implements</span> <span class="token class-name">MetodoPago</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">pagar</span><span class="token punctuation">(</span><span class="token keyword">double</span> monto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Pagando en efectivo: $"</span> <span class="token operator">+</span> monto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 Cada clase define su propia forma de pagar .</p>
+</blockquote>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">class</span> <span class="token class-name">Compra</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> MetodoPago metodo<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> <span class="token function">Compra</span><span class="token punctuation">(</span>MetodoPago metodo<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>metodo <span class="token operator">=</span> metodo<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">realizarPago</span><span class="token punctuation">(</span><span class="token keyword">double</span> monto<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        metodo<span class="token punctuation">.</span><span class="token function">pagar</span><span class="token punctuation">(</span>monto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 Ya no usamos <code>implements</code> si no que usamos la interfaz como <strong>tipo de dato</strong> y podemos cambiar el comportamiento sin modificar la clase</p>
+</blockquote>
+<p>Solo cambiamos el objeto (<code>PagoTarjeta</code> o <code>PagoEfectivo</code>)</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        Compra c1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Compra</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PagoTarjeta</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c1<span class="token punctuation">.</span><span class="token function">realizarPago</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        Compra c2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Compra</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">PagoEfectivo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        c2<span class="token punctuation">.</span><span class="token function">realizarPago</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="ejemplo">Ejemplo</h3>
+<h1 id="anexos">Anexos</h1>
+<ul>
+<li>
+<p><strong>Documentación oficial de Oracle Java</strong>: Guía completa de la plataforma Java y tutoriales sobre POO.</p>
+<ul>
+<li><a href="https://docs.oracle.com/en/java/">https://docs.oracle.com/en/java/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Java Cheat Sheet (PDF)</strong>: Resumen rápido de sintaxis y patrones de uso.</p>
+<ul>
+<li><a href="https://introcs.cs.princeton.edu/java/11cheatsheet/">https://introcs.cs.princeton.edu/java/11cheatsheet/</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Canal de YouTube “Java Brains”</strong>: Vídeos sobre principios de POO, patrones y buenas prácticas.</p>
+<ul>
+<li><a href="https://www.youtube.com/user/koushks">https://www.youtube.com/user/koushks</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Pagina Web Refactoring Guru</strong>: Biblioteca de informacion e imagenes sobre patrones de diseño.</p>
+<ul>
+<li><a href="https://refactoring.guru/design-patterns">https://refactoring.guru/design-patterns</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>

@@ -76,6 +76,8 @@ public class Main {
     }
 }
 ```
+### Ejemplo
+
 
 # Anexos
 -   **Documentación oficial de Oracle Java**: Guía completa de la plataforma Java y tutoriales sobre POO.
@@ -88,6 +90,10 @@ public class Main {
 -   **Canal de YouTube "Java Brains"**: Vídeos sobre principios de POO, patrones y buenas prácticas.
     
     -   [https://www.youtube.com/user/koushks](https://www.youtube.com/user/koushks)
+
+-   **Pagina Web Refactoring Guru**: Biblioteca de informacion e imagenes sobre patrones de diseño.
+	- https://refactoring.guru/design-patterns
+
 
 
 
