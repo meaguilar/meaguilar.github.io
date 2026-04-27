@@ -77,7 +77,7 @@ public class Main {
 }
 ```
 ### Ejemplo
-
+[Ver Clase MetodoPago.java](https://github.com/meaguilar/POO-2026/blob/main/Ejercicios-Laboratorios/Laboratorio-3/Estrategia-Metodo-de_Pago/src/main/java/Main.java)
 
 # Anexos
 -   **Documentación oficial de Oracle Java**: Guía completa de la plataforma Java y tutoriales sobre POO.
