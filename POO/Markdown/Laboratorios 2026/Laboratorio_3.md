@@ -31,20 +31,70 @@ void pagar(double monto);
 }
 ```
 ```Java
-class PagoTarjeta implements MetodoPago {
+public class PagoTarjeta implements MetodoPago {
+    private String titular;
+    private String fechaVencimiento; // formato: MM/AA
+
+    public PagoTarjeta(String titular, String fechaVencimiento) {
+        this.titular = titular;
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    private boolean validarVencimiento() {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/yy");
+            YearMonth vencimiento = YearMonth.parse(fechaVencimiento, formatter);
+            YearMonth hoy = YearMonth.now();
+            return !vencimiento.isBefore(hoy);
+        } catch (DateTimeParseException e) {
+            System.out.println("  ⚠️  Formato de fecha inválido. Use MM/AA (ej: 08/27)");
+            return false;
+        }
+    }
+
+    @Override
     public void pagar(double monto) {
-        System.out.println("Pagando con tarjeta: $" + monto);
+        System.out.println("💳 Procesando pago con tarjeta...");
+        System.out.println("   Titular : " + titular);
+        System.out.println("   Vence   : " + fechaVencimiento);
+
+        if (validarVencimiento()) {
+            System.out.printf("   ✅ Pago aprobado: $%.2f%n", monto);
+        } else {
+            System.out.println("   ❌ Pago rechazado: la tarjeta está VENCIDA.");
+        }
     }
 }
+
 ```
 > 💡 Usamos `implements` porque estamos creando una clase concreta basada en la interfaz.
 ```Java
 
-class PagoEfectivo implements MetodoPago {
+public class PagoEfectivo implements MetodoPago {
+    private double montoPagado; // dinero que entrega el cliente
+
+    public PagoEfectivo(double montoPagado) {
+        this.montoPagado = montoPagado;
+    }
+
+    @Override
     public void pagar(double monto) {
-        System.out.println("Pagando en efectivo: $" + monto);
+        System.out.println("💵 Procesando pago en efectivo...");
+        System.out.printf("   Total a pagar : $%.2f%n", monto);
+        System.out.printf("   Monto entregado: $%.2f%n", montoPagado);
+
+        if (montoPagado < monto) {
+            double faltante = monto - montoPagado;
+            System.out.printf("   ❌ Pago incompleto. Faltan: $%.2f%n", faltante);
+        } else if (montoPagado == monto) {
+            System.out.println("   ✅ Pago exacto. No requiere cambio.");
+        } else {
+            double cambio = montoPagado - monto;
+            System.out.printf("   ✅ Pago recibido. Cambio a devolver: $%.2f%n", cambio);
+        }
     }
 }
+
 ```
 > 💡 Cada clase define su propia forma de pagar .
 ```Java
@@ -68,11 +118,11 @@ Solo cambiamos el objeto (`PagoTarjeta` o `PagoEfectivo`)
 public class Main {
     public static void main(String[] args) {
 
-        Compra c1 = new Compra(new PagoTarjeta());
-        c1.realizarPago(50);
+        Compra c1 = new Compra(new PagoTarjeta("Ana López ", "12/25"));
+        c1.realizarPago(50.00);
 
-        Compra c2 = new Compra(new PagoEfectivo());
-        c2.realizarPago(30);
+        Compra c2 = new Compra(new PagoEfectivo(40));
+        c2.realizarPago(35.00);
     }
 }
 ```
