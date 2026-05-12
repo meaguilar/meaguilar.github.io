@@ -9,6 +9,7 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
 ### Concurrencia e Hilos
 
+![Hilos](imagenes/Laboratorio_4/1.png)
   
 
 > 💡 Nos ayudan a crear aplicaciones que pueden hacer varias cosas al mismo tiempo (como descargar un archivo mientras sigues usando la interfaz), compartiendo la misma memoria.
@@ -21,7 +22,7 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
 ### Organización de Memoria en la JVM
 
-  
+  ![Memoria](imagenes/Laboratorio_4/2.png)
 
 La JVM divide la memoria en dos tipos:
 
@@ -36,11 +37,7 @@ La JVM divide la memoria en dos tipos:
 | Privada por hilo | Registro PC | Instrucción actual que ejecuta el hilo |  
 | Privada por hilo | Stack de métodos nativos | Código externo C/C++ |
 
-  
 
-> Los hilos comparten objetos del heap, pero cada uno tiene su propio espacio de ejecución (stack y PC).
-
-  
 
 ---
 
@@ -52,7 +49,8 @@ La JVM divide la memoria en dos tipos:
 
 Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se va a ejecutar y quién la va a ejecutar.
 
-  
+  ![Creacion](imagenes/Laboratorio_4/3.png)
+
 
 > 💡 Se basa en usar **herencia (`Thread`)** o **interfaces (`Runnable`)** para definir las tareas concurrentes.
 
@@ -64,7 +62,7 @@ Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se
 
 #### Uso de hilos
 
-  
+![UsodeHilos](imagenes/Laboratorio_4/4.png)
 
 Definimos la clase de nuestro objeto base que manejará un estado (`PENDIENTE` o `RECIBIDO`) usando un `enum`.
 
