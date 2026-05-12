@@ -12,16 +12,13 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
   
 
-### Concurrencia e Hilos
+## Concurrencia e Hilos
 
   
 
 ![Hilos](imagenes/Laboratorio_4/1.png)
 
   
-
-![Hilos](imagenes/Laboratorio_4/1.png)
- 
 
 > 💡 Nos ayudan a crear aplicaciones que pueden hacer varias cosas al mismo tiempo (como descargar un archivo mientras sigues usando la interfaz), compartiendo la misma memoria.
 
@@ -35,13 +32,13 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
   
 
-### Organización de Memoria en la JVM
-
-  
+## Organización de Memoria en la JVM
 
   
 
 ![Memoria](imagenes/Laboratorio_4/2.png)
+
+  
 
 La JVM divide la memoria en dos tipos:
 
@@ -95,12 +92,13 @@ Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se
 
   
 
-#### Uso de hilos
+## Uso de hilos
 
   
 
 ![UsodeHilos](imagenes/Laboratorio_4/4.png)
 
+  
 
 Definimos la clase de nuestro objeto base que manejará un estado (`PENDIENTE` o `RECIBIDO`) usando un `enum`.
 
@@ -137,12 +135,11 @@ public class Correo extends Mensaje {
         }  
         return false;  
     }  
-  
     public void recibirCorreo() {  
-        // CAMBIAR EL ESTADO  
-		this.estado = estado.RECIBIDO;  
-	    System.out.println("Estado: " + this.getEstado());  
-    }  
+    // CAMBIAR EL ESTADO  
+    this.estado = estado.RECIBIDO;  
+    System.out.println("Estado: " + this.getEstado());  
+}
 }
 
 ```
@@ -198,9 +195,9 @@ public class EnvioCorreo implements Runnable {
   
         } catch (InterruptedException e) {  
             // Detalles técnicos del error  
-			e.printStackTrace();  
+            e.printStackTrace();  
             // mensaje personalizado  
-		    System.out.println("El envío fue interrumpido");  
+            System.out.println("El envío fue interrumpido");  
         }  
     }  
 }
@@ -250,9 +247,9 @@ public class RecepcionCorreo implements Runnable {
   
         } catch (InterruptedException e) {  
             // Detalles técnicos del error  
-			e.printStackTrace();  
+            e.printStackTrace();  
             // mensaje personalizado  
-			System.out.println("La recepción fue interrumpida");  
+            System.out.println("La recepción fue interrumpida");  
         }  
   
     }  
@@ -319,7 +316,7 @@ public class Main {
         Thread hiloRecepcion = new Thread(recepcion);  
   
         // Iniciando los hilos  
-		hiloEnvio.start();  
+        hiloEnvio.start();  
         hiloRecepcion.start();  
   
     }  
@@ -340,7 +337,7 @@ public class Main {
 
   
 
-#### Ejemplo
+## Ejemplo
 
   
 

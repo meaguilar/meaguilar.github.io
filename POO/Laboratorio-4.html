@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio-4.md</title>
+  <title>Laboratorio-4</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -15,12 +15,11 @@
 <ul>
 <li><a href="#hilos-en-java">Hilos en Java</a>
 <ul>
-<li></li>
-<li><a href="#creación-de-hilos">Creación de Hilos</a>
-<ul>
-<li></li>
-</ul>
-</li>
+<li><a href="#concurrencia-e-hilos">Concurrencia e Hilos</a></li>
+<li><a href="#organización-de-memoria-en-la-jvm">Organización de Memoria en la JVM</a></li>
+<li><a href="#creación-de-hilos">Creación de Hilos</a></li>
+<li><a href="#uso-de-hilos">Uso de hilos</a></li>
+<li><a href="#ejemplo">Ejemplo</a></li>
 <li><a href="#anexos">Anexos</a></li>
 </ul>
 </li>
@@ -32,13 +31,13 @@
     <div class="stackedit__html">
       <h1 id="hilos-en-java">Hilos en Java</h1>
 <p>En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), que nos permitirá ejecutar múltiples tareas de forma simultánea e independiente en el desarrollo de software.</p>
-<h3 id="concurrencia-e-hilos">Concurrencia e Hilos</h3>
+<h2 id="concurrencia-e-hilos">Concurrencia e Hilos</h2>
 <p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/1.png" alt="Hilos"></p>
 <blockquote>
 <p>💡 Nos ayudan a crear aplicaciones que pueden hacer varias cosas al mismo tiempo (como descargar un archivo mientras sigues usando la interfaz), compartiendo la misma memoria.</p>
 </blockquote>
 <hr>
-<h3 id="organización-de-memoria-en-la-jvm">Organización de Memoria en la JVM</h3>
+<h2 id="organización-de-memoria-en-la-jvm">Organización de Memoria en la JVM</h2>
 <p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/2.png" alt="Memoria"></p>
 <p>La JVM divide la memoria en dos tipos:</p>
 
@@ -88,7 +87,7 @@
 <p>💡 Se basa en usar <strong>herencia (<code>Thread</code>)</strong> o <strong>interfaces (<code>Runnable</code>)</strong> para definir las tareas concurrentes.</p>
 </blockquote>
 <hr>
-<h4 id="uso-de-hilos">Uso de hilos</h4>
+<h2 id="uso-de-hilos">Uso de hilos</h2>
 <p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/4.png" alt="UsodeHilos"></p>
 <p>Definimos la clase de nuestro objeto base que manejará un estado (<code>PENDIENTE</code> o <code>RECIBIDO</code>) usando un <code>enum</code>.</p>
 <pre class=" language-java"><code class="prism  language-java">
@@ -119,12 +118,11 @@
         <span class="token punctuation">}</span>  
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
-  
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-        <span class="token comment">// CAMBIAR EL ESTADO  </span>
-		<span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
-	    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>  
+    <span class="token comment">// CAMBIAR EL ESTADO  </span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 
 </code></pre>
@@ -161,9 +159,9 @@
   
         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
             <span class="token comment">// Detalles técnicos del error  </span>
-			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             <span class="token comment">// mensaje personalizado  </span>
-		    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El envío fue interrumpido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El envío fue interrumpido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         <span class="token punctuation">}</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span>
@@ -194,9 +192,9 @@
   
         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
             <span class="token comment">// Detalles técnicos del error  </span>
-			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             <span class="token comment">// mensaje personalizado  </span>
-			System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La recepción fue interrumpida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La recepción fue interrumpida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         <span class="token punctuation">}</span>  
   
     <span class="token punctuation">}</span>  
@@ -262,7 +260,7 @@
         Thread hiloRecepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>recepcion<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
         <span class="token comment">// Iniciando los hilos  </span>
-		hiloEnvio<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        hiloEnvio<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         hiloRecepcion<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
     <span class="token punctuation">}</span>  
@@ -272,7 +270,7 @@
 <p>💡 Ya no ejecutamos los métodos directamente. Usamos la clase <code>Thread</code> pasando la interfaz como parámetro y arrancamos la concurrencia usando <code>.start()</code>.</p>
 </blockquote>
 <hr>
-<h4 id="ejemplo">Ejemplo</h4>
+<h2 id="ejemplo">Ejemplo</h2>
 <p><a href="https://github.com/meaguilar/POO-2026/blob/3eca83e694f6ddbab8a824ef4bb888338179188b/Ejercicios-Laboratorios/Laboratorio-4/GestionCorreosHilos/src/main/java/Main.java">Ver Clases de Hilos</a></p>
 <hr>
 <h2 id="anexos">Anexos</h2>
