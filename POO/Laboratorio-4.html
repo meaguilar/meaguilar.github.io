@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio-4.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#hilos-en-java">Hilos en Java</a>
+<ul>
+<li></li>
+<li><a href="#creación-de-hilos">Creación de Hilos</a>
+<ul>
+<li></li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="hilos-en-java">Hilos en Java</h1>
+<p>En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), que nos permitirá ejecutar múltiples tareas de forma simultánea e independiente en el desarrollo de software.</p>
+<h3 id="concurrencia-e-hilos">Concurrencia e Hilos</h3>
+<p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/1.png" alt="Hilos"></p>
+<blockquote>
+<p>💡 Nos ayudan a crear aplicaciones que pueden hacer varias cosas al mismo tiempo (como descargar un archivo mientras sigues usando la interfaz), compartiendo la misma memoria.</p>
+</blockquote>
+<hr>
+<h3 id="organización-de-memoria-en-la-jvm">Organización de Memoria en la JVM</h3>
+<p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/2.png" alt="Memoria"></p>
+<p>La JVM divide la memoria en dos tipos:</p>
+
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Área</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Compartida</td>
+<td>Heap</td>
+<td>Objetos creados con <code>new</code></td>
+</tr>
+<tr>
+<td>Compartida</td>
+<td>Área de métodos</td>
+<td>Clases, métodos y código estático</td>
+</tr>
+<tr>
+<td>Privada por hilo</td>
+<td>Pila (Stack)</td>
+<td>Variables locales y llamadas a métodos</td>
+</tr>
+<tr>
+<td>Privada por hilo</td>
+<td>Registro PC</td>
+<td>Instrucción actual que ejecuta el hilo</td>
+</tr>
+<tr>
+<td>Privada por hilo</td>
+<td>Stack de métodos nativos</td>
+<td>Código externo C/C++</td>
+</tr>
+</tbody>
+</table><blockquote>
+<p>Los hilos comparten objetos del heap, pero cada uno tiene su propio espacio de ejecución (stack y PC).</p>
+</blockquote>
+<hr>
+<h2 id="creación-de-hilos">Creación de Hilos</h2>
+<p>Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se va a ejecutar y quién la va a ejecutar.</p>
+<p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/3.png" alt="Creacion"></p>
+<blockquote>
+<p>💡 Se basa en usar <strong>herencia (<code>Thread</code>)</strong> o <strong>interfaces (<code>Runnable</code>)</strong> para definir las tareas concurrentes.</p>
+</blockquote>
+<hr>
+<h4 id="uso-de-hilos">Uso de hilos</h4>
+<p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/4.png" alt="UsodeHilos"></p>
+<p>Definimos la clase de nuestro objeto base que manejará un estado (<code>PENDIENTE</code> o <code>RECIBIDO</code>) usando un <code>enum</code>.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Correo</span> <span class="token keyword">extends</span> <span class="token class-name">Mensaje</span> <span class="token punctuation">{</span>  
+  
+    <span class="token keyword">private</span> Estado estado<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token function">Correo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>  
+    <span class="token keyword">public</span> <span class="token function">Correo</span><span class="token punctuation">(</span>String remitente<span class="token punctuation">,</span> String destinario<span class="token punctuation">,</span> String asunto<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">super</span><span class="token punctuation">(</span>remitente<span class="token punctuation">,</span> destinario<span class="token punctuation">,</span> asunto<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>PENDIENTE<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> Estado <span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">return</span> estado<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setEstado</span><span class="token punctuation">(</span>Estado estado<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token comment">// metodos  </span>
+  <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">enviarCorreo</span><span class="token punctuation">(</span>Correo correo<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>correo <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token comment">// CAMBIAR EL ESTADO  </span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 La clase base maneja la información estática, pero su estado cambiará en tiempo real gracias a la ejecución de los hilos.</p>
+</blockquote>
+<hr>
+<p>La clase <code>EnvioCorreo</code> implementa <code>Runnable</code> y define la tarea de envío: espera 5 segundos simulando el tiempo de red y luego muestra los detalles del correo enviado.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EnvioCorreo</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>  
+    Correo correo<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token function">EnvioCorreo</span><span class="token punctuation">(</span>Correo correo<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>correo <span class="token operator">=</span> correo<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>  
+  
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\nEnviando correo..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            <span class="token comment">// Espera de 5 segundos  </span>
+  Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            <span class="token keyword">boolean</span> enviado <span class="token operator">=</span> correo<span class="token punctuation">.</span><span class="token function">enviarCorreo</span><span class="token punctuation">(</span>correo<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>enviado<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\nDetalles del correo enviado: "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+                correo<span class="token punctuation">.</span><span class="token function">mostrarMensaje</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>  
+                System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Error al enviar el correo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token punctuation">}</span>  
+  
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token comment">// Detalles técnicos del error  </span>
+  e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token comment">// mensaje personalizado  </span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El envío fue interrumpido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 Usamos <code>implements Runnable</code> porque estamos definiendo la tarea (el <em>qué hacer</em>) separada del hilo en sí. Usamos <code>Thread.sleep()</code> para simular tiempos de proceso.</p>
+</blockquote>
+<hr>
+<p>La clase <code>RecepcionCorreo</code> también implementa <code>Runnable</code> y define la tarea de recepción: espera 10 segundos simulando la llegada del mensaje y luego actualiza el estado del correo a <code>RECIBIDO</code>.</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RecepcionCorreo</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>  
+  
+    <span class="token keyword">private</span> Correo correo<span class="token punctuation">;</span>  
+  
+    <span class="token keyword">public</span> <span class="token function">RecepcionCorreo</span><span class="token punctuation">(</span>Correo correo<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">this</span><span class="token punctuation">.</span>correo <span class="token operator">=</span> correo<span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
+  
+    <span class="token annotation punctuation">@Override</span>  
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>  
+  
+            <span class="token comment">// Espera de 10 segundos  </span>
+  Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n Bandeja de entrada (correos recibidos) .... "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            correo<span class="token punctuation">.</span><span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            correo<span class="token punctuation">.</span><span class="token function">mostrarMensaje</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+            <span class="token comment">// Detalles técnicos del error  </span>
+  e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            <span class="token comment">// mensaje personalizado  </span>
+  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La recepción fue interrumpida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token punctuation">}</span>  
+  
+    <span class="token punctuation">}</span>  
+  
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 Cada clase implementa su propia versión del método <code>run()</code>, definiendo tiempos y lógicas completamente independientes.</p>
+</blockquote>
+<hr>
+<p>Solo asignamos los objetos (<code>EnvioCorreo</code> o <code>RecepcionCorreo</code>) a los hilos constructores de Java.</p>
+
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th><code>extends Thread</code></th>
+<th><code>implements Runnable</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Herencia</td>
+<td>Ocupa la herencia (no puede extender otra clase)</td>
+<td>Libre para extender otras clases</td>
+</tr>
+<tr>
+<td>Flexibilidad</td>
+<td>Menor</td>
+<td>Mayor ✅</td>
+</tr>
+<tr>
+<td>Inicio</td>
+<td><code>hilo.start()</code></td>
+<td><code>new Thread(tarea).start()</code></td>
+</tr>
+<tr>
+<td>Uso recomendado</td>
+<td>Cuando el hilo ES la tarea</td>
+<td>Cuando la tarea es independiente del hilo</td>
+</tr>
+</tbody>
+</table><p>En <code>Main</code>, creamos las instancias de los <code>Runnable</code>, las envolvemos en objetos <code>Thread</code> y arrancamos ambos hilos de forma concurrente con <code>.start()</code>.</p>
+<pre class=" language-java"><code class="prism  language-java">ublic <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+  
+        Correo correoEnviar <span class="token operator">=</span>  
+                <span class="token keyword">new</span> <span class="token class-name">Correo</span><span class="token punctuation">(</span><span class="token string">"uca@uca.edu.sv"</span><span class="token punctuation">,</span>  
+                        <span class="token string">"poo@uca.edu.sv"</span><span class="token punctuation">,</span>  
+                        <span class="token string">"Primer correo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        Correo correoRecibir <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Correo</span><span class="token punctuation">(</span>  
+                 <span class="token string">"poo@uca.edu.sv"</span><span class="token punctuation">,</span>  
+                 <span class="token string">"secciones_poo@uca.edu.sv"</span><span class="token punctuation">,</span>  
+                <span class="token string">"Cuarto laboratorio POO"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token comment">// Creando los objetos (tareas) de la clase que implementa Runnable  </span>
+ <span class="token comment">// Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  </span>
+        RecepcionCorreo recepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RecepcionCorreo</span><span class="token punctuation">(</span>correoRecibir<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token comment">// Creando el hilo para agregar los objetos (tareas)  </span>
+  Thread hiloEnvio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>envio<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        Thread hiloRecepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>recepcion<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+        <span class="token comment">// Iniciando los hilos  </span>
+  hiloEnvio<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        hiloRecepcion<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+  
+    <span class="token punctuation">}</span>  
+<span class="token punctuation">}</span>
+</code></pre>
+<blockquote>
+<p>💡 Ya no ejecutamos los métodos directamente. Usamos la clase <code>Thread</code> pasando la interfaz como parámetro y arrancamos la concurrencia usando <code>.start()</code>.</p>
+</blockquote>
+<hr>
+<h4 id="ejemplo">Ejemplo</h4>
+<p><a href="https://github.com/meaguilar/POO-2026/blob/3eca83e694f6ddbab8a824ef4bb888338179188b/Ejercicios-Laboratorios/Laboratorio-4/GestionCorreosHilos/src/main/java/Main.java">Ver Clases de Hilos</a></p>
+<hr>
+<h2 id="anexos">Anexos</h2>
+<ul>
+<li><strong>Documentación oficial de Oracle Java:</strong> Guía completa de la plataforma Java y manejo de la clase Thread.</li>
+</ul>
+<p><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Thread.html">https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Thread.html</a></p>
+<ul>
+<li><strong>Java Threads — GeeksForGeeks:</strong> Tutorial completo de creación de hilos y concurrencia.</li>
+</ul>
+<p><a href="https://www.geeksforgeeks.org/java/java-threads/">https://www.geeksforgeeks.org/java/java-threads/</a></p>
+<ul>
+<li><strong>Runnable Interface in Java — GeeksForGeeks:</strong> Explicación de la interfaz Runnable.</li>
+</ul>
+<p><a href="https://www.geeksforgeeks.org/java/runnable-interface-in-java/">https://www.geeksforgeeks.org/java/runnable-interface-in-java/</a></p>
+
+    </div>
+  </div>
+</body>
+
+</html>

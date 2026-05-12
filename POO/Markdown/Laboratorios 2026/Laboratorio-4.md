@@ -20,6 +20,11 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
   
 
+![Hilos](imagenes/Laboratorio_4/1.png)
+
+![Hilos](imagenes/Laboratorio_4/1.png)
+  
+
 > 💡 Nos ayudan a crear aplicaciones que pueden hacer varias cosas al mismo tiempo (como descargar un archivo mientras sigues usando la interfaz), compartiendo la misma memoria.
 
   
@@ -39,6 +44,10 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 ![Memoria](imagenes/Laboratorio_4/2.png)
 
   
+
+![Memoria](imagenes/Laboratorio_4/2.png)
+
+  ![Memoria](imagenes/Laboratorio_4/2.png)
 
 La JVM divide la memoria en dos tipos:
 
@@ -99,6 +108,10 @@ Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se
 ![UsodeHilos](imagenes/Laboratorio_4/4.png)
 
   
+
+![UsodeHilos](imagenes/Laboratorio_4/4.png)
+
+![UsodeHilos](imagenes/Laboratorio_4/4.png)
 
 Definimos la clase de nuestro objeto base que manejará un estado (`PENDIENTE` o `RECIBIDO`) usando un `enum`.
 
