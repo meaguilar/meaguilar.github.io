@@ -91,11 +91,14 @@
 <h4 id="uso-de-hilos">Uso de hilos</h4>
 <p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_4/4.png" alt="UsodeHilos"></p>
 <p>Definimos la clase de nuestro objeto base que manejará un estado (<code>PENDIENTE</code> o <code>RECIBIDO</code>) usando un <code>enum</code>.</p>
-<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Correo</span> <span class="token keyword">extends</span> <span class="token class-name">Mensaje</span> <span class="token punctuation">{</span>  
+<pre class=" language-java"><code class="prism  language-java">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Correo</span> <span class="token keyword">extends</span> <span class="token class-name">Mensaje</span> <span class="token punctuation">{</span>  
   
     <span class="token keyword">private</span> Estado estado<span class="token punctuation">;</span>  
   
-    <span class="token keyword">public</span> <span class="token function">Correo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>  
+    <span class="token keyword">public</span> <span class="token function">Correo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token punctuation">}</span>  
+  
     <span class="token keyword">public</span> <span class="token function">Correo</span><span class="token punctuation">(</span>String remitente<span class="token punctuation">,</span> String destinario<span class="token punctuation">,</span> String asunto<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
         <span class="token keyword">super</span><span class="token punctuation">(</span>remitente<span class="token punctuation">,</span> destinario<span class="token punctuation">,</span> asunto<span class="token punctuation">)</span><span class="token punctuation">;</span>  
         <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>PENDIENTE<span class="token punctuation">;</span>  
@@ -104,12 +107,13 @@
     <span class="token keyword">public</span> Estado <span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
         <span class="token keyword">return</span> estado<span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
+  
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setEstado</span><span class="token punctuation">(</span>Estado estado<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
         <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
   
     <span class="token comment">// metodos  </span>
-  <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">enviarCorreo</span><span class="token punctuation">(</span>Correo correo<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">enviarCorreo</span><span class="token punctuation">(</span>Correo correo<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
         <span class="token keyword">if</span> <span class="token punctuation">(</span>correo <span class="token operator">!=</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
             <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>  
         <span class="token punctuation">}</span>  
@@ -118,11 +122,11 @@
   
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
         <span class="token comment">// CAMBIAR EL ESTADO  </span>
-  <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+		<span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
+	    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
-
 <span class="token punctuation">}</span>
+
 </code></pre>
 <blockquote>
 <p>💡 La clase base maneja la información estática, pero su estado cambiará en tiempo real gracias a la ejecución de los hilos.</p>
@@ -130,6 +134,7 @@
 <hr>
 <p>La clase <code>EnvioCorreo</code> implementa <code>Runnable</code> y define la tarea de envío: espera 5 segundos simulando el tiempo de red y luego muestra los detalles del correo enviado.</p>
 <pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EnvioCorreo</span> <span class="token keyword">implements</span> <span class="token class-name">Runnable</span> <span class="token punctuation">{</span>  
+  
     Correo correo<span class="token punctuation">;</span>  
   
     <span class="token keyword">public</span> <span class="token function">EnvioCorreo</span><span class="token punctuation">(</span>Correo correo<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
@@ -143,7 +148,7 @@
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\nEnviando correo..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
             <span class="token comment">// Espera de 5 segundos  </span>
-  Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+			Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
             <span class="token keyword">boolean</span> enviado <span class="token operator">=</span> correo<span class="token punctuation">.</span><span class="token function">enviarCorreo</span><span class="token punctuation">(</span>correo<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
@@ -156,12 +161,13 @@
   
         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
             <span class="token comment">// Detalles técnicos del error  </span>
-  e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             <span class="token comment">// mensaje personalizado  </span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El envío fue interrumpido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+		    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"El envío fue interrumpido"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         <span class="token punctuation">}</span>  
     <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span>
+
 </code></pre>
 <blockquote>
 <p>💡 Usamos <code>implements Runnable</code> porque estamos definiendo la tarea (el <em>qué hacer</em>) separada del hilo en sí. Usamos <code>Thread.sleep()</code> para simular tiempos de proceso.</p>
@@ -181,20 +187,19 @@
         <span class="token keyword">try</span> <span class="token punctuation">{</span>  
   
             <span class="token comment">// Espera de 10 segundos  </span>
-  Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+			Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n Bandeja de entrada (correos recibidos) .... "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             correo<span class="token punctuation">.</span><span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             correo<span class="token punctuation">.</span><span class="token function">mostrarMensaje</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
         <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
             <span class="token comment">// Detalles técnicos del error  </span>
-  e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             <span class="token comment">// mensaje personalizado  </span>
-  System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La recepción fue interrumpida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+			System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"La recepción fue interrumpida"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         <span class="token punctuation">}</span>  
   
     <span class="token punctuation">}</span>  
-  
 <span class="token punctuation">}</span>
 </code></pre>
 <blockquote>
@@ -234,7 +239,8 @@
 </tr>
 </tbody>
 </table><p>En <code>Main</code>, creamos las instancias de los <code>Runnable</code>, las envolvemos en objetos <code>Thread</code> y arrancamos ambos hilos de forma concurrente con <code>.start()</code>.</p>
-<pre class=" language-java"><code class="prism  language-java">ublic <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>  
+<pre class=" language-java"><code class="prism  language-java">
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">{</span>  
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>  
   
         Correo correoEnviar <span class="token operator">=</span>  
@@ -248,15 +254,15 @@
                 <span class="token string">"Cuarto laboratorio POO"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
         <span class="token comment">// Creando los objetos (tareas) de la clase que implementa Runnable  </span>
- <span class="token comment">// Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  </span>
+		<span class="token comment">// Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  </span>
         RecepcionCorreo recepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RecepcionCorreo</span><span class="token punctuation">(</span>correoRecibir<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
         <span class="token comment">// Creando el hilo para agregar los objetos (tareas)  </span>
-  Thread hiloEnvio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>envio<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+		Thread hiloEnvio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>envio<span class="token punctuation">)</span><span class="token punctuation">;</span>  
         Thread hiloRecepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>recepcion<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
         <span class="token comment">// Iniciando los hilos  </span>
-  hiloEnvio<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+		hiloEnvio<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
         hiloRecepcion<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
     <span class="token punctuation">}</span>  
