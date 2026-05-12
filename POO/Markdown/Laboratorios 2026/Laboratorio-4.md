@@ -1,5 +1,8 @@
-﻿
+﻿  
+
 # Hilos en Java
+
+  
 
   
 
@@ -7,7 +10,13 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
   
 
+  
+
 ### Concurrencia e Hilos
+
+  
+
+![Hilos](imagenes/Laboratorio_4/1.png)
 
   
 
@@ -15,7 +24,11 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
   
 
+  
+
 ---
+
+  
 
   
 
@@ -23,9 +36,12 @@ En este laboratorio, exploraremos la concurrencia y el uso de hilos (Threads), q
 
   
 
-La JVM divide la memoria en dos tipos:
+![Memoria](imagenes/Laboratorio_4/2.png)
 
   
+
+La JVM divide la memoria en dos tipos:
+
 
 
 | Tipo | Área | Descripción |  
@@ -41,8 +57,11 @@ La JVM divide la memoria en dos tipos:
 > Los hilos comparten objetos del heap, pero cada uno tiene su propio espacio de ejecución (stack y PC).
 
   
+  
 
 ---
+
+  
 
   
 
@@ -50,11 +69,20 @@ La JVM divide la memoria en dos tipos:
 
   
 
+  
+
 Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se va a ejecutar y quién la va a ejecutar.
 
   
 
+![Creacion](imagenes/Laboratorio_4/3.png)
+
+  
+  
+
 > 💡 Se basa en usar **herencia (`Thread`)** o **interfaces (`Runnable`)** para definir las tareas concurrentes.
+
+  
 
   
 
@@ -62,7 +90,13 @@ Java nos ofrece herramientas para crear hilos, permitiendo separar qué tarea se
 
   
 
+  
+
 #### Uso de hilos
+
+  
+
+![UsodeHilos](imagenes/Laboratorio_4/4.png)
 
   
 
@@ -70,12 +104,17 @@ Definimos la clase de nuestro objeto base que manejará un estado (`PENDIENTE` o
 
   
 
+  
+
 ```java
+
 public class Correo extends Mensaje {  
   
     private Estado estado;  
   
-    public Correo() {}  
+    public Correo() {  
+    }  
+  
     public Correo(String remitente, String destinario, String asunto) {  
         super(remitente, destinario, asunto);  
         this.estado = estado.PENDIENTE;  
@@ -84,12 +123,13 @@ public class Correo extends Mensaje {
     public Estado getEstado() {  
         return estado;  
     }  
+  
     public void setEstado(Estado estado) {  
         this.estado = estado;  
     }  
   
     // metodos  
-  public boolean enviarCorreo(Correo correo) {  
+    public boolean enviarCorreo(Correo correo) {  
         if (correo != null) {  
             return true;  
         }  
@@ -98,12 +138,14 @@ public class Correo extends Mensaje {
   
     public void recibirCorreo() {  
         // CAMBIAR EL ESTADO  
-  this.estado = estado.RECIBIDO;  
-        System.out.println("Estado: " + this.getEstado());  
+		this.estado = estado.RECIBIDO;  
+	    System.out.println("Estado: " + this.getEstado());  
     }  
-
 }
+
 ```
+
+  
 
   
 
@@ -111,7 +153,11 @@ public class Correo extends Mensaje {
 
   
 
+  
+
 ---
+
+  
 
   
 
@@ -119,8 +165,11 @@ La clase `EnvioCorreo` implementa `Runnable` y define la tarea de envío: espera
 
   
 
+  
+
 ```java
 public class EnvioCorreo implements Runnable {  
+  
     Correo correo;  
   
     public EnvioCorreo(Correo correo) {  
@@ -134,7 +183,7 @@ public class EnvioCorreo implements Runnable {
             System.out.println("\nEnviando correo...");  
   
             // Espera de 5 segundos  
-  Thread.sleep(5000);  
+			Thread.sleep(5000);  
   
             boolean enviado = correo.enviarCorreo(correo);  
   
@@ -147,13 +196,16 @@ public class EnvioCorreo implements Runnable {
   
         } catch (InterruptedException e) {  
             // Detalles técnicos del error  
-  e.printStackTrace();  
+			e.printStackTrace();  
             // mensaje personalizado  
-  System.out.println("El envío fue interrumpido");  
+		    System.out.println("El envío fue interrumpido");  
         }  
     }  
 }
+
 ```
+
+  
 
   
 
@@ -161,13 +213,19 @@ public class EnvioCorreo implements Runnable {
 
   
 
+  
+
 ---
+
+  
 
   
 
 La clase `RecepcionCorreo` también implementa `Runnable` y define la tarea de recepción: espera 10 segundos simulando la llegada del mensaje y luego actualiza el estado del correo a `RECIBIDO`.
 
- 
+  
+
+  
 
 ```java
 public class RecepcionCorreo implements Runnable {  
@@ -183,32 +241,40 @@ public class RecepcionCorreo implements Runnable {
         try {  
   
             // Espera de 10 segundos  
-  Thread.sleep(10000);  
+			Thread.sleep(10000);  
             System.out.println("\n Bandeja de entrada (correos recibidos) .... ");  
             correo.recibirCorreo();  
             correo.mostrarMensaje();  
   
         } catch (InterruptedException e) {  
             // Detalles técnicos del error  
-  e.printStackTrace();  
+			e.printStackTrace();  
             // mensaje personalizado  
-  System.out.println("La recepción fue interrumpida");  
+			System.out.println("La recepción fue interrumpida");  
         }  
   
     }  
-  
 }
 ```
 
+  
+  
 
 > 💡 Cada clase implementa su propia versión del método `run()`, definiendo tiempos y lógicas completamente independientes.
 
+  
+  
 
 ---
 
- 
+  
+
+  
 
 Solo asignamos los objetos (`EnvioCorreo` o `RecepcionCorreo`) a los hilos constructores de Java.
+
+  
+
 
 | Característica | `extends Thread` | `implements Runnable` |
 |----------------|------------------|------------------------|
@@ -219,12 +285,17 @@ Solo asignamos los objetos (`EnvioCorreo` o `RecepcionCorreo`) a los hilos const
 
   
 
+  
+
 En `Main`, creamos las instancias de los `Runnable`, las envolvemos en objetos `Thread` y arrancamos ambos hilos de forma concurrente con `.start()`.
 
   
 
+  
+
 ```java
-ublic class Main {  
+
+public class Main {  
     public static void main(String[] args) {  
   
         Correo correoEnviar =  
@@ -238,26 +309,32 @@ ublic class Main {
                 "Cuarto laboratorio POO");  
   
         // Creando los objetos (tareas) de la clase que implementa Runnable  
- // Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  
+		// Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  
         RecepcionCorreo recepcion = new RecepcionCorreo(correoRecibir);  
   
         // Creando el hilo para agregar los objetos (tareas)  
-  Thread hiloEnvio = new Thread(envio);  
+		Thread hiloEnvio = new Thread(envio);  
         Thread hiloRecepcion = new Thread(recepcion);  
   
         // Iniciando los hilos  
-  hiloEnvio.start();  
+		hiloEnvio.start();  
         hiloRecepcion.start();  
   
     }  
 }
 ```
 
+  
+
 > 💡 Ya no ejecutamos los métodos directamente. Usamos la clase `Thread` pasando la interfaz como parámetro y arrancamos la concurrencia usando `.start()`.
 
   
 
+  
+
 ---
+
+  
 
   
 
@@ -265,7 +342,11 @@ ublic class Main {
 
   
 
+  
+
 [Ver Clases de Hilos](https://github.com/meaguilar/POO-2026/blob/3eca83e694f6ddbab8a824ef4bb888338179188b/Ejercicios-Laboratorios/Laboratorio-4/GestionCorreosHilos/src/main/java/Main.java)
+
+  
 
   
 
@@ -273,22 +354,36 @@ ublic class Main {
 
   
 
+  
+
 ## Anexos
+
+  
 
   
 
 -  **Documentación oficial de Oracle Java:** Guía completa de la plataforma Java y manejo de la clase Thread.
 
+  
+
 [https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Thread.html](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Thread.html)
+
+  
 
   
 
 -  **Java Threads — GeeksForGeeks:** Tutorial completo de creación de hilos y concurrencia.
 
+  
+
 [https://www.geeksforgeeks.org/java/java-threads/](https://www.geeksforgeeks.org/java/java-threads/)
 
   
 
+  
+
 -  **Runnable Interface in Java — GeeksForGeeks:** Explicación de la interfaz Runnable.
+
+  
 
 [https://www.geeksforgeeks.org/java/runnable-interface-in-java/](https://www.geeksforgeeks.org/java/runnable-interface-in-java/)
