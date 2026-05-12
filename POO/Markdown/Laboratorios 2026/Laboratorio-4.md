@@ -135,13 +135,13 @@ public class Correo extends Mensaje {
         }  
         return false;  
     }  
+  
     public void recibirCorreo() {  
-    // CAMBIAR EL ESTADO  
-    this.estado = estado.RECIBIDO;  
-    System.out.println("Estado: " + this.getEstado());  
-    }
+        // CAMBIAR EL ESTADO  
+        this.estado = estado.RECIBIDO;  
+        System.out.println("Estado: " + this.getEstado());  
+    }  
 }
-
 ```
 
   
@@ -182,7 +182,7 @@ public class EnvioCorreo implements Runnable {
             System.out.println("\nEnviando correo...");  
   
             // Espera de 5 segundos  
-			Thread.sleep(5000);  
+            Thread.sleep(5000);  
   
             boolean enviado = correo.enviarCorreo(correo);  
   
@@ -240,7 +240,7 @@ public class RecepcionCorreo implements Runnable {
         try {  
   
             // Espera de 10 segundos  
-			Thread.sleep(10000);  
+            Thread.sleep(10000);  
             System.out.println("\n Bandeja de entrada (correos recibidos) .... ");  
             correo.recibirCorreo();  
             correo.mostrarMensaje();  
@@ -311,8 +311,8 @@ public class Main {
 		// Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  
         RecepcionCorreo recepcion = new RecepcionCorreo(correoRecibir);  
   
-        // Creando el hilo para agregar los objetos (tareas)  
-		Thread hiloEnvio = new Thread(envio);  
+        // Creando el hilo para agregar los objetos (tareas) 
+        Thread hiloEnvio = new Thread(envio);  
         Thread hiloRecepcion = new Thread(recepcion);  
   
         // Iniciando los hilos  

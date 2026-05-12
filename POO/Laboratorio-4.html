@@ -118,13 +118,13 @@
         <span class="token punctuation">}</span>  
         <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>  
     <span class="token punctuation">}</span>  
+  
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
-    <span class="token comment">// CAMBIAR EL ESTADO  </span>
-    <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
-    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
-    <span class="token punctuation">}</span>
+        <span class="token comment">// CAMBIAR EL ESTADO  </span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>estado <span class="token operator">=</span> estado<span class="token punctuation">.</span>RECIBIDO<span class="token punctuation">;</span>  
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Estado: "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getEstado</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token punctuation">}</span>  
 <span class="token punctuation">}</span>
-
 </code></pre>
 <blockquote>
 <p>💡 La clase base maneja la información estática, pero su estado cambiará en tiempo real gracias a la ejecución de los hilos.</p>
@@ -146,7 +146,7 @@
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\nEnviando correo..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
             <span class="token comment">// Espera de 5 segundos  </span>
-			Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
             <span class="token keyword">boolean</span> enviado <span class="token operator">=</span> correo<span class="token punctuation">.</span><span class="token function">enviarCorreo</span><span class="token punctuation">(</span>correo<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
@@ -185,7 +185,7 @@
         <span class="token keyword">try</span> <span class="token punctuation">{</span>  
   
             <span class="token comment">// Espera de 10 segundos  </span>
-			Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+            Thread<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">10000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"\n Bandeja de entrada (correos recibidos) .... "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             correo<span class="token punctuation">.</span><span class="token function">recibirCorreo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
             correo<span class="token punctuation">.</span><span class="token function">mostrarMensaje</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
@@ -255,8 +255,8 @@
 		<span class="token comment">// Simulando un envio y un recepcion de correo  EnvioCorreo envio = new EnvioCorreo(correoEnviar);  </span>
         RecepcionCorreo recepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RecepcionCorreo</span><span class="token punctuation">(</span>correoRecibir<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
-        <span class="token comment">// Creando el hilo para agregar los objetos (tareas)  </span>
-		Thread hiloEnvio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>envio<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+        <span class="token comment">// Creando el hilo para agregar los objetos (tareas) </span>
+        Thread hiloEnvio <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>envio<span class="token punctuation">)</span><span class="token punctuation">;</span>  
         Thread hiloRecepcion <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span>recepcion<span class="token punctuation">)</span><span class="token punctuation">;</span>  
   
         <span class="token comment">// Iniciando los hilos  </span>
