@@ -139,7 +139,7 @@ public class Correo extends Mensaje {
     // CAMBIAR EL ESTADO  
     this.estado = estado.RECIBIDO;  
     System.out.println("Estado: " + this.getEstado());  
-}
+    }
 }
 
 ```
