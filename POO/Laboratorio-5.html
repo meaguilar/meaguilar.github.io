@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio_5.md</title>
+  <title>Laboratorio 5</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -35,12 +35,12 @@
 <p>En este laboratorio, exploraremos el desarrollo de interfaces gráficas de usuario (GUI) utilizando JavaFX. Aprenderemos su arquitectura fundamental, el ciclo de vida de una aplicación y cómo aplicar el patrón MVC para mantener nuestro código ordenado y escalable.</p>
 <h2 id="componentes-principales-de-javafx">Componentes Principales de JavaFX</h2>
 <p>La interfaz se construye utilizando tres elementos jerárquicos esenciales:</p>
-<p><img src="imagenes/Laboratorio_5/1.png" alt="Componentes"></p>
+<p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_5/1.png" alt="Componentes"></p>
 <blockquote>
 <p>💡 <strong>En resumen:</strong> El <em>Stage</em> es la ventana, la <em>Scene</em> es el lienzo que colocamos dentro, y los <em>Nodes</em> son los dibujos o componentes que rellenan ese lienzo.</p>
 </blockquote>
 <h2 id="ciclo-de-vida-de-una-aplicación-javafx">Ciclo de Vida de una Aplicación JavaFX</h2>
-<p><img src="imagenes/Laboratorio_5/2.png" alt="Ciclo"></p>
+<p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_5/2.png" alt="Ciclo"></p>
 <hr>
 <h2 id="diseñar-una-gui-con-javafx">Diseñar una GUI con JavaFX</h2>
 <h3 id="contenedores-layouts">1. Contenedores (Layouts)</h3>
@@ -163,7 +163,7 @@
 </tbody>
 </table><h2 id="arquitectura-de-software-patrón-mvc">Arquitectura de Software: Patrón MVC</h2>
 <p>JavaFX está nativamente diseñado para trabajar bajo el patrón <strong>MVC (Modelo - Vista - Controlador)</strong>, separando la lógica de negocio de la interfaz gráfica a través de archivos <strong>FXML</strong>.</p>
-<p><img src="imagenes/Laboratorio_5/3.png" alt="MVC"></p>
+<p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_5/3.png" alt="MVC"></p>
 <ul>
 <li><strong>Modelo:</strong> Representa los datos y las reglas del negocio de nuestra aplicación. No sabe nada de botones ni de pantallas.</li>
 <li><strong>Vista (FXML):</strong> Es el archivo XML que define la estructura jerárquica de los nodos gráficos (el diseño visual).</li>
@@ -179,7 +179,7 @@
 <ul>
 <li><a href="https://github.com/openjfx/javafx-gradle-plugin">https://github.com/openjfx/javafx-gradle-plugin</a></li>
 </ul>
-<p><img src="imagenes/Laboratorio_5/4.png" alt="Gradle"></p>
+<p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_5/4.png" alt="Gradle"></p>
 <p><strong>Opcion 2:</strong> SIN plugin (solo Maven Central puro)</p>
 <ul>
 <li>
@@ -189,7 +189,7 @@
 <p><a href="https://central.sonatype.com/artifact/org.openjfx/javafx-controls/21">https://central.sonatype.com/artifact/org.openjfx/javafx-controls/21</a></p>
 </li>
 </ul>
-<p><img src="imagenes/Laboratorio_5/5.png" alt="Maven"></p>
+<p><img src="Markdown/Laboratorios%202026/imagenes/Laboratorio_5/5.png" alt="Maven"></p>
 <h3 id="el-main-y-el-cambio-en-el-ciclo-de-ejecución">1. El <code>Main</code> y el cambio en el ciclo de ejecución</h3>
 <blockquote>
 <p>⚠️ <strong>Nota importante:</strong> En las aplicaciones de consola tradicionales, todo el código se ejecutaba de forma secuencial dentro del método <code>main</code>. En JavaFX esto cambia por completo: la clase debe extender de <code>Application</code> y el método <code>main</code> ahora solo sirve para invocar a <code>launch()</code>, delegando el control al ciclo de vida gráfico en el método <code>start()</code>.</p>
