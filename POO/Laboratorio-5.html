@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio_5.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#interfaces-gráficas-con-javafx">Interfaces Gráficas con JavaFX</a>
+<ul>
+<li><a href="#componentes-principales-de-javafx">Componentes Principales de JavaFX</a></li>
+<li><a href="#ciclo-de-vida-de-una-aplicación-javafx">Ciclo de Vida de una Aplicación JavaFX</a></li>
+<li><a href="#diseñar-una-gui-con-javafx">Diseñar una GUI con JavaFX</a></li>
+<li><a href="#arquitectura-de-software-patrón-mvc">Arquitectura de Software: Patrón MVC</a></li>
+<li><a href="#uso-de-la-anotación-fxml-en-los-controladores-de-javafx">Uso de la anotación @FXML en los controladores de JavaFX</a></li>
+<li><a href="#ejercicio-de-ejemplo">Ejercicio de Ejemplo</a></li>
+<li><a href="#ejemplo-completo">Ejemplo Completo</a></li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="interfaces-gráficas-con-javafx">Interfaces Gráficas con JavaFX</h1>
+<p>En este laboratorio, exploraremos el desarrollo de interfaces gráficas de usuario (GUI) utilizando JavaFX. Aprenderemos su arquitectura fundamental, el ciclo de vida de una aplicación y cómo aplicar el patrón MVC para mantener nuestro código ordenado y escalable.</p>
+<h2 id="componentes-principales-de-javafx">Componentes Principales de JavaFX</h2>
+<p>La interfaz se construye utilizando tres elementos jerárquicos esenciales:</p>
+<p><img src="imagenes/Laboratorio_5/1.png" alt="Componentes"></p>
+<blockquote>
+<p>💡 <strong>En resumen:</strong> El <em>Stage</em> es la ventana, la <em>Scene</em> es el lienzo que colocamos dentro, y los <em>Nodes</em> son los dibujos o componentes que rellenan ese lienzo.</p>
+</blockquote>
+<h2 id="ciclo-de-vida-de-una-aplicación-javafx">Ciclo de Vida de una Aplicación JavaFX</h2>
+<p><img src="imagenes/Laboratorio_5/2.png" alt="Ciclo"></p>
+<hr>
+<h2 id="diseñar-una-gui-con-javafx">Diseñar una GUI con JavaFX</h2>
+<h3 id="contenedores-layouts">1. Contenedores (Layouts)</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Contenedores</th>
+<th align="left">Descripción</th>
+<th align="left">Propiedades comunes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>VBox</strong></td>
+<td align="left">Contenedor que organiza los nodos hijos verticalmente en una sola columna.</td>
+<td align="left"><code>spacing</code>, <code>padding</code>, <code>alignment</code></td>
+</tr>
+<tr>
+<td align="left"><strong>HBox</strong></td>
+<td align="left">Contenedor que organiza los nodos hijos horizontalmente en una sola fila.</td>
+<td align="left"><code>spacing</code>, <code>padding</code>, <code>alignment</code></td>
+</tr>
+<tr>
+<td align="left"><strong>GridPane</strong></td>
+<td align="left">Contenedor flexible que alinea los componentes en una cuadrícula (rejilla de filas y columnas).</td>
+<td align="left"><code>hgap</code>, <code>vgap</code>, <code>alignment</code></td>
+</tr>
+<tr>
+<td align="left"><strong>BorderPane</strong></td>
+<td align="left">Distribuye los elementos en cinco regiones predefinidas: superior (top), inferior (bottom), izquierda (left), derecha (right) y centro (center).</td>
+<td align="left"><code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, <code>center</code></td>
+</tr>
+<tr>
+<td align="left"><strong>StackPane</strong></td>
+<td align="left">Coloca los nodos hijos en una pila, superponiéndolos unos encima de otros (de atrás hacia adelante).</td>
+<td align="left"><code>alignment</code>, <code>padding</code></td>
+</tr>
+</tbody>
+</table><hr>
+<h3 id="controles-de-interfaz-ui-controls">2. Controles de Interfaz (UI Controls)</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Controles</th>
+<th align="left">Descripción</th>
+<th align="left">Propiedades comunes</th>
+<th align="left">Eventos principales</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Button</strong></td>
+<td align="left">Botón que ejecuta una acción al hacer clic.</td>
+<td align="left"><code>text</code>, <code>disable</code>, <code>style</code></td>
+<td align="left"><code>setOnAction</code></td>
+</tr>
+<tr>
+<td align="left"><strong>Label</strong></td>
+<td align="left">Muestra texto informativo no editable.</td>
+<td align="left"><code>text</code>, <code>font</code>, <code>style</code></td>
+<td align="left">No aplica</td>
+</tr>
+<tr>
+<td align="left"><strong>TextField</strong></td>
+<td align="left">Campo de entrada de texto de una sola línea.</td>
+<td align="left"><code>text</code>, <code>promptText</code>, <code>editable</code></td>
+<td align="left"><code>setOnAction</code>, cambio de texto</td>
+</tr>
+<tr>
+<td align="left"><strong>ComboBox</strong></td>
+<td align="left">Lista desplegable para seleccionar una opción.</td>
+<td align="left"><code>items</code>, <code>value</code>, <code>editable</code></td>
+<td align="left"><code>setOnAction</code></td>
+</tr>
+<tr>
+<td align="left"><strong>TableView</strong></td>
+<td align="left">Tabla estructurada para desplegar colecciones de datos en filas y columnas.</td>
+<td align="left"><code>items</code>, <code>columns</code></td>
+<td align="left">Selección de filas, edición de celdas</td>
+</tr>
+</tbody>
+</table><h3 id="sistema-de-manejo-de-eventos">3. Sistema de Manejo de Eventos</h3>
+
+<table>
+<thead>
+<tr>
+<th align="left">Evento FXML</th>
+<th align="left">Propiedad JavaFX</th>
+<th align="left">¿Qué hace este evento?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>onAction</code></td>
+<td align="left"><code>ActionEvent</code></td>
+<td align="left">Se dispara al activar un control básico (como hacer clic en un botón o presionar Enter en un campo de texto).</td>
+</tr>
+<tr>
+<td align="left"><code>onMouseClicked</code></td>
+<td align="left"><code>MouseEvent</code></td>
+<td align="left">Se gatilla al presionar y soltar cualquier botón del mouse sobre un nodo específico.</td>
+</tr>
+<tr>
+<td align="left"><code>onKeyPressed</code></td>
+<td align="left"><code>KeyEvent</code></td>
+<td align="left">Se activa en el instante preciso en que el usuario presiona una tecla del teclado físico teniendo el foco en el componente.</td>
+</tr>
+<tr>
+<td align="left"><code>onMouseEntered</code></td>
+<td align="left"><code>MouseEvent</code></td>
+<td align="left">Se dispara cuando el puntero del cursor entra en el límite o área visible de un componente.</td>
+</tr>
+<tr>
+<td align="left"><code>onScroll</code></td>
+<td align="left"><code>ScrollEvent</code></td>
+<td align="left">Se ejecuta al usar la rueda del mouse o gestos de desplazamiento en el panel táctil sobre un nodo.</td>
+</tr>
+</tbody>
+</table><h2 id="arquitectura-de-software-patrón-mvc">Arquitectura de Software: Patrón MVC</h2>
+<p>JavaFX está nativamente diseñado para trabajar bajo el patrón <strong>MVC (Modelo - Vista - Controlador)</strong>, separando la lógica de negocio de la interfaz gráfica a través de archivos <strong>FXML</strong>.</p>
+<p><img src="imagenes/Laboratorio_5/3.png" alt="MVC"></p>
+<ul>
+<li><strong>Modelo:</strong> Representa los datos y las reglas del negocio de nuestra aplicación. No sabe nada de botones ni de pantallas.</li>
+<li><strong>Vista (FXML):</strong> Es el archivo XML que define la estructura jerárquica de los nodos gráficos (el diseño visual).</li>
+<li><strong>Controlador:</strong> Actúa como el puente interactivo. Escucha las interacciones de la Vista, modifica o consulta el Modelo, y actualiza la pantalla en consecuencia.</li>
+</ul>
+<h2 id="uso-de-la-anotación-fxml-en-los-controladores-de-javafx">Uso de la anotación @FXML en los controladores de JavaFX</h2>
+<p>En JavaFX, <strong>@FXML</strong> es una anotación que se utiliza para conectar el archivo FXML con el controller en Java. Se emplea tanto en variables, como en controles de la interfaz (Button, TextField, Label, entre otros), como en métodos que manejan eventos, por ejemplo, el clic de un botón. Su principal función es permitir que el controller acceda a los componentes definidos en el FXML y pueda manejar las acciones del usuario, facilitando así la conexión entre la vista y la lógica de la aplicación.</p>
+<h2 id="ejercicio-de-ejemplo">Ejercicio de Ejemplo</h2>
+<blockquote>
+<p>💡 Agregar antes del ejercicio práctico que para poder implementar JavaFX es necesario configurar el build.gradle</p>
+</blockquote>
+<p><strong>Opción 1:</strong> Implementando el plugin de JavaFX</p>
+<ul>
+<li><a href="https://github.com/openjfx/javafx-gradle-plugin">https://github.com/openjfx/javafx-gradle-plugin</a></li>
+</ul>
+<p><img src="imagenes/Laboratorio_5/4.png" alt="Gradle"></p>
+<p><strong>Opcion 2:</strong> SIN plugin (solo Maven Central puro)</p>
+<ul>
+<li>
+<p><a href="https://central.sonatype.com/artifact/org.openjfx/javafx-fxml/21">https://central.sonatype.com/artifact/org.openjfx/javafx-fxml/21</a></p>
+</li>
+<li>
+<p><a href="https://central.sonatype.com/artifact/org.openjfx/javafx-controls/21">https://central.sonatype.com/artifact/org.openjfx/javafx-controls/21</a></p>
+</li>
+</ul>
+<p><img src="imagenes/Laboratorio_5/5.png" alt="Maven"></p>
+<h3 id="el-main-y-el-cambio-en-el-ciclo-de-ejecución">1. El <code>Main</code> y el cambio en el ciclo de ejecución</h3>
+<blockquote>
+<p>⚠️ <strong>Nota importante:</strong> En las aplicaciones de consola tradicionales, todo el código se ejecutaba de forma secuencial dentro del método <code>main</code>. En JavaFX esto cambia por completo: la clase debe extender de <code>Application</code> y el método <code>main</code> ahora solo sirve para invocar a <code>launch()</code>, delegando el control al ciclo de vida gráfico en el método <code>start()</code>.</p>
+</blockquote>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">start</span><span class="token punctuation">(</span>Stage stage<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
+        <span class="token comment">// Carga la jerarquía de la vista desde el archivo FXML</span>
+        FXMLLoader loader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FXMLLoader</span><span class="token punctuation">(</span>Main<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/conversor-view.fxml"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Scene scene <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Scene</span><span class="token punctuation">(</span>loader<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Configuración del Stage (Escenario/Ventana principal)</span>
+        stage<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span><span class="token string">"Calculadora Decimal ↔ Binario"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stage<span class="token punctuation">.</span><span class="token function">setScene</span><span class="token punctuation">(</span>scene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        stage<span class="token punctuation">.</span><span class="token function">setResizable</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Evita que el usuario deforme el diseño</span>
+        stage<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Muestra la ventana</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span>String<span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">launch</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Enciende el motor de JavaFX e inicia el ciclo de vida</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="el-modelo-encapsulamiento-y-estrategias">2. El Modelo (Encapsulamiento y Estrategias)</h3>
+<p>El modelo no conoce la existencia de botones ni pantallas. Maneja exclusivamente la lógica matemática de conversión y las reglas del negocio mediante polimorfismo:</p>
+<pre class=" language-java"><code class="prism  language-java"><span class="token comment">// patterns.strategy.EstrategiaConversion</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">EstrategiaConversion</span> <span class="token punctuation">{</span>
+    String <span class="token function">convertir</span><span class="token punctuation">(</span>String valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// model.Conversor (Clase de contexto que interactúa con la estrategia)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Conversor</span> <span class="token punctuation">{</span>
+    <span class="token keyword">private</span> String valor<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> EstrategiaConversion estrategia<span class="token punctuation">;</span>
+
+    <span class="token keyword">public</span> String <span class="token function">ejecutarConversion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>valor <span class="token operator">==</span> null <span class="token operator">||</span> valor<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"Ingresa una cantidad."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>estrategia <span class="token operator">==</span> null<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">"No se ha definido la estrategia."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> estrategia<span class="token punctuation">.</span><span class="token function">convertir</span><span class="token punctuation">(</span>valor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token comment">// Getters y Setters...</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="la-vista-fragmento-del-archivo-fxml">3. La Vista (Fragmento del archivo FXML)</h3>
+<p>En el archivo <code>conversor-view.fxml</code> definimos visualmente la interfaz. Observa cómo asociamos el controlador general a la raíz y cómo mapeamos las propiedades clave de interacción como <code>fx:id</code> y <code>onAction</code>:</p>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>controller.ConversorController<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/fxml<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TextField</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>txtCantidad<span class="token punctuation">"</span></span> <span class="token attr-name">promptText</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Ingresa un valor<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Convertir<span class="token punctuation">"</span></span> <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#convertir<span class="token punctuation">"</span></span> <span class="token attr-name">styleClass</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btn-convertir<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Label</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>lblResultado<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>---<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<h3 id="el-controlador-el-puente-de-comunicación">4. El Controlador (El Puente de Comunicación)</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ConversorController</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Vincular componentes de la vista mediante anotaciones @FXML</span>
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> TextField txtCantidad<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> ComboBox<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> cbxDe<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> ComboBox<span class="token operator">&lt;</span>String<span class="token operator">&gt;</span> cbxA<span class="token punctuation">;</span>
+    <span class="token annotation punctuation">@FXML</span> <span class="token keyword">private</span> Label lblResultado<span class="token punctuation">;</span>
+
+    <span class="token keyword">private</span> Conversor conversor<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        conversor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Conversor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Instancia del modelo al iniciar la vista</span>
+        cbxDe<span class="token punctuation">.</span><span class="token function">getItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token string">"Decimal"</span><span class="token punctuation">,</span> <span class="token string">"Binario"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cbxA<span class="token punctuation">.</span><span class="token function">getItems</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token string">"Binario"</span><span class="token punctuation">,</span> <span class="token string">"Decimal"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@FXML</span>
+    <span class="token keyword">void</span> <span class="token function">convertir</span><span class="token punctuation">(</span>ActionEvent event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            String cantidad <span class="token operator">=</span> txtCantidad<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            String de <span class="token operator">=</span> cbxDe<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            String a <span class="token operator">=</span> cbxA<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Validaciones de negocio en la UI</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>de<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalArgumentException</span><span class="token punctuation">(</span><span class="token string">"Debes seleccionar conversiones diferentes."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment">// Inyección de valores y estrategias al Modelo</span>
+            conversor<span class="token punctuation">.</span><span class="token function">setValor</span><span class="token punctuation">(</span>cantidad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>de<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"Decimal"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"Binario"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                conversor<span class="token punctuation">.</span><span class="token function">setEstrategia</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">DecimalABinario</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>de<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"Binario"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> a<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token string">"Decimal"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                conversor<span class="token punctuation">.</span><span class="token function">setEstrategia</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">BinarioADecimal</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+
+            <span class="token comment">// Ejecución delegada y actualización de la Vista</span>
+            String resultado <span class="token operator">=</span> conversor<span class="token punctuation">.</span><span class="token function">ejecutarConversion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            lblResultado<span class="token punctuation">.</span><span class="token function">setText</span><span class="token punctuation">(</span>resultado<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">mostrarAlertaInformacion</span><span class="token punctuation">(</span><span class="token string">"Conversión exitosa"</span><span class="token punctuation">,</span> <span class="token string">"La conversión se realizó correctamente."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalArgumentException</span> <span class="token operator">|</span> IllegalStateException e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">mostrarAlertaError</span><span class="token punctuation">(</span><span class="token string">"Error de validación"</span><span class="token punctuation">,</span> e<span class="token punctuation">.</span><span class="token function">getMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Métodos auxiliares para la gestión de Alerts flotantes</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">mostrarAlertaError</span><span class="token punctuation">(</span>String titulo<span class="token punctuation">,</span> String mensaje<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        Alert alert <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Alert</span><span class="token punctuation">(</span>Alert<span class="token punctuation">.</span>AlertType<span class="token punctuation">.</span>ERROR<span class="token punctuation">,</span> mensaje<span class="token punctuation">,</span> ButtonType<span class="token punctuation">.</span>OK<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        alert<span class="token punctuation">.</span><span class="token function">setTitle</span><span class="token punctuation">(</span>titulo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        alert<span class="token punctuation">.</span><span class="token function">setHeaderText</span><span class="token punctuation">(</span>null<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        alert<span class="token punctuation">.</span><span class="token function">showAndWait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Pausa la ejecución hasta recibir confirmación</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="ejemplo-completo">Ejemplo Completo</h2>
+<p><a href="https://github.com/meaguilar/POO-2026/blob/3eca83e694f6ddbab8a824ef4bb888338179188b/Ejercicios-Laboratorios/Laboratorio-4/GestionCorreosHilos/src/main/java/Main.java">Ver Clases de Hilos</a></p>
+<h2 id="anexos">Anexos</h2>
+<ul>
+<li>
+<p>Plataforma oficial para buscar, gestionar y descargar dependencias y librerías de proyectos Java y otros ecosistemas desde Maven Central. <a href="https://central.sonatype.com/">https://central.sonatype.com</a></p>
+</li>
+<li>
+<p>Herramienta visual de arrastrar y soltar para diseñar interfaces gráficas JavaFX mediante archivos FXML de forma rápida y sencilla.<a href="https://gluonhq.com/products/scene-builder/">https://gluonhq.com/products/scene-builder/</a></p>
+</li>
+<li>
+<p>Tutorial práctico que explica cómo crear interfaces gráficas en JavaFX usando Scene  Builder mediante diseño visual con drag-and-drop y archivos FXML. <a href="https://www.tutkit.com/en/text-tutorials/13151-gui-development-with-scene-builder-in-javafx">https://www.tutkit.com/en/text-tutorials/13151-gui-development-with-scene-builder-in-javafx</a></p>
+</li>
+<li>
+<p>Tutorial práctico que enseña a usar JavaFX  Scene Builder para diseñar interfaces gráficas con FXML, controles visuales y manejo de eventos en aplicaciones JavaFX. <a href="https://examples.javacodegeeks.com/java-development/desktop-java/javafx/scene/javafx-scene-builder-tutorial/">https://examples.javacodegeeks.com/java-development/desktop-java/javafx/scene/javafx-scene-builder-tutorial/</a></p>
+</li>
+<li>
+<p>Documentación oficial de JavaFX que explica los paneles de diseño (HBox, VBox, GridPane, BorderPane, etc.) para organizar interfaces gráficas. <a href="https://docs.oracle.com/javafx/2/layout/builtin_layouts.htm">https://docs.oracle.com/javafx/2/layout/builtin_layouts.htm</a></p>
+</li>
+<li>
+<p>Librería de componentes modernos con estilo Material Design para crear interfaces gráficas avanzadas en JavaFX. <a href="https://github.com/palexdev/MaterialFX?tab=readme-ov-file">https://github.com/palexdev/MaterialFX?tab=readme-ov-file</a></p>
+</li>
+<li>
+<p>Biblioteca de iconos gratuitos y personalizables para interfaces web y aplicaciones: <a href="https://boxicons.com/icons?free=true">https://boxicons.com/icons?free=true</a></p>
+</li>
+<li>
+<p>Plataforma de fotografías gratuitas en alta calidad para uso personal y comercial. <a href="https://unsplash.com/">https://unsplash.com</a></p>
+</li>
+<li>
+<p>Herramienta online para generar, explorar y combinar paletas de colores para diseño gráfico, web y branding. <a href="https://coolors.co/">https://coolors.co</a></p>
+</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
