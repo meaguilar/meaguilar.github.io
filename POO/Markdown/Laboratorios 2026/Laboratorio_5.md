@@ -63,7 +63,8 @@ JavaFX está nativamente diseñado para trabajar bajo el patrón **MVC (Modelo -
 
 ## Uso de la anotación @FXML en los controladores de JavaFX
 
-En JavaFX, **@FXML** es una anotación que se utiliza para conectar el archivo FXML con el controller en Java. Se emplea tanto en variables, como en controles de la interfaz (Button, TextField, Label, entre otros), como en métodos que manejan eventos, por ejemplo, el clic de un botón. Su principal función es permitir que el controller acceda a los componentes definidos en el FXML y pueda manejar las acciones del usuario, facilitando así la conexión entre la vista y la lógica de la aplicación.
+En JavaFX, **@FXML** es una anotación que se utiliza para conectar el archivo FXML con el controller en Java. Se emplea tanto en variables, como en controles de la interfaz (Button, TextField, Label, entre otros), como en métodos que manejan eventos, por ejemplo, el clic de un botón.
+Su principal función es permitir que el controller acceda a los componentes definidos en el FXML y pueda manejar las acciones del usuario, facilitando así la conexión entre la vista y la lógica de la aplicación.
 
 ## Ejercicio de Ejemplo
 
@@ -211,7 +212,7 @@ public class ConversorController {
 
 ## Ejemplo Completo
 
-[Ver Clases de Hilos](https://github.com/meaguilar/POO-2026/blob/3eca83e694f6ddbab8a824ef4bb888338179188b/Ejercicios-Laboratorios/Laboratorio-4/GestionCorreosHilos/src/main/java/Main.java)
+[Ver Conversor de Decimal y Binario en JavaFX](https://github.com/meaguilar/POO-2026/tree/main/Ejercicios-Laboratorios/Laboratorio-5/Decimal-Binario)
 
 ## Anexos
 
