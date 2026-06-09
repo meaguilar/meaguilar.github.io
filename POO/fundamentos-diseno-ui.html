@@ -1,0 +1,546 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>fundamentos-diseno-ui.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#fundamentos-de-diseño-ui-en-figma">Fundamentos de diseño UI en Figma</a>
+<ul>
+<li><a href="#importancia-de-conocer-las-dimensiones">Importancia de conocer las dimensiones</a></li>
+</ul>
+</li>
+<li><a href="#sistema-de-8-puntos-8pt-grid">Sistema de 8 puntos (8pt Grid)</a>
+<ul>
+<li><a href="#ejemplos">Ejemplos</a></li>
+<li><a href="#beneficios">Beneficios</a></li>
+<li><a href="#relación-con-otros-conceptos">Relación con otros conceptos</a></li>
+<li><a href="#referencias">Referencias</a></li>
+</ul>
+</li>
+<li><a href="#guía-de-dimensiones-y-componentes-ui">Guía de dimensiones y componentes UI</a>
+<ul>
+<li><a href="#grid-recomendado-para-desktop">Grid Recomendado para Desktop</a></li>
+<li><a href="#medidas-más-utilizadas">Medidas más utilizadas</a></li>
+</ul>
+</li>
+<li><a href="#auto-layout-herramienta-de-figma">Auto Layout (Herramienta de Figma)</a>
+<ul>
+<li><a href="#funcionalidades-principales">Funcionalidades principales</a></li>
+<li><a href="#beneficios-1">Beneficios</a></li>
+<li><a href="#relación-con-el-sistema-8pt">Relación con el sistema 8pt</a></li>
+<li><a href="#referencia-1">Referencia</a></li>
+</ul>
+</li>
+<li><a href="#principios-carp-en-diseño-gui">Principios CARP en Diseño GUI</a>
+<ul>
+<li><a href="#contraste-contrast">Contraste (Contrast)</a></li>
+<li><a href="#alineación-alignment">Alineación (Alignment)</a></li>
+<li><a href="#repetición-repetition">Repetición (Repetition)</a></li>
+<li><a href="#proximidad-proximity">Proximidad (Proximity)</a></li>
+<li><a href="#referencias-carp">Referencias CARP</a></li>
+</ul>
+</li>
+<li><a href="#recursos-extra-para-diseño-ui">Recursos Extra para Diseño UI</a>
+<ul>
+<li><a href="#iconos">Iconos</a></li>
+<li><a href="#imágenes">Imágenes</a></li>
+<li><a href="#paletas-de-color">Paletas de color</a></li>
+<li><a href="#tipografías">Tipografías</a></li>
+</ul>
+</li>
+<li><a href="#resumen-del-proceso-de-diseño">Resumen del Proceso de Diseño</a>
+<ul>
+<li><a href="#wireframe">Wireframe</a></li>
+<li><a href="#mockup">Mockup</a></li>
+</ul>
+</li>
+<li><a href="#conclusión">Conclusión</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="fundamentos-de-diseño-ui-en-figma">Fundamentos de diseño UI en Figma</h1>
+<h2 id="importancia-de-conocer-las-dimensiones">Importancia de conocer las dimensiones</h2>
+<p>Comprender las dimensiones de pantalla es fundamental para diseñar interfaces adaptadas a distintos dispositivos. Conocer los tamaños más utilizados permite crear diseños más consistentes, optimizar la experiencia de usuario y validar correctamente la distribución de los elementos antes del desarrollo.</p>
+<h3 id="¿por-qué-es-importante">¿Por qué es importante?</h3>
+<ul>
+<li>
+<p>Diseñar para resoluciones reales de usuarios.</p>
+</li>
+<li>
+<p>Definir correctamente el tamaño de los frames en Figma.</p>
+</li>
+<li>
+<p>Anticipar comportamientos responsivos.</p>
+</li>
+<li>
+<p>Mejorar la experiencia visual en diferentes dispositivos.</p>
+</li>
+</ul>
+<h3 id="referencia">Referencia</h3>
+<ul>
+<li>Screensize: <a href="https://www.screensize.io/">https://www.screensize.io/</a></li>
+</ul>
+<hr>
+<h1 id="sistema-de-8-puntos-8pt-grid">Sistema de 8 puntos (8pt Grid)</h1>
+<p>El sistema de <strong>8 puntos (8pt Grid)</strong> es una metodología de espaciado utilizada en diseño de interfaces. Consiste en definir que todos los márgenes, paddings, separaciones y dimensiones se construyan utilizando múltiplos de 8 píxeles.</p>
+<h2 id="ejemplos">Ejemplos</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">Correcto</th>
+<th align="center">Incorrecto</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">8px</td>
+<td align="center">7px</td>
+</tr>
+<tr>
+<td align="center">16px</td>
+<td align="center">15px</td>
+</tr>
+<tr>
+<td align="center">24px</td>
+<td align="center">22px</td>
+</tr>
+<tr>
+<td align="center">32px</td>
+<td align="center">31px</td>
+</tr>
+<tr>
+<td align="center">40px</td>
+<td align="center">38px</td>
+</tr>
+</tbody>
+</table><h2 id="beneficios">Beneficios</h2>
+<ul>
+<li>
+<p>Mayor consistencia visual.</p>
+</li>
+<li>
+<p>Facilita la alineación de componentes.</p>
+</li>
+<li>
+<p>Mejora la escalabilidad del diseño.</p>
+</li>
+<li>
+<p>Simplifica la comunicación entre diseño y desarrollo.</p>
+</li>
+</ul>
+<h2 id="relación-con-otros-conceptos">Relación con otros conceptos</h2>
+<p>El sistema 8pt se aplica directamente en:</p>
+<ul>
+<li>
+<p>Principios CARP (especialmente <strong>Alineación</strong> y <strong>Proximidad</strong>).</p>
+</li>
+<li>
+<p>Configuración de espacios dentro de <strong>Auto Layout</strong>.</p>
+</li>
+<li>
+<p>Diseño de componentes reutilizables.</p>
+</li>
+</ul>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>
+<p>Figma Community: <a href="https://www.figma.com/community/file/1342415305553231324">https://www.figma.com/community/file/1342415305553231324</a></p>
+</li>
+<li>
+<p>Video explicativo: <a href="https://www.youtube.com/watch?v=sK7ZapOAR1M">https://www.youtube.com/watch?v=sK7ZapOAR1M</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="guía-de-dimensiones-y-componentes-ui">Guía de dimensiones y componentes UI</h1>
+<p>Una vez definido el sistema de 8 puntos, es importante establecer tamaños estándar para los componentes más utilizados en una interfaz.</p>
+<p>El objetivo no es seguir reglas rígidas, sino mantener consistencia visual y facilitar la implementación durante el desarrollo.</p>
+<hr>
+<h2 id="grid-recomendado-para-desktop">Grid Recomendado para Desktop</h2>
+<h3 id="frame-desktop">Frame Desktop</h3>
+<pre class=" language-text"><code class="prism  language-text">1440px
+
+</code></pre>
+<h3 id="layout-grid">Layout Grid</h3>
+<pre class=" language-text"><code class="prism  language-text">12 columnas
+Margin: 32px
+Gutter: 24px
+
+</code></pre>
+<h3 id="grid-vertical">Grid Vertical</h3>
+<pre class=" language-text"><code class="prism  language-text">Rows: Auto
+Height: 8px
+Gutter: 8px
+Alignment: Top
+
+</code></pre>
+<p>Esta configuración se integra perfectamente con el sistema de 8 puntos y facilita la construcción de interfaces escalables mediante Auto Layout.</p>
+<hr>
+<h2 id="medidas-más-utilizadas">Medidas más utilizadas</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">Categoría</th>
+<th align="center">Componente</th>
+<th align="center">Tamaño recomendado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Campos de entrada</td>
+<td align="center">TextField</td>
+<td align="center">48px alto</td>
+</tr>
+<tr>
+<td align="center">Campos de entrada</td>
+<td align="center">Select</td>
+<td align="center">48px alto</td>
+</tr>
+<tr>
+<td align="center">Campos de entrada</td>
+<td align="center">Text Area</td>
+<td align="center">96px mínimo</td>
+</tr>
+<tr>
+<td align="center">Controles</td>
+<td align="center">Button</td>
+<td align="center">48px alto</td>
+</tr>
+<tr>
+<td align="center">Controles</td>
+<td align="center">Checkbox</td>
+<td align="center">16 × 16px</td>
+</tr>
+<tr>
+<td align="center">Controles</td>
+<td align="center">Radio Button</td>
+<td align="center">16 × 16px</td>
+</tr>
+<tr>
+<td align="center">Navegación</td>
+<td align="center">Navbar Desktop</td>
+<td align="center">64px alto</td>
+</tr>
+<tr>
+<td align="center">Navegación</td>
+<td align="center">Navbar Mobile</td>
+<td align="center">56px alto</td>
+</tr>
+<tr>
+<td align="center">Navegación</td>
+<td align="center">Sidebar</td>
+<td align="center">280px ancho</td>
+</tr>
+<tr>
+<td align="center">Espaciado interno</td>
+<td align="center">Card Padding</td>
+<td align="center">24px</td>
+</tr>
+<tr>
+<td align="center">Espaciado interno</td>
+<td align="center">Modal Padding</td>
+<td align="center">24px</td>
+</tr>
+<tr>
+<td align="center">Estilo visual</td>
+<td align="center">Border Radius Base</td>
+<td align="center">8px</td>
+</tr>
+<tr>
+<td align="center">Espaciado</td>
+<td align="center">Espaciado pequeño</td>
+<td align="center">8px</td>
+</tr>
+<tr>
+<td align="center">Espaciado</td>
+<td align="center">Espaciado entre campos</td>
+<td align="center">16px</td>
+</tr>
+<tr>
+<td align="center">Espaciado</td>
+<td align="center">Espaciado interno estándar</td>
+<td align="center">24px</td>
+</tr>
+<tr>
+<td align="center">Espaciado</td>
+<td align="center">Separación entre secciones</td>
+<td align="center">32px</td>
+</tr>
+<tr>
+<td align="center">Espaciado</td>
+<td align="center">Separación entre bloques principales</td>
+<td align="center">48px</td>
+</tr>
+<tr>
+<td align="center">Botones</td>
+<td align="center">Ancho mínimo de botón</td>
+<td align="center">120px</td>
+</tr>
+<tr>
+<td align="center">Formularios</td>
+<td align="center">Ancho recomendado de formulario</td>
+<td align="center">480–640px</td>
+</tr>
+<tr>
+<td align="center">Tablas</td>
+<td align="center">Altura mínima de fila</td>
+<td align="center">48px</td>
+</tr>
+<tr>
+<td align="center">Iconografía</td>
+<td align="center">Tamaño de iconos estándar</td>
+<td align="center">20–24px</td>
+</tr>
+</tbody>
+</table><hr>
+<h1 id="auto-layout-herramienta-de-figma">Auto Layout (Herramienta de Figma)</h1>
+<p><strong>Auto Layout</strong> es una herramienta de Figma que permite organizar, alinear y distribuir elementos automáticamente dentro de un frame o componente.</p>
+<p>A diferencia del sistema de 8 puntos, Auto Layout <strong>no define reglas de espaciado</strong>, sino que administra cómo se comportan los elementos dentro de una estructura flexible.</p>
+<h2 id="funcionalidades-principales">Funcionalidades principales</h2>
+<ul>
+<li>
+<p>Distribución automática de elementos.</p>
+</li>
+<li>
+<p>Espaciado consistente entre componentes.</p>
+</li>
+<li>
+<p>Adaptación dinámica al contenido.</p>
+</li>
+<li>
+<p>Creación de interfaces responsivas.</p>
+</li>
+<li>
+<p>Reutilización eficiente de componentes.</p>
+</li>
+</ul>
+<h2 id="beneficios-1">Beneficios</h2>
+<ul>
+<li>
+<p>Reduce el trabajo manual de alineación.</p>
+</li>
+<li>
+<p>Facilita cambios de contenido.</p>
+</li>
+<li>
+<p>Mejora la escalabilidad de los diseños.</p>
+</li>
+<li>
+<p>Permite construir sistemas de diseño más robustos.</p>
+</li>
+</ul>
+<h2 id="relación-con-el-sistema-8pt">Relación con el sistema 8pt</h2>
+<p>El sistema 8pt define <strong>qué espacios utilizar</strong>, mientras que Auto Layout define <strong>cómo se organizan esos espacios dentro de la interfaz</strong>.</p>
+<h2 id="referencia-1">Referencia</h2>
+<ul>
+<li>Guía oficial de Figma:<br>
+<a href="https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout">https://help.figma.com/hc/en-us/articles/360040451373-Guide-to-auto-layout</a></li>
+</ul>
+<hr>
+<h1 id="principios-carp-en-diseño-gui">Principios CARP en Diseño GUI</h1>
+<p>Los principios <strong>CARP</strong> son fundamentos del diseño visual que ayudan a construir interfaces claras, organizadas y consistentes.</p>
+<p>CARP significa:</p>
+<ul>
+<li>
+<p><strong>C</strong>ontrast (Contraste)</p>
+</li>
+<li>
+<p><strong>A</strong>lignment (Alineación)</p>
+</li>
+<li>
+<p><strong>R</strong>epetition (Repetición)</p>
+</li>
+<li>
+<p><strong>P</strong>roximity (Proximidad)</p>
+</li>
+</ul>
+<hr>
+<h2 id="contraste-contrast">Contraste (Contrast)</h2>
+<p>Permite diferenciar elementos importantes mediante cambios visuales como:</p>
+<ul>
+<li>
+<p>Tamaño</p>
+</li>
+<li>
+<p>Color</p>
+</li>
+<li>
+<p>Peso tipográfico</p>
+</li>
+<li>
+<p>Espaciado</p>
+</li>
+<li>
+<p>Forma</p>
+</li>
+</ul>
+<h3 id="objetivo">Objetivo</h3>
+<p>Guiar la atención del usuario hacia la información más relevante.</p>
+<hr>
+<h2 id="alineación-alignment">Alineación (Alignment)</h2>
+<p>Consiste en organizar los elementos siguiendo una estructura visual coherente.</p>
+<h3 id="buenas-prácticas">Buenas prácticas</h3>
+<ul>
+<li>
+<p>Utilizar grids y columnas.</p>
+</li>
+<li>
+<p>Mantener alineaciones consistentes.</p>
+</li>
+<li>
+<p>Evitar elementos colocados arbitrariamente.</p>
+</li>
+</ul>
+<h3 id="relación-con-8pt-grid">Relación con 8pt Grid</h3>
+<p>La alineación se fortalece cuando todos los elementos respetan una misma unidad de medida.</p>
+<hr>
+<h2 id="repetición-repetition">Repetición (Repetition)</h2>
+<p>Consiste en reutilizar patrones visuales a lo largo de la interfaz.</p>
+<h3 id="elementos-que-pueden-repetirse">Elementos que pueden repetirse</h3>
+<ul>
+<li>
+<p>Colores</p>
+</li>
+<li>
+<p>Tipografías</p>
+</li>
+<li>
+<p>Botones</p>
+</li>
+<li>
+<p>Espaciados</p>
+</li>
+<li>
+<p>Componentes</p>
+</li>
+</ul>
+<h3 id="objetivo-1">Objetivo</h3>
+<p>Mantener una experiencia visual coherente y familiar para el usuario.</p>
+<hr>
+<h2 id="proximidad-proximity">Proximidad (Proximity)</h2>
+<p>Agrupa elementos relacionados para facilitar su comprensión.</p>
+<h3 id="objetivo-2">Objetivo</h3>
+<p>Reducir el desorden visual y mejorar la lectura de la interfaz.</p>
+<h3 id="ejemplos-1">Ejemplos</h3>
+<ul>
+<li>
+<p>Etiqueta y campo de formulario cercanos.</p>
+</li>
+<li>
+<p>Opciones de un mismo grupo agrupadas visualmente.</p>
+</li>
+</ul>
+<h3 id="relación-con-8pt-grid-1">Relación con 8pt Grid</h3>
+<p>Los espacios definidos mediante múltiplos de 8 ayudan a crear agrupaciones visuales consistentes.</p>
+<hr>
+<h2 id="referencias-carp">Referencias CARP</h2>
+<ul>
+<li>
+<p><a href="https://medium.com/@pandubudikusuma/application-of-contrast-alignment-repetition-and-proximity-carp-in-ui-design-13dce8bd7c8c">https://medium.com/@pandubudikusuma/application-of-contrast-alignment-repetition-and-proximity-carp-in-ui-design-13dce8bd7c8c</a></p>
+</li>
+<li>
+<p><a href="https://online.fliphtml5.com/uejlb/wnsd/#p=1">https://online.fliphtml5.com/uejlb/wnsd/#p=1</a></p>
+</li>
+<li>
+<p><a href="https://www.figma.com/resource-library/graphic-design-principles/">https://www.figma.com/resource-library/graphic-design-principles/</a></p>
+</li>
+</ul>
+<hr>
+<h1 id="recursos-extra-para-diseño-ui">Recursos Extra para Diseño UI</h1>
+<h2 id="iconos">Iconos</h2>
+<ul>
+<li><a href="https://boxicons.com/icons?free=true">https://boxicons.com/icons?free=true</a></li>
+</ul>
+<h2 id="imágenes">Imágenes</h2>
+<ul>
+<li><a href="https://unsplash.com/es">https://unsplash.com/es</a></li>
+</ul>
+<h2 id="paletas-de-color">Paletas de color</h2>
+<ul>
+<li><a href="https://coolors.co/">https://coolors.co</a></li>
+</ul>
+<h2 id="tipografías">Tipografías</h2>
+<ul>
+<li><a href="https://fonts.google.com/">https://fonts.google.com</a></li>
+</ul>
+<hr>
+<h1 id="resumen-del-proceso-de-diseño">Resumen del Proceso de Diseño</h1>
+<h2 id="wireframe">Wireframe</h2>
+<p>El wireframe define la estructura y organización de la interfaz.</p>
+<h3 id="herramientas-y-recursos">Herramientas y recursos</h3>
+<ul>
+<li>
+<p>Figma</p>
+</li>
+<li>
+<p>Screensize</p>
+</li>
+<li>
+<p>Sistema 8pt Grid</p>
+</li>
+</ul>
+<h3 id="objetivo-3">Objetivo</h3>
+<p>Definir distribución, jerarquía y tamaño de los elementos sin enfocarse aún en el aspecto visual final.</p>
+<hr>
+<h2 id="mockup">Mockup</h2>
+<p>El mockup representa el diseño visual completo de la interfaz.</p>
+<h3 id="herramientas-y-recursos-1">Herramientas y recursos</h3>
+<ul>
+<li>
+<p>Figma</p>
+</li>
+<li>
+<p>Tipografías</p>
+</li>
+<li>
+<p>Paletas de color</p>
+</li>
+<li>
+<p>Imágenes</p>
+</li>
+<li>
+<p>Iconos</p>
+</li>
+</ul>
+<h3 id="objetivo-4">Objetivo</h3>
+<p>Mostrar cómo lucirá el producto final antes de pasar a la etapa de desarrollo.</p>
+<hr>
+<h1 id="conclusión">Conclusión</h1>
+<p>Un buen diseño de interfaces combina:</p>
+<ol>
+<li>
+<p>Conocimiento de las dimensiones reales de los dispositivos.</p>
+</li>
+<li>
+<p>Uso consistente del sistema de 8 puntos.</p>
+</li>
+<li>
+<p>Construcción flexible mediante Auto Layout.</p>
+</li>
+<li>
+<p>Aplicación correcta de los principios CARP.</p>
+</li>
+<li>
+<p>Uso de componentes con dimensiones estandarizadas.</p>
+</li>
+</ol>
+<p>La combinación de estos elementos permite crear interfaces más ordenadas, escalables, consistentes, accesibles y fáciles de implementar tanto en diseño como en desarrollo.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
