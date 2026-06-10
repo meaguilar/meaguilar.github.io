@@ -1,0 +1,239 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>guia-propiedad-javafx-css.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#javafx-–-guía-de-propiedades">JavaFX – Guía de Propiedades</a>
+<ul>
+<li><a href="#introducción">Introducción</a></li>
+<li><a href="#propiedades-css-en-javafx">1. Propiedades CSS en JavaFX</a></li>
+<li><a href="#propiedades-fxml">2. Propiedades FXML</a></li>
+<li><a href="#eventos-en-javafx">3. Eventos en JavaFX</a></li>
+<li><a href="#asociar-un-archivo-css-desde-fxml">4 Asociar un archivo CSS desde FXML</a></li>
+<li><a href="#asociar-un-archivo-css-desde-la-clase-principal">5 Asociar un archivo CSS desde la clase principal</a></li>
+<li><a href="#explicación">Explicación</a></li>
+<li><a href="#ventajas-de-este-método">Ventajas de este método</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="javafx-–-guía-de-propiedades">JavaFX – Guía de Propiedades</h1>
+<h2 id="introducción">Introducción</h2>
+<p>JavaFX es un framework para el desarrollo de <strong>interfaces gráficas (GUI)</strong> en Java. Permite crear aplicaciones modernas utilizando una arquitectura que separa la presentación visual de la lógica de negocio.</p>
+<p>Para una mejor organización del proyecto, se recomienda utilizar el patrón <strong>MVC (Model-View-Controller)</strong>, que separa las responsabilidades de la aplicación:</p>
+<ul>
+<li><strong>Model:</strong> contiene la lógica de negocio y los datos.</li>
+<li><strong>View:</strong>
+<ul>
+<li><strong>FXML:</strong> estructura de la interfaz.</li>
+<li><strong>CSS:</strong> diseño visual de los componentes.</li>
+</ul>
+</li>
+<li><strong>Controller:</strong> conecta la vista con el modelo y gestiona los eventos del usuario.</li>
+</ul>
+<p>Esta organización facilita el mantenimiento, la reutilización y el crecimiento de la aplicación.</p>
+<hr>
+<h2 id="propiedades-css-en-javafx">1. Propiedades CSS en JavaFX</h2>
+<p>Permiten modificar la <strong>apariencia visual</strong> de los componentes, como colores, fuentes, bordes y tamaños. JavaFX utiliza archivos CSS para separar el diseño de la lógica de la aplicación.</p>
+
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-fx-background-color</code></td>
+<td>Color de fondo</td>
+</tr>
+<tr>
+<td><code>-fx-background-image</code></td>
+<td>Imagen de fondo</td>
+</tr>
+<tr>
+<td><code>-fx-background-size</code></td>
+<td>Tamaño del fondo</td>
+</tr>
+<tr>
+<td><code>-fx-background-position</code></td>
+<td>Posición del fondo</td>
+</tr>
+<tr>
+<td><code>-fx-background-radius</code></td>
+<td>Bordes redondeados del fondo</td>
+</tr>
+<tr>
+<td><code>-fx-border-color</code></td>
+<td>Color del borde</td>
+</tr>
+<tr>
+<td><code>-fx-border-width</code></td>
+<td>Grosor del borde</td>
+</tr>
+<tr>
+<td><code>-fx-border-radius</code></td>
+<td>Bordes redondeados del borde</td>
+</tr>
+<tr>
+<td><code>-fx-text-fill</code></td>
+<td>Color del texto</td>
+</tr>
+<tr>
+<td><code>-fx-font-size</code></td>
+<td>Tamaño de fuente</td>
+</tr>
+<tr>
+<td><code>-fx-font-family</code></td>
+<td>Tipo de letra</td>
+</tr>
+<tr>
+<td><code>-fx-font-weight</code></td>
+<td>Grosor de fuente</td>
+</tr>
+<tr>
+<td><code>-fx-opacity</code></td>
+<td>Transparencia</td>
+</tr>
+<tr>
+<td><code>-fx-cursor</code></td>
+<td>Tipo de cursor</td>
+</tr>
+</tbody>
+</table><h3 id="ejemplo-css">Ejemplo CSS</h3>
+<pre class=" language-css"><code class="prism  language-css"><span class="token selector"><span class="token class">.boton-principal</span> </span><span class="token punctuation">{</span>
+    <span class="token property">-fx-background-color</span><span class="token punctuation">:</span> <span class="token hexcode">#3498db</span><span class="token punctuation">;</span>
+    <span class="token property">-fx-text-fill</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+    <span class="token property">-fx-font-size</span><span class="token punctuation">:</span> <span class="token number">14</span>px<span class="token punctuation">;</span>
+    <span class="token property">-fx-background-radius</span><span class="token punctuation">:</span> <span class="token number">8</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="propiedades-fxml">2. Propiedades FXML</h2>
+<p>FXML es un <strong>lenguaje basado en XML</strong> que permite definir la estructura visual de una interfaz JavaFX sin escribir código Java para cada componente.</p>
+
+<table>
+<thead>
+<tr>
+<th>Propiedad</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fx:id</code></td>
+<td>Identificador para el Controller</td>
+</tr>
+<tr>
+<td><code>fx:controller</code></td>
+<td>Clase controladora</td>
+</tr>
+<tr>
+<td><code>xmlns</code></td>
+<td>Namespace de JavaFX</td>
+</tr>
+<tr>
+<td><code>stylesheets</code></td>
+<td>Archivo CSS externo</td>
+</tr>
+<tr>
+<td><code>styleClass</code></td>
+<td>Clase CSS asignada</td>
+</tr>
+<tr>
+<td><code>style</code></td>
+<td>Estilo inline</td>
+</tr>
+</tbody>
+</table><h3 id="ejemplo-fxml">Ejemplo FXML</h3>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>btnGuardar<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Guardar<span class="token punctuation">"</span></span> <span class="token attr-name">styleClass</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>boton-principal<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+</code></pre>
+<p>En este ejemplo, el botón podrá ser manipulado desde el Controller mediante <strong>btnGuardar</strong> y utilizará los estilos definidos en la <strong>clase CSS boton-principal</strong>.</p>
+<hr>
+<h2 id="eventos-en-javafx">3. Eventos en JavaFX</h2>
+<p>Los eventos permiten responder a las <strong>acciones realizadas por el usuario</strong>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Evento</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onAction</code></td>
+<td>Acción de botón</td>
+</tr>
+<tr>
+<td><code>onMouseClicked</code></td>
+<td>Click del mouse</td>
+</tr>
+<tr>
+<td><code>onKeyPressed</code></td>
+<td>Tecla presionada</td>
+</tr>
+<tr>
+<td><code>onKeyReleased</code></td>
+<td>Tecla liberada</td>
+</tr>
+</tbody>
+</table><pre class=" language-xml"><code class="prism  language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>Button</span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Aceptar<span class="token punctuation">"</span></span>
+        <span class="token attr-name">onAction</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#guardarDatos<span class="token punctuation">"</span></span>
+        <span class="token attr-name">styleClass</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>boton-principal<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+</code></pre>
+<pre class=" language-java"><code class="prism  language-java"><span class="token annotation punctuation">@FXML</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">guardarDatos</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"Datos guardados"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Cuando el usuario presione el botón, se ejecutará el método <code>guardarDatos()</code> definido en el Controller.</p>
+<hr>
+<h2 id="asociar-un-archivo-css-desde-fxml">4 Asociar un archivo CSS desde FXML</h2>
+<p>También es posible vincular directamente el archivo CSS como una propiedad del contenedor raíz:</p>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AnchorPane</span> <span class="token attr-name"><span class="token namespace">xmlns:</span>fx</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://javafx.com/fxml<span class="token punctuation">"</span></span>
+            <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>com.ejemplo.Controlador<span class="token punctuation">"</span></span>
+            <span class="token attr-name">stylesheets</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@estilos.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>AnchorPane</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>De esta manera, todos los componentes contenidos en el <code>AnchorPane</code> podrán utilizar los estilos definidos en el archivo <code>estilos.css</code>.</p>
+<hr>
+<h2 id="asociar-un-archivo-css-desde-la-clase-principal">5 Asociar un archivo CSS desde la clase principal</h2>
+<p>También es posible cargar la hoja de estilos desde la clase principal de la aplicación.</p>
+<pre class=" language-java"><code class="prism  language-java">scene<span class="token punctuation">.</span><span class="token function">getStylesheets</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>
+    <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token string">"/css/estilos.css"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toExternalForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h2 id="explicación">Explicación</h2>
+<ul>
+<li><code>getResource("/css/app.css")</code> busca el archivo CSS dentro de la carpeta <code>resources/css</code>.</li>
+<li><code>toExternalForm()</code> convierte la ubicación del archivo en una URL que JavaFX puede interpretar.</li>
+<li><code>getStylesheets().add(...)</code> agrega la hoja de estilos a la escena actual.</li>
+</ul>
+<h2 id="ventajas-de-este-método">Ventajas de este método</h2>
+<ul>
+<li>Permite aplicar la misma hoja de estilos a múltiples ventanas o escenas.</li>
+<li>Centraliza la configuración visual de la aplicación.</li>
+<li>Facilita el cambio de temas (por ejemplo, modo claro y modo oscuro).</li>
+<li>Evita repetir la referencia al archivo CSS en cada archivo FXML.</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
