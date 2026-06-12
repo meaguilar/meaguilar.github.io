@@ -155,7 +155,7 @@ Para mejorar la interfaz de usuario se utilizan herramientas externas que facili
 
 ---
 
-## 8. Uso de SVG en JavaFX
+## Uso de SVG en JavaFX
 
 JavaFX permite el uso de iconos vectoriales mediante la clase `SVGPath`, lo que permite crear gráficos escalables directamente en la interfaz.
 
