@@ -36,10 +36,14 @@ Para implementar este patrón de manera ordenada, dividimos nuestro sistema en c
 
 ![DAO](imagenes/Laboratorio_6/2.png)
 
+## Flujo de los Datos 
+
+![Flujo](imagenes/Laboratorio_6/3.png)
+
 
 ## Ejercicio de Implementación:
 
-A continuación se muestran algunos fragmentos cortos para ver el flujo completo del dato: vista, controlador, entidad, DAO y conexión.
+A continuación se muestran algunos fragmentos: vista, controlador, entidad, DAO y conexión.
 
 ### 1. Vista FXML
 
@@ -51,9 +55,7 @@ A continuación se muestran algunos fragmentos cortos para ver el flujo completo
 </StackPane>
 ```
 
-Este archivo define la pantalla de JavaFX.
-Aquí se enlaza el controlador y el contenedor donde se muestran las obras.
-También se prepara el overlay que sirve para los modales.
+Este archivo define la pantalla de JavaFX. También se prepara el overlay que sirve para los modales.
 
 ### 2. Controlador de la galería
 
@@ -82,9 +84,6 @@ private void manejarGuardar(ActionEvent e) {
 }
 ```
 
-Aquí el dato sale de la vista, pasa al controlador y se convierte en un objeto.
-Luego el controlador llama al DAO para guardar la información.
-Si todo sale bien, la galería se vuelve a cargar.
 
 ### 3. Entidad `Arte`
 
@@ -102,9 +101,7 @@ public class Arte {
 }
 ```
 
-Esta clase guarda los datos de cada obra.
-Es el objeto que viaja entre el controlador y la base de datos.
-Por eso funciona como modelo principal.
+Esta clase guarda los datos de cada obra. Es el objeto que funciona como modelo principal.
 
 ### 4. Contrato DAO
 
@@ -118,9 +115,7 @@ public interface ArteDAO {
 }
 ```
 
-Aquí se definen las operaciones que puede hacer la aplicación con los datos.
-El controlador no habla directo con SQL, sino con este contrato.
-Eso hace más clara la separación entre interfaz y persistencia.
+Aquí se definen las operaciones que puede hacer la aplicación con los datos. Eso hace más clara la separación entre interfaz y persistencia.
 
 ### 5. Conexión a la base de datos
 
@@ -138,9 +133,7 @@ public Connection getConexionBD() {
 }
 ```
 
-Este código abre y reutiliza una sola conexión.
-Cuando el DAO necesita guardar o leer, la pide desde aquí.
-Así el acceso a la base queda centralizado.
+Este código abre y reutiliza una sola conexión. Cuando el DAO necesita guardar o leer, la pide desde aquí.
 
 ### 6. Guardar un arte
 
@@ -157,9 +150,7 @@ public boolean guardar(Arte arte) {
 }
 ```
 
-Este fragmento ya toca la base de datos directamente.
-Recibe el objeto `Arte`, arma la consulta y ejecuta el guardado.
-Después el resultado vuelve al controlador para actualizar la vista.
+Este fragmento ya toca la base de datos directamente. Recibe el objeto `Arte`, arma la consulta y ejecuta el guardado. Después el resultado vuelve al controlador para actualizar la vista.
 
 
 
