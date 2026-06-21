@@ -1,171 +1,198 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio 6</title>
+  <title>Laboratorio_6.md</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
 <body class="stackedit">
   <div class="stackedit__left">
     <div class="stackedit__toc">
-      <ul>
-        <li><a href="#persistencia-de-datos-en-java">Persistencia de Datos en Java</a>
-          <ul>
-            <li><a href="#tipos-de-persistencia-de-datos">Tipos de Persistencia de Datos</a></li>
-            <li><a href="#manipulación-de-datos-y-operaciones-crud">Manipulación de Datos y Operaciones CRUD</a></li>
-            <li><a href="#el-patrón-de-diseño-dao-data-access-object">El Patrón de Diseño DAO (Data Access Object)</a></li>
-            <li><a href="#ejercicio-de-implementación">Ejercicio de Implementación</a></li>
-            <li><a href="#ejemplo-completo">Ejemplo Completo</a></li>
-            <li><a href="#anexos">Anexos</a></li>
-          </ul>
-        </li>
-      </ul>
+      
+<ul>
+<li><a href="#persistencia-de-datos-en-java">Persistencia de Datos en Java</a>
+<ul>
+<li><a href="#tipos-de-persistencia-de-datos">Tipos de Persistencia de Datos</a></li>
+<li><a href="#manipulación-de-datos-y-operaciones-crud">Manipulación de Datos y Operaciones CRUD</a></li>
+<li><a href="#el-patrón-de-diseño-dao-data-access-object">El Patrón de Diseño DAO (Data Access Object)</a></li>
+<li><a href="#ejercicio-de-implementación">Ejercicio de Implementación:</a></li>
+<li><a href="#ejemplo-completo">Ejemplo Completo</a></li>
+</ul>
+</li>
+</ul>
+
     </div>
   </div>
-
   <div class="stackedit__right">
     <div class="stackedit__html">
       <h1 id="persistencia-de-datos-en-java">Persistencia de Datos en Java</h1>
-      <p>En este laboratorio, aprenderemos las operaciones fundamentales de manipulación de datos (CRUD) y cómo estructurar el código con el patrón de diseño DAO y conexion con base de datos.</p>
+<p>En este laboratorio, aprenderemos las operaciones fundamentales de manipulación de datos (CRUD) y cómo estructurar el código con el patrón de diseño DAO y conexion con base de datos.</p>
+<hr>
+<h2 id="tipos-de-persistencia-de-datos">Tipos de Persistencia de Datos</h2>
+<p>Los tipos de persistencia se clasifican según la forma en que la información se almacena y se gestiona dentro de un sistema:</p>
 
-      <h2 id="tipos-de-persistencia-de-datos">Tipos de Persistencia de Datos</h2>
-      <p>Los tipos de persistencia se clasifican según la forma en que la información se almacena y se gestiona dentro de un sistema:</p>
-      <table>
-        <thead>
-          <tr>
-            <th align="left">Tipo de Persistencia</th>
-            <th align="left">Formato de Almacenamiento</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td align="left"><strong>Bases de Datos Relacionales</strong></td>
-            <td align="left">Tablas estructuradas (filas y columnas) con relaciones definidas.</td>
-          </tr>
-          <tr>
-            <td align="left"><strong>Bases de Datos No Relacionales (NoSQL)</strong></td>
-            <td align="left">Documentos flexibles de texto estructurado (JSON).</td>
-          </tr>
-          <tr>
-            <td align="left"><strong>Archivos Planos</strong></td>
-            <td align="left">Archivos de texto locales almacenados directamente en el disco.</td>
-          </tr>
-          <tr>
-            <td align="left"><strong>Persistencia en la Nube</strong></td>
-            <td align="left">Servidores remotos vía Internet.</td>
-          </tr>
-        </tbody>
-      </table>
+<table>
+<thead>
+<tr>
+<th align="left">Tipo de Persistencia</th>
+<th align="left">Formato de Almacenamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Bases de Datos Relacionales</strong></td>
+<td align="left">Tablas estructuradas (filas y columnas) con relaciones definidas.</td>
+</tr>
+<tr>
+<td align="left"><strong>Bases de Datos No Relacionales (NoSQL)</strong></td>
+<td align="left">Documentos flexibles de texto estructurado (JSON).</td>
+</tr>
+<tr>
+<td align="left"><strong>Archivos Planos</strong></td>
+<td align="left">Archivos de texto locales almacenados directamente en el disco.</td>
+</tr>
+<tr>
+<td align="left"><strong>Persistencia en la Nube</strong></td>
+<td align="left">Servidores remotos vía Internet.</td>
+</tr>
+</tbody>
+</table><hr>
+<h2 id="manipulación-de-datos-y-operaciones-crud">Manipulación de Datos y Operaciones CRUD</h2>
+<p>Para interactuar con cualquier sistema de persistencia, utilizamos el acrónimo <strong>CRUD</strong>, que representa las cuatro acciones fundamentales:</p>
+<p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_6/1.png" alt="CRUD"></p>
+<hr>
+<h2 id="el-patrón-de-diseño-dao-data-access-object">El Patrón de Diseño DAO (Data Access Object)</h2>
+<p>El patrón <strong>DAO</strong> es una técnica de arquitectura de software que permite <strong>separar por completo la lógica de negocio de la lógica de acceso a datos</strong>.</p>
+<h3 id="componentes-de-la-arquitectura-dao">Componentes de la Arquitectura DAO</h3>
+<p>Para implementar este patrón de manera ordenada, dividimos nuestro sistema en cuatro roles bien definidos:</p>
+<p><img src="Markdown/Laboratorios 2026/imagenes/Laboratorio_6/2.png" alt="DAO"></p>
+<h2 id="ejercicio-de-implementación">Ejercicio de Implementación:</h2>
+<p>A continuación se muestran algunos fragmentos cortos para ver el flujo completo del dato: vista, controlador, entidad, DAO y conexión.</p>
+<h3 id="vista-fxml">1. Vista FXML</h3>
+<pre class=" language-xml"><code class="prism  language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackPane</span> <span class="token attr-name"><span class="token namespace">fx:</span>controller</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>controller.GaleriaController<span class="token punctuation">"</span></span>
+		   <span class="token attr-name">stylesheets</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>@css/styles.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>TilePane</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>tileContenedorObras<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>StackPane</span> <span class="token attr-name"><span class="token namespace">fx:</span>id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>overlayBackdrop<span class="token punctuation">"</span></span> <span class="token attr-name">visible</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token attr-name">managed</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>false<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>StackPane</span><span class="token punctuation">&gt;</span></span>
+</code></pre>
+<p>Este archivo define la pantalla de JavaFX.<br>
+Aquí se enlaza el controlador y el contenedor donde se muestran las obras.<br>
+También se prepara el overlay que sirve para los modales.</p>
+<h3 id="controlador-de-la-galería">2. Controlador de la galería</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token annotation punctuation">@FXML</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initialize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	instancia <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+	<span class="token function">cerrarTodosLosModales</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token function">cargarArtes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-      <h2 id="manipulación-de-datos-y-operaciones-crud">Manipulación de Datos y Operaciones CRUD</h2>
-      <p>Para interactuar con cualquier sistema de persistencia, utilizamos el acrónimo <strong>CRUD</strong>, que representa las cuatro acciones fundamentales:</p>
+<span class="token annotation punctuation">@FXML</span>
+<span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">manejarGuardar</span><span class="token punctuation">(</span>ActionEvent e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	String nombre <span class="token operator">=</span> txtAgregarNombre<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	String url <span class="token operator">=</span> txtAgregarUrl<span class="token punctuation">.</span><span class="token function">getText</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>nombre<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> url<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
 
-      <h2 id="el-patrón-de-diseño-dao-data-access-object">El Patrón de Diseño DAO (Data Access Object)</h2>
-      <p>El patrón <strong>DAO</strong> es una técnica de arquitectura de software que permite <strong>separar por completo la lógica de negocio de la lógica de acceso a datos</strong>.</p>
-      <h3>Componentes de la Arquitectura DAO</h3>
-      <p>Para implementar este patrón de manera ordenada, dividimos nuestro sistema en cuatro roles bien definidos:</p>
+	Arte arte <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Arte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	arte<span class="token punctuation">.</span><span class="token function">setNombreArte</span><span class="token punctuation">(</span>nombre<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	arte<span class="token punctuation">.</span><span class="token function">setUrlArte</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-      <h2 id="ejercicio-de-implementación">Ejercicio de Implementación</h2>
-      <p>A continuación se muestran algunos fragmentos cortos para ver el flujo completo del dato: vista, controlador, entidad, DAO y conexión.</p>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>arteDAO<span class="token punctuation">.</span><span class="token function">guardar</span><span class="token punctuation">(</span>arte<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">cargarArtes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token function">cerrarTodosLosModales</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Aquí el dato sale de la vista, pasa al controlador y se convierte en un objeto.<br>
+Luego el controlador llama al DAO para guardar la información.<br>
+Si todo sale bien, la galería se vuelve a cargar.</p>
+<h3 id="entidad-arte">3. Entidad <code>Arte</code></h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Arte</span> <span class="token punctuation">{</span>
+	<span class="token keyword">private</span> <span class="token keyword">int</span> idArte<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> String nombreArte<span class="token punctuation">;</span>
+	<span class="token keyword">private</span> String urlArte<span class="token punctuation">;</span>
 
-      <h3 id="vista-fxml">1. Vista FXML</h3>
-      <pre><code>&lt;StackPane fx:controller="controller.GaleriaController"
-           stylesheets="@css/styles.css"&gt;
-    &lt;TilePane fx:id="tileContenedorObras" /&gt;
-    &lt;StackPane fx:id="overlayBackdrop" visible="false" managed="false" /&gt;
-&lt;/StackPane&gt;</code></pre>
-      <p>Este archivo define la pantalla de JavaFX. Aquí se enlaza el controlador y el contenedor donde se muestran las obras. También se prepara el overlay que sirve para los modales.</p>
+	<span class="token keyword">public</span> <span class="token function">Arte</span><span class="token punctuation">(</span><span class="token keyword">int</span> idArte<span class="token punctuation">,</span> String nombreArte<span class="token punctuation">,</span> String urlArte<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>idArte <span class="token operator">=</span> idArte<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>nombreArte <span class="token operator">=</span> nombreArte<span class="token punctuation">;</span>
+		<span class="token keyword">this</span><span class="token punctuation">.</span>urlArte <span class="token operator">=</span> urlArte<span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Esta clase guarda los datos de cada obra.<br>
+Es el objeto que viaja entre el controlador y la base de datos.<br>
+Por eso funciona como modelo principal.</p>
+<h3 id="contrato-dao">4. Contrato DAO</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ArteDAO</span> <span class="token punctuation">{</span>
+	<span class="token keyword">boolean</span> <span class="token function">guardar</span><span class="token punctuation">(</span>Arte arte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">boolean</span> <span class="token function">actualizar</span><span class="token punctuation">(</span>Arte arte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">boolean</span> <span class="token function">eliminar</span><span class="token punctuation">(</span><span class="token keyword">int</span> idArte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	Arte <span class="token function">buscarPorId</span><span class="token punctuation">(</span><span class="token keyword">int</span> idArte<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	List<span class="token operator">&lt;</span>Arte<span class="token operator">&gt;</span> <span class="token function">listarTodos</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Aquí se definen las operaciones que puede hacer la aplicación con los datos.<br>
+El controlador no habla directo con SQL, sino con este contrato.<br>
+Eso hace más clara la separación entre interfaz y persistencia.</p>
+<h3 id="conexión-a-la-base-de-datos">5. Conexión a la base de datos</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> Conexion <span class="token function">getInstancia</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>instancia <span class="token operator">==</span> null<span class="token punctuation">)</span> instancia <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Conexion</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">return</span> instancia<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-      <h3 id="controlador-de-la-galería">2. Controlador de la galería</h3>
-      <pre><code>@FXML
-public void initialize() {
-    instancia = this;
-    cerrarTodosLosModales();
-    cargarArtes();
-}
+<span class="token keyword">public</span> Connection <span class="token function">getConexionBD</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">if</span> <span class="token punctuation">(</span>conexionBD <span class="token operator">==</span> null <span class="token operator">||</span> conexionBD<span class="token punctuation">.</span><span class="token function">isClosed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">conectar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> conexionBD<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Este código abre y reutiliza una sola conexión.<br>
+Cuando el DAO necesita guardar o leer, la pide desde aquí.<br>
+Así el acceso a la base queda centralizado.</p>
+<h3 id="guardar-un-arte">6. Guardar un arte</h3>
+<pre class=" language-java"><code class="prism  language-java"><span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">guardar</span><span class="token punctuation">(</span>Arte arte<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	String sql <span class="token operator">=</span> <span class="token string">"INSERT INTO arte (nombre_arte, url_arte) VALUES (?, ?)"</span><span class="token punctuation">;</span>
+	<span class="token keyword">try</span> <span class="token punctuation">(</span>PreparedStatement stmt <span class="token operator">=</span> conexion<span class="token punctuation">.</span><span class="token function">getConexionBD</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">prepareStatement</span><span class="token punctuation">(</span>sql<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> arte<span class="token punctuation">.</span><span class="token function">getNombreArte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		stmt<span class="token punctuation">.</span><span class="token function">setString</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> arte<span class="token punctuation">.</span><span class="token function">getUrlArte</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token keyword">return</span> stmt<span class="token punctuation">.</span><span class="token function">executeUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">SQLException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Este fragmento ya toca la base de datos directamente.<br>
+Recibe el objeto <code>Arte</code>, arma la consulta y ejecuta el guardado.<br>
+Después el resultado vuelve al controlador para actualizar la vista.</p>
+<h2 id="ejemplo-completo">Ejemplo Completo</h2>
+<p><a href="https://github.com/meaguilar/POO-2026/tree/main/Ejercicios-Laboratorios/Laboratorio-6/ConexionGaleria">Ver Galeria de Imagenes en JavaFX </a></p>
+<h3 id="anexos">Anexos</h3>
+<ul>
+<li>
+<p><strong>Recursos Visuales para Pruebas (Unsplash):</strong> Plataforma de fotografías gratuitas en alta calidad para usar como ejemplo en las URLs de la galería.<br>
+<a href="https://unsplash.com/">https://unsplash.com</a></p>
+</li>
+<li>
+<p><strong>DBeaver Community Edition:</strong> Gestor universal de bases de datos de código abierto para conectarse a PostgreSQL y verificar si los registros ejecutados desde Java mediante el CRUD se están insertando correctamente.<br>
+<a href="https://dbeaver.io/download/">https://dbeaver.io/download/</a></p>
+</li>
+<li>
+<p><strong>PostgreSQL JDBC Driver:</strong> Documentación oficial y repositorio del conector oficial (driver <code>.jar</code>) necesario para que las aplicaciones de Java se logren comunicar con el motor de base de datos PostgreSQL.<br>
+<a href="https://jdbc.postgresql.org/">https://jdbc.postgresql.org/</a></p>
+</li>
+<li>
+<p><strong>Documentación Oficial de Oracle - JDBC Basics:</strong> Guía introductoria de Java con las mejores prácticas para estructurar consultas, gestionar transacciones y manejar correctamente las excepciones.<br>
+<a href="https://docs.oracle.com/javase/tutorial/jdbc/basics/">https://docs.oracle.com/javase/tutorial/jdbc/basics/</a></p>
+</li>
+<li>
+<p><strong>Patrón de Diseño DAO - GeeksforGeeks:</strong> Explicación detallada y teórica sobre cómo implementar de forma genérica el patrón de acceso a objetos de datos en arquitecturas de software orientadas a objetos.<br>
+<a href="https://www.geeksforgeeks.org/data-access-object-pattern/">https://www.geeksforgeeks.org/data-access-object-pattern/</a></p>
+</li>
+</ul>
 
-@FXML
-private void manejarGuardar(ActionEvent e) {
-    String nombre = txtAgregarNombre.getText().trim();
-    String url = txtAgregarUrl.getText().trim();
-    if (nombre.isEmpty() || url.isEmpty()) return;
-
-    Arte arte = new Arte();
-    arte.setNombreArte(nombre);
-    arte.setUrlArte(url);
-
-    if (arteDAO.guardar(arte)) {
-        cargarArtes();
-        cerrarTodosLosModales();
-    }
-}</code></pre>
-      <p>Aquí el dato sale de la vista, pasa al controlador y se convierte en un objeto. Luego el controlador llama al DAO para guardar la información. Si todo sale bien, la galería se vuelve a cargar.</p>
-
-      <h3 id="entidad-arte">3. Entidad <code>Arte</code></h3>
-      <pre><code>public class Arte {
-    private int idArte;
-    private String nombreArte;
-    private String urlArte;
-
-    public Arte(int idArte, String nombreArte, String urlArte) {
-        this.idArte = idArte;
-        this.nombreArte = nombreArte;
-        this.urlArte = urlArte;
-    }
-}</code></pre>
-      <p>Esta clase guarda los datos de cada obra. Es el objeto que viaja entre el controlador y la base de datos. Por eso funciona como modelo principal.</p>
-
-      <h3 id="contrato-dao">4. Contrato DAO</h3>
-      <pre><code>public interface ArteDAO {
-    boolean guardar(Arte arte);
-    boolean actualizar(Arte arte);
-    boolean eliminar(int idArte);
-    Arte buscarPorId(int idArte);
-    List<Arte> listarTodos();
-}</code></pre>
-      <p>Aquí se definen las operaciones que puede hacer la aplicación con los datos. El controlador no habla directo con SQL, sino con este contrato. Eso hace más clara la separación entre interfaz y persistencia.</p>
-
-      <h3 id="conexión-a-la-base-de-datos">5. Conexión a la base de datos</h3>
-      <pre><code>public static Conexion getInstancia() {
-    if (instancia == null) instancia = new Conexion();
-    return instancia;
-}
-
-public Connection getConexionBD() {
-    if (conexionBD == null || conexionBD.isClosed()) {
-        conectar();
-    }
-    return conexionBD;
-}</code></pre>
-      <p>Este código abre y reutiliza una sola conexión. Cuando el DAO necesita guardar o leer, la pide desde aquí. Así el acceso a la base queda centralizado.</p>
-
-      <h3 id="guardar-un-arte">6. Guardar un arte</h3>
-      <pre><code>public boolean guardar(Arte arte) {
-    String sql = "INSERT INTO arte (nombre_arte, url_arte) VALUES (?, ?)";
-    try (PreparedStatement stmt = conexion.getConexionBD().prepareStatement(sql)) {
-        stmt.setString(1, arte.getNombreArte());
-        stmt.setString(2, arte.getUrlArte());
-        return stmt.executeUpdate() &gt; 0;
-    } catch (SQLException e) {
-        return false;
-    }
-}</code></pre>
-      <p>Este fragmento ya toca la base de datos directamente. Recibe el objeto <code>Arte</code>, arma la consulta y ejecuta el guardado. Después el resultado vuelve al controlador para actualizar la vista.</p>
-
-      <h2 id="ejemplo-completo">Ejemplo Completo</h2>
-      <p><a href="https://github.com/meaguilar/POO-2026/tree/main/Ejercicios-Laboratorios/Laboratorio-6/ConexionGaleria">Ver Galeria de Imagenes en JavaFX</a></p>
-
-      <h2 id="anexos">Anexos</h2>
-      <ul>
-        <li><strong>Recursos Visuales para Pruebas (Unsplash):</strong> Plataforma de fotografías gratuitas en alta calidad para usar como ejemplo en las URLs de la galería. <a href="https://unsplash.com/">https://unsplash.com/</a></li>
-        <li><strong>DBeaver Community Edition:</strong> Gestor universal de bases de datos de código abierto para conectarse a PostgreSQL y verificar si los registros ejecutados desde Java mediante el CRUD se están insertando correctamente. <a href="https://dbeaver.io/download/">https://dbeaver.io/download/</a></li>
-        <li><strong>PostgreSQL JDBC Driver:</strong> Documentación oficial y repositorio del conector oficial (driver <code>.jar</code>) necesario para que las aplicaciones de Java se logren comunicar con el motor de base de datos PostgreSQL. <a href="https://jdbc.postgresql.org/">https://jdbc.postgresql.org/</a></li>
-        <li><strong>Documentación Oficial de Oracle - JDBC Basics:</strong> Guía introductoria de Java con las mejores prácticas para estructurar consultas, gestionar transacciones y manejar correctamente las excepciones. <a href="https://docs.oracle.com/javase/tutorial/jdbc/basics/">https://docs.oracle.com/javase/tutorial/jdbc/basics/</a></li>
-        <li><strong>Patrón de Diseño DAO - GeeksforGeeks:</strong> Explicación detallada y teórica sobre cómo implementar de forma genérica el patrón de acceso a objetos de datos en arquitecturas de software orientadas a objetos. <a href="https://www.geeksforgeeks.org/data-access-object-pattern/">https://www.geeksforgeeks.org/data-access-object-pattern/</a></li>
-      </ul>
     </div>
   </div>
 </body>
