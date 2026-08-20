@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CP1</title>
+  <title>Uso de Git</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -30,7 +30,6 @@
 </ul>
 </li>
 <li><a href="#comandos-git">Comandos Git</a></li>
-<li><a href="#indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</a></li>
 <li><a href="#anexos">Anexos</a></li>
 </ul>
 </li>
@@ -41,7 +40,6 @@
   <div class="stackedit__right">
     <div class="stackedit__html">
       <h1 id="comandos-avanzados-de-git">Comandos Avanzados de Git</h1>
-<p>En este laboratorio, aprenderás diferentes comandos de Git, metodología de trabajo con Git, para la eficiencia de la gestión de versiones de aplicaciones.</p>
 <h2 id="git---comandos-básicos">Git - Comandos básicos</h2>
 <p>Git es un sistema de control de versiones creado por <strong>Linus Torvalds</strong> en 2005. Su principal propósito es permitir que varios desarrolladores trabajen en un mismo proyecto de manera eficiente y organizada, asegurando que todos los cambios en el código fuente se registren y gestionen adecuadamente.</p>
 <h4 id="configuración-de-git-importante">Configuración de Git (Importante)</h4>
@@ -111,7 +109,7 @@
 </li>
 </ul>
 <h3 id="flujo-de-trabajo-básico-en-git">Flujo de trabajo básico en Git</h3>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/A.png" alt="enter image description here"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/f0f48c6246415b2f22d3c97ec07958d1be4146e4/POO/imagenes/uso-git/1.png" alt="enter image description here"></p>
 <ul>
 <li><strong>Working directory:</strong> es el espacio donde trabajas en el proyecto, haciendo cambios en los archivos y carpetas que componen tu código fuente.</li>
 <li><strong>Staging area:</strong> es un espacio en el repositorio de Git donde preparas los cambios antes de confirmarlos. Es una etapa intermedia entre los cambios realizados en el directorio de trabajo y el historial de commits del repositorio.</li>
@@ -150,7 +148,7 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 </code></pre>
 </li>
 <li>
-<p>Sigue la convención del mensaje de commit definida por tu equipo.</p>
+<p>Sigue la convención del mensaje de commit definida por tu equipo. También puedes guiarte por esta guía universal <a href="https://www.conventionalcommits.org/es/v1.0.0-beta.3/#especificaci%C3%B3n">Commits-Convencionales</a></p>
 </li>
 <li>
 <p>Usar emojis en los mensajes de commit puede ser una forma efectiva de hacer que el historial de commits sea más visual y fácil de entender. Para hacerlo, se recomienda usar emojis con significado, que ayudan a identificar rápidamente el tipo de cambio realizado. Aquí te mostramos cómo puedes utilizar emojis en tus mensajes de commit de manera efectiva, para ellos puedes usar la pagina de <a href="https://gitmoji.dev/">Gitmoji</a></p>
@@ -162,7 +160,7 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 <p>GitFlow es una metodología de ramificación (branching) para trabajar con Git que proporciona una estructura clara y bien definida para el desarrollo de software en equipo. Esta metodología fue creada por Vincent Driessen en 2010 y es ampliamente utilizada en proyectos de software empresariales.</p>
 <p>GitFlow utiliza dos ramas principales en el repositorio: una rama “main” que representa la versión estable del software y una rama “develop” que representa la versión en desarrollo. Además, utiliza ramas secundarias para el desarrollo de nuevas funciones y correcciones de errores. Estas ramas secundarias pueden ser temporales o permanentes, dependiendo del alcance y duración de la tarea.</p>
 <p>El flujo de trabajo de GitFlow se divide en varias fases, que se detallan a continuación:</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/B.png" alt="enter image description here"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/f0f48c6246415b2f22d3c97ec07958d1be4146e4/POO/imagenes/uso-git/2.png" alt="enter image description here"></p>
 <ul>
 <li>
 <p><strong>Rama “Main o Master”:</strong> La rama main o principal almacena el historial de publicación oficial, asimismo en esta rama conviene etiquetar todas las confirmaciones de la rama main con un número de versión.</p>
@@ -298,13 +296,10 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 <pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> checkout <span class="token operator">&lt;</span>commit_id<span class="token operator">&gt;</span>
 </code></pre>
 <ul>
-<li><strong>Git diff</strong>: La comparación es una función mediante la cual se toman dos conjuntos de datos de entrada y se muestran los cambios entre estos. git diff es un comando multiusos de Git que, cuando se ejecuta, lleva a cabo una función para establecer las diferencias en los orígenes de datos de Git. Dichos orígenes de datos pueden ser confirmaciones, ramas y archivos, entre otras posibilidades</li>
+<li><strong>Git diff</strong>:  permite <strong>visualizar los cambios realizados en los archivos</strong> del proyecto que aún no han sido confirmados (<code>commit</code>). Es muy útil para revisar qué modificaciones se hicieron antes de agregarlas al área de preparación (<code>staging</code>) o antes de un commit. Comparar cambios en archivos modificados pero no añadidos al staging.</li>
 </ul>
-<p>La mejor manera de explicar cómo funciona git diff es con un ejemplo. Supongamos que se crea un nuevo proyecto con el nombre de “proyecto_nuevo” y que se añade dos documentos de texto. Estos documentos se denominan color_primero.txt y color_segundo.txt. El contenido de color_primero.txt es la frase “El primer color es azul”. El documento color_segundo.txt solo contiene la frase “El segundo color es el rojo”. Si ahora entras en git diff, al principio no pasará nada, porque el repositorio todavía no contiene ningún cambio que pueda ser comparado, se tendrían que mover los dos documentos al área de staging con el comando git add.</p>
-<p>Primero se debe comprobar con el comando git status qué cambios se han realizado y, por tanto, están teóricamente listos para un commit. En este caso se visualizan los dos documentos de texto color_primero.txt y color_segundo.txt.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/D.png" alt="enter image description here"></p>
-<p>Ahora, se cambia el segundo documento modificando el enunciado “El segundo color es rojo” 	por “El segundo color es amarillo”. Ahora podrás ver este cambio con git diff. El resultado sería el siguiente:</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/E.png" alt="enter image description here"></p>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> <span class="token function">diff</span>
+</code></pre>
 <ul>
 <li>
 <p><strong>Git tag</strong>: En Git, los tags son referencias estáticas a puntos específicos en la historia del repositorio, generalmente se utilizan para marcar versiones importantes o hitos en el desarrollo del proyecto.</p>
@@ -330,53 +325,42 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 </ul>
 </li>
 </ul>
-<h2 id="indicaciones-para-el-ejercicio-evaluado">Indicaciones para el ejercicio evaluado</h2>
-<ol>
-<li><strong>Crea un grupo</strong>: Forma tu equipo máximo 3 personas (Un persona crea el grupo y los demás se unen).</li>
-<li><strong>Clona el repositorio</strong>: Utiliza el enlace proporcionado para clonar el repositorio en tu entorno de trabajo.</li>
-<li><strong>Desarrolla el ejercicio</strong>: Sigue las instrucciones del instructor para completar el ejercicio propuesto. Además asegúrate de trabajar con <strong>metodología Git Flow</strong></li>
-<li><strong>Verifica los cambios en GitHub</strong>: Ingresa a tu repositorio en GitHub y asegúrate de que los cambios hayan sido correctamente reflejados.</li>
-<li><strong>Elimina credenciales de Windows (si aplica)</strong>: Si utilizaste computadoras del laboratorio, recuerda borrar tus credenciales de Windows para proteger tu información.</li>
-<li><strong>Elimina programas y carpetas temporales</strong>: Asegúrate de borrar cualquier programa o carpeta que hayas creado durante la práctica, especialmente en computadoras compartidas.</li>
-</ol>
 <h2 id="anexos">Anexos</h2>
-<h3 id="uso-de-ssh-para-clonar-repositorios">Uso de SSH para clonar repositorios</h3>
-<p>Configurar SSH te permite establecer conexiones seguras a servidores y gestionar repositorios remotos en GitHub u otros servicios. Aquí está una guía paso a paso para configurar SSH en Windows</p>
+<h3 id="uso-de-inteligencia-artificial-para-la-generación-de-mensajes-de-commit">Uso de Inteligencia Artificial para la generación de mensajes de commit</h3>
+<p>La Inteligencia Artificial puede ayudar a generar mensajes de commit claros y consistentes.</p>
+<p>Esto es útil cuando:</p>
 <ul>
-<li>Asegúrate primero de tener Git instalado en tu computadora</li>
-<li>Luego de eso, hay que generar una llave SSH, para esto podemos ejecutar el siguiente comando en nuestro terminal:<pre class=" language-bash"><code class="prism  language-bash">ssh-keygen -t rsa -b 4096 -C <span class="token string">"your_email@example.com"</span>
+<li>Se realizan muchos cambios</li>
+<li>Se trabaja en equipos grandes</li>
+<li>Se desea mantener un estándar en los commits</li>
+</ul>
+<p><strong>Herramientas comunes</strong></p>
+<ul>
+<li>ChatGPT</li>
+<li>GitHub Copilot</li>
+<li>extensiones de IA para Git</li>
+</ul>
+<h3 id="prompt-recomendado-para-generar-commits">Prompt recomendado para generar commits</h3>
+<p>Puedes usar un prompt como el siguiente:</p>
+<pre><code>Genera un mensaje de commit siguiendo Conventional Commits.
+Cambios realizados:
+- Se agregó validación de correo en el formulario de registro 
+- Se corrigió un error que permitía enviar formularios vacíos 
+El commit debe incluir:
+- Tipo de commit
+- Título claro
+- Descripción breve
 </code></pre>
-</li>
-<li>Cuando se te pida, elige una ubicación para guardar la clave. La ubicación predeterminada (<code>~/.ssh/id_rsa</code>) es generalmente adecuada,.</li>
-<li>También se te pedirá una frase de contraseña para proteger la clave. Puedes dejarla en blanco si prefieres no usar una frase de contraseña.</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/F.png" alt="enter image description here"></p>
-<ul>
-<li>Luego en tu computador, dirígete a la ubicación donde se creo el SSH publico, que es el que esta marcado en rojo en la fotografía anterior. Si copias y pegas la ruta en tu gestor de archivos, te abrirá un bloc de notas con una serie de caracteres, la cual es nuestra llave publica.</li>
-<li>Copia la llave publica generada.</li>
-<li>Luego que la tengas copiada, nos dirigiremos a Github y nos iremos nuestra foto de perfil y seleccionaremos “configuración”</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/G.png" alt="enter image description here"></p>
-<ul>
-<li>En la configuración nos iremos al apartado “SSH keys and GPG keys” y agregaremos una nueva llave SSH</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/H.png" alt="enter image description here"></p>
-<ul>
-<li>
-<p>Le podemos poner cualquier titulo y dejamos seleccionado el tipo de llave de autenticación y luego en la “key” pegamos la llave publica que estaba en nuestro bloc de notas.</p>
-</li>
-<li>
-<p>Una ves realizado este paso, podemos probar clonando un repositorio nuevamente, sin embargo, como ya configuramos nuestro SSH, podemos usar esta nueva URL para clonar el repositorio en ves de con HTTPS.</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/I.png" alt="enter image description here"></p>
-<ul>
-<li>Al clonar un repositorio, nos puede decir lo siguiente, solo le damos a “yes” y si hicimos los pasos correctamente, lo clonará.</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/J.png" alt="enter image description here"></p>
-<ul>
-<li>Si tienes dudas o errores, no dudes en consultar con tu instructor.</li>
-</ul>
+<h4 id="ejemplo-generado-por-ia">Ejemplo generado por IA</h4>
+<pre class=" language-bash"><code class="prism  language-bash"> fix: Mejorar validación en formulario de registro
+    Se agregó validación para el campo de correo electrónico y se corrigió 
+    un error que permitía enviar formularios con campos vacíos. 
+</code></pre>
+<h4 id="uso-en-git">Uso en Git</h4>
+<pre class=" language-bash"><code class="prism  language-bash">   <span class="token function">git</span> commit -m <span class="token string">":bug: fix: Mejorar validación en formulario de registro"</span>
+   -m <span class="token string">"Se agregó validación para el correo electrónico y se corrigió un
+   error que permitía enviar formularios vacíos."</span>
+</code></pre>
 
     </div>
   </div>
