@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>guia-propiedad-javafx-css.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#instalación-de-mingw-w64-desde-winlibs-y-visual-studio-code-en-windows">Instalación de MinGW-w64 desde WinLibs y Visual Studio Code en Windows</a>
+<ul>
+<li><a href="#objetivo">1. Objetivo</a></li>
+<li><a href="#descargar-winlibs">2. Descargar WinLibs</a></li>
+<li><a href="#descargar-el-paquete">3. Descargar el paquete</a></li>
+<li><a href="#extraer-winlibs">4. Extraer WinLibs</a></li>
+<li><a href="#comprobar-gcc">5. Comprobar GCC</a></li>
+</ul>
+</li>
+<li><a href="#agregar-mingw-al-path">6. Agregar MinGW al PATH</a>
+<ul>
+<li><a href="#abrir-las-variables-de-entorno">6.1 Abrir las variables de entorno</a></li>
+<li><a href="#comprobar-path">6.2 Comprobar PATH</a></li>
+</ul>
+</li>
+<li><a href="#no-mezclar-diferentes-instalaciones-de-mingw">7. No mezclar diferentes instalaciones de MinGW</a></li>
+<li><a href="#instalar-visual-studio-code">8. Instalar Visual Studio Code</a></li>
+<li><a href="#instalar-la-extensión-cc">9. Instalar la extensión C/C++</a></li>
+<li><a href="#crear-un-proyecto-c">10. Crear un proyecto C++</a></li>
+<li><a href="#compilar-desde-la-terminal-de-vs-code">11. Compilar desde la terminal de VS Code</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="instalación-de-mingw-w64-desde-winlibs-y-visual-studio-code-en-windows">Instalación de MinGW-w64 desde WinLibs y Visual Studio Code en Windows</h1>
+<h2 id="objetivo">1. Objetivo</h2>
+<p>Este documento explica cómo instalar un entorno de desarrollo C/C++ en Windows utilizando:</p>
+<ul>
+<li><strong>WinLibs</strong> para obtener GCC, G++, MinGW-w64, Binutils y GDB.</li>
+<li><strong>Visual Studio Code (VS Code)</strong> como editor y entorno de desarrollo.</li>
+<li>La extensión <strong>C/C++</strong> de Microsoft para IntelliSense, compilación y depuración.</li>
+</ul>
+<p>La configuración está orientada principalmente a proyectos <strong>C++17 o posteriores</strong>.</p>
+<hr>
+<h2 id="descargar-winlibs">2. Descargar WinLibs</h2>
+<p>WinLibs proporciona paquetes precompilados de GCC y MinGW-w64 para Windows.</p>
+<p>Sitio oficial:</p>
+<p><a href="https://winlibs.com/">https://winlibs.com/</a></p>
+<p>Para un Windows de 64 bits se recomienda descargar una versión <strong>Win64</strong>.</p>
+<p>Para proyectos modernos se recomienda utilizar una versión reciente de GCC con:</p>
+<ul>
+<li>MinGW-w64</li>
+<li>UCRT</li>
+<li>POSIX threads</li>
+</ul>
+<p>Por ejemplo:</p>
+<pre class=" language-text"><code class="prism  language-text">GCC 16.x
+MinGW-w64 14.x
+UCRT
+POSIX
+Win64
+
+</code></pre>
+<blockquote>
+<p>Las versiones disponibles pueden cambiar con el tiempo. Se recomienda descargar la versión estable más reciente compatible con el proyecto.</p>
+</blockquote>
+<hr>
+<h2 id="descargar-el-paquete">3. Descargar el paquete</h2>
+<p>En la página de WinLibs:</p>
+<ol>
+<li>Buscar la versión estable más reciente.</li>
+<li>Seleccionar <strong>Win64</strong>.</li>
+<li>Seleccionar la variante <strong>UCRT</strong>.</li>
+<li>Seleccionar <strong>POSIX threads</strong>.</li>
+<li>Descargar el archivo <code>.7z</code> o <code>.zip</code>.</li>
+</ol>
+<p>Si se dispone de 7-Zip, se recomienda utilizar el archivo <code>.7z</code>.</p>
+<hr>
+<h2 id="extraer-winlibs">4. Extraer WinLibs</h2>
+<p>Crear una carpeta para los compiladores. Por ejemplo:</p>
+<pre class=" language-text"><code class="prism  language-text">C:\dev\
+</code></pre>
+<p>Extraer el paquete descargado dentro de esa carpeta.</p>
+<p>La estructura final puede ser similar a:</p>
+<pre class=" language-text"><code class="prism  language-text">C:\dev\mingw64\
+├── bin\
+│   ├── gcc.exe
+│   ├── g++.exe
+│   ├── gdb.exe
+│   ├── ld.exe
+│   └── ...
+├── include\
+├── lib\
+└── ...
+</code></pre>
+<p>La ubicación exacta puede variar dependiendo de la versión descargada.</p>
+<p>Lo importante es localizar la carpeta que contiene:</p>
+<pre class=" language-text"><code class="prism  language-text">bin\g++.exe
+</code></pre>
+<p>Por ejemplo:</p>
+<pre class=" language-text"><code class="prism  language-text">C:\dev\mingw64\bin\g++.exe
+</code></pre>
+<hr>
+<h2 id="comprobar-gcc">5. Comprobar GCC</h2>
+<p>Abrir <strong>CMD</strong> o <strong>PowerShell</strong>.</p>
+<p>Entrar en la carpeta <code>bin</code>:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">cd C:\dev\mingw64\bin
+</code></pre>
+<p>Ejecutar:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell"><span class="token punctuation">.</span>\g+<span class="token operator">+</span><span class="token punctuation">.</span>exe <span class="token operator">--</span>version
+</code></pre>
+<p>También se puede comprobar GCC:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell"><span class="token punctuation">.</span>\gcc<span class="token punctuation">.</span>exe <span class="token operator">--</span>version
+</code></pre>
+<p>Y GDB:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell"><span class="token punctuation">.</span>\gdb<span class="token punctuation">.</span>exe <span class="token operator">--</span>version
+
+</code></pre>
+<p>Debería aparecer la versión de GCC instalada.</p>
+<hr>
+<h1 id="agregar-mingw-al-path">6. Agregar MinGW al PATH</h1>
+<p>Para poder ejecutar <code>gcc</code>, <code>g++</code> y <code>gdb</code> desde cualquier terminal, agregar la carpeta <code>bin</code> al <code>PATH</code>.</p>
+<p>Por ejemplo:</p>
+<pre class=" language-text"><code class="prism  language-text">C:\dev\mingw64\bin
+</code></pre>
+<h2 id="abrir-las-variables-de-entorno">6.1 Abrir las variables de entorno</h2>
+<p>En Windows:</p>
+<ol>
+<li>Presionar <code>Win + R</code>.</li>
+<li>Escribir:</li>
+</ol>
+<pre class=" language-text"><code class="prism  language-text">sysdm.cpl
+</code></pre>
+<ol start="3">
+<li>Abrir <strong>Opciones avanzadas</strong>.</li>
+<li>Seleccionar <strong>Variables de entorno</strong>.</li>
+<li>En <strong>Variables del sistema</strong>, seleccionar <code>Path</code>.</li>
+<li>Presionar <strong>Editar</strong>.</li>
+<li>Presionar <strong>Nuevo</strong>.</li>
+<li>Agregar:</li>
+</ol>
+<pre class=" language-text"><code class="prism  language-text">C:\dev\mingw64\bin
+</code></pre>
+<ol start="9">
+<li>Aceptar todas las ventanas.</li>
+</ol>
+<hr>
+<h2 id="comprobar-path">6.2 Comprobar PATH</h2>
+<p>Cerrar las terminales abiertas y abrir una nueva.</p>
+<p>Ejecutar:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">g+<span class="token operator">+</span> <span class="token operator">--</span>version
+</code></pre>
+<p>Después:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">gcc <span class="token operator">--</span>version
+</code></pre>
+<p>Y:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">gdb <span class="token operator">--</span>version
+</code></pre>
+<p>También se puede comprobar qué ejecutable está utilizando Windows:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">where<span class="token punctuation">.</span>exe g+<span class="token operator">+</span>
+</code></pre>
+<p>El resultado debe apuntar al nuevo MinGW.</p>
+<p>Por ejemplo:</p>
+<pre class=" language-text"><code class="prism  language-text">C:\dev\mingw64\bin\g++.exe
+</code></pre>
+<h3 id="importante">Importante</h3>
+<p>Si <code>where.exe g++</code> muestra una instalación antigua de MinGW antes que la nueva, Windows utilizará la antigua.</p>
+<p>Esto puede causar problemas cuando existen varias instalaciones de MinGW.</p>
+<hr>
+<h1 id="no-mezclar-diferentes-instalaciones-de-mingw">7. No mezclar diferentes instalaciones de MinGW</h1>
+<p>Si anteriormente se utilizaba MinGW 6, es recomendable evitar mezclar sus componentes con la nueva instalación.</p>
+<p>Por ejemplo, evitar una configuración como:</p>
+<pre class=" language-text"><code class="prism  language-text">MinGW 6
+    gcc.exe
+    g++.exe
+
+MinGW nuevo
+    libstdc++
+    headers
+    binutils
+</code></pre>
+<p>Todos los componentes deben pertenecer al mismo toolchain.</p>
+<p>Comprobar:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">where<span class="token punctuation">.</span>exe gcc
+where<span class="token punctuation">.</span>exe g+<span class="token operator">+</span>
+where<span class="token punctuation">.</span>exe ld
+</code></pre>
+<p>Los ejecutables deberían proceder de la misma instalación.</p>
+<hr>
+<h1 id="instalar-visual-studio-code">8. Instalar Visual Studio Code</h1>
+<p>Descargar Visual Studio Code desde su sitio oficial:</p>
+<p><a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
+<p>Descargar la versión correspondiente a Windows.</p>
+<p>Ejecutar el instalador.</p>
+<p>Durante la instalación es recomendable activar las opciones relacionadas con:</p>
+<ul>
+<li>Agregar “Open with Code” al menú contextual.</li>
+<li>Agregar <code>code</code> al PATH.</li>
+<li>Registrar VS Code como editor.</li>
+</ul>
+<hr>
+<h1 id="instalar-la-extensión-cc">9. Instalar la extensión C/C++</h1>
+<p>Abrir Visual Studio Code.</p>
+<p>Seleccionar <strong>Extensions</strong>.</p>
+<p>Buscar:</p>
+<pre class=" language-text"><code class="prism  language-text">C/C++
+</code></pre>
+<p>Instalar:</p>
+<pre class=" language-text"><code class="prism  language-text">C/C++ — Microsoft
+</code></pre>
+<p>Esta extensión proporciona:</p>
+<ul>
+<li>IntelliSense.</li>
+<li>Navegación de código.</li>
+<li>Detección de errores.</li>
+<li>Depuración.</li>
+<li>Integración con GCC.</li>
+<li>Configuración de compilación.</li>
+</ul>
+<hr>
+<h1 id="crear-un-proyecto-c">10. Crear un proyecto C++</h1>
+<p>Crear una carpeta para el proyecto:</p>
+<pre class=" language-text"><code class="prism  language-text">C:\proyectos\cpp\HolaMundo
+</code></pre>
+<p>Abrirla en VS Code:</p>
+<pre class=" language-text"><code class="prism  language-text">File → Open Folder
+</code></pre>
+<p>Crear:</p>
+<pre class=" language-text"><code class="prism  language-text">main.cpp
+</code></pre>
+<p>Contenido:</p>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+
+<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Hola, mundo!"</span> <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre>
+<hr>
+<h1 id="compilar-desde-la-terminal-de-vs-code">11. Compilar desde la terminal de VS Code</h1>
+<p>Abrir:</p>
+<pre class=" language-text"><code class="prism  language-text">Terminal → New Terminal
+
+</code></pre>
+<p>Comprobar el compilador:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">g+<span class="token operator">+</span> <span class="token operator">--</span>version
+</code></pre>
+<p>Compilar:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell">g+<span class="token operator">+</span> <span class="token operator">-</span>std=c+<span class="token operator">+</span>17 main<span class="token punctuation">.</span><span class="token function">cpp</span> <span class="token operator">-</span>o programa<span class="token punctuation">.</span>exe
+</code></pre>
+<p>Ejecutar:</p>
+<pre class=" language-powershell"><code class="prism  language-powershell"><span class="token punctuation">.</span>\programa<span class="token punctuation">.</span>exe
+</code></pre>
+<p>Debe aparecer:</p>
+<pre class=" language-text"><code class="prism  language-text">Hola, mundo!
+</code></pre>
+<hr>
+<p>La ventaja de utilizar un paquete completo de WinLibs es que <strong>GCC, G++, MinGW-w64, la biblioteca estándar de C++ y las herramientas de enlace pertenecen al mismo toolchain</strong>, evitando mezclar componentes de diferentes versiones.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
