@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Labo09</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#estructuras-de-datos-dinámicas-no-lineales-grafos">Estructuras de datos dinámicas no lineales grafos</a>
+<ul>
+<li><a href="#¿qué-es-un-grafo">¿Qué es un Grafo?</a></li>
+<li><a href="#características-importantes-de-los-grafos">Características importantes de los grafos</a></li>
+<li><a href="#tipos-de-grafos">Tipos de grafos</a></li>
+<li><a href="#libreria-para-grafos-c">Libreria para grafos C++</a></li>
+<li><a href="#operaciones-básicas-con-grafos">Operaciones básicas con grafos</a></li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="estructuras-de-datos-dinámicas-no-lineales-grafos">Estructuras de datos dinámicas no lineales grafos</h1>
+<p>En este laboratorio estudiaremos los <strong>grafos</strong>, una estructura de datos fundamental en la representación de relaciones entre diferentes elementos, utilizada en áreas como redes, optimización, inteligencia artificial, entre otros.</p>
+<h2 id="¿qué-es-un-grafo">¿Qué es un Grafo?</h2>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20240613161501/graph-in-cpp.webp" alt="graph-in-cpp"></p>
+<p>Un <strong>grafo</strong> es una estructura de datos que consta de un conjunto de nodos o <strong>vertices</strong> y un conjunto de conexiones llamadas <strong>aristas</strong> que unen ciertos pares de vértices. A diferencia de los árboles, los grafos no tienen una jerarquía específica, lo que permite modelar relaciones más complejas entre los elementos.</p>
+<p>Los grafos pueden ser <strong>dirigidos</strong> o <strong>no dirigidos</strong>:</p>
+<ul>
+<li>En un <strong>grafo dirigido</strong>, las aristas tienen una dirección, lo que significa que la relación entre dos vértices es asimétrica.</li>
+<li>En un <strong>grafo no dirigido</strong>, las aristas no tienen dirección, lo que implica que la relación es simétrica entre los vértices.</li>
+</ul>
+<h2 id="características-importantes-de-los-grafos">Características importantes de los grafos</h2>
+<ul>
+<li><strong>Vértices</strong>: Los puntos en los que se conectan las aristas (también llamados nodos).</li>
+<li><strong>Aristas</strong>: Las conexiones entre los vértices.</li>
+<li><strong>Grado de un vértice</strong>: El número de aristas conectadas a un vértice.</li>
+<li><strong>Camino</strong>: Una secuencia de vértices conectados por aristas.</li>
+<li><strong>Ciclo</strong>: Un camino que comienza y termina en el mismo vértice.</li>
+</ul>
+<h2 id="tipos-de-grafos">Tipos de grafos</h2>
+<p><img src="https://cdn-images-1.medium.com/max/800/1*dX9TdlR6wD5lkPnWG1h80g.png" alt="Types of Graph in Data Structures"></p>
+<ol>
+<li><strong>Grafo Simple</strong>: No tiene bucles ni aristas múltiples (más de una arista entre dos vértices).</li>
+<li><strong>Grafo Dirigido</strong>: Las aristas tienen una dirección (van de un vértice a otro).</li>
+<li><strong>Grafo No Dirigido</strong>: Las aristas no tienen dirección.</li>
+<li><strong>Grafo Conexo</strong>: Existe un camino entre cada par de vértices.</li>
+<li><strong>Grafo Disconexo</strong>: No hay caminos entre algunos vértices.</li>
+<li><strong>Grafo Ponderado</strong>: Las aristas tienen un peso asociado (por ejemplo, costo o distancia).</li>
+</ol>
+<p>En este laboratorio nos centraremos en estudiar <strong>grafos dirigidos</strong> y <strong>no dirigidos</strong>.</p>
+<h2 id="libreria-para-grafos-c">Libreria para grafos C++</h2>
+<p>En este laboratorio usaremos una librería personalizada que permite la creación de grafos dirigidos y no dirigidos, además de realizar operaciones básicas como agregar o eliminar aristas, buscar vértices, y recorrer el grafo.</p>
+<h3 id="definición-de-la-estructura">Definición de la estructura</h3>
+<p>Para crear un grafo donde los nodos representen personas, usaremos una estructura <code>Person</code> con las propiedades <code>name</code> y <code>age</code>. Es importante sobrecargar el operador <code>&lt;</code> para poder ordenar las personas dentro del grafo:</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">struct</span> Person <span class="token punctuation">{</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>string name<span class="token punctuation">;</span>
+  <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+
+  bool operator<span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token keyword">const</span> Person<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> name <span class="token operator">&lt;</span> other<span class="token punctuation">.</span>name <span class="token operator">||</span> <span class="token punctuation">(</span>name <span class="token operator">==</span> other<span class="token punctuation">.</span>name <span class="token operator">&amp;&amp;</span> age <span class="token operator">&lt;</span> other<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  bool operator<span class="token operator">==</span><span class="token punctuation">(</span><span class="token keyword">const</span> Person<span class="token operator">&amp;</span> other<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> name <span class="token operator">==</span> other<span class="token punctuation">.</span>name <span class="token operator">&amp;&amp;</span> age <span class="token operator">==</span> other<span class="token punctuation">.</span>age<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p><strong>Operador <code>==</code></strong>: Este operador determina si dos instancias de <code>Person</code> son iguales. Si solo el operador <code>&lt;</code> estuviera sobrecargado, podríamos ordenar, pero no comparar si dos personas son idénticas</p>
+<p><strong>Operador <code>&lt;</code></strong>: Este operador es necesario para ordenar los nodos en el grafo. Sobrecargar el operador <code>&lt;</code> le indica a la estructura cómo comparar dos instancias de <code>Person</code> y establecer un orden.</p>
+<h3 id="creación-de-un-grafo">Creación de un grafo</h3>
+<p>Luego para definir un grafo, lo haremos de la siguiente manera</p>
+<pre class=" language-c"><code class="prism ++ language-c">  Graph<span class="token operator">&lt;</span>Person<span class="token operator">&gt;</span>  graph<span class="token punctuation">;</span>
+</code></pre>
+<p>Aquí, <code>&lt;Person&gt;</code> indica el tipo de dato que utilizará el grafo, que en este caso es una estructura personalizada, y <code>graph</code> es el nombre de nuestra instancia de grafo.</p>
+<p>Luego crearemos algunos nodos para nuestro grafo.</p>
+<pre class=" language-c"><code class="prism ++ language-c">	Person  alice<span class="token punctuation">{</span><span class="token string">"Alice"</span><span class="token punctuation">,</span>  <span class="token number">30</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	Person  bob<span class="token punctuation">{</span><span class="token string">"Bob"</span><span class="token punctuation">,</span>  <span class="token number">25</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+	Person  charlie<span class="token punctuation">{</span><span class="token string">"Charlie"</span><span class="token punctuation">,</span>  <span class="token number">35</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre>
+<p align="center">
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeQpnXN_pAI7eNOE8F8hOpHrao7QDRZ7IAJM0xZ8D3txK4IXtkxtDSSbGcocKayuCPSi-Bnu2omBl28hiJEJ9xTgYVNBwI0ansI1YF3xBDiyUyrGH6AS-9uA1_3grPSFTBIqL9TjSqPUlmwe05mYheh1so?key=sVYRByLC0DqYQgEyqSRqUepB" width="400">
+</p>
+<h2 id="operaciones-básicas-con-grafos">Operaciones básicas con grafos</h2>
+<p>La librería  permite realizar varias operaciones clave. A continuación se muestran los ejemplos más importantes.</p>
+<h3 id="agregar-aristas">Agregar aristas</h3>
+<p>Una vez que los nodos están creados, procedemos a <strong>agregarlos</strong> al grafo. Para conectar dos nodos, utilizamos la función <code>add</code>. El grafo que genera es dirigido, es decir que la conexión se establece desde el nodo de origen hacia el nodo de destino.</p>
+<pre class=" language-c"><code class="prism ++ language-c">graph<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>alice<span class="token punctuation">,</span>  bob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+graph<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>alice<span class="token punctuation">,</span>  charlie<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p align="center">
+  <img src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcgGn8f2D3EZdB80vjAnjQp40tGPj2lEjpiOp_re1EBkko_OY5SB5E8spEpCnnf9GRZWDFa09bmp4Xi3uTks85ctpeDeJ3ph5P_vlJbWdQsXNMZDN7qdfrCEaqsKUW_oiX6JunLyUTdgJPGWv0K9yumXqVI?key=sVYRByLC0DqYQgEyqSRqUepB" width="400">
+</p>
+<h3 id="eliminar-aristas">Eliminar aristas</h3>
+<p>Para <strong>eliminar una conexión</strong> entre dos nodos en el grafo, utilizamos la función <code>remove</code></p>
+<pre class=" language-c"><code class="prism ++ language-c">graph<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>alice<span class="token punctuation">,</span> bob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<h3 id="buscar-un-nodo">Buscar un Nodo</h3>
+<p>Para <strong>verificar si un nodo existe</strong> en el grafo, empleamos la función <code>find</code>. Esta función devolverá <code>true</code> si el nodo está presente en el grafo y <code>false</code> en caso contrario.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">if</span> <span class="token punctuation">(</span>graph<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span>bob<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Bob está en el grafo."</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="recorrido-en-profundidad-dfs">Recorrido en Profundidad (DFS)</h3>
+<p>Para <strong>recorrer el grafo en profundidad</strong> desde un nodo de inicio, utilizamos la función <code>DFS</code>. Esta función explora todos los nodos alcanzables desde el nodo inicial y aplica una acción en cada uno, que en este caso es definida por la función <code>imprimirPersona</code>.</p>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">void</span> <span class="token function">imprimirPersona</span><span class="token punctuation">(</span><span class="token keyword">const</span> Person<span class="token operator">&amp;</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> person<span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> <span class="token string">" ("</span> <span class="token operator">&lt;&lt;</span> person<span class="token punctuation">.</span>age <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+graph<span class="token punctuation">.</span><span class="token function">DFS</span><span class="token punctuation">(</span>alice<span class="token punctuation">,</span> imprimirPersona<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Aquí, <code>DFS</code> comienza en el nodo <code>alice</code> y, para cada nodo visitado, llama a la función <code>imprimirPersona</code>, que imprime el nombre y la edad de cada persona encontrada en el recorrido.</p>
+<p>El método <code>DFS</code> nos permite personalizar la acción que queremos ejecutar en cada nodo durante el recorrido. Al pasar una función como argumento, podemos definir exactamente qué queremos hacer con cada nodo, permitiéndonos adaptarlo a diversas necesidades según el contexto del grafo.</p>
+<p>Por ejemplo, además de imprimir los datos de cada persona, podríamos crear una función personalizada para:</p>
+<h4 id="contar-el-número-de-nodos-visitados."><strong>Contar el número de nodos visitados.</strong></h4>
+<pre class=" language-c"><code class="prism ++ language-c"><span class="token keyword">int</span> contador <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">contarNodo</span><span class="token punctuation">(</span><span class="token keyword">const</span> Person<span class="token operator">&amp;</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    contador<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+graph<span class="token punctuation">.</span><span class="token function">DFS</span><span class="token punctuation">(</span>alice<span class="token punctuation">,</span> contarNodo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Número total de nodos visitados: "</span> <span class="token operator">&lt;&lt;</span> contador <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+</code></pre>
+<h4 id="encontrar-a-la-persona-de-mayor-edad">Encontrar a la persona de mayor edad</h4>
+<pre class=" language-c"><code class="prism ++ language-c">Person personaMayorEdad<span class="token punctuation">{</span><span class="token string">""</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Inicializamos con una edad claramente menor</span>
+
+<span class="token keyword">void</span> <span class="token function">encontrarMayorEdad</span><span class="token punctuation">(</span><span class="token keyword">const</span> Person<span class="token operator">&amp;</span> person<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>person<span class="token punctuation">.</span>age <span class="token operator">&gt;</span> personaMayorEdad<span class="token punctuation">.</span>age<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        personaMayorEdad <span class="token operator">=</span> person<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+graph<span class="token punctuation">.</span><span class="token function">DFS</span><span class="token punctuation">(</span>alice<span class="token punctuation">,</span> encontrarMayorEdad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Persona de mayor edad: "</span> <span class="token operator">&lt;&lt;</span> personaMayorEdad<span class="token punctuation">.</span>name <span class="token operator">&lt;&lt;</span> <span class="token string">" ("</span> <span class="token operator">&lt;&lt;</span> personaMayorEdad<span class="token punctuation">.</span>age <span class="token operator">&lt;&lt;</span> <span class="token string">" años)"</span> <span class="token operator">&lt;&lt;</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+</code></pre>
+<h1 id="anexos">Anexos</h1>
+<p><a href="https://www.freecodecamp.org/espanol/news/explicacion-de-algoritmos-y-estructuras-de-datos-de-grafos-con-ejemplos-en-java-y-c/">Articulo sobre grafos</a> para entender como funcionan y como se implementan desde cero en C++ y Java.</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
