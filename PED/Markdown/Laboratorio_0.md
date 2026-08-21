@@ -2,7 +2,7 @@
 
 ## Git - Comandos básicos
 Git es un sistema de control de versiones creado por **Linus Torvalds** en 2005. Su principal propósito es permitir que varios desarrolladores trabajen en un mismo proyecto de manera eficiente y organizada, asegurando que todos los cambios en el código fuente se registren y gestionen adecuadamente.
-![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios%202026/Imagenes/Laboratorio_0/logogit.png)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios2026/Imagenes/Laboratorio_0/logogit.png)
 #### Configuración de Git (Importante)
 
 #### Clonando repositorios
