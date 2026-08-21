@@ -131,7 +131,7 @@ GitFlow utiliza dos ramas principales en el repositorio: una rama "main" que rep
 
 El flujo de trabajo de GitFlow se divide en varias fases, que se detallan a continuación:
 
-![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios202026/Imagenes/Laboratorio_0/B.png)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios2026/Imagenes/Laboratorio_0/B.png)
 
 -   **Rama “Main o Master”:** La rama main o principal almacena el historial de publicación oficial, asimismo en esta rama conviene etiquetar todas las confirmaciones de la rama main con un número de versión.
     
