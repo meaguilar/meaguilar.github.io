@@ -1,48 +1,18 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uso de Git</title>
+  <title>Laboratorio_0</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
 <body class="stackedit">
-  <div class="stackedit__left">
-    <div class="stackedit__toc">
-      
-<ul>
-<li><a href="#comandos-avanzados-de-git">Comandos Avanzados de Git</a>
-<ul>
-<li><a href="#git---comandos-básicos">Git - Comandos básicos</a>
-<ul>
-<li></li>
-<li><a href="#flujo-de-trabajo-básico-en-git">Flujo de trabajo básico en Git</a></li>
-<li><a href="#estructura-básica-de-un-commit">Estructura básica de un commit</a></li>
-<li><a href="#¿cómo-hacer-buenos-commits">¿Cómo hacer buenos commits?</a></li>
-</ul>
-</li>
-<li><a href="#gitflow">GitFlow</a>
-<ul>
-<li></li>
-<li><a href="#complemento-de-git-flow">Complemento de Git Flow</a></li>
-</ul>
-</li>
-<li><a href="#comandos-git">Comandos Git</a></li>
-<li><a href="#anexos">Anexos</a></li>
-</ul>
-</li>
-</ul>
-
-    </div>
-  </div>
-  <div class="stackedit__right">
-    <div class="stackedit__html">
-      <h1 id="comandos-avanzados-de-git">Comandos Avanzados de Git</h1>
+  <div class="stackedit__html"><h1 id="comandos-avanzados-de-git">Comandos Avanzados de Git</h1>
 <h2 id="git---comandos-básicos">Git - Comandos básicos</h2>
-<p>Git es un sistema de control de versiones creado por <strong>Linus Torvalds</strong> en 2005. Su principal propósito es permitir que varios desarrolladores trabajen en un mismo proyecto de manera eficiente y organizada, asegurando que todos los cambios en el código fuente se registren y gestionen adecuadamente.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP1/logogit.png" alt="enter image description here"></p>
+<p>Git es un sistema de control de versiones creado por <strong>Linus Torvalds</strong> en 2005. Su principal propósito es permitir que varios desarrolladores trabajen en un mismo proyecto de manera eficiente y organizada, asegurando que todos los cambios en el código fuente se registren y gestionen adecuadamente.<br>
+<img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios%202026/Imagenes/Laboratorio_0/logogit.png" alt="enter image description here"></p>
 <h4 id="configuración-de-git-importante">Configuración de Git (Importante)</h4>
 <h4 id="clonando-repositorios">Clonando repositorios</h4>
 <ul>
@@ -110,7 +80,7 @@
 </li>
 </ul>
 <h3 id="flujo-de-trabajo-básico-en-git">Flujo de trabajo básico en Git</h3>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/f0f48c6246415b2f22d3c97ec07958d1be4146e4/POO/imagenes/uso-git/1.png" alt="enter image description here"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios%202026/Imagenes/Laboratorio_0/A.png" alt="enter image description here"></p>
 <ul>
 <li><strong>Working directory:</strong> es el espacio donde trabajas en el proyecto, haciendo cambios en los archivos y carpetas que componen tu código fuente.</li>
 <li><strong>Staging area:</strong> es un espacio en el repositorio de Git donde preparas los cambios antes de confirmarlos. Es una etapa intermedia entre los cambios realizados en el directorio de trabajo y el historial de commits del repositorio.</li>
@@ -161,7 +131,7 @@ El problema se debía a una falta de validación en el campo de contraseña que 
 <p>GitFlow es una metodología de ramificación (branching) para trabajar con Git que proporciona una estructura clara y bien definida para el desarrollo de software en equipo. Esta metodología fue creada por Vincent Driessen en 2010 y es ampliamente utilizada en proyectos de software empresariales.</p>
 <p>GitFlow utiliza dos ramas principales en el repositorio: una rama “main” que representa la versión estable del software y una rama “develop” que representa la versión en desarrollo. Además, utiliza ramas secundarias para el desarrollo de nuevas funciones y correcciones de errores. Estas ramas secundarias pueden ser temporales o permanentes, dependiendo del alcance y duración de la tarea.</p>
 <p>El flujo de trabajo de GitFlow se divide en varias fases, que se detallan a continuación:</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/f0f48c6246415b2f22d3c97ec07958d1be4146e4/POO/imagenes/uso-git/2.png" alt="enter image description here"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios%202026/Imagenes/Laboratorio_0/B.png" alt="enter image description here"></p>
 <ul>
 <li>
 <p><strong>Rama “Main o Master”:</strong> La rama main o principal almacena el historial de publicación oficial, asimismo en esta rama conviene etiquetar todas las confirmaciones de la rama main con un número de versión.</p>
@@ -362,9 +332,82 @@ El commit debe incluir:
    -m <span class="token string">"Se agregó validación para el correo electrónico y se corrigió un
    error que permitía enviar formularios vacíos."</span>
 </code></pre>
+<h3 id="gitmoji">Gitmoji</h3>
+<h4 id="¿qué-es-gitmoji">¿Qué es Gitmoji?</h4>
+<p>Gitmoji es una convención que utiliza emojis en los mensajes de commit para identificar rápidamente el tipo de cambio realizado.</p>
+<p>Puedes consultar la lista completa de emojis en:</p>
+<ul>
+<li><a href="https://gitmoji.dev">https://gitmoji.dev</a></li>
+</ul>
+<h4 id="gitmojis-más-utilizados">Gitmojis más utilizados</h4>
 
-    </div>
-  </div>
+<table>
+<thead>
+<tr>
+<th>Emoji</th>
+<th>Código</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>✨</td>
+<td><code>:sparkles:</code></td>
+<td>Nueva funcionalidad</td>
+</tr>
+<tr>
+<td>🐛</td>
+<td><code>:bug:</code></td>
+<td>Corrección de errores</td>
+</tr>
+<tr>
+<td>📝</td>
+<td><code>:memo:</code></td>
+<td>Cambios en documentación</td>
+</tr>
+<tr>
+<td>♻️</td>
+<td><code>:recycle:</code></td>
+<td>Refactorización de código</td>
+</tr>
+<tr>
+<td>🎨</td>
+<td><code>:art:</code></td>
+<td>Mejoras de estructura o formato del código</td>
+</tr>
+<tr>
+<td>✅</td>
+<td><code>:white_check_mark:</code></td>
+<td>Agregar o actualizar pruebas</td>
+</tr>
+<tr>
+<td>🔥</td>
+<td><code>:fire:</code></td>
+<td>Eliminación de código o archivos</td>
+</tr>
+<tr>
+<td>🚀</td>
+<td><code>:rocket:</code></td>
+<td>Despliegue o liberación de versión</td>
+</tr>
+<tr>
+<td>⚡</td>
+<td><code>:zap:</code></td>
+<td>Mejoras de rendimiento</td>
+</tr>
+<tr>
+<td>🔒</td>
+<td><code>:lock:</code></td>
+<td>Mejoras de seguridad</td>
+</tr>
+</tbody>
+</table><h4 id="ejemplos">Ejemplos</h4>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">":sparkles: feat: Agregar búsqueda de clientes"</span>
+</code></pre>
+<pre class=" language-bash"><code class="prism  language-bash"><span class="token function">git</span> commit -m <span class="token string">":bug: fix: Corregir validación de correo"</span>
+</code></pre>
+<p><strong>Recomendación:</strong> Combina Gitmoji con Conventional Commits para mantener un historial de cambios más claro y fácil de entender.</p>
+</div>
 </body>
 
 </html>
