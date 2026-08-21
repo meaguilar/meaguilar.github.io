@@ -79,7 +79,7 @@ Si estás usando las computadoras del laboratorio y necesitas configurar credenc
 
 ### Flujo de trabajo básico en Git
 
-![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios%202026/Imagenes/Laboratorio_0/A.png)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios2026/Imagenes/Laboratorio_0/A.png)
 
 - **Working directory:** es el espacio donde trabajas en el proyecto, haciendo cambios en los archivos y carpetas que componen tu código fuente.
 - **Staging area:** es un espacio en el repositorio de Git donde preparas los cambios antes de confirmarlos. Es una etapa intermedia entre los cambios realizados en el directorio de trabajo y el historial de commits del repositorio.
@@ -131,7 +131,7 @@ GitFlow utiliza dos ramas principales en el repositorio: una rama "main" que rep
 
 El flujo de trabajo de GitFlow se divide en varias fases, que se detallan a continuación:
 
-![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios%202026/Imagenes/Laboratorio_0/B.png)
+![enter image description here](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Markdown/Laboratorios202026/Imagenes/Laboratorio_0/B.png)
 
 -   **Rama “Main o Master”:** La rama main o principal almacena el historial de publicación oficial, asimismo en esta rama conviene etiquetar todas las confirmaciones de la rama main con un número de versión.
     
