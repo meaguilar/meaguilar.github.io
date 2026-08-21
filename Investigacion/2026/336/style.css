@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: #000;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Contenedor principal */
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    gap: 50px;
+
+    text-align: center;
+    color: #000;
+}
+
+/* Título */
+h1 {
+    width: 100%;
+    margin: 10px 0 20px;
+
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+    font-weight: 500;
+    font-size: 35pt;
+}
+
+/* Subtítulos */
+h2 {
+    width: 100%;
+    margin: 10px 0 20px;
+
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
+    font-weight: 500;
+}
+
+/* Textos */
+p {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 10pt;
+    font-weight: 400;
+    color: #000;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+}
+
+footer p {
+    margin: 0;
+    font-size: 10pt;
+}
+
+footer a {
+    color: #333;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: blueviolet;
+    text-decoration: underline;
+}
+
