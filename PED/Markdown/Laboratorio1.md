@@ -52,7 +52,7 @@ Cuando se pasa un arreglo a una función, en realidad se pasa un puntero a su pr
 
  ## Resumen visual: Valor vs. Referencia vs. Puntero
 
-![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif)
+![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png)
 
 En resumen: por valor la función recibe una copia; por referencia recibe acceso directo al dato original; y con un puntero recibe la dirección de memoria donde vive ese dato.
 
