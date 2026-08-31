@@ -1,4 +1,4 @@
-# Operadores
+﻿# Operadores
 
 ## Conceptos de Punteros
 
@@ -13,8 +13,21 @@
 ![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif)
 
 - **Por valor:** la función recibe una *copia* del dato. Los cambios dentro de la función no afectan la variable original.
+```cpp 
+// Paso por valor 
+void ConsultarCarga(int carga) 
+{ 
+	std::cout << "Carga actual: " << carga << " Wh" <<std::endl; 
+} 
+```
 - **Por referencia (`&`):** la función recibe acceso directo a la variable original mediante su dirección de memoria. Los cambios sí afectan al original.
-
+```cpp 
+// Paso por referencia
+void CargarBateria(int &carga, int Wh) 
+{ 
+	carga += Wh;
+} 
+```
 ## Arreglos y punteros
 
 El nombre de un arreglo es en realidad un puntero a su primer elemento — por eso no hace falta usar `&` para obtener esa dirección. Al recorrer un arreglo con un puntero, `*(p + i)` equivale a `arr[i]` (aritmética de punteros).
@@ -42,6 +55,13 @@ Cuando se pasa un arreglo a una función, en realidad se pasa un puntero a su pr
 - En estructuras de bajo nivel.
 - Cuando se necesita cambiar a qué objeto se apunta.
 
+```cpp 
+// Paso por puntero 
+void ConsumirEnergia(int *carga, int Wh){ 
+	*carga -= Wh;
+} 
+```
+
 **Buenas practicas:**
 - Inicializar siempre los punteros.
 - Usarlos cuando se necesite: manipular variables de forma indirecta, gestionar memoria dinámica, o crear estructuras dinámicas (listas enlazadas, árboles, etc.).
@@ -56,6 +76,9 @@ Cuando se pasa un arreglo a una función, en realidad se pasa un puntero a su pr
 
 En resumen: por valor la función recibe una copia; por referencia recibe acceso directo al dato original; y con un puntero recibe la dirección de memoria donde vive ese dato.
 
+## Ejemplo
+[Ver Ejemplo de Granja Solar](https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-1)
+
 # Anexos
 
-
+[Guia de Git](https://meaguilar.github.io/PED/Laboratorio0)

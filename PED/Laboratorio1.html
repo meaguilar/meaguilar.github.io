@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio 1</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#operadores">Operadores</a>
+<ul>
+<li><a href="#conceptos-de-punteros">Conceptos de Punteros</a></li>
+<li><a href="#paso-por-valor-vs.-paso-por-referencia">Paso por valor vs. paso por referencia</a></li>
+<li><a href="#arreglos-y-punteros">Arreglos y punteros</a></li>
+<li><a href="#¿cuándo-usar-cada-uno">¿Cuándo usar cada uno?</a></li>
+<li><a href="#resumen-visual-valor-vs.-referencia-vs.-puntero">Resumen visual: Valor vs. Referencia vs. Puntero</a></li>
+<li><a href="#ejemplo">Ejemplo</a></li>
+</ul>
+</li>
+<li><a href="#anexos">Anexos</a></li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="operadores">Operadores</h1>
+<h2 id="conceptos-de-punteros">Conceptos de Punteros</h2>
+<p><strong>¿Qué es un puntero?</strong> Toda variable se guarda en una dirección de memoria (el lugar físico donde vive el dato). Una variable normal tiene tres características: su valor, su nombre y su dirección de memoria. Un puntero es un tipo especial de variable que también tiene esas tres características, pero su <em>valor</em> no es un dato como tal, sino una dirección de memoria que apunta a otro objeto (int, float, char, etc.). Si un puntero no se inicializa bien, puede apuntar a una dirección de memoria no válida.</p>
+<p><strong>Los dos operadores clave:</strong></p>
+<ul>
+<li><strong><code>&amp;</code> (referenciar):</strong> obtiene la dirección de memoria de una variable.</li>
+<li><strong><code>*</code> (desreferenciar):</strong> accede al valor almacenado en la dirección a la que apunta el puntero.</li>
+</ul>
+<h2 id="paso-por-valor-vs.-paso-por-referencia">Paso por valor vs. paso por referencia</h2>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif" alt="Paso por valor y por referencia"></p>
+<ul>
+<li><strong>Por valor:</strong> la función recibe una <em>copia</em> del dato. Los cambios dentro de la función no afectan la variable original.</li>
+</ul>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token comment">// Paso por valor </span>
+<span class="token keyword">void</span> <span class="token function">ConsultarCarga</span><span class="token punctuation">(</span><span class="token keyword">int</span> carga<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Carga actual: "</span> <span class="token operator">&lt;&lt;</span> carga <span class="token operator">&lt;&lt;</span> <span class="token string">" Wh"</span> <span class="token operator">&lt;&lt;</span>std<span class="token operator">::</span>endl<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span> 
+</code></pre>
+<ul>
+<li><strong>Por referencia (<code>&amp;</code>):</strong> la función recibe acceso directo a la variable original mediante su dirección de memoria. Los cambios sí afectan al original.</li>
+</ul>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token comment">// Paso por referencia</span>
+<span class="token keyword">void</span> <span class="token function">CargarBateria</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">&amp;</span>carga<span class="token punctuation">,</span> <span class="token keyword">int</span> Wh<span class="token punctuation">)</span> 
+<span class="token punctuation">{</span> 
+	carga <span class="token operator">+</span><span class="token operator">=</span> Wh<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+</code></pre>
+<h2 id="arreglos-y-punteros">Arreglos y punteros</h2>
+<p>El nombre de un arreglo es en realidad un puntero a su primer elemento — por eso no hace falta usar <code>&amp;</code> para obtener esa dirección. Al recorrer un arreglo con un puntero, <code>*(p + i)</code> equivale a <code>arr[i]</code> (aritmética de punteros).</p>
+<p>Cuando se pasa un arreglo a una función, en realidad se pasa un puntero a su primer elemento, así que cualquier modificación dentro de la función se refleja en el arreglo original — se ahorra memoria y tiempo al no copiar los datos.</p>
+<h2 id="¿cuándo-usar-cada-uno">¿Cuándo usar cada uno?</h2>
+<p><strong>Referencia (<code>&amp;</code>):</strong></p>
+<ul>
+<li>Cuando siempre debe existir un valor.</li>
+<li>Para pasar parámetros sin copiar.</li>
+<li>Para modificar argumentos de una función.</li>
+</ul>
+<p><strong>Buenas practicas:</strong></p>
+<ul>
+<li>Usar <code>const &amp;</code> cuando no se necesita modificar el valor (evita copias innecesarias en parámetros grandes: strings, vectores, objetos).</li>
+<li>Usar <code>&amp;</code> (sin const) cuando sí se quiere modificar la variable.</li>
+<li>Preferir referencias sobre punteros cuando solo se necesite manipular el contenido de variables en funciones: son más claras y evitan errores como trabajar con direcciones nulas.</li>
+</ul>
+<p><strong>Puntero (<code>*</code>):</strong></p>
+<ul>
+<li>Cuando el valor puede no existir (opcional).</li>
+<li>Para manejar arreglos dinámicos.</li>
+<li>En estructuras de bajo nivel.</li>
+<li>Cuando se necesita cambiar a qué objeto se apunta.</li>
+</ul>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token comment">// Paso por puntero </span>
+<span class="token keyword">void</span> <span class="token function">ConsumirEnergia</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>carga<span class="token punctuation">,</span> <span class="token keyword">int</span> Wh<span class="token punctuation">)</span><span class="token punctuation">{</span> 
+	<span class="token operator">*</span>carga <span class="token operator">-</span><span class="token operator">=</span> Wh<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> 
+</code></pre>
+<p><strong>Buenas practicas:</strong></p>
+<ul>
+<li>Inicializar siempre los punteros.</li>
+<li>Usarlos cuando se necesite: manipular variables de forma indirecta, gestionar memoria dinámica, o crear estructuras dinámicas (listas enlazadas, árboles, etc.).</li>
+<li>Si se reserva memoria dinámicamente, siempre liberarla.</li>
+<li>Evitar punteros crudos cuando sea posible; en C++ moderno se prefieren <strong>smart pointers</strong> para una gestión más segura. (Un puntero crudo es un puntero tradicional cuya asignación y liberación dependen completamente del programador, sin mecanismos automáticos de seguridad.)</li>
+</ul>
+<blockquote>
+<p>💡 Los punteros tienen su lugar cuando se trabaja con memoria dinámica o estructuras avanzadas.</p>
+</blockquote>
+<h2 id="resumen-visual-valor-vs.-referencia-vs.-puntero">Resumen visual: Valor vs. Referencia vs. Puntero</h2>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png" alt="Paso por valor y por referencia"></p>
+<p>En resumen: por valor la función recibe una copia; por referencia recibe acceso directo al dato original; y con un puntero recibe la dirección de memoria donde vive ese dato.</p>
+<h2 id="ejemplo">Ejemplo</h2>
+<p><a href="https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-1">Ver Ejemplo de Granja Solar</a></p>
+<h1 id="anexos">Anexos</h1>
+<p><a href="https://meaguilar.github.io/PED/Laboratorio0">Guia de Git</a></p>
+
+    </div>
+  </div>
+</body>
+
+</html>
