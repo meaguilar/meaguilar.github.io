@@ -8,17 +8,17 @@
 - **`&` (referenciar):** obtiene la dirección de memoria de una variable.
 - **`*` (desreferenciar):** accede al valor almacenado en la dirección a la que apunta el puntero.
 ```cpp 
-	int edad = 20; 
-	int  *pEdad =  &edad;  // pEdad guarda la direccion de memoria de "edad"
+int edad = 20; 
+int  *pEdad =  &edad;  // pEdad guarda la direccion de memoria de "edad"
 	
-	// &  obtiene la dirección de memoria de "edad" 
-	std::cout << "Direccion de memoria de edad: " << &edad << std::endl; 
+// &  obtiene la dirección de memoria de "edad" 
+std::cout << "Direccion de memoria de edad: " << &edad << std::endl; 
 	
-	// Un puntero almacena una dirección de memoria 
-	std::cout <<  "Dirección almacenada en pEdad: "  << pEdad << std::endl;
+// Un puntero almacena una dirección de memoria 
+std::cout <<  "Dirección almacenada en pEdad: "  << pEdad << std::endl;
 	
-	// * desreferencia el puntero: accede al valor almacenado en esa direccion 
-	std::cout <<  "Valor apuntado por pEdad: "  <<  *pEdad << std::endl;
+// * desreferencia el puntero: accede al valor almacenado en esa direccion 
+std::cout <<  "Valor apuntado por pEdad: "  <<  *pEdad << std::endl;
 	
 ```
 

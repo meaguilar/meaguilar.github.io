@@ -44,17 +44,17 @@
 <li><strong><code>&amp;</code> (referenciar):</strong> obtiene la dirección de memoria de una variable.</li>
 <li><strong><code>*</code> (desreferenciar):</strong> accede al valor almacenado en la dirección a la que apunta el puntero.</li>
 </ul>
-<pre class=" language-cpp"><code class="prism  language-cpp">	<span class="token keyword">int</span> edad <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span> 
-	<span class="token keyword">int</span>  <span class="token operator">*</span>pEdad <span class="token operator">=</span>  <span class="token operator">&amp;</span>edad<span class="token punctuation">;</span>  <span class="token comment">// pEdad guarda la direccion de memoria de "edad"</span>
+<pre class=" language-cpp"><code class="prism  language-cpp"><span class="token keyword">int</span> edad <span class="token operator">=</span> <span class="token number">20</span><span class="token punctuation">;</span> 
+<span class="token keyword">int</span>  <span class="token operator">*</span>pEdad <span class="token operator">=</span>  <span class="token operator">&amp;</span>edad<span class="token punctuation">;</span>  <span class="token comment">// pEdad guarda la direccion de memoria de "edad"</span>
 	
-	<span class="token comment">// &amp;  obtiene la dirección de memoria de "edad" </span>
-	std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Direccion de memoria de edad: "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">&amp;</span>edad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> 
+<span class="token comment">// &amp;  obtiene la dirección de memoria de "edad" </span>
+std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Direccion de memoria de edad: "</span> <span class="token operator">&lt;&lt;</span> <span class="token operator">&amp;</span>edad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span> 
 	
-	<span class="token comment">// Un puntero almacena una dirección de memoria </span>
-	std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span>  <span class="token string">"Dirección almacenada en pEdad: "</span>  <span class="token operator">&lt;&lt;</span> pEdad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// Un puntero almacena una dirección de memoria </span>
+std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span>  <span class="token string">"Dirección almacenada en pEdad: "</span>  <span class="token operator">&lt;&lt;</span> pEdad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
 	
-	<span class="token comment">// * desreferencia el puntero: accede al valor almacenado en esa direccion </span>
-	std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span>  <span class="token string">"Valor apuntado por pEdad: "</span>  <span class="token operator">&lt;&lt;</span>  <span class="token operator">*</span>pEdad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// * desreferencia el puntero: accede al valor almacenado en esa direccion </span>
+std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span>  <span class="token string">"Valor apuntado por pEdad: "</span>  <span class="token operator">&lt;&lt;</span>  <span class="token operator">*</span>pEdad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
 	
 </code></pre>
 <h2 id="paso-por-valor-vs.-referencia-vs.-puntero">Paso por Valor vs. Referencia vs. Puntero</h2>
