@@ -1,16 +1,17 @@
-﻿# Operadores
+﻿# Manejo de Punteros y Referencias
 
 ## Conceptos de Punteros
 
-**¿Qué es un puntero?** Toda variable se guarda en una dirección de memoria (el lugar físico donde vive el dato). Una variable normal tiene tres características: su valor, su nombre y su dirección de memoria. Un puntero es un tipo especial de variable que también tiene esas tres características, pero su *valor* no es un dato como tal, sino una dirección de memoria que apunta a otro objeto (int, float, char, etc.). Si un puntero no se inicializa bien, puede apuntar a una dirección de memoria no válida.
+![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.png)
 
 **Los dos operadores clave:**
 - **`&` (referenciar):** obtiene la dirección de memoria de una variable.
 - **`*` (desreferenciar):** accede al valor almacenado en la dirección a la que apunta el puntero.
 
-## Paso por valor vs. paso por referencia
+ ## Paso por Valor vs. Referencia vs. Puntero
 
-![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.gif)
+
+![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png)
 
 - **Por valor:** la función recibe una *copia* del dato. Los cambios dentro de la función no afectan la variable original.
 ```cpp 
@@ -69,12 +70,6 @@ void ConsumirEnergia(int *carga, int Wh){
 - Evitar punteros crudos cuando sea posible; en C++ moderno se prefieren **smart pointers** para una gestión más segura. (Un puntero crudo es un puntero tradicional cuya asignación y liberación dependen completamente del programador, sin mecanismos automáticos de seguridad.)
 
  > 💡 Los punteros tienen su lugar cuando se trabaja con memoria dinámica o estructuras avanzadas.
-
- ## Resumen visual: Valor vs. Referencia vs. Puntero
-
-![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png)
-
-En resumen: por valor la función recibe una copia; por referencia recibe acceso directo al dato original; y con un puntero recibe la dirección de memoria donde vive ese dato.
 
 ## Ejemplo
 [Ver Ejemplo de Granja Solar](https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-1)
