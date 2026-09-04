@@ -2,7 +2,7 @@
 
 ## Conceptos de Punteros
 
-![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.png)
+![Puntero](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.png)
 
 **Los dos operadores clave:**
 - **`&` (referenciar):** obtiene la dirección de memoria de una variable.
@@ -20,12 +20,16 @@ std::cout <<  "Dirección almacenada en pEdad: "  << pEdad << std::endl;
 // * desreferencia el puntero: accede al valor almacenado en esa direccion 
 std::cout <<  "Valor apuntado por pEdad: "  <<  *pEdad << std::endl;
 	
+
 ```
+
+
+![nullptr](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png)
 
  ## Paso por Valor vs. Referencia vs. Puntero
 
 
-![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png)
+![Paso por valor y por referencia](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-C.png)
 
 - **Por valor:** la función recibe una *copia* del dato. Los cambios dentro de la función no afectan la variable original.
 ```cpp 
@@ -64,7 +68,7 @@ void  MostrarEstadoBateria(const  int  &carga)
 } 
 ```
 - Usar `&` (sin const) cuando sí se quiere modificar la variable.
-- Preferir referencias sobre punteros cuando solo se necesite manipular el contenido de variables en funciones: son más claras y evitan errores como trabajar con direcciones nulas.
+
 ```cpp
 // & (sin const): recibe acceso directo al dato original 
 // y SI permite modificarlo, afectando la variable original 
@@ -73,12 +77,12 @@ void  CargarBateria(int  &carga,  int Wh)
 	carga += Wh;
 } 
 ```
-
+> 💡 Preferir referencias sobre punteros cuando solo se necesite manipular el contenido de variables en funciones.
 
 **Puntero (`*`):**
 - Cuando el valor puede no existir (opcional).
 - Para manejar arreglos dinámicos.
-- En estructuras de bajo nivel.
+- En estructuras sencillas.
 - Cuando se necesita cambiar a qué objeto se apunta.
 
 ```cpp 
@@ -89,12 +93,12 @@ void ConsumirEnergia(int *carga, int Wh){
 ```
 
 
-> 📝 **Buenas practicas:** 
-> - Inicializar siempre los punteros. 
-> - Usarlos cuando se necesite: manipular variables de forma indirecta, gestionar memoria dinámica, o crear estructuras dinámicas (listas enlazadas, árboles, etc.). 
->  - Si se reserva memoria dinámicamente, siempre liberarla. 
+ **Buenas practicas:** 
+- Inicializar siempre los punteros. 
+- Usarlos cuando se necesite: manipular variables de forma indirecta, gestionar memoria dinámica, o crear estructuras dinámicas (listas enlazadas, árboles, etc.). 
+- Si se reserva memoria dinámicamente, siempre liberarla. 
 
- > 💡 Los punteros tienen su lugar cuando se trabaja con memoria dinámica o estructuras avanzadas.
+ > 💡 Los punteros tienen su lugar cuando se trabaja con memoria dinámica o estructuras complejas.
 
 ## Ejemplo
 [Ver Ejemplo de Granja Solar](https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-1)
