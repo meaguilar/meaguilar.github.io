@@ -20,9 +20,7 @@ std::cout <<  "Dirección almacenada en pEdad: "  << pEdad << std::endl;
 // * desreferencia el puntero: accede al valor almacenado en esa direccion 
 std::cout <<  "Valor apuntado por pEdad: "  <<  *pEdad << std::endl;
 	
-
 ```
-
 
 ![nullptr](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png)
 

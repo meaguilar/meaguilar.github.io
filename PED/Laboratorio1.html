@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio1</title>
+  <title>Laboratorio1.md</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -38,7 +38,7 @@
     <div class="stackedit__html">
       <h1 id="manejo-de-punteros-y-referencias">Manejo de Punteros y Referencias</h1>
 <h2 id="conceptos-de-punteros">Conceptos de Punteros</h2>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.png" alt="Paso por valor y por referencia"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-A.png" alt="Puntero"></p>
 <p><strong>Los dos operadores clave:</strong></p>
 <ul>
 <li><strong><code>&amp;</code> (referenciar):</strong> obtiene la dirección de memoria de una variable.</li>
@@ -57,8 +57,9 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span>  <span class="token string">"Valor apuntado por pEdad: "</span>  <span class="token operator">&lt;&lt;</span>  <span class="token operator">*</span>pEdad <span class="token operator">&lt;&lt;</span> std<span class="token operator">::</span>endl<span class="token punctuation">;</span>
 	
 </code></pre>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png" alt="nullptr"></p>
 <h2 id="paso-por-valor-vs.-referencia-vs.-puntero">Paso por Valor vs. Referencia vs. Puntero</h2>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-B.png" alt="Paso por valor y por referencia"></p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/CP2-C.png" alt="Paso por valor y por referencia"></p>
 <ul>
 <li><strong>Por valor:</strong> la función recibe una <em>copia</em> del dato. Los cambios dentro de la función no afectan la variable original.</li>
 </ul>
@@ -98,7 +99,6 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 </code></pre>
 <ul>
 <li>Usar <code>&amp;</code> (sin const) cuando sí se quiere modificar la variable.</li>
-<li>Preferir referencias sobre punteros cuando solo se necesite manipular el contenido de variables en funciones: son más claras y evitan errores como trabajar con direcciones nulas.</li>
 </ul>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token comment">// &amp; (sin const): recibe acceso directo al dato original </span>
 <span class="token comment">// y SI permite modificarlo, afectando la variable original </span>
@@ -107,11 +107,14 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 	carga <span class="token operator">+</span><span class="token operator">=</span> Wh<span class="token punctuation">;</span>
 <span class="token punctuation">}</span> 
 </code></pre>
+<blockquote>
+<p>💡 Preferir referencias sobre punteros cuando solo se necesite manipular el contenido de variables en funciones.</p>
+</blockquote>
 <p><strong>Puntero (<code>*</code>):</strong></p>
 <ul>
 <li>Cuando el valor puede no existir (opcional).</li>
 <li>Para manejar arreglos dinámicos.</li>
-<li>En estructuras de bajo nivel.</li>
+<li>En estructuras sencillas.</li>
 <li>Cuando se necesita cambiar a qué objeto se apunta.</li>
 </ul>
 <pre class=" language-cpp"><code class="prism  language-cpp"><span class="token comment">// Paso por puntero </span>
@@ -119,16 +122,14 @@ std<span class="token operator">::</span>cout <span class="token operator">&lt;&
 	<span class="token operator">*</span>carga <span class="token operator">-</span><span class="token operator">=</span> Wh<span class="token punctuation">;</span>
 <span class="token punctuation">}</span> 
 </code></pre>
-<blockquote>
-<p>📝 <strong>Buenas practicas:</strong></p>
+<p><strong>Buenas practicas:</strong></p>
 <ul>
 <li>Inicializar siempre los punteros.</li>
 <li>Usarlos cuando se necesite: manipular variables de forma indirecta, gestionar memoria dinámica, o crear estructuras dinámicas (listas enlazadas, árboles, etc.).</li>
 <li>Si se reserva memoria dinámicamente, siempre liberarla.</li>
 </ul>
-</blockquote>
 <blockquote>
-<p>💡 Los punteros tienen su lugar cuando se trabaja con memoria dinámica o estructuras avanzadas.</p>
+<p>💡 Los punteros tienen su lugar cuando se trabaja con memoria dinámica o estructuras complejas.</p>
 </blockquote>
 <h2 id="ejemplo">Ejemplo</h2>
 <p><a href="https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-1">Ver Ejemplo de Granja Solar</a></p>
