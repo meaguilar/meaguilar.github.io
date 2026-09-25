@@ -51,11 +51,6 @@ Todas están formadas por **nodos**. Cada nodo tiene un **dato** y uno o más **
 
 Cada nodo apunta solo al **siguiente**. El último nodo apunta a `nullptr`, lo que marca el final. Solo se recorre hacia adelante. Es la más fácil de implementar.
 ![listasimple](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/lista.png)
-**🖼️ IMAGEN 2: Diagrama de nodos, lista simple**
-
-- **Tipo:** diagrama horizontal de 3 o 4 nodos.
-- **Contenido:** cada nodo es un rectángulo dividido en dos partes (`dato` | `siguiente`). Flechas de izquierda a derecha entre nodos.
-- **Etiquetas:** un puntero `cabeza` (azul, en el stack) apuntando al primer nodo; el último nodo con `siguiente → nullptr` (símbolo de tierra o "X" y la etiqueta *nullptr = fin de la lista*).
 
 **Recorrido hacia adelante (Inicio -> Fin)**
 ```cpp
@@ -73,11 +68,6 @@ while (actual != nullptr)
 Cada nodo tiene **dos punteros**: `siguiente` y `anterior`. Permite recorrer en ambos sentidos. El `anterior` del primer nodo y el `siguiente` del último apuntan a `nullptr`, y esos son los extremos de la lista.
 
 ![listadoble](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/listadoble.png)
-**🖼️ IMAGEN 3: Diagrama de nodos, lista doble**
-
- - **Tipo:** diagrama horizontal de 3 o 4 nodos, cada uno dividido en tres partes (`anterior` | `dato` | `siguiente`).
- - **Contenido:** flechas dobles (o dos flechas de colores distintos: una verde hacia adelante y una azul hacia atrás) entre nodos consecutivos.
- - **Etiquetas:** `nullptr` a la izquierda del primer nodo y a la derecha del último; `cabeza` apuntando al primer nodo.
 
 **Recorrido hacia adelante (Inicio -> Fin):**
 ```cpp
