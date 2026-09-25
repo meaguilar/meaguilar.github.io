@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Laboratorio1.md</title>
+  <title>Laboratorio2</title>
   <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
 
@@ -22,13 +22,6 @@
 <li><a href="#buenas-prácticas-de-implementación">5. Buenas prácticas de implementación</a></li>
 <li><a href="#ejemplo">Ejemplo</a></li>
 <li><a href="#anexos">6. Anexos</a></li>
-<li><a href="#estructuras-de-datos-lineales-y-listas-enlazadas-1">1. Estructuras de datos lineales y listas enlazadas</a></li>
-<li><a href="#¿qué-es-una-lista-dinámica-1">2. ¿Qué es una lista dinámica?</a></li>
-<li><a href="#tipos-de-listas-dinámicas-1">3. Tipos de listas dinámicas</a></li>
-<li><a href="#ejemplos-de-programas-que-utilizan-listas-1">4. Ejemplos de programas que utilizan listas</a></li>
-<li><a href="#buenas-prácticas-de-implementación-1">5. Buenas prácticas de implementación</a></li>
-<li><a href="#ejemplo-1">Ejemplo</a></li>
-<li><a href="#anexos-1">6. Anexos</a></li>
 </ul>
 </li>
 </ul>
@@ -45,455 +38,150 @@
 <p>Una <strong>lista dinámica</strong> es una estructura de datos lineal cuyo tamaño puede crecer o reducirse en tiempo de ejecución. A diferencia de los arreglos (listas estáticas), <strong>no necesita un tamaño fijo</strong>.</p>
 <p><strong>Características</strong></p>
 <ul>
-<li>
-<p><strong>Uso de punteros:</strong> cada nodo guarda punteros que lo enlazan con otros nodos.</p>
-</li>
-<li>
-<p><strong>Memoria dinámica:</strong> se reserva y libera durante l a ejecución con <code>new</code> y <code>delete</code>.</p>
-</li>
-<li>
-<p><strong>Inserción y eliminación eficientes:</strong> solo se ajustan punteros, sin mover el resto de elementos.</p>
-</li>
+<li><strong>Uso de punteros:</strong> cada nodo guarda punteros que lo enlazan con otros nodos.</li>
+<li><strong>Memoria dinámica:</strong> se reserva y libera durante l   a ejecución con <code>new</code> y <code>delete</code>.</li>
+<li><strong>Inserción y eliminación eficientes:</strong> solo se ajustan punteros, sin mover el resto de elementos.</li>
 </ul>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/listaenlazada.png" alt="lista"></p>
 <h3 id="cómo-se-ve-una-lista-en-memoria">2.1 Cómo se ve una lista en memoria</h3>
 <p>Cuando se crea una lista dinámica intervienen dos zonas de memoria:</p>
 <ul>
-<li>
-<p><strong>Stack:</strong> aquí vive el <strong>puntero</strong> . Ocupa un bloque pequeño con su propia dirección y su contenido es la dirección del primer nodo.</p>
-</li>
-<li>
-<p><strong>Heap:</strong> aquí vive el <strong>nodo</strong>, reservado con <code>new</code>. Tiene su propia dirección y guarda el dato y el puntero.</p>
-</li>
+<li><strong>Stack:</strong> aquí vive el <strong>puntero</strong> . Ocupa un bloque pequeño con su propia dirección y su contenido es la dirección del primer nodo.</li>
+<li><strong>Heap:</strong> aquí vive el <strong>nodo</strong>, reservado con <code>new</code>. Tiene su propia dirección y guarda el dato y el puntero.</li>
 </ul>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-<span class="token comment">// 1. EL DATO: Lo que queremos almacenar</span>
+<pre class=" language-cpp"><code class="prism  language-cpp">	<span class="token comment">// 1. EL DATO: Lo que queremos almacenar </span>
 
-  
-
-<span class="token keyword">struct</span>  Cancion  <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>string  titulo<span class="token punctuation">;</span>
-
-std<span class="token operator">::</span>string  artista<span class="token punctuation">;</span>
-
-<span class="token keyword">float</span>  duracion<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 2. EL NODO (Heap): Guarda el dato y las direcciones de memoria</span>
-
-<span class="token keyword">struct</span>  Nodo  <span class="token punctuation">{</span>
-
-Cancion  cancion<span class="token punctuation">;</span>
-
-Nodo  <span class="token operator">*</span>siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo</span>
-
-Nodo  <span class="token operator">*</span>anterior<span class="token punctuation">;</span> <span class="token comment">// Puntero al nodo anterior</span>
-
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 3. PUNTEROS DE CONTROL (Stack): Conocen los extremos de la lista</span>
-
-Nodo <span class="token operator">*</span>inicio <span class="token operator">=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-
-Nodo <span class="token operator">*</span>fin <span class="token operator">=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-
+<span class="token keyword">struct</span> Cancion <span class="token punctuation">{</span> 
+	std<span class="token operator">::</span>string titulo<span class="token punctuation">;</span> 
+	std<span class="token operator">::</span>string artista<span class="token punctuation">;</span> 
+	<span class="token keyword">float</span> duracion<span class="token punctuation">;</span> 
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+	<span class="token comment">// 2. EL NODO (Heap): Guarda el dato y las direcciones de memoria </span>
+<span class="token keyword">struct</span> Nodo <span class="token punctuation">{</span>
+	Cancion cancion<span class="token punctuation">;</span> 
+	Nodo <span class="token operator">*</span>siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo </span>
+	Nodo <span class="token operator">*</span>anterior<span class="token punctuation">;</span> <span class="token comment">// Puntero al nodo anterior </span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> 
+	<span class="token comment">// 3. PUNTEROS DE CONTROL (Stack): Conocen los extremos de la lista </span>
+Nodo <span class="token operator">*</span>inicio <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span> 
+Nodo <span class="token operator">*</span>fin <span class="token operator">=</span> <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="tipos-de-listas-dinámicas">3. Tipos de listas dinámicas</h2>
 <p>Todas están formadas por <strong>nodos</strong>. Cada nodo tiene un <strong>dato</strong> y uno o más <strong>punteros</strong>. Lo que cambia entre tipos es cuántos punteros tiene cada nodo y cómo terminan los extremos.</p>
-<h3 id="lista-simplemente-enla-zada">3.1 Lista simplemente enla zada</h3>
-<p>Cada nodo apunta solo al <strong>siguiente</strong>. El último nodo apunta a <code>nullptr</code>, lo que marca el final. Solo se recorre hacia adelante. Es la más fácil de implementar.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/lista.png" alt="listasimple"></p>
+<h3 id="lista-simplemente-enla--zada">3.1 Lista simplemente enla  zada</h3>
+<p>Cada nodo apunta solo al <strong>siguiente</strong>. El último nodo apunta a <code>nullptr</code>, lo que marca el final. Solo se recorre hacia adelante. Es la más fácil de implementar.<br>
+<img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/lista.png" alt="listasimple"></p>
 <p><strong>Recorrido hacia adelante (Inicio -&gt; Fin)</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
+<pre class=" language-cpp"><code class="prism  language-cpp">Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
 
-  
-
-<span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
-
+<span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
-
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    actual <span class="token operator">=</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
 <h3 id="lista-doblemente-enlazada">3.2 Lista doblemente enlazada</h3>
 <p>Cada nodo tiene <strong>dos punteros</strong>: <code>siguiente</code> y <code>anterior</code>. Permite recorrer en ambos sentidos. El <code>anterior</code> del primer nodo y el <code>siguiente</code> del último apuntan a <code>nullptr</code>, y esos son los extremos de la lista.</p>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/listadoble.png" alt="listadoble"></p>
 <p><strong>Recorrido hacia adelante (Inicio -&gt; Fin):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-<span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token comment">// Se detiene al salir del ultimo nodo</span>
-
+<pre class=" language-cpp"><code class="prism  language-cpp">Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span> 
+<span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token comment">// Se detiene al salir del ultimo nodo</span>
 <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Titulo: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>cancion<span class="token punctuation">.</span>titulo  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span> <span class="token comment">// Avanza usando el puntero 'siguiente'</span>
-
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Titulo: "</span> <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>cancion<span class="token punctuation">.</span>titulo <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    actual <span class="token operator">=</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span> <span class="token comment">// Avanza usando el puntero 'siguiente'</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
 <p><strong>Recorrido inverso (Fin -&gt; Inicio):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> fin<span class="token punctuation">;</span>
-
-<span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token comment">// Se detiene al salir del primer nodo</span>
-
+<pre class=" language-cpp"><code class="prism  language-cpp">Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> fin<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token comment">// Se detiene al salir del primer nodo</span>
 <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Titulo: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>cancion<span class="token punctuation">.</span>titulo  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>anterior<span class="token punctuation">;</span> <span class="token comment">// Retrocede usando el puntero 'anterior'</span>
-
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Titulo: "</span> <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>cancion<span class="token punctuation">.</span>titulo <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    actual <span class="token operator">=</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>anterior<span class="token punctuation">;</span> <span class="token comment">// Retrocede usando el puntero 'anterior'</span>
 <span class="token punctuation">}</span>
-
 </code></pre>
 <h3 id="lista-circular-simplemente-enlazada">3.3 Lista circular simplemente enlazada</h3>
 <p>Igual que la simple, pero el último nodo <strong>apunta de vuelta al primero</strong>. No existe <code>nullptr</code> al final, por lo que se puede recorrer de forma continua. Se detiene el recorrido al volver a la cabeza.</p>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/circular.jpeg" alt="listacircular"></p>
 <p><strong>Conexión del último nodo con el primero</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-ultimo<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
+<pre class=" language-cpp"><code class="prism  language-cpp">ultimo<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
 </code></pre>
 <p><strong>Recorrido circular (Inicio -&gt; … -&gt; Inicio):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-  
+<pre class=" language-cpp"><code class="prism  language-cpp">Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
 
 <span class="token keyword">do</span>
-
 <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>  <span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span> inicio<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    actual <span class="token operator">=</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> inicio<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h3 id="lista-circular-doblemente-enlazada">3.4 Lista circular doblemente enlazada</h3>
 <p>Cada nodo tiene <code>siguiente</code> y <code>anterior</code>, y además los extremos se conectan: el último apunta al primero y el primero al último. Permite recorrido continuo <strong>en ambos sentidos</strong>.</p>
 <p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/circulardoble.jpeg" alt="listacirculardoble"></p>
 <p><strong>Conexión circular de los extremos:</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-fin<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
+<pre class=" language-cpp"><code class="prism  language-cpp">fin<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
 inicio<span class="token operator">-</span><span class="token operator">&gt;</span>anterior <span class="token operator">=</span> fin<span class="token punctuation">;</span>
-
 </code></pre>
 <p><strong>Recorrido hacia adelante (Inicio -&gt; … -&gt; Inicio):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-  
+<pre class=" language-cpp"><code class="prism  language-cpp">Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
 
 <span class="token keyword">do</span>
-
 <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>  <span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span> inicio<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    actual <span class="token operator">=</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> inicio<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p><strong>Recorrido inverso (Fin -&gt; … -&gt; Fin)</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> fin<span class="token punctuation">;</span>
-
-  
+<p><strong>Recorrido inverso (Fin -&gt; … -&gt;  Fin)</strong></p>
+<pre class=" language-cpp"><code class="prism  language-cpp">Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> fin<span class="token punctuation">;</span>
 
 <span class="token keyword">do</span>
-
 <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>anterior<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>  <span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span> fin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
+    std<span class="token operator">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Nombre: "</span> <span class="token operator">&lt;&lt;</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre <span class="token operator">&lt;&lt;</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+    actual <span class="token operator">=</span> actual<span class="token operator">-</span><span class="token operator">&gt;</span>anterior<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>actual <span class="token operator">!=</span> fin<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 <h2 id="ejemplos-de-programas-que-utilizan-listas">4. Ejemplos de programas que utilizan listas</h2>
-<p>| Tipo de lista | Ejemplo de aplicación |</p>
-<p>|  —  |  —  |</p>
-<p>| Simplemente enlazada | Historial de tareas pendientes |</p>
-<p>| Doblemente enlazada | Navegador web o reproductor multimedia |</p>
-<p>| Circular simplemente enlazada | Turnos de atención o planificación Round Robin |</p>
-<p>| Circular doblemente enlazada | Editor de diapositivas o carrusel de imágenes |</p>
-<h2 id="buenas-prácticas-de-implementación">5. Buenas prácticas de implementación</h2>
+
+<table>
+<thead>
+<tr>
+<th>Tipo de lista</th>
+<th>Ejemplo de aplicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simplemente enlazada</td>
+<td>Historial de tareas pendientes</td>
+</tr>
+<tr>
+<td>Doblemente enlazada</td>
+<td>Navegador web o reproductor multimedia</td>
+</tr>
+<tr>
+<td>Circular simplemente enlazada</td>
+<td>Turnos de atención o planificación Round Robin</td>
+</tr>
+<tr>
+<td>Circular doblemente enlazada</td>
+<td>Editor de diapositivas o carrusel de imágenes</td>
+</tr>
+</tbody>
+</table><h2 id="buenas-prácticas-de-implementación">5. Buenas prácticas de implementación</h2>
 <ul>
-<li>
-<p><strong>Separa responsabilidades:</strong> usa funciones independientes para insertar, buscar, recorrer, eliminar y destruir.</p>
-</li>
-<li>
-<p><strong>Mantén los enlaces consistentes:</strong> inicializa los punteros en <code>nullptr</code>, actualiza <code>anterior</code> y <code>siguiente</code> en el orden correcto y conserva las invariantes de la lista.</p>
-</li>
-<li>
-<p><strong>Gestiona la memoria con claridad:</strong> define la propiedad de cada nodo, empareja cada <code>new</code> con su <code>delete</code> y considera <code>std::unique_ptr</code> cuando sea adecuado.</p>
-</li>
-<li>
-<p><strong>Controla los casos límite:</strong> verifica punteros antes de usarlos y prueba listas vacías, de un solo nodo y circulares.</p>
-</li>
-<li>
-<p><strong>Escribe código eficiente:</strong> usa <code>const</code> en funciones de solo lectura y evita copias innecesarias.</p>
-</li>
+<li><strong>Separa responsabilidades:</strong> usa funciones independientes para insertar, buscar, recorrer, eliminar y destruir.</li>
+<li><strong>Mantén los enlaces consistentes:</strong> inicializa los punteros en <code>nullptr</code>, actualiza <code>anterior</code> y <code>siguiente</code> en el orden correcto y conserva las invariantes de la lista.</li>
+<li><strong>Gestiona la memoria con claridad:</strong> define la propiedad de cada nodo, empareja cada <code>new</code> con su <code>delete</code> y considera <code>std::unique_ptr</code> cuando sea adecuado.</li>
+<li><strong>Controla los casos límite:</strong> verifica punteros antes de usarlos y prueba listas vacías, de un solo nodo y circulares.</li>
+<li><strong>Escribe código eficiente:</strong> usa <code>const</code> en funciones de solo lectura y evita copias innecesarias.</li>
 </ul>
 <h2 id="ejemplo">Ejemplo</h2>
 <p><a href="https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-2">Ver Ejemplo de Gestión de Playlist</a></p>
 <h2 id="anexos">6. Anexos</h2>
 <ul>
-<li>
-<p><a href="https://dsa-visualizer-delta.vercel.app/visualizer/linked-list">Visualizador de listas enlazadas</a>: permite observar inserciones, eliminaciones y enlaces.</p>
-</li>
-<li>
-<p><a href="https://github.com/UCASV/RecursosExtraPED/tree/main/Listas">Repositorio de ejemplos de listas (C++)</a>: implementaciones de las cuatro variantes.</p>
-</li>
-<li>
-<p><a href="https://youtu.be/15urP2LmfqY?si=QpnrlXg95SHIsgwi">103. Programación en C++ || Listas || Concepto de Lista Enlazada</a> (video).</p>
-</li>
-<li>
-<p><a href="https://conclase.net/c/edd/cap4">Listas circulares</a> (lectura).</p>
-</li>
-</ul>
-<p>—#  Estructuras de datos dinámicas lineales: Listas</p>
-<h2 id="estructuras-de-datos-lineales-y-listas-enlazadas-1">1. Estructuras de datos lineales y listas enlazadas</h2>
-<p>Una <strong>estructura de datos lineal</strong> organiza sus elementos en una secuencia: cada elemento tiene un predecesor y un sucesor, excepto los de los extremos. Los arreglos, las pilas, las colas y las listas son ejemplos.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/A.png" alt="estructura"></p>
-<h2 id="¿qué-es-una-lista-dinámica-1">2. ¿Qué es una lista dinámica?</h2>
-<p>Una <strong>lista dinámica</strong> es una estructura de datos lineal cuyo tamaño puede crecer o reducirse en tiempo de ejecución. A diferencia de los arreglos (listas estáticas), <strong>no necesita un tamaño fijo</strong>.</p>
-<p><strong>Características</strong></p>
-<ul>
-<li>
-<p><strong>Uso de punteros:</strong> cada nodo guarda punteros que lo enlazan con otros nodos.</p>
-</li>
-<li>
-<p><strong>Memoria dinámica:</strong> se reserva y libera durante l a ejecución con <code>new</code> y <code>delete</code>.</p>
-</li>
-<li>
-<p><strong>Inserción y eliminación eficientes:</strong> solo se ajustan punteros, sin mover el resto de elementos.</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/listaenlazada.png" alt="lista"></p>
-<h3 id="cómo-se-ve-una-lista-en-memoria-1">2.1 Cómo se ve una lista en memoria</h3>
-<p>Cuando se crea una lista dinámica intervienen dos zonas de memoria:</p>
-<ul>
-<li>
-<p><strong>Stack:</strong> aquí vive el <strong>puntero</strong> . Ocupa un bloque pequeño con su propia dirección y su contenido es la dirección del primer nodo.</p>
-</li>
-<li>
-<p><strong>Heap:</strong> aquí vive el <strong>nodo</strong>, reservado con <code>new</code>. Tiene su propia dirección y guarda el dato y el puntero.</p>
-</li>
-</ul>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-<span class="token comment">// 1. EL DATO: Lo que queremos almacenar</span>
-
-  
-
-<span class="token keyword">struct</span>  Cancion  <span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>string  titulo<span class="token punctuation">;</span>
-
-std<span class="token operator">::</span>string  artista<span class="token punctuation">;</span>
-
-<span class="token keyword">float</span>  duracion<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 2. EL NODO (Heap): Guarda el dato y las direcciones de memoria</span>
-
-<span class="token keyword">struct</span>  Nodo  <span class="token punctuation">{</span>
-
-Cancion  cancion<span class="token punctuation">;</span>
-
-Nodo  <span class="token operator">*</span>siguiente<span class="token punctuation">;</span> <span class="token comment">// Puntero al siguiente nodo</span>
-
-Nodo  <span class="token operator">*</span>anterior<span class="token punctuation">;</span> <span class="token comment">// Puntero al nodo anterior</span>
-
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
-
-<span class="token comment">// 3. PUNTEROS DE CONTROL (Stack): Conocen los extremos de la lista</span>
-
-Nodo <span class="token operator">*</span>inicio <span class="token operator">=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-
-Nodo <span class="token operator">*</span>fin <span class="token operator">=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">;</span>
-
-</code></pre>
-<h2 id="tipos-de-listas-dinámicas-1">3. Tipos de listas dinámicas</h2>
-<p>Todas están formadas por <strong>nodos</strong>. Cada nodo tiene un <strong>dato</strong> y uno o más <strong>punteros</strong>. Lo que cambia entre tipos es cuántos punteros tiene cada nodo y cómo terminan los extremos.</p>
-<h3 id="lista-simplemente-enla-zada-1">3.1 Lista simplemente enla zada</h3>
-<p>Cada nodo apunta solo al <strong>siguiente</strong>. El último nodo apunta a <code>nullptr</code>, lo que marca el final. Solo se recorre hacia adelante. Es la más fácil de implementar.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/lista.png" alt="listasimple"></p>
-<p><strong>Recorrido hacia adelante (Inicio -&gt; Fin)</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-  
-
-<span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">)</span>
-
-<span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>
-
-</code></pre>
-<h3 id="lista-doblemente-enlazada-1">3.2 Lista doblemente enlazada</h3>
-<p>Cada nodo tiene <strong>dos punteros</strong>: <code>siguiente</code> y <code>anterior</code>. Permite recorrer en ambos sentidos. El <code>anterior</code> del primer nodo y el <code>siguiente</code> del último apuntan a <code>nullptr</code>, y esos son los extremos de la lista.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/listadoble.png" alt="listadoble"></p>
-<p><strong>Recorrido hacia adelante (Inicio -&gt; Fin):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-<span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token comment">// Se detiene al salir del ultimo nodo</span>
-
-<span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Titulo: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>cancion<span class="token punctuation">.</span>titulo  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span> <span class="token comment">// Avanza usando el puntero 'siguiente'</span>
-
-<span class="token punctuation">}</span>
-
-</code></pre>
-<p><strong>Recorrido inverso (Fin -&gt; Inicio):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> fin<span class="token punctuation">;</span>
-
-<span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span>  <span class="token keyword">nullptr</span><span class="token punctuation">)</span> <span class="token comment">// Se detiene al salir del primer nodo</span>
-
-<span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Titulo: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>cancion<span class="token punctuation">.</span>titulo  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>anterior<span class="token punctuation">;</span> <span class="token comment">// Retrocede usando el puntero 'anterior'</span>
-
-<span class="token punctuation">}</span>
-
-</code></pre>
-<h3 id="lista-circular-simplemente-enlazada-1">3.3 Lista circular simplemente enlazada</h3>
-<p>Igual que la simple, pero el último nodo <strong>apunta de vuelta al primero</strong>. No existe <code>nullptr</code> al final, por lo que se puede recorrer de forma continua. Se detiene el recorrido al volver a la cabeza.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/circular.jpeg" alt="listacircular"></p>
-<p><strong>Conexión del último nodo con el primero</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-ultimo<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-</code></pre>
-<p><strong>Recorrido circular (Inicio -&gt; … -&gt; Inicio):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-  
-
-<span class="token keyword">do</span>
-
-<span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>  <span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span> inicio<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-</code></pre>
-<h3 id="lista-circular-doblemente-enlazada-1">3.4 Lista circular doblemente enlazada</h3>
-<p>Cada nodo tiene <code>siguiente</code> y <code>anterior</code>, y además los extremos se conectan: el último apunta al primero y el primero al último. Permite recorrido continuo <strong>en ambos sentidos</strong>.</p>
-<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/circulardoble.jpeg" alt="listacirculardoble"></p>
-<p><strong>Conexión circular de los extremos:</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-fin<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-inicio<span class="token operator">-</span><span class="token operator">&gt;</span>anterior <span class="token operator">=</span> fin<span class="token punctuation">;</span>
-
-</code></pre>
-<p><strong>Recorrido hacia adelante (Inicio -&gt; … -&gt; Inicio):</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> inicio<span class="token punctuation">;</span>
-
-  
-
-<span class="token keyword">do</span>
-
-<span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>siguiente<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>  <span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span> inicio<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-</code></pre>
-<p><strong>Recorrido inverso (Fin -&gt; … -&gt; Fin)</strong></p>
-<pre class=" language-cpp"><code class="prism  language-cpp">
-Nodo <span class="token operator">*</span>actual <span class="token operator">=</span> fin<span class="token punctuation">;</span>
-
-  
-
-<span class="token keyword">do</span>
-
-<span class="token punctuation">{</span>
-
-std<span class="token operator">::</span>cout  <span class="token operator">&lt;&lt;</span>  <span class="token string">"Nombre: "</span>  <span class="token operator">&lt;&lt;</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>contacto<span class="token punctuation">.</span>nombre  <span class="token operator">&lt;&lt;</span>  <span class="token string">"\n"</span><span class="token punctuation">;</span>
-
-actual  <span class="token operator">=</span>  actual<span class="token operator">-</span><span class="token operator">&gt;</span>anterior<span class="token punctuation">;</span>
-
-<span class="token punctuation">}</span>  <span class="token keyword">while</span>  <span class="token punctuation">(</span>actual <span class="token operator">!=</span> fin<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-</code></pre>
-<h2 id="ejemplos-de-programas-que-utilizan-listas-1">4. Ejemplos de programas que utilizan listas</h2>
-<p>| Tipo de lista | Ejemplo de aplicación |</p>
-<p>|  —  |  —  |</p>
-<p>| Simplemente enlazada | Historial de tareas pendientes |</p>
-<p>| Doblemente enlazada | Navegador web o reproductor multimedia |</p>
-<p>| Circular simplemente enlazada | Turnos de atención o planificación Round Robin |</p>
-<p>| Circular doblemente enlazada | Editor de diapositivas o carrusel de imágenes |</p>
-<h2 id="buenas-prácticas-de-implementación-1">5. Buenas prácticas de implementación</h2>
-<ul>
-<li>
-<p><strong>Separa responsabilidades:</strong> usa funciones independientes para insertar, buscar, recorrer, eliminar y destruir.</p>
-</li>
-<li>
-<p><strong>Mantén los enlaces consistentes:</strong> inicializa los punteros en <code>nullptr</code>, actualiza <code>anterior</code> y <code>siguiente</code> en el orden correcto y conserva las invariantes de la lista.</p>
-</li>
-<li>
-<p><strong>Gestiona la memoria con claridad:</strong> define la propiedad de cada nodo, empareja cada <code>new</code> con su <code>delete</code> y considera <code>std::unique_ptr</code> cuando sea adecuado.</p>
-</li>
-<li>
-<p><strong>Controla los casos límite:</strong> verifica punteros antes de usarlos y prueba listas vacías, de un solo nodo y circulares.</p>
-</li>
-<li>
-<p><strong>Escribe código eficiente:</strong> usa <code>const</code> en funciones de solo lectura y evita copias innecesarias.</p>
-</li>
-</ul>
-<h2 id="ejemplo-1">Ejemplo</h2>
-<p><a href="https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-2">Ver Ejemplo de Gestión de Playlist</a></p>
-<h2 id="anexos-1">6. Anexos</h2>
-<ul>
-<li>
-<p><a href="https://dsa-visualizer-delta.vercel.app/visualizer/linked-list">Visualizador de listas enlazadas</a>: permite observar inserciones, eliminaciones y enlaces.</p>
-</li>
-<li>
-<p><a href="https://github.com/UCASV/RecursosExtraPED/tree/main/Listas">Repositorio de ejemplos de listas (C++)</a>: implementaciones de las cuatro variantes.</p>
-</li>
-<li>
-<p><a href="https://youtu.be/15urP2LmfqY?si=QpnrlXg95SHIsgwi">103. Programación en C++ || Listas || Concepto de Lista Enlazada</a> (video).</p>
-</li>
-<li>
-<p><a href="https://conclase.net/c/edd/cap4">Listas circulares</a> (lectura).</p>
-</li>
+<li><a href="https://dsa-visualizer-delta.vercel.app/visualizer/linked-list">Visualizador de listas enlazadas</a>: permite observar inserciones, eliminaciones y enlaces.</li>
+<li><a href="https://github.com/UCASV/RecursosExtraPED/tree/main/Listas">Repositorio de ejemplos de listas (C++)</a>: implementaciones de las cuatro variantes.</li>
+<li><a href="https://youtu.be/15urP2LmfqY?si=QpnrlXg95SHIsgwi">103. Programación en C++ || Listas || Concepto de Lista Enlazada</a> (video).</li>
+<li><a href="https://conclase.net/c/edd/cap4">Listas circulares</a> (lectura).</li>
 </ul>
 <hr>
 
