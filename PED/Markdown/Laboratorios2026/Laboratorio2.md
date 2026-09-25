@@ -27,6 +27,7 @@ Cuando se crea una lista dinámica intervienen dos zonas de memoria:
 - **Heap:** aquí vive el **nodo**, reservado con `new`. Tiene su propia dirección y guarda el dato y el puntero.
 ```cpp
 	// 1. EL DATO: Lo que queremos almacenar 
+
 struct Cancion { 
 	std::string titulo; 
 	std::string artista; 
@@ -47,7 +48,7 @@ Nodo *fin = nullptr;
 
 Todas están formadas por **nodos**. Cada nodo tiene un **dato** y uno o más **punteros**. Lo que cambia entre tipos es cuántos punteros tiene cada nodo y cómo terminan los extremos.
 
-### 3.1 Lista simplemente enlazada
+### 3.1 Lista simplemente enla  zada
 
 Cada nodo apunta solo al **siguiente**. El último nodo apunta a `nullptr`, lo que marca el final. Solo se recorre hacia adelante. Es la más fácil de implementar.
 ![listasimple](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP2/lista.png)
@@ -149,7 +150,6 @@ do
 | Doblemente enlazada | Navegador web o reproductor multimedia |
 | Circular simplemente enlazada | Turnos de atención o planificación Round Robin |
 | Circular doblemente enlazada | Editor de diapositivas o carrusel de imágenes |
-| Lista de objetos | Agenda de contactos o inventario |
 
 ## 5. Buenas prácticas de implementación
 
