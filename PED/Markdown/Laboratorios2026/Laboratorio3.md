@@ -5,11 +5,11 @@
 
 Una **pila** es una estructura de datos que sigue el principio **LIFO (Last In, First Out)**.
 
-![Stack](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Stack-data-structure.webp)
+![Stack](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP3/A.png)
 
-##  Uso de pilas de manera manual
+##  1.1 Uso de pilas de manera manual
 
-### Apilar (Push)
+### 1.2 Apilar (Push)
 Cuando agregamos elementos a una pila, esta por defecto se va a agregar hasta encima, por el principio que mencionamos anteriormente, que cuando apilamos, el ultimo que agregamos es el primero.
 
 ```c++
@@ -27,7 +27,7 @@ cima = nuevo_nodo;
 ```
 para ir actualizando la cima cada que se agrega un nuevo nodo.
 
-### Desapilar (Pop)
+### 1.3 Desapilar (Pop)
 Elimina el nodo del tope de la pila y devuelve su valor.
 ```c++
 int Pop(Nodo*& cima) {
@@ -50,7 +50,7 @@ cima = cima->siguiente;
 Dando a entender que ahora, como eliminamos la cima, el que estaba debajo del que acabamos de eliminar, **es la nueva cima**
 ### 
 
-### Obtener la cima (Peek)
+### 1.4 Obtener la cima (Peek)
 Esta función solo muestra la cima, sin embargo no la elimina.
 ```c++
 int Peek(Nodo* cima) {
@@ -62,7 +62,7 @@ int Peek(Nodo* cima) {
 }
 ```
 
-##  Uso de pilas usando libreria de C++
+##  1.5 Uso de pilas usando libreria de C++
 
 Ahora que ya aprendimos como funcionan las pilas internamente podemos hacer uso de una libreria que C++ ya trae por defecto, que es 
 `std::stack`. Esta libreria nos traerá todas las funciones que mencionamos anteriormente y las tendremos a dispocision para manejar pilas de una manera muchisimo más sencilla.
@@ -86,14 +86,14 @@ Ahora que ya creamos nuestra pila, ya podemos hacer uso de las funciones que tra
 -   **`empty()`**: Devuelve `true` si la pila está vacía; de lo contrario, devuelve `false`.
 -   **`size()`**: Devuelve el número de elementos en la pila.
 
-## ¿Que son las Colas (Queues)?
+## 2. ¿Que son las Colas (Queues)?
 
 Una **cola** es una estructura de datos que sigue el principio **FIFO (First In, First Out)**. A diferencia de las pilas, donde el acceso es por un solo extremo, en las colas se interactúa por ambos extremos.
 
 
-![Queue](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/Queue-data-structure.png)
+![Queue](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP3/B.png)
 
-### Definición de un nodo
+### 2.1 Definición de un nodo
 
 Al igual que en las listas y pilas, una cola está compuesta por **nodos**. Cada nodo contiene un valor y un puntero al siguiente nodo.
 
@@ -105,7 +105,7 @@ struct Nodo {
 ```
 
 
-### Definición de una cola
+### 2.2 Definición de una cola
 
 Para facilitar el acceso tanto al frente como al final de la cola, utilizamos una estructura que mantiene punteros a ambos extremos.
 ```c++
@@ -119,9 +119,9 @@ La estructura `Cola` contiene dos punteros:
 -   `frente`: Apunta al primer nodo de la cola (donde se realiza la operación de **desencolar**).
 -   `final`: Apunta al último nodo de la cola (donde se realiza la operación de **encolar**).
 
-## Uso de colas de manera manual
+## 2.3 Uso de colas de manera manual
 
-### Encolar (Enqueue)
+### 2.3.1 Encolar (Enqueue)
 Esta función nos agregará un nodo al final de la cola.
 ```c++
 void Encolar(Cola*& cola, int valor) {
@@ -140,7 +140,7 @@ void Encolar(Cola*& cola, int valor) {
 }
 ```
 
-## Función para desencolar (Dequeue)
+### 2.3.2 Función para desencolar (Dequeue)
 Esta función eliminara el nodo que este de primero.
 
 ```c++
@@ -163,7 +163,7 @@ int Desencolar(Cola*& cola) {
 }
 ```
 
-## Obtener el valor del frente (Front)
+### 2.3.3 Obtener el valor del frente (Front)
 
 Esta función, hace casi lo mismo que el de eliminar, solo que, no elimina como tal el nodo, solo lo muestra.
 
@@ -176,16 +176,14 @@ int Frente(Cola* cola) {
 }
 ```
 
-## Uso de colas usando librería de C++
+## 2.4 Uso de colas usando librería de C++
 Al igual que con las pilas, C++ nos provee de una librería para gestionar las colas llamada `queue`
 
-### Incluyendo la librería
 Para utilizar `std::queue`,  incluiremos el encabezado correspondiente:
 ```c++
 #include <iostream>
 #include <queue>
 ```
-### Definición de una cola
 La sintaxis general para declarar una cola es:
 ```c++
 std::queue<TipoDeDato> nombre_de_la_cola;
@@ -201,10 +199,16 @@ Ahora que ya creamos nuestra cola, ya podemos hacer uso de las funciones que tra
 -   **`empty()`**: Devuelve `true` si la cola está vacía; de lo contrario, devuelve `false`.
 -   **`size()`**: Devuelve el número de elementos en la cola.
 
-## Buenas practicas de implementacion.
+## 3. Buenas practicas de implementacion.
 
-## Ejemplo 
+- **Separa responsabilidades:** usa funciones independientes para apilar, desapilar, encolar y desencolar.
+- **Valida los casos límite:** verifica si la pila o la cola están vacías antes de acceder a `top()`, `front()` o `pop()`.
+- **Gestiona la memoria con claridad:** cada `new` debe tener su `delete` correspondiente para evitar fugas de memoria.
+- **Usa nombres descriptivos:** `cima`, `frente`, `final`, `Push`, `Pop` y `Encolar` hacen el código más legible.
+- **Mantén la lógica consistente:** actualiza los punteros en el orden correcto y conserva la regla `LIFO` o `FIFO` según el caso.
+- **Escribe código limpio:** evita duplicar lógica y usa funciones simples y bien definidas.
 
+## Ejemplo
 
 ## Anexos
 - [Stack Data Structure - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/stack-data-structure/)
