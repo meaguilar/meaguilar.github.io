@@ -209,7 +209,9 @@ Ahora que ya creamos nuestra cola, ya podemos hacer uso de las funciones que tra
 - **Escribe código limpio:** evita duplicar lógica y usa funciones simples y bien definidas.
 
 ## Ejemplo
+[Implementando pilas - Historial de navegacion web](https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-3/Pilas)
 
+[Implementando colas - Montaña Rusa](https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-3/Colas)
 ## Anexos
 - [Stack Data Structure - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/stack-data-structure/)
 
