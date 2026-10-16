@@ -1,7 +1,7 @@
 ﻿
 # Algoritmos de Ordenamiento y Búsqueda
 
-En este laboratorio estudiaremos los algoritmos de ordenamiento y búsqueda, su complejidad, el uso de la librería estándar de C++ (STL) y la estructura de datos `std::list`.
+En este laboratorio estudiaremos los algoritmos de ordenamiento y búsqueda, su complejidad, el uso de la librería estándar de C++ (STL).
 
 # Algoritmos de ordenamiento
 
