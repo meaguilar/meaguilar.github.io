@@ -7,6 +7,8 @@ En este laboratorio estudiaremos los algoritmos de ordenamiento y búsqueda, su 
 
 Los **algoritmos de ordenamiento** organizan los elementos de una colección según un criterio definido (ascendente o descendente) para facilitar su procesamiento y optimizar las operaciones posteriores de búsqueda.
 
+![BubbleSort](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/A.png)
+
 ## Ordenamiento Burbuja (Bubble Sort)
 
 Compara pares de elementos adyacentes y los intercambia si están en el orden incorrecto, haciendo que en cada recorrido el elemento mayor "flote" hacia el final del arreglo hasta que no se requieran más intercambios.
@@ -123,6 +125,8 @@ auto buscarEstudiante(const std::list<Estudiante>& lista, const std::string& nom
 # Algoritmos de búsqueda
 
 Los **algoritmos de búsqueda** permiten localizar un elemento específico dentro de una estructura de datos (como un arreglo o una lista) y determinar su posición o confirmar su existencia de manera eficiente.
+
+![Search](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/B.png)
 
 ## Búsqueda Lineal (Linear Search)
 
