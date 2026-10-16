@@ -86,7 +86,6 @@ void InsertionSort(int arr[], int n) {
 La **STL (Standard Template Library)** es la biblioteca de plantillas estándar de C++ que proporciona contenedores genéricos (como `std::list` o `std::vector`), iteradores y funciones optimizadas en la cabecera `<algorithm>`. En lugar de programar algoritmos desde cero, la STL permite operar sobre estructuras personalizadas (como un `struct Estudiante`) mediante predicados o funciones *lambda*:
 
 - **`sort`:** Ordena los elementos dividiendo el problema logarítmicamente (con profundidad de partición $\log(n)$ y complejidad total $O(n \log n)$). En `std::list` se invoca como método miembro `lista.sort(...)` porque las listas enlazadas no tienen acceso aleatorio.
-- **`std::find_if`:** Recorre secuencialmente un rango `[inicio, fin)` y devuelve un iterador al primer elemento que cumple una condición booleana, con una complejidad lineal de **$O(n)$**.
 
 ### Ordenar una lista de `Estudiante` con `sort`
 
@@ -107,27 +106,11 @@ void ordenarPorEdad(std::list<Estudiante>& lista) {
 }
 ```
 
-### Buscar un `Estudiante` en una lista con `std::find_if` ($O(n)$)
-
-```c++
-#include <algorithm>
-#include <list>
-#include <string>
-
-auto buscarEstudiante(const std::list<Estudiante>& lista, const std::string& nombreBuscado) {
-    // Recorre la lista en O(n) hasta encontrar la coincidencia
-    return std::find_if(lista.begin(), lista.end(), [&](const Estudiante& e) {
-        return e.nombre == nombreBuscado;
-    });
-}
-```
-
 # Algoritmos de búsqueda
 
 Los **algoritmos de búsqueda** permiten localizar un elemento específico dentro de una estructura de datos (como un arreglo o una lista) y determinar su posición o confirmar su existencia de manera eficiente.
 
 ![Search](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP4/B.png)
-
 ## Búsqueda Lineal (Linear Search)
 
 Recorre secuencialmente la colección desde el primer hasta el último elemento comparando cada valor con la clave buscada. No requiere que los datos estén previamente ordenados.
@@ -176,17 +159,34 @@ int BinarySearch(int arr[], int low, int high, int key) {
 
 ## Búsqueda usando la librería de C++
 
-La cabecera `<algorithm>` de la STL ofrece funciones listas para realizar búsquedas sobre cualquier rango de iteradores `[inicio, fin)`:
+La cabecera `<algorithm>` de la STL ofrece funciones listas para realizar tanto búsquedas lineales como búsquedas binarias sobre cualquier rango de iteradores `[inicio, fin)`:
+
+```c++
+#include <algorithm> // Librería necesaria para find_if, binary_search y lower_bound
+#include <iostream>
+```
+
+### 1. Búsqueda lineal con `std::find_if` ($O(n)$)
+
+- **`std::find_if(inicio, fin, predicado)`:** Recorre secuencialmente un rango `[inicio, fin)` sin exigir orden previo y devuelve un iterador al primer elemento que cumple una condición booleana (como una función anónima *lambda*), con una complejidad lineal de **$O(n)$**.
+
+```c++
+#include <algorithm>
+#include <list>
+#include <string>
+
+auto buscarEstudiante(const std::list<Estudiante>& lista, const std::string& nombreBuscado) {
+    // Recorre la lista en O(n) hasta encontrar la coincidencia
+    return std::find_if(lista.begin(), lista.end(), [&](const Estudiante& e) {
+        return e.nombre == nombreBuscado;
+    });
+}
+```
+
+### 2. Búsqueda binaria con `std::binary_search` y `std::lower_bound` ($O(\log n)$)
 
 - **`std::binary_search(inicio, fin, clave)`:** Devuelve `true` o `false` indicando si el elemento existe en un rango **previamente ordenado** en tiempo $O(\log n)$.
 - **`std::lower_bound(inicio, fin, clave)`:** Devuelve un iterador al primer elemento mayor o igual a la clave dentro de un rango **ordenado** en tiempo $O(\log n)$.
-
-### Inclusión de la librería y uso básico
-
-```c++
-#include <algorithm> // Librería necesaria para binary_search, lower_bound y find_if
-#include <iostream>
-```
 
 ```c++
 int arr[] = {11, 12, 22, 25, 34, 64, 90};
@@ -195,27 +195,6 @@ int n = sizeof(arr) / sizeof(arr[0]);
 // Verifica en O(log n) si el número 22 está en el arreglo ordenado
 bool encontrado = std::binary_search(arr, arr + n, 22);
 ```
-
-## Estructuras de datos dinámicas lineales: Listas (std::list)
-
-### ¿Qué son las Listas?
-
-Una **lista (`std::list`)** es una estructura de datos dinámica lineal implementada como una **lista doblemente enlazada**. A diferencia de `std::vector`, no almacena los elementos de forma contigua en memoria, sino mediante nodos enlazados al elemento anterior y al siguiente, lo que permite insertar o eliminar elementos en cualquier posición en tiempo constante $O(1)$ una vez ubicado el iterador.
-
-### Inclusión y declaración
-
-```c++
-#include <list>
-
-std::list<TipoDeDato> nombre_de_la_lista;
-```
-
-### Operaciones principales de `std::list`
-
-- **Inserción:** `push_back(valor)` (al final), `push_front(valor)` (al inicio) e `insert(iterador, valor)` (en posición específica).
-- **Eliminación:** `pop_back()` (último), `pop_front()` (primero), `erase(iterador)` (posición específica), `remove(valor)` (por coincidencia) y `clear()` (vaciar lista).
-- **Acceso y estado:** `front()` (primer elemento), `back()` (último elemento), `empty()` (verifica si está vacía) y `size()` (cantidad de elementos).
-- **Utilidades de orden y estructura:** `sort()` (ordena la lista en $O(n \log n)$), `reverse()` (invierte el orden), `unique()` (elimina duplicados consecutivos), `merge(otra_lista)` (fusiona dos listas ordenadas) y `splice(pos, otra_lista)` (transfiere nodos entre listas sin copiarlos).
 
 ## Ejemplo
 [Ver ejemplo de registro y búsqueda de estudiantes](https://github.com/meaguilar/PED-Clases/tree/main/EjerciciosLaboratorios/Laboratorio-4)
