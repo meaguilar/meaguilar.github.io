@@ -1,4 +1,4 @@
-# Guía de laboratorio: Estructuras de Datos No Lineales
+# Estructuras de Datos No Lineales
 
 ## Introducción
 
