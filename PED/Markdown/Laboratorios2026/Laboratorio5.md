@@ -10,17 +10,9 @@ Una **estructura de datos no lineal** organiza sus elementos mediante conexiones
 
 Dos ejemplos de estas estructuras son los **árboles** y los **grafos**.
 
-**[IMAGEN 1 — Estructuras no lineales y representación en memoria]**
+![Nolineal](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/A.png)
 
-*Nota de edición — Sustituir por una imagen que incluya:*
-
-- Un árbol y un grafo, señalando que ambos están formados por nodos conectados.
-- Un nodo ampliado que muestre cómo se almacena información mediante un `struct`, incluyendo datos y punteros.
-- Una representación de memoria donde la variable puntero `raiz`, ubicada en el **stack**, apunta al nodo raíz reservado dinámicamente en el **heap**.
-- Los demás nodos del árbol conectados mediante punteros, con direcciones de memoria ilustrativas.
-- Referencias visuales a las operaciones de insertar, buscar y eliminar.
-
-*Importante: el puntero `raiz` puede ser una variable local en el stack, pero el nodo al que apunta se encuentra en el heap cuando se reserva mediante `new`. En un grafo no necesariamente existe una raíz.*
+> 💡 El puntero `raiz` puede ser una variable local en el stack, pero el nodo al que apunta se encuentra en el heap cuando se reserva mediante `new`. En un grafo no necesariamente existe una raíz.
 
 ### Propiedades
 
@@ -41,34 +33,7 @@ Esta organización permite descartar partes del árbol durante la búsqueda, red
 
 Consideremos una agenda telefónica que almacena nombres de contactos. La información puede organizarse mediante una estructura lineal o un árbol binario de búsqueda.
 
-**[IMAGEN 2 — Comparación entre una lista y un ABB]**
-
-*Nota de edición — Crear una imagen dividida en dos paneles.*
-
-**Panel izquierdo: lista de contactos**
-
-Mostrar una lista lineal con los contactos en este orden:
-
-Carla → Ana → Mario → Brenda → Luis → Elena → Roberto
-
-- Señalar el recorrido secuencial para buscar a **Roberto**.
-- Resaltar los siete elementos revisados.
-- Colocar una etiqueta de complejidad: **O(n) — Búsqueda lineal**.
-
-**Panel derecho: árbol binario de búsqueda**
-
-Representar los mismos siete contactos organizados así:
-
-- Raíz: Elena.
-- Hijos de Elena: Brenda y Mario.
-- Hijos de Brenda: Ana y Carla.
-- Hijos de Mario: Luis y Roberto.
-
-La ilustración debe señalar **raíz, padre, hijos, hermanos, hojas y aristas**.
-
-Resaltar el recorrido de búsqueda de Roberto: **Elena → Mario → Roberto**, mostrando tres comparaciones.
-
-Agregar la etiqueta: **O(log n) — Búsqueda en ABB balanceado**.
+![Contactos](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/B.png)
 
 ### Complejidad en la búsqueda y el ordenamiento
 
@@ -88,40 +53,7 @@ Estos contenedores permiten trabajar con estructuras ordenadas sin necesidad de 
 
 ### Comparación entre `std::set` y `std::map`
 
-**[IMAGEN 3 — Propiedades de SET vs. MAP]**
-
-*Nota de edición — Imagen comparativa con dos árboles, utilizando el contexto de una agenda telefónica.*
-
-**Panel izquierdo: `std::set`**
-
-Representar un árbol que almacene números telefónicos como elementos únicos, por ejemplo:
-
-- 7100-1000
-- 7200-2000
-- 7300-3000
-
-Señalar visualmente estas propiedades:
-
-- Elementos únicos.
-- Orden automático ascendente.
-- Elementos inmutables dentro del contenedor.
-
-**Panel derecho: `std::map`**
-
-Representar un árbol con números de teléfono como claves y datos de los contactos como valores:
-
-- 7100-1000 → Ana López
-- 7200-2000 → Roberto Pérez
-- 7300-3000 → Ana Martínez
-
-Señalar visualmente estas propiedades:
-
-- Almacenamiento mediante **clave–valor**.
-- Claves únicas; los valores pueden repetirse.
-- Orden automático por clave.
-- Valores modificables.
-
-**Debajo de ambos árboles:** indicar que utilizan estructuras balanceadas y permiten operaciones de búsqueda, inserción y eliminación en O(log n).
+![Librerias](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/C.png)
 
 ### Métodos básicos
 
