@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio5.md</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#guía-de-laboratorio-estructuras-de-datos-no-lineales">Guía de laboratorio: Estructuras de Datos No Lineales</a>
+<ul>
+<li><a href="#introducción">Introducción</a></li>
+<li><a href="#estructuras-de-datos-no-lineales">1. Estructuras de datos no lineales</a></li>
+<li><a href="#árbol-binario-de-búsqueda-abb">2. Árbol binario de búsqueda (ABB)</a></li>
+<li><a href="#contenedores-stdset-y-stdmap-en-c">3. Contenedores std::set y std::map en C++</a></li>
+<li><a href="#ejemplo">4. Ejemplo</a></li>
+<li><a href="#enlaces-adicionales">5. Enlaces adicionales</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="guía-de-laboratorio-estructuras-de-datos-no-lineales">Guía de laboratorio: Estructuras de Datos No Lineales</h1>
+<h2 id="introducción">Introducción</h2>
+<p>Las estructuras de datos no lineales permiten organizar información mediante relaciones jerárquicas o conexiones entre elementos. En esta práctica se estudiarán los árboles binarios de búsqueda y su aplicación mediante los contenedores <code>std::set</code> y <code>std::map</code> de C++, que facilitan el almacenamiento, la búsqueda y la organización eficiente de datos.</p>
+<h2 id="estructuras-de-datos-no-lineales">1. Estructuras de datos no lineales</h2>
+<p>Una <strong>estructura de datos no lineal</strong> organiza sus elementos mediante conexiones, en lugar de una secuencia única. Sus componentes se denominan <strong>nodos o vértices</strong>, los cuales almacenan información y establecen relaciones con otros elementos.</p>
+<p>Dos ejemplos de estas estructuras son los <strong>árboles</strong> y los <strong>grafos</strong>.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/A.png" alt="Nolineal"></p>
+<blockquote>
+<p>💡 El puntero <code>raiz</code> puede ser una variable local en el stack, pero el nodo al que apunta se encuentra en el heap cuando se reserva mediante <code>new</code>. En un grafo no necesariamente existe una raíz.</p>
+</blockquote>
+<h3 id="propiedades">Propiedades</h3>
+<ul>
+<li><strong>Profundidad:</strong> distancia desde la raíz hasta un nodo, medida por el número de aristas.</li>
+<li><strong>Altura:</strong> longitud del camino más largo desde un nodo hasta una hoja del árbol.</li>
+</ul>
+<p>Estas propiedades ayudan a comprender la eficiencia de la búsqueda: mientras más niveles deban recorrerse, mayor puede ser la cantidad de comparaciones necesarias.</p>
+<blockquote>
+<p>En los grafos también se pueden estudiar distancias respecto a un vértice de referencia, aunque la altura no se define necesariamente de la misma manera que en un árbol.</p>
+</blockquote>
+<h2 id="árbol-binario-de-búsqueda-abb">2. Árbol binario de búsqueda (ABB)</h2>
+<p>Un <strong>árbol binario de búsqueda (ABB)</strong> es una estructura no lineal donde los valores menores que un nodo se ubican en su subárbol izquierdo y los mayores en el derecho.</p>
+<p>Esta organización permite descartar partes del árbol durante la búsqueda, reduciendo la cantidad de comparaciones cuando se encuentra balanceado.</p>
+<h3 id="ejemplo-práctico-agenda-de-contactos">Ejemplo práctico: agenda de contactos</h3>
+<p>Consideremos una agenda telefónica que almacena nombres de contactos. La información puede organizarse mediante una estructura lineal o un árbol binario de búsqueda.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/B.png" alt="Contactos"></p>
+<h3 id="complejidad-en-la-búsqueda-y-el-ordenamiento">Complejidad en la búsqueda y el ordenamiento</h3>
+<p>En una <strong>lista no ordenada</strong>, la búsqueda puede requerir revisar todos sus elementos, por lo que su complejidad es O(n) en el peor caso.</p>
+<p>En un <strong>ABB balanceado</strong>, la búsqueda puede realizarse en O(log n), gracias a que se descartan subárboles en cada comparación. Sin embargo, un ABB desbalanceado puede alcanzar O(n).</p>
+<p>Además, un recorrido <em>inorden</em> de un ABB permite obtener sus elementos ordenados en O(n), mientras que una lista no ordenada requiere un proceso de ordenamiento adicional.</p>
+<h2 id="contenedores-stdset-y-stdmap-en-c">3. Contenedores <code>std::set</code> y <code>std::map</code> en C++</h2>
+<p>La Biblioteca Estándar de C++ (STL) ofrece los contenedores <code>std::set</code> y <code>std::map</code>, que utilizan estructuras de búsqueda balanceadas, comúnmente implementadas mediante un <strong>árbol rojo-negro (Red-Black Tree)</strong>.</p>
+<p>Este árbol mantiene su equilibrio mediante reglas de coloración y reorganización de nodos, permitiendo realizar operaciones de búsqueda, inserción y eliminación en <strong>O(log n)</strong>.</p>
+<p>Estos contenedores permiten trabajar con estructuras ordenadas sin necesidad de implementar manualmente el árbol ni sus mecanismos de balanceo.</p>
+<h3 id="comparación-entre-stdset-y-stdmap">Comparación entre <code>std::set</code> y <code>std::map</code></h3>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP5/C.png" alt="Librerias"></p>
+<h3 id="métodos-básicos">Métodos básicos</h3>
+
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Funcionalidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insert()</code></td>
+<td>Inserta un elemento nuevo.</td>
+</tr>
+<tr>
+<td><code>find()</code></td>
+<td>Busca un elemento o una clave.</td>
+</tr>
+<tr>
+<td><code>erase()</code></td>
+<td>Elimina un elemento o una clave.</td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>Obtiene la cantidad de elementos.</td>
+</tr>
+<tr>
+<td><code>begin()</code> / <code>end()</code></td>
+<td>Permiten recorrer el contenedor mediante iteradores.</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Elimina todos los elementos.</td>
+</tr>
+</tbody>
+</table><blockquote>
+<p>💡 En <code>std::set</code>, las operaciones utilizan el valor almacenado; en <code>std::map</code>, utilizan principalmente la clave.</p>
+</blockquote>
+<h2 id="ejemplo">4. Ejemplo</h2>
+<h2 id="enlaces-adicionales">5. Enlaces adicionales</h2>
+<ul>
+<li><a href="https://visualgo.net/en/bst">Visualgo — Binary Search Tree</a>: visualización interactiva de las operaciones sobre árboles de búsqueda.</li>
+<li><a href="https://www.cs.usfca.edu/~galles/visualization/RedBlack.html">Red-Black Tree Visualization — University of San Francisco</a>: permite observar inserciones, eliminaciones y balanceo.</li>
+<li><a href="https://www.geeksforgeeks.org/set-in-cpp-stl/">GeeksforGeeks — Set en C++</a>: introducción práctica a <code>std::set</code>.</li>
+<li><a href="https://www.programiz.com/cpp-programming/map">Programiz — C++ Map</a>: explicación y ejemplos básicos del uso de <code>std::map</code>.</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>

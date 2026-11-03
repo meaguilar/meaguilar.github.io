@@ -21,7 +21,7 @@ Dos ejemplos de estas estructuras son los **árboles** y los **grafos**.
 
 Estas propiedades ayudan a comprender la eficiencia de la búsqueda: mientras más niveles deban recorrerse, mayor puede ser la cantidad de comparaciones necesarias.
 
-*En los grafos también se pueden estudiar distancias respecto a un vértice de referencia, aunque la altura no se define necesariamente de la misma manera que en un árbol.*
+> En los grafos también se pueden estudiar distancias respecto a un vértice de referencia, aunque la altura no se define necesariamente de la misma manera que en un árbol.
 
 ## 2. Árbol binario de búsqueda (ABB)
 
@@ -66,7 +66,7 @@ Estos contenedores permiten trabajar con estructuras ordenadas sin necesidad de 
 | `begin()` / `end()` | Permiten recorrer el contenedor mediante iteradores. |
 | `clear()` | Elimina todos los elementos. |
 
-En `std::set`, las operaciones utilizan el valor almacenado; en `std::map`, utilizan principalmente la clave.
+> 💡 En `std::set`, las operaciones utilizan el valor almacenado; en `std::map`, utilizan principalmente la clave.
 
 ## 4. Ejemplo
 
