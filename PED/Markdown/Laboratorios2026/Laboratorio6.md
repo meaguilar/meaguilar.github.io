@@ -40,7 +40,6 @@ La técnica de **encadenamiento separado**, también llamada **hash abierto**, c
 
 ![Colisiones](https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/B.png)
 
-> 💡 Existen otras técnicas, como el **direccionamiento abierto** (hash cerrado), donde el elemento en colisión se guarda en otra casilla libre de la tabla. En esta práctica se trabajará con encadenamiento separado.
  
 ## 3. Ejemplo práctico: sistema de casilleros inteligentes
  
@@ -95,9 +94,9 @@ En la práctica no se guardan solo datos simples, sino estructuras con varios ca
 - Usar `unordered_set` / `unordered_map` cuando importa la velocidad de búsqueda y no el orden; si se necesitan los datos ordenados, usar `set` / `map`.
 ## 5. Ejemplo
   
-[Casilleros con Tabla Hash Manual](RUTA/casilleros_hash_manual.cc)  
-[Casilleros usando UNORDERED_SET](RUTA/casilleros_unordered_set.cc)  
-[Casilleros usando UNORDERED_MAP](RUTA/casilleros_unordered_map.cc)
+[Casilleros con Tabla Hash Manual](https://github.com/meaguilar/PED-Clases/blob/main/EjerciciosLaboratorios/Laboratorio-6/casilleros_hash_manual.cc)  
+[Casilleros usando UNORDERED_SET](https://github.com/meaguilar/PED-Clases/blob/main/EjerciciosLaboratorios/Laboratorio-6/casilleros_unordered_set.cc)  
+[Casilleros usando UNORDERED_MAP](https://github.com/meaguilar/PED-Clases/blob/main/EjerciciosLaboratorios/Laboratorio-6/casilleros_unordered_map.cc)
  
 ## 6. Enlaces adicionales
  

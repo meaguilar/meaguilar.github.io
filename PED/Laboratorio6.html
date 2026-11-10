@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratorio 6</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#tablas-hash">Tablas Hash</a>
+<ul>
+<li><a href="#introducción">Introducción</a></li>
+<li><a href="#tabla-hash">1. Tabla hash</a></li>
+<li><a href="#colisiones">2. Colisiones</a></li>
+<li><a href="#ejemplo-práctico-sistema-de-casilleros-inteligentes">3. Ejemplo práctico: sistema de casilleros inteligentes</a></li>
+<li><a href="#contenedores-stdunordered_set-y-stdunordered_map-en-c">4. Contenedores std::unordered_set y std::unordered_map en C++</a></li>
+<li><a href="#ejemplo">5. Ejemplo</a></li>
+<li><a href="#enlaces-adicionales">6. Enlaces adicionales</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="tablas-hash">Tablas Hash</h1>
+<h2 id="introducción">Introducción</h2>
+<p>En esta práctica se estudiará las tablas hash y su funcionamiento, el manejo de colisiones y su aplicación mediante los contenedores <code>std::unordered_set</code> y <code>std::unordered_map</code> de C++.</p>
+<h2 id="tabla-hash">1. Tabla hash</h2>
+<p>Una <strong>tabla hash</strong> es una estructura que asocia <strong>claves</strong> con <strong>valores</strong>. En lugar de recorrer los elementos uno por uno, aplica una función hash a la clave para obtener un <strong>índice</strong>, que indica la posición de la tabla donde se almacenará el dato.</p>
+<h3 id="conceptos-clave">Conceptos clave</h3>
+<ul>
+<li><strong>Clave:</strong> dato que identifica de forma única a un elemento (por ejemplo, un número de identificación).</li>
+<li><strong>Valor:</strong> información asociada a la clave (por ejemplo, los datos de una persona).</li>
+<li><strong>Función hash:</strong> fórmula que transforma la clave en un número entero dentro del rango de la tabla. Una forma sencilla es sumar los valores ASCII de los caracteres de la clave y aplicar el módulo del tamaño de la tabla: <code>índice = suma ASCII % tamaño</code>.</li>
+<li><strong>Índice (hash):</strong> resultado de la función hash; indica en qué posición se guardará el elemento.</li>
+<li><strong>Buckets:</strong> espacios o casillas de la tabla donde se almacenan los elementos.</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/A.png" alt="Tabla hash"></p>
+<h3 id="complejidad">Complejidad</h3>
+<p>La función hash indica directamente en qué índice buscar, insertar o eliminar, sin recorrer toda la estructura. Por eso estas operaciones tienen una complejidad promedio de <strong>O(1)</strong>, es decir, <strong>tiempo constante</strong>.</p>
+
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Caso promedio</th>
+<th>Peor caso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insertar</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Buscar</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Eliminar</td>
+<td>O(1)</td>
+<td>O(n)</td>
+</tr>
+</tbody>
+</table><blockquote>
+<p>💡 El peor caso O(n) ocurre cuando muchas claves generan el mismo índice y se acumulan en un solo bucket. Una buena función hash y un tamaño de tabla adecuado reducen este problema.</p>
+</blockquote>
+<h2 id="colisiones">2. Colisiones</h2>
+<p>Una <strong>colisión</strong> ocurre cuando dos claves distintas obtienen el mismo índice al aplicar la función hash, es decir, dos datos deben guardarse en la misma posición de la tabla.</p>
+<h3 id="solución-encadenamiento-separado-hash-abierto">Solución: encadenamiento separado (hash abierto)</h3>
+<p>La técnica de <strong>encadenamiento separado</strong>, también llamada <strong>hash abierto</strong>, consiste en que cada bucket contenga una <strong>lista enlazada</strong>. Cuando ocurre una colisión, el nuevo elemento simplemente se agrega a la lista de ese índice, de modo que varios datos pueden convivir en la misma posición.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/B.png" alt="Colisiones"></p>
+<h2 id="ejemplo-práctico-sistema-de-casilleros-inteligentes">3. Ejemplo práctico: sistema de casilleros inteligentes</h2>
+<p>Imaginemos un edificio con casilleros inteligentes. Cuando una persona llega a guardar sus pertenencias, ingresa su <strong>identificación</strong> en una pantalla; el sistema aplica la función hash sobre esa identificación y le indica <strong>qué casillero le corresponde</strong>. Cuando regresa, vuelve a ingresar su identificación y el sistema calcula el mismo índice para encontrar su casillero de inmediato, sin revisar uno por uno.</p>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/C.png" alt="Casilleros"></p>
+<h3 id="operaciones-del-sistema">Operaciones del sistema</h3>
+
+<table>
+<thead>
+<tr>
+<th>Operación</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Asignar casillero</td>
+<td>Calcula el hash de la identificación y guarda a la persona en ese índice.</td>
+</tr>
+<tr>
+<td>Buscar casillero</td>
+<td>Calcula el hash de la identificación y localiza el casillero asignado.</td>
+</tr>
+<tr>
+<td>Liberar casillero</td>
+<td>Elimina el registro de la persona de su casillero.</td>
+</tr>
+<tr>
+<td>Mostrar casilleros</td>
+<td>Recorre la tabla y muestra los casilleros ocupados.</td>
+</tr>
+</tbody>
+</table><h2 id="contenedores-stdunordered_set-y-stdunordered_map-en-c">4. Contenedores <code>std::unordered_set</code> y <code>std::unordered_map</code> en C++</h2>
+<p>La Biblioteca Estándar de C++ (STL) ofrece los contenedores <code>std::unordered_set</code> y <code>std::unordered_map</code>, que están implementados internamente mediante <strong>tablas hash</strong>. A diferencia de <code>std::set</code> y <code>std::map</code> (árboles rojo-negro, O(log n)), estos contenedores <strong>no mantienen sus elementos ordenados</strong>, pero permiten realizar búsqueda, inserción y eliminación en <strong>O(1)</strong> en promedio.</p>
+<h3 id="comparación-entre-stdunordered_set-y-stdunordered_map">Comparación entre <code>std::unordered_set</code> y <code>std::unordered_map</code></h3>
+<p><img src="https://raw.githubusercontent.com/meaguilar/meaguilar.github.io/refs/heads/main/PED/Imagenes/CP6/D.png" alt="Librerias"></p>
+<h3 id="métodos-básicos">Métodos básicos</h3>
+
+<table>
+<thead>
+<tr>
+<th>Método</th>
+<th>Funcionalidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>insert()</code></td>
+<td>Inserta un elemento nuevo.</td>
+</tr>
+<tr>
+<td><code>find()</code></td>
+<td>Busca un elemento o una clave.</td>
+</tr>
+<tr>
+<td><code>erase()</code></td>
+<td>Elimina un elemento o una clave.</td>
+</tr>
+<tr>
+<td><code>count()</code></td>
+<td>Indica si un elemento o clave existe (0 o 1).</td>
+</tr>
+<tr>
+<td><code>size()</code></td>
+<td>Obtiene la cantidad de elementos.</td>
+</tr>
+<tr>
+<td><code>begin()</code> / <code>end()</code></td>
+<td>Permiten recorrer el contenedor mediante iteradores.</td>
+</tr>
+<tr>
+<td><code>clear()</code></td>
+<td>Elimina todos los elementos.</td>
+</tr>
+</tbody>
+</table><h3 id="uso-con-estructuras-struct">Uso con estructuras (<code>struct</code>)</h3>
+<p>En la práctica no se guardan solo datos simples, sino estructuras con varios campos (por ejemplo, un <code>struct Casillero</code> con identificación, nombre y número de casillero). Esto cambia la forma de usar cada contenedor:</p>
+<ul>
+<li><strong><code>std::unordered_map</code>:</strong> la clave es un dato simple, como la <strong>identificación</strong> (<code>string</code>), y el valor es el <code>struct</code> completo. Como la clave es un tipo que la STL ya sabe “hashear”, <strong>no es necesario crear una función hash</strong>.</li>
+<li><strong><code>std::unordered_set</code>:</strong> se guarda el <code>struct</code> completo, pero el contenedor no sabe qué campo usar como clave. Por eso se deben definir dos cosas:
+<ol>
+<li><strong>Una función hash propia:</strong> un <code>struct</code> adicional (por ejemplo, <code>CasilleroHash</code>) que indique de qué campo se obtiene el hash. Se usa la función <code>std::hash</code>, que ya viene en la librería, indicando el tipo de dato y el campo, por ejemplo <code>std::hash&lt;string&gt;()(c.identificacion)</code>. No se necesitan fórmulas adicionales, basta con el campo clave.</li>
+<li><strong>Un criterio de igualdad:</strong> el operador <code>==</code> que indique cuándo dos estructuras son iguales (comparando su identificación). Es equivalente a la función booleana comparadora usada en <code>std::set</code>, pero aquí sirve para saber si un elemento ya existe.<br>
+Al declarar el contenedor se indica el tipo y la función hash: <code>unordered_set&lt;Casillero, CasilleroHash&gt;</code>.</li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>💡 Si la clave estuviera dentro del <code>struct</code> en un <code>unordered_map</code>, también habría que pasar la función hash como tercer parámetro. Por eso se recomienda usar como clave un campo simple que no se repita.</p>
+</blockquote>
+<h3 id="buenas-prácticas">Buenas prácticas</h3>
+<ul>
+<li>Elegir como clave un dato <strong>único</strong> que no se repita (identificación, código, carné). Un dato como la letra inicial de una palabra se repite y no sirve como clave.</li>
+<li>Preferir <code>unordered_map</code> con una clave simple cuando se necesita asociar datos a un identificador; reservar <code>unordered_set</code> para verificar existencia de elementos.</li>
+<li>Usar <code>unordered_set</code> / <code>unordered_map</code> cuando importa la velocidad de búsqueda y no el orden; si se necesitan los datos ordenados, usar <code>set</code> / <code>map</code>.</li>
+</ul>
+<h2 id="ejemplo">5. Ejemplo</h2>
+<p><a href="https://github.com/meaguilar/PED-Clases/blob/main/EjerciciosLaboratorios/Laboratorio-6/casilleros_hash_manual.cc">Casilleros con Tabla Hash Manual</a><br>
+<a href="https://github.com/meaguilar/PED-Clases/blob/main/EjerciciosLaboratorios/Laboratorio-6/casilleros_unordered_set.cc">Casilleros usando UNORDERED_SET</a><br>
+<a href="https://github.com/meaguilar/PED-Clases/blob/main/EjerciciosLaboratorios/Laboratorio-6/casilleros_unordered_map.cc">Casilleros usando UNORDERED_MAP</a></p>
+<h2 id="enlaces-adicionales">6. Enlaces adicionales</h2>
+<ul>
+<li><a href="https://visualgo.net/en/hashtable">Visualgo — Hash Table</a>: visualización interactiva de inserciones, búsquedas y colisiones.</li>
+<li><a href="https://www.cs.usfca.edu/~galles/visualization/OpenHash.html">Open Hashing Visualization — University of San Francisco</a>: permite observar el encadenamiento separado.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_set">cppreference — std::unordered_set</a>: referencia del contenedor y sus métodos.</li>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map">cppreference — std::unordered_map</a>: referencia del contenedor y sus métodos.</li>
+</ul>
+
+    </div>
+  </div>
+</body>
+
+</html>
